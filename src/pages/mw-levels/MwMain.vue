@@ -135,6 +135,7 @@
   table thead {
     background: #404248;
     color: #fff;
+    text-align: left;
   }
 
   table tr:first-child {
