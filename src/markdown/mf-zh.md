@@ -1,5 +1,3 @@
-# Mario Forever 全版本汇总
-
 本页面汇总了原版 Mario Forever 绝大部分版本的资源链接，同时提供最新版 Mario Forever Remake 下载链接。如有链接失效，[你可以在社区反馈专帖进行反馈。](https://www.marioforever.net/thread-1635-1-1.html)
 
 [下载最新版 Mario Forever Remake](https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Remake%20v3.5.rar)&nbsp;&nbsp;&nbsp;[下载最新版 Mario Forever Advance Remake](https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar)
