@@ -31,13 +31,13 @@
         <div class="button" v-if="displayLan() == 'en' && pageEntry.show_en == true" @click="$emit('changeLanZh')">中文</div>
       </div>
       <div class="header-row">
-        <h1>{{ displayLan() == 'zh' ? pageEntry.name : pageEntry.alter }}</h1>
+        <h1>{{ displayLan() == 'zh' ? pageEntry.title : pageEntry.title_alt }}</h1>
       </div>
       <div class="header-row nav-row">
         <div class="radio-inputs">
           <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
             <span class="radio-text" name="radio">
-              {{ displayLan() == 'zh' ? nav.name : nav.alter }}
+              {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
             </span>
           </a>
         </div>

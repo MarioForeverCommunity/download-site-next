@@ -12,8 +12,11 @@
 
   const lan = ref(getLanguage());
 
-  const titleZh = "Mario Forever 作品汇总";
-  const titleEn = "Mario Forever fangame downloads";
+
+  const pageId = "mf-games"
+
+  const titleZh = navTop.find(item => item.id === pageId).title;
+  const titleEn = navTop.find(item => item.id === pageId).title_alt;
 
   document.title = lan.value == "zh" ? titleZh : titleEn;
 
@@ -85,7 +88,7 @@
 </script>
 
 <template>
-  <DownloadHeader pageId="mf-games" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
+  <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
   <div class="md-container">
     <introZh v-if="lan == 'zh'" />

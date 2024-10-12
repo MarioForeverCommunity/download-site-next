@@ -1,44 +1,51 @@
 // navTop - Navigator entries. 
 // `id` is pageId referenced in header component.
 // `link` is link of the entry.
-// `name` is name in Chinese.
-// `alter` is name in English.
+// `option` is option name in Chinese.
+// `option_alt` is option name in English.
+// `title` is title in Chinese.
+// `title_alt` is title in English.
 // When `show_en` is false, the entry is hidden from the English enviornment.
 
 export const navTop = [
   {
     "id" : "forum",
     "link" : "https://www.marioforever.net/",
-    "name" : "社区",
-    "alter" : "CN Community",
+    "option" : "社区",
+    "option_alt" : "CN Community",
     "show_en" : false
   },
   {
     "id" : "index",
     "link" : "/index.html",
-    "name" : "原版 MF 下载",
-    "alter" : "Original MF Downloads",
+    "option" : "原版 MF 下载",
+    "option_alt" : "Original MF Downloads",
+    "title" : "Mario Forever 全版本汇总",
+    "title_alt" : "Original Mario Forever & Mario Forever Remake downloads",
     "show_en" : true
   },
   {
     "id" : "mf-games",
     "link" : "/mf-games.html",
-    "name" : "MF 作品汇总",
-    "alter" : "MF Fangame Downloads",
+    "option" : "MF 作品汇总",
+    "option_alt" : "MF Fangame Downloads",
+    "title" : "Mario Forever 作品汇总",
+    "title_alt" : "Mario Forever fangame downloads",
     "show_en" : true
   },
   {
     "id" : "mw-levels",
     "link" : "/mw-levels.html",
-    "name" : "SMWP 作品汇总",
-    "alter" : "SMWP Level Downloads",
+    "option" : "SMWP 作品汇总",
+    "option_alt" : "SMWP Level Downloads",
+    "title" : "Super Mario Worker Project 关卡汇总",
     "show_en" : false
   },
   {
     "id" : "smwp-download",
     "link" : "https://smwp.marioforever.net/downloads/",
-    "name" : "SMWP 本体下载",
-    "alter" : "SMWP Downloads",
+    "option" : "SMWP 本体下载",
+    "option_alt" : "SMWP Downloads",
     "show_en" : false
   }
 ];

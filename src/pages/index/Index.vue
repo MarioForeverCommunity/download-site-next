@@ -5,12 +5,15 @@
   import indexZh from '../../markdown/mf-zh.md';
   import indexEn from '../../markdown/mf-en.md';
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+  import { navTop } from "../../config.js";
   import 'vue3-carousel/dist/carousel.css'
 
   const lan = ref(getLanguage());
 
-  const titleZh = "Mario Forever 全版本汇总";
-  const titleEn = "Original Mario Forever & Mario Forever Remake downloads";
+  const pageId = "index"
+
+  const titleZh = navTop.find(item => item.id === pageId).title;
+  const titleEn = navTop.find(item => item.id === pageId).title_alt;
 
   document.title = lan.value == "zh" ? titleZh : titleEn;
 
@@ -39,7 +42,7 @@
 </script>
 
 <template>
-  <DownloadHeader pageId="index" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
+  <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
   <div class="md-container">
     <indexZh v-if="lan == 'zh'" />
