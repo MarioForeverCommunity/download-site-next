@@ -19,18 +19,18 @@ export const navTop = [
     "id" : "index",
     "link" : "/index.html",
     "option" : "原版 MF 下载",
-    "option_alt" : "Original MF Downloads",
+    "option_alt" : "MF & MFR Downloads",
     "title" : "Mario Forever 全版本汇总",
-    "title_alt" : "Original Mario Forever & Mario Forever Remake downloads",
+    "title_alt" : "Original Mario Forever & Mario Forever Remake Downloads",
     "show_en" : true
   },
   {
     "id" : "mf-games",
     "link" : "/mf-games.html",
     "option" : "MF 作品汇总",
-    "option_alt" : "MF Fangame Downloads",
+    "option_alt" : "Fangame Downloads",
     "title" : "Mario Forever 作品汇总",
-    "title_alt" : "Mario Forever fangame downloads",
+    "title_alt" : "Mario Forever Fangame Downloads",
     "show_en" : true
   },
   {
@@ -38,7 +38,7 @@ export const navTop = [
     "link" : "/mw-levels.html",
     "option" : "SMWP 作品汇总",
     "option_alt" : "SMWP Level Downloads",
-    "title" : "Super Mario Worker Project 关卡汇总",
+    "title" : "Super Mario Worker Project 作品汇总",
     "show_en" : false
   },
   {
