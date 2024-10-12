@@ -1,6 +1,4 @@
 <script setup>
-  import {getLanguage, setLanguageZh, setLanguageEn} from "../util/Language.js";
-  import {ref} from 'vue';
   import { navTop } from "../config.js";
 
   const BASE_URL = import.meta.env.BASE_URL;
@@ -9,27 +7,28 @@
     pageId: {
       type: String,
       required: true
+    },
+    lanVar : {
+      required: true
     }
   });
 
   const pageEntry = navTop.find(item => item.id === props.pageId);
 
-  function displayLan(lan) {
-    if (pageEntry.show_en == false && this.gblLan == "en") {
+  function displayLan() {
+    if (pageEntry.show_en == false && props.lanVar == "en") {
       return "zh";
     }
-    return this.gblLan;
+    return props.lanVar;
   }
-
-  const gblLan = ref(getLanguage());
 </script>
 
 <template>
   <header>
     <div class="header-container">
       <div class="lan-row">
-        <div class="button" v-if="displayLan() == 'zh' && pageEntry.show_en == true" @click="gblLan = setLanguageEn();">English</div>
-        <div class="button" v-if="displayLan() == 'en' && pageEntry.show_en == true" @click="gblLan = setLanguageZh();">中文</div>
+        <div class="button" v-if="displayLan() == 'zh' && pageEntry.show_en == true" @click="$emit('changeLanEn')">English</div>
+        <div class="button" v-if="displayLan() == 'en' && pageEntry.show_en == true" @click="$emit('changeLanZh')">中文</div>
       </div>
       <div class="header-row">
         <h1>{{ displayLan() == 'zh' ? pageEntry.name : pageEntry.alter }}</h1>
@@ -43,7 +42,7 @@
           </a>
         </div>
       </div>
-      <div class="header-row nav-row warning" v-if="gblLan == 'en' && pageEntry.show_en == false">
+      <div class="header-row nav-row warning" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
         <strong>Warning:</strong><br>
         You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="/index.html">here</a> to return to the index.
       </div>

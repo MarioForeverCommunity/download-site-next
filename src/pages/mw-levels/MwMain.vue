@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
-  import {getLanguage, lanRegister} from "../../util/Language.js";
+  import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
   import {parseVer} from "../../util/Misc.js";
@@ -9,8 +9,6 @@
   import {getDownloadLink, getDownloadDesc} from "../../util/GemeUtil.js"
 
   const originalLan = ref(getLanguage());
-
-  lanRegister(originalLan);
 
   const lan = "zh"
 
@@ -41,7 +39,7 @@
 </script>
 
 <template>
-  <DownloadHeader pageId="mw-levels"/>
+  <DownloadHeader pageId="mw-levels" :lan-var="originalLan" @change-lan-zh="originalLan = setLanguageZh(); " @change-lan-en="originalLan = setLanguageEn(); "/>
 
   <div class="md-container">
     <introZh />

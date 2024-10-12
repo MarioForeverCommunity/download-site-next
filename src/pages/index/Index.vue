@@ -1,9 +1,9 @@
 <script setup>
   import { ref } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
+  import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import indexZh from '../../markdown/mf-zh.md';
   import indexEn from '../../markdown/mf-en.md';
-  import {getLanguage, lanRegister} from "../../util/Language.js";
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
   import 'vue3-carousel/dist/carousel.css'
 
@@ -23,12 +23,10 @@
   ]
 
   var index = null;
-
-  lanRegister(lan);
 </script>
 
 <template>
-  <DownloadHeader pageId="index"/>
+  <DownloadHeader pageId="index" :lan-var="lan" @change-lan-zh="lan = setLanguageZh(); " @change-lan-en="lan = setLanguageEn(); "/>
 
   <div class="md-container">
     <indexZh v-if="lan == 'zh'" />

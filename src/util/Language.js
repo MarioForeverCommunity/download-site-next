@@ -1,11 +1,5 @@
 import Cookies from "js-cookie";
 
-var regLan = null;
-
-export function lanRegister(obj) {
-    regLan = obj;
-}
-
 export function getLanguage() {
     if (Cookies.get("language") == "zh") {
         return "zh";
@@ -25,12 +19,10 @@ export function getLanguage() {
 
 export function setLanguageZh() {
     Cookies.set("language", "zh");
-    regLan.value = "zh";
     return "zh";
 }
 
 export function setLanguageEn() {
     Cookies.set("language", "en");
-    regLan.value = "en";
     return "en";
 }
