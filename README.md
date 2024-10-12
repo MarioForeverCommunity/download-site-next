@@ -1,35 +1,13 @@
-# download-marioforever-net
+# download.marioforever.net Next
 
-This template should help get you started developing with Vue 3 in Vite.
+## Edit Mario Forever game entry
 
-## Recommended IDE Setup
+TODO
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Edit Super Mario Worker Project game entry
 
-## Customize configuration
+TODO
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Config Pages and URL Names
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Edit `src/config.js`.
