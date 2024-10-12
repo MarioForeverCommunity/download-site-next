@@ -25,14 +25,12 @@ export function getLanguage() {
 
 export function setLanguageZh() {
     Cookies.set("language", "zh");
-    console.log(regLan);
     regLan.value = "zh";
     return "zh";
 }
 
 export function setLanguageEn() {
     Cookies.set("language", "en");
-    console.log(regLan);
     regLan.value = "en";
     return "en";
 }

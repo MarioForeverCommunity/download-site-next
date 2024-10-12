@@ -34,7 +34,7 @@
       }
     }
     games.value.sort((a, b) => b.date - a.date)
-    console.log(games);
+    // console.log(games);
   });
 
   const selectedGame = ref(null);

@@ -63,7 +63,7 @@
       games.value.push(entry);
     }
     games.value.sort((a, b) => b.ver[0].date - a.ver[0].date)
-    console.log(games);
+    // console.log(games);
   });
 
   const selectedGame = ref(null);
