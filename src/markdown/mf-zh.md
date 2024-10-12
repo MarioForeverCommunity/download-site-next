@@ -1,8 +1,8 @@
 本页面汇总了原版 Mario Forever 绝大部分版本的资源链接，同时提供最新版 Mario Forever Remake 下载链接。如有链接失效，[你可以在社区反馈专帖进行反馈。](https://www.marioforever.net/thread-1635-1-1.html)
 
-[下载最新版 Mario Forever Remake](https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Remake%20v3.5.rar)&nbsp;&nbsp;&nbsp;[下载最新版 Mario Forever Advance Remake](https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar)
-
-[备用下载地址 (123pan)](https://www.123pan.com/s/U3vrVv-VD0f.html) 提取码：MAat
+- [下载最新版 Mario Forever Remake](https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Remake%20v3.5.rar)
+- [下载最新版 Mario Forever Advance Remake](https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar)
+- [备用下载地址 (123pan)](https://www.123pan.com/s/U3vrVv-VD0f.html) 提取码：MAat
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
 
@@ -24,7 +24,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 
 ⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。
 
-## 全版本下载
+## Mario Forever 全版本下载
 
 | 版本  | 发布日期 | 推荐度 | 安装包下载 | 绿色版下载 |
 | --- | --- | --- | --- | --- |
