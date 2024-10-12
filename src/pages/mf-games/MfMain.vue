@@ -2,6 +2,7 @@
   import { ref } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
+  import { navTop } from "../../config.js";
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
   import {getName} from "../../util/GemeUtil.js";
