@@ -12,6 +12,11 @@
 
   const lan = ref(getLanguage());
 
+  const titleZh = "Mario Forever 作品汇总";
+  const titleEn = "Mario Forever fangame downloads";
+
+  document.title = lan.value == "zh" ? titleZh : titleEn;
+
   const games = ref([]);
 
   readList("list.yaml").then((list) => {
@@ -67,10 +72,20 @@
   });
 
   const selectedGame = ref(null);
+
+  function pageSetLanguageZh() {
+    lan.value =  setLanguageZh();
+    document.title=titleZh;
+  }
+
+  function pageSetLanguageEn() {
+    lan.value =  setLanguageEn();
+    document.title=titleEn;
+  }
 </script>
 
 <template>
-  <DownloadHeader pageId="mf-games" :lan-var="lan" @change-lan-zh="lan = setLanguageZh(); " @change-lan-en="lan = setLanguageEn(); "/>
+  <DownloadHeader pageId="mf-games" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
   <div class="md-container">
     <introZh v-if="lan == 'zh'" />

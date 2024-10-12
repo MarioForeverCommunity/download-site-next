@@ -9,6 +9,11 @@
 
   const lan = ref(getLanguage());
 
+  const titleZh = "Mario Forever 全版本汇总";
+  const titleEn = "Original Mario Forever & Mario Forever Remake downloads";
+
+  document.title = lan.value == "zh" ? titleZh : titleEn;
+
   const images = [
     "/images/3-2.webp",
     "/images/3-4.webp",
@@ -22,11 +27,19 @@
     "/images/title.webp",
   ]
 
-  var index = null;
+  function pageSetLanguageZh() {
+    lan.value =  setLanguageZh();
+    document.title=titleZh;
+  }
+
+  function pageSetLanguageEn() {
+    lan.value =  setLanguageEn();
+    document.title=titleEn;
+  }
 </script>
 
 <template>
-  <DownloadHeader pageId="index" :lan-var="lan" @change-lan-zh="lan = setLanguageZh(); " @change-lan-en="lan = setLanguageEn(); "/>
+  <DownloadHeader pageId="index" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
   <div class="md-container">
     <indexZh v-if="lan == 'zh'" />
