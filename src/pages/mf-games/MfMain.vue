@@ -28,6 +28,7 @@
       }
       if (typeof(entry.ver) != "object") {
         entry.currentVerStr = entry.ver;
+        entry.currentVerStrAlt = entry.ver_alt;
         entry.ver = [{
           "" : {
             code : entry.code,
@@ -42,7 +43,8 @@
           }
         }];
       } else {
-        entry.currentVerStr = (lan == 'en' && ver.ver_alter != null ? ver.ver_alter : Object.keys(entry.ver[0])[0]);
+        entry.currentVerStr = Object.keys(entry.ver[0])[0];
+        entry.currentVerStrAlt = entry.ver[0][entry.currentVerStr].ver_alt;
       }
       // Automatically generate file_url if file_name is provided.
       for (var verRaw of entry.ver) {
