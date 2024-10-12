@@ -8,9 +8,9 @@ export function getLanguage() {
         return "en";
     }
     for (var lan of navigator.languages) {
-        if (lan.indexOf("zh") > 0) {
+        if (lan.indexOf("zh") >= 0) {
             return "zh";
-        } else if (lan.indexOf("en") > 0) {
+        } else if (lan.indexOf("en") >= 0) {
             return "en";
         }
     }
