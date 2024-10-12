@@ -104,7 +104,7 @@
     <div v-if="selectedGame != null" class="modal-bg" @click="selectedGame = null;">
       <div class="modal-content" @click.stop="">
         <div>
-          {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedGame, lan) }} {{ selectedGame.currentVerStr }}
+          {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedGame, lan) }} {{ lan == 'en' ? selectedGame.currentVerStrAlt : selectedGame.currentVerStr }}
         </div>
         <div class="button-line">
           <a class="download" v-if="!getDownloadLink(selectedGame, lan) || getDownloadLink(selectedGame, lan).indexOf('file.marioforever.net') < 0 && selectedGame.currentVer.file_url" :href="selectedGame.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
