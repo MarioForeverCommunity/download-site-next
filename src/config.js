@@ -34,6 +34,13 @@ export const navTop = [
     "alter" : "SMWP Level Downloads",
     "show_en" : false
   },
+  {
+    "id" : "smwp-download",
+    "link" : "https://smwp.marioforever.net/downloads/",
+    "name" : "SMWP 本体下载",
+    "alter" : "SMWP Downloads",
+    "show_en" : false
+  }
 ];
 
 // sourceName - Website name parser of the source button.
