@@ -1,4 +1,66 @@
 ---
+- game: 空の檻
+  game_alt:
+  author: 大爱Mario_
+  author_alt: Meowario
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2024-10-09
+  source_url: https://www.marioforever.net/thread-3401-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1MQ5UonnooLeBdIARDymDYQ
+  code: ljb9
+  download_url_alt:
+  file_name: PKMF场外 - 空の檻.zip
+  file_url:
+- game: Mario Forever - Decasamsara World 2
+  game_alt:
+  author: 马里奥X7
+  author_alt: MarioX7
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - Stage1测试版:
+      ver_alt: Stage1 Test
+      date: 2024-10-08
+      source_url: https://www.marioforever.net/thread-572-1-1.html
+      source_url_alt:
+      download_url: https://fuaisam.lanzouw.com/iZY3o2c16j1c
+      code: 2hbo
+      download_url_alt:
+      file_name: Deca2_Beta1.zip
+      file_url:
+  - 1-1 + 2-1预览版:
+      ver_alt: 1-1 + 2-1 preview
+      date: 2024-07-07
+      source_url: https://www.marioforever.net/thread-572-1-1.html
+      source_url_alt:
+      download_url: https://fuaisam.lanzouw.com/iJNVY23shb5c # 已失效
+      code:
+      download_url_alt:
+      file_name: MF-DECA2.zip
+      file_url:
+- game: Mario Forever - Mixed World
+  game_alt:
+  author: MJXXX
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: 
+  ver_alt:
+  date: 2024-10-07
+  source_url: https://www.youtube.com/watch?v=QR5LZzLxKTg
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/4ty8pwe30n6sj7e/Mario_Forever_Mixed_World.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Mixed World.zip
+  file_url:
 - game: PK!MF6 娱乐赛关卡集
   game_alt: PK!MF6 Entertainment Collection
   author: PK!MF 组委会
@@ -16,51 +78,17 @@
   download_url_alt:
   file_name: PK!MF6_Entertainment_Collection.7z
   file_url:
-- game: 不能截图的关卡
-  game_alt: A level that can't be screenshotted
-  author: zqh——123
-  author_alt:
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-10-06
-  source_url: https://www.marioforever.net/thread-3391-1-1.html
-  source_url_alt:
-  download_url:
-  code:
-  download_url_alt:
-  file_name: 不能截图的关卡.7z
-  file_url:
-- game: 永远的马里奥：蘑菇岛——秋的记忆
-  game_alt: 'Mario Forever: Mushroom Island - Autumn Memory'
-  author: 面灵气酱
-  author_alt: MLQJ
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-10-05
-  source_url: https://www.marioforever.net/thread-3386-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
-  code: mlqj
-  download_url_alt:
-  file_name: 永远的马里奥：蘑菇岛——秋的记忆.zip
-  file_url:
 - game: 永远的马里奥：蘑菇岛
   game_alt: 'Mario Forever: Mushroom Island'
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
-  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B%EF%BC%89
+  wiki_zh_url:
   wiki_en_url:
   ver:
-  - v1.1.0:
+  - v1.1.1:
       ver_alt:
-      date: 2024-10-05
+      date: 2024-10-07
       source_url: https://www.marioforever.net/thread-3386-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
@@ -117,6 +145,78 @@
       code: mlqj
       download_url_alt:
       file_name: Mario Forever：Mushroom Island二世界测试版.zip
+      file_url:
+- game: 不能截图的关卡
+  game_alt: A level that can't be screenshotted
+  author: zqh——123
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2024-10-06
+  source_url: https://www.marioforever.net/thread-3391-1-1.html
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: 不能截图的关卡.7z
+  file_url:
+- game: 永远的马里奥：蘑菇岛——秋的记忆
+  game_alt: 'Mario Forever: Mushroom Island - Autumn Memory'
+  author: 面灵气酱
+  author_alt: MLQJ
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2024-10-05
+  source_url: https://www.marioforever.net/thread-3386-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+  code: mlqj
+  download_url_alt:
+  file_name: 永远的马里奥：蘑菇岛——秋的记忆.zip
+  file_url:
+- game: Mario Forever Math Symbole World Series
+  game_alt:
+  author: Turkish_bussines
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v1.6:
+      ver_alt:
+      date: 2024-09-30
+      source_url: https://www.youtube.com/watch?v=uD9wUfIU0QE
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/xsbzfviv6pina4i/Mario_Forever_Math_Symbols_World_Series_v1.6.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Math Symbole World Series v1.6.rar
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2024-07-06
+      source_url: https://www.youtube.com/watch?v=lrVLkUqd5Cw
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bdzpvdil24b6sbv/Mario_Forever_Math_Symbole_Worlds_Series_v1.0.rar/file
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Math Symbole Worlds Series v1.0.rar
+      file_url:
+  - v0.5:
+      ver_alt:
+      date: 2023-10-29
+      source_url: https://www.youtube.com/watch?v=d6q2CFp-xwM
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/byivpwz3j83o4z2/Mario_Forever_Math_Symbole_Worlds_Series_v0.5.rar/file
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Math Symbole Worlds Series v0.5.rar
       file_url:
 - game: Mario Forever Ridiculous Journey
   game_alt:
@@ -605,51 +705,6 @@
   code:
   download_url_alt:
   file_name: mario-minix-rebirth.zip
-  file_url:
-- game: Mario Forever Math Symbole Worlds Series
-  game_alt:
-  author: Turkish_bussines
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  - v1.0:
-      ver_alt:
-      date: 2024-07-06
-      source_url: https://www.youtube.com/watch?v=lrVLkUqd5Cw
-      source_url_alt:
-      download_url: https://www.mediafire.com/file/bdzpvdil24b6sbv/Mario_Forever_Math_Symbole_Worlds_Series_v1.0.rar/file
-      code:
-      download_url_alt:
-      file_name: Mario Forever Math Symbole Worlds Series v1.0.rar
-      file_url:
-  - v0.5:
-      ver_alt:
-      date: 2023-10-29
-      source_url: https://www.youtube.com/watch?v=d6q2CFp-xwM
-      source_url_alt:
-      download_url: https://www.mediafire.com/file/byivpwz3j83o4z2/Mario_Forever_Math_Symbole_Worlds_Series_v0.5.rar/file
-      code:
-      download_url_alt:
-      file_name: old-versions/Mario Forever Math Symbole Worlds Series v0.5.rar
-      file_url:
-- game: Mario Forever - Decasamsara World 2
-  game_alt:
-  author: 马里奥X7
-  author_alt: MarioX7
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver: 1-1 + 2-1预览版
-  ver_alt: 1-1 + 2-1 perview
-  date: 2024-07-07
-  source_url: https://www.marioforever.net/thread-572-1-1.html
-  source_url_alt:
-  download_url: https://fuaisam.lanzouw.com/iJNVY23shb5c
-  code:
-  download_url_alt:
-  file_name: MF-DECA2.zip
   file_url:
 - game: Mario Forever Multiplayer
   game_alt:
@@ -2127,7 +2182,7 @@
 - game: 映日荷花别样红
   game_alt: Lotus flowers in red
   author: 大爱Mario_
-  author_alt: Stylish Mario
+  author_alt: Meowario
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -2460,7 +2515,7 @@
   file_url:
 - game: Mario Forever - World HD
   game_alt:
-  author: MilesYT
+  author: MJXXX
   author_alt:
   type: international
   wiki_zh_url:
@@ -2750,7 +2805,7 @@
       file_url:
 - game: 'Mario Forever: F-Series'
   game_alt:
-  author: MilesYT
+  author: MJXXX
   author_alt:
   type: international
   wiki_zh_url:
@@ -2988,7 +3043,7 @@
   file_url:
 - game: Mario Forever World MK
   game_alt:
-  author: MilesYT
+  author: MJXXX
   author_alt:
   type: international
   wiki_zh_url:
@@ -3146,7 +3201,7 @@
 - game: Mario Forever - Winter Warmth
   game_alt:
   author: 大爱Mario_
-  author_alt: Stylish Mario
+  author_alt: Meowario
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -6839,7 +6894,7 @@
 - game: Through The Music
   game_alt:
   author: 大爱Mario_
-  author_alt: Stylish Mario
+  author_alt: Meowario
   type: chinese
   wiki_zh_url:
   wiki_en_url:

@@ -1,10 +1,34 @@
 ---
+- game: 一个小迷宫
+  author: 把僵尸炖了
+  smwp_ver: v1.7.10
+  date: 2024-10-11
+  source_url: https://www.marioforever.net/thread-3406-1-1.html
+  download_url:
+  code:
+  file_url:
+- game: 沙中遗迹
+  author: 有名氏
+  smwp_ver: v1.7.10
+  date: 2024-10-10
+  source_url: https://www.marioforever.net/thread-3402-1-1.html
+  download_url:
+  code:
+  file_url:
+- game: Little Level Lite
+  author: 玛丽的死对头
+  smwp_ver: v1.7.10
+  date: 2024-10-09
+  source_url: https://www.marioforever.net/thread-3400-1-1.html
+  download_url: https://pan.baidu.com/s/1omYn85XsxMw8MqxtV85CjA?pwd=yyq1
+  code: yyq1
+  file_url: "https://file.marioforever.net/Mario Worker/吧友作品/玛丽的死对头/For Everyone - Little Level Lite.rar"
 - game: Super Mario Worker Maker v2.0.0
   author: ƒresh★LAKE
   smwp_ver: v1.7.10
   date: 2024-10-01
   source_url: https://www.marioforever.net/thread-3376-1-1.html
-  download_url: https://wwmw.lanzoue.com/ibJ232bpd2gf
+  download_url: https://wwmw.lanzoue.com/i8nIs2buwnxc
   code:
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/ƒresh★LAKE/Super Mario Worker Maker %5b010045A4F60B0000%5d %5b2.0.0%5d.nsp.zip"
 - game: 20240912即兴关卡
