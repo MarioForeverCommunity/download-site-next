@@ -25,7 +25,7 @@
 
 <template>
   <header>
-    <div class="header-container">
+    <div class="container header-container">
       <div class="lan-row">
         <div class="button" v-if="displayLan() == 'zh' && pageEntry.show_en == true" @click="$emit('changeLanEn')">English</div>
         <div class="button" v-if="displayLan() == 'en' && pageEntry.show_en == true" @click="$emit('changeLanZh')">中文</div>
@@ -60,10 +60,8 @@
     justify-content: center;
     flex-direction: column;
     width: 100vw;
-    background-color: white;
     padding: 10px;
     margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
   }
 
@@ -74,7 +72,7 @@
   @media (max-width: 1333px) and (min-width: 800px) {
     .header-container {
       width: 90vw;
-      border-radius: 10px;
+      border-radius: 2px;
     }
 
     .nav-row {
@@ -85,7 +83,7 @@
   @media (min-width: 1333px) {
     .header-container {
       width: 1200px;
-      border-radius: 10px;
+      border-radius: 2px;
     }
 
     .nav-row {
@@ -211,9 +209,15 @@
 </style>
 <style>
   body {
-    background-color: #d0d0d0;
+    background-color: #f2f2f2;
     margin: 0;
     width: 100vw;
     box-sizing: border-box;
+  }
+
+  .container {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
   }
 </style>

@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <div class="game-container">
+  <div class="container game-container">
     <div class="game-name">{{ getName(game, lan) }}</div>
     <div class="game-author" v-html="lan == 'en' && game.author_alt != null ? listToText(game.author_alt) : listToText(game.author)"></div>
     <div class="game-version" v-if="game.category == 'mf'">
@@ -63,10 +63,8 @@
   .game-container {
     width: 100vw;
     box-sizing: border-box;
-    background-color: white;
     padding: 15px 10px;
-    margin: 10px auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 3px auto;
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
     font-feature-settings: normal;
     font-kerning: auto;
@@ -90,20 +88,21 @@
   @media (max-width: 1333px) and (min-width: 800px) {
     .game-container {
       width: 90vw;
-      border-radius: 10px;
+      border-radius: 2px;
     }
   }
 
   @media (min-width: 1333px) {
     .game-container {
       width: 1200px;
-      border-radius: 10px;
+      border-radius: 2px;
     }
   }
 
   .game-name {
     width: 35%;
     padding-right: 10px;
+    padding-left: 10px;
     box-sizing: border-box;
   }
 

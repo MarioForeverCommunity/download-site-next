@@ -1,18 +1,20 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import { navTop } from "../../config.js";
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
-  import {getName} from "../../util/GemeUtil.js";
+  import {getAuthor, getName} from "../../util/GemeUtil.js";
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
+  import SortIcon from "../../components/icons/IconSort.vue";
+  import FilterIcon from "../../components/icons/IconFilter.vue";
   import {getDownloadLink, getDownloadDesc} from "../../util/GemeUtil.js"
+  import { Collapse } from 'vue-collapsed'
 
   const lan = ref(getLanguage());
-
 
   const pageId = "mf-games"
 
@@ -22,6 +24,7 @@
   document.title = lan.value == "zh" ? titleZh : titleEn;
 
   const games = ref([]);
+  const gameList = ref(null);
 
   readList("list.yaml").then((list) => {
     for (var entry of list) {
@@ -71,11 +74,73 @@
       entry.currentVer = parseVer(entry.ver[0]);
       games.value.push(entry);
     }
-    games.value.sort((a, b) => b.ver[0].date - a.ver[0].date)
-    // console.log(games);
+    games.value.sort((a, b) => b.ver[0].date - a.ver[0].date);
   });
 
   const selectedGame = ref(null);
+
+  const sort_option = ref({
+    active : false,
+    field : null,
+    asc : true
+  });
+
+  function sortByName() {
+    if (sort_option.value.field != "game") {
+      sort_option.value.field = "game";
+      sort_option.value.asc = true;
+    } else {
+      sort_option.value.asc = !sort_option.value.asc;
+    }
+    games.value = games.value.sort((a, b) => sort_option.value.asc ? getName(a, lan.value).localeCompare(getName(b, lan.value)) : getName(b, lan.value).localeCompare(getName(a, lan.value)));
+  }
+
+  function sortByAuthor() {
+    if (sort_option.value.field != "author") {
+      sort_option.value.field = "author";
+      sort_option.value.asc = true;
+    } else {
+      sort_option.value.asc = !sort_option.value.asc;
+    }
+    games.value = games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value)) : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value)));
+  }
+
+  function sortByDate() {
+    if (sort_option.value.field != "date") {
+      sort_option.value.field = "date";
+      sort_option.value.asc = true;
+    } else {
+      sort_option.value.asc = !sort_option.value.asc;
+    }
+    games.value = games.value.sort((a, b) => sort_option.value.asc ? a.currentVer.date - b.currentVer.date : b.currentVer.date - a.currentVer.date);
+  }
+
+  const filter_option = ref({
+    active : false,
+    name : "",
+    author : "",
+    year : "",
+    chinese : true,
+    international : true
+  });
+
+  function clearFilter() {
+    filter_option.value.name = "";
+    filter_option.value.author = "";
+    filter_option.value.year = "";
+    filter_option.value.chinese = true;
+    filter_option.value.international = true;
+  }
+
+  const filteredGames = computed(() => {
+    return games.value.filter((a) => 
+      (filter_option.value.name.trim() == "" || (getName(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+      && (filter_option.value.author.trim() == "" || (getAuthor(a, lan.value).toUpperCase().match(filter_option.value.author.trim().toUpperCase())))
+      && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
+      && ((filter_option.value.chinese && a.type == "chinese")
+      || (filter_option.value.international && a.type == "international"))
+    )
+  });
 
   function pageSetLanguageZh() {
     lan.value =  setLanguageZh();
@@ -91,16 +156,65 @@
 <template>
   <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
-  <div class="md-container">
+  <div class="container md-container">
     <introZh v-if="lan == 'zh'" />
     <introEn v-if="lan == 'en'" />
   </div>
 
-  <div v-for="game in games">
+  <div class="hidden-container">
+    <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
+      <SortIcon class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
+      <FilterIcon class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
+      <Collapse :when="sort_option.active">
+        <div class="icon-container">
+          {{ lan == "en" ? "Sort by " : "排序选项：" }}
+          <div class="visible-button" @click="sortByName();">
+            {{ lan == "en" ? "Name" : "名称" }}
+            {{ sort_option.field == "game" ? (sort_option.asc ? "▲" : "▼") : "" }}
+          </div>
+          <div class="visible-button" @click="sortByAuthor();">
+            {{ lan == "en" ? "Author" : "作者" }}
+            {{ sort_option.field == "author" ? (sort_option.asc ? "▲" : "▼") : "" }}
+          </div>
+          <div class="visible-button" @click="sortByDate();">
+            {{ lan == "en" ? "Date" : "日期" }}
+            {{ sort_option.field == "date" ? (sort_option.asc ? "▲" : "▼") : "" }}
+          </div>
+        </div>
+      </Collapse>
+      <Collapse :when="filter_option.active">
+        <div class="icon-container">
+          {{ lan == "en" ? "Filter: " : "筛选：" }}
+          <div class="inline-block">
+            {{ lan == "en" ? "Name" : "名称" }}
+            <input v-model="filter_option.name" class="input">&nbsp;
+          </div>
+          <div class="inline-block">
+            {{ lan == "en" ? "Author" : "作者" }}
+            <input v-model="filter_option.author" class="input">&nbsp;
+          </div>
+          <div class="inline-block">
+            {{ lan == "en" ? "Year" : "年份" }}
+            <input v-model="filter_option.year" class="input">&nbsp;
+          </div>
+          <div class="inline-block">
+            <input v-model="filter_option.chinese" type="checkbox">
+            {{ lan == "en" ? "Chinese" : "国内作品" }}
+          </div>
+          <div class="inline-block">
+            <input v-model="filter_option.chinese" type="checkbox">
+            {{ lan == "en" ? "International" : "国外作品" }}
+          </div>
+        </div>
+      </Collapse>
+    </div>
+  </div>
+
+  <div v-for="game in filteredGames" key="game.game">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
   </div>
 
-  <Transition>
+  <Transition name="modal">
     <div v-if="selectedGame != null" class="modal-bg" @click="selectedGame = null;">
       <div class="modal-content" @click.stop="">
         <div>
@@ -115,19 +229,30 @@
   </Transition>
 </template>
 
-<style>
+<style scoped>
   html {
-      max-width: 100%;
-      overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+  .hidden-container {
+    width: 100vw;
+    margin-top: -10px;
+  }
+
+  .icon-container {
+    padding: .25em;
   }
 
   .md-container {
     width: 100vw;
     box-sizing: border-box;
-    background-color: white;
     padding: 10px;
     margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
     font-feature-settings: normal;
     font-kerning: auto;
@@ -148,16 +273,172 @@
   @media (max-width: 1333px) and (min-width: 800px) {
     .md-container {
       width: 90vw;
-      border-radius: 10px;
+      border-radius: 2px;
+    }
+
+    .hidden-container {
+      width: 90vw;
+      margin: auto;
+      margin-top: -10px;
     }
   }
 
   @media (min-width: 1333px) {
     .md-container {
       width: 1200px;
-      border-radius: 10px;
+      border-radius: 2px;
+    }
+
+    .hidden-container {
+      width: 1200px;
+      margin: auto;
+      margin-top: -10px;
     }
   }
+
+  .icon {
+    color: #000;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px;
+  }
+
+  .button {
+    border: 1px solid rgba(0, 0, 0, 0);
+    padding: 4px;
+    border-radius: .25em;
+    transition: all 250ms;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .button:hover, .button:focus {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button:active {
+    background-color: #F0F0F1;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
+
+  .button.active {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 4px;
+    border-radius: .25em;
+    background-color: #eee;
+    cursor: pointer;
+  }
+
+  .visible-button {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 2px .5em;
+    margin-right: .5em;
+    border-radius: .25em;
+    transition: all 250ms;
+    cursor: pointer;
+    display: inline-block;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .visible-button:hover, .visible-button:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px;
+  }
+
+  .visible-button:active {
+    background-color: #F0F0F1;
+    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
+
+  .modal-bg {
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modal-enter-active, .modal-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .modal-enter-from, .modal-leave-to {
+    opacity: 0;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 90vw;
+    padding: 1em;
+    border-radius: .5em;
+  }
+
+  .download {
+    color: white;
+    cursor: pointer;
+    background-color: #008cff;
+    padding: .5em;
+    border-radius: .5em;
+    margin-right: .5em;
+  }
+
+  .download:hover, .download:focus {
+    transform: translateY(-4px);
+    background-color: #30acff;
+  }
+
+  .download:active {
+    background-color: #007cdf;
+  }
+
+  .button-line {
+    margin-top: 1em;
+    margin-bottom: .5em;
+  }
+
+  .input {
+    cursor: text;
+    color: #4e6e8e;
+    display: inline-block;
+    border: 1px solid #cfd4db;
+    border-radius: 5px;
+    outline: none;
+    transition: all .2s ease;
+    height: 1.3em;
+    line-height: 1.3em;
+  }
+
+  .input:focus {
+      cursor: auto;
+      border-color: #008cff
+  }
+
+</style>
+<style>
+
   a {
     color: #008cff;
     text-decoration: none;
@@ -203,62 +484,5 @@
   
   table th {
     padding: 0.5em 1em 0.5em 1em;
-  }
-
-  .modal-bg {
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-
-  .v-enter-active,
-  .v-leave-active {
-    transition: opacity 0.5s ease;
-  }
-
-  .v-enter-from,
-  .v-leave-to {
-    opacity: 0;
-  }
-  
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 90vw;
-    padding: 1em;
-    border-radius: .5em;
-  }
-
-  .download {
-    color: white;
-    cursor: pointer;
-    background-color: #008cff;
-    padding: .5em;
-    border-radius: .5em;
-    margin-right: .5em;
-  }
-
-  .download:hover, .download:focus {
-    transform: translateY(-4px);
-    background-color: #30acff;
-  }
-
-  .download:active {
-    background-color: #007cdf;
-  }
-
-  .button-line {
-    margin-top: 1em;
-    margin-bottom: .5em;
   }
 </style>

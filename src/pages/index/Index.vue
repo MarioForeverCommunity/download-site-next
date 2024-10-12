@@ -68,7 +68,8 @@
     background-color: white;
     padding: 10px;
     margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eaeaea;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
     font-feature-settings: normal;
     font-kerning: auto;
@@ -96,7 +97,7 @@
   @media (min-width: 1333px) {
     .md-container {
       width: 1200px;
-      border-radius: 10px;
+      border-radius: 2px;
     }
   }
 

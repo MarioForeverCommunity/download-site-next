@@ -24,6 +24,14 @@ export function getName(item, lan) {
     return lan == "en" && item.game_alt != null ? item.game_alt : item.game;
 }
 
+export function getAuthor(item, lan) {
+    var ret = lan == "en" && item.author_alt != null ? item.author_alt : item.author;
+    if (typeof ret == "object") {
+        return ret.join("\n");
+    }
+    return ret;
+}
+
 export function getDownloadLink(item, lan) {
     if (lan == "en" && item.currentVer.download_url_alt) {
         return item.currentVer.download_url;
