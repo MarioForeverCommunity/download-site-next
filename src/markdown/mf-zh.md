@@ -56,9 +56,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 | Advance v4.4 | 2009-07-08 | ★★★★★ | [资源站](https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance.exe) | [资源站](https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20Edition.7z) |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | [资源站](https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance%20v4.41.exe) | [资源站](https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20v4.41.7z) |
 
-### 尾注
-<div style="font-size:12px">
-
+<div class="foot-note" style="font-size:12px">
 1. v1.16.1 在不引起歧义情况下可简称 v1.16，但这并不代表 v1.16.1 与已失传的 v1.16.0 相同。  
 2. v3.50 与 v3.51 均为官方版本。因种种原因，v3.50 常被误称 v3.5 山寨版，对应地，v3.51 常被称为 v3.5 官方版。  
 3. v6.0 及以后的版本官方的版本号比较混乱，v6.0，v6.01，v6.1，v6.11 是为了明确区分而使用的版本号。  

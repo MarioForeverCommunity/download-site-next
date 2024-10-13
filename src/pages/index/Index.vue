@@ -191,4 +191,9 @@
     color: white;
     text-decoration: none;
   }
+
+  .foot-note {
+    padding-left: 30px;
+  }
+  }
 </style>
