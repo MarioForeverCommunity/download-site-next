@@ -245,7 +245,7 @@
     </div>
   </div>
 
-  <div v-for="game in filteredGames" key="game.game" v-memo="game.game">
+  <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
   </div>
 
