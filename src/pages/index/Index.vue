@@ -192,7 +192,7 @@
     text-decoration: none;
   }
 
-  .foot-note {
+  .foot-note ol {
     padding-left: 30px;
   }
 </style>
