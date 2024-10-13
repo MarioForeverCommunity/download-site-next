@@ -6,6 +6,8 @@
   import indexEn from '../../markdown/mf-en.md';
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
   import { navTop } from "../../config.js";
+  import FooterZh from '../../components/FooterZh.vue';
+  import FooterEn from '../../components/FooterEn.vue';
   import 'vue3-carousel/dist/carousel.css'
 
   const lan = ref(getLanguage());
@@ -58,6 +60,9 @@
       </template>
     </Carousel>
   </div>
+
+  <FooterZh v-if="lan == 'zh'" />
+  <FooterEn v-if="lan == 'en'" />
 </template>
 
 <style> 
@@ -85,6 +90,7 @@
     font-variant-position: normal;
     font-variation-settings: normal;
     font-weight: 300;
+    margin-bottom: 0;
   }
 
   @media (max-width: 1333px) and (min-width: 800px) {
@@ -146,5 +152,23 @@
   
   table th {
     padding: 0.5em 1em 0.5em 1em;
+  }
+
+  .md-button {
+    color: white;
+    cursor: pointer;
+    background-color: #008cff;
+    padding: .5em;
+    border-radius: .5em;
+    margin-right: .5em;
+  }
+
+  .md-button:hover, .md-button:focus {
+    transform: translateY(-4px);
+    background-color: #30acff;
+  }
+
+  .md-button:active {
+    background-color: #007cdf;
   }
 </style>

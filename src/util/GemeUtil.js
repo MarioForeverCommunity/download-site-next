@@ -7,6 +7,13 @@ export function getSourceLink(item, lan) {
     return item.currentVer.source_url;
 }
 
+export function getSourceLinkValidity(item, lan) {
+    if (lan == "en" && item.currentVer.source_url_alt) {
+        return !item.currentVer.source_url_invalid_alt;
+    }
+    return !item.currentVer.source_url_invalid;
+}
+
 export function getSourceDesc(item, lan) {
     const link = getSourceLink(item, lan);
     if (!link) {
@@ -39,6 +46,13 @@ export function getDownloadLink(item, lan) {
     return item.currentVer.download_url;
 }
 
+export function getDownloadLinkValidity(item, lan) {
+    if (lan == "en" && item.currentVer.download_url_alt) {
+        return !item.currentVer.download_url_invalid_alt;
+    }
+    return !item.currentVer.download_url_invalid;
+}
+
 export function getDownloadDesc(item, lan) {
     const link = getDownloadLink(item, lan);
 
@@ -51,8 +65,11 @@ export function getDownloadDesc(item, lan) {
             if (entry.show_code == true && item.currentVer.code) {
                 desc += ` (${lan == "zh" ? "提取码：" : "Code: "}${item.currentVer.code})`
             }
+            if (!getDownloadLinkValidity(item, lan)) {
+                desc += ` (${lan == "zh" ? "已失效" : "Outdated"})`
+            }
             return desc;
         }
     }
-    return "下载链接";
+    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
 }

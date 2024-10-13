@@ -2,6 +2,7 @@
   import { ref, computed } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
+  import FooterZh from '../../components/FooterZh.vue';
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
   import SortIcon from "../../components/icons/IconSort.vue";
@@ -28,6 +29,27 @@
         file_url : entry.file_url,
         source_url : entry.source_url,
       }
+
+      // adjust smwp_ver
+      if (entry.smwp_ver) {
+        entry.smwp_ver = "SMWP " + entry.smwp_ver
+      }
+
+      // Check validity of urls.
+      if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] == "~") {
+        entry.currentVer.source_url = entry.currentVer.source_url.substring(1);
+        entry.currentVer.source_url_invalid = true
+      } else {
+        entry.currentVer.source_url_invalid = false
+      }
+
+      if (entry.currentVer.download_url != null && entry.currentVer.download_url[0] == "~") {
+        entry.currentVer.download_url = entry.currentVer.download_url.substring(1);
+        entry.currentVer.download_url_invalid = true
+      } else {
+        entry.currentVer.download_url_invalid = false
+      }
+
       games.value.push(entry);
       // Disable download button if link does not exist.
       if (entry.download_url == null && entry.file_url == null) {
@@ -80,7 +102,6 @@
   const filter_option = ref({
     active : false,
     name : "",
-    author : "",
     year : ""
   });
 
@@ -92,8 +113,8 @@
 
   const filteredGames = computed(() => {
     return games.value.filter((a) => 
-      (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
-      && (filter_option.value.author.trim() == "" || (getAuthor(a, "zh").toUpperCase().match(filter_option.value.author.trim().toUpperCase())))
+      ((filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
+      || (filter_option.value.name.trim() == "" || (getAuthor(a, "zh").toUpperCase().match(filter_option.value.name.trim().toUpperCase()))))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
     )
   });
@@ -131,23 +152,21 @@
         <div class="icon-container">
           {{ lan == "en" ? "Filter: " : "筛选：" }}
           <div class="inline-block">
-            {{ lan == "en" ? "Name" : "名称" }}
             <input v-model="filter_option.name" class="input">&nbsp;
           </div>
           <div class="inline-block">
-            {{ lan == "en" ? "Author" : "作者" }}
-            <input v-model="filter_option.author" class="input">&nbsp;
-          </div>
-          <div class="inline-block">
             {{ lan == "en" ? "Year" : "年份" }}
-            <input v-model="filter_option.year" class="input">&nbsp;
+            <select v-model="filter_option.year">
+              <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
+              <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016)">{{year}}</option>
+            </select>&nbsp;
           </div>
         </div>
       </Collapse>
     </div>
   </div>
 
-  <div v-for="game in filteredGames" key="game.game">
+  <div v-for="game in filteredGames" key="game.game" v-memo="game.game">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
   </div>
 
@@ -164,6 +183,8 @@
       </div>
     </div>
   </Transition>
+
+  <FooterZh/>
 </template>
 
 <style scoped>
@@ -342,6 +363,7 @@
     padding: .5em;
     border-radius: .5em;
     margin-right: .5em;
+    display: inline-block;
   }
 
   .download:hover, .download:focus {
@@ -356,6 +378,39 @@
   .button-line {
     margin-top: 1em;
     margin-bottom: .5em;
+  }
+
+  .input {
+    cursor: text;
+    color: #4e6e8e;
+    display: inline-block;
+    border: 1px solid #cfd4db;
+    border-radius: 5px;
+    outline: none;
+    transition: all .2s ease;
+    height: 1.3em;
+    line-height: 1.3em;
+  }
+
+  .input:focus {
+      cursor: auto;
+      border-color: #008cff
+  }
+
+  select {
+    cursor: text;
+    color: #4e6e8e;
+    display: inline-block;
+    border: 1px solid #cfd4db;
+    border-radius: 5px;
+    outline: none;
+    transition: all .2s ease;
+    padding: .2em .6em;
+  }
+
+  select:focus {
+      cursor: auto;
+      border-color: #008cff
   }
 
 </style>

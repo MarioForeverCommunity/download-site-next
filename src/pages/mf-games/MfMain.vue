@@ -3,6 +3,8 @@
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import { navTop } from "../../config.js";
+  import FooterZh from '../../components/FooterZh.vue';
+  import FooterEn from '../../components/FooterEn.vue';
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
   import {getAuthor, getName} from "../../util/GemeUtil.js";
@@ -70,6 +72,35 @@
             }
           }
         }
+
+        // Check validity of urls.
+        if (ver.source_url != null && ver.source_url[0] == "~") {
+          ver.source_url = ver.source_url.substring(1);
+          ver.source_url_invalid = true
+        } else {
+          ver.source_url_invalid = false
+        }
+
+        if (ver.source_url_alt != null && ver.source_url_alt[0] == "~") {
+          ver.source_url_alt = ver.source_url_alt.substring(1);
+          ver.source_url_invalid_alt = true
+        } else {
+          ver.source_url_invalid_alt = false
+        }
+
+        if (ver.download_url != null && ver.download_url[0] == "~") {
+          ver.download_url = ver.download_url.substring(1);
+          ver.download_url_invalid = true
+        } else {
+          ver.download_url_invalid = false
+        }
+
+        if (ver.download_url_alt != null && ver.download_url_alt[0] == "~") {
+          ver.download_url_alt = ver.download_url.substring(1);
+          ver.download_url_alt_invalid = true
+        } else {
+          ver.download_url_alt_invalid = false
+        }
       }
       entry.currentVer = parseVer(entry.ver[0]);
       games.value.push(entry);
@@ -118,7 +149,6 @@
   const filter_option = ref({
     active : false,
     name : "",
-    author : "",
     year : "",
     chinese : true,
     international : true
@@ -126,7 +156,6 @@
 
   function clearFilter() {
     filter_option.value.name = "";
-    filter_option.value.author = "";
     filter_option.value.year = "";
     filter_option.value.chinese = true;
     filter_option.value.international = true;
@@ -134,8 +163,8 @@
 
   const filteredGames = computed(() => {
     return games.value.filter((a) => 
-      (filter_option.value.name.trim() == "" || (getName(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-      && (filter_option.value.author.trim() == "" || (getAuthor(a, lan.value).toUpperCase().match(filter_option.value.author.trim().toUpperCase())))
+      ((filter_option.value.name.trim() == "" || (getName(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+      || (filter_option.value.name.trim() == "" || (getAuthor(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase()))))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && ((filter_option.value.chinese && a.type == "chinese")
       || (filter_option.value.international && a.type == "international"))
@@ -186,23 +215,21 @@
         <div class="icon-container">
           {{ lan == "en" ? "Filter: " : "筛选：" }}
           <div class="inline-block">
-            {{ lan == "en" ? "Name" : "名称" }}
             <input v-model="filter_option.name" class="input">&nbsp;
           </div>
           <div class="inline-block">
-            {{ lan == "en" ? "Author" : "作者" }}
-            <input v-model="filter_option.author" class="input">&nbsp;
-          </div>
-          <div class="inline-block">
             {{ lan == "en" ? "Year" : "年份" }}
-            <input v-model="filter_option.year" class="input">&nbsp;
+            <select v-model="filter_option.year">
+              <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
+              <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013)">{{year}}</option>
+            </select>&nbsp;
           </div>
           <div class="inline-block">
             <input v-model="filter_option.chinese" type="checkbox">
             {{ lan == "en" ? "Chinese" : "国内作品" }}
           </div>
           <div class="inline-block">
-            <input v-model="filter_option.chinese" type="checkbox">
+            <input v-model="filter_option.international" type="checkbox">
             {{ lan == "en" ? "International" : "国外作品" }}
           </div>
         </div>
@@ -210,7 +237,7 @@
     </div>
   </div>
 
-  <div v-for="game in filteredGames" key="game.game">
+  <div v-for="game in filteredGames" key="game.game" v-memo="game.game">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
   </div>
 
@@ -227,6 +254,9 @@
       </div>
     </div>
   </Transition>
+
+  <FooterZh v-if="lan == 'zh'" />
+  <FooterEn v-if="lan == 'en'" />
 </template>
 
 <style scoped>
@@ -403,6 +433,7 @@
     padding: .5em;
     border-radius: .5em;
     margin-right: .5em;
+    display: inline-block;
   }
 
   .download:hover, .download:focus {
@@ -432,6 +463,22 @@
   }
 
   .input:focus {
+      cursor: auto;
+      border-color: #008cff
+  }
+
+  select {
+    cursor: text;
+    color: #4e6e8e;
+    display: inline-block;
+    border: 1px solid #cfd4db;
+    border-radius: 5px;
+    outline: none;
+    transition: all .2s ease;
+    padding: .2em .6em;
+  }
+
+  select:focus {
       cursor: auto;
       border-color: #008cff
   }

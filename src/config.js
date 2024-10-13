@@ -1,3 +1,34 @@
+// topBar - Top bar entries
+// `link` is link of the entry.
+// `name` is name in Chinese.
+// `name_alt` is name in English.
+// When `show_en` is false, the entry is hidden from the English enviornment.
+
+export const topBar = [
+  {
+    "link" : "https://www.marioforever.net/",
+    "name" : "社区首页",
+    "name_alt" : "CN Community",
+    "show_en" : true
+  },
+  {
+    "link" : "https://file.marioforever.net/",
+    "name" : "资源站",
+    "show_en" : false
+  },
+  {
+    "link" : "https://zh.wiki.marioforever.net/",
+    "name" : "Wiki",
+    "name_alt" : "Wiki",
+    "show_en" : true
+  },
+  {
+    "link" : "https://archive.marioforever.net/",
+    "name" : "Archive",
+    "show_en" : false
+  },
+]
+
 // navTop - Navigator entries. 
 // `id` is pageId referenced in header component.
 // `link` is link of the entry.
@@ -8,13 +39,6 @@
 // When `show_en` is false, the entry is hidden from the English enviornment.
 
 export const navTop = [
-  {
-    "id" : "forum",
-    "link" : "https://www.marioforever.net/",
-    "option" : "社区",
-    "option_alt" : "CN Community",
-    "show_en" : false
-  },
   {
     "id" : "index",
     "link" : "/index.html",
@@ -164,4 +188,8 @@ export const downloadName = [
     "domain" : "gamejolt.com",
     "desc_en" : "Game Jolt"
   },
+  {
+    "domain" : "yadi.sk",
+    "desc_en" : "Yandex"
+  }
 ];

@@ -4,7 +4,7 @@
   import WikiIcon from "./icons/IconWiki.vue";
   import LinkIcon from "./icons/IconLink.vue";
   import DownloadIcon from "./icons/IconDownload.vue";
-  import {getSourceLink, getSourceDesc, getName} from "../util/GemeUtil.js";
+  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName} from "../util/GemeUtil.js";
 
   const props = defineProps({
     game: {
@@ -42,7 +42,7 @@
         </span>
       </a>
       <a class="tooltip" v-if="getSourceLink(game, lan)" :href="getSourceLink(game, lan)" target="_blank">
-        <LinkIcon class="icon button"></LinkIcon>
+        <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Source Link" : "发布页" }}
           <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
@@ -136,12 +136,16 @@
   }
 
   .icon {
-    color: #000;
+    fill: #000;
     width: 16px;
     height: 16px;
     margin-left: 5px;
     display: inline-block;
     vertical-align: middle;
+  }
+
+  .icon.invalid{
+    fill: #ccc;
   }
 
   .button {

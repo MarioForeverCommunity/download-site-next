@@ -1,5 +1,5 @@
 <script setup>
-  import { navTop } from "../config.js";
+  import { navTop, topBar } from "../config.js";
 
   const BASE_URL = import.meta.env.BASE_URL;
 
@@ -24,12 +24,17 @@
 </script>
 
 <template>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :href="item.link" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+      <div style="float: right; display: inline;" v-if="pageEntry.show_en == true">
+        <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
+        <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="container header-container">
-      <div class="lan-row">
-        <div class="button" v-if="displayLan() == 'zh' && pageEntry.show_en == true" @click="$emit('changeLanEn')">English</div>
-        <div class="button" v-if="displayLan() == 'en' && pageEntry.show_en == true" @click="$emit('changeLanZh')">中文</div>
-      </div>
       <div class="header-row">
         <h1>{{ displayLan() == 'zh' ? pageEntry.title : pageEntry.title_alt }}</h1>
       </div>
@@ -51,6 +56,33 @@
 </template>
 
 <style scoped>
+  .topbar {
+    background-color: #e6e6e6;
+    font-size: 13px;
+    padding: 4px 0;
+    line-height: 30px;
+    height: 30px;
+  }
+
+  .topbar-inner {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .link-item {
+    margin-right: 20px;
+    color: rgb(85, 85, 85);
+  }
+
+  .lan-item {
+    color: rgb(85, 85, 85);
+    cursor: pointer;
+  }
+
+  .lan-item.active {
+    font-weight: bold;
+  }
+
   .lan-row .button {
     float: right;
   }
@@ -78,6 +110,11 @@
     .nav-row {
       width: 90%;
     }
+
+    .topbar-inner {
+      margin: 0 auto;
+      width: 90%;
+    }
   }
 
   @media (min-width: 1333px) {
@@ -88,6 +125,11 @@
 
     .nav-row {
       width: 90%;
+    }
+
+    .topbar-inner {
+      margin: 0 auto;
+      width: 1200px;
     }
   }
 
@@ -195,7 +237,7 @@
   }
 
   h1 {
-    margin-top: 0;
+    margin-top: 10px;
   }
 
   .warning {
