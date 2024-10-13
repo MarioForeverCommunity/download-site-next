@@ -71,7 +71,7 @@
     width: 100vw;
     box-sizing: border-box;
     background-color: white;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 20px auto;
     border: 1px solid #eaeaea;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
@@ -97,7 +97,7 @@
   @media (max-width: 1333px) and (min-width: 800px) {
     .md-container {
       width: 90vw;
-      border-radius: 10px;
+      border-radius: 2px;
     }
   }
 

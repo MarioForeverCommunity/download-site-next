@@ -217,7 +217,7 @@
   .md-container {
     width: 100vw;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 20px auto;
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
     font-feature-settings: normal;
