@@ -58,8 +58,6 @@
   .game-container.header {
     padding: 10px 10px;
     margin-top: .5em;
-    background-color: rgb(64, 66, 72);
-    color: white;
     font-weight: bold;
   }
 
