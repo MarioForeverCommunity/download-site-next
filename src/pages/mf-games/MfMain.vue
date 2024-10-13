@@ -68,6 +68,8 @@
           if (ver.file_name) {
             if (entry.type == "chinese") {
               ver.file_url = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
+            } if (entry.type == "repacked") {
+              ver.file_url = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
             } else {
               ver.file_url = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
             }
