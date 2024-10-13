@@ -15,6 +15,7 @@
   import FilterIcon from "../../components/icons/IconFilter.vue";
   import {getDownloadLink, getDownloadDesc} from "../../util/GemeUtil.js"
   import { Collapse } from 'vue-collapsed'
+  import axios from 'axios';
 
   const lan = ref(getLanguage());
 
@@ -180,6 +181,12 @@
     lan.value =  setLanguageEn();
     document.title=titleEn;
   }
+
+  const lastUpdate = ref(null);
+
+  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist.yaml&page=1&per_page=1").then((response) => {
+    lastUpdate.value = new Date(response.data[0].commit.committer.date).toISOString().split('T')[0];
+  });
 </script>
 
 <template>
@@ -188,6 +195,7 @@
   <div class="container md-container">
     <introZh v-if="lan == 'zh'" />
     <introEn v-if="lan == 'en'" />
+    <p v-if="lastUpdate" class="last-update">{{ lan == "en" ? "Last update: " : "最后更新：" }}{{ lastUpdate }}</p>
   </div>
 
   <div class="hidden-container">
@@ -481,6 +489,11 @@
   select:focus {
       cursor: auto;
       border-color: #008cff
+  }
+
+  .last-update {
+    margin-top: .5em;
+    font-weight: bold;
   }
 
 </style>
