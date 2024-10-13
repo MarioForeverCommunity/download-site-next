@@ -114,6 +114,11 @@
     font-weight: normal;
   }
 
+  a:hover {
+    color: #006eff;
+    text-decoration: underline;
+  }
+
   table {
     width: 100%;
     max-width: 100vw;
@@ -169,11 +174,15 @@
   }
 
   .md-button:hover, .md-button:focus {
-    transform: translateY(-4px);
     background-color: #30acff;
   }
 
   .md-button:active {
     background-color: #007cdf;
+  }
+
+  .md-button:hover {
+    color: white;
+    text-decoration: none;
   }
 </style>

@@ -250,6 +250,11 @@
     color: rgb(133, 100, 4)
   }
 
+  a:hover {
+    text-decoration: none;
+    color: #008CFF;
+  }
+
 </style>
 <style>
   body {

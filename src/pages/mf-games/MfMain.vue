@@ -445,8 +445,8 @@
   }
 
   .download:hover, .download:focus {
-    transform: translateY(-4px);
     background-color: #30acff;
+    text-decoration: none;
   }
 
   .download:active {
@@ -503,6 +503,11 @@
     color: #008cff;
     text-decoration: none;
     font-weight: normal;
+  }
+
+  a:hover {
+    color: #006eff;
+    text-decoration: underline;
   }
 
   table {
