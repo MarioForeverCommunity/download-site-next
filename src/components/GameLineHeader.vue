@@ -43,7 +43,7 @@
       SMWP 版本
     </div>
     <div class="game-date header">
-      {{ lan == "en" ? "Release on" : "发布日期" }}
+      {{ lan == "en" ? "Date" : "发布日期" }}
       <div class="button" @click="$emit('sortByDate')">{{ getSortOption().field == "date" ? (getSortOption().asc ? "↑" : "↓") : "⇵" }}</div>
     </div>
     <div class="game-buttons header"></div>
