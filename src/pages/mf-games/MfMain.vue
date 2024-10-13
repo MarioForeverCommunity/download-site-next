@@ -441,6 +441,7 @@
     padding: .5em;
     border-radius: .5em;
     margin-right: .5em;
+    margin: .25em;
     display: inline-block;
   }
 
@@ -515,7 +516,11 @@
   }
 
   p {
-    margin: 4px 0;
+    margin: .5em 0;
+  }
+
+  ul {
+    margin: .5em 0;
   }
 
   p, ol, h4, h5, h6, table, button {

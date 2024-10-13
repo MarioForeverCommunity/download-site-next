@@ -27,7 +27,7 @@
       <div :class="game.ver.length > 1 ? 'dropdown' : ''">
         <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
         <div v-if="game.ver.length > 1" class="dropdown-content">
-          <div v-for="ver in game.ver" class="dropdown-item" @click="game.currentVer=parseVer(ver); game.currentVerStr = Object.keys(ver)[0]; game.currentVerStrAlt = parseVer(ver).ver_alt;">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
+          <div v-for="ver in game.ver.reverse()" class="dropdown-item" @click="game.currentVer=parseVer(ver); game.currentVerStr = Object.keys(ver)[0]; game.currentVerStrAlt = parseVer(ver).ver_alt;">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
         </div>
       </div>
     </div>
