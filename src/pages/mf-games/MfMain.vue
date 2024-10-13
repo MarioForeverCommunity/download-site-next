@@ -649,4 +649,28 @@
   table th {
     padding: 0.5em 1em 0.5em 1em;
   }
+
+  .md-button {
+    color: white;
+    cursor: pointer;
+    background-color: #008cff;
+    padding: .5em;
+    border-radius: .5em;
+    margin-right: .5em;
+    margin: .25em;
+    display: inline-block;
+  }
+
+  .md-button:hover, .md-button:focus {
+    background-color: #30acff;
+  }
+
+  .md-button:active {
+    background-color: #007cdf;
+  }
+
+  .md-button:hover {
+    color: white;
+    text-decoration: none;
+  }
 </style>
