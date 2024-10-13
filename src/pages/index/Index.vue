@@ -195,5 +195,4 @@
   .foot-note {
     padding-left: 30px;
   }
-  }
 </style>
