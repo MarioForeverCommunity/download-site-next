@@ -221,7 +221,7 @@
       </Collapse>
       <Collapse :when="filter_option.active">
         <div class="icon-container">
-          {{ lan == "en" ? "Filter: " : "筛选：" }}
+          {{ lan == "en" ? "Filter" : "筛选" }}
           <div class="inline-block">
             <input v-model="filter_option.name" class="input">&nbsp;
           </div>
