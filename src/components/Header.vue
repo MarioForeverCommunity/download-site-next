@@ -61,12 +61,14 @@
     font-size: 13px;
     padding: 4px 0;
     line-height: 30px;
-    height: 30px;
+    height: 35px;;
+    box-sizing: border-box;
   }
 
   .topbar-inner {
     margin: 0 auto;
     width: 100%;
+    box-sizing: border-box;
   }
 
   .link-item {
@@ -255,6 +257,7 @@
     margin: 0;
     width: 100vw;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .container {

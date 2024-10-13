@@ -13,7 +13,8 @@
     margin: 0 auto;
     padding-top: 30px;
     padding-bottom: 30px;
-    color: rgb(170, 170, 170)
+    color: rgb(170, 170, 170);
+    box-sizing: border-box;
   }
 
   @media (min-width: 800px) {
