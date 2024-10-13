@@ -137,7 +137,9 @@
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;  }
+    vertical-align: baseline;  
+    line-height: 1.5em;
+  }
 
   table {
     border-collapse: collapse;

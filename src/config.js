@@ -111,8 +111,13 @@ export const sourceName = [
   },
   {
     "domain" : "twitter.com",
-    "desc_zh" : "X (Twitter)",
-    "desc_en" : "X (Twitter)"
+    "desc_zh" : "X / Twitter",
+    "desc_en" : "X / Twitter"
+  },
+  {
+    "domain" : "x.com",
+    "desc_zh" : "X / Twitter",
+    "desc_en" : "X / Twitter"
   },
 ];
 
