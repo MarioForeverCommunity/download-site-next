@@ -106,7 +106,7 @@
       entry.currentVer = parseVer(entry.ver[0]);
       games.value.push(entry);
     }
-    games.value.sort((a, b) => b.ver[0].date - a.ver[0].date);
+    games.value.sort((a, b) => parseVer(b.ver[0]).date - parseVer(a.ver[0]).date);
   });
 
   const selectedGame = ref(null);
@@ -152,7 +152,8 @@
     name : "",
     year : "",
     chinese : true,
-    international : true
+    international : true,
+    repacked : true
   });
 
   function clearFilter() {
@@ -160,6 +161,7 @@
     filter_option.value.year = "";
     filter_option.value.chinese = true;
     filter_option.value.international = true;
+    filter_option.value.repacked = true;
   }
 
   const filteredGames = computed(() => {
@@ -168,7 +170,8 @@
       || (filter_option.value.name.trim() == "" || (getAuthor(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase()))))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && ((filter_option.value.chinese && a.type == "chinese")
-      || (filter_option.value.international && a.type == "international"))
+      || (filter_option.value.international && a.type == "international")
+      || (filter_option.value.repacked && a.type == "repacked"))
     )
   });
 
@@ -240,6 +243,10 @@
             <input v-model="filter_option.international" type="checkbox">
             {{ lan == "en" ? "International" : "国外作品" }}
           </div>
+          <div class="inline-block">
+            <input v-model="filter_option.repacked" type="checkbox">
+            {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
+          </div>
         </div>
       </Collapse>
     </div>
@@ -255,6 +262,7 @@
         <div>
           {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedGame, lan) }} {{ lan == 'en' && selectedGame.currentVerStrAlt ? selectedGame.currentVerStrAlt : selectedGame.currentVerStr }}
         </div>
+        <div v-if="selectedGame.type == 'repacked'" class="italic">{{ lan == "en" ? `Repacked by ${selectedGame.currentVer.repacker_alt ? selectedGame.currentVer.repacker_alt : selectedGame.currentVer.repacker}.` : `该版本由 ${selectedGame.currentVer.repacker} 打包。` }}</div>
         <div class="button-line">
           <a class="download" v-if="!getDownloadLink(selectedGame, lan) || getDownloadLink(selectedGame, lan).indexOf('file.marioforever.net') < 0 && selectedGame.currentVer.file_url" :href="selectedGame.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedGame, lan)" :href="getDownloadLink(selectedGame, lan)" target="_blank">{{ getDownloadDesc(selectedGame, lan) }}</a>
@@ -495,6 +503,10 @@
   .last-update {
     margin-top: .5em;
     font-weight: bold;
+  }
+
+  .italic {
+    font-style: italic;
   }
 
 </style>

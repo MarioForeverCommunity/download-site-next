@@ -5,7 +5,8 @@
   import LinkIcon from "./icons/IconLink.vue";
   import DownloadIcon from "./icons/IconDownload.vue";
   import YoutubeIcon from "./icons/IconYoutube.vue";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName} from "../util/GemeUtil.js";
+  import RepackIcon from "./icons/IconRepack.vue";
+  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
 
   const props = defineProps({
     game: {
@@ -20,8 +21,22 @@
 
 <template>
   <div class="container game-container">
-    <div class="game-name">{{ getName(game, lan) }}</div>
-    <div class="game-author" v-html="lan == 'en' && game.author_alt != null ? listToText(game.author_alt) : listToText(game.author)"></div>
+    <div class="game-name">
+      <span class="tooltip" v-if="game.type == 'repacked'">
+        <RepackIcon class="icon"></RepackIcon>
+        <span class="tooltiptext tooltip-bottom">
+          {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
+        </span><i></i>
+      </span>
+      {{ getName(game, lan) }}</div>
+    <div class="game-author">
+      <span v-if="typeof getAuthorList(game, lan) == 'string'">
+        {{ getAuthorList(game, lan) }}
+      </span>
+      <span v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
+        <br v-if="authorindex != 0">{{ author }}
+      </span>
+    </div>
     <div class="game-version" v-if="game.category == 'mf'">
       <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
       <div :class="game.ver.length > 1 ? 'dropdown' : ''">

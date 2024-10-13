@@ -39,6 +39,10 @@ export function getAuthor(item, lan) {
     return ret;
 }
 
+export function getAuthorList(item, lan) {
+    return lan == "en" && item.author_alt != null ? item.author_alt : item.author;
+}
+
 export function getDownloadLink(item, lan) {
     if (lan == "en" && item.currentVer.download_url_alt) {
         return item.currentVer.download_url;
