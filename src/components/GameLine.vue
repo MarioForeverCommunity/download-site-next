@@ -40,28 +40,28 @@
         <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Download" : "下载链接" }}
-        </span>
+        </span><i></i>
       </a>
       <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
         <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Source Link" : "发布页" }}
           <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
-        </span>
+        </span><i></i>
       </a>
       <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
         <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
         <span class="tooltiptext tooltip-bottom">
-          {{ lan == "en" ? "Video" : "发布视频" }}
-        </span>
+          {{ lan == "en" ? "Release Video" : "发布视频" }}
+        </span><i></i>
       </a>
       <a class="tooltip" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
         <WikiIcon class="icon button"></WikiIcon>
-        <span class="tooltiptext tooltip-bottom">Wiki 页面</span>
+        <span class="tooltiptext tooltip-bottom">Wiki 页面</span><i></i>
       </a>
       <a class="tooltip" v-if="game.wiki_en_url != null && lan == 'en'" :href="game.wiki_en_url" target="_blank">
         <WikiIcon class="icon button"></WikiIcon>
-        <span class="tooltiptext tooltip-bottom">Wiki Page</span>
+        <span class="tooltiptext tooltip-bottom">Wiki Page</span><i></i>
       </a>
     </div>
   </div>
@@ -232,8 +232,10 @@
   }
 
   .tooltip .tooltiptext {
-    width: 100px;
-    visibility: hidden;
+    top:40px;
+    left:50%;
+    transform:translate(-50%, 0);
+    display:none;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
@@ -241,10 +243,8 @@
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    top: 150%;
-    left: 50%;
-    margin-left: -60px;
     padding: .25em .75em;
+    width: max-content;
   }
 
   .tooltip .tooltiptext::after {
@@ -258,8 +258,28 @@
     border-color: transparent transparent black transparent;
   }
 
+  .tooltiptext i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+  }
+
+  .tooltiptext i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
   .tooltip:hover .tooltiptext {
-    visibility: visible;
+    display:block;
   }
 
   .small {
