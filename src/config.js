@@ -7,7 +7,7 @@
 export const topBar = [
   {
     "link" : "https://www.marioforever.net/",
-    "name" : "社区首页",
+    "name" : "社区",
     "name_alt" : "CN Community",
     "show_en" : true
   },
@@ -17,7 +17,7 @@ export const topBar = [
     "show_en" : false
   },
   {
-    "link" : "https://zh.wiki.marioforever.net/",
+    "link" : "https://wiki.marioforever.net/",
     "name" : "Wiki",
     "name_alt" : "Wiki",
     "show_en" : true
@@ -111,8 +111,8 @@ export const sourceName = [
   },
   {
     "domain" : "twitter.com",
-    "desc_zh" : "推特",
-    "desc_en" : "X / Twitter"
+    "desc_zh" : "X (Twitter)",
+    "desc_en" : "X (Twitter)"
   },
 ];
 

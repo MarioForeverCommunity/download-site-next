@@ -4,7 +4,7 @@
 <template>
   <footer>
     <span>This is NOT a Softendo/Nintendo official site. Mario and all relatives belong to Nintendo.</span>
-    <span><a href="https://github.com/MarioForeverCommunity/download-site-next">Github</a></span>
+    <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">GitHub</a></span>
   </footer>
 </template>
 
