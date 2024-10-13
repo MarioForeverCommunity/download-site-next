@@ -103,6 +103,13 @@
     width: 100%;
   }
 
+  @media (max-width: 800px) {
+    .topbar-inner {
+      margin: 0 auto;
+      width: 90%;
+    }
+  }
+
   @media (max-width: 1333px) and (min-width: 800px) {
     .header-container {
       width: 90vw;
