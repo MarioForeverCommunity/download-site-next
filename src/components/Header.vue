@@ -59,10 +59,11 @@
   .topbar {
     background-color: #e6e6e6;
     font-size: 13px;
-    padding: 4px 0;
     line-height: 30px;
-    height: 35px;;
+    height: 35px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
   }
 
   .topbar-inner {
@@ -184,7 +185,6 @@
 
   .radio-inputs .radio:hover {
     background-color: #f7f7f7;
-    font-weight: 600;
   }
 
   .button {

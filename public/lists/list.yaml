@@ -268,6 +268,12 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - 宣传片: https://www.bilibili.com/video/BV1Fi421Q7Rj
+  - BR竞速视频 by 冻结的双重射手: https://www.bilibili.com/video/BV1pDvxetE5b
+  video_en:
+  - Trailer: https://www.bilibili.com/video/BV1Fi421Q7Rj
+  - Livestream by LooPeR231: https://www.youtube.com/watch?v=gJ0fQHVa0BU
   ver:
   - v1.1.3:
       ver_alt:
@@ -4898,16 +4904,169 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v4.02
-  ver_alt:
-  date: 2021-01-07
-  source_url: https://www.youtube.com/watch?v=WXdPjiyatMw
-  source_url_alt:
-  download_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
-  code:
-  download_url_alt:
-  file_name: MFRemake v4.02.rar
-  file_url:
+  ver:
+  - v4.02 (D3D9):
+      ver_alt:
+      date: 2021-01-10
+      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file
+      code:
+      download_url_alt:
+      file_name: MFRemake v4.02 (direct 3d 9).rar
+      file_url:
+  - v4.02:
+      ver_alt:
+      date: 2021-01-10
+      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file
+      code:
+      download_url_alt:
+      file_name: MFRemake v4.02.rar
+      file_url:
+  - v4.01 (D3D9):
+      ver_alt:
+      date: 2021-01-09
+      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFRemake v4.01 (direct 3d 9).rar
+      file_url:
+  - v4.01:
+      ver_alt:
+      date: 2021-01-09
+      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFRemake v4.01.rar
+      file_url:
+  - v4.0:
+      ver_alt:
+      date: 2021-01-07
+      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFRemake v4.0.rar
+      file_url:
+  - v3.7:
+      ver_alt:
+      date: 2017-10-07
+      source_url: https://www.youtube.com/watch?v=xrYK_GuLdR4
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/835yv8vu1ch7068/MFRemake_v3.7.rar/file
+      code:
+      download_url_alt:
+      data_download_url: http://www.mediafire.com/file/33rt5xppwggq7ud/data_mfr37.rar
+      file_name: old-versions/MFRemake v3.7.rar
+      file_url:
+      data_file_name: old-versions/data_mfr37.rar
+      data_file_url:
+  - v3.5:
+      ver_alt:
+      date: 2017-09-07
+      source_url: https://www.youtube.com/watch?v=ExrTjsAYZ-Y
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/2uj04zn9j0v7syj/Mario_Forever_Remake_v3.5.rar/file
+      code:
+      download_url_alt:
+      data_download_url: http://www.mediafire.com/file/w2w1kf9ld7cbclr/data_mfr35.rar
+      file_name: old-versions/Mario Forever Remake v3.5.rar
+      file_url:
+      data_file_name: old-versions/data_mfr35.rar
+      data_file_url:
+  - v3.1:
+      ver_alt:
+      date: 2016-07-11
+      source_url: https://www.youtube.com/watch?v=uyu_XFVdwbs
+      source_url_alt:
+      download_url: ~http://www.mediafire.com/file/i0cz6mle7fqw8tf/Mario_Forever_Remake_v3.1.rar/file
+      code:
+      download_url_alt:
+      data_download_url: http://www.mediafire.com/file/sbhnh8ch36ut98h/data.zip
+      file_name: old-versions/Mario Forever Remake v3.1.rar
+      file_url:
+      data_file_name: old-versions/data.zip
+      data_file_url:
+  - v3.0:
+      ver_alt:
+      date: 2016-07-07
+      source_url: https://www.youtube.com/watch?v=-aVxEZkw8kE
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/9hl7t6jilhyhzv1/Mario_Forever_Remake_v3.0.zip/file
+      code:
+      download_url_alt:
+      data_download_url: http://www.mediafire.com/file/sbhnh8ch36ut98h/data.zip
+      file_name: old-versions/Mario Forever Remake v3.0.zip
+      file_url:
+      data_file_name: old-versions/data.zip
+      data_file_url:
+  - v2.7:
+      ver_alt:
+      date: 2016-07-07
+      source_url: https://www.youtube.com/watch?v=O9_60dQQMiM
+      source_url_alt:
+      download_url: https://mega.nz/file/CcM1kaSb#E3ClzpTuzm0YqHjTa4RdWQe2ri2ODRE1xqKSyieBhXo
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Remake v2.7.zip
+      file_url:
+  - v2.3:
+      ver_alt:
+      date: 2015-03-01
+      source_url: https://www.youtube.com/watch?v=CCvf7vsGqz4
+      source_url_alt:
+      download_url: https://mega.nz/file/eFlzRZZC#YSQkN5MnXa1JvaZh3ch3Ht-1i2kc5uhRWrMgVwf4kXQ
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Remake v2.3.zip
+      file_url:
+  - v2.2:
+      ver_alt:
+      date: 2015-02-21
+      source_url: https://www.youtube.com/watch?v=L_jd88NTazA
+      source_url_alt:
+      download_url: https://mega.nz/file/mdUXgRyJ#oCnK0P7phRv8muDnZMP9rnOcfEWUOyneug21pAA1K14
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Remake v2.2.zip
+      file_url:
+  - v2.0:
+      ver_alt:
+      date: 2014-10-15
+      source_url: https://www.youtube.com/watch?v=BwE5brUAX74
+      source_url_alt:
+      download_url: https://mega.nz/file/yUMlSACT#b17R3rhVepu3Gatu7DL3WbkANQOTvivoDXtMxMqiTWk
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Remake v2.0.zip
+      file_url:
+  - v1.5b:
+      ver_alt:
+      date: 2014-07-25
+      source_url: https://www.youtube.com/watch?v=WMezUWnElC0
+      source_url_alt:
+      download_url: https://mega.nz/file/yUMlSACT#b17R3rhVepu3Gatu7DL3WbkANQOTvivoDXtMxMqiTWk
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Remake v1.5b.zip
+      file_url:
+  - v1.0b:
+      ver_alt:
+      date: 2014-02-02
+      source_url: https://www.youtube.com/watch?v=CiTeoVAPNKM
+      source_url_alt:
+      download_url: https://mega.nz/file/WY1jVZaI#uqij78SjqSQw1rpnz0TP9w0qfJYcVU8Ul-LqBLyePW4
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Remake v1.0b.zip
+      file_url:
 - game: 'Mario Forever: Santa is missing!'
   game_alt:
   author: Forever Team
