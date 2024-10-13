@@ -1,5 +1,4 @@
 <script setup>
-  import { computed } from "vue";
   import {listToText, parseVer} from "../util/Misc.js";
   import ArrowIcon from "./icons/IconArrow.vue"
   import WikiIcon from "./icons/IconWiki.vue";
@@ -17,8 +16,6 @@
       required: true
     }
   });
-
-  const vers = computed(() => {return props.game.ver.reverse();});
 </script>
 
 <template>
@@ -26,11 +23,11 @@
     <div class="game-name">{{ getName(game, lan) }}</div>
     <div class="game-author" v-html="lan == 'en' && game.author_alt != null ? listToText(game.author_alt) : listToText(game.author)"></div>
     <div class="game-version" v-if="game.category == 'mf'">
-      <span style="display: inline-block;" :class="vers.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
-      <div :class="vers.length > 1 ? 'dropdown' : ''">
-        <ArrowIcon v-if="vers.length > 1" class="icon rotate-button"></ArrowIcon>
-        <div v-if="vers.length > 1" class="dropdown-content">
-          <div v-for="ver in vers" class="dropdown-item" @click="game.currentVer=parseVer(ver); game.currentVerStr = Object.keys(ver)[0]; game.currentVerStrAlt = parseVer(ver).ver_alt;">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
+      <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
+      <div :class="game.ver.length > 1 ? 'dropdown' : ''">
+        <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
+        <div v-if="game.ver.length > 1" class="dropdown-content">
+          <div v-for="ver in game.ver" class="dropdown-item" @click="game.currentVer=parseVer(ver); game.currentVerStr = Object.keys(ver)[0]; game.currentVerStrAlt = parseVer(ver).ver_alt;">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
         </div>
       </div>
     </div>

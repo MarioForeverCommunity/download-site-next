@@ -229,7 +229,7 @@
             {{ lan == "en" ? "Year" : "年份" }}
             <select v-model="filter_option.year">
               <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-              <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013)">{{year}}</option>
+              <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()">{{year}}</option>
             </select>&nbsp;
           </div>
           <div class="inline-block">
