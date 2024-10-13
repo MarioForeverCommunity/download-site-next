@@ -408,8 +408,7 @@
   }
 
   .button-line {
-    margin-top: 1em;
-    margin-bottom: .5em;
+    margin-top: .5em;
   }
 
   .input {
