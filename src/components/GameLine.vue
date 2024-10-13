@@ -81,72 +81,12 @@
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+  @import "../assets/download-style-table.css";
+</style>
+
 <style scoped>
-  .game-container {
-    width: 100vw;
-    box-sizing: border-box;
-    padding: 15px 10px;
-    margin: 3px auto;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
-    font-feature-settings: normal;
-    font-kerning: auto;
-    font-optical-sizing: auto;
-    font-size-adjust: none;
-    font-stretch: 100%;
-    font-style: normal;
-    font-variant-alternates: normal;
-    font-variant-caps: normal;
-    font-variant-east-asian: normal;
-    font-variant-ligatures: normal;
-    font-variant-numeric: normal;
-    font-variant-position: normal;
-    font-variation-settings: normal;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-  }
-
-  @media (max-width: 1333px) and (min-width: 800px) {
-    .game-container {
-      width: 90vw;
-      border-radius: 2px;
-    }
-  }
-
-  @media (min-width: 1333px) {
-    .game-container {
-      width: 1200px;
-      border-radius: 2px;
-    }
-  }
-
-  .game-name {
-    width: 35%;
-    padding-right: 10px;
-    padding-left: 10px;
-    box-sizing: border-box;
-  }
-
-  .game-author {
-    width: 25%;
-    padding-right: 10px;
-    box-sizing: border-box;
-  }
-
-  .game-version {
-    width: 18%;
-    padding-right: 10px;
-    box-sizing: border-box;
-    vertical-align: middle;
-  }
-
-  .game-date {
-    width: 10%;
-    padding-right: 10px;
-    box-sizing: border-box;
-  }
-
   .game-buttons {
     width: 12%;
     box-sizing: border-box;

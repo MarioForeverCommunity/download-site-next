@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, getCurrentInstance } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import { navTop } from "../../config.js";
@@ -7,6 +7,7 @@
   import FooterEn from '../../components/FooterEn.vue';
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
+  import GameLineHeader from '../../components/GameLineHeader.vue';
   import {getAuthor, getName} from "../../util/GemeUtil.js";
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
@@ -22,10 +23,14 @@
 
   const pageId = "mf-games"
 
+  // Change title.
+
   const titleZh = navTop.find(item => item.id === pageId).title;
   const titleEn = navTop.find(item => item.id === pageId).title_alt;
 
   document.title = lan.value == "zh" ? titleZh : titleEn;
+
+  // Fetch game list.
 
   const games = ref([]);
 
@@ -111,7 +116,9 @@
     games.value.sort((a, b) => parseVer(b.ver[0]).date - parseVer(a.ver[0]).date);
   });
 
-  const selectedGame = ref(null);
+  const selectedGame = ref(null); // For download modal.
+
+  // Sort operations.
 
   const sort_option = ref({
     active : false,
@@ -149,6 +156,8 @@
     games.value = games.value.sort((a, b) => sort_option.value.asc ? a.currentVer.date - b.currentVer.date : b.currentVer.date - a.currentVer.date);
   }
 
+  // Filter operations.
+
   const filter_option = ref({
     active : false,
     name : "",
@@ -177,6 +186,8 @@
     )
   });
 
+  // Language changes.
+
   function pageSetLanguageZh() {
     lan.value =  setLanguageZh();
     document.title=titleZh;
@@ -187,11 +198,15 @@
     document.title=titleEn;
   }
 
+  // Get last update date.
+
   const lastUpdate = ref(null);
 
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist.yaml&page=1&per_page=1").then((response) => {
     lastUpdate.value = new Date(response.data[0].commit.committer.date).toISOString().split('T')[0];
   });
+
+  // Clipboard button.
 
   function copyCode(code) {
     navigator.clipboard.writeText(code);
@@ -210,6 +225,13 @@
       return lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
     }
   })
+
+  // Get window width.
+
+  const wideScreen = ref(window.innerWidth >= 1100);
+  window.addEventListener('resize', () => {
+    wideScreen.value = window.innerWidth >= 1100;
+  })
 </script>
 
 <template>
@@ -223,9 +245,9 @@
 
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
-      <SortIcon class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
-      <FilterIcon class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
-      <Collapse :when="sort_option.active">
+      <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
+      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
+      <Collapse :when="sort_option.active && !wideScreen">
         <div class="icon-container">
           {{ lan == "en" ? "Sort by " : "排序选项：" }}
           <div class="visible-button" @click="sortByName();">
@@ -242,9 +264,9 @@
           </div>
         </div>
       </Collapse>
-      <Collapse :when="filter_option.active">
+      <Collapse :when="filter_option.active || wideScreen">
         <div class="icon-container">
-          {{ lan == "en" ? "Filter" : "筛选" }}
+          {{ lan == "en" ? "Filter: " : "筛选：" }}
           <div class="inline-block">
             <input v-model="filter_option.name" class="input">&nbsp;
           </div>
@@ -272,6 +294,7 @@
     </div>
   </div>
 
+  <GameLineHeader v-if="wideScreen" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
   </div>
@@ -298,6 +321,10 @@
   <FooterZh v-if="lan == 'zh'" />
   <FooterEn v-if="lan == 'en'" />
 </template>
+
+<style lang="scss" scoped>
+  @import "../../assets/general.css";
+</style>
 
 <style scoped>
   html {
@@ -522,62 +549,6 @@
   select:focus {
       cursor: auto;
       border-color: #008cff
-  }
-
-  .tooltip {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltip .tooltiptext {
-    top:40px;
-    left:50%;
-    transform:translate(-50%, 0);
-    display:none;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    padding: .25em .75em;
-    width: max-content;
-  }
-
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-  }
-
-  .tooltiptext i {
-    position:absolute;
-    bottom:100%;
-    left:50%;
-    margin-left:-12px;
-    width:24px;
-    height:12px;
-    overflow:hidden;
-  }
-
-  .tooltiptext i::after {
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    left:50%;
-    transform:translate(-50%,50%) rotate(45deg);
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-
-  .tooltip:hover .tooltiptext {
-    display:block;
   }
 
   .last-update {

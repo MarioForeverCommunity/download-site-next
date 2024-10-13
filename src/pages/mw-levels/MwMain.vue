@@ -5,6 +5,7 @@
   import FooterZh from '../../components/FooterZh.vue';
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
+  import GameLineHeader from '../../components/GameLineHeader.vue';
   import SortIcon from "../../components/icons/IconSort.vue";
   import FilterIcon from "../../components/icons/IconFilter.vue";
   import ClipboardIcon from '../../components/icons/IconClipboard.vue';
@@ -19,6 +20,8 @@
   const lan = "zh"
 
   const games = ref([]);
+
+// Fetch game list.
 
   readList("list-mw.yaml").then((list) => {
     for (var entry of list) {
@@ -62,9 +65,10 @@
     // console.log(games);
   });
 
-  const selectedGame = ref(null);
+  const selectedGame = ref(null); // For download modal.
 
-  
+  // Sort operations.
+
   const sort_option = ref({
     active : false,
     field : null,
@@ -101,6 +105,8 @@
     games.value = games.value.sort((a, b) => sort_option.value.asc ? a.date - b.date : b.date - a.date);
   }
 
+  // Filter operations.
+
   const filter_option = ref({
     active : false,
     name : "",
@@ -121,11 +127,15 @@
     )
   });
 
+  // Get last update date.
+
   const lastUpdate = ref(null);
 
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist-mw.yaml&page=1&per_page=1").then((response) => {
     lastUpdate.value = new Date(response.data[0].commit.committer.date).toISOString().split('T')[0];
   });
+
+  // Clipboard button.
 
   function copyCode(code) {
     navigator.clipboard.writeText(code);
@@ -144,6 +154,13 @@
       return "复制提取码到剪贴板";
     }
   })
+
+  // Get window width.
+
+  const wideScreen = ref(window.innerWidth >= 1100);
+  window.addEventListener('resize', () => {
+    wideScreen.value = window.innerWidth >= 1100;
+  })
 </script>
 
 <template>
@@ -156,9 +173,9 @@
 
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
-      <SortIcon class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
-      <FilterIcon class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
-      <Collapse :when="sort_option.active">
+      <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
+      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
+      <Collapse :when="sort_option.active && !wideScreen">
         <div class="icon-container">
           排序选项：
           <div class="visible-button" @click="sortByName();">
@@ -175,7 +192,7 @@
           </div>
         </div>
       </Collapse>
-      <Collapse :when="filter_option.active">
+      <Collapse :when="filter_option.active || wideScreen">
         <div class="icon-container">
           {{ lan == "en" ? "Filter: " : "筛选：" }}
           <div class="inline-block">
@@ -193,6 +210,7 @@
     </div>
   </div>
 
+  <GameLineHeader v-if="wideScreen" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-for="game in filteredGames" key="game.game" v-memo="game.game">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
   </div>
@@ -217,6 +235,10 @@
 
   <FooterZh/>
 </template>
+
+<style lang="scss" scoped>
+  @import "../../assets/general.css";
+</style>
 
 <style scoped>
   html {
