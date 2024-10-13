@@ -268,6 +268,12 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - 宣传片: https://www.bilibili.com/video/BV1Fi421Q7Rj
+  - BR竞速视频 by 冻结的双重射手: https://www.bilibili.com/video/BV1pDvxetE5b
+  video_en:
+  - Trailer: https://www.bilibili.com/video/BV1Fi421Q7Rj
+  - Livestream by LooPeR231: https://www.youtube.com/watch?v=gJ0fQHVa0BU
   ver:
   - v1.1.3:
       ver_alt:
