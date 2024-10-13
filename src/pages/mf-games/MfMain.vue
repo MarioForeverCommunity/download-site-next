@@ -322,7 +322,7 @@
   <FooterEn v-if="lan == 'en'" />
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
   @import "../../assets/general.css";
 </style>
 

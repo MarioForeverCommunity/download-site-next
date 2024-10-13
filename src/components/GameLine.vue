@@ -82,7 +82,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
   @import "../assets/download-style-table.css";
 </style>
 
