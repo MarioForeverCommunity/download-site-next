@@ -77,3 +77,20 @@ export function getDownloadDesc(item, lan) {
     }
     return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
 }
+
+export function getDownloadCode(item, lan) {
+    const link = getDownloadLink(item, lan);
+
+    if (!link) {
+        return null
+    }
+    for (var entry of downloadName) {
+        if (link.match(entry.domain)) {
+            if (entry.show_code == true && item.currentVer.code) {
+                return item.currentVer.code;
+            }
+            return null;
+        }
+    }
+    return null;
+}

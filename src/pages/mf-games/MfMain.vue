@@ -13,7 +13,8 @@
   import introEn from '../../markdown/mf-games-en.md';
   import SortIcon from "../../components/icons/IconSort.vue";
   import FilterIcon from "../../components/icons/IconFilter.vue";
-  import {getDownloadLink, getDownloadDesc} from "../../util/GemeUtil.js"
+  import ClipboardIcon from '../../components/icons/IconClipboard.vue';
+  import {getDownloadLink, getDownloadDesc, getDownloadCode} from "../../util/GemeUtil.js"
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
 
@@ -190,6 +191,16 @@
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist.yaml&page=1&per_page=1").then((response) => {
     lastUpdate.value = new Date(response.data[0].commit.committer.date).toISOString().split('T')[0];
   });
+
+  function copyCode(code) {
+    navigator.clipboard.writeText(code);
+    clipboardCopyText.value = lan.value == "en" ? "Copied!" : "已复制！";
+    setTimeout(() => {
+      clipboardCopyText.value = lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
+    }, 3000);
+  }
+
+  const clipboardCopyText = ref(lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板");
 </script>
 
 <template>
@@ -266,6 +277,10 @@
         <div class="button-line">
           <a class="download" v-if="!getDownloadLink(selectedGame, lan) || getDownloadLink(selectedGame, lan).indexOf('file.marioforever.net') < 0 && selectedGame.currentVer.file_url" :href="selectedGame.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedGame, lan)" :href="getDownloadLink(selectedGame, lan)" target="_blank">{{ getDownloadDesc(selectedGame, lan) }}</a>
+          <a class="tooltip" v-if="getDownloadCode(selectedGame, lan)">
+            <ClipboardIcon class="icon button" @click="copyCode(getDownloadCode(selectedGame, lan));"></ClipboardIcon>
+            <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span><i></i>
+          </a>
         </div>
       </div>
     </div>
@@ -498,6 +513,62 @@
   select:focus {
       cursor: auto;
       border-color: #008cff
+  }
+  
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip .tooltiptext {
+    top:40px;
+    left:50%;
+    transform:translate(-50%, 0);
+    display:none;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    padding: .25em .75em;
+    width: max-content;
+  }
+
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+
+  .tooltiptext i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+  }
+
+  .tooltiptext i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .tooltip:hover .tooltiptext {
+    display:block;
   }
 
   .last-update {
