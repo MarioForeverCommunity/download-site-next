@@ -148,12 +148,10 @@
   }
 
   table thead {
-    background: #404248;
-    color: #fff;
     text-align: left;
   }
 
-  table tr:first-child {
+  table thead tr:first-child {
     border-top: 0;
   }
 
