@@ -36,9 +36,11 @@
       }
 
       // adjust smwp_ver
+      /*
       if (entry.smwp_ver) {
-        entry.smwp_ver = "SMWP " + entry.smwp_ver
+        entry.smwp_ver = entry.smwp_ver
       }
+      */
 
       // Check validity of urls.
       if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] == "~") {
