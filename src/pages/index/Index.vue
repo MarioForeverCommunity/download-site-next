@@ -164,6 +164,8 @@
     padding: .5em;
     border-radius: .5em;
     margin-right: .5em;
+    margin: .25em;
+    display: inline-block;
   }
 
   .md-button:hover, .md-button:focus {
