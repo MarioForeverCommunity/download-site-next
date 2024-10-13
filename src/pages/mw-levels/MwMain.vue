@@ -129,13 +129,21 @@
 
   function copyCode(code) {
     navigator.clipboard.writeText(code);
-    clipboardCopyText.value = "已复制！";
+    displayCopied.value = true;
     setTimeout(() => {
-      clipboardCopyText.value = "复制提取码到剪贴板";
+      displayCopied.value = false;
     }, 3000);
   }
 
-  const clipboardCopyText = ref("复制提取码到剪贴板");
+  const displayCopied = ref(false);
+
+  const clipboardCopyText = computed(() => {
+    if (displayCopied.value) {
+      return "已复制！";
+    } else {
+      return "复制提取码到剪贴板";
+    }
+  })
 </script>
 
 <template>

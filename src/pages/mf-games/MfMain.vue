@@ -28,7 +28,6 @@
   document.title = lan.value == "zh" ? titleZh : titleEn;
 
   const games = ref([]);
-  const gameList = ref(null);
 
   readList("list.yaml").then((list) => {
     for (var entry of list) {
@@ -196,13 +195,21 @@
 
   function copyCode(code) {
     navigator.clipboard.writeText(code);
-    clipboardCopyText.value = lan.value == "en" ? "Copied!" : "已复制！";
+    displayCopied.value = true;
     setTimeout(() => {
-      clipboardCopyText.value = lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
+      displayCopied.value = false;
     }, 3000);
   }
 
-  const clipboardCopyText = ref(lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板");
+  const displayCopied = ref(false);
+
+  const clipboardCopyText = computed(() => {
+    if (displayCopied.value) {
+      return lan.value == "en" ? "Copied!" : "已复制！";
+    } else {
+      return lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
+    }
+  })
 </script>
 
 <template>
@@ -516,7 +523,7 @@
       cursor: auto;
       border-color: #008cff
   }
-  
+
   .tooltip {
     position: relative;
     display: inline-block;
