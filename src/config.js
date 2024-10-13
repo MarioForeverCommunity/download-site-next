@@ -106,8 +106,8 @@ export const sourceName = [
   },
   {
     "domain" : "themariovariable.altervista.org",
-    "desc_zh" : "网站",
-    "desc_en" : "Website"
+    "desc_zh" : "TMV 个人网站",
+    "desc_en" : "TMV's website"
   },
   {
     "domain" : "twitter.com",
