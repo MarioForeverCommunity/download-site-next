@@ -71,7 +71,7 @@
     width: 100vw;
     box-sizing: border-box;
     background-color: white;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 20px auto;
     border: 1px solid #eaeaea;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
@@ -97,7 +97,7 @@
   @media (max-width: 1333px) and (min-width: 800px) {
     .md-container {
       width: 90vw;
-      border-radius: 10px;
+      border-radius: 2px;
     }
   }
 
@@ -131,9 +131,10 @@
 
   ul {
     margin: .5em 0;
+    padding-left: 30px;
   }
 
-  p, ol, h4, h5, h6, table, button {
+  p, ol, ul, h4, h5, h6, table, button {
     border: 0;
     font-size: 100%;
     font: inherit;
@@ -190,5 +191,9 @@
   .md-button:hover {
     color: white;
     text-decoration: none;
+  }
+
+  .foot-note ol {
+    padding-left: 30px;
   }
 </style>

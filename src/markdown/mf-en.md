@@ -38,8 +38,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 | Advance v4.4 | 2009-07-08 | ★★★★★ | [Download](https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance.exe) | [Download](https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20Edition.7z) |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | [Download](https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance%20v4.41.exe) | [Download](https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20v4.41.7z) |
 
-### Notes
-<div style="font-size:12px">
+<div class="foot-note" style="font-size:12px">
 
 1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11.  
 2. v5.011/v5.013 are identical to v5.01, and v5.08b is identical to v5.08. These versions will not be listed on this page.  

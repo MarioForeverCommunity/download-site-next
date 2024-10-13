@@ -211,13 +211,13 @@
   }
 
   .icon-container {
-    padding: .25em;
+    padding: .25em 10px;
   }
 
   .md-container {
     width: 100vw;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 20px auto;
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
     font-feature-settings: normal;
@@ -451,9 +451,10 @@
 
   ul {
     margin: .5em 0;
+    padding-left: 30px;
   }
 
-  p, ol, h4, h5, h6, table, button {
+  p, ol, ul, h4, h5, h6, table, button {
     border: 0;
     font-size: 100%;
     font: inherit;
