@@ -185,7 +185,6 @@
 
   .radio-inputs .radio:hover {
     background-color: #f7f7f7;
-    font-weight: 600;
   }
 
   .button {
