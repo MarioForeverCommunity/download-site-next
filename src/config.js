@@ -165,7 +165,7 @@ export const downloadName = [
     "desc_en" : "Nextcloud"
   },
   {
-    "domain" : "nx.su",
+    "domain" : "rnx.su",
     "desc_en" : "Nextcloud"
   },
   {
@@ -182,8 +182,8 @@ export const downloadName = [
   },
   {
     "domain" : "themariovariable.altervista.org",
-    "desc_zh" : "个人网站",
-    "desc_en" : "Website"
+    "desc_zh" : "TMV 个人网站",
+    "desc_en" : "TMV's website"
   },
   {
     "domain" : "easypaste.org",
