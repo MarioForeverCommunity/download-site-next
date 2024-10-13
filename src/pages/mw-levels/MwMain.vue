@@ -211,7 +211,7 @@
   }
 
   .icon-container {
-    padding: .25em;
+    padding: .25em 20px;
   }
 
   .md-container {
