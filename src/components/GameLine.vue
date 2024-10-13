@@ -4,6 +4,7 @@
   import WikiIcon from "./icons/IconWiki.vue";
   import LinkIcon from "./icons/IconLink.vue";
   import DownloadIcon from "./icons/IconDownload.vue";
+  import YoutubeIcon from "./icons/IconYoutube.vue";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName} from "../util/GemeUtil.js";
 
   const props = defineProps({
@@ -41,11 +42,17 @@
           {{ lan == "en" ? "Download" : "下载链接" }}
         </span>
       </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan)" :href="getSourceLink(game, lan)" target="_blank">
+      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
         <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Source Link" : "发布页" }}
           <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
+        </span>
+      </a>
+      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+        <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+        <span class="tooltiptext tooltip-bottom">
+          {{ lan == "en" ? "Video" : "发布视频" }}
         </span>
       </a>
       <a class="tooltip" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
