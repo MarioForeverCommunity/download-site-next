@@ -87,12 +87,6 @@
 </style>
 
 <style scoped>
-  .game-buttons {
-    width: 12%;
-    box-sizing: border-box;
-    padding-right: 20px;
-  }
-
   .game-buttons a {
     float: right;
   }
