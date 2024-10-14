@@ -19,6 +19,6 @@ npm run build
 
 # 拷贝到本地 nginx 文件夹下面 \cp 是覆盖源文件
 echo "**************************** 本地部署 *************************"
-rsync -av --ignore-times --delete dist/ /data/wwwroot/download.marioforever.net/new/
+rsync -av --ignore-times --delete dist/ /data/wwwroot/download.marioforever.net/next/
 chown -R www-data:www-data /data/wwwroot/download.marioforever.net/
 echo "**************************** 部署成功 *************************"
