@@ -1,4 +1,21 @@
 ---
+- game: Mario Forever Turbo Worlds
+  game_alt:
+  author: Turbo 42
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v1.2
+  ver_alt:
+  date: 2024-10-14
+  source_url: https://www.youtube.com/watch?v=Sm7NeybhYHQ
+  source_url_alt:
+  download_url: https://sites.google.com/view/turbo42/games
+  code:
+  download_url_alt:
+  file_name: MFTW v1.2.rar
+  file_url:
 - game: Mario Forever - A Fabulous Space
   game_alt:
   author: gurcd
