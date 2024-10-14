@@ -1,4 +1,4 @@
-import {sourceName, downloadName} from "../config.js"
+import {sourceName, downloadName, videoName} from "../config.js"
 
 export function getSourceLink(item, lan) {
     if (lan == "en" && item.currentVer.source_url_alt) {
@@ -24,7 +24,7 @@ export function getSourceDesc(item, lan) {
             return lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
         }
     }
-    return null;
+    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
 }
 
 export function getName(item, lan) {
@@ -93,4 +93,16 @@ export function getDownloadCode(item, lan) {
         }
     }
     return null;
+}
+
+export function getVideoDesc(link, lan) {
+    if (!link) {
+        return null;
+    }
+    for (var entry of videoName) {
+        if (link.match(entry.domain)) {
+            return lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
+        }
+    }
+    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
 }

@@ -4,10 +4,11 @@
 
   const props = defineProps({
     code: {
-      type: Object,
+      type: String,
       required: true
     }, 
     lan : {
+      type: String,
       required: true
     }
   });

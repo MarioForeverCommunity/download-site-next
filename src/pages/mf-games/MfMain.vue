@@ -15,7 +15,7 @@
   import introEn from '../../markdown/mf-games-en.md';
   import SortIcon from "../../components/icons/IconSort.vue";
   import FilterIcon from "../../components/icons/IconFilter.vue";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode} from "../../util/GemeUtil.js"
+  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
@@ -117,7 +117,8 @@
     games.value.sort((a, b) => parseVer(b.ver[0]).date - parseVer(a.ver[0]).date);
   });
 
-  const selectedGame = ref(null); // For download modal.
+  const selectedDownload = ref(null); // For download modal.
+  const selectedVideo = ref(null); // For download modal.
 
   // Sort operations.
 
@@ -277,26 +278,42 @@
 
   <GameLineHeader v-if="wideScreen" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
-    <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
+    <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
   </div>
   <div v-if="!wideScreen" class="card-container">
     <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
-      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
+      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
     </div>
   </div>
 
   <Transition name="modal">
-    <div v-if="selectedGame != null" class="modal-bg" @click="selectedGame = null;">
+    <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
         <div>
-          {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedGame, lan) }} {{ lan == 'en' && selectedGame.currentVerStrAlt ? selectedGame.currentVerStrAlt : selectedGame.currentVerStr }}
+          {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedDownload, lan) }} {{ lan == 'en' && selectedDownload.currentVerStrAlt ? selectedDownload.currentVerStrAlt : selectedDownload.currentVerStr }}
         </div>
-        <div v-if="selectedGame.type == 'repacked'" class="italic">{{ lan == "en" ? `Repacked by ${selectedGame.currentVer.repacker_alt ? selectedGame.currentVer.repacker_alt : selectedGame.currentVer.repacker}.` : `该版本由 ${selectedGame.currentVer.repacker} 打包。` }}</div>
+        <div v-if="selectedDownload.type == 'repacked'" class="italic">{{ lan == "en" ? `Repacked by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}</div>
         <div class="button-line">
-          <a class="download" v-if="!getDownloadLink(selectedGame, lan) || getDownloadLink(selectedGame, lan).indexOf('file.marioforever.net') < 0 && selectedGame.currentVer.file_url" :href="selectedGame.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
-          <a class="download" v-if="getDownloadLink(selectedGame, lan)" :href="getDownloadLink(selectedGame, lan)" target="_blank">{{ getDownloadDesc(selectedGame, lan) }}</a>
-          <ClipboardButton v-if="getDownloadCode(selectedGame, lan)" :code="getDownloadCode(selectedGame, lan)" :lan="lan"></ClipboardButton>
-          <a class="download" v-if="selectedGame.currentVer.data_download_url" :href="selectedGame.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
+          <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && selectedDownload.currentVer.file_url" :href="selectedDownload.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+          <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
+          <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
+          <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
+        </div>
+      </div>
+    </div>
+  </Transition>
+
+  <Transition name="modal">
+    <div v-if="selectedVideo != null" class="modal-bg" @click="selectedVideo = null;">
+      <div class="modal-content" @click.stop="">
+        <div>
+          {{ lan == 'en' ? "Related videos of " : "相关视频：" }}{{ getName(selectedVideo, lan) }}
+          <p v-if="lan == 'zh'" v-for="video in selectedVideo.video_zh">
+            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], lan) }}）</a>
+          </p>
+          <p v-if="lan == 'en'" v-for="video in selectedVideo.video_en">
+            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
+          </p>
         </div>
       </div>
     </div>

@@ -121,6 +121,11 @@ export const sourceName = [
   },
 ];
 
+// downloadName - Website name parser of the download button.
+// `domain` is the domain to match url.
+// `desc_zh` is the name in Chinese (Optional).
+// `desc_en` is the name in English.
+
 export const downloadName = [
   {
     "domain" : "file.marioforever.net",
@@ -197,4 +202,21 @@ export const downloadName = [
     "domain" : "yadi.sk",
     "desc_en" : "Yandex"
   }
+];
+
+// videoName - Website name parser of the video list.
+// `domain` is the domain to match url.
+// `desc_zh` is the name in Chinese (Optional).
+// `desc_en` is the name in English.
+
+export const videoName = [
+  {
+    "domain" : "bilibili.com",
+    "desc_zh" : "哔哩哔哩",
+    "desc_en" : "Bilibili"
+  },
+  {
+    "domain" : "youtube.com",
+    "desc_en" : "Youtube",
+  },
 ];

@@ -64,6 +64,14 @@
         <WikiIcon class="icon button"></WikiIcon>
         <span class="tooltiptext tooltip-bottom">Wiki Page</span><i></i>
       </a>
+      <a class="tooltip" v-if="game.video_en != null && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
+        <VideoIcon class="icon button"></VideoIcon>
+        <span class="tooltiptext tooltip-bottom">Related Videos</span><i></i>
+      </a>
+      <a class="tooltip" v-if="game.video_zh != null && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
+        <VideoIcon class="icon button"></VideoIcon>
+        <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
+      </a>
       <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
         <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
         <span class="tooltiptext tooltip-bottom">

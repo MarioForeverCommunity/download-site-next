@@ -6,6 +6,7 @@
   import DownloadIcon from "./icons/IconDownload.vue";
   import YoutubeIcon from "./icons/IconYoutube.vue";
   import RepackIcon from "./icons/IconRepack.vue";
+  import VideoIcon from "./icons/IconVideo.vue";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
 
   const props = defineProps({
@@ -69,6 +70,14 @@
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Release Video" : "发布视频" }}
         </span><i></i>
+      </a>
+      <a class="tooltip" v-if="game.video_en != null && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
+        <VideoIcon class="icon button"></VideoIcon>
+        <span class="tooltiptext tooltip-bottom">Related Videos</span><i></i>
+      </a>
+      <a class="tooltip" v-if="game.video_zh != null && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
+        <VideoIcon class="icon button"></VideoIcon>
+        <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
       </a>
       <a class="tooltip" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
         <WikiIcon class="icon button"></WikiIcon>

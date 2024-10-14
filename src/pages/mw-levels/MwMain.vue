@@ -68,7 +68,7 @@
     // console.log(games);
   });
 
-  const selectedGame = ref(null); // For download modal.
+  const selectedDownload = ref(null); // For download modal.
 
   // Sort operations.
 
@@ -195,24 +195,37 @@
 
   <GameLineHeader v-if="wideScreen" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="game.game">
-    <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
+    <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
   </div>
   <div v-if="!wideScreen" class="card-container">
-    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
-      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
+    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, 'zh']">
+      <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
     </div>
   </div>
 
-  <Transition>
-    <div v-if="selectedGame != null" class="modal-bg" @click="selectedGame = null;">
+  <Transition name="modal">
+    <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
         <div>
-          下载 {{ selectedGame.game }}
+          下载 {{ selectedDownload.game }}
         </div>
         <div class="button-line">
-          <a class="download" v-if="selectedGame.file_url" :href="selectedGame.file_url" target="_blank">社区资源站</a>
-          <a class="download" v-if="getDownloadLink(selectedGame, lan)" :href="getDownloadLink(selectedGame, lan)" target="_blank">{{ getDownloadDesc(selectedGame, lan) }}</a>
-          <ClipboardButton v-if="getDownloadCode(selectedGame, lan)" :code="getDownloadCode(selectedGame, lan)" :lan="lan"></ClipboardButton>
+          <a class="download" v-if="selectedDownload.file_url" :href="selectedDownload.file_url" target="_blank">社区资源站</a>
+          <a class="download" v-if="getDownloadLink(selectedDownload, 'zh')" :href="getDownloadLink(selectedDownload, 'zh')" target="_blank">{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
+          <ClipboardButton v-if="getDownloadCode(selectedDownload, 'zh')" :code="getDownloadCode(selectedDownload, 'zh')" lan="zh"></ClipboardButton>
+        </div>
+      </div>
+    </div>
+  </Transition>
+
+  <Transition name="modal">
+    <div v-if="selectedVideo != null" class="modal-bg" @click="selectedVideo = null;">
+      <div class="modal-content" @click.stop="">
+        <div>
+          相关视频：{{ getName(selectedVideo, "zh") }}
+          <p v-for="video in selectedVideo.video_zh">
+            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], "zh") }}）</a>
+          </p>
         </div>
       </div>
     </div>
@@ -367,13 +380,13 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
 
-  .v-enter-active,
-  .v-leave-active {
+  .modal-enter-active,
+  .modal-leave-active {
     transition: opacity 0.5s ease;
   }
 
-  .v-enter-from,
-  .v-leave-to {
+  .modal-enter-from,
+  .modal-leave-to {
     opacity: 0;
   }
 
