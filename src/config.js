@@ -41,7 +41,7 @@ export const topBar = [
 export const navTop = [
   {
     "id" : "index",
-    "link" : "/index.html",
+    "link" : "./index.html",
     "option" : "原版 MF 下载",
     "option_alt" : "MF & MFR Downloads",
     "title" : "Mario Forever 全版本汇总",
@@ -50,7 +50,7 @@ export const navTop = [
   },
   {
     "id" : "mf-games",
-    "link" : "/mf-games.html",
+    "link" : "./mf-games.html",
     "option" : "MF 作品汇总",
     "option_alt" : "Fangame Downloads",
     "title" : "Mario Forever 作品汇总",
@@ -59,7 +59,7 @@ export const navTop = [
   },
   {
     "id" : "mw-levels",
-    "link" : "/mw-levels.html",
+    "link" : "./mw-levels.html",
     "option" : "SMWP 作品汇总",
     "option_alt" : "SMWP Level Downloads",
     "title" : "Super Mario Worker Project 作品汇总",
