@@ -6,6 +6,7 @@
   import DownloadIcon from "./icons/IconDownload.vue";
   import YoutubeIcon from "./icons/IconYoutube.vue";
   import RepackIcon from "./icons/IconRepack.vue";
+  import VideoIcon from "./icons/IconVideo.vue";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
 
   const props = defineProps({
