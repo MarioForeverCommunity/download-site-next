@@ -5712,6 +5712,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293258
   ver: v1.8.4
   ver_alt:
   date: 2020-02-02
@@ -5729,6 +5731,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48811
   ver:
   - v2.0:
       ver_alt:
@@ -5893,6 +5897,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48764
   ver:
   ver_alt:
   date: 2019-12-07
@@ -6594,6 +6600,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48492
   ver:
   ver_alt:
   date: 2018-08-26
@@ -6656,6 +6664,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh: 
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48399
   ver:
   - v3.6:
       ver_alt:
@@ -7066,6 +7076,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48492
   ver: v1.0.0
   ver_alt:
   date: 2018-02-23
@@ -7202,6 +7214,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48424
   ver: v1.05fix
   ver_alt:
   date: 2018-02-15
@@ -7389,6 +7403,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293275
   ver:
   ver_alt:
   date: 2018-01-13
@@ -7855,6 +7871,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh: 
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48385
   ver:
   - v1.5:
       ver_alt:
@@ -7883,6 +7901,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48690
   ver:
   - 六世界版:
       ver_alt: 6 worlds version
@@ -8307,6 +8327,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1Gs411q7p2/?spm_id_from=333.999.0.0
   ver: 八世界版
   ver_alt: 8 worlds version
   date: 2016-06-07
@@ -9147,6 +9169,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7yU/?spm_id_from=333.999.0.0
   ver: v1.25
   ver_alt:
   date: 2015-02-18
