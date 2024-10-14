@@ -49,7 +49,7 @@
       </div>
       <div class="header-row nav-row warning" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
         <strong>Warning:</strong><br>
-        You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="./index.html">here</a> to return to the index.
+        You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="./">here</a> to return to the index.
       </div>
     </div>
   </header>

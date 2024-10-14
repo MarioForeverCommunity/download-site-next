@@ -41,7 +41,7 @@ export const topBar = [
 export const navTop = [
   {
     "id" : "index",
-    "link" : "./index.html",
+    "link" : "./",
     "option" : "原版 MF 下载",
     "option_alt" : "MF & MFR Downloads",
     "title" : "Mario Forever 全版本汇总",
