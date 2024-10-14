@@ -231,7 +231,7 @@
       <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
       <Collapse :when="sort_option.active && !wideScreen">
         <div class="icon-container">
-          {{ lan == "en" ? "Sort by " : "排序选项：" }}
+          {{ lan == "en" ? "Sort by " : "排序选项 " }}
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
             {{ sort_option.field == "game" ? (sort_option.asc ? "▲" : "▼") : "" }}
@@ -248,7 +248,7 @@
       </Collapse>
       <Collapse :when="filter_option.active || wideScreen">
         <div class="icon-container">
-          {{ lan == "en" ? "Filter: " : "筛选：" }}
+          {{ lan == "en" ? "Filter " : "筛选 " }}
           <div class="inline-block">
             <input v-model="filter_option.name" class="input">&nbsp;
           </div>

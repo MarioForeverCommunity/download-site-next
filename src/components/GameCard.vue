@@ -93,7 +93,7 @@
       </a>
       <div class="game-author">
         <span v-if="typeof getAuthorList(game, lan) == 'string'">
-          {{lan == "en" ? "By " : "作者："}} {{ getAuthorList(game, lan) }}
+          {{lan == "en" ? "By " : "作者："}}{{ getAuthorList(game, lan) }}
         </span>
         <span v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
           {{ authorindex == 0 ? (lan == "en" ? "By " : "作者：") : "" }}<br v-if="authorindex != 0">{{ author }}
