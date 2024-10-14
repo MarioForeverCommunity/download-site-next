@@ -97,7 +97,7 @@ export const sourceName = [
   },
   {
     "domain" : "www.youtube.com",
-    "desc_en" : "Youtube"
+    "desc_en" : "YouTube"
   },
   {
     "domain" : "marioforeverforum.boards.net",
@@ -217,6 +217,6 @@ export const videoName = [
   },
   {
     "domain" : "youtube.com",
-    "desc_en" : "Youtube",
+    "desc_en" : "YouTube",
   },
 ];

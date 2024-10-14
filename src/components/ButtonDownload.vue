@@ -14,12 +14,12 @@
 </script>
 
 <template>
-  <a class="tooltip">
+  <span class="tooltip">
     <a :href="href"><DownloadIcon class="icon button"></DownloadIcon></a>
     <span class="tooltiptext tooltip-bottom">
       {{ lan == "en" ? "Download" : "下载" }}
     </span><i></i>
-  </a>
+  </span>
 </template>
 
 <style scoped>

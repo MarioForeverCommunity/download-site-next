@@ -122,6 +122,7 @@
   table {
     width: 100%;
     max-width: 100vw;
+    white-space: nowrap;
     overflow-x:scroll
   }
 
