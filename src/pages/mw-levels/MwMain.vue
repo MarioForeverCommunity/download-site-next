@@ -69,6 +69,7 @@
   });
 
   const selectedDownload = ref(null); // For download modal.
+  const selectedVideo = ref(null); // For download modal.
 
   // Sort operations.
 
