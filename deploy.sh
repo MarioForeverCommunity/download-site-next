@@ -17,7 +17,7 @@ git pull origin $BRANCH
 npm install
 npm run build
 
-# 拷贝到本地 nginx 文件夹下面 \cp 是覆盖源文件
+# 将构建结果复制到目标路径
 echo "**************************** 本地部署 *************************"
 rsync -av --ignore-times --delete dist/ /data/wwwroot/download.marioforever.net/next/
 chown -R www-data:www-data /data/wwwroot/download.marioforever.net/
