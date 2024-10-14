@@ -84,6 +84,7 @@
 
 <style scoped>
   @import "../assets/download-style-table.css";
+  @import "../assets/general.css";
 </style>
 
 <style scoped>
@@ -136,99 +137,6 @@
 
   .rotate-button:hover, .rotate-button:focus {
     transform: rotate(180deg);
-  }
-
-  .dropdown {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    transform: translateX(-50%);
-    border-radius: .5em;
-    background-color: #ffffff;
-    min-width: 80px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  .dropdown:hover .rotate-button {
-    transform: rotate(180deg);
-  }
-
-  .dropdown:hover .dropdown-item {
-    display: block;
-    padding: 5px;
-    line-height: 1.2rem;
-    text-align: center;
-  }
-
-  .dropdown:hover .dropdown-item:hover {
-    background-color: #e0e0e0;
-    cursor: pointer;
-  }
-
-  .tooltip {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltip .tooltiptext {
-    top:40px;
-    left:50%;
-    transform:translate(-50%, 0);
-    display:none;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    padding: .25em .75em;
-    width: max-content;
-  }
-
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-  }
-
-  .tooltiptext i {
-    position:absolute;
-    bottom:100%;
-    left:50%;
-    margin-left:-12px;
-    width:24px;
-    height:12px;
-    overflow:hidden;
-  }
-
-  .tooltiptext i::after {
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    left:50%;
-    transform:translate(-50%,50%) rotate(45deg);
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-
-  .tooltip:hover .tooltiptext {
-    display:block;
   }
 
   .small {

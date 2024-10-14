@@ -52,5 +52,64 @@
 }
 
 .tooltip:hover .tooltiptext {
-display:block;
+    display:block;
+}
+
+.dropdown {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dropdown-content {
+  display: none;
+  width: fit-content;
+  position: absolute;
+  transform: translateX(-50%);
+  border-radius: .5em;
+  background-color: #ffffff;
+  min-width: 80px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .rotate-button {
+  transform: rotate(180deg);
+}
+
+.dropdown:hover .dropdown-item {
+  display: block;
+  padding: 5px;
+  line-height: 1.2rem;
+  text-align: center;
+}
+
+.dropdown:hover .dropdown-item:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.card-container {
+    width: 100vw;
+    display: grid;
+    gap: 5px;
+    width: 100%;
+    margin: 10px auto;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+@media (max-width: 1333px) and (min-width: 800px) {
+  .card-container {
+    width: 90vw;
+  }
+}
+
+@media (min-width: 1333px) {
+  .card-container {
+    width: 1200px;
+  }
 }

@@ -7,6 +7,7 @@
   import FooterEn from '../../components/FooterEn.vue';
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
+  import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
   import {getAuthor, getName} from "../../util/GemeUtil.js";
   import {parseVer} from "../../util/Misc.js";
@@ -295,8 +296,13 @@
   </div>
 
   <GameLineHeader v-if="wideScreen" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
-  <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
+  <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
+  </div>
+  <div v-if="!wideScreen" class="card-container">
+    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
+      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedGame = entry;}"/>
+    </div>
   </div>
 
   <Transition name="modal">
