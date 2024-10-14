@@ -13,6 +13,8 @@
 
 Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wiki/Mario_Forever).
 
+<div class="table-container">
+
 | Version | Release date | Rating | Installer | Portable |
 | --- | --- | --- | --- | --- |
 | v1.16.1 | 2004-01-30 | ★★★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%201.16.1.exe" lan="en"/> |     |
@@ -41,7 +43,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 | v7.02_31 (v7.03) | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.03.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.03.7z" lan="en"/> |
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20Edition.7z" lan="en"/> |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance%20v4.41.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20v4.41.7z" lan="en"/> |
-
+</div>
 <div class="foot-note" style="font-size:12px">
 
 1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11.  

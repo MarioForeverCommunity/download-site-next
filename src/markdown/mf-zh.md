@@ -31,6 +31,8 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 
 ## Mario Forever 全版本下载
 
+<div class="table-container">
+
 | 版本  | 发布日期 | 推荐度 | 安装版 | 绿色版 |
 | --- | --- | --- | --- | --- |
 | v1.16.1 | 2004-01-30 | ★★★ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%201.16.1.exe" lan="zh"/> |     |
@@ -59,6 +61,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 | v7.02_31 (v7.03) | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.03.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.03.7z" lan="zh"/> |
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20Edition.7z" lan="zh"/> |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance%20v4.41.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20v4.41.7z" lan="zh"/> |
+</div>
 
 <div class="foot-note" style="font-size:12px">
 

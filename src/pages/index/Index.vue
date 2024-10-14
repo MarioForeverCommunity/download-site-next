@@ -91,7 +91,6 @@
     font-variation-settings: normal;
     font-weight: 300;
     margin-bottom: 0;
-    overflow-x: scroll;
   }
 
   @media (max-width: 1333px) and (min-width: 800px) {
@@ -123,7 +122,11 @@
     width: 100%;
     max-width: 100vw;
     white-space: nowrap;
-    overflow-x:scroll
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    width: 100%;
   }
 
   p {
