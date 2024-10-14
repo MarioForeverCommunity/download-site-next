@@ -319,6 +319,7 @@
             <ClipboardIcon class="icon button" @click="copyCode(getDownloadCode(selectedGame, lan));"></ClipboardIcon>
             <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span><i></i>
           </a>
+          <a class="download" v-if="selectedGame.currentVer.data_download_url" :href="selectedGame.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
         </div>
       </div>
     </div>
