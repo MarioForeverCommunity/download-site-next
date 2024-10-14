@@ -65,13 +65,13 @@ export const navTop = [
     "title" : "Super Mario Worker Project 作品汇总",
     "show_en" : false
   },
-  {
-    "id" : "smwp-download",
-    "link" : "https://smwp.marioforever.net/downloads/",
-    "option" : "SMWP 本体下载",
-    "option_alt" : "SMWP Downloads",
-    "show_en" : false
-  }
+  // {
+  //   "id" : "smwp-download",
+  //   "link" : "https://smwp.marioforever.net/downloads/",
+  //   "option" : "SMWP 本体下载",
+  //   "option_alt" : "SMWP Downloads",
+  //   "show_en" : false
+  // }
 ];
 
 // sourceName - Website name parser of the source button.
