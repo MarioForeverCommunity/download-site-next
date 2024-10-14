@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed, getCurrentInstance } from 'vue';
+  import { ref, computed } from 'vue';
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import { navTop } from "../../config.js";
@@ -15,8 +15,8 @@
   import introEn from '../../markdown/mf-games-en.md';
   import SortIcon from "../../components/icons/IconSort.vue";
   import FilterIcon from "../../components/icons/IconFilter.vue";
-  import ClipboardIcon from '../../components/icons/IconClipboard.vue';
   import {getDownloadLink, getDownloadDesc, getDownloadCode} from "../../util/GemeUtil.js"
+  import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
 
@@ -207,26 +207,6 @@
     lastUpdate.value = new Date(response.data[0].commit.committer.date).toISOString().split('T')[0];
   });
 
-  // Clipboard button.
-
-  function copyCode(code) {
-    navigator.clipboard.writeText(code);
-    displayCopied.value = true;
-    setTimeout(() => {
-      displayCopied.value = false;
-    }, 3000);
-  }
-
-  const displayCopied = ref(false);
-
-  const clipboardCopyText = computed(() => {
-    if (displayCopied.value) {
-      return lan.value == "en" ? "Copied!" : "已复制！";
-    } else {
-      return lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
-    }
-  })
-
   // Get window width.
 
   const wideScreen = ref(window.innerWidth >= 1100);
@@ -315,10 +295,7 @@
         <div class="button-line">
           <a class="download" v-if="!getDownloadLink(selectedGame, lan) || getDownloadLink(selectedGame, lan).indexOf('file.marioforever.net') < 0 && selectedGame.currentVer.file_url" :href="selectedGame.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedGame, lan)" :href="getDownloadLink(selectedGame, lan)" target="_blank">{{ getDownloadDesc(selectedGame, lan) }}</a>
-          <a class="tooltip" v-if="getDownloadCode(selectedGame, lan)">
-            <ClipboardIcon class="icon button" @click="copyCode(getDownloadCode(selectedGame, lan));"></ClipboardIcon>
-            <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span><i></i>
-          </a>
+          <ClipboardButton v-if="getDownloadCode(selectedGame, lan)" :code="getDownloadCode(selectedGame, lan)" :lan="lan"></ClipboardButton>
           <a class="download" v-if="selectedGame.currentVer.data_download_url" :href="selectedGame.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
         </div>
       </div>
@@ -337,10 +314,6 @@
   html {
     max-width: 100%;
     overflow-x: hidden;
-  }
-
-  .inline-block {
-    display: inline-block;
   }
 
   .hidden-container {

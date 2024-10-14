@@ -1,3 +1,6 @@
+.inline-block {
+  display: inline-block;
+}
 
 .tooltip {
     position: relative;

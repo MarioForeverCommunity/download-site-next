@@ -9,13 +9,13 @@
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
 
   const props = defineProps({
-  game: {
-    type: Object,
-    required: true
-  }, 
-  lan : {
-    required: true
-  }
+    game: {
+      type: Object,
+      required: true
+    }, 
+    lan : {
+      required: true
+    }
   });
 </script>
 
