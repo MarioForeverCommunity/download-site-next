@@ -15,7 +15,7 @@
   import introEn from '../../markdown/mf-games-en.md';
   import SortIcon from "../../components/icons/IconSort.vue";
   import FilterIcon from "../../components/icons/IconFilter.vue";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc} from "../../util/GemeUtil.js"
+  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
@@ -67,17 +67,21 @@
         entry.currentVerStr = Object.keys(entry.ver[0])[0];
         entry.currentVerStrAlt = entry.ver[0][entry.currentVerStr].ver_alt;
       }
+
       // Automatically generate file_url if file_name is provided.
       for (var verRaw of entry.ver) {
         var ver = verRaw[Object.keys(verRaw)[0]];
         if (!ver.file_url) {
           if (ver.file_name) {
             if (entry.type == "chinese") {
-              ver.file_url = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames//${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
             } if (entry.type == "repacked") {
-              ver.file_url = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
             } else {
-              ver.file_url = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
             }
           }
         }
@@ -294,7 +298,7 @@
         </div>
         <div v-if="selectedDownload.type == 'repacked'" class="italic">{{ lan == "en" ? `Repacked by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}</div>
         <div class="button-line">
-          <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && selectedDownload.currentVer.file_url" :href="selectedDownload.currentVer.file_url" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+          <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && getResourceURL(selectedDownload, lan)" :href="getResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
           <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>

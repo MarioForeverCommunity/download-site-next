@@ -116,3 +116,10 @@ export function getVersion(item, lan) {
     }
     return null;
 }
+
+export function getResourceURL(item, lan) {
+    if (lan == "en") {
+        return item.currentVer.file_url_en
+    }
+    return item.currentVer.file_url_zh
+}
