@@ -11,7 +11,7 @@
   import FilterIcon from "../../components/icons/IconFilter.vue";
   import introZh from '../../markdown/mw-games-zh.md';
   import {getAuthor} from "../../util/GemeUtil.js";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode} from "../../util/GemeUtil.js"
+  import {getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';

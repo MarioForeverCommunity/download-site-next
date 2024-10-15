@@ -71,11 +71,11 @@
           {{ lan == "en" ? "Release Video" : "发布视频" }}
         </span><i></i>
       </a>
-      <a class="tooltip" v-if="game.video_en != null && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
+      <a class="tooltip" v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
         <VideoIcon class="icon button"></VideoIcon>
         <span class="tooltiptext tooltip-bottom">Related Videos</span><i></i>
       </a>
-      <a class="tooltip" v-if="game.video_zh != null && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
+      <a class="tooltip" v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
         <VideoIcon class="icon button"></VideoIcon>
         <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
       </a>
