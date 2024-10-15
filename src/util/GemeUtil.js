@@ -45,7 +45,7 @@ export function getAuthorList(item, lan) {
 
 export function getDownloadLink(item, lan) {
     if (lan == "en" && item.currentVer.download_url_alt) {
-        return item.currentVer.download_url;
+        return item.currentVer.download_url_alt;
     }
     return item.currentVer.download_url;
 }
