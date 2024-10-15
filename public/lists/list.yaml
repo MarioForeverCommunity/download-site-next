@@ -526,6 +526,7 @@
   - World 2:
       ver_alt:
       date: 2024-08-08
+      current: true
       source_url: https://www.youtube.com/watch?v=aOpV6N8A-Lk
       source_url_alt:
       download_url: https://www.mediafire.com/file/zbjg9j08w33rnsf/Mario_Forever_-_The_New_Series_World_2.rar/file
@@ -536,6 +537,7 @@
   - World 1:
       ver_alt:
       date: 2023-02-09
+      current: true
       source_url: https://www.youtube.com/watch?v=4GTBq5tK4HI
       source_url_alt:
       download_url: https://www.mediafire.com/download/jvq7jm0uvcskou5/Mario+Forever+-+The+New+Series+World+1.rar
@@ -830,7 +832,7 @@
       download_url_alt:
       file_name: old-versions/MF - INSANE WORLDS SERIES v1.5.zip
       file_url:
-- game: Mario Forever - Better World 6
+- game: Mario Forever - Better World
   game_alt:
   author: MrMikhy
   author_alt:
@@ -838,15 +840,82 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2024-06-15
-  source_url: https://www.youtube.com/watch?v=pop-KA48M5M
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/ijv3uvswfyl0v9t/Mario+Forever+-+Better+World+6.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Better World 6.zip
-  file_url:
+  - World 6:
+      ver_alt:
+      date: 2024-06-15
+      current: true
+      source_url: ~https://www.youtube.com/watch?v=pop-KA48M5M
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ijv3uvswfyl0v9t/Mario+Forever+-+Better+World+6.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better World 6.zip
+      file_url:
+  - World 5 (Fixed):
+      ver_alt:
+      date: 2024-05-15
+      current: true
+      source_url: ~https://www.youtube.com/watch?v=xxQJ0q6_qM0
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/z5u95u9s0f09pvc/Mario+Forever+-+Better+World+5+(fixed).zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better World 5 (fixed).zip
+      file_url:
+  - World 4:
+      ver_alt:
+      date: 2024-05-01
+      current: true
+      source_url: ~https://www.youtube.com/watch?v=vmgzuMxN0mI
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/u8y3kmlsqw6b25w/Mario+Forever+-+Better+World+4.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better World 4.zip
+      file_url:
+  - World 4 (April Fools Day ver.):
+      ver_alt:
+      date: 2024-04-01
+      source_url: ~https://www.youtube.com/watch?v=EY3g4BAhDhU
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/moc2ub4g2bi9qt9/Mario+Forever+-+Better+World+4.zip/file
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever - Better World 4.zip
+      file_url:
+  - World 3:
+      ver_alt:
+      date: 2024-02-16
+      current: true
+      source_url: ~https://www.youtube.com/watch?v=LeBvadY8LQ4
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ccvyugfp0g6ushr/Mario+Forever+-+Better+World+3.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better World 3.zip
+      file_url:
+  - World 2:
+      ver_alt:
+      date: 2024-01-30
+      current: true
+      source_url: ~https://www.youtube.com/watch?v=qT8P7yTYkDA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/iqoshgxach3gajk/Mario+Forever+-+Better+World+2.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better World 2.zip
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2024-01-21
+      current: true
+      source_url: ~https://www.youtube.com/watch?v=i77XmtrYnwk
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/s1q1b9yua6hzhrr/Mario+Forever+-+Better+World+1.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better World 1(2).zip
+      file_url:
 - game: Mario Forever - Winter Franchise
   game_alt:
   author: Meteo Dream
@@ -919,23 +988,6 @@
       download_url_alt:
       file_name: old-versions/Mario Forever World TGJ v1.0.5.rar
       file_url:
-- game: Mario Forever - Better World 5
-  game_alt:
-  author: MrMikhy
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver: Fixed
-  ver_alt:
-  date: 2024-05-15
-  source_url: https://www.youtube.com/watch?v=xxQJ0q6_qM0
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/z5u95u9s0f09pvc/Mario+Forever+-+Better+World+5+(fixed).zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Better World 5 (fixed).zip
-  file_url:
 - game: Mario Forever - 1ST Collection
   game_alt:
   author: rAgnarok5
@@ -969,23 +1021,6 @@
   code:
   download_url_alt:
   file_name: MF - Lava Challenge World.zip
-  file_url:
-- game: Mario Forever - Better World 4
-  game_alt:
-  author: MrMikhy
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-05-01
-  source_url: https://www.youtube.com/watch?v=vmgzuMxN0mI
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/u8y3kmlsqw6b25w/Mario+Forever+-+Better+World+4.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Better World 4.zip
   file_url:
 - game: 红江浦
   game_alt: "♪Yu Ayasaki's Big Adventure!♪ (Red Ver.)"
@@ -1199,23 +1234,6 @@
   download_url_alt:
   file_name: Mario Forever 2077 Gangster Edition.7z
   file_url:
-- game: Mario Forever - Better World 4 (April Fools Day ver.)
-  game_alt:
-  author: MrMikhy
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-04-01
-  source_url: https://www.youtube.com/watch?v=EY3g4BAhDhU
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/moc2ub4g2bi9qt9/Mario+Forever+-+Better+World+4.zip/file
-  code:
-  download_url_alt:
-  file_name: old-versions/Mario Forever - Better World 4.zip
-  file_url:
 - game: Mario Forever - World 5 (LuigiTron17 Version)
   game_alt:
   author: LuigiTron17
@@ -1350,23 +1368,6 @@
   code:
   download_url_alt:
   file_name: Mario Forever Adventure Islands World 10-13 EX with UE patch.exe
-  file_url:
-- game: Mario Forever - Better World 3
-  game_alt:
-  author: MrMikhy
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-02-16
-  source_url: https://www.youtube.com/watch?v=LeBvadY8LQ4
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/ccvyugfp0g6ushr/Mario+Forever+-+Better+World+3.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Better World 3.zip
   file_url:
 - game: PZZ Forever
   game_alt:
@@ -1516,23 +1517,6 @@
   download_url_alt:
   file_name: Mario Forever Luigi Journey.rar
   file_url:
-- game: Mario Forever - Better World 2
-  game_alt:
-  author: MrMikhy
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-01-30
-  source_url: https://www.youtube.com/watch?v=qT8P7yTYkDA
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/iqoshgxach3gajk/Mario+Forever+-+Better+World+2.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Better World 2.zip
-  file_url:
 - game: 'Mario Forever: Slashed Letter World Series'
   game_alt:
   author: MarioT02
@@ -1617,23 +1601,6 @@
   code:
   download_url_alt:
   file_name: Mario Forever 2024 v3.0.zip
-  file_url:
-- game: Mario Forever - Better World 1
-  game_alt:
-  author: MrMikhy
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2024-01-21
-  source_url: https://www.youtube.com/watch?v=i77XmtrYnwk
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/s1q1b9yua6hzhrr/Mario+Forever+-+Better+World+1.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Better World 1(2).zip
   file_url:
 - game: Mario Forever - World of Clusterf*ck
   game_alt:
@@ -4709,6 +4676,7 @@
   - World F (recompiled):
       ver_alt:
       date: 2022-10-13
+      current: true
       source_url: https://www.youtube.com/watch?v=3w5rdSt5WY0
       source_url_alt:
       download_url: https://www.mediafire.com/file/o30bahy5hzsvf7r/Mario_Worker_-_F.exe/file
@@ -4925,6 +4893,7 @@
   - v4.02 (D3D9):
       ver_alt:
       date: 2021-01-10
+      current: true
       source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
       source_url_alt:
       download_url: https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file
@@ -4935,6 +4904,7 @@
   - v4.02:
       ver_alt:
       date: 2021-01-10
+      current: true
       source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
       source_url_alt:
       download_url: https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file
@@ -4950,7 +4920,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: MFRemake v4.01 (direct 3d 9).rar
+      file_name: old-versions/MFRemake v4.01 (direct 3d 9).rar
       file_url:
   - v4.01:
       ver_alt:
@@ -4960,7 +4930,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: MFRemake v4.01.rar
+      file_name: old-versions/MFRemake v4.01.rar
       file_url:
   - v4.0:
       ver_alt:
@@ -4970,7 +4940,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: MFRemake v4.0.rar
+      file_name: old-versions/MFRemake v4.0.rar
       file_url:
   - v3.7:
       ver_alt:
@@ -5937,6 +5907,7 @@
   - World -13:
       ver_alt:
       date: 2019-11-04
+      current: true
       source_url: https://www.youtube.com/watch?v=ifgT6eatnIc
       source_url_alt:
       download_url: https://www.mediafire.com/file/bs6h4rbds9dk2tl/MF_-_MINUS_WORLD_13.RAR/file
@@ -5947,6 +5918,7 @@
   - World -12:
       ver_alt:
       date: 2019-10-14
+      current: true
       source_url: https://www.youtube.com/watch?v=KuWTYa3WvV8
       source_url_alt:
       download_url: https://www.mediafire.com/file/ihh90dly9pif5zf/MF_-_MINUS_WORLD_12.RAR/file
@@ -5957,6 +5929,7 @@
   - World -8:
       ver_alt:
       date: 2019-10-07
+      current: true
       source_url: https://www.youtube.com/watch?v=yQgDWnHS0JA
       source_url_alt:
       download_url: https://www.mediafire.com/file/tqvo0v513f0j2t0/MF_-_MINUS_WORLD_8.RAR/file
@@ -5967,6 +5940,7 @@
   - Human Workshop v1.01:
       ver_alt:
       date: 2018-02-18
+      current: true
       source_url: https://www.youtube.com/watch?v=bZ1z1WmwAiY
       source_url_alt:
       download_url: http://www.mediafire.com/file/wz4cfs9nhq8f811/MFMW_HumanWorkshop_v1.01.rar
@@ -5977,6 +5951,7 @@
   - The Forgotten Map:
       ver_alt:
       date: 2017-10-23
+      current: true
       source_url: https://www.youtube.com/watch?v=8OdrnNtpJqU
       source_url_alt:
       download_url: http://www.mediafire.com/file/863aooj1cmpz9vx/MFMW_TheForgottenMap.rar
@@ -5987,6 +5962,7 @@
   - World -7:
       ver_alt:
       date: 2016-06-17
+      current: true
       source_url: https://www.youtube.com/watch?v=qyOnUSc78HQ
       source_url_alt:
       download_url: ~https://www.sendspace.com/file/6l9fsl
@@ -5997,6 +5973,7 @@
   - World -10:
       ver_alt:
       date: 2016-03-07
+      current: true
       source_url: https://www.youtube.com/watch?v=aWwHFpPwf6E
       source_url_alt:
       download_url: ~https://www.sendspace.com/file/24qv8h
@@ -6007,6 +5984,7 @@
   - v1.8 bugfix:
       ver_alt:
       date: 2015-08-25
+      current: true
       source_url: https://www.youtube.com/watch?v=h8BLKwV3Kio
       source_url_alt:
       download_url: https://www.mediafire.com/download/fiv1ehfl8qfthfa
@@ -6435,6 +6413,7 @@
   - World J:
       ver_alt:
       date: 2018-10-06
+      current: true
       source_url: https://www.youtube.com/watch?v=4fTKnoRUChE
       source_url_alt:
       download_url: https://www.mediafire.com/file/067tpres98u9i3u/MF-NVNLWS-WorldJ.zip/file
@@ -6445,6 +6424,7 @@
   - World F:
       ver_alt:
       date: 2018-06-08
+      current: true
       source_url: https://www.youtube.com/watch?v=zsIIi6twZJI
       source_url_alt:
       download_url: http://www.mediafire.com/file/8nm5itil9fo812i/
@@ -6984,6 +6964,7 @@
   - World 4%:
       ver_alt:
       date: 2018-03-20
+      current: true
       source_url: https://www.youtube.com/watch?v=io3_GoLonxs
       source_url_alt:
       download_url: https://drive.google.com/file/d/1p8kdGViYGv4GJXiCozGHvZ9A8wgqKMI_/view
@@ -6994,6 +6975,7 @@
   - World 3%:
       ver_alt:
       date: 2017-03-05
+      current: true
       source_url: https://www.youtube.com/watch?v=z6YG81pklEw
       source_url_alt:
       download_url: ~http://www.mediafire.com/file/psk1uc2tcl6d34e
@@ -7004,6 +6986,7 @@
   - World 1%:
       ver_alt:
       date: 2016-06-18
+      current: true
       source_url: https://www.youtube.com/watch?v=8qz_EcJFJOc
       source_url_alt:
       download_url: https://drive.google.com/drive/folders/0B58VGu_OY1itVWpHUkkzM2FkM1E
@@ -7022,6 +7005,7 @@
   - World 2:
       ver_alt:
       date: 2018-03-11
+      current: true
       source_url: https://www.youtube.com/watch?v=7F1-ITO5-Jc
       source_url_alt:
       download_url: http://www.mediafire.com/file/4u1eugvcv4d0tuv/MFDD+World+2.exe
@@ -7032,6 +7016,7 @@
   - World 1:
       ver_alt:
       date: 2017-09-14
+      current: true
       source_url: https://www.youtube.com/watch?v=VYLQg_20EeA
       source_url_alt:
       download_url: http://www.mediafire.com/file/qjo4u7tv8w9vhzh/World1-the+Waterland.exe
@@ -7042,6 +7027,7 @@
   - World 5:
       ver_alt:
       date: 2017-09-14
+      current: true
       source_url: https://www.youtube.com/watch?v=NStbaYTA_Yw
       source_url_alt:
       download_url: http://www.mediafire.com/file/6sfk39otp1ik84p/Daydream+Worlds-Skyland.exe
@@ -7052,6 +7038,7 @@
   - World 8:
       ver_alt:
       date: 2017-08-13
+      current: true
       source_url: https://www.youtube.com/watch?v=YcOZM6IrZJc
       source_url_alt:
       download_url: http://www.mediafire.com/file/as99ro3818t29zy/Mario_Forever_Daydream_World_8-.exe
@@ -7062,6 +7049,7 @@
   - Extra Levels:
       ver_alt:
       date: 2017-07-28
+      current: true
       source_url: https://marioforeverforum.boards.net/thread/564/mario-forever-nightmares
       source_url_alt:
       download_url: http://www.mediafire.com/file/tt5v4ips8nab702/MF%20Daydream%20Extra%20Levels.exe
@@ -7749,6 +7737,7 @@
   - v2.0.1:
       ver_alt:
       date: 2017-05-06
+      current: true
       source_url: https://marioforeverforum.boards.net/thread/470/mf-time-challenge-worlds
       source_url_alt:
       download_url: http://www.mediafire.com/file/a7djn86rf1spu5o/Time_Challenge_Worlds_v2.0.1.exe
@@ -7759,6 +7748,7 @@
   - v2.0.1 Advanced:
       ver_alt:
       date: 2017-05-06
+      current: true
       source_url: https://marioforeverforum.boards.net/thread/470/mf-time-challenge-worlds
       source_url_alt:
       download_url: http://www.mediafire.com/file/siacg3ozztmagqq/Time_Challenge_Worlds_Advanced.exe
@@ -8037,6 +8027,7 @@
   - World 2:
       ver_alt:
       date: 2016-10-29
+      current: true
       source_url: https://marioforeverforum.boards.net/thread/301/marioforever-bowsers-return-development-thread
       source_url_alt:
       download_url: http://www.mediafire.com/file/gjf9bz1w9vkx5qx/Mario_Forever_-_Bowser%27s_Return_-_World_2.exe
@@ -8047,6 +8038,7 @@
   - World 1:
       ver_alt:
       date: 2016-10-12
+      current: true
       source_url: https://marioforeverforum.boards.net/thread/301/marioforever-bowsers-return-development-thread
       source_url_alt:
       download_url: http://www.mediafire.com/file/bct2ac5xddrb61g/Mario_Forever_-_Bowser%27s_Return_-_World_1.exe
