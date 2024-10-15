@@ -2314,7 +2314,7 @@
       file_name: PKMF整合BugFix1.zip
       file_url:
   - 初版:
-      ver_alt: Initial Release
+      ver_alt: Initial release
       date: 2023-08-11
       source_url: https://www.marioforever.net/thread-2848-1-1.html
       source_url_alt:
@@ -3569,6 +3569,16 @@
       download_url_alt:
       file_name: Mario Forever Perfect Adventure V1.0.4.7z
       file_url:
+  - v1.0.3:
+      ver_alt:
+      date: 2019-02-13
+      source_url: https://archive.marioforever.net/post/6033154822.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1YhNemDDkSMZfTfmMjLIm4A
+      code:
+      download_url_alt:
+      file_name: Mario Forever Perfect Adventure V1.0.3.7z
+      file_url:
   - v1.0.2:
       ver_alt:
       date: 2019-02-12
@@ -4488,6 +4498,36 @@
       code: grjq
       download_url_alt:
       file_name: Mario Forever：The 4th Quadrant Worlds v1.7.9 build 3025.2.rar
+      file_url:
+  - v1.7.9 Build 2944:
+      ver_alt:
+      date: 2020-01-19
+      source_url: https://tieba.baidu.com/p/5189625250
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1TaPoM6cFpvRzA25iEP6QKQ
+      code: 4i6q
+      download_url_alt:
+      file_name: Mario Forever：The 4th Quadrant Worlds v1.7.9 build 2944.rar
+      file_url:
+  - v1.7.8 Build 2923:
+      ver_alt:
+      date: 2019-11-29
+      source_url: https://tieba.baidu.com/p/5189625250
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1ND6WWHRj-uIA3WM7dyuWxw
+      code: wpnn
+      download_url_alt:
+      file_name: Mario Forever：The 4th Quadrant Worlds v1.7.8.exe
+      file_url:
+  - v1.7.0:
+      ver_alt:
+      date: 2017-10-21
+      source_url: https://tieba.baidu.com/p/5189625250
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1jIR83Lc
+      code: 6xpj
+      download_url_alt:
+      file_name: Mario Forever：The 4th Quadrant Worlds v1.7.0.exe
       file_url:
 - game: 'Mario Forever Greek Letter Adventures: World α'
   game_alt:
@@ -5574,7 +5614,7 @@
       file_name: Three Colours Garden(fix1).zip
       file_url:
   - 初版:
-      ver_alt: Initial version
+      ver_alt: Initial release
       date: 2021-02-19
       source_url: https://www.marioforever.net/thread-959-1-1.html
       source_url_alt:
@@ -6236,16 +6276,57 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.0.4
-  ver_alt:
-  date: 2020-05-29
-  source_url: https://www.marioforever.net/thread-495-1-1.html
-  source_url_alt:
-  download_url: https://pan.lanzouj.com/id7nruf
-  code:
-  download_url_alt:
-  file_name: w11++（1.0.4）.exe
-  file_url:
+  ver:
+  - v1.0.4:
+      ver_alt:
+      date: 2020-06-01
+      source_url: https://www.marioforever.net/thread-495-1-1.html
+      source_url_alt:
+      download_url: https://pan.lanzouj.com/id7nruf
+      code:
+      download_url_alt:
+      file_name: w11++（1.0.4）.exe
+      file_url:
+  - v1.0.3:
+      ver_alt:
+      date: 2020-05-30
+      source_url: https://www.marioforever.net/thread-495-1-1.html
+      source_url_alt:
+      download_url: https://lanzoux.com/id59yvc
+      code:
+      download_url_alt:
+      file_name: w11++（1.0.3）.exe
+      file_url:
+  - v1.0.2:
+      ver_alt:
+      date: 2020-05-30
+      source_url: https://www.marioforever.net/thread-495-1-1.html
+      source_url_alt:
+      download_url: https://lanzoux.com/id59m0j
+      code:
+      download_url_alt:
+      file_name: w11++（1.0.2）.exe
+      file_url:
+  - v1.0.1:
+      ver_alt:
+      date: 2020-05-30
+      source_url: https://www.marioforever.net/thread-495-1-1.html
+      source_url_alt:
+      download_url: https://lanzoux.com/id4sesh
+      code:
+      download_url_alt:
+      file_name: w11++（1.0.1）.exe
+      file_url:
+  - v1.0.0:
+      ver_alt:
+      date: 2020-05-29
+      source_url: https://www.marioforever.net/thread-495-1-1.html
+      source_url_alt:
+      download_url: https://lanzoux.com/id4re9c
+      code:
+      download_url_alt:
+      file_name: w11++.exe
+      file_url:
 - game: Mario Forever Primeval Woods
   game_alt:
   author: Adeel Malik
@@ -6463,32 +6544,36 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2020-03-14
-  source_url: https://www.marioforever.net/thread-400-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1kDB_ePmn98ADqHRLWESDpA
-  code: ygsi
-  download_url_alt:
-  file_name: Mario Forever Eastern Village.rar
-  file_url:
-- game: Mario Forever X Domain
-  game_alt:
-  author: gurcd
-  author_alt: CD
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver: v1.5
-  ver_alt:
-  date: 2020-02-15
-  source_url:
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1VU_e7ydOBvRc-jfpnxTD2A?pwd=g5ze
-  code: g5ze
-  download_url_alt:
-  file_name: MARIO FOREVER X DOMAIN_v1.5.rar
-  file_url:
+  - Fix2:
+      ver_alt:
+      date: 2020-03-14
+      source_url: https://www.marioforever.net/thread-400-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1kDB_ePmn98ADqHRLWESDpA
+      code: ygsi
+      download_url_alt:
+      file_name: Mario Forever Eastern Village.rar
+      file_url:
+  - Fix1:
+      ver_alt:
+      date: 2020-03-07
+      source_url: https://www.marioforever.net/thread-400-1-1.html
+      source_url_alt:
+      download_url: https://www.lanzoux.com/ia0p0vg
+      code:
+      download_url_alt:
+      file_name: Mario Forever Eas Village.exe
+      file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2020-03-06
+      source_url: https://www.marioforever.net/thread-400-1-1.html
+      source_url_alt:
+      download_url: https://www.lanzous.com/i9znb8b
+      code:
+      download_url_alt:
+      file_name: Mario Forever Eas Village.rar
+      file_url:
 - game: Super Mario Milky Way Wishes
   game_alt:
   author: dasasdhba
@@ -6646,6 +6731,36 @@
       download_url_alt:
       file_name: Mario Forever Rainbow Land 1.1.rar
       file_url:
+  - v0.7:
+      ver_alt:
+      date: 2019-04-21
+      source_url: https://tieba.baidu.com/p/6108085737
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1-Yq8AHSPo5gotjrQXgw-SQ
+      code: rjvc
+      download_url_alt:
+      file_name: Mario Forever Rainbow Land三世界测试版.rar
+      file_url:
+  - v0.6 new:
+      ver_alt:
+      date: 2019-02-03
+      source_url: https://tieba.baidu.com/p/6015849068
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1LSH8cDyNOsxFM9T_CmWM1w
+      code: u97n
+      download_url_alt:
+      file_name: Mario Forever Rainbow Land 0.6(1).exe
+      file_url:
+  - v0.6:
+      ver_alt:
+      date: 2019-01-23
+      source_url: https://tieba.baidu.com/p/6015849068
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1LBqP8j_z_tnq5fnw9u90AA
+      code:
+      download_url_alt:
+      file_name: Mario Forever Rainbow Land 0.6.exe
+      file_url:
 - game: 两个MF小作
   game_alt: 2 Single Levels
   author: Craft_w-MC
@@ -6731,6 +6846,44 @@
   download_url_alt:
   file_name: Mario Forever Paradise World fixed.rar
   file_url:
+- game: Mario Forever X Domain
+  game_alt:
+  author: gurcd
+  author_alt: CD
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v1.5:
+      ver_alt:
+      date: 2020-01-05
+      source_url:
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1VU_e7ydOBvRc-jfpnxTD2A?pwd=g5ze
+      code: g5ze
+      download_url_alt:
+      file_name: MARIO FOREVER X DOMAIN_v1.5.rar
+      file_url:
+  - v1.05f:
+      ver_alt:
+      date: 2019-11-02
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER X DOMAIN_f.rar
+      file_url:
+  - v1.00:
+      ver_alt:
+      date: 2019-10-25
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER X DOMAIN.rar
+      file_url:
 - game: Mario Forever and Stolen Christmas
   game_alt:
   author: crist1919
@@ -7010,16 +7163,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.80.0 patched
-  ver_alt:
-  date: 2019-08-01
-  source_url: https://tieba.baidu.com/p/6208874266
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1Zuz2GMJm8I1Js8o5_h5puA
-  code: oqjg
-  download_url_alt:
-  file_name: Mario Forever Project Z V1.80.0 patched.zip
-  file_url:
+  ver:
+  - v1.8 顶头不减速版:
+      ver_alt: v1.8 special version
+      date: 2022-04-08
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: mfz1.8顶头不减速.7z
+      file_url:
+  - v1.80.0 patched:
+      ver_alt:
+      date: 2019-08-01
+      source_url: https://tieba.baidu.com/p/6208874266
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1Zuz2GMJm8I1Js8o5_h5puA
+      code: oqjg
+      download_url_alt:
+      file_name: Mario Forever Project Z V1.80.0 patched.zip
+      file_url:
+  - v1.0.0.0:
+      ver_alt:
+      date: 2017-07-30
+      source_url: https://tieba.baidu.com/p/5249325960
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1i5oqkuD
+      code:
+      download_url_alt:
+      file_name: Mario Forever Project Z V1.0.0.0.rar
+      file_url:
 - game: Mario Forever Challenge Worlds
   game_alt:
   author: Games Devastator
@@ -7202,12 +7376,82 @@
   - v1.5:
       ver_alt:
       date: 2017-08-25
-      source_url: https://archive.marioforever.net/post/5290335372.html
+      source_url: https://tieba.baidu.com/p/5290335372
       source_url_alt: https://www.youtube.com/watch?v=kYosoJZwDUw
       download_url: https://pan.baidu.com/s/1pJJr1V1
       code:
       download_url_alt:
       file_name: LegendWorldRemake_v1.5.7z
+      file_url:
+  - v1.1.1:
+      ver_alt:
+      date: 2016-09-24
+      source_url: https://tieba.baidu.com/p/4361321645
+      source_url_alt: https://www.youtube.com/watch?v=5RovxxnFC00
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.1.1.zip
+      file_url:
+  - v1.1.0.2:
+      ver_alt:
+      date: 2016-02-22
+      source_url: https://tieba.baidu.com/p/4361321645
+      source_url_alt: https://www.youtube.com/watch?v=5RovxxnFC00
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.1.0.2.zip
+      file_url:
+  - v1.1.0.1:
+      ver_alt:
+      date: 2016-02-19
+      source_url: https://tieba.baidu.com/p/4361321645
+      source_url_alt: https://www.youtube.com/watch?v=5RovxxnFC00
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.1.0.1.zip
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2016-02-19
+      source_url: https://tieba.baidu.com/p/4361321645
+      source_url_alt: https://www.youtube.com/watch?v=5RovxxnFC00
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.1.zip
+      file_url:
+  - v1.0.2:
+      ver_alt:
+      date: 2015-11-04
+      source_url: https://tieba.baidu.com/p/4021278610
+      source_url_alt: https://www.youtube.com/watch?v=lEVRaavJZT4
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.0.2.zip
+      file_url:
+  - v1.0.1:
+      ver_alt:
+      date: 2015-09-07
+      source_url: https://tieba.baidu.com/p/4021278610
+      source_url_alt: https://www.youtube.com/watch?v=lEVRaavJZT4
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.0.1.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2015-09-04
+      source_url: https://tieba.baidu.com/p/4021278610
+      source_url_alt: https://www.youtube.com/watch?v=lEVRaavJZT4
+      download_url: https://pan.baidu.com/s/1pJJr1V1
+      code:
+      download_url_alt:
+      file_name: LegendWorldRemake_v1.0.zip
       file_url:
 - game: Mario Forever Random World
   game_alt:
@@ -7368,6 +7612,26 @@
       code: 4vts
       download_url_alt:
       file_name: Mario Forever Magic Dreams 2.2.exe
+      file_url:
+  - v2.1:
+      ver_alt:
+      date: 2018-07-04
+      source_url: https://tieba.baidu.com/p/5773471019
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1ecS1OBRDtUGLeB0YUa5scQ
+      code: 4vts
+      download_url_alt:
+      file_name: Mario Forever Magic Dreams 2.1.exe
+      file_url:
+  - v2.0:
+      ver_alt:
+      date: 2018-07-04
+      source_url: https://tieba.baidu.com/p/5773471019
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1ecS1OBRDtUGLeB0YUa5scQ
+      code: 4vts
+      download_url_alt:
+      file_name: Mario Forever Magic Dreams 2.0.exe
       file_url:
 - game: Mario Forever World MFP
   game_alt:
@@ -7603,6 +7867,46 @@
       download_url_alt:
       file_name: Mario forever magic land V3.0.7z
       file_url:
+  - v2.1:
+      ver_alt:
+      date: 2016-06-18
+      source_url: https://tieba.baidu.com/p/4616609001
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1jHXDkJs
+      code:
+      download_url_alt:
+      file_name: Mario Forever Magic LandV2.1.rar
+      file_url:
+  - v0.9.4:
+      ver_alt:
+      date: 2016-02-17
+      source_url: https://tieba.baidu.com/p/4358297105
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1dEfrsjv
+      code:
+      download_url_alt:
+      file_name: Mario Forever Magic Land Remake Beta(2).exe
+      file_url:
+  - v0.9.3:
+      ver_alt:
+      date: 2016-02-13
+      source_url: https://tieba.baidu.com/p/4351347399
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1mharzQC
+      code:
+      download_url_alt:
+      file_name: Mario Forever Magic Land Remake V0.9.1.exe
+      file_url:
+  - v0.9.1:
+      ver_alt:
+      date: 2016-01-30
+      source_url: https://tieba.baidu.com/p/4329392916
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1IpSWA
+      code:
+      download_url_alt:
+      file_name: Mario Forever Magic Land Remake Beta(1).exe
+      file_url:
 - game: Infernal Stronghold
   game_alt:
   author: HVMetal
@@ -7674,6 +7978,16 @@
       code:
       download_url_alt:
       file_name: "【V1.0.1】xfx world .zip"
+      file_url:
+  - v1.0.0:
+      ver_alt:
+      date: 2017-07-31
+      source_url: https://tieba.baidu.com/p/5250808649
+      source_url_alt:
+      download_url: ~http://pan.baidu.com/s/1hskU5Li
+      code:
+      download_url_alt:
+      file_name: "【V1.0.0】xfx world.zip"
       file_url:
 - game: Mario Forever 3 Alpha
   game_alt:
@@ -8840,6 +9154,56 @@
       download_url_alt:
       file_name: Super Mario Forever JourneyV1.5.4.zip
       file_url:
+  - v1.5.3:
+      ver_alt:
+      date: 2016-10-04
+      source_url: https://tieba.baidu.com/p/4804424016
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1skWOC3b
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever JourneyV1.5.3.zip
+      file_url:
+  - v1.5.2.1:
+      ver_alt:
+      date: 2016-08-27
+      source_url: https://tieba.baidu.com/p/4744229792
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1boAoKSB
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever JourneyV1.5.2(1).zip
+      file_url:
+  - v1.5 new:
+      ver_alt:
+      date: 2016-08-22
+      source_url: https://tieba.baidu.com/p/4744229792
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1bpxD2Ez
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever JourneyV1.5(1).zip
+      file_url:
+  - v1.5:
+      ver_alt:
+      date: 2016-08-22
+      source_url: https://tieba.baidu.com/p/4744229792
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1skTyKEx
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever JourneyV1.5.zip
+      file_url:
+  - v1.3:
+      ver_alt:
+      date: 2016-08-07
+      source_url: https://archive.marioforever.net/post/4684557403.html
+      source_url_alt:
+      download_url: ~http://pan.baidu.com/s/1jIk7kkY
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever JourneyV1.3.zip
+      file_url:
 - game: Mario Forever - Christmas Special
   game_alt:
   author: Forever Team
@@ -9125,6 +9489,44 @@
   download_url_alt:
   file_name: MarioEternityTestVersion.exe
   file_url:
+- game: Mario Forever ZX Project Remake
+  game_alt:
+  author: 初音炽
+  author_alt: Hatsune Chi
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - World 1 Beta:
+      ver_alt:
+      date: 2016-07-25
+      source_url: https://archive.marioforever.net/post/4692956236.html
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1eRNDXnk
+      code:
+      download_url_alt:
+      file_name: MFZXProject Remake - World1Beta.exe
+      file_url:
+  - World 1 Beta (Classical):
+      ver_alt:
+      date: 2016-07-25
+      source_url: https://archive.marioforever.net/post/4692956236.html
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1slvh5Dz 
+      code:
+      download_url_alt:
+      file_name: MFZXProject Remake - World1Beta(Classical).exe
+      file_url:
+  - Sample Level:
+      ver_alt:
+      date: 2016-06-09
+      source_url: https://tieba.baidu.com/p/4600264041
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1eRNDXnk
+      code:
+      download_url_alt:
+      file_name: MFZXProject Remake - World1Beta.exe
+      file_url:
 - game: Mario Forever - Fancy Series Worlds
   game_alt:
   author: 马里奥X7
@@ -10089,16 +10491,47 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7yU/?spm_id_from=333.999.0.0
-  ver: v1.25
-  ver_alt:
-  date: 2015-02-18
-  source_url: https://tieba.baidu.com/p/3593053280
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1kTKd49p
-  code:
-  download_url_alt:
-  file_name: Super Mario Forever 2014 v1.25.rar
-  file_url:
+  ver:
+  - v1.25:
+      ver_alt:
+      date: 2015-02-18
+      source_url: https://tieba.baidu.com/p/3593053280
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1kTKd49p
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever 2014 v1.25.rar
+      file_url:
+  - v1.2:
+      ver_alt:
+      date: 2014-08-23
+      source_url: https://tieba.baidu.com/p/3249698956
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1gdh7wyf
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever 2014 v1.2.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2014-07-20
+      source_url: https://tieba.baidu.com/p/3176192955
+      source_url_alt:
+      download_url: https://yun.baidu.com/s/1dD1TxeT
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever 2014.rar
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2014-02-11
+      source_url: https://tieba.baidu.com/p/2858209290
+      source_url_alt:
+      download_url: https://pan.baidu.com/share/link?shareid=3641579620&uk=742339306
+      code:
+      download_url_alt:
+      file_name: MF2014 World 1 0.92 Beta.exe
+      file_url:
 - game: WORLD R Releashed
   game_alt:
   author: R-Jizzle
