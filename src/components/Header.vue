@@ -311,6 +311,7 @@
     width: 100vw;
     box-sizing: border-box;
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   .container {
