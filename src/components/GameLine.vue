@@ -1,12 +1,6 @@
 <script setup>
   import {listToText, parseVer} from "../util/Misc.js";
-  import ArrowIcon from "./icons/IconArrow.vue"
-  import WikiIcon from "./icons/IconWiki.vue";
-  import LinkIcon from "./icons/IconLink.vue";
-  import DownloadIcon from "./icons/IconDownload.vue";
-  import YoutubeIcon from "./icons/IconYoutube.vue";
-  import RepackIcon from "./icons/IconRepack.vue";
-  import VideoIcon from "./icons/IconVideo.vue";
+  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
 
   const props = defineProps({
@@ -29,7 +23,16 @@
           {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
         </span><i></i>
       </span>
-      {{ getName(game, lan) }}</div>
+      {{ getName(game, lan) }}
+      <a class="tooltip" v-if="lan == 'zh' && game.description_zh">
+        <InfoIcon class="icon button-shift"></InfoIcon>
+        <span class="tooltiptext tooltip-bottom">{{ game.description_zh }}</span><i></i>
+      </a>
+      <a class="tooltip" v-if="lan == 'en' && game.description_en">
+        <InfoIcon class="icon button-shift"></InfoIcon>
+        <span class="tooltiptext tooltip-bottom tooltip-left-align">{{ game.description_en }}</span><i></i>
+      </a>
+      </div>
     <div class="game-author">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
         {{ getAuthorList(game, lan) }}
@@ -150,6 +153,10 @@
 
   .small {
     font-size: 0.8em;
+  }
+
+  .button-shift {
+    transform: translateY(-1px);
   }
 
 </style>

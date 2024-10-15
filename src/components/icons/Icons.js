@@ -2,6 +2,7 @@ import ArrowIcon from "./IconArrow.vue";
 import ClipboardIcon from "./IconClipboard.vue";
 import DownloadIcon from "./IconDownload.vue";
 import FilterIcon from "./IconFilter.vue";
+import InfoIcon from "./IconInfo.vue";
 import LinkIcon from "./IconLink.vue";
 import RepackIcon from "./IconRepack.vue";
 import SortUpIcon from "./IconSortUp.vue";
@@ -17,6 +18,7 @@ export {
     ClipboardIcon,
     DownloadIcon,
     FilterIcon,
+    InfoIcon,
     LinkIcon,
     RepackIcon,
     SortUpIcon,

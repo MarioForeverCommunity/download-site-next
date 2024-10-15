@@ -13,7 +13,7 @@
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
-  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon } from "../../components/icons/Icons.js";
+  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
@@ -307,6 +307,18 @@
           <div class="inline-block">
             <input v-model="filter_option.repacked" type="checkbox">
             {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
+            <a class="tooltip" v-if="lan == 'zh'">
+              <InfoIcon class="icon button-shift"></InfoIcon>
+              <span class="tooltiptext tooltip-bottom tooltip-left-align">
+                重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。在 Mario Forever 社区资源站最初创建时，资源站不允许上传此类作品。考虑到有一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
+                <br>
+                重打包作品收录的原则是：<br>
+                1. 只收录原压缩包已失传的作品；<br>
+                2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
+                3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
+                4. 重打包的作品不应包含游玩过的存档文件。
+              </span><i></i>
+            </a>
           </div>
         </div>
       </Collapse>

@@ -42,6 +42,8 @@
     </div>
     <div class="body-line">
       <div class="game-date">{{ lan == "en" ? "Released on " : "发布于 " }}{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
+      <p v-if="lan == 'zh' && game.description_zh">{{ game.description_zh }}</p>
+      <p v-if="lan == 'en' && game.description_en">{{ game.description_en }}</p>
     </div>
     <div class="last-line-padding">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
