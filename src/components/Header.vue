@@ -109,6 +109,14 @@
       margin: 0 auto;
       width: 90%;
     }
+
+    .header-row {
+      width: 95%;
+    }
+
+    .nav-row {
+      width: 95%;
+    }
   }
 
   @media (max-width: 1333px) and (min-width: 800px) {
