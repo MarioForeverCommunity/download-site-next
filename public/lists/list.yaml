@@ -116,7 +116,7 @@
   date: 2024-10-07
   source_url: https://www.marioforever.net/thread-3389-1-1.html
   source_url_alt:
-  download_url: https://file.marioforever.net/Mario Forever/国内作品/2024/PK!MF6_Entertainment_Collection.7z
+  download_url:
   code:
   download_url_alt:
   file_name: PK!MF6_Entertainment_Collection.7z
@@ -223,7 +223,7 @@
   download_url_alt:
   file_name: 永远的马里奥：蘑菇岛——秋的记忆.zip
   file_url:
-- game: Mario Forever Math Symbole World Series
+- game: Mario Forever Math Symbols World Series
   game_alt:
   author: Turkish_bussines
   author_alt:
@@ -239,7 +239,7 @@
       download_url: https://www.mediafire.com/file/xsbzfviv6pina4i/Mario_Forever_Math_Symbols_World_Series_v1.6.rar/file
       code:
       download_url_alt:
-      file_name: Mario Forever Math Symbole World Series v1.6.rar
+      file_name: Mario Forever Math Symbols World Series v1.6.rar
       file_url:
   - v1.0:
       ver_alt:
@@ -493,7 +493,7 @@
   date: 2024-08-14
   source_url: https://www.marioforever.net/thread-3328-1-1.html
   source_url_alt:
-  download_url: https://file.marioforever.net/Mario Forever/国内作品/2024/PK!MF6_Competitive_Collection.7z
+  download_url:
   code:
   download_url_alt:
   file_name: PK!MF6_Competitive_Collection.7z
@@ -1405,7 +1405,7 @@
       code:
       download_url_alt:
       file_name: CNY23v1.5.1.rar
-      file_url:
+      file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/Phantom Sapphire/CNY23v1.5.1.rar"
   - v1.2:
       ver_alt:
       date: 2023-01-17
@@ -1415,7 +1415,7 @@
       code:
       download_url_alt:
       file_name: old-versions/CNY23v1.2.rar
-      file_url:
+      file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/Phantom Sapphire/old-versions/CNY23v1.2.rar"
 - game: Mega Mole vs Dr WSW
   game_alt:
   author: 克洛伊Prime
@@ -2375,7 +2375,7 @@
   date: 2023-08-13
   source_url: https://www.marioforever.net/thread-2863-1-1.html
   source_url_alt:
-  download_url: https://file.marioforever.net/Mario Forever/国内作品/2023/PK!MF5_Collection.7z
+  download_url:
   code:
   download_url_alt:
   file_name: PK!MF5_Collection.7z
@@ -2536,7 +2536,7 @@
   date: 2023-07-13
   source_url: https://www.marioforever.net/thread-2774-1-1.html
   source_url_alt:
-  download_url: https://file.marioforever.net/Mario Forever/国内作品/2023/PK!MF4_Collection.7z
+  download_url:
   code:
   download_url_alt:
   file_name: PK!MF4_Collection.7z
@@ -3263,7 +3263,7 @@
   ver:
   - 中文版:
       ver_alt: Chinese ver.
-      date: 2023-02-19
+      date: 2024-07-06
       current: true
       source_url: https://www.marioforever.net/thread-2558-1-1.html
       source_url_alt:
@@ -3423,7 +3423,7 @@
   file_url:
 - game: Mario Forever Space Travels
   game_alt:
-  author: Karol Pik
+  author: Karol_Pik
   author_alt:
   type: international
   wiki_zh_url:
@@ -3692,7 +3692,7 @@
   code:
   download_url_alt:
   file_name: MF - Community Summer 2022 v1.0.rar
-  file_url:
+  file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/TheMarioVariable/MF - Community Summer 2022 v1.0.rar"
 - game: Mario Forever - Winter Warmth
   game_alt:
   author: 大爱Mario_
@@ -3849,7 +3849,7 @@
   date: 2022-07-25
   source_url: https://www.marioforever.net/thread-2196-1-1.html
   source_url_alt:
-  download_url: https://file.marioforever.net/Mario Forever/国内作品/2022/PoMF_Collection.7z
+  download_url:
   code:
   download_url_alt:
   file_name: PoMF_Collection.7z
@@ -4012,7 +4012,7 @@
   date: 2022-06-28
   source_url: https://www.marioforever.net/thread-2127-1-1.html
   source_url_alt:
-  download_url: https://file.marioforever.net/Mario Forever/国内作品/2022/PK!MF3_Collection.7z
+  download_url:
   code:
   download_url_alt:
   file_name: PK!MF3_Collection.7z
@@ -4829,7 +4829,7 @@
   code:
   download_url_alt:
   file_name: MF - CNY2022 - v1.0.rar
-  file_url:
+  file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/TheMarioVariable/MF - CNY2022 - v1.0.rar"
 - game: Mario Forever Brand New Start
   game_alt:
   author: Ultra Team
@@ -5578,7 +5578,7 @@
   code:
   download_url_alt:
   file_name: MF - Community New Year 2021 v2.05.rar
-  file_url:
+  file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/TheMarioVariable/MF - Community New Year 2021 v2.05.rar"
 - game: Mario Forever Colourful Trip
   game_alt:
   author: 6463喝喝了
@@ -5834,7 +5834,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: old-versions/MFRemake v4.01 (direct 3d 9).rar
+      file_name: old-versions/MFRemake v4.01 (direct 3D 9).rar
       file_url:
   - v4.01:
       ver_alt:
@@ -6089,7 +6089,7 @@
   file_url:
 - game: Mario Forever - ?
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -6350,7 +6350,7 @@
   download_url: http://www.mediafire.com/file/zmik5imm4nen8wq/
   code:
   download_url_alt:
-  file_name: MFRW3.5.rar
+  file_name: MFRW3.5.1.rar
   file_url:
 - game: World11++
   game_alt:
@@ -6454,7 +6454,7 @@
   ver:
   - 中文版:
       ver_alt: Chinese ver.
-      date: 2020-04-15
+      date: 2024-08-07
       current: true
       source_url: https://www.marioforever.net/thread-414-1-1.html
       source_url_alt:
@@ -6465,7 +6465,7 @@
       file_url:
   - 英文版:
       ver_alt: English ver.
-      date: 2020-04-15
+      date: 2024-08-07
       current: true
       source_url: https://www.marioforever.net/thread-414-1-1.html
       source_url_alt:
@@ -6490,7 +6490,7 @@
   code:
   download_url_alt:
   file_name: MFR COMMUNITY CONTEST %231.ZIP
-  file_url:
+  file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/crist1919/MFR COMMUNITY CONTEST %231.ZIP"
 - game: Mario Forever Frozen Island
   game_alt:
   author: Adeel Malik
@@ -7128,7 +7128,7 @@
 - game: 'Mario Forever: World of Haste'
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: Furret78
+  author_alt: 
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -7162,7 +7162,7 @@
 - game: Yo Angelo
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: Furret78
+  author_alt: 
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -7234,7 +7234,7 @@
 - game: Lootbox Mushroom Test
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: Furret78
+  author_alt: 
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -7551,7 +7551,7 @@
       file_url:
 - game: Mario Forever Random World
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8561,7 +8561,7 @@
   game_alt:
   author: JoséLPK.CF&MF
   author_alt:
-  type: chinese
+  type: international
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -8576,7 +8576,7 @@
   file_url:
 - game: 'Mario Forever: Another Level #7'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8695,7 +8695,7 @@
   file_url:
 - game: Mario Forever - World SM
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8748,7 +8748,7 @@
   file_url:
 - game: 'Mario Forever: Another Level #6'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8898,7 +8898,7 @@
       file_url:
 - game: 'Mario Forever: Another Level #5'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8915,7 +8915,7 @@
   file_url:
 - game: 'Mario Forever: Another Level #4'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8932,7 +8932,7 @@
   file_url:
 - game: 'Mario Forever: Another Level #3'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8949,7 +8949,7 @@
   file_url:
 - game: 'Mario Forever: Another Level #2'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
@@ -8966,7 +8966,7 @@
   file_url:
 - game: 'Mario Forever: Another Level #1'
   game_alt:
-  author: master171.
+  author: master171
   author_alt:
   type: international
   wiki_zh_url:
