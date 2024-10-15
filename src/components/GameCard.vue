@@ -1,13 +1,8 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import ArrowIcon from "./icons/IconArrow.vue"
-  import WikiIcon from "./icons/IconWiki.vue";
-  import LinkIcon from "./icons/IconLink.vue";
-  import DownloadIcon from "./icons/IconDownload.vue";
-  import YoutubeIcon from "./icons/IconYoutube.vue";
-  import RepackIcon from "./icons/IconRepack.vue";
-  import VideoIcon from "./icons/IconVideo.vue";
+  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
+
 
   const props = defineProps({
     game: {

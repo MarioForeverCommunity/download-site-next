@@ -13,8 +13,7 @@
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
-  import SortIcon from "../../components/icons/IconSort.vue";
-  import FilterIcon from "../../components/icons/IconFilter.vue";
+  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon } from "../../components/icons/Icons.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
@@ -61,6 +60,7 @@
             source_url : entry.source_url,
             source_url_alt : entry.source_url_alt,
             ver_alt : entry.ver_alt,
+            data_download_url : entry.data_download_url
           }
         }];
       } else {
@@ -118,7 +118,7 @@
       entry.currentVer = parseVer(entry.ver[0]);
       games.value.push(entry);
     }
-    games.value.sort((a, b) => parseVer(b.ver[0]).date - parseVer(a.ver[0]).date);
+    defaultSort();
   });
 
   const selectedDownload = ref(null); // For download modal.
@@ -132,12 +132,20 @@
     asc : true
   });
 
+  function defaultSort() {
+    games.value.sort((a, b) => parseVer(b.ver[0]).date - parseVer(a.ver[0]).date);
+    sort_option.value.field = null;
+  }
+
   function sortByName() {
     if (sort_option.value.field != "game") {
       sort_option.value.field = "game";
       sort_option.value.asc = true;
+    } else if (sort_option.value.asc == true) {
+      sort_option.value.asc = false;
     } else {
-      sort_option.value.asc = !sort_option.value.asc;
+      defaultSort();
+      return; 
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? getName(a, lan.value).localeCompare(getName(b, lan.value)) : getName(b, lan.value).localeCompare(getName(a, lan.value)));
   }
@@ -146,8 +154,11 @@
     if (sort_option.value.field != "author") {
       sort_option.value.field = "author";
       sort_option.value.asc = true;
+    } else if (sort_option.value.asc == true) {
+      sort_option.value.asc = false;
     } else {
-      sort_option.value.asc = !sort_option.value.asc;
+      defaultSort();
+      return; 
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value)) : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value)));
   }
@@ -156,8 +167,11 @@
     if (sort_option.value.field != "date") {
       sort_option.value.field = "date";
       sort_option.value.asc = true;
+    } else if (sort_option.value.asc == true) {
+      sort_option.value.asc = false;
     } else {
-      sort_option.value.asc = !sort_option.value.asc;
+      defaultSort();
+      return; 
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? a.currentVer.date - b.currentVer.date : b.currentVer.date - a.currentVer.date);
   }
@@ -238,15 +252,33 @@
           {{ lan == "en" ? "Sort by " : "排序选项 " }}
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
-            {{ sort_option.field == "game" ? (sort_option.asc ? "▲" : "▼") : "" }}
+            <span v-if="sort_option.field == 'game'">
+              <SortUpIcon class="icon" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'game'">
+              <SortUpDownIcon class="icon"></SortUpDownIcon>
+            </span>
           </div>
           <div class="visible-button" @click="sortByAuthor();">
             {{ lan == "en" ? "Author" : "作者" }}
-            {{ sort_option.field == "author" ? (sort_option.asc ? "▲" : "▼") : "" }}
+            <span v-if="sort_option.field == 'author'">
+              <SortUpIcon class="icon" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'author'">
+              <SortUpDownIcon class="icon"></SortUpDownIcon>
+            </span>
           </div>
           <div class="visible-button" @click="sortByDate();">
             {{ lan == "en" ? "Date" : "日期" }}
-            {{ sort_option.field == "date" ? (sort_option.asc ? "▲" : "▼") : "" }}
+            <span v-if="sort_option.field == 'date'">
+              <SortUpIcon class="icon" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'date'">
+              <SortUpDownIcon class="icon"></SortUpDownIcon>
+            </span>
           </div>
         </div>
       </Collapse>

@@ -1,12 +1,5 @@
 <script setup>
-  import {listToText, parseVer} from "../util/Misc.js";
-  import ArrowIcon from "./icons/IconArrow.vue"
-  import WikiIcon from "./icons/IconWiki.vue";
-  import LinkIcon from "./icons/IconLink.vue";
-  import DownloadIcon from "./icons/IconDownload.vue";
-  import YoutubeIcon from "./icons/IconYoutube.vue";
-  import RepackIcon from "./icons/IconRepack.vue";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon } from "./icons/Icons.js";
 
   const props = defineProps({
     lan : {
@@ -30,11 +23,27 @@
   <div class="container game-container header">
     <div class="game-name header">
       {{ lan == "en" ? "Game" : "作品名" }}
-      <div class="button" @click="$emit('sortByName')">{{ getSortOption().field == "game" ? (getSortOption().asc ? "↑" : "↓") : "⇵" }}</div>
+      <div class="button" @click="$emit('sortByName')">
+        <span v-if="getSortOption().field == 'game'">
+          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
+          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+        </span>
+        <span v-if="getSortOption().field != 'game'">
+          <SortUpDownIcon class="icon"></SortUpDownIcon>
+        </span>
+      </div>
     </div>
     <div class="game-author header">
       {{ lan == "en" ? "Author" : "作者" }}
-      <div class="button" @click="$emit('sortByAuthor')">{{ getSortOption().field == "author" ? (getSortOption().asc ? "↑" : "↓") : "⇵" }}</div>
+      <div class="button" @click="$emit('sortByAuthor')">
+        <span v-if="getSortOption().field == 'author'">
+          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
+          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+        </span>
+        <span v-if="getSortOption().field != 'author'">
+          <SortUpDownIcon class="icon"></SortUpDownIcon>
+        </span>
+      </div>
     </div>
     <div class="game-version header" v-if="category == 'mf'">
       {{ lan == "en" ? "Version" : "版本" }}
@@ -44,7 +53,15 @@
     </div>
     <div class="game-date header">
       {{ lan == "en" ? "Date" : "发布日期" }}
-      <div class="button" @click="$emit('sortByDate')">{{ getSortOption().field == "date" ? (getSortOption().asc ? "↑" : "↓") : "⇵" }}</div>
+      <div class="button" @click="$emit('sortByDate')">
+        <span v-if="getSortOption().field == 'date'">
+          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
+          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+        </span>
+        <span v-if="getSortOption().field != 'date'">
+          <SortUpDownIcon class="icon"></SortUpDownIcon>
+        </span>
+      </div>
     </div>
     <div class="game-buttons header"></div>
   </div>
@@ -76,5 +93,14 @@
 
   .button:hover {
     transform: translateY(-2px);
+  }
+
+  .icon {
+    color: #000;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px;
   }
 </style>
