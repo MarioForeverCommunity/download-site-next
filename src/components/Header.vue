@@ -39,7 +39,7 @@
         <h1>{{ displayLan() == 'zh' ? pageEntry.title : pageEntry.title_alt }}</h1>
       </div> -->
       <div class="header-row nav-row">
-        <div class="logo"><a href="/"><img :src="displayLan() == 'zh' ? '/images/logo.png' : '/images/logo2.png'"></a></div>
+        <div class="logo"><a href="."><img :src="displayLan() == 'zh' ? './images/logo.png' : './images/logo2.png'"></a></div>
         <div class="nav">
           <div class="radio-inputs">
             <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
