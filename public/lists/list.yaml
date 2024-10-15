@@ -3856,6 +3856,16 @@
       download_url_alt:
       file_name: MF A Fabulous Space V5.1 Bugfix.rar
       file_url:
+  - v5.0:
+      ver_alt:
+      date: 2022-07-16
+      source_url: https://www.marioforever.net/thread-2145-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF A Fabulous Space V5.0.rar
+      file_url:
   - v4.0:
       ver_alt:
       date: 2018-06-18
@@ -3875,6 +3885,16 @@
       code:
       download_url_alt:
       file_name: MF A Fabulous Space V3.1.rar
+      file_url:
+  - v3.0:
+      ver_alt:
+      date: 2017-06-26
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF A Fabulous Space V3.0.rar
       file_url:
   - v2.0.1:
       ver_alt:
@@ -3915,6 +3935,16 @@
       code: hvh7
       download_url_alt:
       file_name: Install MF2 - A Fabulous Space.exe
+      file_url:
+  - 8世界版:
+      ver_alt: 8 worlds version
+      date: 2015-02-21
+      source_url: https://tieba.baidu.com/p/3596911999
+      source_url_alt:
+      download_url: ~http://pan.baidu.com/s/1bnAQvkr
+      code:
+      download_url_alt:
+      file_name: Mario Forever 2 - A Fabulous Space测试版.exe
       file_url:
 - game: Mario Forever Quest Worlds
   game_alt:
@@ -4212,16 +4242,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v2
-  ver_alt:
-  date: 2022-03-27
-  source_url: https://www.marioforever.net/thread-2004-1-1.html
-  source_url_alt:
-  download_url: https://wwz.lanzout.com/i5tNo025opjg
-  code:
-  download_url_alt:
-  file_name: v2_Mario Forever Conventional World.7z
-  file_url:
+  ver:
+  - v2:
+      ver_alt:
+      date: 2022-03-27
+      source_url: https://www.marioforever.net/thread-2004-1-1.html
+      source_url_alt:
+      download_url: https://wwz.lanzout.com/i5tNo025opjg
+      code:
+      download_url_alt:
+      file_name: v2_Mario Forever Conventional World.7z
+      file_url:
+  - v1:
+      ver_alt:
+      date: 2022-03-27
+      source_url: https://www.marioforever.net/thread-2004-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Conventional World.7z
+      file_url:
 - game: 'Mario Forever Tale Chapter One: Eclipse on Titanus'
   game_alt:
   author: crist1919
@@ -4599,23 +4640,56 @@
   download_url_alt:
   file_name: Super Mario Forever 2021.7z
   file_url:
-- game: Mario Forever Odyssey Deluxe Edition
+- game: Mario Forever Odyssey
   game_alt:
   author: 大爷
   author_alt: Daye
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.5.0
-  ver_alt:
-  date: 2021-12-03
-  source_url: https://www.marioforever.net/thread-1799-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/176MfxWcdSVD2dEvOjtNgyA
-  code: 6ix2
-  download_url_alt:
-  file_name: Mario Forever Odyssey Deluxe Edition.zip
-  file_url:
+  video_zh:
+  - 宣传视频: https://www.bilibili.com/video/BV1UX4y1V7R4
+  ver:
+  - v1.5.0 (Deluxe Edition):
+      ver_alt:
+      date: 2021-12-03
+      source_url: https://www.marioforever.net/thread-1799-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/176MfxWcdSVD2dEvOjtNgyA
+      code: 6ix2
+      download_url_alt:
+      file_name: Mario Forever Odyssey Deluxe Edition.zip
+      file_url:
+  - v1.2.1:
+      ver_alt:
+      date: 2021-06-12
+      source_url: https://www.marioforever.net/thread-1180-1-1.html
+      source_url_alt:
+      download_url: https://wwr.lanzoui.com/icKLBq73pta
+      code:
+      download_url_alt:
+      file_name: Mario Forever Odyssey V1.2.1.zip
+      file_url:
+  - v1.2:
+      ver_alt:
+      date: 2021-06-12
+      source_url: https://www.marioforever.net/thread-1180-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Odyssey V1.2.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2021-05-28
+      source_url: https://www.marioforever.net/thread-1180-1-1.html
+      source_url_alt:
+      download_url: ~https://wwr.lanzoui.com/iD3FCpkejqj
+      code:
+      download_url_alt:
+      file_name: Mario Forever Odyssey.zip
+      file_url:
 - game: 'Mario Forever: Vietnamese Letters Worlds Series'
   game_alt:
   author: JoséLPK.CF&MF
@@ -4972,23 +5046,6 @@
   code:
   download_url_alt:
   file_name: "(Update 1) Mario Forever Volcano Fields.zip"
-  file_url:
-- game: Mario Forever Odyssey
-  game_alt:
-  author: 大爷
-  author_alt: Daye
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver: v1.2.1
-  ver_alt:
-  date: 2021-06-12
-  source_url: https://www.marioforever.net/thread-1180-1-1.html
-  source_url_alt:
-  download_url: https://wwr.lanzoui.com/icKLBq73pta
-  code:
-  download_url_alt:
-  file_name: Mario Forever Odyssey V1.2.1.zip
   file_url:
 - game: Onslaught Timecore Tank
   game_alt:
