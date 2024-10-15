@@ -75,7 +75,7 @@
           if (ver.file_name) {
             if (entry.type == "chinese") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
-              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames//${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
             } if (entry.type == "repacked") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
