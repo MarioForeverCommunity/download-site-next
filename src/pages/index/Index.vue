@@ -139,6 +139,11 @@
     padding-left: 30px;
   }
 
+  h1 {
+    font-size: 30px;
+    margin-top: 12px;
+  }
+
   p, ol, ul, h4, h5, h6, table, button {
     border: 0;
     font-size: 100%;
