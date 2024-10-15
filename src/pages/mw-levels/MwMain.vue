@@ -3,6 +3,7 @@
   import DownloadHeader from '../../components/Header.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import FooterZh from '../../components/FooterZh.vue';
+  import { navTop } from "../../config.js";
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
@@ -19,6 +20,10 @@
   const originalLan = ref(getLanguage());
 
   const lan = "zh"
+
+  const pageId = "mw-levels"
+
+  const titleZh = navTop.find(item => item.id === pageId).title;
 
   const games = ref([]);
 
@@ -151,6 +156,7 @@
   <DownloadHeader pageId="mw-levels" :lan-var="originalLan" @change-lan-zh="originalLan = setLanguageZh(); " @change-lan-en="originalLan = setLanguageEn(); "/>
 
   <div class="container md-container">
+    <h1>{{ titleZh }}</h1>
     <introZh />
     <p v-if="lastUpdate" class="last-update">最后更新：{{ lastUpdate }}</p>
   </div>
@@ -164,15 +170,33 @@
           排序选项
           <div class="visible-button" @click="sortByName();">
             名称
-            {{ sort_option.field == "game" ? (sort_option.asc ? "▲" : "▼") : "" }}
+            <span v-if="sort_option.field == 'game'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'game'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
           </div>
           <div class="visible-button" @click="sortByAuthor();">
             作者
-            {{ sort_option.field == "author" ? (sort_option.asc ? "▲" : "▼") : "" }}
+            <span v-if="sort_option.field == 'author'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'author'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
           </div>
           <div class="visible-button" @click="sortByDate();">
             日期
-            {{ sort_option.field == "date" ? (sort_option.asc ? "▲" : "▼") : "" }}
+            <span v-if="sort_option.field == 'date'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'date'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
           </div>
         </div>
       </Collapse>
@@ -520,6 +544,10 @@
 
   .tooltip:hover .tooltiptext {
     display:block;
+  }
+
+  .button-shift {
+    transform: translateY(-1px);
   }
 
 </style>

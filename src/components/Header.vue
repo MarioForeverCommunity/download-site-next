@@ -26,30 +26,28 @@
 <template>
   <div class="topbar">
     <div class="topbar-inner">
-      <a href="/"><img class="logo" :src=" displayLan() == 'zh' ? '/images/logo.png' : '/images/logo2.png'"></a>
-      <div class="topbar-content">
-        <div class="topbar-left">
-          <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
-        </div>
-        <div class="topbar-right" v-if="pageEntry.show_en == true">
-          <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
-          <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
-        </div>
+      <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+      <div style="float: right; display: inline;" v-if="pageEntry.show_en == true">
+        <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
+        <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
       </div>
     </div>
   </div>
   <header>
     <div class="container header-container">
-      <div class="header-row">
+      <!-- <div class="header-row">
         <h1>{{ displayLan() == 'zh' ? pageEntry.title : pageEntry.title_alt }}</h1>
-      </div>
+      </div> -->
       <div class="header-row nav-row">
-        <div class="radio-inputs">
-          <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
-            <span class="radio-text" name="radio">
-              {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
-            </span>
-          </a>
+        <div class="logo"><a href="/"><img src="/images/logo.png"></a></div>
+        <div class="nav">
+          <div class="radio-inputs">
+            <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
+              <span class="radio-text" name="radio">
+                {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
+              </span>
+            </a>
+          </div>
         </div>
       </div>
       <div class="header-row nav-row warning" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
@@ -61,34 +59,49 @@
 </template>
 
 <style scoped>
+
+.logo a img {
+  width: 130px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
   .logo {
-    height: 50px;
     width: auto;
-    padding-right: 10px;
-    float: left;
+    height: 90px;
+    margin: 0;
+    margin-right: 20px;
+    display: inline-block;
   }
+
+  .logo a img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav {
+    width: calc(100% - 200px);
+    display: inline;
+    float: right;
+    transform: translateY(30px);
+    width: fit-content;
+  }
+
+  .nav .radio-inputs .radio {
+    margin: 0 20px;
+  }
+}
 
   .topbar {
     background-color: #e6e6e6;
     font-size: 13px;
-    height: 60px;
+    line-height: 30px;
+    height: 35px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-  }
-
-  .topbar-content {
-    float: right;
-  }
-
-  .topbar-left {
-    line-height: 50px;
-    display: inline;
-  }
-
-  .topbar-right {
-    line-height: 50px;
-    display: inline;
   }
 
   .topbar-inner {
@@ -97,32 +110,14 @@
     box-sizing: border-box;
   }
 
-  .lan-item {
-    color: rgb(85, 85, 85);
-    cursor: pointer;
-  }
-
   .link-item {
     margin-right: 20px;
     color: rgb(85, 85, 85);
   }
 
-  @media (min-width: 800px) {
-    .link-item {
-      margin-right: 35px;
-    }
-
-    .topbar-left {
-      line-height: 50px;
-      display: inline;
-      margin-right: 30px;
-    }
-  }
-
-  @media (max-width: 470px) {
-    .topbar-left {
-      display: none;
-    }
+  .lan-item {
+    color: rgb(85, 85, 85);
+    cursor: pointer;
   }
 
   .lan-item.active {
@@ -134,9 +129,6 @@
   }
 
   .header-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     width: 100vw;
     padding: 10px;
     margin: 20px auto;
@@ -145,6 +137,8 @@
 
   .nav-row {
     width: 100%;
+    align-content: center;
+    vertical-align: middle;
   }
 
   @media (max-width: 800px) {
@@ -202,12 +196,8 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    border-radius: 0.5rem;
-    background-color: #EEE;
     box-sizing: border-box;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     font-size: 14px;
-    border: 1px solid #CCC;
   }
 
   .radio-inputs .radio {
@@ -224,18 +214,18 @@
     justify-content: center;
     border: none;
     padding: .5rem;
-    color: rgba(51, 65, 85, 1);
+    color: rgb(105, 105, 105);
     transition: all .15s ease-in-out;
     display: inline-block;
   }
 
-  .radio-inputs .radio.checked {
-    background-color: #fff;
+  .radio-inputs .radio.checked .radio-text {
     font-weight: 600;
+    color: black;
   }
 
-  .radio-inputs .radio:hover {
-    background-color: #f7f7f7;
+  .radio-inputs .radio:hover .radio-text {
+    color: black;
   }
 
   .button {

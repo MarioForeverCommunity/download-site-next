@@ -23,7 +23,7 @@
   <div class="container game-container header">
     <div class="game-name header">
       {{ lan == "en" ? "Game" : "作品名" }}
-      <div class="button" @click="$emit('sortByName')">
+      <div class="button button-shift" @click="$emit('sortByName')">
         <span v-if="getSortOption().field == 'game'">
           <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
           <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
@@ -35,7 +35,7 @@
     </div>
     <div class="game-author header">
       {{ lan == "en" ? "Author" : "作者" }}
-      <div class="button" @click="$emit('sortByAuthor')">
+      <div class="button button-shift" @click="$emit('sortByAuthor')">
         <span v-if="getSortOption().field == 'author'">
           <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
           <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
@@ -53,7 +53,7 @@
     </div>
     <div class="game-date header">
       {{ lan == "en" ? "Date" : "发布日期" }}
-      <div class="button" @click="$emit('sortByDate')">
+      <div class="button button-shift" @click="$emit('sortByDate')">
         <span v-if="getSortOption().field == 'date'">
           <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
           <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
@@ -93,6 +93,10 @@
 
   .button:hover {
     transform: translateY(-2px);
+  }
+
+  .button-shift {
+    transform: translateY(-1px);
   }
 
   .icon {

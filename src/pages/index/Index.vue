@@ -47,6 +47,7 @@
   <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
   <div class="md-container">
+    <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
     <indexZh v-if="lan == 'zh'" />
     <indexEn v-if="lan == 'en'" />
     <h2>{{ lan == "zh" ? "截图预览" : "Screenshots" }}</h2>

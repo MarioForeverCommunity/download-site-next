@@ -238,6 +238,7 @@
   <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
   <div class="container md-container">
+    <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
     <introZh v-if="lan == 'zh'" />
     <introEn v-if="lan == 'en'" />
     <p v-if="lastUpdate" class="last-update">{{ lan == "en" ? "Last update: " : "最后更新：" }}{{ lastUpdate }}</p>
@@ -253,31 +254,31 @@
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
             <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon" v-if="!sort_option.asc"></SortDownIcon>
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
             </span>
             <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon"></SortUpDownIcon>
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
             </span>
           </div>
           <div class="visible-button" @click="sortByAuthor();">
             {{ lan == "en" ? "Author" : "作者" }}
             <span v-if="sort_option.field == 'author'">
-              <SortUpIcon class="icon" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon" v-if="!sort_option.asc"></SortDownIcon>
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
             </span>
             <span v-if="sort_option.field != 'author'">
-              <SortUpDownIcon class="icon"></SortUpDownIcon>
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
             </span>
           </div>
           <div class="visible-button" @click="sortByDate();">
             {{ lan == "en" ? "Date" : "日期" }}
             <span v-if="sort_option.field == 'date'">
-              <SortUpIcon class="icon" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon" v-if="!sort_option.asc"></SortDownIcon>
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
             </span>
             <span v-if="sort_option.field != 'date'">
-              <SortUpDownIcon class="icon"></SortUpDownIcon>
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
             </span>
           </div>
         </div>
@@ -590,6 +591,10 @@
 
   .italic {
     font-style: italic;
+  }
+
+  .button-shift {
+    transform: translateY(-1px);
   }
 
 </style>
