@@ -310,7 +310,7 @@
             <a class="tooltip" v-if="lan == 'zh'">
               <InfoIcon class="icon button-shift"></InfoIcon>
               <span class="tooltiptext tooltip-bottom tooltip-left-align">
-                重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。在 Mario Forever 社区资源站最初创建时，资源站不允许上传此类作品。考虑到有一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
+                重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
                 <br>
                 重打包作品收录的原则是：<br>
                 1. 只收录原压缩包已失传的作品；<br>

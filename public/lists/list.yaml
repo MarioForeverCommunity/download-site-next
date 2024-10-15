@@ -1314,7 +1314,7 @@
       download_url_alt:
       file_name: 666 Subscribers Level Fix2.rar
       file_url:
-  - initial release:
+  - Initial release:
       ver_alt:
       date: 2023-10-15
       source_url: https://www.youtube.com/watch?v=cc9QUJvYdhk
@@ -8752,16 +8752,47 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v2.0
-  ver_alt:
-  date: 2017-10-01
-  source_url: https://tieba.baidu.com/p/5349451961
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1nvvDkOp
-  code: t9ni
-  download_url_alt:
-  file_name: 永吧十周年V2.00(请解压后玩)(bug fixed).zip
-  file_url:
+  ver:
+  - v2.0:
+      ver_alt:
+      date: 2017-10-01
+      source_url: https://tieba.baidu.com/p/5349451961
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1nvvDkOp
+      code: t9ni
+      download_url_alt:
+      file_name: 永吧十周年V2.00(请解压后玩)(bug fixed).zip
+      file_url:
+  - v1.03:
+      ver_alt:
+      date: 2016-08-16
+      source_url: https://archive.marioforever.net/post/4723327405.html
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1mhIdtHm
+      code: ndk4
+      download_url_alt:
+      file_name: 永吧十周年V1.03.7z
+      file_url:
+  - v1.02:
+      ver_alt:
+      date: 2016-08-10
+      source_url: https://archive.marioforever.net/post/4723327405.html
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1eS9cc0M
+      code: iavv
+      download_url_alt:
+      file_name: 永吧十周年 V1.02.7z
+      file_url:
+  - 体验版:
+      ver_alt: Beta
+      date: 2016-07-26
+      source_url: https://tieba.baidu.com/p/4694586174
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1nu9mBs1
+      code:
+      download_url_alt:
+      file_name: 永吧十周年体验版.zip
+      file_url:
 - game: 'Mario Forever: Another Level #5'
   game_alt:
   author: master171.
@@ -9343,16 +9374,47 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.4
-  ver_alt:
-  date: 2016-09-17
-  source_url: https://tieba.baidu.com/p/4785927799
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1c10e1yw
-  code:
-  download_url_alt:
-  file_name: New Super Mario Forever 2016 V0.41.zip
-  file_url:
+  ver:
+  - v0.41:
+      ver_alt:
+      date: 2016-09-17
+      source_url: https://tieba.baidu.com/p/4785927799
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1c10e1yw
+      code:
+      download_url_alt:
+      file_name: New Super Mario Forever 2016 V0.41.zip
+      file_url:
+  - v0.4:
+      ver_alt:
+      date: 2016-09-10
+      source_url: https://archive.marioforever.net/post/4775796602.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1jHQqnLs
+      code: ximm
+      download_url_alt:
+      file_name: New Super Mario Forever 2016 V0.4.zip
+      file_url:
+  - World 1~4:
+      ver_alt:
+      date: 2016-08-28
+      source_url: https://archive.marioforever.net/post/4748166802.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1pKWRae3
+      code: f5ij
+      download_url_alt:
+      file_name: New Super Mario Forever 2016 W1~W4.zip
+      file_url:
+  - World 1~3:
+      ver_alt:
+      date: 2016-08-25
+      source_url: https://archive.marioforever.net/post/4748166802.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1mixvuFu
+      code:
+      download_url_alt:
+      file_name: New Super Mario Forever 2016.zip
+      file_url:
 - game: Mario Forever 2014
   game_alt:
   author: mario2233
@@ -9649,16 +9711,47 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1Gs411q7p2/?spm_id_from=333.999.0.0
-  ver: 八世界版
-  ver_alt: 8 worlds version
-  date: 2016-06-07
-  source_url: https://tieba.baidu.com/p/4596867800
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1b96vJS
-  code:
-  download_url_alt:
-  file_name: Super Mario Forever Classic.7z
-  file_url:
+  ver:
+  - 八世界版:
+      ver_alt: 8 worlds version
+      date: 2016-06-07
+      source_url: https://tieba.baidu.com/p/4596867800
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1b96vJS
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever Classic.7z
+      file_url:
+  - 试玩关卡:
+      ver_alt: 2 worlds version
+      date: 2016-04-26
+      source_url: https://tieba.baidu.com/p/4508302242
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1o8DzQUu
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever classic试玩关卡.exe
+      file_url:
+  - 二世界版:
+      ver_alt: 2 worlds version
+      date: 2016-02-10
+      source_url: https://tieba.baidu.com/p/4347010159
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1i3TAJel
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever Classic第二世界.7z
+      file_url:
+  - 第一世界:
+      ver_alt: World 1
+      date: 2016-01-30
+      source_url: https://tieba.baidu.com/p/4322159612
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1geppLM7
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever Classic(1).7z
+      file_url:
 - game: 'Mario Forever Z Deuce: Ulitmate Bowser Battle'
   game_alt:
   author: R-Jizzle
@@ -9923,16 +10016,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.2
-  ver_alt:
-  date: 2015-08-31
-  source_url: https://tieba.baidu.com/p/3947941940
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1kTzoFIJ
-  code:
-  download_url_alt:
-  file_name: Mysterious IslandV1.2.zip
-  file_url:
+  ver:
+  - v1.2:
+      ver_alt:
+      date: 2015-08-31
+      source_url: https://tieba.baidu.com/p/3947941940
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1kTzoFIJ
+      code:
+      download_url_alt:
+      file_name: Mysterious IslandV1.2.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2015-08-05
+      source_url: https://tieba.baidu.com/p/3947941940
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mysterious Island V1.0.exe
+      file_url:
 - game: Level FL
   game_alt:
   author: '12345678904441'
@@ -10008,16 +10112,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: World 1更新1
-  ver_alt: World 1 Update 1
-  date: 2015-08-08
-  source_url: https://tieba.baidu.com/p/3954504324
-  source_url_alt:
-  download_url: https://pan.baidu.com/share/link?shareid=2026263385&uk=1479722041
-  code:
-  download_url_alt:
-  file_name: Another World 2015 World 1更新1.exe
-  file_url:
+  ver:
+  - World 1 更新1:
+      ver_alt: World 1 Update 1
+      date: 2015-08-08
+      source_url: https://tieba.baidu.com/p/3954504324
+      source_url_alt:
+      download_url: https://pan.baidu.com/share/link?shareid=2026263385&uk=1479722041
+      code:
+      download_url_alt:
+      file_name: Another World 2015 World 1更新1.exe
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2015-08-08
+      source_url: https://tieba.baidu.com/p/3954504324
+      source_url_alt:
+      download_url: https://pan.baidu.com/share/link?shareid=1311073052&uk=1479722041
+      code:
+      download_url_alt:
+      file_name: Another World 2015 World 1.exe
+      file_url:
 - game: MFE吧两周年
   game_alt: MFE Bar 2th Anniversary
   author: dodoufatch
@@ -10291,16 +10406,87 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.06
-  ver_alt:
-  date: 2015-05-10
-  source_url: https://tieba.baidu.com/p/3754431224
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1jG6Bpgq
-  code:
-  download_url_alt:
-  file_name: Mario Long MarchV1.06.exe
-  file_url:
+  ver:
+  - v1.06:
+      ver_alt:
+      date: 2015-05-10
+      source_url: https://tieba.baidu.com/p/3754431224
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1jG6Bpgq
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV1.06.exe
+      file_url:
+  - v1.05:
+      ver_alt:
+      date: 2015-04-26
+      source_url: https://tieba.baidu.com/p/3725406503
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1gdAe3Lp
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV1.05.exe
+      file_url:
+  - v1.04:
+      ver_alt:
+      date: 2015-03-08
+      source_url: https://tieba.baidu.com/p/3623653376
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1o6E8c8U
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV1.04.exe
+      file_url:
+  - v1.03:
+      ver_alt:
+      date: 2015-03-01
+      source_url: https://tieba.baidu.com/p/3610563084
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1eQ1WTua
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV1.03.exe
+      file_url:
+  - v1.02:
+      ver_alt:
+      date: 2015-02-28
+      source_url: https://tieba.baidu.com/p/3606609420
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1jGoX5UQ
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV1.02.exe
+      file_url:
+  - v1.01:
+      ver_alt:
+      date: 2015-02-28
+      source_url: https://tieba.baidu.com/p/3606609420
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1pJqPjj9
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV1.01.rar
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2014-10-02
+      source_url: https://tieba.baidu.com/p/3346990254
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1bnhGKBd
+      code:
+      download_url_alt:
+      file_name: Mario Long March V1.0.exe
+      file_url:
+  - v0.9:
+      ver_alt:
+      date: 2014-08-29
+      source_url: https://tieba.baidu.com/p/3264071294
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1qW9F2wc
+      code:
+      download_url_alt:
+      file_name: Mario Long MarchV0.9.exe
+      file_url:
 - game: Mario Forever Z Deuce
   game_alt:
   author: R-Jizzle
@@ -10645,6 +10831,56 @@
       download_url_alt:
       file_name: MF_forever_land_V3release.exe
       file_url:
+  - r11:
+      ver_alt:
+      date: 2014-08-17
+      source_url: https://tieba.baidu.com/p/3234538164
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1i3xcjA1
+      code:
+      download_url_alt:
+      file_name: MF_forever_land_r11.exe
+      file_url:
+  - r9:
+      ver_alt:
+      date: 2014-08-16
+      source_url: https://tieba.baidu.com/p/3234538164
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1c0GPkIW
+      code:
+      download_url_alt:
+      file_name: MF_forever_land_r9.exe
+      file_url:
+  - r8:
+      ver_alt:
+      date: 2014-08-16
+      source_url: https://tieba.baidu.com/p/3234538164
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1c0GPk0g
+      code:
+      download_url_alt:
+      file_name: MF_forever_land_r8.exe
+      file_url:
+  - r6:
+      ver_alt:
+      date: 2014-08-16
+      source_url: https://tieba.baidu.com/p/3234538164
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1kTmOJzx
+      code:
+      download_url_alt:
+      file_name: MF_forever_land_r6.exe
+      file_url:
+  - r3:
+      ver_alt:
+      date: 2014-08-16
+      source_url: https://tieba.baidu.com/p/3234538164
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1eQkreKy
+      code:
+      download_url_alt:
+      file_name: MF_forever_land_r3.exe
+      file_url:
   - v1.05.0810:
       ver_alt:
       date: 2014-08-10
@@ -10654,6 +10890,36 @@
       code:
       download_url_alt:
       file_name: Install_V1.05.0810.exe
+      file_url:
+  - v1.04.0810:
+      ver_alt:
+      date: 2014-08-10
+      source_url: https://tieba.baidu.com/p/3219376045
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1ntDiUoD
+      code:
+      download_url_alt:
+      file_name: Install_V1.04.0810.exe
+      file_url:
+  - Snapshot r1:
+      ver_alt:
+      date: 2014-07-28
+      source_url: https://tieba.baidu.com/p/3191177400
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1i35Pl8T
+      code:
+      download_url_alt:
+      file_name: smfl_snapshot_r1.exe
+      file_url:
+  - Indev 1.0:
+      ver_alt:
+      date: 2014-07-27
+      source_url: https://tieba.baidu.com/p/3191177400
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1c01pCsw
+      code:
+      download_url_alt:
+      file_name: smfl_dev1.exe
       file_url:
 - game: 飞鱼的复仇
   game_alt: Cheep Cheep's Revenge
@@ -10781,16 +11047,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v2.1.6.1
-  ver_alt:
-  date: 2014-06-29
-  source_url: https://tieba.baidu.com/p/3105312065
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1c0pJGJm
-  code:
-  download_url_alt:
-  file_name: Mario Forever World 9-4(2) 2.1.6.1.exe
-  file_url:
+  ver:
+  - v2.1.6.1:
+      ver_alt:
+      date: 2014-06-29
+      source_url: https://tieba.baidu.com/p/3105312065
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1c0pJGJm
+      code:
+      download_url_alt:
+      file_name: Mario Forever World 9-4(2) 2.1.6.1.exe
+      file_url:
+  - v1.3.5:
+      ver_alt:
+      date: 2014-06-25
+      source_url: https://tieba.baidu.com/p/3105312065
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1qWFJ8Qg
+      code:
+      download_url_alt:
+      file_name: Mario Forever World 9-4(2) 1.3.5.exe
+      file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2014-06-15
+      source_url: https://tieba.baidu.com/p/3105312065
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1c0iXTfy
+      code:
+      download_url_alt:
+      file_name: Mario Forever World 9-4(2)..exe
+      file_url:
 - game: New Mario Forever World 2
   game_alt:
   author: rk533
@@ -11313,16 +11600,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v4.9.2
-  ver_alt:
-  date: 2013-08-20
-  source_url: https://tieba.baidu.com/p/2539607855
-  source_url_alt:
-  download_url: https://pan.baidu.com/share/link?uk=3627292765&shareid=4255476027
-  code:
-  download_url_alt:
-  file_name: Mario Forever 4.9.2.exe
-  file_url:
+  ver:
+  - Indev v1.0.3:
+      ver_alt:
+      date: 2013-10-04
+      source_url: https://tieba.baidu.com/p/2630291999
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1stlEU
+      code:
+      download_url_alt:
+      file_name: Mario forever The next levels Indev 3.exe
+      file_url:
+  - v4.9.2:
+      ver_alt:
+      date: 2013-08-20
+      source_url: https://tieba.baidu.com/p/2539607855
+      source_url_alt:
+      download_url: https://pan.baidu.com/share/link?uk=3627292765&shareid=4255476027
+      code:
+      download_url_alt:
+      file_name: Mario Forever 4.9.2.exe
+      file_url:
+  - v1.802:
+      ver_alt:
+      date: 2013-08-18
+      source_url: https://tieba.baidu.com/p/2539607855
+      source_url_alt:
+      download_url: https://pan.baidu.com/share/link?shareid=4166770314&uk=3627292765
+      code:
+      download_url_alt:
+      file_name: Mario Forever 1.802.exe
+      file_url:
 - game: Mario Forever World 10
   game_alt:
   author: syzxchulun
