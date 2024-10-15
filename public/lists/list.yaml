@@ -3252,6 +3252,7 @@
   - 中文版:
       ver_alt: Chinese ver.
       date: 2023-02-19
+      current: true
       source_url: https://www.marioforever.net/thread-2558-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
@@ -3262,6 +3263,7 @@
   - 英文版:
       ver_alt: English ver.
       date: 2023-02-19
+      current: true
       source_url: https://www.marioforever.net/thread-2558-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
@@ -3562,6 +3564,7 @@
   - v1.0.4:
       ver_alt:
       date: 2019-02-17
+      current: true
       source_url: https://archive.marioforever.net/post/6033154822.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1wukPDvdZPlcVrQHsBv_QTg
@@ -6372,6 +6375,7 @@
   - 中文版:
       ver_alt: Chinese ver.
       date: 2020-04-15
+      current: true
       source_url: https://www.marioforever.net/thread-414-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
@@ -6382,6 +6386,7 @@
   - 英文版:
       ver_alt: English ver.
       date: 2020-04-15
+      current: true
       source_url: https://www.marioforever.net/thread-414-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
@@ -7167,6 +7172,7 @@
   - v1.8 顶头不减速版:
       ver_alt: v1.8 special version
       date: 2022-04-08
+      current: true
       source_url:
       source_url_alt:
       download_url:
@@ -7177,6 +7183,7 @@
   - v1.80.0 patched:
       ver_alt:
       date: 2019-08-01
+      current: true
       source_url: https://tieba.baidu.com/p/6208874266
       source_url_alt:
       download_url: https://pan.baidu.com/s/1Zuz2GMJm8I1Js8o5_h5puA
@@ -9562,6 +9569,7 @@
   - World 1 Beta:
       ver_alt:
       date: 2016-07-25
+      current: true
       source_url: https://archive.marioforever.net/post/4692956236.html
       source_url_alt:
       download_url: http://pan.baidu.com/s/1eRNDXnk
@@ -9572,6 +9580,7 @@
   - World 1 Beta (Classical):
       ver_alt:
       date: 2016-07-25
+      current: true
       source_url: https://archive.marioforever.net/post/4692956236.html
       source_url_alt:
       download_url: http://pan.baidu.com/s/1slvh5Dz 
@@ -10634,6 +10643,7 @@
   - 坑人模式:
       ver_alt: Cheating mode
       date: 2015-02-23
+      current: true
       source_url: https://tieba.baidu.com/p/3599388853
       source_url_alt:
       download_url: http://pan.baidu.com/s/1c0vVlpI
@@ -10644,6 +10654,7 @@
   - 普通模式:
       ver_alt: Normal mode
       date: 2015-02-23
+      current: true
       source_url: https://tieba.baidu.com/p/3599388853
       source_url_alt:
       download_url: http://pan.baidu.com/s/1c0vVlpI
