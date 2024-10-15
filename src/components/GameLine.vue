@@ -77,8 +77,10 @@
           </span>
         </template>
       </Tooltip>
-      <Tooltip placement="bottom" class="inline-block" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
-        <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+      <Tooltip placement="bottom" class="inline-block" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'" target="_blank">
+        <a :href="getSourceLink(game, lan)" target="_blank">
+          <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+        </a>
         <template #popper>
           {{ lan == "en" ? "Release Video" : "发布视频" }}
         </template>
@@ -91,12 +93,16 @@
         <VideoIcon class="icon button"></VideoIcon>
         <template #popper>相关视频</template>
       </Tooltip>
-      <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
-        <WikiIcon class="icon button"></WikiIcon>
+      <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_zh_url != null && lan == 'zh'">
+        <a :href="game.wiki_zh_url" target="_blank">
+          <WikiIcon class="icon button"></WikiIcon>
+        </a>
         <template #popper>Wiki 页面</template>
       </Tooltip>
-      <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_en_url != null && lan == 'en'" :href="game.wiki_en_url" target="_blank">
-        <WikiIcon class="icon button"></WikiIcon>
+      <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_en_url != null && lan == 'en'">
+        <a :href="game.wiki_en_url" target="_blank">
+          <WikiIcon class="icon button"></WikiIcon>
+        </a>
         <template #popper>Wiki Page</template>
       </Tooltip>
     </div>
