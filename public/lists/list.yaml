@@ -3992,7 +3992,7 @@
   date: 2022-06-25
   source_url: https://www.marioforever.net/thread-2119-1-1.html
   source_url_alt:
-  download_url: https://pan.baidu.com/share/init?surl=DaT8MG0brSMVGcSE0B66uA
+  download_url: https://pan.baidu.com/s/1DaT8MG0brSMVGcSE0B66uA
   code: d9ai
   download_url_alt:
   file_name: 绿苑生机.rar
@@ -5048,16 +5048,57 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: R0831
-  ver_alt:
-  date: 2021-08-31
-  source_url: https://www.marioforever.net/thread-1318-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1j_6SnDtwv1ghsuKvpZ361w
-  code: mfea
-  download_url_alt:
-  file_name: Mario Forever Easy Adventure 2 Release 0831.exe
-  file_url:
+  ver:
+  - R0831:
+      ver_alt:
+      date: 2021-08-31
+      source_url: https://www.marioforever.net/thread-1318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1j_6SnDtwv1ghsuKvpZ361w
+      code: mfea
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure 2 Release 0831.exe
+      file_url:
+  - R0830:
+      ver_alt:
+      date: 2021-08-30
+      source_url: https://www.marioforever.net/thread-1318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1VEHVLhHSOg0adLDyuC5fBg
+      code: mfea
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure 2 Release 0830.exe
+      file_url:
+  - R0827:
+      ver_alt:
+      date: 2021-08-27
+      source_url: https://www.marioforever.net/thread-1318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1tj-Tcoj1kgliKr9hr4OKHA
+      code: mfea
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure 2 Release 0827.exe
+      file_url:
+  - R0826:
+      ver_alt:
+      date: 2021-08-26
+      source_url: https://www.marioforever.net/thread-1318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1mIYHGCzHk9SHXjmA1LDu0Q
+      code: mfea
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure 2 Release 0826.exe
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2021-08-26
+      source_url: https://www.marioforever.net/thread-1318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1vOS59vK7a-quwxNpGnLgIQ
+      code: mfea
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure 2 V0.1.exe
+      file_url:
 - game: Mario Forever Unknown Area
   game_alt:
   author: 6463喝喝了
@@ -6448,6 +6489,114 @@
   download_url_alt:
   file_name: MARIO FOREVER X DOMAIN_v1.5.rar
   file_url:
+- game: Super Mario Milky Way Wishes
+  game_alt:
+  author: dasasdhba
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v10:
+      ver_alt:
+      date: 2020-02-07
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v10.7z
+      file_url:
+  - v9:
+      ver_alt:
+      date: 2020-02-07
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v9.7z
+      file_url:
+  - v8:
+      ver_alt:
+      date: 2020-02-05
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v8.7z
+      file_url:
+  - v7:
+      ver_alt:
+      date: 2020-02-05
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v7.7z
+      file_url:
+  - v6:
+      ver_alt:
+      date: 2020-02-04
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v6.7z
+      file_url:
+  - v5:
+      ver_alt:
+      date: 2020-02-03
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v5.7z
+      file_url:
+  - v4:
+      ver_alt:
+      date: 2020-02-02
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v4.7z
+      file_url:
+  - v3:
+      ver_alt:
+      date: 2020-02-01
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v3.7z
+      file_url:
+  - v2:
+      ver_alt:
+      date: 2020-01-31
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v2.7z
+      file_url:
+  - v1:
+      ver_alt:
+      date: 2020-01-31
+      source_url: https://www.marioforever.net/thread-318-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1SKfNAwcPSsdbwZ4ixEWxDg
+      code: MMWW
+      download_url_alt:
+      file_name: Super Mario Milky Way Wishes v1.7z
+      file_url:
 - game: Mario Forever - Decasamsara Worlds
   game_alt:
   author: 马里奥X7
@@ -6497,23 +6646,6 @@
       download_url_alt:
       file_name: Mario Forever Rainbow Land 1.1.rar
       file_url:
-- game: Super Mario Milky Way Wishes
-  game_alt:
-  author: dasasdhba
-  author_alt:
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver: v10
-  ver_alt:
-  date: 2020-01-31
-  source_url: https://www.marioforever.net/thread-318-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/share/init?surl=SKfNAwcPSsdbwZ4ixEWxDg
-  code: MMWW
-  download_url_alt:
-  file_name: Super Mario Milky Way Wishes v10.7z
-  file_url:
 - game: 两个MF小作
   game_alt: 2 Single Levels
   author: Craft_w-MC
@@ -6823,16 +6955,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.1 fixed
-  ver_alt:
-  date: 2019-09-03
-  source_url: https://tieba.baidu.com/p/6234182654
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1462lnXKSEMKU3-BT9KQZ2Q
-  code: vses
-  download_url_alt:
-  file_name: Mario Forever Easy Adventure V1.1 fixed.zip
-  file_url:
+  ver:
+  - v1.1 fixed:
+      ver_alt:
+      date: 2019-09-03
+      source_url: https://tieba.baidu.com/p/6234182654
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1462lnXKSEMKU3-BT9KQZ2Q
+      code: vses
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure V1.1 fixed.zip
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2019-09-01
+      source_url: https://tieba.baidu.com/p/6234182654
+      source_url_alt:
+      download_url: ~https://pan.baidu.com/s/1jt3UEwjHkazHJTm2Zo-1gA
+      code: 88k0
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure V1.1.zip
+      file_url:
+  - v1.0 fixed:
+      ver_alt:
+      date: 2019-08-23
+      source_url: https://tieba.baidu.com/p/6234182654
+      source_url_alt:
+      download_url: ~https://pan.baidu.com/s/1R8VYs9slDmeoiFF-n3dRRg
+      code: 4cnu
+      download_url_alt:
+      file_name: Mario Forever Easy Adventure V1.0 fixed.zip
+      file_url:
 - game: Lootbox Mushroom Test
   game_alt:
   author: 幽霊鬼yuureiki
