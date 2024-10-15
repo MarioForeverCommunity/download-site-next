@@ -4038,16 +4038,197 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v5.7
-  ver_alt:
-  date: 2022-05-16
-  source_url: https://www.marioforever.net/thread-692-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/11ByPbBmK18OFraULwr05oA
-  code: obmk
-  download_url_alt:
-  file_name: MF - OBM 5.7.zip
-  file_url:
+  ver:
+  - v5.7:
+      ver_alt:
+      date: 2022-05-16
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/11ByPbBmK18OFraULwr05oA
+      code: obmk
+      download_url_alt:
+      file_name: MF - OBM 5.7.zip
+      file_url:
+  - v5.6 Ultimate:
+      ver_alt:
+      date: 2022-03-24
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 5.6 Ultimate.zip
+      file_url:
+  - v5.5:
+      ver_alt:
+      date: 2021-10-08
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 5.5.zip
+      file_url:
+  - v5.2:
+      ver_alt:
+      date: 2021-09-11
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 5.2.zip
+      file_url:
+  - v5.1:
+      ver_alt:
+      date: 2021-07-06
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 5.1.zip
+      file_url:
+  - v5.0:
+      ver_alt:
+      date: 2021-07-03
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 5.0.zip
+      file_url:
+  - v4.5:
+      ver_alt:
+      date: 2021-05-20
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 4.5.zip
+      file_url:
+  - v4.0:
+      ver_alt:
+      date: 2021-05-19
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 4.0.zip
+      file_url:
+  - v3.7:
+      ver_alt:
+      date: 2021-03-11
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 3.7.zip
+      file_url:
+  - v3.6:
+      ver_alt:
+      date: 2021-03-10
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 3.6.zip
+      file_url:
+  - v3.5:
+      ver_alt:
+      date: 2021-03-09
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 3.5.zip
+      file_url:
+  - v3.1:
+      ver_alt:
+      date: 2021-03-06
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 3.1.zip
+      file_url:
+  - v3.0:
+      ver_alt:
+      date: 2021-03-05
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 3.0.zip
+      file_url:
+  - v2.2:
+      ver_alt:
+      date: 2021-01-30
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 2.2.zip
+      file_url:
+  - v2.1:
+      ver_alt:
+      date: 2021-01-30
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 2.1.zip
+      file_url:
+  - v2.0:
+      ver_alt:
+      date: 2021-01-29
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 2.0.zip
+      file_url:
+  - v1.5.1:
+      ver_alt:
+      date: 2020-11-28
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 1.5.1.zip
+      file_url:
+  - v1.5:
+      ver_alt:
+      date: 2020-11-27
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - OBM 1.5.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2020-09-10
+      source_url: https://www.marioforever.net/thread-692-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFOBM.zip
+      file_url:
 - game: 'Mario Forever: Finding Luigi'
   game_alt:
   author: carlkoh
@@ -5139,16 +5320,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v4
-  ver_alt:
-  date: 2021-04-17
-  source_url: https://www.marioforever.net/thread-922-1-1.html
-  source_url_alt:
-  download_url: https://wwi.lanzouj.com/iaAQYo867rc
-  code:
-  download_url_alt:
-  file_name: v4_Mario Forever Euphoria.7z
-  file_url:
+  ver:
+  - v4:
+      ver_alt:
+      date: 2021-04-17
+      source_url: https://www.marioforever.net/thread-922-1-1.html
+      source_url_alt:
+      download_url: https://wwi.lanzouj.com/iaAQYo867rc
+      code:
+      download_url_alt:
+      file_name: v4_Mario Forever Euphoria.7z
+      file_url:
+  - v3:
+      ver_alt:
+      date: 2021-02-14
+      source_url: https://www.marioforever.net/thread-922-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: (v3)Mario Forever Euphoria.7z
+      file_url:
+  - v2:
+      ver_alt:
+      date: 2021-02-11
+      source_url: https://www.marioforever.net/thread-922-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: (v2)Mario Forever Euphoria.7z
+      file_url:
 - game: 'Mario Forever: Blue World'
   game_alt:
   author: SerafimGWS
@@ -5230,16 +5432,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.1
-  ver_alt:
-  date: 2021-03-12
-  source_url: https://www.marioforever.net/thread-962-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1L84tW3488gd2ZSrG8HF5Hg
-  code: 8im6
-  download_url_alt:
-  file_name: Mario Forever Colourful Trip v1.1.zip
-  file_url:
+  ver:
+  - v1.1:
+      ver_alt:
+      date: 2021-03-12
+      source_url: https://www.marioforever.net/thread-962-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1L84tW3488gd2ZSrG8HF5Hg
+      code: 8im6
+      download_url_alt:
+      file_name: Mario Forever Colourful Trip v1.1.zip
+      file_url:
+  - v1.0 Fix:
+      ver_alt:
+      date: 2021-02-21
+      source_url: https://www.marioforever.net/thread-959-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/18LEco0VeFzfmnUl0ngF4MQ
+      code: 8im6
+      download_url_alt:
+      file_name: Mario Forever Colourful Trip v1.0 fix.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2021-02-19
+      source_url: https://www.marioforever.net/thread-959-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1K9A6CRjQNJJgi6r7G6PzMw 
+      code: xym7
+      download_url_alt:
+      file_name: Mario Forever Colourful Trip v1.0.zip
+      file_url:
 - game: Mario Forever Natural Winter
   game_alt:
   author: a teardrop
@@ -5298,16 +5521,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: fix1
-  ver_alt:
-  date: 2021-02-21
-  source_url: https://www.marioforever.net/thread-959-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1jXL_AzoJPMdpiZ5aHE37aA
-  code: TCGN
-  download_url_alt:
-  file_name: Three Colours Garden(fix1).zip
-  file_url:
+  ver:
+  - Fix1:
+      ver_alt:
+      date: 2021-02-21
+      source_url: https://www.marioforever.net/thread-959-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1jXL_AzoJPMdpiZ5aHE37aA
+      code: TCGN
+      download_url_alt:
+      file_name: Three Colours Garden(fix1).zip
+      file_url:
+  - 初版:
+      ver_alt: Initial version
+      date: 2021-02-19
+      source_url: https://www.marioforever.net/thread-959-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1uZoiJVpiCY05oU3ZtdYxdA
+      code: w5qx
+      download_url_alt:
+      file_name: Three Colours Garden.rar
+      file_url:
 - game: Mario Forever Natural Snow
   game_alt:
   author: 水银龟
