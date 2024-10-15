@@ -1258,6 +1258,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=544483
   ver:
   - v3.0:
       ver_alt:
@@ -1449,6 +1451,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=2030073
   ver:
   - 完整版:
       ver_alt: Full
@@ -2385,6 +2389,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 直播回放: https://www.bilibili.com/video/BV1xN411B7Jf/
   ver:
   ver_alt:
   date: 2023-08-12
@@ -2521,6 +2527,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=641337
   ver:
   ver_alt:
   date: 2023-07-13
@@ -2923,6 +2931,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 直播回放: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48411
   ver:
   - v0.6.3 Fix1:
       ver_alt:
@@ -3344,6 +3354,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 直播回放: https://www.bilibili.com/video/BV1ux4y177uT/
   ver:
   ver_alt:
   date: 2023-01-22
@@ -3548,6 +3560,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=47090
   ver:
   - v2.0 三关预览:
       ver_alt: v2.0 3 levels preview
@@ -3681,6 +3695,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=552287
   ver:
   - Trial Version Fix 2:
       ver_alt:
@@ -3719,6 +3735,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 直播回放: https://www.bilibili.com/video/BV14R4y1d76Z/
   ver: v1.1
   ver_alt:
   date: 2022-08-21
@@ -3855,6 +3873,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说（4.0）: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48781
   ver:
   - v5.1:
       ver_alt:
@@ -3980,6 +4000,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293308
   ver:
   ver_alt:
   date: 2022-06-28
@@ -4280,6 +4302,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1sr4y1t7Qx/
   ver:
   ver_alt:
   date: 2022-05-01
@@ -4348,6 +4372,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=341382
   ver:
   ver_alt:
   date: 2022-04-05
@@ -4416,6 +4442,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1T5411D7Ra/
   ver:
   ver_alt:
   date: 2022-03-27
@@ -4461,6 +4489,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=290949
   ver:
   ver_alt:
   date: 2022-03-23
@@ -4783,6 +4813,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=481747
   ver: v1.0
   ver_alt:
   date: 2022-01-01
@@ -4817,6 +4849,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1412579
   ver: 最终修复版
   ver_alt: Final fix
   date: 2021-12-31
@@ -4851,6 +4885,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=134239
   ver:
   ver_alt:
   date: 2021-12-03
@@ -4935,6 +4971,10 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  description_zh: 另有 SMWP 同名作品，最终关需要同时通关 MF 和 SMWP 版本进行游玩。
+  description_en: Has a game made in Super Mario Worker Project with the same name. Playing the final level requires to complete both MF and SMWP versions.
+  video_zh:
+  - WSW 直播回放: https://www.bilibili.com/video/BV1ma4y1f7FW/
   ver: Fix2
   ver_alt:
   date: 2021-11-06
@@ -5020,6 +5060,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=347766
   ver: v2.0
   ver_alt:
   date: 2021-09-12
@@ -5146,6 +5188,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1m84y1b7P9/
   ver:
   ver_alt:
   date: 2021-08-27
@@ -5197,6 +5241,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 实况解说: https://www.bilibili.com/video/BV1PY4y1h7Jb/
   ver: Fix1
   ver_alt:
   date: 2021-08-19
@@ -5460,6 +5506,26 @@
       download_url_alt:
       file_name: old-versions/Mario Forever Blue World 1.0.zip
       file_url:
+- game: 'Mario Forever: FOOLING City'
+  game_alt:
+  author: 无视我233
+  author_alt: WSW
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  description_zh: 愚人节玩笑。曾以"Discord Contest III"参赛关"Cloud World"名义发布（本作并非实际参赛关卡）。
+  description_en: April Fool Special. Originally released as "Cloud World" for "Discord Contest III" (Not actual contest entry).
+  video_zh:
+  - 发布视频: https://www.bilibili.com/video/BV1sK4y1m7wY
+  ver:
+  date: 2021-04-01
+  source_url: 
+  source_url_alt: https://www.youtube.com/watch?v=PjKY7Ft6XjQ
+  download_url: https://zh.wsw233.com/files/view?f=32oal3
+  code:
+  download_url_alt: https://www.mediafire.com/file/gx5yvvn1wskqlgo/Cloud_World.7z/file
+  file_name: 
+  file_url:
 - game: 'Mario Worker: Letter Worlds Series'
   game_alt:
   author: TheMarioVariable
@@ -5467,6 +5533,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1762606
   ver:
   - v1.51:
       ver_alt:
@@ -5585,6 +5653,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293317
   ver: v0.5
   ver_alt:
   date: 2021-02-24
@@ -5602,6 +5672,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293300
   ver:
   - Fix1:
       ver_alt:
@@ -6051,6 +6123,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293295
   ver: Fix11
   ver_alt:
   date: 2020-10-01
@@ -6085,6 +6159,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW & 大爱实况解说（World 1~6）: https://space.bilibili.com/11239472/channel/collectiondetail?sid=3068164
   ver: v1.5 Final
   ver_alt:
   date: 2020-09-02
@@ -6242,6 +6318,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1Uz4y1o7ms/
   ver: v1.1
   ver_alt:
   date: 2020-07-11
@@ -6481,6 +6559,9 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 黑暗天空字幕解说: https://www.bilibili.com/video/BV167411C7jy/
+  - WSW 火山地下、岩浆逃亡实况解说: https://www.bilibili.com/video/BV1R5411Q7Tv/
   ver:
   ver_alt:
   date: 2020-03-24
@@ -6543,6 +6624,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293287
   ver:
   - Fix2:
       ver_alt:
@@ -6581,6 +6664,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48848
   ver:
   - v10:
       ver_alt:
@@ -7362,6 +7447,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=47035
   ver: 
   - v1.5.1:
       ver_alt:
@@ -7477,6 +7564,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV19t411C7xD/
   ver: v1.0fix
   ver_alt:
   date: 2019-02-05
@@ -7674,6 +7763,9 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说（v1.0）: https://www.bilibili.com/video/BV1zb41167t1/
+  - WSW 直播回放（v1.1）: https://www.bilibili.com/video/BV1kT421a7nN/
   ver:
   - v1.1:
       ver_alt:
@@ -7948,6 +8040,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48736
   ver:
   - v3.0 fix7:
       ver_alt:
@@ -9648,7 +9742,7 @@
   wiki_zh_url:
   wiki_en_url:
   video_zh:
-  - WSW 解说: https://www.bilibili.com/video/BV1Gs411q7p2/?spm_id_from=333.999.0.0
+  - WSW 解说: https://www.bilibili.com/video/BV1Gs411q7p2/
   ver: 八世界版
   ver_alt: 8 worlds version
   date: 2016-06-07
@@ -10393,6 +10487,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7xs/
   ver: v1.2.2
   ver_alt:
   date: 2015-02-28
@@ -10490,7 +10586,7 @@
   wiki_zh_url:
   wiki_en_url:
   video_zh:
-  - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7yU/?spm_id_from=333.999.0.0
+  - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7yU/
   ver:
   - v1.25:
       ver_alt:
