@@ -79,7 +79,7 @@
             } if (entry.type == "repacked") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
-            } else {
+            } if (entry.type == "international") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
             }
@@ -209,7 +209,7 @@
   const lastUpdate = ref(null);
 
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist.yaml&page=1&per_page=1").then((response) => {
-    lastUpdate.value = new Date("2024-10-14T20:12:58Z").toLocaleString().split(' ')[0].replaceAll("/", "-");
+    lastUpdate.value = new Date(response.data[0].commit.committer.date).toLocaleString().split(' ')[0].replaceAll("/", "-");
   });
 
   // Get window width.
