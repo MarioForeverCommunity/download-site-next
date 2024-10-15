@@ -58,14 +58,14 @@
           {{ lan == "en" ? "Download" : "下载链接" }}
         </span><i></i>
       </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
         <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Source Link" : "发布页" }}
           <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
         </span><i></i>
       </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
         <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
         <span class="tooltiptext tooltip-bottom">
           {{ lan == "en" ? "Release Video" : "发布视频" }}

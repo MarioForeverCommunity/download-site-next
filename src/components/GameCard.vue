@@ -82,13 +82,13 @@
           <VideoIcon class="icon button"></VideoIcon>
           <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
         </a>
-        <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+        <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
           <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
           <span class="tooltiptext tooltip-bottom">
             {{ lan == "en" ? "Release Video" : "发布视频" }}
           </span><i></i>
         </a>
-        <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+        <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
           <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
           <span class="tooltiptext tooltip-bottom">
             {{ lan == "en" ? "Source Link" : "发布页" }}
