@@ -34,7 +34,7 @@
 
 <template>
   <a class="tooltip">
-    <ClipboardIcon class="icon button" @click="copyCode();"></ClipboardIcon>
+    <ClipboardIcon class="icon button" @click="copyCode();" />
     <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span><i></i>
   </a>
 </template>
@@ -78,5 +78,64 @@
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip .tooltiptext {
+    top:40px;
+    left:50%;
+    transform:translate(-50%, -10px);
+    display:none;
+    background-color: rgba(0, 0, 0, 1);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    padding: .25em .75em;
+    width: max-content;
+    max-width: 70vw;
+  }
+
+  .tooltip .tooltiptext.tooltip-left-align {
+  text-align: left;
+  }
+
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+
+  .tooltiptext i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+  }
+
+  .tooltiptext i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .tooltip:hover .tooltiptext {
+    display:block;
   }
 </style>
