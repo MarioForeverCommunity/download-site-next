@@ -139,7 +139,7 @@ export const downloadName = [
     "show_code" : true
   },
   {
-    "domain" : /[a-z]+\.lanzou[a-z].com/,
+    "domain" : /lanzou[a-z].com/,
     "desc_zh" : "蓝奏云",
     "desc_en" : "Lanzou",
     "show_code" : true
