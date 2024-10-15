@@ -106,3 +106,13 @@ export function getVideoDesc(link, lan) {
     }
     return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
 }
+
+export function getVersion(item, lan) {
+    if (item.category == "mf") {
+        return lan == "en" && item.currentVerStrAlt ? item.currentVerStrAlt : item.currentVerStr
+    }
+    if (item.category == "mw") {
+        return item.smwp_ver;
+    }
+    return null;
+}

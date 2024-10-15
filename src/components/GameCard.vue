@@ -1,5 +1,5 @@
 <script setup>
-  import {listToText, parseVer} from "../util/Misc.js";
+  import {parseVer} from "../util/Misc.js";
   import ArrowIcon from "./icons/IconArrow.vue"
   import WikiIcon from "./icons/IconWiki.vue";
   import LinkIcon from "./icons/IconLink.vue";
@@ -7,7 +7,7 @@
   import YoutubeIcon from "./icons/IconYoutube.vue";
   import RepackIcon from "./icons/IconRepack.vue";
   import VideoIcon from "./icons/IconVideo.vue";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
+  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
 
   const props = defineProps({
     game: {
@@ -23,7 +23,7 @@
 <template>
   <div class="container card">
     <div class="first-line">
-      <div class="game-name">
+      <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
         <span class="tooltip" v-if="game.type == 'repacked'">
           <RepackIcon class="icon"></RepackIcon>
           <span class="tooltiptext tooltip-bottom">
@@ -32,7 +32,7 @@
         </span>
         {{ getName(game, lan) }}
       </div>
-      <div class="game-version" v-if="game.category == 'mf'">
+      <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
         <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
         <div :class="game.ver.length > 1 ? 'dropdown' : ''">
           <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
@@ -41,12 +41,12 @@
           </div>
         </div>
       </div>
-      <div class="game-version" v-if="game.category == 'mw'">
-        {{ game.smwp_ver == "" ? "" : "SMWP "+game.smwp_ver }}
+      <div class="game-version" v-if="game.category == 'mw' && getVersion(game, lan)">
+        {{ game.smwp_ver ? "SMWP "+game.smwp_ver : "" }}
       </div>
     </div>
     <div class="body-line">
-      <div class="game-date">{{ lan == "en" ? "Release on " : "发布于 " }}{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
+      <div class="game-date">{{ lan == "en" ? "Released on " : "发布于 " }}{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
     </div>
     <div class="last-line-padding">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
@@ -57,41 +57,6 @@
       </span>
     </div>
     <div class="last-line">
-      <a class="tooltip" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
-        <WikiIcon class="icon button"></WikiIcon>
-        <span class="tooltiptext tooltip-bottom">Wiki 页面</span><i></i>
-      </a>
-      <a class="tooltip" v-if="game.wiki_en_url != null && lan == 'en'" :href="game.wiki_en_url" target="_blank">
-        <WikiIcon class="icon button"></WikiIcon>
-        <span class="tooltiptext tooltip-bottom">Wiki Page</span><i></i>
-      </a>
-      <a class="tooltip" v-if="game.video_en != null && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
-        <VideoIcon class="icon button"></VideoIcon>
-        <span class="tooltiptext tooltip-bottom">Related Videos</span><i></i>
-      </a>
-      <a class="tooltip" v-if="game.video_zh != null && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
-        <VideoIcon class="icon button"></VideoIcon>
-        <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
-      </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
-        <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
-        <span class="tooltiptext tooltip-bottom">
-          {{ lan == "en" ? "Release Video" : "发布视频" }}
-        </span><i></i>
-      </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
-        <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
-        <span class="tooltiptext tooltip-bottom">
-          {{ lan == "en" ? "Source Link" : "发布页" }}
-          <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
-        </span><i></i>
-      </a>
-      <a class="tooltip" v-if="!game.disable_download">
-        <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
-        <span class="tooltiptext tooltip-bottom">
-          {{ lan == "en" ? "Download" : "下载链接" }}
-        </span><i></i>
-      </a>
       <div class="game-author">
         <span v-if="typeof getAuthorList(game, lan) == 'string'">
           {{lan == "en" ? "By " : "作者："}}{{ getAuthorList(game, lan) }}
@@ -99,6 +64,43 @@
         <span v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
           {{ authorindex == 0 ? (lan == "en" ? "By " : "作者：") : "" }}<br v-if="authorindex != 0">{{ author }}
         </span>
+      </div>
+      <div class="game-options">
+        <a class="tooltip" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
+          <WikiIcon class="icon button"></WikiIcon>
+          <span class="tooltiptext tooltip-bottom">Wiki 页面</span><i></i>
+        </a>
+        <a class="tooltip" v-if="game.wiki_en_url != null && lan == 'en'" :href="game.wiki_en_url" target="_blank">
+          <WikiIcon class="icon button"></WikiIcon>
+          <span class="tooltiptext tooltip-bottom">Wiki Page</span><i></i>
+        </a>
+        <a class="tooltip" v-if="game.video_en != null && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
+          <VideoIcon class="icon button"></VideoIcon>
+          <span class="tooltiptext tooltip-bottom">Related Videos</span><i></i>
+        </a>
+        <a class="tooltip" v-if="game.video_zh != null && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
+          <VideoIcon class="icon button"></VideoIcon>
+          <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
+        </a>
+        <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+          <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+          <span class="tooltiptext tooltip-bottom">
+            {{ lan == "en" ? "Release Video" : "发布视频" }}
+          </span><i></i>
+        </a>
+        <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'Youtube'" :href="getSourceLink(game, lan)" target="_blank">
+          <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
+          <span class="tooltiptext tooltip-bottom">
+            {{ lan == "en" ? "Source Link" : "发布页" }}
+            <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
+          </span><i></i>
+        </a>
+        <a class="tooltip" v-if="!game.disable_download">
+          <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
+          <span class="tooltiptext tooltip-bottom">
+            {{ lan == "en" ? "Download" : "下载链接" }}
+          </span><i></i>
+        </a>
       </div>
     </div>
   </div>
@@ -149,6 +151,10 @@
     width: calc(100% - 165px);
     display: inline-block;
     vertical-align: top;
+  }
+
+  .game-name.no-version {
+    width: 100%;
   }
 
   .game-version {
@@ -220,9 +226,14 @@
     transform: translateY(0);
   }
 
-  .game-author {
+  .game-options {
+    display: inline;
     float: right;
     text-align: right;
+  }
+
+  .game-author {
+    display: inline;
     margin-top: .1em;
   }
 </style>
