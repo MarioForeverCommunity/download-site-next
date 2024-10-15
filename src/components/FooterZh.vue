@@ -4,7 +4,7 @@
 <template>
   <footer>
     <span><a target="_blank" href="https://status.marioforever.net/">网站状态</a></span>
-    <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">GitHub</a></span>
+    <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
   </footer>
 </template>
 

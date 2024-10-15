@@ -27,6 +27,11 @@ export const topBar = [
     "name" : "Archive",
     "show_en" : false
   },
+  // {
+  //   "link" : "https://space.bilibili.com/2136191287",
+  //   "name" : "关注B站",
+  //   "show_en" : false
+  // },
 ]
 
 // navTop - Navigator entries. 

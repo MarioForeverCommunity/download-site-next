@@ -61,36 +61,31 @@
 <style scoped>
 
 .logo a img {
-  width: 130px;
-  height: auto;
+  width: auto;
+  height: 64px;
   display: block;
   margin: 0 auto;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
   .logo {
     width: auto;
-    height: 90px;
+    height: 64px;
     margin: 0;
     margin-right: 20px;
     display: inline-block;
-  }
-
-  .logo a img {
-    width: 100%;
-    height: 100%;
   }
 
   .nav {
     width: calc(100% - 200px);
     display: inline;
     float: right;
-    transform: translateY(30px);
+    transform: translateY(16px);
     width: fit-content;
   }
 
   .nav .radio-inputs .radio {
-    margin: 0 20px;
+    margin: 0 16px;
   }
 }
 
@@ -130,7 +125,7 @@
 
   .header-container {
     width: 100vw;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 20px auto;
     box-sizing: border-box;
   }
@@ -142,17 +137,13 @@
   }
 
   @media (max-width: 800px) {
+    .logo {
+      margin: 10px auto;
+    }
+
     .topbar-inner {
       margin: 0 auto;
       width: 90%;
-    }
-
-    .header-row {
-      width: 95%;
-    }
-
-    .nav-row {
-      width: 95%;
     }
   }
 
@@ -160,10 +151,6 @@
     .header-container {
       width: 90vw;
       border-radius: 2px;
-    }
-
-    .nav-row {
-      width: 90%;
     }
 
     .topbar-inner {
@@ -176,10 +163,6 @@
     .header-container {
       width: 1200px;
       border-radius: 2px;
-    }
-
-    .nav-row {
-      width: 90%;
     }
 
     .topbar-inner {
