@@ -7619,6 +7619,23 @@
   download_url_alt:
   file_name: MF Russian Letter Worlds Series v0.3.0.2 by JUE13 (3).rar
   file_url:
+- game: 2586world
+  game_alt:
+  author: 数字1528君
+  author_alt: Num1528
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver: Beta0.1
+  ver_alt:
+  date: 2019-01-23
+  source_url: https://tieba.baidu.com/p/6016056431
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: 2586world公测.exe
+  file_url:
 - game: 'Mario Forever: Project Musicale'
   game_alt:
   author: Phantom Sapphire
