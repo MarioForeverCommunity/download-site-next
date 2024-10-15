@@ -26,10 +26,15 @@
 <template>
   <div class="topbar">
     <div class="topbar-inner">
-      <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
-      <div style="float: right; display: inline;" v-if="pageEntry.show_en == true">
-        <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
-        <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
+      <a href="/"><img class="logo" :src=" displayLan() == 'zh' ? '/images/logo.png' : '/images/logo2.png'"></a>
+      <div class="topbar-content">
+        <div class="topbar-left">
+          <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+        </div>
+        <div class="topbar-right" v-if="pageEntry.show_en == true">
+          <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
+          <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
+        </div>
       </div>
     </div>
   </div>
@@ -56,14 +61,34 @@
 </template>
 
 <style scoped>
+  .logo {
+    height: 50px;
+    width: auto;
+    padding-right: 10px;
+    float: left;
+  }
+
   .topbar {
     background-color: #e6e6e6;
     font-size: 13px;
-    line-height: 30px;
-    height: 35px;
+    height: 60px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
+  }
+
+  .topbar-content {
+    float: right;
+  }
+
+  .topbar-left {
+    line-height: 50px;
+    display: inline;
+  }
+
+  .topbar-right {
+    line-height: 50px;
+    display: inline;
   }
 
   .topbar-inner {
@@ -72,14 +97,32 @@
     box-sizing: border-box;
   }
 
+  .lan-item {
+    color: rgb(85, 85, 85);
+    cursor: pointer;
+  }
+
   .link-item {
     margin-right: 20px;
     color: rgb(85, 85, 85);
   }
 
-  .lan-item {
-    color: rgb(85, 85, 85);
-    cursor: pointer;
+  @media (min-width: 800px) {
+    .link-item {
+      margin-right: 35px;
+    }
+
+    .topbar-left {
+      line-height: 50px;
+      display: inline;
+      margin-right: 30px;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .topbar-left {
+      display: none;
+    }
   }
 
   .lan-item.active {
