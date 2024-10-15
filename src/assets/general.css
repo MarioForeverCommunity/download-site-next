@@ -2,7 +2,7 @@
   display: inline-block;
 }
 
-.tooltip {
+/* .tooltip {
     position: relative;
     display: inline-block;
 }
@@ -60,7 +60,7 @@
 
 .tooltip:hover .tooltiptext {
     display:block;
-}
+} */
 
 .dropdown {
   display: inline-block;
@@ -98,6 +98,10 @@
 .dropdown:hover .dropdown-item:hover {
   background-color: #e0e0e0;
   cursor: pointer;
+}
+
+.small {
+  font-size: 0.8em;
 }
 
 .card-container {

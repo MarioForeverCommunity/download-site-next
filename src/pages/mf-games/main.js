@@ -2,8 +2,10 @@ import { createApp } from 'vue'
 import App from './MfMain.vue'
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 import { OverlayScrollbars, ClickScrollPlugin } from 'overlayscrollbars';
+import FloatingVue from 'floating-vue'
+import 'floating-vue/dist/style.css'
 
-createApp(App).mount('#app')
+createApp(App).use(FloatingVue).mount('#app')
 
 OverlayScrollbars.plugin(ClickScrollPlugin);
 

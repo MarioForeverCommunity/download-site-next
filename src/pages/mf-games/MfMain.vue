@@ -18,6 +18,7 @@
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
+  import { Tooltip } from 'floating-vue';
 
   const lan = ref(getLanguage());
 
@@ -307,9 +308,9 @@
           <div class="inline-block">
             <input v-model="filter_option.repacked" type="checkbox">
             {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
-            <a class="tooltip" v-if="lan == 'zh'">
+            <Tooltip v-if="lan == 'zh'" placement="bottom" class="inline-block">
               <InfoIcon class="icon button-shift"></InfoIcon>
-              <span class="tooltiptext tooltip-bottom tooltip-left-align">
+              <template #popper>
                 重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
                 <br>
                 重打包作品收录的原则是：<br>
@@ -317,8 +318,8 @@
                 2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
                 3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
                 4. 重打包的作品不应包含游玩过的存档文件。
-              </span><i></i>
-            </a>
+              </template>
+            </Tooltip>
           </div>
         </div>
       </Collapse>
@@ -446,6 +447,10 @@
     display: inline-block;
     vertical-align: middle;
     margin: 2px;
+  }
+
+  .icon.inline {
+    display: inline;
   }
 
   .button {

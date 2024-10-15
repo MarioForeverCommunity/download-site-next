@@ -2,6 +2,7 @@
   import {listToText, parseVer} from "../util/Misc.js";
   import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
+  import { Tooltip } from 'floating-vue';
 
   const props = defineProps({
     game: {
@@ -17,21 +18,25 @@
 <template>
   <div class="container game-container">
     <div class="game-name">
-      <span class="tooltip" v-if="game.type == 'repacked'">
+      <Tooltip class="inline-block" placement="bottom" v-if="game.type == 'repacked'">
         <RepackIcon class="icon"></RepackIcon>
-        <span class="tooltiptext tooltip-bottom">
+        <template #popper>
           {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
-        </span><i></i>
-      </span>
+        </template>
+      </Tooltip>
       {{ getName(game, lan) }}
-      <a class="tooltip" v-if="lan == 'zh' && game.description_zh">
+      <Tooltip placement="bottom" class="inline-block" v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">
         <InfoIcon class="icon button-shift"></InfoIcon>
-        <span class="tooltiptext tooltip-bottom">{{ game.description_zh }}</span><i></i>
-      </a>
-      <a class="tooltip" v-if="lan == 'en' && game.description_en">
+        <template #popper>{{ game.description_zh }}</template>
+      </Tooltip>
+      <Tooltip class="inline-block" placement="bottom" v-if="lan == 'en' && game.category == 'mf' && game.description_en">
         <InfoIcon class="icon button-shift"></InfoIcon>
-        <span class="tooltiptext tooltip-bottom tooltip-left-align">{{ game.description_en }}</span><i></i>
-      </a>
+        <template #popper class="tooltip-left-align">{{ game.description_en }}</template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="game.category == 'mw' && game.description">
+        <InfoIcon class="icon button-shift"></InfoIcon>
+        <template #popper>{{ game.description }}</template>
+      </Tooltip>
       </div>
     <div class="game-author">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
@@ -55,41 +60,45 @@
     </div>
     <div class="game-date">{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
     <div class="game-buttons">
-      <a class="tooltip" v-if="!game.disable_download">
+      <Tooltip placement="bottom" class="inline-block" v-if="!game.disable_download">
         <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
-        <span class="tooltiptext tooltip-bottom">
+        <template #popper>
           {{ lan == "en" ? "Download" : "下载链接" }}
-        </span><i></i>
-      </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
-        <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
-        <span class="tooltiptext tooltip-bottom">
-          {{ lan == "en" ? "Source Link" : "发布页" }}
-          <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
-        </span><i></i>
-      </a>
-      <a class="tooltip" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
+        </template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
+        <a :href="getSourceLink(game, lan)" target="_blank" class="inline-block">
+          <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
+        </a>
+        <template #popper>
+          <span class="content-center">
+            {{ lan == "en" ? "Source Link" : "发布页" }}
+            <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
+          </span>
+        </template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'" :href="getSourceLink(game, lan)" target="_blank">
         <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
-        <span class="tooltiptext tooltip-bottom">
+        <template #popper>
           {{ lan == "en" ? "Release Video" : "发布视频" }}
-        </span><i></i>
-      </a>
-      <a class="tooltip" v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
+        </template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
         <VideoIcon class="icon button"></VideoIcon>
-        <span class="tooltiptext tooltip-bottom">Related Videos</span><i></i>
-      </a>
-      <a class="tooltip" v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
+        <template #popper>Related Videos</template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
         <VideoIcon class="icon button"></VideoIcon>
-        <span class="tooltiptext tooltip-bottom">相关视频</span><i></i>
-      </a>
-      <a class="tooltip" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
+        <template #popper>相关视频</template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_zh_url != null && lan == 'zh'" :href="game.wiki_zh_url" target="_blank">
         <WikiIcon class="icon button"></WikiIcon>
-        <span class="tooltiptext tooltip-bottom">Wiki 页面</span><i></i>
-      </a>
-      <a class="tooltip" v-if="game.wiki_en_url != null && lan == 'en'" :href="game.wiki_en_url" target="_blank">
+        <template #popper>Wiki 页面</template>
+      </Tooltip>
+      <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_en_url != null && lan == 'en'" :href="game.wiki_en_url" target="_blank">
         <WikiIcon class="icon button"></WikiIcon>
-        <span class="tooltiptext tooltip-bottom">Wiki Page</span><i></i>
-      </a>
+        <template #popper>Wiki Page</template>
+      </Tooltip>
     </div>
   </div>
 </template>
@@ -100,7 +109,7 @@
 </style>
 
 <style scoped>
-  .game-buttons a {
+  .game-buttons div {
     float: right;
   }
 
@@ -157,6 +166,11 @@
 
   .button-shift {
     transform: translateY(-1px);
+  }
+
+  .content-center {
+    display: inline-block;
+    text-align: center;
   }
 
 </style>
