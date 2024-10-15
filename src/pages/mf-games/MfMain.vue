@@ -35,8 +35,6 @@
 
   const games = ref([]);
 
-  var files = [];
-
   readList("list.yaml").then((list) => {
     for (var entry of list) {
       entry.category = "mf";
@@ -89,10 +87,6 @@
           }
         }
 
-        if (ver.file_url_zh) {
-          files.push(ver.file_url_zh);
-        }
-
         // Check validity of urls.
         if (ver.source_url != null && ver.source_url[0] == "~") {
           ver.source_url = ver.source_url.substring(1);
@@ -126,8 +120,6 @@
       games.value.push(entry);
     }
     defaultSort();
-
-    console.log(files);
   });
 
   const selectedDownload = ref(null); // For download modal.
