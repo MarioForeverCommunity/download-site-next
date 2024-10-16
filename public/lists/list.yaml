@@ -18,6 +18,8 @@
   file_url:
 - game: Mario Forever - A Fabulous Space
   game_alt:
+  alias:
+  - AFS
   author: gurcd
   author_alt: CD
   type: repacked
@@ -25,7 +27,7 @@
   wiki_en_url:
   ver:
   - v3.0 (收藏版):
-      ver_alt:
+      ver_alt: v3.0 (withdrawn)
       date: 2017-06-26
       repacker: 克洛伊Prime
       repacker_alt: Koopa4
@@ -123,6 +125,8 @@
   file_url:
 - game: 永远的马里奥：蘑菇岛
   game_alt: 'Mario Forever: Mushroom Island'
+  alias:
+  - MFMI
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
@@ -280,6 +284,8 @@
   file_url:
 - game: Mario Forever Horizon
   game_alt:
+  alias:
+  - MFH
   author: dasasdhba
   author_alt:
   type: chinese
@@ -455,6 +461,8 @@
   file_url:
 - game: 'Mario Forever: Mushroom Island 英文版'
   game_alt: 'Mario Forever: Mushroom Island'
+  alias:
+  - MFMI
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
@@ -1446,6 +1454,9 @@
       file_url:
 - game: Mario Forever Season Collab
   game_alt:
+  alias:
+  - MFSC
+  - 节气
   author: Ultra Team
   author_alt:
   type: chinese
@@ -2928,6 +2939,8 @@
   file_url:
 - game: 'Mario Forever: Mario In The FOREST'
   game_alt:
+  alias:
+  - MITF
   author: DET Factory
   author_alt:
   type: chinese
@@ -3559,6 +3572,8 @@
   file_url:
 - game: Mario Forever Perfect Adventure
   game_alt:
+  alias:
+  - MFPA
   author: 878yfy
   author_alt:
   type: chinese
@@ -3695,6 +3710,8 @@
   file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/TheMarioVariable/MF - Community Summer 2022 v1.0.rar"
 - game: Mario Forever - Winter Warmth
   game_alt:
+  alias:
+  - 冬暖
   author: 大爱Mario_
   author_alt: Meowario
   type: chinese
@@ -3735,6 +3752,8 @@
       file_url:
 - game: Mario Forever Flashing Revolution
   game_alt:
+  alias:
+  - MFFR
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
@@ -3873,6 +3892,8 @@
   file_url:
 - game: Mario Forever - A Fabulous Space
   game_alt:
+  alias:
+  - AFS
   author: gurcd
   author_alt: CD
   type: chinese
@@ -4070,6 +4091,8 @@
   file_url:
 - game: Old-Blood Memories
   game_alt:
+  alias:
+  - OBM
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -4461,6 +4484,8 @@
   file_url:
 - game: Mario Forever Conventional World
   game_alt:
+  alias:
+  - MFCW
   author: Ultra Team
   author_alt:
   type: chinese
@@ -4885,6 +4910,9 @@
   file_url:
 - game: Super Mario Forever 2021
   game_alt:
+  alias:
+  - SMF2021
+  - MF2021
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -4904,6 +4932,9 @@
   file_url:
 - game: Mario Forever Odyssey
   game_alt:
+  alias:
+  - MFO
+  - 奥德赛
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -5430,6 +5461,9 @@
   file_url:
 - game: 'Mario Forever: An Unprecedented Expedition'
   game_alt:
+  alias:
+  - AUE
+  - MFAUE
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -5447,6 +5481,8 @@
   file_url:
 - game: Mario Forever Euphoria
   game_alt:
+  alias:
+  - MFE
   author: Ultra Team
   author_alt:
   type: chinese
@@ -5581,6 +5617,8 @@
   file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/TheMarioVariable/MF - Community New Year 2021 v2.05.rar"
 - game: Mario Forever Colourful Trip
   game_alt:
+  alias:
+  - MFCT
   author: 6463喝喝了
   author_alt: 6463HHL
   type: chinese
@@ -5798,6 +5836,10 @@
   file_url:
 - game: Mario Forever Remake (PAL)
   game_alt:
+  alias:
+  - MFRb
+  - MFRemake
+  - b版
   author: TheMarioVariable
   author_alt:
   type: international
@@ -6666,6 +6708,8 @@
       file_url:
 - game: Super Mario Milky Way Wishes
   game_alt:
+  alias:
+  - SMMWW
   author: dasasdhba
   author_alt:
   type: chinese
@@ -6783,18 +6827,292 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293258
-  ver: v1.8.4
-  ver_alt:
-  date: 2020-02-02
-  source_url: https://www.marioforever.net/thread-117-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1ba9kjfLN9tEPKBjZgKKCag
-  code: z5od
-  download_url_alt:
-  file_name: MF - Decasamsara Worlds v1.8.4.zip
-  file_url:
+  ver:
+  - v1.8.4:
+      ver_alt:
+      date: 2020-02-02
+      source_url: https://www.marioforever.net/thread-117-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1ba9kjfLN9tEPKBjZgKKCag
+      code: z5od
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.4.zip
+      file_url:
+  - v1.8.3.1:
+      ver_alt:
+      date: 2019-12-14
+      source_url: https://www.marioforever.net/thread-117-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.3.1.zip
+      file_url:
+  - v1.8.2 Fix3:
+      ver_alt:
+      date: 2019-08-18
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.2 Fix3.zip
+      file_url:
+  - v1.8.2 Fix2:
+      ver_alt:
+      date: 2019-08-04
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.2 Fix2.zip
+      file_url:
+  - v1.8.2:
+      ver_alt:
+      date: 2019-07-31
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.2.zip
+      file_url:
+  - v1.8.1 Fix3:
+      ver_alt:
+      date: 2019-07-22
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.1 fix3.zip
+      file_url:
+  - v1.8.1:
+      ver_alt:
+      date: 2019-07-21
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.1.zip
+      file_url:
+  - v1.8:
+      ver_alt:
+      date: 2019-07-20
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.zip
+      file_url:
+  - v1.7 Pre 2.5:
+      ver_alt:
+      date: 2019-02-19
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.7 Pre 2.5.zip
+      file_url:
+  - v1.7 Snapshot 1:
+      ver_alt:
+      date: 2018-12-15
+      source_url: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.7 Snapshot 1.zip
+      file_url:
+  - v1.6.3:
+      ver_alt:
+      date: 2018-08-14
+      source_url: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.6.3 Official.zip
+      file_url:
+  - v1.5.2:
+      ver_alt:
+      date: 2018-07-05
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.5.2 Official.zip
+      file_url:
+  - v1.4.3:
+      ver_alt:
+      date: 2017-08-12
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.4.3.7z
+      file_url:
+  - v1.4.2:
+      ver_alt:
+      date: 2017-08-11
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.4.2.7z
+      file_url:
+  - v1.4.1:
+      ver_alt:
+      date: 2017-08-11
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.4.1.7z
+      file_url:
+  - v1.4:
+      ver_alt:
+      date: 2017-08-10
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.4 holiday final.7z
+      file_url:
+  - v1.3.1:
+      ver_alt:
+      date: 2017-07-22
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.3.1.7z
+      file_url:
+  - v1.3:
+      ver_alt:
+      date: 2017-07-22
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.3.7z
+      file_url:
+  - v1.2.3:
+      ver_alt:
+      date: 2017-07-03
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.2.3.7z
+      file_url:
+  - v1.2.2:
+      ver_alt:
+      date: 2017-07-02
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.2.2.7z
+      file_url:
+  - v1.2.1:
+      ver_alt:
+      date: 2017-07-01
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.2.1.7z
+      file_url:
+  - v1.2:
+      ver_alt:
+      date: 2017-07-01
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.2.7z
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2017-04-21
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.1.7z
+      file_url:
+  - v1.0.2:
+      ver_alt:
+      date: 2017-02-11
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.0.2.7z
+      file_url:
+  - v1.0.1:
+      ver_alt:
+      date: 2017-02-11
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds v1.0.1.7z
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2017-02-10
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds 1.0.7z
+      file_url:
+  - 6 Worlds Beta Fix3:
+      ver_alt:
+      date: 2017-01-30
+      source_url: https://tieba.baidu.com/p/4958140482
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds 6 Worlds Beta Fix3.7z
+      file_url:
+  - 5 Worlds Beta Fix2:
+      ver_alt:
+      date: 2016-11-16
+      source_url: https://tieba.baidu.com/p/4860108063
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Decasamsara Worlds - 5 Worlds Beta Bug Fix 2 Ver.7z
+      file_url:
 - game: Mario Forever Rainbow Land
   game_alt:
+  alias:
+  - MFRL
+  - 彩虹大陆
   author: Rainbow Sweet Factory
   author_alt:
   type: chinese
@@ -6940,6 +7258,8 @@
   file_url:
 - game: Mario Forever X Domain
   game_alt:
+  alias:
+  - MFXD
   author: gurcd
   author_alt: CD
   type: chinese
@@ -7012,6 +7332,9 @@
   file_url:
 - game: Mario Forever Save Zqh
   game_alt:
+  alias:
+  - MFSZ
+  - SZ
   author: zqh——123
   author_alt:
   type: chinese
@@ -7195,6 +7518,8 @@
   file_url:
 - game: Mario Forever Easy Adventure
   game_alt:
+  alias:
+  - MFEA
   author: JJ带我飞
   author_alt: JJ
   type: chinese
@@ -7307,6 +7632,8 @@
   file_url:
 - game: Happy Mario World
   game_alt:
+  alias:
+  - HMW
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -7403,6 +7730,8 @@
   file_url:
 - game: Mario Forever - The Normal Big Adventure
   game_alt:
+  alias:
+  - TNBA
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -7451,6 +7780,9 @@
       file_url:
 - game: Legend World Remake
   game_alt:
+  alias:
+  - LGR
+  - LWR
   author: INNOVATION LEAP
   author_alt:
   type: chinese
@@ -7784,6 +8116,8 @@
   file_url:
 - game: Mario Forever Irrational Travel
   game_alt:
+  alias:
+  - MFIT
   author: DET Factory
   author_alt:
   type: chinese
@@ -7947,6 +8281,9 @@
   file_url:
 - game: Mario Forever Magic Land
   game_alt:
+  alias:
+  - MFML
+  - 魔法大陆
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -8061,6 +8398,9 @@
   file_url:
 - game: xfx's world
   game_alt:
+  alias:
+  - xfxw
+  - 小飞侠世界
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -8489,6 +8829,8 @@
   file_url:
 - game: Mario Forever Another Space
   game_alt:
+  alias:
+  - MFAS
   author: dasasdhba
   author_alt:
   type: chinese
@@ -8557,6 +8899,9 @@
   file_url:
 - game: Super Mario Forever 2014 Deluxe
   game_alt:
+  alias:
+  - 2014dx
+  - SMF2014DX
   author: 巃嵸巋巚
   author_alt: LongZongKuiYan
   type: chinese
@@ -8746,6 +9091,8 @@
   file_url:
 - game: Mario Forever Dream Escape
   game_alt:
+  alias:
+  - MFDE
   author: zqh——123
   author_alt:
   type: chinese
@@ -8867,6 +9214,8 @@
   file_url:
 - game: 永吧十周年
   game_alt: Tieba MF 10th Anniversary
+  alias:
+  - 永十
   author: 疯狂滑稽工作室
   author_alt: Crazy Funny Studio
   type: chinese
@@ -9247,6 +9596,8 @@
   file_url:
 - game: Mysterious Island 2 - Great Journey
   game_alt:
+  alias:
+  - MRI2
   author: w1194600239
   author_alt:
   type: chinese
@@ -9277,6 +9628,9 @@
       file_url:
 - game: Super Mario Forever Journey
   game_alt:
+  alias:
+  - MFJ
+  - SMFJ
   author: 878yfy
   author_alt:
   type: chinese
@@ -9713,6 +10067,9 @@
       file_url:
 - game: Mario Forever - Fancy Series Worlds
   game_alt:
+  alias:
+  - FSW
+  - MFFSW
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -10796,6 +11153,8 @@
   file_url:
 - game: Super Mario Forever 2014
   game_alt:
+  alias:
+  - SMF2014
   author: 巃嵸巋巚
   author_alt: LongZongKuiYan
   type: chinese
@@ -11149,23 +11508,36 @@
   download_url_alt:
   file_name: 天桥走不完？走的完？.exe
   file_url:
-- game: Mario Forever Secret Core 2
+- game: Mario Forever Secret Core
   game_alt:
+  alias:
+  - MFSC
   author: gaere54
   author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2014-07-02
-  source_url: http://tieba.baidu.com/p/3141401012
-  source_url_alt:
-  download_url: http://hos20110101.ysepan.com/
-  code:
-  download_url_alt:
-  file_name: Mario Forever Secret Core 2.exe
-  file_url:
+  - World 2:
+      ver_alt:
+      date: 2014-07-02
+      source_url: http://tieba.baidu.com/p/3141401012
+      source_url_alt:
+      download_url: http://hos20110101.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever Secret Core 2.exe
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2014-01-01
+      source_url: https://archive.marioforever.net/post/2792005656.html
+      source_url_alt:
+      download_url: http://hos20110101.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever Secret Core 1.exe
+      file_url:
 - game: Mario Forever 9-4 (2)
   game_alt:
   author: 烈火战神219
@@ -11204,7 +11576,7 @@
       download_url_alt:
       file_name: Mario Forever World 9-4(2)..exe
       file_url:
-- game: New Mario Forever World 2
+- game: New Mario Forever World
   game_alt:
   author: rk533
   author_alt: SiuSum1996
@@ -11212,15 +11584,46 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2014-06-26
-  source_url: https://archive.marioforever.net/post/3127726545.html
-  source_url_alt: https://www.youtube.com/watch?v=_VQAIIsATuY
-  download_url: https://pan.baidu.com/s/1mhYuFvM
-  code:
-  download_url_alt: http://www.mediafire.com/file/414tspd4b035wyp/New+Mario+Forever+World+2.exe/file
-  file_name: New Mario Forever World 2.exe
-  file_url:
+  - 整合版:
+      ver_alt: 3 worlds version 
+      date: 2014-06-26
+      source_url:
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt:
+      file_name: New Mario Forever World.exe
+      file_url:
+  - World 2:
+      ver_alt:
+      date: 2014-06-26
+      source_url: https://archive.marioforever.net/post/3127726545.html
+      source_url_alt: https://www.youtube.com/watch?v=_VQAIIsATuY
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt: http://www.mediafire.com/file/414tspd4b035wyp/New+Mario+Forever+World+2.exe/file
+      file_name: New Mario Forever World 2.exe
+      file_url:
+  - World 3:
+      ver_alt:
+      date: 2014-03-31
+      source_url: https://archive.marioforever.net/post/2955594740.html
+      source_url_alt: https://www.youtube.com/watch?v=-OFT7XkDEK8
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt: http://www.mediafire.com/file/rjcys9j04jx9abd/New+Mario+Forever+World+3.exe/file
+      file_name: New Mario Forever World 3.exe
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2014-02-18
+      source_url: https://archive.marioforever.net/post/2873821471.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt:
+      file_name: New Mario Forever World 1.exe
+      file_url:
 - game: 7-4 Shadow
   game_alt:
   author: 虹原翼
@@ -11323,23 +11726,6 @@
   download_url_alt:
   file_name: No Place to Hide.rar
   file_url:
-- game: New Mario Forever World 3
-  game_alt:
-  author: rk533
-  author_alt: SiuSum1996
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2014-03-31
-  source_url: https://archive.marioforever.net/post/2955594740.html
-  source_url_alt: https://www.youtube.com/watch?v=-OFT7XkDEK8
-  download_url: https://pan.baidu.com/s/1mhYuFvM
-  code:
-  download_url_alt: http://www.mediafire.com/file/rjcys9j04jx9abd/New+Mario+Forever+World+3.exe/file
-  file_name: New Mario Forever World 3.exe
-  file_url:
 - game: Mario Forever World One Day
   game_alt:
   author: 虫蛊蠡
@@ -11373,23 +11759,6 @@
   code:
   download_url_alt:
   file_name: 疯狂坦克.exe
-  file_url:
-- game: New Mario Forever World 1
-  game_alt:
-  author: rk533
-  author_alt: SiuSum1996
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2014-02-18
-  source_url: https://archive.marioforever.net/post/2873821471.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1mhYuFvM
-  code:
-  download_url_alt:
-  file_name: New Mario Forever World 1.exe
   file_url:
 - game: 新人作品1-1
   game_alt: 1月1日
@@ -11565,23 +11934,6 @@
   code:
   download_url_alt:
   file_name: Install KTL2.zip
-  file_url:
-- game: Mario Forever Secret Core 1
-  game_alt:
-  author: gaere54
-  author_alt:
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2014-01-01
-  source_url: https://archive.marioforever.net/post/2792005656.html
-  source_url_alt:
-  download_url: http://hos20110101.ysepan.com/
-  code:
-  download_url_alt:
-  file_name: Mario Forever Secret Core 1.exe
   file_url:
 - game: Crazy Tanks
   game_alt:
@@ -11774,23 +12126,6 @@
   download_url_alt:
   file_name: Install Mario Forever World 10.exe
   file_url:
-- game: Mario Forever World 9 advance
-  game_alt:
-  author: syzxchulun
-  author_alt:
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2013-07-16
-  source_url: https://tieba.baidu.com/p/2463080174
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1ge1YXiF
-  code:
-  download_url_alt:
-  file_name: Mario Forever Advance World 9.rar
-  file_url:
 - game: Mario Forever World 9
   game_alt:
   author: syzxchulun
@@ -11799,12 +12134,63 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2013-07-16
-  source_url: https://tieba.baidu.com/p/2463080174
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1gf4Xagj
-  code:
-  download_url_alt:
-  file_name: Mario Forever World 9.rar
-  file_url:
+  - 单世界版:
+      ver_alt: World 9
+      date: 2013-07-16
+      source_url: https://tieba.baidu.com/p/2463080174
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1gf4Xagj
+      code:
+      download_url_alt:
+      file_name: Mario Forever World 9.rar
+      file_url:
+  - Advance ver.:
+      ver_alt:
+      date: 2013-07-16
+      source_url: https://tieba.baidu.com/p/2463080174
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1ge1YXiF
+      code:
+      download_url_alt:
+      file_name: Mario Forever Advance World 9.rar
+      file_url:
+  - 9-4 (更新版):
+      ver_alt: 9-4 (Updated)
+      date: 2013-02-09
+      source_url: https://tieba.baidu.com/p/2155885119
+      source_url_alt:
+      download_url: http://syzxchulun.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever 9-4.rar
+      file_url:
+  - 9-3 (更新版):
+      ver_alt: 9-3 (Updated)
+      date: 2013-02-09
+      source_url: https://tieba.baidu.com/p/2131586293
+      source_url_alt:
+      download_url: http://syzxchulun.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever 9-3.rar
+      file_url:
+  - 9-2 (更新版):
+      ver_alt: 9-2 (Updated)
+      date: 2013-02-09
+      source_url: https://tieba.baidu.com/p/1819231187
+      source_url_alt:
+      download_url: http://syzxchulun.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever 9-2.rar
+      file_url:
+  - 9-1 (更新版):
+      ver_alt: 9-1 (Updated)
+      date: 2013-02-09
+      source_url: https://tieba.baidu.com/p/1802275939
+      source_url_alt:
+      download_url: http://syzxchulun.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever 9-1.rar
+      file_url:
