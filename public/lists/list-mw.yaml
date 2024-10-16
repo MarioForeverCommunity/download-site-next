@@ -32,6 +32,8 @@
   code: a5az
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/玛丽的死对头/For Everyone - Little Level Lite (Ver1.1).rar"
 - game: Super Mario Worker Maker v2.0.0
+  alias:
+  - SMWM
   author: ƒresh★LAKE
   smwp_ver: v1.7.10
   date: 2024-10-01
@@ -98,6 +100,8 @@
   code:
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/1168438795/20XX/"
 - game: Welcome back to Marioworker Bar 2024
+  alias:
+  - 高考回归2024
   author: 合作作品
   smwp_ver: v1.7.10
   date: 2024-06-09
@@ -114,6 +118,8 @@
   code: 6dkf
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/Fahlee/Fahlee-Fantastic Record-Chapter 1(beta3).7z"
 - game: Mario Worker Chimera III
+  alias:
+  - 奇美拉3
   author: 合作作品
   smwp_ver: v1.7.10
   date: 2024-05-04
@@ -226,6 +232,8 @@
   code:
   file_url:
 - game: Professor Road
+  alias:
+  - PR
   author: LLX奶油马里奥
   smwp_ver: v1.7.10
   date: 2023-12-24
@@ -354,6 +362,9 @@
   code: xbr2
   file_url:
 - game: I'mperfect
+  alias:
+  - imp
+  - imperfect
   author: zqh——123
   smwp_ver: v1.7.10
   date: 2023-06-28
@@ -362,6 +373,8 @@
   code:
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/zqh——123/%5bzqh works%5dI'mperfect.zip"
 - game: Welcome back to Marioworker Bar 2023
+  alias:
+  - 高考回归2023
   author: 合作作品
   smwp_ver: v1.7.10
   date: 2023-06-10
@@ -370,6 +383,8 @@
   code:
   file_url: "https://file.marioforever.net/Mario Worker/合作作品/Welcome back to Marioworker Bar 2023.zip"
 - game: Obsidian
+  alias:
+  - 黑曜石
   author: s小s飞s侠s
   smwp_ver: v1.7.9
   date: 2023-06-02
@@ -386,6 +401,8 @@
   code: jtiq
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/LLX奶油马里奥/【LLX's work】2023六一快乐关.rar"
 - game: Mario Worker Chimera II
+  alias:
+  - 奇美拉2
   author: 合作作品
   smwp_ver: v1.7.10
   date: 2023-05-03
@@ -562,6 +579,9 @@
   code:
   file_url:
 - game: Welcome back to Marioworker Bar 2022
+  alias:
+  - 高考回归2022
+  - TCO
   author: 合作作品
   smwp_ver: v1.7.8
   date: 2022-06-09
@@ -594,6 +614,8 @@
   code:
   file_url:
 - game: Mario Worker Chimera
+  alias:
+  - 奇美拉
   author: 合作作品
   smwp_ver: v1.7.8
   date: 2022-05-01
@@ -690,6 +712,9 @@
   code: knit
   file_url:
 - game: N's Road
+  alias:
+  - NR
+  - 纳秘之路
   author: nmnmoooh
   smwp_ver: v1.7.8
   date: 2022-03-06
@@ -754,6 +779,8 @@
   code:
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/s小s飞s侠s/A Random Space.7z"
 - game: Mario Worker Pursue
+  alias:
+  - MWP
   author: s小s飞s侠s
   smwp_ver: v1.7.6
   date: 2022-02-10
@@ -826,6 +853,9 @@
   code:
   file_url:
 - game: Mario Worker Random
+  alias:
+  - MWR
+  - MWRandom
   author: s小s飞s侠s
   smwp_ver: v1.7.6
   date: 2022-01-18
@@ -834,6 +864,8 @@
   code:
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/s小s飞s侠s/Mario Worker Random.7z"
 - game: Mario Worker Random简易版
+  - MWR
+  - MWRandom
   author: s小s飞s侠s
   smwp_ver: v1.7.6
   date: 2022-01-18
@@ -882,6 +914,9 @@
   code:
   file_url:
 - game: Mario Worker - Heresy
+  alias:
+  - MWH
+  - "MW-H"
   author: zqh——123
   smwp_ver: v1.7.8
   date: 2021-11-13
@@ -919,6 +954,8 @@
   code:
   file_url:
 - game: Mario Worker Outbreak
+  - MWO
+  - MWOutbreak
   author: s小s飞s侠s
   smwp_ver: v1.7.6
   date: 2021-10-23
@@ -951,6 +988,8 @@
   code:
   file_url:
 - game: Mario Worker Awaken
+  - MWA
+  - MWAwaken
   author: s小s飞s侠s
   smwp_ver: v1.7.6
   date: 2021-09-20
@@ -975,6 +1014,7 @@
   code:
   file_url:
 - game: Mario Worker Hiraeth
+  - MWH
   author: s小s飞s侠s
   smwp_ver: v1.7.6
   date: 2021-07-18
@@ -1015,6 +1055,8 @@
   code:
   file_url:
 - game: Welcome back to Marioworker Bar 2021
+  alias:
+  - 高考回归2021
   author: 合作作品
   smwp_ver: v1.7.6
   date: 2021-06-09
@@ -1247,6 +1289,8 @@
   code:
   file_url:
 - game: Nmnmoooh World 第一章节试玩版
+  alias:
+  - NW
   author: nmnmoooh
   smwp_ver: v1.7.6
   date: 2021-01-14
@@ -1439,6 +1483,8 @@
   code: 91cx
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/我懂你不懂的lz/lz Worlds - Classic EPIC/"
 - game: Welcome back to Marioworker Bar 2020
+  alias:
+  - 高考回归2020
   author: 合作作品
   smwp_ver: v1.7.4
   date: 2020-07-08
@@ -1463,6 +1509,7 @@
   code: 81s8
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/LLX奶油马里奥/【LLX's work】10th Anniversary Album （fix3）.zip"
 - game: Mario Worker Conventional Worlds
+  - MWCW
   author: s小s飞s侠s
   smwp_ver: v1.7.3
   date: 2020-06-24
@@ -1567,6 +1614,9 @@
   code:
   file_url:
 - game: First Awakening of Love v3.0
+  alias:
+  - QDCK
+  - 情窦初开
   author: LLX奶油马里奥
   smwp_ver: v1.6.5
   date: 2020-01-31
@@ -1631,6 +1681,8 @@
   code:
   file_url:
 - game: Wonderland Secret Worlds 全集
+  alias:
+  - WLSW
   author: 蓝太阳
   smwp_ver: v1.6.2
   date: 2019-06-29
@@ -1639,6 +1691,8 @@
   code: r0wn
   file_url:
 - game: Welcome back to Marioworker Bar 2019
+  alias:
+  - 高考回归2019
   author: 合作作品
   smwp_ver: v1.6.2
   date: 2019-06-08
@@ -1663,6 +1717,8 @@
   code:
   file_url:
 - game: Brand New Experience Maps 全集
+  alias:
+  - BNEM
   author: nmnmoooh
   smwp_ver: v1.5.2
   date: 2018-08-28
@@ -1703,6 +1759,8 @@
   code:
   file_url:
 - game: Welcome back to Marioworker Bar
+  alias:
+  - 高考回归2018
   author: zqh——123
   smwp_ver: v1.4.1
   date: 2018-06-08
@@ -1711,6 +1769,9 @@
   code:
   file_url:
 - game: First Awakening of Love 十二世界完全版
+  alias:
+  - QDCK
+  - 情窦初开
   author: LLX奶油马里奥
   smwp_ver: v0.2.4
   date: 2018-02-12
@@ -1743,6 +1804,9 @@
   code:
   file_url:
 - game: First Awakening of Love 八世界体验版
+  alias:
+  - QDCK
+  - 情窦初开
   author: LLX奶油马里奥
   smwp_ver: v1.2.2
   date: 2017-08-01
@@ -1766,7 +1830,7 @@
   download_url: http://wsw233.ysepan.com/
   code:
   file_url:
-- game: Times Ablum
+- game: Times Album
   author: 蓝太阳
   smwp_ver: v0.2.4
   date: 2016-08-15
