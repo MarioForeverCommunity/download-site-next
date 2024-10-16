@@ -8,8 +8,7 @@
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
-  import SortIcon from "../../components/icons/IconSort.vue";
-  import FilterIcon from "../../components/icons/IconFilter.vue";
+  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
   import {getAuthor} from "../../util/GemeUtil.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc} from "../../util/GemeUtil.js"
