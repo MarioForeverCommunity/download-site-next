@@ -388,7 +388,7 @@
           <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
           <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
-          <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data Pack (file.marioforever.net)" : "下载数据包（资源站）" }}</a>
+          <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data Pack (file.marioforever.net)" : "下载数据包 (资源站)" }}</a>
         </div>
       </div>
     </div>

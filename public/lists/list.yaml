@@ -108,6 +108,11 @@
   file_url:
 - game: PK!MF6 娱乐赛关卡集
   game_alt: PK!MF6 Entertainment Collection
+  alias:
+  - PKMF6娱乐赛关卡集
+  - PKMF6娱乐赛整合
+  - PK!MF6娱乐赛整合
+  - PK!MF6娱乐赛关卡集
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -492,6 +497,11 @@
       file_url:
 - game: PK!MF6 竞技赛关卡集
   game_alt: PK!MF6 Competitive Collection
+  alias:
+  - PKMF6竞技赛关卡集
+  - PKMF6竞技赛整合
+  - PK!MF6竞技赛整合
+  - PK!MF6竞技赛关卡集
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -2335,6 +2345,8 @@
   file_url:
 - game: PK!MF5民间整合
   game_alt: PK!MF5 Unofficial Collection
+  alias:
+  - PKMF5民间整合
   author: 数字1528君
   author_alt: Num1528
   type: chinese
@@ -2397,6 +2409,11 @@
   file_url:
 - game: PK!MF5 关卡集
   game_alt: PK!MF5 Collection
+  alias:
+  - PKMF5关卡集
+  - PKMF5整合
+  - PK!MF5整合
+  - PK!MF5关卡集
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -2558,6 +2575,11 @@
   file_url:
 - game: PK!MF4 关卡集
   game_alt: PK!MF4 Collection
+  alias:
+  - PKMF4关卡集
+  - PKMF4整合
+  - PK!MF4整合
+  - PK!MF4关卡集
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -4054,6 +4076,10 @@
 - game: PK!MF3 关卡集
   game_alt: PK!MF3 Collection
   alias:
+  - PKMF3关卡集
+  - PKMF3整合
+  - PK!MF3整合
+  - PK!MF3关卡集
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -7481,6 +7507,7 @@
   game_alt:
   alias:
   - 负世界
+  - 负数世界
   - 负号世界
   - MFMW
   - "MF: MW"
