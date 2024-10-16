@@ -31,6 +31,16 @@
   readList("list-mw.yaml").then((list) => {
     for (var entry of list) {
       entry.category = "mw";
+
+      // Automatically generate resource site link.
+      if (entry.file_name && !entry.file_url && entry.alist) {
+        if (entry.author == "合作作品") {
+          entry.file_url = `https://file.marioforever.net/Mario Worker/合作作品/${entry.file_name}`;
+        } else {
+          entry.file_url = `https://file.marioforever.net/Mario Worker/吧友作品/${entry.author}/${entry.file_name}`;
+        }
+      }
+
       // For compability, we still have a "fake" currentVer field.
       entry.currentVer = {
         code : entry.code,
@@ -39,13 +49,6 @@
         file_url : entry.file_url,
         source_url : entry.source_url,
       }
-
-      // adjust smwp_ver
-      /*
-      if (entry.smwp_ver) {
-        entry.smwp_ver = entry.smwp_ver
-      }
-      */
 
       // Check validity of urls.
       if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] == "~") {
