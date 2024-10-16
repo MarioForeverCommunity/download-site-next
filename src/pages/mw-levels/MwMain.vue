@@ -84,12 +84,20 @@
     asc : true
   });
 
+  function defaultSort() {
+    games.value.sort((a, b) => b.date - a.date);
+    sort_option.value.field = null;
+  }
+
   function sortByName() {
     if (sort_option.value.field != "game") {
       sort_option.value.field = "game";
       sort_option.value.asc = true;
+    } else if (sort_option.value.asc == true) {
+      sort_option.value.asc = false;
     } else {
-      sort_option.value.asc = !sort_option.value.asc;
+      defaultSort();
+      return; 
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? a.game.localeCompare(b.game) : b.game.localeCompare(a.game));
   }
@@ -98,8 +106,11 @@
     if (sort_option.value.field != "author") {
       sort_option.value.field = "author";
       sort_option.value.asc = true;
+    } else if (sort_option.value.asc == true) {
+      sort_option.value.asc = false;
     } else {
-      sort_option.value.asc = !sort_option.value.asc;
+      defaultSort();
+      return; 
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, "zh").localeCompare(getAuthor(b, "zh")) : getAuthor(b, "zh").localeCompare(getAuthor(a, "zh")));
   }
@@ -108,8 +119,11 @@
     if (sort_option.value.field != "date") {
       sort_option.value.field = "date";
       sort_option.value.asc = true;
+    } else if (sort_option.value.asc == true) {
+      sort_option.value.asc = false;
     } else {
-      sort_option.value.asc = !sort_option.value.asc;
+      defaultSort();
+      return; 
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? a.date - b.date : b.date - a.date);
   }
