@@ -168,11 +168,8 @@
     if (sort_option.value.field != "date") {
       sort_option.value.field = "date";
       sort_option.value.asc = true;
-    } else if (sort_option.value.asc == true) {
-      sort_option.value.asc = false;
     } else {
-      defaultSort();
-      return; 
+      sort_option.value.asc = !sort_option.value.asc;
     }
     games.value = games.value.sort((a, b) => sort_option.value.asc ? a.currentVer.date - b.currentVer.date : b.currentVer.date - a.currentVer.date);
   }
