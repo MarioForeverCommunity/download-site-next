@@ -87,7 +87,7 @@
   .tooltip .tooltiptext {
     top:40px;
     left:50%;
-    transform:translate(-50%, -15px);
+    transform:translate(-50%, -5px);
     display:none;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;

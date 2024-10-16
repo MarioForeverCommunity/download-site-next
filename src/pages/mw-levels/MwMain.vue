@@ -14,7 +14,7 @@
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
-  import { useFloating, flip, shift } from '@floating-ui/vue';
+  import { useFloating, flip, shift, offset } from '@floating-ui/vue';
 
   const originalLan = ref(getLanguage());
 
@@ -182,7 +182,7 @@
   const floatingText = ref(null);
   const { floatingStyles} = useFloating(reference, floating, 
   {
-    middleware: [flip(), shift(),],
+    middleware: [flip(), shift(), offset(10)],
   });
 
 </script>

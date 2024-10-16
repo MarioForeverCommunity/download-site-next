@@ -19,7 +19,7 @@
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
   import Tooltip from '../../components/Tooltip.vue';
-  import { useFloating, flip, shift } from '@floating-ui/vue';
+  import { useFloating, flip, shift, offset } from '@floating-ui/vue';
 
   const lan = ref(getLanguage());
 
@@ -257,7 +257,7 @@
   const floatingText = ref(null);
   const { floatingStyles} = useFloating(reference, floating, 
   {
-    middleware: [flip(), shift(),],
+    middleware: [flip(), shift(), offset(10)],
   });
 
 </script>
