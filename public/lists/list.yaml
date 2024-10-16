@@ -11475,7 +11475,7 @@
       download_url_alt:
       file_name: Mario Forever World 9-4(2)..exe
       file_url:
-- game: New Mario Forever World 2
+- game: New Mario Forever World
   game_alt:
   author: rk533
   author_alt: SiuSum1996
@@ -11483,15 +11483,46 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2014-06-26
-  source_url: https://archive.marioforever.net/post/3127726545.html
-  source_url_alt: https://www.youtube.com/watch?v=_VQAIIsATuY
-  download_url: https://pan.baidu.com/s/1mhYuFvM
-  code:
-  download_url_alt: http://www.mediafire.com/file/414tspd4b035wyp/New+Mario+Forever+World+2.exe/file
-  file_name: New Mario Forever World 2.exe
-  file_url:
+  - 整合版:
+      ver_alt: 3 worlds version 
+      date: 2014-06-26
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: New Mario Forever World.exe
+      file_url:
+  - World 2:
+      ver_alt:
+      date: 2014-06-26
+      source_url: https://archive.marioforever.net/post/3127726545.html
+      source_url_alt: https://www.youtube.com/watch?v=_VQAIIsATuY
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt: http://www.mediafire.com/file/414tspd4b035wyp/New+Mario+Forever+World+2.exe/file
+      file_name: New Mario Forever World 2.exe
+      file_url:
+  - World 3:
+      ver_alt:
+      date: 2014-03-31
+      source_url: https://archive.marioforever.net/post/2955594740.html
+      source_url_alt: https://www.youtube.com/watch?v=-OFT7XkDEK8
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt: http://www.mediafire.com/file/rjcys9j04jx9abd/New+Mario+Forever+World+3.exe/file
+      file_name: New Mario Forever World 3.exe
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2014-02-18
+      source_url: https://archive.marioforever.net/post/2873821471.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1mhYuFvM
+      code:
+      download_url_alt:
+      file_name: New Mario Forever World 1.exe
+      file_url:
 - game: 7-4 Shadow
   game_alt:
   author: 虹原翼
@@ -11594,23 +11625,6 @@
   download_url_alt:
   file_name: No Place to Hide.rar
   file_url:
-- game: New Mario Forever World 3
-  game_alt:
-  author: rk533
-  author_alt: SiuSum1996
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2014-03-31
-  source_url: https://archive.marioforever.net/post/2955594740.html
-  source_url_alt: https://www.youtube.com/watch?v=-OFT7XkDEK8
-  download_url: https://pan.baidu.com/s/1mhYuFvM
-  code:
-  download_url_alt: http://www.mediafire.com/file/rjcys9j04jx9abd/New+Mario+Forever+World+3.exe/file
-  file_name: New Mario Forever World 3.exe
-  file_url:
 - game: Mario Forever World One Day
   game_alt:
   author: 虫蛊蠡
@@ -11644,23 +11658,6 @@
   code:
   download_url_alt:
   file_name: 疯狂坦克.exe
-  file_url:
-- game: New Mario Forever World 1
-  game_alt:
-  author: rk533
-  author_alt: SiuSum1996
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2014-02-18
-  source_url: https://archive.marioforever.net/post/2873821471.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1mhYuFvM
-  code:
-  download_url_alt:
-  file_name: New Mario Forever World 1.exe
   file_url:
 - game: 新人作品1-1
   game_alt: 1月1日
