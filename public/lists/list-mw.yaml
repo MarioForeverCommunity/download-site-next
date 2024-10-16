@@ -6,7 +6,7 @@
   source_url: https://www.marioforever.net/thread-3408-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 逆旅.smwp
   file_url:
 - game: 一个小迷宫
   author: 把僵尸炖了
@@ -15,7 +15,7 @@
   source_url: https://www.marioforever.net/thread-3406-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20241011即兴关卡.smwl
   file_url:
 - game: 沙中遗迹
   author: 有名氏
@@ -24,7 +24,7 @@
   source_url: https://www.marioforever.net/thread-3402-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 沙中遗迹（fix）.smwp
   file_url:
 - game: Little Level Lite
   author: 玛丽的死对头
@@ -57,7 +57,7 @@
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20240912即兴关卡.smwp
   file_url:
 - game: 20680819即兴关卡
   author: ƒresh★LAKE
@@ -66,7 +66,7 @@
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20680819即兴关卡.smwp
   file_url:
 - game: 20240812即兴关卡
   author: 玛丽的死对头
@@ -75,7 +75,7 @@
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20240812即兴关卡.smwp
   file_url:
 - game: 微恐与抽象！乖乖隆地洞
   author: 有名氏
@@ -84,7 +84,7 @@
   source_url: https://www.marioforever.net/thread-3293-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 危途疑踪.smwl
   file_url:
 - game: SLSE&SLSF前10关试玩版
   author: 把僵尸炖了
@@ -94,6 +94,8 @@
   download_url:
   code:
   file_name:
+  - SLSE world1 demo.smwp
+  - SLSF world1 demo.smwp
   file_url:
 - game: 流浪地球2：太空电梯
   author: ƒresh★LAKE
@@ -104,6 +106,15 @@
   code:
   alist: true
   file_name: Wandering Earth II.zip
+  file_url:
+- game: 20240610即兴关卡
+  author: zqh——123
+  smwp_ver: v1.7.10
+  date: 2024-09-16
+  source_url: https://www.marioforever.net/thread-3026-1-1.html
+  download_url:
+  code:
+  file_name: 20240610即兴关卡.smwp
   file_url:
 - game: 20XX
   author: '1168438795'
@@ -147,6 +158,8 @@
   download_url:
   code:
   file_name:
+  - Mario Worker Chimera III.smws
+  - Mario Worker Chimera III (Separated)/
   file_url:
 - game: 神秘之山51版
   author: Andrews123
@@ -155,7 +168,7 @@
   source_url: https://www.marioforever.net/thread-3170-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 神秘之山51版.smwp
   file_url:
 - game: 20240410即兴关卡
   author: 马里奥奥里马
@@ -165,6 +178,8 @@
   download_url:
   code:
   file_name:
+  - 20240410即兴关卡.smwl
+  - 20240410即兴关卡2.smwl
   file_url:
 - game: 篇半下9wfms
   author: 超级玛丽迷01
@@ -173,7 +188,7 @@
   source_url: https://www.marioforever.net/thread-3147-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: 9wfms分部半后版玩试先抢.smwp
   file_url:
 - game: EZ8by3
   author: 马里奥奥里马
@@ -182,7 +197,7 @@
   source_url: https://www.marioforever.net/thread-3143-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: EZ8by3.smwl
   file_url:
 - game: New Tall Castle 4(Beta)
   author: Fahlee
@@ -191,7 +206,7 @@
   source_url: https://www.marioforever.net/thread-3140-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: New Tall Castle 4(beta).smwp
   file_url:
 - game: Mario Worker Rainbow Land World 2
   author: 色粉堵塞
@@ -200,7 +215,7 @@
   source_url: https://www.marioforever.net/thread-3099-1-1.html
   download_url: https://wwb.lanzoul.com/irgJV1oavasf
   code:
-  file_name:
+  file_name: Mario Worker Rainbow Land/Mario Worker Rainbow Land World 2.smwp
   file_url:
 - game: 翱翔——飞跃地平线
   author: LLX奶油马里奥
@@ -209,7 +224,7 @@
   source_url: https://www.marioforever.net/thread-3090-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW——翱翔·飞跃地平线.smwp
   file_url:
 - game: 20680627即兴关卡
   author: ƒresh★LAKE
@@ -218,7 +233,16 @@
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20680627即兴关卡.smwp
+  file_url:
+- game: 20240208即兴关卡
+  author: zqh——123
+  smwp_ver: v1.7.10
+  date: 2024-02-08
+  source_url: https://www.marioforever.net/thread-3024-1-1.html
+  download_url:
+  code:
+  file_name: 20240208即兴关卡.smwp
   file_url:
 - game: MWO：IC废案
   author: Andrews123
@@ -227,7 +251,7 @@
   source_url: https://www.marioforever.net/thread-3071-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MWO：IC废案/
   file_url:
 - game: Someone's Diary-Volume 01
   author: CivilCode
@@ -246,7 +270,7 @@
   source_url: https://www.marioforever.net/thread-3043-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Professor Road残卷——教程关/
   file_url:
 - game: Fast Run For New Year
   author: 蓝太阳
@@ -255,7 +279,7 @@
   source_url: https://www.marioforever.net/thread-3042-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Fast Run For New Year.smwp
   file_url:
 - game: smfw9上半篇
   author: 超级玛丽迷01
@@ -264,7 +288,7 @@
   source_url: https://www.marioforever.net/thread-3036-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: SMFW9（上半篇6+1版）/
   file_url:
 - game: Professor Road
   alias:
@@ -277,14 +301,14 @@
   code: jszl
   file_name:
   file_url:
-- game: 即兴小关合集
+- game: 20231221即兴关卡
   author: zqh——123
   smwp_ver: v1.7.10
   date: 2023-12-21
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20231221即兴关卡.smwp
   file_url:
 - game: 20231217即兴关卡
   author: zqh——123
@@ -293,7 +317,7 @@
   source_url: https://www.marioforever.net/thread-3024-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20231217即兴关卡.smwp
   file_url:
 - game: 20231201即兴关卡
   author: zqh——123
@@ -302,7 +326,7 @@
   source_url: https://www.marioforever.net/thread-3013-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 20231201即兴关卡.smwp
   file_url:
 - game: Tall Castle 5(Beta)
   author: Fahlee
@@ -311,7 +335,7 @@
   source_url: https://www.marioforever.net/thread-3012-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Tall Castle 5(Beta).smwp
   file_url:
 - game: smfw9单关试玩版2
   author: 超级玛丽迷01
@@ -320,7 +344,7 @@
   source_url: https://www.marioforever.net/thread-3000-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: SMFW9单关试玩版2.smwp
   file_url:
 - game: Castle of the Scared Shells
   author: ƒresh★LAKE
@@ -329,7 +353,7 @@
   source_url: https://www.marioforever.net/thread-2979-1-1.html
   download_url: http://wyf01234567.ysepan.com/
   code:
-  file_name:
+  file_name: Castle of the Scared Shells.smwl
   file_url:
 - game: zqh room
   author: zqh——123
@@ -338,7 +362,7 @@
   source_url: https://www.marioforever.net/thread-2965-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: zqh room.smwp
   file_url:
 - game: 马里奥和游戏
   author: Andrews123
@@ -347,7 +371,7 @@
   source_url: https://www.marioforever.net/thread-2925-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 马里奥和游戏/
   file_url:
 - game: 七夕夜上海
   author: LLX奶油马里奥
@@ -356,7 +380,7 @@
   source_url: https://www.marioforever.net/thread-2910-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 七夕夜上海（fix）.smwp
   file_url:
 - game: LongZongKuiYan World - Restart 单世界预览版
   author: LongZongKuiYan
@@ -385,7 +409,7 @@
   source_url: https://www.marioforever.net/thread-2835-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 西安事变.smwp
   file_url:
 - game: Early-coming Christmas
   author: 玛丽的死对头
@@ -394,7 +418,7 @@
   source_url: https://www.marioforever.net/thread-2772-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: "[Mldsdt work]Early-coming Christmas!.smwp"
   file_url:
 - game: 新年小挑战：车站大作战
   author: Andrews123
@@ -403,7 +427,7 @@
   source_url: https://www.marioforever.net/thread-2763-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 新年小挑战：车站大作战.smwl
   file_url:
 - game: A Day Out(S2简化版)
   author: 玛丽的死对头
@@ -412,7 +436,7 @@
   source_url: https://www.marioforever.net/thread-2748-1-1.html
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
   code: xbr2
-  file_name:
+  file_name: A Day Out(S2简化版).smwp
   file_url:
 - game: I'mperfect
   alias:
@@ -425,7 +449,7 @@
   download_url: https://wwyd.lanzout.com/iC8I010omy7e
   code:
   alist: true
-  file_name: "%5bzqh works%5dI'mperfect.zip"
+  file_name: "[zqh works]I'mperfect.zip"
   file_url:
 - game: Welcome back to Marioworker Bar 2023
   alias:
@@ -448,7 +472,7 @@
   source_url: ~https://www.marioforever.net/thread-2711-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 黑曜石-Obsidian/
   file_url:
 - game: 2023六一快乐关
   author: LLX奶油马里奥
@@ -469,7 +493,7 @@
   source_url: https://www.marioforever.net/thread-2694-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Mario Worker Chimera II.smws
   file_url:
 - game: Mario Worker Rhythm 3:A Trip In May
   author: Andrews123
@@ -478,7 +502,7 @@
   source_url: https://www.marioforever.net/thread-2693-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: MWR3-A Trip In May Fix1/
   file_url:
 - game: CHИ入队图
   author: ƒresh★LAKE
@@ -487,16 +511,16 @@
   source_url: https://www.marioforever.net/thread-2671-1-1.html
   download_url: http://wyf01234567.ysepan.com/
   code:
-  file_name:
+  file_name: CHИ入队图/
   file_url:
-- game: Make everyone acquaintance
+- game: Make Everyone Acquaintance
   author: 玛丽的死对头
   smwp_ver: v1.7.9
   date: 2023-02-11
   source_url: https://www.marioforever.net/thread-2616-1-1.html
   download_url: https://pan.baidu.com/s/1TDUbrshcXr-XPnADTQ8U5w
   code: m4pm
-  file_name:
+  file_name: Make Everyone Acquaintance!.smwp
   file_url:
 - game: MWO1 A-2加难版
   author: Andrews123
@@ -505,7 +529,7 @@
   source_url: https://www.marioforever.net/thread-2594-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Andrews123-train go to hard mode-0.smwl
   file_url:
 - game: 欢迎举报
   author: Andrews123
@@ -514,7 +538,7 @@
   source_url: https://www.marioforever.net/thread-2510-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 欢迎举报.smwp
   file_url:
 - game: 2023第一个MW关
   author: 把僵尸炖了
@@ -523,7 +547,7 @@
   source_url: https://www.marioforever.net/thread-2509-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW关.smwl
   file_url:
 - game: ARKana Album Vol. III -DETERMINATION-
   author: '1168438795'
@@ -542,7 +566,7 @@
   source_url: https://www.marioforever.net/thread-2471-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: smfw9单关试玩版.smwp
   file_url:
 - game: 轻松的生活1-3剧情解释
   author: Andrews123
@@ -551,16 +575,16 @@
   source_url: https://www.marioforever.net/thread-2426-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 轻松的生活剧情解释.smwl
   file_url:
 - game: 轻松的生活Final预告
   author: Andrews123
   smwp_ver: v1.7.9
   date: 2022-11-19
-  source_url: https://www.marioforever.net/thread-2419-1-1.html
+  source_url: ~https://www.marioforever.net/thread-2419-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 新小作预告.smwl
   file_url:
 - game: 是男人就下20层
   author: s小s飞s侠s
@@ -569,7 +593,7 @@
   source_url: ~https://www.marioforever.net/thread-2389-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 是男人就下20层/
   file_url:
 - game: New the Four Seasons World V3
   author: '123568024'
@@ -578,7 +602,7 @@
   source_url: https://www.marioforever.net/thread-2376-1-1.html
   download_url: http://123568023.ysepan.com/
   code:
-  file_name:
+  file_name: "[123568024 works]New The Four Seasons World V3.2/"
   file_url:
 - game: 狼与香辛料-第一章：村庄
   author: 叶子的叶子
@@ -587,7 +611,7 @@
   source_url: https://www.marioforever.net/thread-2372-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 狼与香辛料-EP1.smwp
   file_url:
 - game: 'Mario Worker Water Rhythm2: Midnight Challenger'
   author: Andrews123
@@ -596,7 +620,7 @@
   source_url: https://www.marioforever.net/thread-2368-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: MWWR2-MC.smwp
   file_url:
 - game: Mario Worker Odyssey-An Epic Picture Scroll
   author: Andrews123
@@ -615,7 +639,7 @@
   source_url: https://www.marioforever.net/thread-2255-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: Lost World.smwp
   file_url:
 - game: 轻松的生活2
   author: Andrews123
@@ -624,7 +648,7 @@
   source_url: https://www.marioforever.net/thread-2176-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 6-轻松的生活2.smwl
   file_url:
 - game: Fantastic World 2：Golden Journey
   author: Fahlee
@@ -633,7 +657,7 @@
   source_url: https://www.marioforever.net/thread-2121-1-1.html
   download_url: http://fahlee5.ysepan.com/
   code:
-  file_name:
+  file_name: Fahlee-Fantastic World 2：Golden Journey(v1.1)/
   file_url:
 - game: 最终告别
   author: Andrews123
@@ -642,7 +666,7 @@
   source_url: https://www.marioforever.net/thread-2109-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 最终告别.smwl
   file_url:
 - game: Optional 6×3s
   author: zqh——123
@@ -651,7 +675,7 @@
   source_url: https://www.marioforever.net/thread-2103-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Optional 6×3s.smwp
   file_url:
 - game: A short level
   author: zqh——123
@@ -660,7 +684,7 @@
   source_url: https://www.marioforever.net/thread-2103-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: A short level.smwp
   file_url:
 - game: Welcome back to Marioworker Bar 2022
   alias:
@@ -692,7 +716,7 @@
   source_url: https://www.marioforever.net/thread-2090-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: Mario Worker The Dragon Boat Festival.smwp
   file_url:
 - game: 龟壳电路从入门到精通
   author: 把僵尸炖了
@@ -701,7 +725,7 @@
   source_url: https://www.marioforever.net/thread-2082-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: 龟壳电路从入门到精通/
   file_url:
 - game: Mario Worker Chimera
   alias:
@@ -712,7 +736,7 @@
   source_url: https://www.marioforever.net/thread-2036-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Mario Worker Chimera.smws
   file_url:
 - game: 猪肉刺身
   author: 把僵尸炖了
@@ -721,7 +745,7 @@
   source_url: https://www.marioforever.net/thread-2034-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 猪肉刺身.smwl
   file_url:
 - game: Random rotten
   author: s小s飞s侠s
@@ -730,7 +754,7 @@
   source_url: ~https://www.marioforever.net/thread-2024-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Random rotten/
   file_url:
 - game: MW接龙1：坑爹游戏
   author: Andrews123
@@ -739,7 +763,7 @@
   source_url: https://www.marioforever.net/thread-2021-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW接龙1：坑爹游戏.smwp
   file_url:
 - game: Mario Worker Purse
   author: 把僵尸炖了
@@ -748,16 +772,18 @@
   source_url: https://www.marioforever.net/thread-2019-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Mario Worker Purse/
   file_url:
 - game: Silent/Endless Iceland
   author: 玛丽的死对头
   smwp_ver: v1.7.8
   date: 2022-04-01
   source_url: https://www.marioforever.net/thread-2012-1-1.html
-  download_url: https://pan.baidu.com/s/1xazse0pYKrBxp87wRPHmNg
-  code: kb9w
+  download_url: https://pan.baidu.com/s/1ukHGrG81CwdhbA-pTIQ5NA
+  code: 78bu
   file_name:
+  - "[Mldsdt Works]Common Maps(1~3)/2 of Common Maps(Normal).smwp"
+  - "[Mldsdt Works]Common Maps(1~3)/Endless Iceland(EX).smwp"
   file_url:
 - game: Mario Return to Neverland-Starcutter Map
   author: s小s飞s侠s
@@ -777,6 +803,8 @@
   download_url: https://pan.baidu.com/s/1CuOZZ9V0nz1yT9alQMtyhA
   code: vxt3
   file_name:
+  - "[Mldsdt Works]Common Maps(1~3)/1 of Common Maps(Normal).smwp"
+  - "[Mldsdt Works]Common Maps(1~3)/High-Power Air Attack!(EX).smwp"
   file_url:
 - game: 即兴创作
   author: zqh——123
@@ -785,7 +813,7 @@
   source_url: https://www.marioforever.net/thread-1990-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 即兴创作.smwp
   file_url:
 - game: Mario Worker Water Rhythm
   author: Andrews123
@@ -804,16 +832,18 @@
   source_url: https://www.youtube.com/watch?v=VXtdrM7KV4g
   download_url: https://drive.google.com/file/d/12HjANiawJJswi5HnY5_Iv9PvYYWZ9ILB/view
   code:
-  file_name:
+  file_name: Greenfield.smwl
   file_url:
 - game: 钱塘湖春行
   author: 玛丽的死对头
   smwp_ver: v1.7.8
   date: 2022-03-08
   source_url: https://www.marioforever.net/thread-1975-1-1.html
-  download_url: https://pan.baidu.com/s/1X2KYpB9IhJjU9c5BPDWJ4A
-  code: knit
-  file_name:
+  download_url: https://pan.baidu.com/share/init?surl=5SQOi_E9PEF9JY3xOvkFPQ
+  code: i0k3
+  file_name: 
+  - "[Mldsdt Works]Common Maps(1~3)/3 of Common Maps(Normal).smwp"
+  - "[Mldsdt Works]Common Maps(1~3)/Spring Outing through Qiantang Lake(EX).smwp"
   file_url:
 - game: N's Road
   alias:
@@ -825,7 +855,7 @@
   source_url: https://www.marioforever.net/thread-1942-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
   code:
-  file_name:
+  file_name: "[Nmnmoooh Works] NsRoad V0_98FixFix"
   file_url:
 - game: 拖延症
   author: 把僵尸炖了
@@ -834,7 +864,7 @@
   source_url: https://www.marioforever.net/thread-1955-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: 拖延症.smwp
   file_url:
 - game: Cold Winter
   author: Vitzie629
@@ -843,7 +873,7 @@
   source_url: https://www.youtube.com/watch?v=jGzCVYUVHTA
   download_url: https://drive.google.com/file/d/1mfBckkdenkCljBUq3Q0GGHPq5tc_NHoF/view
   code:
-  file_name:
+  file_name: Cold Winter.smwl
   file_url:
 - game: lz Worlds - Universal Dilemma
   author: 我懂你不懂的lz
@@ -855,14 +885,16 @@
   alist: true
   file_name: lz Worlds - Universal Dilemma/
   file_url:
-- game: Puzzle Lake(easiest)
+- game: Puzzle Lake
   author: ƒresh★LAKE
   smwp_ver: v1.7.8
   date: 2022-02-20
   source_url: https://www.marioforever.net/thread-1944-1-1.html
   download_url: http://wyf01234567.ysepan.com/
   code:
-  file_name:
+  file_name: 
+  - D3-Puzzle Lake(easiest).smwl
+  - D3-Puzzle Lake(no threat).smwl
   file_url:
 - game: The Sunset
   author: Vitzie629
@@ -871,7 +903,7 @@
   source_url: https://www.youtube.com/watch?v=fVNrvXs9F5U
   download_url: https://drive.google.com/file/d/1ZSFtzjr8tVkdtqP17BU2j0eRHwS6PuAB/view
   code:
-  file_name:
+  file_name: The Sunset.smwl
   file_url:
 - game: Underground Pipe Maze
   author: Vitzie629
@@ -880,7 +912,7 @@
   source_url: https://www.youtube.com/watch?v=obzuMdUggSM
   download_url: https://drive.google.com/file/d/1-f0-SRH2MO7mSaulsJMHuJ45SXC_jXCv/view
   code:
-  file_name:
+  file_name: Underground Pipe Maze.smwl
   file_url:
 - game: A Random Space
   author: s小s飞s侠s
@@ -911,7 +943,7 @@
   source_url: https://www.marioforever.net/thread-1923-1-1.html
   download_url: http://wyf01234567.ysepan.com/
   code:
-  file_name:
+  file_name: 4-Light or Dark Lake(fix).smwl
   file_url:
 - game: MW大冲关VII
   author: s小s飞s侠s
@@ -920,7 +952,7 @@
   source_url: ~https://www.marioforever.net/thread-1915-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW大冲关VII(2022.6.29).smwp
   file_url:
 - game: Godiac
   author: '1168438795'
@@ -939,7 +971,7 @@
   source_url: https://www.marioforever.net/thread-1907-1-1.html
   download_url: https://zh.wsw233.com/files/view?f=kgswe0
   code:
-  file_name:
+  file_name: WSW Quest BETA fix 1/
   file_url:
 - game: AS新年三件套
   author: Andrews123
@@ -968,7 +1000,7 @@
   source_url: https://www.marioforever.net/thread-1889-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Snakes Love Shaking D.smwp
   file_url:
 - game: MYRXJ--SDDSCDH
   author: s小s飞s侠s
@@ -977,7 +1009,7 @@
   source_url: ~https://www.marioforever.net/thread-1888-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MYRXJ——SDDSCDH/
   file_url:
 - game: Mario Worker Random
   alias:
@@ -1012,7 +1044,7 @@
   source_url: https://www.marioforever.net/thread-1873-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: ladder.smwl
   file_url:
 - game: 2022新年关卡
   author: zqh——123
@@ -1021,7 +1053,7 @@
   source_url: https://www.marioforever.net/thread-1870-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Happy New Year.smwp
   file_url:
 - game: 贺岁连连
   author: 把僵尸炖了
@@ -1030,7 +1062,7 @@
   source_url: https://www.marioforever.net/thread-1852-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: 贺岁连连/
   file_url:
 - game: Freedom!
   author: 把僵尸炖了
@@ -1039,7 +1071,7 @@
   source_url: https://www.marioforever.net/thread-1819-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Freedom!.smwp
   file_url:
 - game: Cloudy
   author: 把僵尸炖了
@@ -1048,7 +1080,7 @@
   source_url: https://www.marioforever.net/thread-1754-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Cloudy.smwp
   file_url:
 - game: Mario Worker - Heresy
   alias:
@@ -1085,7 +1117,7 @@
   source_url: ~https://www.marioforever.net/thread-1709-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Mario Worker Crazy/
   file_url:
 - game: Super Detective Bros
   author: Fahlee
@@ -1094,7 +1126,7 @@
   source_url: https://www.marioforever.net/thread-1708-1-1.html
   download_url: http://fahlee5.ysepan.com/
   code:
-  file_name:
+  file_name: Fahlee-Super Detective Bros(beta2).smwp
   file_url:
 - game: Mario Worker Outbreak
   alias:
@@ -1116,7 +1148,7 @@
   source_url: https://www.marioforever.net/thread-1675-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Rubik's Cube.smwp
   file_url:
 - game: Fortune of Oracle Lords
   author: '1168438795'
@@ -1125,16 +1157,16 @@
   source_url: https://www.marioforever.net/thread-1674-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Fortune of Oracle Lords.smwp
   file_url:
-- game: Mystories Moutain
+- game: Mystories Mountain
   author: 超级玛丽迷01
   smwp_ver: v1.7.8
   date: 2021-10-01
   source_url: https://www.marioforever.net/thread-1625-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: Mystories Mountain/
   file_url:
 - game: Mario Worker Awaken
   alias:
@@ -1156,7 +1188,7 @@
   source_url: https://www.marioforever.net/thread-1492-1-1.html
   download_url: http://mlaalm.ysepan.com/
   code:
-  file_name:
+  file_name: "[Mlaalm]Fantastic Journey v1.40/"
   file_url:
 - game: 创意关卡小合集
   author: s小s飞s侠s
@@ -1165,7 +1197,7 @@
   source_url: ~https://www.marioforever.net/thread-1412-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 创意关卡小合集/
   file_url:
 - game: Mario Worker Hiraeth
   alias:
@@ -1196,7 +1228,7 @@
   source_url: https://www.marioforever.net/thread-1243-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: Find The Rainbow/
   file_url:
 - game: Fahlee Album 6
   author: Fahlee
@@ -1205,7 +1237,7 @@
   source_url: https://www.marioforever.net/thread-1242-1-1.html
   download_url: http://fahlee5.ysepan.com/
   code:
-  file_name:
+  file_name: Fahlee-Album6(20210627fix)/
   file_url:
 - game: Terraria
   author: 把僵尸炖了
@@ -1214,7 +1246,7 @@
   source_url: https://www.marioforever.net/thread-1050-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Terraria/
   file_url:
 - game: Welcome back to Marioworker Bar 2021
   alias:
@@ -1245,7 +1277,7 @@
   source_url: https://www.marioforever.net/thread-1175-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 他山之石.smwl
   file_url:
 - game: "“金”字塔"
   author: Andrews123
@@ -1254,7 +1286,7 @@
   source_url: https://www.marioforever.net/thread-1167-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: “金”字塔.smwl
   file_url:
 - game: Deja Vu
   author: '1168438795'
@@ -1263,7 +1295,7 @@
   source_url: https://www.marioforever.net/thread-1164-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Deja Vu/
   file_url:
 - game: 我不当谜语人
   author: 数字1528君
@@ -1272,7 +1304,7 @@
   source_url: https://www.marioforever.net/thread-1155-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 我不当谜语人/
   file_url:
 - game: xfxddhnbnhhshl？
   author: s小s飞s侠s
@@ -1291,7 +1323,7 @@
   source_url: https://www.marioforever.net/thread-1137-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: 差不多得了.smwl
   file_url:
 - game: asdihshdfhasuhd
   author: Andrews123
@@ -1300,7 +1332,7 @@
   source_url: https://www.marioforever.net/thread-1134-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: asdihshdfhasuhd.smwp
   file_url:
 - game: tsnmzqrxjhxfxhhsh
   author: s小s飞s侠s
@@ -1309,7 +1341,7 @@
   source_url: ~https://www.marioforever.net/thread-1131-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: tsnmzqrxjhxfxhhsh.smwp
   file_url:
 - game: 20*15系列五关测试
   author: Andrews123
@@ -1318,7 +1350,7 @@
   source_url: https://www.marioforever.net/thread-1130-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 20x15测试V4.smwp
   file_url:
 - game: wzcfdzgxzpjnmlp
   author: s小s飞s侠s
@@ -1327,7 +1359,7 @@
   source_url: ~https://www.marioforever.net/thread-1121-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: wzcfdzgxzpjnmlp.smwp
   file_url:
 - game: smf's world
   author: 超级玛丽迷01
@@ -1336,7 +1368,7 @@
   source_url: https://www.marioforever.net/thread-1075-1-1.html
   download_url: http://chao123.ysepan.com/
   code:
-  file_name:
+  file_name: Super Mario Fan's World/
   file_url:
 - game: M W 运 动 会
   author: s小s飞s侠s
@@ -1345,7 +1377,7 @@
   source_url: ~https://www.marioforever.net/thread-1074-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: M W 运 动 会/
   file_url:
 - game: 如何让锤子龟发挥更大优势
   author: Andrews123
@@ -1354,7 +1386,7 @@
   source_url: https://www.marioforever.net/thread-1067-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 如何让锤子龟发挥更大优势.smwl
   file_url:
 - game: 钻水管打的库巴
   author: Andrews123
@@ -1363,7 +1395,7 @@
   source_url: https://www.marioforever.net/thread-1061-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 钻水管打的库巴.smwp
   file_url:
 - game: Æтᴴᴇꭆ
   author: '1168438795'
@@ -1382,7 +1414,7 @@
   source_url: https://www.marioforever.net/thread-1057-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Mario Worker Rainbow Land/Mario Worker Rainbow Land World 1.smwp
   file_url:
 - game: The Happy Level 2
   author: s小s飞s侠s
@@ -1391,7 +1423,7 @@
   source_url: ~https://www.marioforever.net/thread-1056-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: The Happy Level 2.smwp
   file_url:
 - game: 板栗仔的逆袭
   author: 把僵尸炖了
@@ -1400,7 +1432,7 @@
   source_url: https://www.marioforever.net/thread-1037-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: goomba's counterattack.smwl
   file_url:
 - game: MW大冲关VI
   author: s小s飞s侠s
@@ -1410,6 +1442,9 @@
   download_url:
   code:
   file_name:
+  - MW大冲关VI.smwp
+  - MW大冲关VI接力往.smwp
+  - MW大冲关VI接力返.smwp
   file_url:
 - game: order.smwl
   author: 把僵尸炖了
@@ -1418,7 +1453,7 @@
   source_url: https://www.marioforever.net/thread-994-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: order.smwl
   file_url:
 - game: 坑爹世界一世界试玩版
   author: Andrews123
@@ -1427,7 +1462,7 @@
   source_url: https://www.marioforever.net/thread-993-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: kengder start(world1).smwp
   file_url:
 - game: 赤焰杯
   author: s小s飞s侠s
@@ -1436,7 +1471,7 @@
   source_url: ~https://www.marioforever.net/thread-987-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 赤焰杯(fix1)/
   file_url:
 - game: a mega bad level
   author: 把僵尸炖了
@@ -1445,7 +1480,7 @@
   source_url: https://www.marioforever.net/thread-979-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: a mega bad level.smwl
   file_url:
 - game: 坑爹世界
   author: Andrews123
@@ -1454,7 +1489,7 @@
   source_url: https://www.marioforever.net/thread-933-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  file_name:
+  file_name: 坑爹世界/
   file_url:
 - game: Harold's Old Map
   author: 哈德萝·戈德纹
@@ -1463,16 +1498,16 @@
   source_url: https://www.marioforever.net/thread-931-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Harold's Old Map/
   file_url:
-- game: Oracle of Elements v1.5.1
+- game: Oracle of Elements v1.5
   author: LongZongKuiYan
   smwp_ver: v1.6.5
   date: 2021-02-11
   source_url: https://www.marioforever.net/thread-902-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Oracle of Elements v1.5/
   file_url:
 - game: A.R.K. -Ragnarok-
   author: '1168438795'
@@ -1481,7 +1516,7 @@
   source_url: https://www.marioforever.net/thread-682-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: A.R.K. -Ragnarok-/
   file_url:
 - game: Nmnmoooh World 第一章节试玩版
   alias:
@@ -1502,7 +1537,7 @@
   source_url: https://www.marioforever.net/thread-798-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 第9.5届MW杯/
   file_url:
 - game: MW大冲关V
   author: s小s飞s侠s
@@ -1511,7 +1546,7 @@
   source_url: ~https://www.marioforever.net/thread-796-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW大冲关V.smwp
   file_url:
 - game: Simply Linked Stages C
   author: 把僵尸炖了
@@ -1520,7 +1555,7 @@
   source_url: https://www.marioforever.net/thread-784-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Simply Linked Stages C.smwp
   file_url:
 - game: Aleph-0
   author: '1168438795'
@@ -1549,7 +1584,7 @@
   source_url: https://www.marioforever.net/thread-783-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW Zeta Series V1.01/
   file_url:
 - game: 草.smwl
   author: 把僵尸炖了
@@ -1558,7 +1593,7 @@
   source_url: https://www.marioforever.net/thread-782-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 草.smwl
   file_url:
 - game: Tears of the Times（XFX Album）
   author: s小s飞s侠s
@@ -1567,7 +1602,7 @@
   source_url: ~https://www.marioforever.net/thread-739-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Tears of the Times（XFX Album）
   file_url:
 - game: Garbage Mountain
   author: '1168438795'
@@ -1576,7 +1611,7 @@
   source_url: https://www.marioforever.net/thread-738-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Garbage Mountain.smwp
   file_url:
 - game: 116的小作
   author: '1168438795'
@@ -1585,7 +1620,7 @@
   source_url: https://www.marioforever.net/thread-729-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 116的小作/
   file_url:
 - game: Super Mario Worker Maker v1.0.0
   author: ƒresh★LAKE
@@ -1604,7 +1639,7 @@
   source_url: https://www.marioforever.net/thread-712-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: 5日杀.smwp
   file_url:
 - game: Water Pipe Maze
   author: 张振民66
@@ -1613,7 +1648,7 @@
   source_url: https://tieba.baidu.com/p/6940589916
   download_url: https://pan.baidu.com/s/1pgO4eGfmTqy46QTpfwrTbA
   code: wpm1
-  file_name:
+  file_name: Water Pipe Maze.smwl
   file_url:
 - game: The Nether
   author: '1168438795'
@@ -1622,7 +1657,7 @@
   source_url: https://www.marioforever.net/thread-691-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: The Nether/
   file_url:
 - game: MW大冲关IV
   author: s小s飞s侠s
@@ -1631,7 +1666,7 @@
   source_url: ~https://www.marioforever.net/thread-686-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: MW大冲关IV.smwp
   file_url:
 - game: Different Worlds
   author: 张振民66
@@ -1640,7 +1675,7 @@
   source_url: https://tieba.baidu.com/p/6915805971
   download_url: https://pan.baidu.com/s/10VRn2j_MFENWrjNM_Hr8yg
   code: sm54
-  file_name:
+  file_name: WORLD.smwp
   file_url:
 - game: Getting Over it With XFX II
   author: s小s飞s侠s
@@ -1650,6 +1685,9 @@
   download_url:
   code:
   file_name:
+  - Getting Over it With XFX II.smwp
+  - Getting Over it With XFX II（help mode）.smwp
+  - Getting Over it With XFX II（带时间速通版）.smwp
   file_url:
 - game: 马里奥夏之旅
   author: gaere54
@@ -1658,7 +1696,7 @@
   source_url: https://www.marioforever.net/thread-670-1-1.html
   download_url: http://hos20110101.ysepan.com/
   code:
-  file_name:
+  file_name: 马里奥夏之旅/
   file_url:
 - game: Nightland
   author: 张振民66
@@ -1667,7 +1705,7 @@
   source_url: https://tieba.baidu.com/p/6897971808
   download_url: https://pan.baidu.com/s/170369Y7snB3I6aIl79zYUQ
   code: '5399'
-  file_name:
+  file_name: Nightland.smwp
   file_url:
 - game: First Blocking of Love
   author: LLX奶油马里奥
@@ -1676,9 +1714,11 @@
   source_url: https://www.marioforever.net/thread-665-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: First blocking of love.smwp
   file_url:
 - game: Mario Worker Nature Adventure
+  alias:
+  - MWNA
   author: 6463喝喝了
   smwp_ver: v1.7.6
   date: 2020-08-19
@@ -1696,6 +1736,8 @@
   download_url: https://pan.baidu.com/s/11jK7POL0Wwe2P_jv7rn_YA
   code: zprt
   file_name:
+  - Become hollow inside.smwl
+  - Become hollow liside(Forced roller).smwl
   file_url:
 - game: lz Worlds - Classic EPIC
   author: 我懂你不懂的lz
@@ -1716,7 +1758,7 @@
   source_url: https://www.marioforever.net/thread-558-1-1.html
   download_url: https://wwa.lanzoux.com/izv69eg7rsh
   code:
-  file_name:
+  file_name: Welcome back to Marioworker Bar 2020/
   file_url:
 - game: Castle Maze
   author: 2333ty
@@ -1725,7 +1767,7 @@
   source_url: https://www.marioforever.net/thread-496-1-1.html
   download_url: http://2333ty.ysepan.com/
   code:
-  file_name:
+  file_name: Castle Maze.smwp
   file_url:
 - game: 10th Anniversary Album
   author: LLX奶油马里奥
@@ -1746,7 +1788,7 @@
   source_url: ~https://www.marioforever.net/thread-534-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Mario Worker Conventional Worlds/
   file_url:
 - game: The Happy Level
   author: s小s飞s侠s
@@ -1755,7 +1797,7 @@
   source_url: ~https://www.marioforever.net/thread-497-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: The happy level.smwp
   file_url:
 - game: Colorful Continents
   author: 2333ty
@@ -1764,7 +1806,7 @@
   source_url: https://www.marioforever.net/thread-496-1-1.html
   download_url: http://2333ty.ysepan.com/
   code:
-  file_name:
+  file_name: Colorful Continents.smwp
   file_url:
 - game: Hold Your Speed!
   author: ƒresh★LAKE
@@ -1773,7 +1815,7 @@
   source_url: https://www.marioforever.net/thread-469-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Hold Your Speed!.smwp
   file_url:
 - game: MWBP连载周刊
   author: 把僵尸炖了
@@ -1782,7 +1824,7 @@
   source_url: https://www.marioforever.net/thread-457-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: MWBP连载周刊/
   file_url:
 - game: Program Rebirth
   author: 我懂你不懂的lz
@@ -1801,7 +1843,7 @@
   source_url: https://www.marioforever.net/thread-392-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: Save ZMJ/
   file_url:
 - game: 阿伏伽德罗常数单关作品
   author: 阿伏伽德罗常数
@@ -1810,7 +1852,7 @@
   source_url: https://www.marioforever.net/thread-381-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 阿伏伽德罗常数单关作品/
   file_url:
 - game: Unidentified world
   author: 毒蘑菇vn
@@ -1819,7 +1861,7 @@
   source_url: https://tieba.baidu.com/p/6502621386
   download_url: http://marioworker.ysepan.com/
   code:
-  file_name:
+  file_name: Unidentified world/
   file_url:
 - game: New The Four Seasons World V2.0 Beta
   author: '123568024'
@@ -1828,7 +1870,7 @@
   source_url: https://www.marioforever.net/thread-352-1-1.html
   download_url: http://123568023.ysepan.com/
   code:
-  file_name:
+  file_name: New The Four Seasons World V2.0--Summer beta
   file_url:
 - game: 新人试炼关卡
   author: s小s飞s侠s
@@ -1837,16 +1879,16 @@
   source_url: ~https://www.marioforever.net/thread-342-1-1.html
   download_url:
   code:
-  file_name:
+  file_name: 新人试炼关卡.smwp
   file_url:
 - game: Moonlight
   author: LLX奶油马里奥
   smwp_ver: v1.6.5
   date: 2020-02-14
   source_url: https://www.marioforever.net/thread-341-1-1.html
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: 【LLX‘s work】Moonlight（2020.02.14）/
   file_url:
 - game: Secret Land Stories B
   author: 把僵尸炖了
@@ -1855,7 +1897,7 @@
   source_url: https://www.marioforever.net/thread-336-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Secret Land Stories B/
   file_url:
 - game: First Awakening of Love v3.0
   alias:
@@ -1865,9 +1907,9 @@
   smwp_ver: v1.6.5
   date: 2020-01-31
   source_url: https://www.marioforever.net/thread-320-1-1.html
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: 【LLX's work】First Awakening of Love version 3.0(20.02.01)/
   file_url:
 - game: Unfolding Album
   author: nmnmoooh
@@ -1876,7 +1918,7 @@
   source_url: https://www.marioforever.net/thread-297-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
   code:
-  file_name:
+  file_name: "[Nmnmoooh Works] Unfolding Album/"
   file_url:
 - game: Match Makes Miracle
   author: '1168438795'
@@ -1885,7 +1927,7 @@
   source_url: https://www.marioforever.net/thread-137-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  file_name:
+  file_name: Match Makes Miracle/
   file_url:
 - game: xfx的小型作品
   author: s小s飞s侠s
@@ -1895,6 +1937,8 @@
   download_url:
   code:
   file_name:
+  - xfx的小型作品（2019及之前）/
+  - xfx的小型作品（2020及之后）/
   file_url:
 - game: Strange levels Series A
   author: 把僵尸炖了
@@ -1903,34 +1947,34 @@
   source_url: https://tieba.baidu.com/p/6281685876
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: Strange levels Series A.smwp
   file_url:
-- game: Mario Forever Fantastic Land 重置版半发布
+- game: Mario Forever Fantastic Land 重制版半发布
   author: LLX奶油马里奥
   smwp_ver: v1.6.5
   date: 2019-08-24
   source_url: https://tieba.baidu.com/p/6235445725
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: Mario Forever Fantastic Land重制版半发布/
   file_url:
 - game: The Ghost Cage
   author: LLX奶油马里奥
   smwp_ver: v1.6.5
   date: 2019-08-09
   source_url: https://tieba.baidu.com/p/4722161415
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: 【LLX’s work】The ghost cage.smwp
   file_url:
 - game: 5A-LLX-Trade war
   author: LLX奶油马里奥
   smwp_ver: v1.6.5
   date: 2019-08-02
   source_url: https://tieba.baidu.com/p/6213385129
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: 5A-LLX-Trade war/
   file_url:
 - game: Wonderland Secret Worlds 全集
   alias:
@@ -1941,7 +1985,7 @@
   source_url: https://tieba.baidu.com/p/6179234905
   download_url: https://pan.baidu.com/s/1GgLbbK4Z6zAFqzOxF1A2YA
   code: r0wn
-  file_name:
+  file_name: Wonderland Secret Worlds v1.1/
   file_url:
 - game: Welcome back to Marioworker Bar 2019
   alias:
@@ -1952,25 +1996,25 @@
   source_url: https://tieba.baidu.com/p/6156681489
   download_url: https://pan.baidu.com/s/1PQMRPA7oGBhq9YxirAsUjw
   code: luij
-  file_name:
+  file_name: Welcome Back to Marioworker Bar 2019/
   file_url:
 - game: Melody of Night Fisherman
   author: LLX奶油马里奥
   smwp_ver: v1.6.2
   date: 2019-05-04
   source_url:
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: 渔舟唱晚/
   file_url:
 - game: Lucky 52 (Sequel)
   author: LLX奶油马里奥
   smwp_ver: v1.6.1
   date: 2019-04-13
   source_url: https://tieba.baidu.com/p/6100206960
-  download_url: http://nju161140035.ysepan.com/
+  download_url: ~http://nju161140035.ysepan.com/
   code:
-  file_name:
+  file_name: lucky 52(sequel)/
   file_url:
 - game: Brand New Experience Maps 全集
   alias:
@@ -1981,7 +2025,7 @@
   source_url: https://tieba.baidu.com/p/5859039784
   download_url: http://nmnmoooh888.ysepan.com/
   code:
-  file_name:
+  file_name: Brand New Experience V2_5 fix3/
   file_url:
 - game: The Road of Mario's
   author: 数字1528君
@@ -1990,7 +2034,7 @@
   source_url: https://tieba.baidu.com/p/5850055970
   download_url: http://25861524.ysepan.com/
   code:
-  file_name:
+  file_name: The Road of Mario's/
   file_url:
 - game: Super Mario Forever 2014 MW ver.残卷
   author: LongZongKuiYan
@@ -1999,7 +2043,7 @@
   source_url: https://tieba.baidu.com/p/5823614224
   download_url: https://pan.baidu.com/s/1evNfmttChKJ13BBS3XaY9w
   code: bbpk
-  file_name:
+  file_name: SMF2014mwver残卷.smwp
   file_url:
 - game: An old tale残卷
   author: 把僵尸炖了
@@ -2008,7 +2052,7 @@
   source_url: https://tieba.baidu.com/p/5812095668
   download_url: http://zhaomogu.ysepan.com/
   code:
-  file_name:
+  file_name: An old tale残卷/
   file_url:
 - game: A Small Maze
   author: 无视我……
@@ -2017,7 +2061,7 @@
   source_url: https://tieba.baidu.com/p/5738665884
   download_url: http://wsw233.ysepan.com/
   code:
-  file_name:
+  file_name: A_Small_Maze_by_WSW_fixed5.smwp
   file_url:
 - game: Welcome back to Marioworker Bar
   alias:
@@ -2028,7 +2072,7 @@
   source_url: https://tieba.baidu.com/p/5737130610
   download_url: http://zqh--123.ysepan.com/
   code:
-  file_name:
+  file_name: Welcome back to Marioworker Bar/
   file_url:
 - game: First Awakening of Love 十二世界完全版
   alias:
@@ -2040,7 +2084,7 @@
   source_url: https://tieba.baidu.com/p/5550194904
   download_url: https://pan.baidu.com/s/1nxac3St
   code:
-  file_name:
+  file_name: First Awakening Of Love V2.0十二世界全/
   file_url:
 - game: Celebration!!!
   author: LLX奶油马里奥
@@ -2049,7 +2093,7 @@
   source_url: https://tieba.baidu.com/p/5276991814
   download_url: https://pan.baidu.com/s/1kVxaIbl
   code:
-  file_name:
+  file_name: Celebration!!!(91st birthday!!!)/
   file_url:
 - game: Wonderful World
   author: 番木瓜反抗
@@ -2058,7 +2102,7 @@
   source_url: https://tieba.baidu.com/p/5269303412
   download_url: https://pan.baidu.com/s/1bo85QyV
   code:
-  file_name:
+  file_name: 
   file_url:
 - game: Mldsdt Map Origin
   author: 玛丽的死对头
@@ -2067,7 +2111,7 @@
   source_url: https://archive.marioforever.net/post/5255732090.html
   download_url: https://pan.baidu.com/s/1kVwtUg3
   code:
-  file_name:
+  file_name: "[Mldsdt Works]Mldsdt Map 经典版/"
   file_url:
 - game: First Awakening of Love 八世界体验版
   alias:
@@ -2079,7 +2123,7 @@
   source_url: https://tieba.baidu.com/p/5253070371
   download_url: https://pan.baidu.com/s/1i5gOM9n
   code:
-  file_name:
+  file_name: QDCK体验版 170801/
   file_url:
 - game: 关卡接力活动
   author: 合作作品
@@ -2088,7 +2132,7 @@
   source_url: https://tieba.baidu.com/p/5074105449
   download_url:
   code:
-  file_name:
+  file_name: 关卡接力/
   file_url:
 - game: The Desolate Ruin
   author: 无视我……
@@ -2097,7 +2141,7 @@
   source_url: https://tieba.baidu.com/p/4968389019
   download_url: http://wsw233.ysepan.com/
   code:
-  file_name:
+  file_name: The Desolate Ruin.mfl
   file_url:
 - game: Times Album
   author: 蓝太阳
@@ -2106,7 +2150,7 @@
   source_url: https://tieba.baidu.com/p/4732275649
   download_url: http://marioworker.ysepan.com/
   code:
-  file_name:
+  file_name: Times Album/
   file_url:
 - game: Desert
   author: s小s飞s侠s
@@ -2116,4 +2160,6 @@
   download_url: http://x-f-x.ysepan.com/
   code:
   file_name:
+  - v1.03 desert（by xfx）/
+  - v0.92 desert（by xfx）/
   file_url:
