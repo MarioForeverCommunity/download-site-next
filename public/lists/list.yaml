@@ -2208,7 +2208,7 @@
   download_url: https://www.mediafire.com/file/xzh3u5hlokttayb/Mario_Worker_-_Alternative_Worlds_v0.9_%255BBETA%255D.rar/file
   code:
   download_url_alt:
-  file_name: Mario Worker - Alternative Worlds v0.9 %5bBETA%5d.rar
+  file_name: Mario Worker - Alternative Worlds v0.9 [BETA].rar
   file_url:
 - game: 'Mario Forever: Powerless Adventure'
   game_alt:
@@ -2982,7 +2982,7 @@
       download_url: https://pan.baidu.com/s/1C2F4rELPFpYdpY9PhiOsxg
       code: MITF
       download_url_alt:
-      file_name: Mario In The FOREST V0.6.3%5bFix1%5d.7z
+      file_name: Mario In The FOREST V0.6.3[Fix1].7z
       file_url:
   - v0.6.3:
       ver_alt:
@@ -3002,7 +3002,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: Mario In The FOREST V0.6.2%5bFix1%5d.7z
+      file_name: Mario In The FOREST V0.6.2[Fix1].7z
       file_url:
   - v0.6.2:
       ver_alt:
@@ -3022,7 +3022,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: Mario In The FOREST V0.6.1%5bFix1%5d.7z
+      file_name: Mario In The FOREST V0.6.1[Fix1].7z
       file_url:
   - v0.6.1:
       ver_alt:
@@ -3042,7 +3042,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: Mario In The FOREST V0.6.0%5bFix4%5d.7z
+      file_name: Mario In The FOREST V0.6.0[Fix4].7z
       file_url:
   - v0.6.0 Fix2:
       ver_alt:
@@ -3052,7 +3052,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: Mario In The FOREST V0.6.0%5bFix2%5d.7z
+      file_name: Mario In The FOREST V0.6.0[Fix2].7z
   - v0.6.0:
       ver_alt:
       date: 2021-12-30
@@ -3071,7 +3071,7 @@
       download_url:
       code:
       download_url_alt:
-      file_name: Mario In The Forest 0.5.1%5bFix1%5d.7z
+      file_name: Mario In The Forest 0.5.1[Fix1].7z
       file_url:
   - v0.5.1:
       ver_alt:
@@ -10816,7 +10816,7 @@
   download_url: https://pan.baidu.com/s/1ntKNDaT
   code:
   download_url_alt:
-  file_name: "%5b1.01%5dMFE吧周年庆作品2in1(1).exe"
+  file_name: "[1.01]MFE吧周年庆作品2in1(1).exe"
   file_url:
 - game: World Dark
   game_alt:
