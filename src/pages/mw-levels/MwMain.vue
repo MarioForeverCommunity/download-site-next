@@ -8,7 +8,7 @@
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
-  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon } from "../../components/icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
   import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -198,58 +198,54 @@
 
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
-      <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
-      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
-      <Collapse :when="sort_option.active && !wideScreen">
-        <div class="icon-container">
-          排序选项
-          <div class="visible-button" @click="sortByName();">
-            名称
-            <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortByAuthor();">
-            作者
-            <span v-if="sort_option.field == 'author'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'author'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortByDate();">
-            日期
-            <span v-if="sort_option.field == 'date'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'date'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
+      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
+      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon> -->
+      <div class="icon-container" v-if="!wideScreen">
+        排序选项
+        <div class="visible-button" @click="sortByName();">
+          名称
+          <span v-if="sort_option.field == 'game'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'game'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
-      </Collapse>
-      <Collapse :when="filter_option.active || wideScreen">
-        <div class="icon-container">
-          {{ lan == "en" ? "Filter " : "筛选 " }}
-          <div class="inline-block">
-            <input v-model="filter_option.name" class="input">&nbsp;
-          </div>
-          <div class="inline-block">
-            {{ lan == "en" ? "Year" : "年份" }}
-            <select v-model="filter_option.year">
-              <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-              <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()">{{year}}</option>
-            </select>&nbsp;
-          </div>
+        <div class="visible-button" @click="sortByAuthor();">
+          作者
+          <span v-if="sort_option.field == 'author'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'author'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
-      </Collapse>
+        <div class="visible-button" @click="sortByDate();">
+          日期
+          <span v-if="sort_option.field == 'date'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'date'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+      </div>
+      <div class="icon-container">
+        {{ lan == "en" ? "Filter " : "筛选 " }}
+        <div class="inline-block">
+          <input v-model="filter_option.name" class="input">&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Year" : "年份" }}
+          <select v-model="filter_option.year">
+            <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()">{{year}}</option>
+          </select>&nbsp;
+        </div>
+      </div>
     </div>
   </div>
 

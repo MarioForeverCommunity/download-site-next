@@ -13,7 +13,7 @@
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
-  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
@@ -274,84 +274,80 @@
 
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
-      <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
-      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon>
-      <Collapse :when="sort_option.active && !wideScreen">
-        <div class="icon-container">
-          {{ lan == "en" ? "Sort by " : "排序选项 " }}
-          <div class="visible-button" @click="sortByName();">
-            {{ lan == "en" ? "Name" : "名称" }}
-            <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortByAuthor();">
-            {{ lan == "en" ? "Author" : "作者" }}
-            <span v-if="sort_option.field == 'author'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'author'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortByDate();">
-            {{ lan == "en" ? "Date" : "日期" }}
-            <span v-if="sort_option.field == 'date'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'date'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
+      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
+      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon> -->
+      <div class="icon-container" v-if="!wideScreen">
+        {{ lan == "en" ? "Sort by " : "排序选项 " }}
+        <div class="visible-button" @click="sortByName();">
+          {{ lan == "en" ? "Name" : "名称" }}
+          <span v-if="sort_option.field == 'game'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'game'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
-      </Collapse>
-      <Collapse :when="filter_option.active || wideScreen">
-        <div class="icon-container">
-          {{ lan == "en" ? "Filter " : "筛选 " }}
-          <div class="inline-block">
-            <input v-model="filter_option.name" class="input">&nbsp;
-          </div>
-          <div class="inline-block">
-            {{ lan == "en" ? "Year" : "年份" }}
-            <select v-model="filter_option.year">
-              <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-              <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()">{{year}}</option>
-            </select>&nbsp;
-          </div>
-          <div class="inline-block">
-            <input v-model="filter_option.chinese" type="checkbox">
-            {{ lan == "en" ? "Chinese" : "国内作品" }}
-          </div>
-          <div class="inline-block">
-            <input v-model="filter_option.international" type="checkbox">
-            {{ lan == "en" ? "International" : "国外作品" }}
-          </div>
-          <div class="inline-block">
-            <input v-model="filter_option.repacked" type="checkbox">
-            {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
-            <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <InfoIcon class="icon button-shift"></InfoIcon>
-              <template #popper>
-                <span style="text-align: left; display: block;">
-                  重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
-                  <br>
-                  重打包作品收录的原则是：<br>
-                  1. 只收录原压缩包已失传的作品；<br>
-                  2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
-                  3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
-                  4. 重打包的作品不应包含游玩过的存档文件。
-                </span>
-              </template>
-            </Tooltip>
-          </div>
+        <div class="visible-button" @click="sortByAuthor();">
+          {{ lan == "en" ? "Author" : "作者" }}
+          <span v-if="sort_option.field == 'author'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'author'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
-      </Collapse>
+        <div class="visible-button" @click="sortByDate();">
+          {{ lan == "en" ? "Date" : "日期" }}
+          <span v-if="sort_option.field == 'date'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'date'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+      </div>
+      <div class="icon-container">
+        {{ lan == "en" ? "Filter " : "筛选 " }}
+        <div class="inline-block">
+          <input v-model="filter_option.name" class="input">&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Year" : "年份" }}
+          <select v-model="filter_option.year">
+            <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()">{{year}}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.chinese" type="checkbox">
+          {{ lan == "en" ? "Chinese" : "国内作品" }}
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.international" type="checkbox">
+          {{ lan == "en" ? "International" : "国外作品" }}
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.repacked" type="checkbox">
+          {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
+          <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <InfoIcon class="icon button-shift"></InfoIcon>
+            <template #popper>
+              <span style="text-align: left; display: block;">
+                重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
+                <br>
+                重打包作品收录的原则是：<br>
+                1. 只收录原压缩包已失传的作品；<br>
+                2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
+                3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
+                4. 重打包的作品不应包含游玩过的存档文件。
+              </span>
+            </template>
+          </Tooltip>
+        </div>
+      </div>
     </div>
   </div>
 
