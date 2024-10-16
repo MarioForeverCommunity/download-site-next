@@ -43,6 +43,16 @@ export function getAuthorList(item, lan) {
     return lan == "en" && item.author_alt != null ? item.author_alt : item.author;
 }
 
+export function getStrFromList(src) {
+    if (src == null) {
+        return null;
+    }
+    if (typeof src == "object") {
+        return src.join("\n");
+    }
+    return src;
+}
+
 export function getDownloadLink(item, lan) {
     if (lan == "en" && item.currentVer.download_url_alt) {
         return item.currentVer.download_url_alt;

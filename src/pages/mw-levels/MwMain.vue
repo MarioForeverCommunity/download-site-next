@@ -144,6 +144,7 @@
   const filteredGames = computed(() => {
     return games.value.filter((a) => 
       ((filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
+      || (filter_option.value.name.trim() == "" || a.author.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
       || filterList(filter_option.value.name.trim(), a.alias))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
     )
