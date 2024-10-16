@@ -864,6 +864,7 @@
   code:
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/s小s飞s侠s/Mario Worker Random.7z"
 - game: Mario Worker Random简易版
+  alias:
   - MWR
   - MWRandom
   author: s小s飞s侠s
@@ -954,6 +955,7 @@
   code:
   file_url:
 - game: Mario Worker Outbreak
+  alias:
   - MWO
   - MWOutbreak
   author: s小s飞s侠s
@@ -988,6 +990,7 @@
   code:
   file_url:
 - game: Mario Worker Awaken
+  alias:
   - MWA
   - MWAwaken
   author: s小s飞s侠s
@@ -1014,6 +1017,7 @@
   code:
   file_url:
 - game: Mario Worker Hiraeth
+  alias:
   - MWH
   author: s小s飞s侠s
   smwp_ver: v1.7.6
@@ -1509,6 +1513,7 @@
   code: 81s8
   file_url: "https://file.marioforever.net/Mario Worker/吧友作品/LLX奶油马里奥/【LLX's work】10th Anniversary Album （fix3）.zip"
 - game: Mario Worker Conventional Worlds
+  alias:
   - MWCW
   author: s小s飞s侠s
   smwp_ver: v1.7.3

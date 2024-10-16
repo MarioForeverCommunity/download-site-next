@@ -64,51 +64,53 @@
     </div>
     <div class="game-date">{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
     <div class="game-buttons">
-      <Tooltip v-if="!game.disable_download">
-        <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
-        <template #popper>
-          {{ lan == "en" ? "Download" : "下载链接" }}
-        </template>
-      </Tooltip>
-      <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
-        <a :href="getSourceLink(game, lan)" target="_blank" class="inline-block">
-          <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
-        </a>
-        <template #popper>
-          <span class="content-center">
-            {{ lan == "en" ? "Source Link" : "发布页" }}
-            <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
-          </span>
-        </template>
-      </Tooltip>
-      <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
-        <a :href="getSourceLink(game, lan)" target="_blank">
-          <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
-        </a>
-        <template #popper>
-          {{ lan == "en" ? "Release Video" : "发布视频" }}
-        </template>
-      </Tooltip>
-      <Tooltip v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)">
-        <VideoIcon class="icon button"></VideoIcon>
-        <template #popper>Related Videos</template>
-      </Tooltip>
-      <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)">
-        <VideoIcon class="icon button"></VideoIcon>
-        <template #popper>相关视频</template>
-      </Tooltip>
-      <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
-        <a :href="game.wiki_zh_url" target="_blank">
-          <WikiIcon class="icon button"></WikiIcon>
-        </a>
-        <template #popper>Wiki 页面</template>
-      </Tooltip>
-      <Tooltip v-if="game.wiki_en_url != null && lan == 'en'">
-        <a :href="game.wiki_en_url" target="_blank">
-          <WikiIcon class="icon button"></WikiIcon>
-        </a>
-        <template #popper>Wiki Page</template>
-      </Tooltip>
+      <div>
+        <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
+          <a :href="game.wiki_zh_url" target="_blank">
+            <WikiIcon class="icon button"></WikiIcon>
+          </a>
+          <template #popper>Wiki 页面</template>
+        </Tooltip>
+        <Tooltip v-if="game.wiki_en_url != null && lan == 'en'">
+          <a :href="game.wiki_en_url" target="_blank">
+            <WikiIcon class="icon button"></WikiIcon>
+          </a>
+          <template #popper>Wiki Page</template>
+        </Tooltip>
+        <Tooltip v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)">
+          <VideoIcon class="icon button"></VideoIcon>
+          <template #popper>Related Videos</template>
+        </Tooltip>
+        <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)">
+          <VideoIcon class="icon button"></VideoIcon>
+          <template #popper>相关视频</template>
+        </Tooltip>
+        <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
+          <a :href="getSourceLink(game, lan)" target="_blank" class="inline-block">
+            <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
+          </a>
+          <template #popper>
+            <span class="content-center">
+              {{ lan == "en" ? "Source Link" : "发布页" }}
+              <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
+            </span>
+          </template>
+        </Tooltip>
+        <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
+          <a :href="getSourceLink(game, lan)" target="_blank">
+            <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+          </a>
+          <template #popper>
+            {{ lan == "en" ? "Release Video" : "发布视频" }}
+          </template>
+        </Tooltip>
+        <Tooltip v-if="!game.disable_download">
+          <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
+          <template #popper>
+            {{ lan == "en" ? "Download" : "下载链接" }}
+          </template>
+        </Tooltip>
+      </div>
     </div>
   </div>
 </template>
@@ -150,9 +152,9 @@
     color: rgba(0, 0, 0, 0.65);
   }
 
-  .button:hover {
+  /* .button:hover {
     transform: translateY(-1px);
-  }
+  } */
 
   .button:active {
     background-color: #F0F0F1;

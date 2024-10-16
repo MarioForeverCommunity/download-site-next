@@ -14,7 +14,7 @@
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
   import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL} from "../../util/GemeUtil.js"
+  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
@@ -200,7 +200,7 @@
   const filteredGames = computed(() => {
     return games.value.filter((a) => 
       ((filter_option.value.name.trim() == "" || (getName(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-      || (filter_option.value.name.trim() == "" || (getAuthor(a, lan.value).toUpperCase().match(filter_option.value.name.trim().toUpperCase()))))
+      || filterList(filter_option.value.name.trim(), a.alias))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && ((filter_option.value.chinese && a.type == "chinese")
       || (filter_option.value.international && a.type == "international")

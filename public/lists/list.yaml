@@ -5549,6 +5549,8 @@
       file_url:
 - game: 'Mario Forever: FOOLING City'
   game_alt:
+  alias:
+  - Mario Forever Cloud World
   author: 无视我233
   author_alt: WSW
   type: chinese

@@ -8,10 +8,9 @@
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
-  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
+  import { SortIcon, FilterIcon, SortUpIcon, SortDownIcon, SortUpDownIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
-  import {getAuthor} from "../../util/GemeUtil.js";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc} from "../../util/GemeUtil.js"
+  import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
@@ -142,7 +141,7 @@
   const filteredGames = computed(() => {
     return games.value.filter((a) => 
       ((filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
-      || (filter_option.value.name.trim() == "" || (getAuthor(a, "zh").toUpperCase().match(filter_option.value.name.trim().toUpperCase()))))
+      || filterList(filter_option.value.name.trim(), a.alias))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
     )
   });

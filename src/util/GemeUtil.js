@@ -123,3 +123,15 @@ export function getResourceURL(item, lan) {
     }
     return item.currentVer.file_url_zh
 }
+
+export function filterList(target, aliasList) {
+    if (aliasList == null) {
+        return false;
+    }
+    for (var alias of aliasList) {
+        if (alias.toUpperCase().match(target.toUpperCase())) {
+            return true;
+        }
+    }
+    return false;
+}
