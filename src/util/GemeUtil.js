@@ -124,6 +124,13 @@ export function getResourceURL(item, lan) {
     return item.currentVer.file_url_zh
 }
 
+export function getDataResourceURL(item, lan) {
+    if (lan == "en") {
+        return item.currentVer.data_file_url_en
+    }
+    return item.currentVer.data_file_url_zh
+}
+
 export function filterList(target, aliasList) {
     if (aliasList == null) {
         return false;

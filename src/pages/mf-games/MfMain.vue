@@ -14,7 +14,7 @@
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList} from "../../util/GemeUtil.js"
+  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
@@ -86,9 +86,21 @@
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
             }
           }
+          if (ver.data_file_name) {
+            if (entry.type == "chinese") {
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
+            } if (entry.type == "repacked") {
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.data_file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.data_file_name}`;
+            } if (entry.type == "international") {
+              ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.data_file_name}`;
+              ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.data_file_name}`;
+            }
+          }
         } else {
-          ver.file_url_zh = ver.file_url;
-          ver.file_url_en = ver.file_url;
+          ver.data_file_url_zh = ver.data_file_url;
+          ver.data_file_url_en = ver.data_file_url;
         }
 
         // Check validity of urls.
@@ -373,6 +385,7 @@
           <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
           <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
+          <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data Pack (file.marioforever.net)" : "下载数据包（资源站）" }}</a>
         </div>
       </div>
     </div>

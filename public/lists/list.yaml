@@ -286,6 +286,7 @@
   game_alt:
   alias:
   - MFH
+  - 地平线
   author: dasasdhba
   author_alt:
   type: chinese
@@ -695,6 +696,10 @@
       file_url:
 - game: Mario Forever大冲关 第二季
   game_alt: Mario Forever Platform Running Season II
+  alias:
+  - MF大冲关2
+  - MF大冲关第二季
+  - MF大冲关 第二季
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -1261,6 +1266,9 @@
   file_url:
 - game: 'Mario Forever: Lunar New Year 2022 - The Ultimate Voyage'
   game_alt:
+  alias:
+  - LNY2022
+  - LNY 2022
   author: Forever Team
   author_alt:
   type: international
@@ -1398,6 +1406,9 @@
   file_url:
 - game: 'Mario Forever - Community New Year 2023: Continental Tour'
   game_alt:
+  alias:
+  - CNY2023
+  - CNY 2023
   author: MF community
   author_alt:
   type: international
@@ -1456,7 +1467,8 @@
   game_alt:
   alias:
   - MFSC
-  - 节气
+  - 节气合作
+  - 季节合作
   author: Ultra Team
   author_alt:
   type: chinese
@@ -1808,6 +1820,9 @@
   file_url:
 - game: Mario Forever All-Stars 2
   game_alt:
+  alias:
+  - MFAS2
+  - MFAS 2
   author: Forever Team
   author_alt:
   type: international
@@ -1910,6 +1925,8 @@
   file_url:
 - game: Mario Forever大冲关
   game_alt: Mario Forever Platform Running
+  alias:
+  - MF大冲关
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -2195,6 +2212,10 @@
   file_url:
 - game: 'Mario Forever: Powerless Adventure'
   game_alt:
+  alias:
+  - MFPA
+  - 无补给冒险
+  - 无补给世界
   author: crist1919
   author_alt:
   type: international
@@ -2518,6 +2539,8 @@
   file_url:
 - game: Mario Forever Bizarre Land
   game_alt:
+  alias:
+  - MFBL
   author: 混沌卡比.yjs
   author_alt: Dr.Chaos Kirby
   type: chinese
@@ -2871,6 +2894,8 @@
   file_url:
 - game: Mario Forever 2077
   game_alt:
+  alias:
+  - MF2077
   author: JUE13
   author_alt:
   type: international
@@ -3366,6 +3391,9 @@
   file_url:
 - game: Rabyrinth
   game_alt:
+  alias:
+  - 兔迷宫
+  - Rabbit Labyrinth
   author: DET Factory
   author_alt:
   type: chinese
@@ -3555,6 +3583,9 @@
   file_url:
 - game: Mario Forever All-Stars 3
   game_alt:
+  alias:
+  - MFAS3
+  - MFAS 3
   author: Meteo Dream
   author_alt:
   type: international
@@ -3712,6 +3743,7 @@
   game_alt:
   alias:
   - 冬暖
+  - MFWW
   author: 大爱Mario_
   author_alt: Meowario
   type: chinese
@@ -4021,6 +4053,7 @@
   file_url:
 - game: PK!MF3 关卡集
   game_alt: PK!MF3 Collection
+  alias:
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -4074,6 +4107,8 @@
   file_url:
 - game: Mario Forever Ambivalence Overflow
   game_alt:
+  alias:
+  - MFAO
   author: Ultra Team
   author_alt:
   type: chinese
@@ -4414,6 +4449,8 @@
   file_url:
 - game: Mario Forever Kanji Worlds - Kanto Demo
   game_alt:
+  alias:
+  - 汉字世界
   author: Kavex
   author_alt:
   type: international
@@ -4514,6 +4551,8 @@
       file_url:
 - game: 'Mario Forever Tale Chapter One: Eclipse on Titanus'
   game_alt:
+  alias:
+  - MFT C1
   author: crist1919
   author_alt:
   type: international
@@ -4533,6 +4572,8 @@
   file_url:
 - game: 'Mario Forever: The 4th Quadrant Worlds'
   game_alt:
+  alias:
+  - 4QW
   author: 桜沫湲
   author_alt: Sakura Mowan
   type: chinese
@@ -4642,6 +4683,8 @@
   file_url:
 - game: MARIO FOREVER ONEGAI,MY FANTASY
   game_alt:
+  alias:
+  - MFOMF
   author: 混沌卡比.yjs
   author_alt: Dr.Chaos Kirby
   type: chinese
@@ -4787,6 +4830,8 @@
   file_url:
 - game: 永吧十五异变 ~ Snow Maker's Fortune Yard
   game_alt: Snow Maker's Fortune Yard (STG)
+  alias:
+  - 永十五异变
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -4804,6 +4849,9 @@
   file_url:
 - game: 'Mario Forever: The New Year Speciale 2022'
   game_alt:
+  alias:
+  - NY2022
+  - New Year 2022
   author: crist1919
   author_alt:
   type: international
@@ -4838,6 +4886,9 @@
   file_url:
 - game: 'Mario Forever: Community New Year 2022'
   game_alt:
+  alias:
+  - CNY2022
+  - CNY 2022
   author: MF community
   author_alt:
   type: international
@@ -4857,6 +4908,8 @@
   file_url: "https://file.marioforever.net/mario-forever/games/international-fangames/TheMarioVariable/MF - CNY2022 - v1.0.rar"
 - game: Mario Forever Brand New Start
   game_alt:
+  alias:
+  - MFBNS
   author: Ultra Team
   author_alt:
   type: chinese
@@ -4874,6 +4927,8 @@
   file_url:
 - game: Mario Forever - Not Epic Adventure
   game_alt:
+  alias:
+  - NEA
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
@@ -5002,6 +5057,8 @@
   file_url:
 - game: Nhelv
   game_alt:
+  alias:
+  - 你和驴
   author: '1168438795'
   author_alt:
   type: chinese
@@ -5091,6 +5148,9 @@
   file_url:
 - game: 'Mario Forever: Lunar New Year 2021 Special'
   game_alt:
+  alias:
+  - LNY2021
+  - LNY 2021
   author: Forever Team
   author_alt:
   type: international
@@ -5110,6 +5170,8 @@
   file_url:
 - game: M F 大 冲 关
   game_alt:
+  alias:
+  - MF大冲关
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -5161,6 +5223,8 @@
   file_url:
 - game: Mario Forever Easy Adventure 2
   game_alt:
+  alias:
+  - MFEA2
   author: JJ带我飞
   author_alt: JJ
   type: chinese
@@ -5219,6 +5283,8 @@
       file_url:
 - game: Mario Forever Unknown Area
   game_alt:
+  alias:
+  - MFUA
   author: 6463喝喝了
   author_alt: 6463HHL
   type: chinese
@@ -5464,6 +5530,8 @@
   alias:
   - AUE
   - MFAUE
+  - MF:AUE
+  - MFUE
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -5571,6 +5639,10 @@
   file_url:
 - game: 'Mario Worker: Letter Worlds Series'
   game_alt:
+  alias:
+  - 字母世界
+  - MW:LWS
+  - "MW: LWS"
   author: TheMarioVariable
   author_alt:
   type: international
@@ -5602,6 +5674,9 @@
       file_url:
 - game: 'Mario Forever: Community''s New Year 2021 special'
   game_alt:
+  alias:
+  - CNY2021
+  - CNY 2021
   author: MF community
   author_alt:
   type: international
@@ -5693,6 +5768,8 @@
   file_url:
 - game: Mario Forever Wonderful Worlds
   game_alt:
+  alias:
+  - MFWW
   author: 冻结的双重射手
   author_alt: Icy shooter
   type: chinese
@@ -5712,6 +5789,8 @@
   file_url:
 - game: Three Colours Garden
   game_alt:
+  alias:
+  - TCG
   author: 色粉堵塞
   author_alt: SFDS
   type: chinese
@@ -5804,6 +5883,8 @@
   file_url:
 - game: 'Mario Forever: Polish Letter Worlds Series - World Ż'
   game_alt:
+  alias:
+  - 波兰字母世界
   author: crist1919
   author_alt:
   type: international
@@ -6048,6 +6129,10 @@
   file_url:
 - game: Mario Worker - The New Levels Series
   game_alt:
+  alias:
+  - "MF: NLS"
+  - MF:NLS
+  - MFNLS
   author: TheMarioVariable
   author_alt:
   type: international
@@ -6099,6 +6184,8 @@
   file_url:
 - game: 'Mario Forever: Halloween Project 2020'
   game_alt:
+  alias:
+  - MFHP
   author: Forever Team
   author_alt:
   type: international
@@ -6167,6 +6254,8 @@
   file_url:
 - game: Mario Forever Adventure Island
   game_alt:
+  alias:
+  - MFAI
   author: 数字1528君
   author_alt: Num1528
   type: chinese
@@ -6186,6 +6275,11 @@
   file_url:
 - game: 第二届 PK!MF 关卡集
   game_alt: PK!MF 2nd Collection
+  alias:
+  - PKMF2关卡集
+  - PKMF2整合
+  - PK!MF2整合
+  - PK!MF2关卡集
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -6203,6 +6297,9 @@
   file_url:
 - game: Mario Forever - The Lost Map
   game_alt:
+  alias:
+  - "MF: TLM"
+  - MFTLM
   author: Can't Sleep
   author_alt:
   type: international
@@ -6222,6 +6319,8 @@
   file_url:
 - game: Area Block - Card Dash!
   game_alt:
+  alias:
+  - ABCD
   author: '1168438795'
   author_alt:
   type: chinese
@@ -6273,6 +6372,8 @@
   file_url:
 - game: XFX Forever
   game_alt:
+  alias:
+  - 永远的叉弗叉
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -6344,7 +6445,9 @@
       file_name: MC_W8.rar
       file_url:
 - game: 象牙塔
-  game_alt: Ivory Tower
+  game_alt: An Ivory Tower
+  alias:
+  - AIT
   author: DET Factory
   author_alt:
   type: chinese
@@ -6381,6 +6484,8 @@
   file_url:
 - game: Mario Forever Roman Worlds
   game_alt:
+  alias:
+  - 罗马世界
   author: MrPrzemistrz
   author_alt:
   type: international
@@ -6588,6 +6693,8 @@
   file_url:
 - game: Mario Forever THE
   game_alt:
+  alias:
+  - MF THE
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -6605,6 +6712,8 @@
   file_url:
 - game: xfx's world secrets
   game_alt:
+  alias:
+  - xfxws
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -6642,6 +6751,9 @@
   file_url:
 - game: Mario Forever The Unexplored Continents
   game_alt:
+  alias:
+  - MFTUC
+  - "MF: TUC"
   author: 2333ty
   author_alt:
   type: chinese
@@ -6670,6 +6782,8 @@
       file_url:
 - game: Mario Forever Eastern Village
   game_alt:
+  alias:
+  - MFEV
   author: 色粉堵塞
   author_alt: SFDS
   type: chinese
@@ -7192,6 +7306,9 @@
   file_url:
 - game: 'Mario Forever: Lunar New Year 2020 Special'
   game_alt:
+  alias:
+  - LNY2020
+  - LNY 2020
   author: JoséLPK.CF&MF
   author_alt:
   type: international
@@ -7300,6 +7417,9 @@
       file_url:
 - game: Mario Forever and Stolen Christmas
   game_alt:
+  alias:
+  - Mario Forever ...and Stolen Christmas
+  - Mario Forever Stolen Christmas
   author: crist1919
   author_alt:
   type: international
@@ -7319,6 +7439,8 @@
   game_alt:
   author: JoséLPK.CF&MF
   author_alt:
+  alias:
+  - 反世界
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -7337,6 +7459,7 @@
   alias:
   - MFSZ
   - SZ
+  - 拯救真强悍
   author: zqh——123
   author_alt:
   type: chinese
@@ -7356,6 +7479,11 @@
   file_url:
 - game: 'Mario Forever: Minus Worlds'
   game_alt:
+  alias:
+  - 负世界
+  - 负号世界
+  - MFMW
+  - "MF: MW"
   author: crist1919
   author_alt:
   type: international
@@ -7577,6 +7705,8 @@
   file_url:
 - game: Mario Forever Project Zeta
   game_alt:
+  alias:
+  - MFZ
   author: 初音炽
   author_alt: Hatsune Chi
   type: chinese
@@ -7972,6 +8102,9 @@
   file_url:
 - game: 'Mario Forever: Project Musicale'
   game_alt:
+  alias:
+  - 音乐世界
+  - 音符世界
   author: Phantom Sapphire
   author_alt:
   type: international
@@ -8036,6 +8169,8 @@
       file_url:
 - game: Mario Forever Magic Dreams
   game_alt:
+  alias:
+  - MFMD
   author: 色粉堵塞
   author_alt: SFDS
   type: chinese
@@ -8219,6 +8354,8 @@
   file_url:
 - game: Mario Forever Classic REMAKE
   game_alt:
+  alias:
+  - MFCR
   author: End冰凌
   author_alt: End ice
   type: chinese
@@ -8470,6 +8607,8 @@
   file_url:
 - game: Mario Forever - Black Hole Server
   game_alt:
+  alias:
+  - 黑洞服务器
   author: Phantom Sapphire
   author_alt:
   type: international
@@ -8640,6 +8779,8 @@
   file_url:
 - game: Mario Forever - Percentage Worlds
   game_alt:
+  alias:
+  - 百分号世界
   author: mohamed skandrani
   author_alt:
   type: international
@@ -8759,8 +8900,10 @@
   download_url_alt:
   file_name: Super Mario Forver：Myst（修复版本）.exe
   file_url:
-- game: Super Mario Forever Classical
+- game: Super Mario Forever Classical World
   game_alt:
+  alias:
+  - SMFCW
   author: End冰凌
   author_alt: End ice
   type: chinese
@@ -8780,6 +8923,8 @@
   file_url:
 - game: Through The Music
   game_alt:
+  alias:
+  - TTM
   author: 大爱Mario_
   author_alt: Meowario
   type: chinese
@@ -9076,6 +9221,9 @@
   file_url:
 - game: Mario Forever Peanuts 1 - The Confused Season
   game_alt:
+  alias:
+  - 混乱的季节
+  - TCS
   author: 史努比游览
   author_alt: Snoopy Tour
   type: chinese
@@ -9199,6 +9347,8 @@
   file_url:
 - game: Mario Forever Revolution
   game_alt:
+  alias:
+  - MFRev
   author: TheMarioVariable
   author_alt:
   type: international
@@ -9368,6 +9518,8 @@
   file_url:
 - game: Beyond the Invisible
   game_alt:
+  alias:
+  - 隐喻
   author: newlife2017
   author_alt:
   type: chinese
@@ -9544,6 +9696,8 @@
   file_url:
 - game: Mario Totem 2
   game_alt:
+  alias:
+  - MT2
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
@@ -9600,6 +9754,7 @@
   game_alt:
   alias:
   - MRI2
+  - 神秘岛2
   author: w1194600239
   author_alt:
   type: chinese
@@ -9633,6 +9788,7 @@
   alias:
   - MFJ
   - SMFJ
+  - Super Mario Forever Journy
   author: 878yfy
   author_alt:
   type: chinese
@@ -9715,6 +9871,9 @@
   game_alt:
   author: Forever Team
   author_alt:
+  alias:
+  - MFCS
+  - MFCSB
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -9764,6 +9923,9 @@
   file_url:
 - game: Mario Totem
   game_alt:
+  alias:
+  - 马里奥图腾
+  - MT
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
@@ -9893,6 +10055,8 @@
       file_url:
 - game: Mario Forever 2014
   game_alt:
+  alias:
+  - MF2014
   author: mario2233
   author_alt:
   type: international
@@ -9927,6 +10091,8 @@
   file_url:
 - game: 'Mario Forever: Order Of Fate'
   game_alt:
+  alias:
+  - MFOoF
   author: Phantom Sapphire
   author_alt:
   type: international
@@ -9995,6 +10161,8 @@
   file_url:
 - game: Mario Travels Around The World
   game_alt:
+  alias:
+  - 马里奥世界之旅
   author: 刘明浩666666
   author_alt: LMH666666
   type: chinese
@@ -10185,6 +10353,8 @@
   file_url:
 - game: Super Mario Forever Classic
   game_alt:
+  alias:
+  - SMFC
   author: End冰凌
   author_alt: End ice
   type: chinese
@@ -10303,6 +10473,9 @@
   file_url:
 - game: Mario Forever - Great Bowser's Castle
   game_alt:
+  alias:
+  - GBC
+  - TGBC
   author: crist1919
   author_alt:
   type: international
@@ -10337,6 +10510,9 @@
   file_url:
 - game: Turtleのheaven
   game_alt:
+  alias:
+  - 乌龟天堂
+  - 乌龟的天堂
   author: 天碧苑
   author_alt: Tian-BY
   type: chinese
@@ -10492,6 +10668,10 @@
   file_url:
 - game: Mysterious Island
   game_alt:
+  alias:
+  - MRI
+  - MRI1
+  - 神秘岛1
   author: w1194600239
   author_alt:
   type: chinese
@@ -10554,6 +10734,11 @@
   file_url:
 - game: 第一届 PK!MF 关卡集
   game_alt: PK!MF 1st Collection
+  alias:
+  - PKMF1关卡集
+  - PKMF1整合
+  - PK!MF1整合
+  - PK!MF1关卡集
   author: 虹原翼
   author_alt: Lyh
   type: chinese
@@ -10616,6 +10801,8 @@
       file_url:
 - game: MFE吧两周年
   game_alt: MFE Bar 2th Anniversary
+  alias:
+  - mfe两周年
   author: dodoufatch
   author_alt:
   type: chinese
@@ -10650,6 +10837,8 @@
   file_url:
 - game: Mario Forever Dream Chronicles
   game_alt:
+  alias:
+  - MFDC
   author: suteaury
   author_alt:
   type: chinese
@@ -10667,6 +10856,9 @@
   file_url:
 - game: Myth's inner world
   game_alt:
+  alias:
+  - 神话的内心世界
+  - 神话内心世界
   author: 神话是我smile
   author_alt:
   type: chinese
@@ -10882,6 +11074,9 @@
   file_url:
 - game: Mario Long March
   game_alt:
+  alias:
+  - MLM
+  - 炮弹山
   author: b20020702d
   author_alt:
   type: chinese
@@ -11004,6 +11199,8 @@
   file_url:
 - game: 'Mario Forever: Lost Map 2'
   game_alt:
+  alias:
+  - LM2
   author: Mario Worker
   author_alt:
   type: international
@@ -11055,6 +11252,8 @@
   file_url:
 - game: MFE吧半周年
   game_alt: MFE Bar Half Year
+  alias:
+  - mfe半周年
   author: dodoufatch
   author_alt:
   type: chinese
@@ -11108,6 +11307,9 @@
   file_url:
 - game: 疯狂的斜眼正式版
   game_alt: Crazy Funny Face
+  alias:
+  - 疯狂的滑稽
+  - 狂滑
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -11258,6 +11460,9 @@
   file_url:
 - game: 疯狂的斜眼番外篇
   game_alt: Crazy Funny Face Extra
+  alias:
+  - 疯狂的滑稽番外篇
+  - 狂滑番外篇
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -11461,6 +11666,8 @@
   file_url:
 - game: Mario World Classical
   game_alt:
+  alias:
+  - MWC
   author: 天蓝色的耀西
   author_alt: BlueYoshi
   type: chinese
@@ -11580,6 +11787,8 @@
       file_url:
 - game: New Mario Forever World
   game_alt:
+  alias:
+  - NMFW
   author: rk533
   author_alt: SiuSum1996
   type: chinese
@@ -11662,6 +11871,8 @@
   file_url:
 - game: Fantasy Rain Night
   game_alt:
+  alias:
+  - 梦幻雨夜
   author: 刘明浩666666
   author_alt: LMH666666
   type: chinese
@@ -11871,6 +12082,8 @@
   file_url:
 - game: Mario Forever World U
   game_alt:
+  alias:
+  - WU
   author: nmnmoooh
   author_alt:
   type: chinese
@@ -11888,6 +12101,8 @@
   file_url:
 - game: New Advanture World 1
   game_alt:
+  alias:
+  - NA1
   author: dodoufatch
   author_alt:
   type: chinese
@@ -12024,6 +12239,8 @@
   file_url:
 - game: WSW World
   game_alt:
+  alias:
+  - WSWW
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -12075,6 +12292,7 @@
   file_url:
 - game: Mario Forever The Next Levels
   game_alt:
+  alias: MFTNL
   author: Youras
   author_alt:
   type: chinese
@@ -12113,6 +12331,8 @@
       file_url:
 - game: Mario Forever World 10
   game_alt:
+  alias:
+  - W10
   author: syzxchulun
   author_alt:
   type: chinese
@@ -12130,6 +12350,8 @@
   file_url:
 - game: Mario Forever World 9
   game_alt:
+  alias:
+  - W9
   author: syzxchulun
   author_alt:
   type: chinese
