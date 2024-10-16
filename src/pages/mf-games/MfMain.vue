@@ -186,7 +186,7 @@
     year : "",
     chinese : true,
     international : true,
-    repacked : true
+    repacked : true,
   });
 
   function clearFilter() {
@@ -204,7 +204,8 @@
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && ((filter_option.value.chinese && a.type == "chinese")
       || (filter_option.value.international && a.type == "international")
-      || (filter_option.value.repacked && a.type == "repacked"))
+      || (filter_option.value.repacked && a.type == "repacked")
+      || filter_option.value.force)
     )
   });
 
@@ -355,11 +356,11 @@
   </div>
 
   <GameLineHeader v-if="wideScreen" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
-  <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
+  <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan, sort_option]">
     <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
   </div>
   <div v-if="!wideScreen" class="card-container">
-    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
+    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan, sort_option]">
       <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
