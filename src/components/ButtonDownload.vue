@@ -15,10 +15,9 @@
 
 <template>
   <span class="tooltip">
-    <a :href="href"><DownloadIcon class="icon button"></DownloadIcon></a>
-    <span class="tooltiptext tooltip-bottom">
+    <a :href="href" class="button"><DownloadIcon class="icon"></DownloadIcon>
       {{ lan == "en" ? "Download" : "下载" }}
-    </span><i></i>
+    </a>
   </span>
 </template>
 
@@ -43,6 +42,8 @@
     transition: all 250ms;
     cursor: pointer;
     display: inline-block;
+    color: #000;
+    text-decoration: none;
   }
 
   .button:hover, .button:focus {

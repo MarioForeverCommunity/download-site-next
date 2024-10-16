@@ -85,6 +85,9 @@
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
             }
           }
+        } else {
+          ver.file_url_zh = ver.file_url;
+          ver.file_url_en = ver.file_url;
         }
 
         // Check validity of urls.
