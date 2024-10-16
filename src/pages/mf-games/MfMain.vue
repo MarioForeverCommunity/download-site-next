@@ -18,7 +18,8 @@
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
-  import { Tooltip } from 'floating-vue';
+  import Tooltip from '../../components/Tooltip.vue';
+  import { useFloating, flip, shift } from '@floating-ui/vue';
 
   const lan = ref(getLanguage());
 
@@ -233,6 +234,31 @@
   window.addEventListener('resize', () => {
     wideScreen.value = window.innerWidth >= 1100;
   })
+
+  // Optimized tooltip.
+
+  function tooltipMouseEnter(obj) {
+    if (obj[0] != reference.value) {
+      reference.value = obj[0];
+      floatingText.value = obj[1];
+    }
+  }
+
+  function tooltipMouseLeave(obj) {
+    if (obj == reference.value) {
+      reference.value = null;
+      floatingText.value = null;
+    }
+  }
+  
+  const reference = ref(null);
+  const floating = ref(null);
+  const floatingText = ref(null);
+  const { floatingStyles} = useFloating(reference, floating, 
+  {
+    middleware: [flip(), shift(),],
+  });
+
 </script>
 
 <template>
@@ -308,16 +334,18 @@
           <div class="inline-block">
             <input v-model="filter_option.repacked" type="checkbox">
             {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
-            <Tooltip v-if="lan == 'zh'" placement="bottom" class="inline-block">
+            <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
               <InfoIcon class="icon button-shift"></InfoIcon>
               <template #popper>
-                重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
-                <br>
-                重打包作品收录的原则是：<br>
-                1. 只收录原压缩包已失传的作品；<br>
-                2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
-                3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
-                4. 重打包的作品不应包含游玩过的存档文件。
+                <span style="text-align: left; display: block;">
+                  重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
+                  <br>
+                  重打包作品收录的原则是：<br>
+                  1. 只收录原压缩包已失传的作品；<br>
+                  2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
+                  3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
+                  4. 重打包的作品不应包含游玩过的存档文件。
+                </span>
               </template>
             </Tooltip>
           </div>
@@ -328,11 +356,11 @@
 
   <GameLineHeader v-if="wideScreen" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
-    <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
+    <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
   </div>
   <div v-if="!wideScreen" class="card-container">
     <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan]">
-      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
+      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
 
@@ -368,6 +396,9 @@
       </div>
     </div>
   </Transition>
+
+  <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
+  </div>
 
   <FooterZh v-if="lan == 'zh'" />
   <FooterEn v-if="lan == 'en'" />
@@ -612,6 +643,17 @@
 
   .button-shift {
     transform: translateY(-1px);
+  }
+
+  .floating-obj {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    width: max-content;
+    max-width: calc(min(800px, 90vw));
+    padding: .25em .75em;
+    z-index: 1;
   }
 
 </style>

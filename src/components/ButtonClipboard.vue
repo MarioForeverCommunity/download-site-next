@@ -35,7 +35,7 @@
 <template>
   <a class="tooltip">
     <ClipboardIcon class="icon button" @click="copyCode();" />
-    <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span><i></i>
+    <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span>
   </a>
 </template>
 
@@ -87,9 +87,9 @@
   .tooltip .tooltiptext {
     top:40px;
     left:50%;
-    transform:translate(-50%, -10px);
+    transform:translate(-50%, -15px);
     display:none;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -102,37 +102,6 @@
 
   .tooltip .tooltiptext.tooltip-left-align {
   text-align: left;
-  }
-
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-  }
-
-  .tooltiptext i {
-    position:absolute;
-    bottom:100%;
-    left:50%;
-    margin-left:-12px;
-    width:24px;
-    height:12px;
-    overflow:hidden;
-  }
-
-  .tooltiptext i::after {
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    left:50%;
-    transform:translate(-50%,50%) rotate(45deg);
-    background-color: rgba(0, 0, 0, 0.7);
   }
 
   .tooltip:hover .tooltiptext {

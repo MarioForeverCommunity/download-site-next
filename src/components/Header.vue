@@ -1,5 +1,6 @@
 <script setup>
   import { navTop, topBar } from "../config.js";
+  import {defineEmits} from 'vue';
 
   const BASE_URL = import.meta.env.BASE_URL;
 
@@ -12,6 +13,8 @@
       required: true
     }
   });
+
+  defineEmits(['changeLanZh', 'changeLanEn']);
 
   const pageEntry = navTop.find(item => item.id === props.pageId);
 

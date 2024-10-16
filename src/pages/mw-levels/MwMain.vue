@@ -15,6 +15,7 @@
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
+  import { useFloating, flip, shift } from '@floating-ui/vue';
 
   const originalLan = ref(getLanguage());
 
@@ -160,6 +161,31 @@
   window.addEventListener('resize', () => {
     wideScreen.value = window.innerWidth >= 1100;
   })
+
+  // Optimized tooltip.
+
+  function tooltipMouseEnter(obj) {
+    if (obj[0] != reference.value) {
+      reference.value = obj[0];
+      floatingText.value = obj[1];
+    }
+  }
+
+  function tooltipMouseLeave(obj) {
+    if (obj == reference.value) {
+      reference.value = null;
+      floatingText.value = null;
+    }
+  }
+
+  const reference = ref(null);
+  const floating = ref(null);
+  const floatingText = ref(null);
+  const { floatingStyles} = useFloating(reference, floating, 
+  {
+    middleware: [flip(), shift(),],
+  });
+
 </script>
 
 <template>
@@ -230,11 +256,11 @@
 
   <GameLineHeader v-if="wideScreen" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="game.game">
-    <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
+    <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
   </div>
   <div v-if="!wideScreen" class="card-container">
     <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, 'zh']">
-      <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}"/>
+      <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
 
@@ -265,6 +291,9 @@
       </div>
     </div>
   </Transition>
+
+  <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
+  </div>
 
   <FooterZh/>
 </template>
@@ -558,6 +587,17 @@
 
   .button-shift {
     transform: translateY(-1px);
+  }
+
+  .floating-obj {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    width: max-content;
+    max-width: calc(min(800px, 90vw));
+    padding: .25em .75em;
+    z-index: 1;
   }
 
 </style>

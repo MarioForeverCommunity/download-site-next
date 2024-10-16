@@ -1,8 +1,9 @@
 <script setup>
+  import {defineProps, defineEmits } from 'vue';
   import {parseVer} from "../util/Misc.js";
   import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
-  import { Tooltip } from 'floating-vue';
+  import Tooltip from "./Tooltip.vue";
 
   const props = defineProps({
     game: {
@@ -13,13 +14,16 @@
       required: true
     }
   });
+
+  defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip']);
+
 </script>
 
 <template>
   <div class="container card">
     <div class="first-line">
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
-        <Tooltip placement="bottom" class="inline-block" v-if="game.type == 'repacked'">
+        <Tooltip v-if="game.type == 'repacked'">
           <RepackIcon class="icon"></RepackIcon>
           <template #popper>
             {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
@@ -64,36 +68,36 @@
         </span>
       </div>
       <div class="game-options">
-        <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_zh_url != null && lan == 'zh'">
-          <a :href="game.wiki_zh_url" target="_blank">
+        <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
+          <a :href="game.wiki_zh_url">
             <WikiIcon class="icon button"></WikiIcon>
           </a>
           <template #popper>Wiki 页面</template>
         </Tooltip>
-        <Tooltip placement="bottom" class="inline-block" v-if="game.wiki_en_url != null && lan == 'en'">
-          <a :href="game.wiki_en_url" target="_blank">
+        <Tooltip v-if="game.wiki_en_url != null && lan == 'en'">
+          <a :href="game.wiki_en_url">
             <WikiIcon class="icon button"></WikiIcon>
           </a>
           <template #popper>Wiki Page</template>
         </Tooltip>
-        <Tooltip placement="bottom" class="inline-block" v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)" target="_blank">
+        <Tooltip v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)">
           <VideoIcon class="icon button"></VideoIcon>
           <template #popper>Related Videos</template>
         </Tooltip>
-        <Tooltip placement="bottom" class="inline-block" v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)" target="_blank">
+        <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)">
           <VideoIcon class="icon button"></VideoIcon>
           <template #popper>相关视频</template>
         </Tooltip>
-        <Tooltip placement="bottom" class="inline-block" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
-          <a :href="getSourceLink(game, lan)" target="_blank">
+        <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
+          <a :href="getSourceLink(game, lan)">
             <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
           </a>
           <template #popper>
             {{ lan == "en" ? "Release Video" : "发布视频" }}
           </template>
         </Tooltip>
-        <Tooltip placement="bottom" class="inline-block" v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
-          <a :href="getSourceLink(game, lan)" target="_blank">
+        <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
+          <a :href="getSourceLink(game, lan)">
             <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
           </a>
           <template #popper>
@@ -103,7 +107,7 @@
             </span>
           </template>
         </Tooltip>
-        <Tooltip placement="bottom" class="inline-block" v-if="!game.disable_download">
+        <Tooltip v-if="!game.disable_download">
           <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
           <template #popper>
             {{ lan == "en" ? "Download" : "下载链接" }}
