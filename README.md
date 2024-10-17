@@ -5,32 +5,32 @@
 > [!NOTE]  
 > This page are currently tanslated by AI from the Chinese version. Please help us to improve the document quality.
 
-This repository collects and organizes original Mario Forever versions, Mario Forever fangames, Super Mario Worker Project levels, and related information for Mario Forever players to download!
+This repository collects and organizes original Mario Forever games, Super Mario Worker Project levels, and related information for Mario Forever players worldwide to download!
 
 Visit [here](https://download.marioforever.net/) to find the games you want!
 
 ## Q & A
 
-### Difference from the [file.marioforever.net](https://file.marioforever.net/)?
+### What's the difference from file.marioforever.net?
 
-Although file.marioforever.net archives game resources and provides download links, it is limited by the mechanism of [AList](https://github.com/alist-org/alist) and can only search for file names instead of game names. It is also not possible to conveniently filter, sort, and find historical versions of the games. In addition, this repository also includes some related information of the games, such as release links, Wiki links, and related videos, etc.
+Although the Resource Station also archives game resources and provides download links, it is limited by the [AList] mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about some games, such as release links, Wiki links, and related videos.
 
-In addition, the games in the resource site are uploaded and maintained by newlife2017 himself, while in this repository, you can help improve the resource list through pull requests, and thus help improve the resource site!
+Moreover, the games in the Resource Station are uploaded and maintained by newlife2017; in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of the Resource Station as well!
 
-### Why there is no content related to Mario Worker Remake?
+### Why isn't there any content related to Mario Worker Remake?
 
-The Mario Worker Remake levels already have an official [database](https://marioworkerdatabase.altervista.org/) where players can search and download games more conveniently; while Mario Forever and Super Mario Worker Project games are scattered, so we try to establish game lists to facilitate MF players to retrieve and download.
+Mario Worker Remake levels are maintained by an official and comprehensive [database], allowing players to search for and download games quite conveniently. However, Mario Forever and Super Mario Worker Project games are published in various and scattered ways, so we are trying to establish a game list to facilitate players in understanding, searching for, and downloading them.
 
-## Help us improve the list!
+## Help Us Improve the List!
 
-If there are missing games or versions in the list, incorrect information, or if you want to add your video to the list of related videos of a game, you can help us improve the game list in the following ways:
-- Contact newlife2017 to feedback;
-- If you have a Chinese MF forum account, you can feedback in the [feedback threadd in Chinese forum](https://www.marioforever.net/thread-1635-1-1.html);
-- If you have a Github account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list in it, and contribute **directly** to this repository through [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You do not need to download complex software like git or familiar with version control: just use Github's online fork, edit, and pull request features to complete these operations! What you need to do is read the following instructions to understand how to correctly edit the game list.
+If there are missing games or versions in the list, incorrect information, or if you want to add your videos to the related video list of a game, you can help us improve the game list in the following ways:
+- Contact newlife2017 for feedback;
+- If you have a Chinese MF community account, you can provide feedback in the [Dedicated Feedback Thread];
+- If you have a Github account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list, and directly contribute to this repository through a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You don't need to download complex software like git or have professional knowledge of version control. You can complete these operations using the fork, edit, and pull request functions on the Github webpage! All you need to do is read the following instructions to learn how to edit the content in the game list correctly.
 
-## List Modification Guide
+## Guide for Editing the List
 
-This repository includes the game lists of Mario Forever and Super Mario Worker Project. There are slight differences in the composition of the two lists, so please read the documentation for each list carefully to understand how to correctly edit the list.
+This repository includes lists of Mario Forever and Super Mario Worker Project games. The compositions of the two lists have slight differences, so please carefully read the documentation for each list to understand how to edit them correctly.
 
 ### Mario Forever Game List
 
@@ -363,9 +363,9 @@ Below are the meanings of each field.
   </tr>
 </tbody></table>
 
-## Help Maintain and Secondary Development
+## Help Maintain and Further Development
 
-Programmers are appreciated to help improving this project through pull request. To ensure the stability of the online website, all changes should be submitted to the `next` branch of this project.
+Programmers are appreciated to help improving this project through pull request. To ensure the stability of the online website, all changes except from list updates should be submitted to the `next` branch of this project.
 
 This project is open source under the MIT license. You can modify and deploy within the scope allowed by the license.
 
