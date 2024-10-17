@@ -80,12 +80,12 @@
           </a>
           <template #popper>Wiki Page</template>
         </Tooltip>
-        <Tooltip v-if="(game.video_en != null || game.video != null) && lan == 'en'" @click="$emit('selectVideos', game)">
-          <VideoIcon class="icon button"></VideoIcon>
+        <Tooltip v-if="(game.video_en != null || game.video != null) && lan == 'en'">
+          <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>Related Videos</template>
         </Tooltip>
-        <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'" @click="$emit('selectVideos', game)">
-          <VideoIcon class="icon button"></VideoIcon>
+        <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'">
+          <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>相关视频</template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">

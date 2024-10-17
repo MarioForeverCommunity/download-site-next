@@ -4,7 +4,7 @@
     const thisDom = ref(null);
     const popperDom = ref(null);
 
-    defineEmits(['click', 'showTooltip', 'hideTooltip']);
+    defineEmits(['showTooltip', 'hideTooltip']);
 
     const props = defineProps({
         inCard: {
