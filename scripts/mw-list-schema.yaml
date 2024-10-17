@@ -2,9 +2,9 @@
 $schema: 'http://json-schema.org/draft-06/schema#'
 type: array
 items:
-  $ref: '#/definitions/Welcome3Element'
+  $ref: '#/definitions/GameElement'
 definitions:
-  Welcome3Element:
+  GameElement:
     type: object
     additionalProperties: false
     properties:
@@ -23,16 +23,10 @@ definitions:
         anyOf:
           - type: 'null'
           - type: string
-            qt-uri-protocols:
-              - http
-              - https
       download_url:
         anyOf:
           - type: 'null'
           - type: string
-            qt-uri-protocols:
-              - http
-              - https
       code:
         anyOf:
           - type: 'null'
@@ -75,16 +69,12 @@ definitions:
       - author
       - date
       - game
-    title: Welcome3Element
+    title: GameElement
   Video:
     type: object
     patternProperties:
       "^.*$":
         type: string
-        format: uri
-        qt-uri-protocols:
-        - http
-        - https
     required: []
     title: Video
   FileName:

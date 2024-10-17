@@ -44,18 +44,10 @@ definitions:
           oneOf:
           - type: 'null'
           - type: string
-            format: uri
-            qt-uri-protocols:
-            - http
-            - https
         wiki_en_url:
           oneOf:
           - type: 'null'
           - type: string
-            format: uri
-            qt-uri-protocols:
-            - http
-            - https
         type:
           type: string
           enum:
@@ -91,6 +83,11 @@ definitions:
         required:
         - ver
       - properties:
+          type:
+            type: string
+            enum:
+              - chinese
+              - international
           ver:
             "$ref": "#/definitions/VerMulti"
         required:
@@ -105,13 +102,6 @@ definitions:
                 - international
     unevaluatedProperties: false
     title: GameElement
-  VerElement:
-    type: object
-    patternProperties:
-      "^.*$":
-        "$ref": "#/definitions/VerObj"
-    required: []
-    title: VerElement
   VerObj:
     type: object
     properties:
@@ -126,26 +116,14 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
       source_url_alt:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
       download_url:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
       code:
         anyOf:
         - type: 'null'
@@ -154,10 +132,6 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
       file_name:
         anyOf:
         - type: 'null'
@@ -166,10 +140,6 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
       current:
         anyOf:
         - type: 'null'
@@ -178,10 +148,6 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
       data_code:
         anyOf:
         - type: 'null'
@@ -194,10 +160,6 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
     required:
     - date
     title: varObj
@@ -206,10 +168,6 @@ definitions:
     patternProperties:
       "^.*$":
         type: string
-        format: uri
-        qt-uri-protocols:
-        - http
-        - https
     required: []
     title: Video
   Author:
@@ -235,14 +193,6 @@ definitions:
         type: string
     - type: string
     title: AuthorAlt
-  VerUnion:
-    anyOf:
-    - type: array
-      items:
-        "$ref": "#/definitions/VerElement"
-    - type: 'null'
-    - type: string
-    title: VerUnion
   VerSingle:
     title: VerSingle
     allOf:
@@ -254,9 +204,38 @@ definitions:
           - type: string
       required:
       - ver
+  VerElement:
+    type: object
+    patternProperties:
+      "^.*$":
+        "$ref": "#/definitions/VerObjOuter"
+    required: []
+    title: VerElement
+  VerObjOuter:
+    "$ref": "#/definitions/VerObj"
+    unevaluatedProperties: false
+    title: VerObjOuter
+  VerMulti:
+    type: array
+    items:
+      "$ref": "#/definitions/VerElement"
+    title: VerMulti
   VerRepacked:
+    type: array
+    items:
+      "$ref": "#/definitions/VerElementRepacked"
+    title: VerRepacked
+  VerElementRepacked:
+    type: object
+    patternProperties:
+      "^.*$":
+        "$ref": "#/definitions/VerObjRepacked"
+    required: []
+    title: VerElementRepacked
+  VerObjRepacked:
+    type: object
     allOf:
-    - "$ref": "#/definitions/VerElement"
+    - "$ref": "#/definitions/VerObj"
     - properties:
         repacker:
           type: string
@@ -265,13 +244,6 @@ definitions:
           - type: 'null'
           - type: string
       required:
-      - type
-      - ver
       - repacker
-    title: VerRepacked
-  VerMulti:
-    type: array
-    items:
-      "$ref": "#/definitions/VerElement"
-    title: VerMulti
-  
+    unevaluatedProperties: false
+    title: VerObjRepacked
