@@ -15,7 +15,7 @@
 
 <template>
   <span class="tooltip">
-    <a :href="href" class="button"><DownloadIcon class="icon"></DownloadIcon>
+    <a :href="href" class="button" target="_blank"><DownloadIcon class="icon"></DownloadIcon>
       {{ lan == "en" ? "Download" : "下载" }}
     </a>
   </span>
