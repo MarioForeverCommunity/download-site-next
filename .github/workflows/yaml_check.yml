@@ -1,4 +1,4 @@
-name: MergeCheck
+name: YamlCheck
 
 on:
   pull_request:
