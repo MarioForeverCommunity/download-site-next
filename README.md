@@ -5,7 +5,7 @@
 > [!NOTE]  
 > This page are currently tanslated by AI from the Chinese version. Please help us to improve the document quality.
 
-This repository collects and organizes original Mario Forever games, Super Mario Worker Project levels, and related information for Mario Forever players worldwide to download!
+This repo has stored and collected Mario Forever and its fangames, and Super Mario Worker Project games, as well as the information about them. You can download the games and acquire the information from this repo.
 
 Visit [here](https://download.marioforever.net/) to find the games you want!
 
