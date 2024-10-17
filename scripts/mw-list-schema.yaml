@@ -1,0 +1,97 @@
+---
+$schema: 'http://json-schema.org/draft-06/schema#'
+type: array
+items:
+  $ref: '#/definitions/Welcome3Element'
+definitions:
+  Welcome3Element:
+    type: object
+    additionalProperties: false
+    properties:
+      game:
+        type: string
+      author:
+        type: string
+      smwp_ver:
+        anyOf:
+          - type: 'null'
+          - type: string
+      date:
+        type: string
+        format: date
+      source_url:
+        anyOf:
+          - type: 'null'
+          - type: string
+            qt-uri-protocols:
+              - http
+              - https
+      download_url:
+        anyOf:
+          - type: 'null'
+          - type: string
+            qt-uri-protocols:
+              - http
+              - https
+      code:
+        anyOf:
+          - type: 'null'
+          - type: string
+      file_name:
+        $ref: '#/definitions/FileName'
+      file_url:
+        anyOf:
+          - type: 'null'
+          - type: string
+      alist:
+        anyOf:
+          - type: 'null'
+          - type: boolean
+      alias:
+        anyOf:
+          - type: 'null'
+          - type: array
+            items:
+              type: string
+      author_path:
+        anyOf:
+          - type: 'null'
+          - type: string
+      video:
+        anyOf:
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/definitions/Video'
+      note:
+        anyOf:
+          - type: 'null'
+          - type: string
+      description:
+        anyOf:
+          - type: 'null'
+          - type: string
+    required:
+      - author
+      - date
+      - game
+    title: Welcome3Element
+  Video:
+    type: object
+    patternProperties:
+      "^.*$":
+        type: string
+        format: uri
+        qt-uri-protocols:
+        - http
+        - https
+    required: []
+    title: Video
+  FileName:
+    anyOf:
+      - type: array
+        items:
+          type: string
+      - type: 'null'
+      - type: string
+    title: FileName

@@ -12318,7 +12318,8 @@
   file_url:
 - game: Mario Forever The Next Levels
   game_alt:
-  alias: MFTNL
+  alias: 
+  - MFTNL
   author: Youras
   author_alt:
   type: chinese
