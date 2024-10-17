@@ -38,7 +38,7 @@
 }
 
 .game-name {
-  width: 40%;
+  width: 37%;
   padding-right: 10px;
   padding-left: 10px;
   box-sizing: border-box;
@@ -64,7 +64,7 @@
 }
 
 .game-buttons {
-  width: 12%;
+  width: 15%;
   box-sizing: border-box;
   padding-right: 20px;
 }
