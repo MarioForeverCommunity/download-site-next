@@ -9784,6 +9784,47 @@
   download_url_alt:
   file_name: MF - XMAS EDITION.ZIP
   file_url:
+- game: Mario Forever Remake
+  game_alt: Mario Forever Remake (CN)
+  alias:
+  - MFRa
+  - MFRemake
+  - a版
+  author: Mario Forever Remake Group
+  author_alt:
+  type: chinese
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Remake
+  wiki_en_url:
+  ver: v3.5
+  ver_alt:
+  date: 2017-02-04
+  source_url: https://tieba.baidu.com/p/4965707653
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1jHZRwJ8
+  code:
+  download_url_alt:
+  file_name: Mario Forever Remake v3.5.rar
+  file_url:
+- game: Mario Forever Advance Remake
+  game_alt:
+  alias:
+  - MFAR
+  - MFAER
+  author: Mario Forever Remake Group
+  author_alt:
+  type: chinese
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
+  ver: v1.5
+  ver_alt:
+  date: 2017-02-04
+  source_url: https://tieba.baidu.com/p/4965707653
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1slAQQ7b
+  code:
+  download_url_alt:
+  file_name: Mario Forever Advance Remake v1.5.rar
+  file_url:
 - game: Mysterious Island 2 - Great Journey
   game_alt:
   alias:
