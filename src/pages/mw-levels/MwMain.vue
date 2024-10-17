@@ -37,7 +37,7 @@
         if (entry.author == "合作作品") {
           entry.file_url = `https://file.marioforever.net/Mario Worker/合作作品/${entry.file_name}`;
         } else {
-          entry.file_url = `https://file.marioforever.net/Mario Worker/吧友作品/${entry.author_path}/${entry.file_name}`;
+          entry.file_url = `https://file.marioforever.net/Mario Worker/吧友作品/${entry.author}/${entry.file_name}`;
         }
       }
 
