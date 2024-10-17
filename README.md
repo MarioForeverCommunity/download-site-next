@@ -1,32 +1,30 @@
 # download.marioforever.net
 
-**English** | [中文简体](README.zh-cn.md)
+**English** | [简体中文](README.zh-cn.md)
 
 > [!NOTE]  
-> This page are currently tanslated by AI from the Chinese version. Please help us to improve the document quality.
+> This page is currently translated by machine from the Chinese version. Please help us improve the quality of the document.
 
-This repo has stored and collected Mario Forever and its fangames, and Super Mario Worker Project games, as well as the information about them. You can download the games and acquire the information from this repo.
-
-Visit [here](https://download.marioforever.net/) to find the games you want!
+This repository is the source code for [download.marioforever.net](https://download.marioforever.net/) website. It stores and collects information about Mario Forever, its fangames, and Super Mario Worker Project games. [Visit the site](https://download.marioforever.net/) to find the games you want!
 
 ## Q & A
 
 ### What's the difference from file.marioforever.net?
 
-Although file.marioforever.net also archives game resources and provides download links, it is limited by the [AList] mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about some games, such as release links, Wiki links, and related videos.
+Although file.marioforever.net also archives game resources and provides download links, it is limited by the [AList](https://github.com/alist-org/alist) mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about several games, such as release links, Wiki links, and related videos.
 
-Moreover, the games in file.marioforever.net are uploaded and maintained by newlife2017; in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of file.marioforever.net as well!
+Moreover, the games in file.marioforever.net are uploaded and maintained by [Newlife2017](https://github.com/KHwang9883); in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of file.marioforever.net as well!
 
 ### Why isn't there any content related to Mario Worker Remake?
 
-Mario Worker Remake levels are maintained by an official and comprehensive [database], allowing players to search for and download games quite conveniently. However, Mario Forever and Super Mario Worker Project games are published in various and scattered ways, so we are trying to establish a game list to facilitate players in understanding, searching for, and downloading them.
+Mario Worker Remake levels are maintained by an official and comprehensive [database](https://marioworkerdatabase.altervista.org/), allowing players to search for and download games quite conveniently. However, Mario Forever and Super Mario Worker Project games are published in various and scattered ways, so we are trying to establish a game list to facilitate players in understanding, searching for, and downloading them.
 
 ## Help Us Improve the List!
 
 If there are missing games or versions in the list, incorrect information, or if you want to add your videos to the related video list of a game, you can help us improve the game list in the following ways:
-- Contact newlife2017 for feedback;
-- If you have a Chinese MF community account, you can provide feedback in the [Dedicated Feedback Thread];
-- If you have a Github account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list, and directly contribute to this repository through a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You don't need to download complex software like git or have professional knowledge of version control. You can complete these operations using the fork, edit, and pull request functions on the Github webpage! All you need to do is read the following instructions to learn how to edit the content in the game list correctly.
+- Contact [Newlife2017](https://github.com/KHwang9883) for feedback;
+- [Submit an Issue](https://github.com/MarioForeverCommunity/download-site-next/issues) and be detailed. If you have a Chinese MF community account, you can post in this [thread](https://www.marioforever.net/thread-1635-1-1.html);
+- If you have a GitHub account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list, and directly contribute to this repository through a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You don't need to download complex software like Git or have professional knowledge of version control. You can complete these operations using the fork, edit, and pull request functions on GitHub webpage! All you need to do is read the following instructions to learn how to edit the content in the game list correctly.
 
 ## Guide for Editing the List
 
@@ -104,168 +102,40 @@ Here is an example of a multi-version game:
 
 Below are the meanings of each field. Since the site includes both Chinese and English versions, we use `_alt`, `_zh`, `_en` fields for multi-language support.
 
-<table class="tg"><thead>
-  <tr>
-    <th class="tg-fymr">Field Name</th>
-    <th class="tg-fymr">Required</th>
-    <th class="tg-fymr">Type</th>
-    <th class="tg-fymr">Field Description</th>
-  </tr></thead>
-<tbody>
-  <tr>
-    <td class="tg-0pky">game</td>
-    <td class="tg-0pky"><strong>Yes</strong></td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">The original name of the game. Please use the language and name used at the time of the game's release, while avoiding aliases, abbreviations, and translations.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">game_alt</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">The English name or translation of the game in English (if the game name is in Chinese). If the author provided an English name for the game, please try to use the name provided by the author.<br>The English page will prioritize the name with the _alt field, and the original language name can be retrieved through the filter function.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">alias</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">String List</td>
-    <td class="tg-0pky">Abbreviations, aliases, translations in other languages, or frequently confused names of the game, to facilitate users to better search for this game.<br>Please try to add aliases or author-specified game abbreviations and translations that are recognized and used by a certain number of players.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">author</td>
-    <td class="tg-0pky"><strong>Yes</strong></td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">The name of the author.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">author_alt</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">The English name of the author (if the author's name is in Chinese).</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">description_zh</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The description of the game on the Chinese page (if  there is content that needs to be explained on the list page).</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">description_en</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The description of the game on the English page (if there is content that needs to be explained on the list page).</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">type</td>
-    <td class="tg-0pky"><strong>Yes</strong></td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">Supports three fields for filtering function retrieval:<br>`chinese`: Games made and released on the Chinese websites.<br>`international`: Games made by international Mario Forever players.<br>`repacked`: Games that are originally published in either Chinese or international community, with the original download link invalid, and repackaged and uploaded by other players. Note that there are special fields that need to be filled for this type of game.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">wiki_zh_url</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">The link of the game in the Chinese Mario Forever Wiki.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">wiki_en_url</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">String</td>
-    <td class="tg-0pky">The link of the game in the English Mario Forever Wiki.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">video_zh</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">Dictionary List</td>
-    <td class="tg-0pky">Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations.<br>There are multiple entries, and each entry should follow the format "Video Title: Video Link".</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">video_en</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">Dictionary List</td>
-    <td class="tg-0pky">Videos related to the game uploaded by other players, located on English pages or mainly in English, such as gameplay videos, commentaries, and secondary creations.<br>There are multiple entries, and each entry should follow the format "Video Title: Video Link".</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">ver</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">String (Single Version)<br>Version List (Multiple Versions)</td>
-    <td class="tg-0pky">The version name of the game. Generally, different language versions of a game, different updates, different branch versions (such as difficult and easy versions), and a single world version of a collection are considered different versions of a game.<br>For single-version or games with only one version included in the list, ver can be empty or the name of the current version.<br>For multi-version games, ver needs to be a dictionary list, with dictionary names as version names, and the value of each dictionary item</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky" colspan="4">The following fields are for a specific version. For single-version games, please fill in the fields directly for the game; for multi-version games, please refer to the example and fill in the following information for each version in the version list.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">ver_alt</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">If the version name is in Chinese, the corresponding English name of the version can be filled in here.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">date</td>
-    <td class="tg-0pky"><strong>Yes</strong></td>
-    <td class="tg-0lax">Date</td>
-    <td class="tg-0lax">The release date of the game or version. Please use the "YYYY-MM-DD" format for software parsing.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">source_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The <strong>release link</strong> of the game (note not the download link), such as the release post on the forum, the release video on YouTube, etc.<br>Official release videos should be filled in here, and should not be expanded under the video_zh or video_en fields.<br>If the link has expired, you can mark it with a half-width tilde "~" in front of the link (the same below).</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">source_url_alt</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">If the game is released on both Chinese and English websites, please fill in the Chinese release link in source_url and the English release link in source_url_alt, so that the game list can display links in the corresponding language for different languages.<br>If the game is only released on Chinese or English websites, only fill in the source_url field; if there is no release link (such as released through instant messaging software, Discord servers, etc.), leave it blank.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">download_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The <strong>official download link</strong> provided by the author.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">code</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">If the game's download page or zip package requires a password, please fill it in here.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">download_url_alt</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">If the game provides download links on both Chinese and English websites, please fill in the Chinese download link in download_url and the English download link in download_url_alt, otherwise only fill in the download_url field.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">file_name</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The file name of the game in <strong>file.marioforever.net</strong>. Usually filled in by the file.marioforever.net maintainer.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">file_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">data_download_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">If the game includes a data package separated from the game itself (such as music), please fill in the download link of the data package here.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">data_file_name</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The file name of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">data_file_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The complete link of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer.</td>
-  </tr>
-</tbody></table>
+| Field Name | Required | Type | Field Description |
+| --- | --- | --- | --- |
+| `game` | **Yes** | String | The original name of the game. Please use the language and name used at the time of the game's release, while avoiding aliases, abbreviations, and translations. |
+| `game_alt` | No | String | The English name or translation of the game in English (if the game name is in Chinese). If the author provided an English name for the game, please try to use the name provided by the author. <br>The English page will prioritize the name with the _alt field, and the original language name can be retrieved through the filter function. |
+| `alias` | No | String List | Abbreviations, aliases, translations in other languages, or frequently confused names of the game, to facilitate users to better search for this game.  <br>Please try to add aliases or author-specified game abbreviations and translations that are recognized and used by a certain number of players. |
+| `author` | **Yes** | String | The name of the author. |
+| `author_alt` | No | String | The English name of the author (if the author's name is in Chinese). |
+| `description_zh` | No | String | The description of the game on the Chinese page (if there is content that needs to be explained on the list page). |
+| `description_en` | No | String | The description of the game on the English page (if there is content that needs to be explained on the list page). |
+| `type` | **Yes** | String | Supports three fields for filtering function retrieval: <br>`chinese`: Games made by Chinese players. <br>`international`: Games made by international Mario Forever players. <br>`repacked`: Games that are originally published in either Chinese or international community, with the original download link invalid, and repackaged and uploaded by players other than the author. Note that there are special fields that need to be filled for this type of game. |
+| `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
+| `wiki_en_url` | No | String | The link of the game in the English Mario Forever Wiki. |
+| `video_zh` | No | Dictionary List | Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
+| `video_en` | No | Dictionary List | Videos related to the game uploaded by other players, located on English pages or mainly in English, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
+| `ver` | No | String (Single Version) <br>Version List (Multiple Versions) | The version name of the game. Generally, different language versions of a game, different updates, different branch versions (such as difficult and easy versions), and a single world version of a collection are considered different versions of a game. <br>For single-version or games with only one version included in the list, ver can be empty or the name of the current version. <br>For multi-version games, ver needs to be a dictionary list, with dictionary names as version names, and the value of each dictionary item |
+
+The following fields are for a specific version. For single-version games, please fill in the fields directly for the game; for multi-version games, please refer to the example and fill in the following information for each version in the version list.
+
+| Field Name | Required | Type | Field Description |
+| --- | --- | --- | --- |
+| `ver_alt` | No | String | If the version name is in Chinese, the corresponding English name of the version can be filled in here. |
+| `date` | **Yes** | Date | The release date of the game or version. Please use the "YYYY-MM-DD" format for software parsing. |
+| `source_url` | No | String | The **release link** of the game (note not the download link), such as the release post on the forum, the release video on YouTube, etc. <br>Official release videos should be filled in here, and should not be expanded under the video_zh or video_en fields. <br>If the link has expired, you can mark it with a half-width tilde `~` in front of the link (the same for other links below). |
+| `source_url_alt` | No | String | If the game is released on both Chinese and English websites, please fill in the Chinese release link in source_url and the English release link in source_url_alt, so that the game list can display links in the corresponding language for different languages. <br>If the game is only released on Chinese or English websites, only fill in the source_url field; if there is no release link (such as released through instant messaging software, Discord servers, etc.), leave it blank. |
+| `download_url` | No | String | The **official download link** provided by the author. |
+| `code` | No | String | If the game's download page requires a password, please fill it in here. |
+| `download_url_alt` | No | String | If the game provides download links on both Chinese and English websites, please fill in the Chinese download link in download_url and the English download link in download_url_alt, otherwise only fill in the download_url field. |
+| `repacker` | No | String | If `type` is `repacked`, fill in the repackager of the game's file. |
+| `repacker_alt` | No | String | The English name of the `repacker` (if the repackager's name is in Chinese). |
+| `file_name` | No | String | The file name of the game in **file.marioforever.net**. Usually filled in by the file.marioforever.net maintainer. |
+| `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `data_download_url` | No | String | If the game includes a data package separated from the game itself (such as music), please fill in the download link of the data package here. |
+| `data_file_name` | No | String | The file name of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `data_file_url` | No | String | The complete link of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 
 ### Super Mario Worker Project Game List
 
@@ -274,10 +144,10 @@ The Super Mario Worker Project game list is written in yaml (a data format that 
 ```yaml
 - game: A Day Out(S2简化版)
   author: 玛丽的死对头
-  note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
   smwp_ver: v1.7.9
   date: 2023-07-01
   description: 为 Welcome back to Marioworker Bar 2022 中的一个作品的简化版本。
+  note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
   source_url: https://www.marioforever.net/thread-2748-1-1.html
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
   code: xbr2
@@ -287,86 +157,22 @@ The Super Mario Worker Project game list is written in yaml (a data format that 
 
 Below are the meanings of each field.
 
-<table class="tg"><thead>
-  <tr>
-    <th class="tg-0lax">Field Name</th>
-    <th class="tg-0lax">Required</th>
-    <th class="tg-0lax">Type</th>
-    <th class="tg-0lax">Field Description</th>
-  </tr></thead>
-<tbody>
-  <tr>
-    <td class="tg-0lax">game</td>
-    <td class="tg-0lax"><strong>Yes</strong></td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The name of the game.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">author</td>
-    <td class="tg-0lax"><strong>Yes</strong></td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The name of the author. If there are multiple authors, please fill in "合作作品".</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">note</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">Notes for game for future use, <strong>will not</strong> be displayed on the game list.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">smwp_ver</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The version number of SMWP used in the game. If the game includes the use of multiple SMWP or involves other complex situations, it can be left blank.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">date</td>
-    <td class="tg-0lax"><strong>Yes</strong></td>
-    <td class="tg-0lax">Date</td>
-    <td class="tg-0lax">The release date of the game. Please use the "YYYY-MM-DD" format for software parsing.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">description</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The description of the game <strong>on the game list</strong>.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">source_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The link of the game's release post, release video, etc.<br>If the link is invalid, it can be marked with a half-width tilde "~" in front of the link (the same below).</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">download_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The download link of the game.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">code</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">If the game's download page or zip package requires a password, please fill it in here.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">file_name</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net manager.</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax">file_url</td>
-    <td class="tg-0lax">No</td>
-    <td class="tg-0lax">String</td>
-    <td class="tg-0lax">The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net manager.</td>
-  </tr>
-</tbody></table>
+| Field Name | Required | Type | Field Description |
+| --- | --- | --- | --- |
+| `game` | **Yes** | String | The name of the game. |
+| `author` | **Yes** | String | The name of the author. If there are multiple authors, please fill in `合作作品`. |
+| `smwp_ver` | No | String | The version number of SMWP used in the game. If the game includes the use of multiple SMWP versions or involves other complex situations, it can be left blank. |
+| `date` | **Yes** | Date | The release date of the game. Please use the "YYYY-MM-DD" format for software parsing. |
+| `description` | No | String | The description of the game **on the game list**. |
+| `note` | No | String | Notes for game for future use, **will not** be displayed on the game list. |
+| `source_url` | No | String | The link of the game's release post, release video, etc. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link (the same for other links below). |
+| `download_url` | No | String | The download link of the game. |
+| `code` | No  | String | If the game's download page requires a password, please fill it in here. |
+| `file_name` | No | String | The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net manager. |
+| `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net manager. |
 
 ## Help Maintain and Further Development
 
-Programmers are appreciated to help improving this project through pull request. To ensure the stability of the online website, all changes except from list updates should be submitted to the `next` branch of this project.
+Programmers are welcomed to help in improving this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To ensure the stability of the online website, all changes except from list updates should be committed to the `next` branch of this project.
 
 This project is open source under the MIT license. You can modify and deploy within the scope allowed by the license.
-
-
