@@ -168,8 +168,8 @@ Below are the meanings of each field.
 | `source_url` | No | String | The link of the game's release post, release video, etc. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link (the same for other links below). |
 | `download_url` | No | String | The download link of the game. |
 | `code` | No  | String | If the game's download page requires a password, please fill it in here. |
-| `file_name` | No | String | The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net manager. |
-| `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net manager. |
+| `file_name` | No | String | The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 
 ## Help Maintain and Further Development
 
