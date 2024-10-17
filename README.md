@@ -13,9 +13,9 @@ Visit [here](https://download.marioforever.net/) to find the games you want!
 
 ### What's the difference from file.marioforever.net?
 
-Although the Resource Station also archives game resources and provides download links, it is limited by the [AList] mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about some games, such as release links, Wiki links, and related videos.
+Although file.marioforever.net also archives game resources and provides download links, it is limited by the [AList] mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about some games, such as release links, Wiki links, and related videos.
 
-Moreover, the games in the Resource Station are uploaded and maintained by newlife2017; in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of the Resource Station as well!
+Moreover, the games in file.marioforever.net are uploaded and maintained by newlife2017; in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of file.marioforever.net as well!
 
 ### Why isn't there any content related to Mario Worker Remake?
 
