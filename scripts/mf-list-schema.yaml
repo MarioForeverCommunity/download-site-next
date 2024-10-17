@@ -109,10 +109,10 @@ definitions:
     type: object
     patternProperties:
       "^.*$":
-        "$ref": "#/definitions/verObj"
+        "$ref": "#/definitions/VerObj"
     required: []
     title: VerElement
-  verObj:
+  VerObj:
     type: object
     properties:
       ver_alt:
@@ -159,7 +159,9 @@ definitions:
           - http
           - https
       file_name:
-        type: string
+        anyOf:
+        - type: 'null'
+        - type: string
       file_url:
         anyOf:
         - type: 'null'
@@ -169,17 +171,17 @@ definitions:
           - http
           - https
       current:
-        type: boolean
-      repacker:
-        type: string
-      repacker_alt:
-        type: string
+        anyOf:
+        - type: 'null'
+        - type: boolean
       data_download_url:
-        type: string
-        format: uri
-        qt-uri-protocols:
-        - http
-        - https
+        anyOf:
+        - type: 'null'
+        - type: string
+          format: uri
+          qt-uri-protocols:
+          - http
+          - https
       data_code:
         anyOf:
         - type: 'null'
@@ -243,69 +245,15 @@ definitions:
     title: VerUnion
   VerSingle:
     title: VerSingle
-    properties:
-      ver: 
-        oneOf:
-        - type: 'null'
-        - type: string
-      ver_alt:
-        oneOf:
-        - type: 'null'
-        - type: string
-      date:
-        type: string
-        format: date
-      source_url:
-        oneOf:
-        - type: 'null'
-        - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
-          qt-uri-extensions:
-          - ".html"
-      source_url_alt:
-        oneOf:
-        - type: 'null'
-        - type: string
-          format: uri
-          qt-uri-protocols:
-          - https
-      download_url:
-        oneOf:
-        - type: 'null'
-        - type: string
-          qt-uri-protocols:
-          - http
-          - https
-      code:
-        oneOf:
-        - type: 'null'
-        - type: string
-      download_url_alt:
-        oneOf:
-        - type: 'null'
-        - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
-      file_name:
-        oneOf:
-        - type: 'null'
-        - type: string
-      file_url:
-        oneOf:
-        - type: 'null'
-        - type: string
-          format: uri
-          qt-uri-protocols:
-          - http
-          - https
-    required:
-    - ver
-    - date
+    allOf:
+    - "$ref": "#/definitions/VerObj"
+    - properties:
+        ver: 
+          oneOf:
+          - type: 'null'
+          - type: string
+      required:
+      - ver
   VerRepacked:
     allOf:
     - "$ref": "#/definitions/VerElement"
