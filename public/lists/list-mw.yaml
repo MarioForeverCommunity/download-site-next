@@ -40,6 +40,7 @@
   alias:
   - SMWM
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.10
   date: 2024-10-01
   source_url: https://www.marioforever.net/thread-3376-1-1.html
@@ -61,6 +62,7 @@
   file_url:
 - game: 20680819即兴关卡
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.10
   date: 2024-09-11
   source_url: https://www.marioforever.net/thread-3026-1-1.html
@@ -99,6 +101,7 @@
   file_url:
 - game: 流浪地球2：太空电梯
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.10
   date: 2024-06-27
   source_url: https://www.marioforever.net/thread-3235-1-1.html
@@ -228,6 +231,7 @@
   file_url:
 - game: 20680627即兴关卡
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.10
   date: 2024-02-08
   source_url: https://www.marioforever.net/thread-3026-1-1.html
@@ -348,6 +352,7 @@
   file_url:
 - game: Castle of the Scared Shells
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.9
   date: 2023-10-07
   source_url: https://www.marioforever.net/thread-2979-1-1.html
@@ -431,7 +436,7 @@
   file_url:
 - game: A Day Out(S2简化版)
   author: 玛丽的死对头
-  note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
+  note: 请使用 Welcome back to Marioworker Bar 2022 自带的 MW 游玩
   smwp_ver: v1.7.9
   date: 2023-07-01
   source_url: https://www.marioforever.net/thread-2748-1-1.html
@@ -507,6 +512,7 @@
   file_url:
 - game: CHИ入队图
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.9
   date: 2023-04-01
   source_url: https://www.marioforever.net/thread-2671-1-1.html
@@ -889,6 +895,7 @@
   file_url:
 - game: Puzzle Lake
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.8
   date: 2022-02-20
   source_url: https://www.marioforever.net/thread-1944-1-1.html
@@ -940,6 +947,7 @@
   file_url:
 - game: 4-Light or Dark Lake(fix)
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.8
   date: 2022-02-09
   source_url: https://www.marioforever.net/thread-1923-1-1.html
@@ -1367,7 +1375,7 @@
   file_url:
 - game: smf's world
   author: 超级玛丽迷01
-  note: W1、W2 SMWP版本为v1.7.6，W3~W8 SMWP版本为v1.7.8
+  note: W1、W2 SMWP 版本为 v1.7.6，W3~W8 SMWP 版本为 v1.7.8
   smwp_ver: v1.7.8
   date: 2021-04-16
   source_url: https://www.marioforever.net/thread-1075-1-1.html
@@ -1584,7 +1592,7 @@
   file_url:
 - game: MW Zeta Series
   author: 茚三酮y-
-  note: 发布帖为李泽LXVI转载
+  note: 发布帖为 李泽LXVI 转载
   smwp_ver: v1.7.6
   date: 2020-11-20
   source_url: https://www.marioforever.net/thread-783-1-1.html
@@ -1603,7 +1611,7 @@
   file_url:
 - game: Tears of the Times（XFX Album）
   author: s小s飞s侠s
-  note: 包括“xfx的小型作品”中的部分关卡
+  note: 包括「xfx的小型作品」中的部分关卡
   smwp_ver: v1.7.6
   date: 2020-10-14
   source_url: ~https://www.marioforever.net/thread-739-1-1.html
@@ -1622,7 +1630,7 @@
   file_url:
 - game: 116的小作
   author: '1168438795'
-  note: 除发布地址内的单关外，还包含作者2022年MW杯乱入关卡和2021年MW杯预赛关卡Fix版；关卡Xord附带音乐
+  note: 除发布地址内的单关外，还包含作者 2022 年 MW 杯乱入关卡和 2021 年 MW 杯预赛关卡 Fix 版；关卡 Xord 附带音乐
   smwp_ver:
   date: 2020-10-11
   source_url: https://www.marioforever.net/thread-729-1-1.html
@@ -1632,6 +1640,7 @@
   file_url:
 - game: Super Mario Worker Maker v1.0.0
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.7.6
   date: 2020-10-02
   source_url: https://www.marioforever.net/thread-697-1-1.html
@@ -1820,6 +1829,7 @@
   file_url:
 - game: Hold Your Speed!
   author: ƒresh★LAKE
+  author_path: fresh★LAKE
   smwp_ver: v1.6.5
   date: 2020-04-29
   source_url: https://www.marioforever.net/thread-469-1-1.html
@@ -1971,7 +1981,7 @@
   file_url:
 - game: The Ghost Cage
   author: LLX奶油马里奥
-  note: 马里奥奥里马庆生之作
+  description: 马里奥奥里马庆生之作
   smwp_ver: v1.6.5
   date: 2019-08-09
   source_url: https://tieba.baidu.com/p/4722161415
@@ -1981,7 +1991,8 @@
   file_url:
 - game: 5A-LLX-Trade war
   author: LLX奶油马里奥
-  note: 第八届MW杯四分之一决赛乱入关卡，附带音乐
+  description: 第八届 MW 杯四分之一决赛乱入关卡
+  note: 附带音乐
   smwp_ver: v1.6.5
   date: 2019-08-02
   source_url: https://tieba.baidu.com/p/6213385129
@@ -2004,7 +2015,7 @@
   alias:
   - 高考回归2019
   author: 合作作品
-  note: For xfx (By zqh) 关卡SMWP版本为v1.6.1，附带音乐
+  note: For xfx (By zqh) 关卡 SMWP 版本为 v1.6.1，附带音乐
   smwp_ver: v1.6.2
   date: 2019-06-08
   source_url: https://tieba.baidu.com/p/6156681489
@@ -2014,7 +2025,8 @@
   file_url:
 - game: Melody of Night Fisherman
   author: LLX奶油马里奥
-  note: 蓝太阳庆生之作；附带音乐，BGM为cut版
+  description: 蓝太阳庆生之作
+  note: 附带音乐，BGM 为 cut 版
   smwp_ver: v1.6.2
   date: 2019-05-04
   source_url:
@@ -2024,7 +2036,7 @@
   file_url:
 - game: Lucky 52 (Sequel)
   author: LLX奶油马里奥
-  note: 纳秘庆生之作
+  description: 纳秘庆生之作
   smwp_ver: v1.6.1
   date: 2019-04-13
   source_url: https://tieba.baidu.com/p/6100206960
@@ -2145,7 +2157,8 @@
   file_url:
 - game: 关卡接力活动
   author: 合作作品
-  note: 活动发起人为百步，现在已咕；取活动开始时间
+  description: 活动发起人为哈德萝·戈德纹（百步穿杨又飞剑），现在已咕
+  note: 发布日期取活动开始时间
   smwp_ver: v0.2.4
   date: 2017-04-15
   source_url: https://tieba.baidu.com/p/5074105449
@@ -2173,7 +2186,7 @@
   file_url:
 - game: Desert
   author: s小s飞s侠s
-  note: v0.92 SMWP版本为v0.2.4，v1.03部分关卡SMWP版本为v1.5.2
+  note: v0.92 SMWP 版本为 v0.2.4，v1.03 部分关卡 SMWP 版本为 v1.5.2
   smwp_ver:
   date: 2016-06-15
   source_url: https://tieba.baidu.com/p/4612314373

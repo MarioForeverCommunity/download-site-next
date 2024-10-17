@@ -3,7 +3,7 @@
     import DownloadButton from "../components/ButtonDownload.vue"
 </script>
 
-本页面汇总了原版 Mario Forever 绝大部分版本的资源链接，同时提供最新版 Mario Forever Remake 下载链接。如有链接失效，[你可以在社区反馈专帖进行反馈。](https://www.marioforever.net/thread-1635-1-1.html)
+本页面汇总了原版 Mario Forever 绝大部分版本的资源链接，同时提供最新版 Mario Forever Remake 下载链接。如有链接失效，[你可以在社区反馈专帖进行反馈](https://www.marioforever.net/thread-1635-1-1.html)。
 
 <a class="md-button" href="https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Remake%20v3.5.rar">下载最新版 Mario Forever Remake</a>
 <a class="md-button" href="https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar">下载最新版 Mario Forever Advance Remake</a>
@@ -28,6 +28,8 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 ④<span style="color:red">（Mario Forever 5.0～7.x，2011～）</span>4.4 之后，作者开发游戏的方向逐渐从可玩性转为所谓的“视觉特效”和“手感、流畅度”等方向。因为游戏制作平台从 Multimedia Fusion 1.5 迁移至 Multimedia Fusion 2，许多 Bug 莫名其妙地开始出现，但作者不再像以前对待游戏的更新那样用心，原版 Mario Forever 正一步一步地毁在作者的手上。
 
 ⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。
+
+更新日志参见 [Wiki 页面](https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5)。
 
 ## Mario Forever 全版本下载
 

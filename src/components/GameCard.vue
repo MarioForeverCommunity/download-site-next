@@ -61,7 +61,7 @@
     <div class="last-line">
       <div class="game-author">
         <span class="inline-block">
-          {{lan == "en" ? "By " : "作者："}}
+          {{lan == "en" ? "By&nbsp;" : "作者："}}
         </span>
         <span v-if="typeof getAuthorList(game, lan) == 'string'">{{ getAuthorList(game, lan) }}</span>
         <span class="inline-block" v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
