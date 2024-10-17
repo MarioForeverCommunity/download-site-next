@@ -11,7 +11,7 @@
 
 如遇到发布帖或下载地址失效/缺少想要的作品/作品信息、提取码错误等问题，[请在社区反馈专帖反馈](https://www.marioforever.net/thread-1635-1-1.html)。贴吧链接均为旧贴，请勿挖坟。
 
-无下载按钮的作品可到发布页直接下载，并已包含在「SMWP 作品汇总」合集压缩包内，点击下面按钮可下载作品合集。你也可以进入 [社区资源站](https://file.marioforever.net/) 下载关卡汇总与作品，此外本页面还提供了 Mario Worker 资源备用地址以备不时之需（下载 100MB 以上文件需登录 123pan 账号）。
+无下载按钮的作品可到发布页直接下载，并已包含在「SMWP 作品汇总」合集压缩包内，点击下面按钮可下载作品合集。你也可以进入 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载 Mario Worker 相关资源，此外本页面还提供了 Mario Worker 资源备用地址以备不时之需（下载 100MB 以上文件需登录 123pan 账号）。
 
 <a class="md-button" target="_blank" href="https://smwp.marioforever.net/downloads/">下载 Super Mario Worker Project 本体</a>
 <a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/SMWP%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${smwpCollDate}.7z`">SMWP 作品汇总（截止至 {{smwpCollDate.slice(0, 4)}}-{{smwpCollDate.slice(4, 6)}}-{{smwpCollDate.slice(6, 8)}}）</a>
