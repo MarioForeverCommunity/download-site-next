@@ -19,6 +19,6 @@ npm run build
 
 # 将构建结果复制到目标路径
 echo "**************************** 本地部署 *************************"
-rsync -av --ignore-times --delete dist/ /data/wwwroot/download.marioforever.net/next/
+rsync -av --checksum --delete dist/ /data/wwwroot/download.marioforever.net/
 chown -R www-data:www-data /data/wwwroot/download.marioforever.net/
 echo "**************************** 部署成功 *************************"
