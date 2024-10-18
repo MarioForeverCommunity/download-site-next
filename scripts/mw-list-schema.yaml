@@ -65,6 +65,10 @@ definitions:
         anyOf:
           - type: 'null'
           - type: string
+      wiki_url:
+        oneOf:
+        - type: 'null'
+        - type: string
     required:
       - author
       - date
