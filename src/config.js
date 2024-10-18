@@ -1,6 +1,7 @@
-// version - Version of the website.
+import packageJson from '../package.json';
 
-export const siteVersion = "1.0.0";
+// version - Version of the website.
+export const siteVersion = `v${packageJson.version}`;
 
 // topBar - Top bar entries
 // `link` is link of the entry.
