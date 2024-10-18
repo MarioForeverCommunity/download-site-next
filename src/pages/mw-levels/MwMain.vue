@@ -41,7 +41,7 @@
         }
       }
 
-      if (entry.smwp_ver) {
+      if (entry.smwp_ver && !entry.alist) {
         if (SmwpVersions[entry.smwp_ver]) {
           entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
         }
