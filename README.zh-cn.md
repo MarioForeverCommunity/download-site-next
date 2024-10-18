@@ -6,7 +6,7 @@
 
 访问 [此处](https://download.marioforever.net/) 来寻找你想要的游戏作品！
 
-特别感谢 [Tomek839839](https://www.youtube.com/channel/@Tomek839839) 和 [七地一天](https://space.bilibili.com/34406150)，他们为本站和 [file.marioforever.net](https://file.marioforever.net/) 的建设提供了不少帮助！
+特别感谢 [Tomek839839](https://www.youtube.com/@Tomek839839) 和 [七地一天](https://space.bilibili.com/34406150)，他们为本站和 [file.marioforever.net](https://file.marioforever.net/) 的建设提供了不少帮助！
 
 ## Q & A
 
