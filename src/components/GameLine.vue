@@ -66,7 +66,7 @@
           <DownloadIcon class="icon button"></DownloadIcon>
         </a>
         <template #popper>
-          下载 SMWP
+          下载 SMWP {{ game.smwp_ver }}
         </template>
       </Tooltip>
     </div>
