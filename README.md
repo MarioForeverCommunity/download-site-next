@@ -7,6 +7,8 @@
 
 This repository is the source code for [download.marioforever.net](https://download.marioforever.net/) website. It stores and collects information about Mario Forever, its fangames, and Super Mario Worker Project games. [Visit the site](https://download.marioforever.net/) to find the games you want!
 
+Special thanks to [Tomek839839](https://www.youtube.com/channel/@Tomek839839) and [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) for providing several download links!
+
 ## Q & A
 
 ### What's the difference from file.marioforever.net?
