@@ -1,3 +1,7 @@
+// version - Version of the website.
+
+export const siteVersion = "1.0.0";
+
 // topBar - Top bar entries
 // `link` is link of the entry.
 // `name` is name in Chinese.

@@ -1,9 +1,11 @@
 <script setup>
+  import {siteVersion} from '../config.js'
 </script>
 
 <template>
   <footer>
     <span>This is NOT a Softendo/Nintendo official site. Mario and all relatives belong to Nintendo.</span>
+    <span>Site version: {{ siteVersion }}</span>
     <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">Source code</a></span>
   </footer>
 </template>

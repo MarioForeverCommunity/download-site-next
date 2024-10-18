@@ -9,7 +9,7 @@ import {resolve} from 'path'
 export default defineConfig({
   plugins: [
     vue({
-      include: [/\.vue$/, /\.md$/, /\.yml$/], // <-- allows Vue to compile Markdown and yaml files
+      include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown and yaml files
     }),
     Markdown({ /* options */ }),
   ],

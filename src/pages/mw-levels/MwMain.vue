@@ -12,9 +12,9 @@
   import introZh from '../../markdown/mw-games-zh.md';
   import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
-  import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
   import { useFloating, flip, shift, offset } from '@floating-ui/vue';
+  import {SmwpVersions} from "../../util/SmwpVersions.js"
 
   const originalLan = ref(getLanguage());
 
@@ -38,6 +38,12 @@
           entry.file_url = `https://file.marioforever.net/Mario Worker/合作作品/${entry.file_name}`;
         } else {
           entry.file_url = `https://file.marioforever.net/Mario Worker/吧友作品/${entry.author}/${entry.file_name}`;
+        }
+      }
+
+      if (entry.smwp_ver) {
+        if (SmwpVersions[entry.smwp_ver]) {
+          entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
         }
       }
 

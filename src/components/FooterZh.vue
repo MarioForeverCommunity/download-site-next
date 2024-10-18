@@ -1,9 +1,11 @@
 <script setup>
+  import {siteVersion} from '../config.js'
 </script>
 
 <template>
   <footer>
     <span><a target="_blank" href="https://status.marioforever.net/">网站状态</a></span>
+    <span>网站版本：{{ siteVersion }}</span>
     <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
   </footer>
 </template>

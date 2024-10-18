@@ -61,6 +61,14 @@
     </div>
     <div class="game-version" v-if="game.category == 'mw'">
       {{ game.smwp_ver }}
+      <Tooltip v-if="game.smwp_url">
+        <a :href="game.smwp_url" target="_blank">
+          <DownloadIcon class="icon button"></DownloadIcon>
+        </a>
+        <template #popper>
+          下载 SMWP
+        </template>
+      </Tooltip>
     </div>
     <div class="game-date">{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
     <div class="game-buttons">
