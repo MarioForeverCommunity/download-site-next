@@ -246,7 +246,10 @@
   const lastUpdate = ref(null);
 
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist.yaml&page=1&per_page=1").then((response) => {
-    lastUpdate.value = new Date(response.data[0].commit.committer.date).toLocaleString().split(' ')[0].replaceAll("/", "-");
+    const date = new Date(response.data[0].commit.committer.date);
+    const options = { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
+    lastUpdate.value = formattedDate;
   });
 
   // Get window width.
