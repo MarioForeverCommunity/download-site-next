@@ -65,7 +65,7 @@ definitions:
         anyOf:
           - type: 'null'
           - type: string
-      wiki_url:
+      wiki_zh_url:
         oneOf:
         - type: 'null'
         - type: string

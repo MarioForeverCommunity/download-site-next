@@ -150,6 +150,7 @@ The Super Mario Worker Project game list is written in yaml (a data format that 
   date: 2023-07-01
   description: 为 Welcome back to Marioworker Bar 2022 中的一个作品的简化版本。
   note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/A_Day_Out
   source_url: https://www.marioforever.net/thread-2748-1-1.html
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
   code: xbr2
@@ -167,6 +168,7 @@ Below are the meanings of each field.
 | `date` | **Yes** | Date | The release date of the game. Please use the "YYYY-MM-DD" format for software parsing. |
 | `description` | No | String | The description of the game **on the game list**. |
 | `note` | No | String | Notes for game for future use, **will not** be displayed on the game list. |
+| `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
 | `source_url` | No | String | The link of the game's release post, release video, etc. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link (the same for other links below). |
 | `download_url` | No | String | The download link of the game. |
 | `code` | No  | String | If the game's download page requires a password, please fill it in here. |

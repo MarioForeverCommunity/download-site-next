@@ -151,6 +151,7 @@ Super Mario Worker Project 作品列表使用 yaml（这是一种人类便于阅
   date: 2023-07-01
   description: 为 Welcome back to Marioworker Bar 2022 中的一个作品的简化版本。
   note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/A_Day_Out
   source_url: https://www.marioforever.net/thread-2748-1-1.html
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
   code: xbr2
@@ -169,6 +170,7 @@ Super Mario Worker Project 作品列表使用 yaml（这是一种人类便于阅
 | `description` | 否 | 字符串 | 作品**在作品列表中**的描述。 |
 | `note` | 否 | 字符串 | 作品下载备注，留作未来用途，**不会**在作品列表中显示。 |
 | `source_url` | 否 | 字符串 | 作品发布贴、发布视频等的链接。<br>如果链接失效，可以在链接前加半角波浪号 `~` 进行标记（下同）。 |
+| `wiki_zh_url` | 否 | 字符串 | 作品在中文 Mario Forever Wiki 中的链接。 |
 | `download_url` | 否 | 字符串 | 作品的下载链接。 |
 | `code` | 否 | 字符串 | 如作品的下载页需要密码，则在此处填写。 |
 | `file_name` | 否 | 字符串 | 作品在资源站中的文件名。通常由资源站管理者填写。 |
