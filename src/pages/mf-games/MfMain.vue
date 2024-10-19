@@ -85,7 +85,12 @@
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
             }
-          }
+          } 
+        } else {
+          ver.file_url_zh = ver.file_url;
+          ver.file_url_en = ver.file_url;
+        }
+        if (!ver.data_file_url) {
           if (ver.data_file_name) {
             if (entry.type == "chinese") {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
