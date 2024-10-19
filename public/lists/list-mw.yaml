@@ -132,6 +132,12 @@
 - game: Welcome back to Marioworker Bar 2024
   alias:
   - 高考回归2024
+  - Foehn
+  - Prologue
+  - Reply
+  - Fantasy Forest for Freedom
+  - Mario Worker Dream Escape
+  - MWDE
   author: 合作作品
   smwp_ver: v1.7.10
   date: 2024-06-09
@@ -213,6 +219,8 @@
   file_url:
 - game: Mario Worker Rainbow Land World 2
   author: 色粉堵塞
+  alias:
+  - MWRL2
   smwp_ver: v1.7.9
   date: 2024-02-15
   source_url: https://www.marioforever.net/thread-3099-1-1.html
@@ -460,6 +468,8 @@
 - game: Welcome back to Marioworker Bar 2023
   alias:
   - 高考回归2023
+  - Boundless World
+  - BW
   author: 合作作品
   smwp_ver: v1.7.10
   date: 2023-06-10
@@ -696,7 +706,12 @@
 - game: Welcome back to Marioworker Bar 2022
   alias:
   - 高考回归2022
+  - A Day Out
+  - The Chosen One
   - TCO
+  - Way to Grow
+  - WTG
+  - 一飞冲天
   author: 合作作品
   smwp_ver: v1.7.8
   date: 2022-06-09
@@ -707,6 +722,8 @@
   file_name: Welcome back to Marioworker Bar 2022.zip
   file_url:
 - game: All-inclusive
+  alias:
+  - 包罗万象
   author: 合作作品
   smwp_ver: v1.7.8
   date: 2022-06-09
@@ -1005,6 +1022,8 @@
   file_url:
 - game: Snakes Love Shaking D
   author: 把僵尸炖了
+  alias:
+  - SLSD
   smwp_ver: v1.7.8
   date: 2022-01-21
   source_url: https://www.marioforever.net/thread-1889-1-1.html
@@ -1261,6 +1280,12 @@
 - game: Welcome back to Marioworker Bar 2021
   alias:
   - 高考回归2021
+  - Silent Traveller
+  - Mario Worker Course
+  - Scenario
+  - Not Another Clouds Game
+  - Celeste
+  - Making Friends with Challenge
   author: 合作作品
   smwp_ver: v1.7.6
   date: 2021-06-09
@@ -1422,6 +1447,8 @@
   file_url:
 - game: Mario Worker Rainbow Land World 1
   author: 色粉堵塞
+  alias:
+  - MWRL1
   smwp_ver: v1.7.6
   date: 2021-04-04
   source_url: https://www.marioforever.net/thread-1057-1-1.html
@@ -1563,6 +1590,8 @@
   file_url:
 - game: Simply Linked Stages C
   author: 把僵尸炖了
+  alias:
+  - SLSC
   smwp_ver: v1.7.6
   date: 2020-11-24
   source_url: https://www.marioforever.net/thread-784-1-1.html
@@ -1913,6 +1942,8 @@
   file_url:
 - game: Secret Land Stories B
   author: 把僵尸炖了
+  alias:
+  - SLSB
   smwp_ver: v1.6.5
   date: 2020-02-09
   source_url: https://www.marioforever.net/thread-336-1-1.html
@@ -1963,6 +1994,8 @@
   file_url:
 - game: Strange levels Series A
   author: 把僵尸炖了
+  alias:
+  - SLSA
   smwp_ver: v1.6.5
   date: 2019-10-01
   source_url: https://tieba.baidu.com/p/6281685876
