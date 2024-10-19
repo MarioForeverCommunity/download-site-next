@@ -397,7 +397,7 @@
   - v1.5:
       ver_alt:
       date: 2024-09-08
-      source_url: https://www.youtube.com/watch?v=n810Gd2fzAg
+      source_url: ~https://www.youtube.com/watch?v=n810Gd2fzAg
       source_url_alt:
       download_url: https://www.mediafire.com/file/it6p3q10kyxw4dd
       code:
@@ -407,7 +407,7 @@
   - v1.0:
       ver_alt:
       date: 2024-04-14
-      source_url: https://www.youtube.com/watch?v=v4S2b5h-Cak
+      source_url: ~https://www.youtube.com/watch?v=v4S2b5h-Cak
       source_url_alt:
       download_url: https://www.mediafire.com/file/bqlo2s14xja539o/Mario+Forever+Dynamic+Letter+Worlds+Series+v1.0.rar/file
       code:
@@ -417,7 +417,7 @@
   - v0.5:
       ver_alt:
       date: 2024-03-13
-      source_url: https://www.youtube.com/watch?v=H5XBkzESY54
+      source_url: ~https://www.youtube.com/watch?v=H5XBkzESY54
       source_url_alt:
       download_url: https://www.mediafire.com/file/a5yzf2wtv10ys4b
       code:
@@ -427,7 +427,7 @@
   - v0.1:
       ver_alt:
       date: 2024-02-13
-      source_url: https://www.youtube.com/watch?v=04ZodI0oInU
+      source_url: ~https://www.youtube.com/watch?v=04ZodI0oInU
       source_url_alt:
       download_url: https://www.mediafire.com/file/8nyjb9r2r6c715z
       code:
@@ -2229,7 +2229,7 @@
   - v2.0.1:
       ver_alt:
       date: 2024-01-29
-      source_url: https://www.youtube.com/watch?v=fCPOkQw_4vM
+      source_url: ~https://www.youtube.com/watch?v=fCPOkQw_4vM
       source_url_alt:
       download_url: https://www.mediafire.com/file/yp5ojsv94dx6da0
       code:
@@ -2414,7 +2414,7 @@
   ver:
   ver_alt:
   date: 2024-01-26
-  source_url: https://www.youtube.com/watch?v=77VlhRfLaTI
+  source_url: ~https://www.youtube.com/watch?v=77VlhRfLaTI
   source_url_alt:
   download_url: https://www.mediafire.com/file/4i3cl8hydxj04ak
   code:
@@ -2594,7 +2594,7 @@
   ver: v0.5
   ver_alt:
   date: 2024-01-10
-  source_url: https://www.youtube.com/watch?v=vVmY8z59iV4
+  source_url: ~https://www.youtube.com/watch?v=vVmY8z59iV4
   source_url_alt:
   download_url: https://www.mediafire.com/file/nqorx6tuotp43q8
   code:
@@ -2632,7 +2632,7 @@
   ver: v1.0
   ver_alt:
   date: 2024-01-01
-  source_url: https://www.youtube.com/watch?v=gfQbfm-m50A
+  source_url: ~https://www.youtube.com/watch?v=gfQbfm-m50A
   source_url_alt:
   download_url: https://www.mediafire.com/file/3gwiouzdhea7jek
   code:
@@ -2947,7 +2947,7 @@
   ver:
   ver_alt:
   date: 2023-11-20
-  source_url: https://www.youtube.com/watch?v=Z4lJAeeAl9U
+  source_url: ~https://www.youtube.com/watch?v=Z4lJAeeAl9U
   source_url_alt:
   download_url: https://www.mediafire.com/file/au9nhl202nh1gvo
   code:
@@ -3013,7 +3013,7 @@
   - v1.0:
       ver_alt:
       date: 2023-10-30
-      source_url: https://www.youtube.com/watch?v=6qbEARdWB_8
+      source_url: ~https://www.youtube.com/watch?v=6qbEARdWB_8
       source_url_alt:
       download_url: https://www.mediafire.com/file/vemtkzwcplfbdjk
       code:
@@ -3404,16 +3404,37 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.0
-  ver_alt:
-  date: 2023-07-30
-  source_url: https://www.youtube.com/watch?v=gXv8ISTjeoI
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/4zyju0of4ritr44
-  code:
-  download_url_alt:
-  file_name: Mario Forever Psychic Worlds v1.0.rar
-  file_url:
+  ver:
+  - v1.0:
+      ver_alt:
+      date: 2023-07-30
+      source_url: ~https://www.youtube.com/watch?v=gXv8ISTjeoI
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/4zyju0of4ritr44
+      code:
+      download_url_alt:
+      file_name: Mario Forever Psychic Worlds v1.0.rar
+      file_url:
+  - v0.5:
+      ver_alt:
+      date: 2023-06-24
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Psychic Worlds v0.5.rar
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2023-06-09
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Psychic Worlds v0.1.rar
+      file_url:
 - game: K-irby Kungfu High (Full Version)
   game_alt:
   author: zqh——123
@@ -3662,7 +3683,7 @@
   ver:
   ver_alt:
   date: 2023-05-29
-  source_url: https://www.youtube.com/watch?v=IZFTluSk-nc
+  source_url: ~https://www.youtube.com/watch?v=IZFTluSk-nc
   source_url_alt:
   download_url: https://www.mediafire.com/file/6o6hgpn069mrv9g
   code:
@@ -3853,7 +3874,7 @@
   ver: v0.2
   ver_alt:
   date: 2023-04-14
-  source_url: https://www.youtube.com/watch?v=X0eTHsUy1rw
+  source_url: ~https://www.youtube.com/watch?v=X0eTHsUy1rw
   source_url_alt:
   download_url: https://www.mediafire.com/file/ezb6z2aa1c4kd6g
   code:
@@ -3888,7 +3909,7 @@
   - v0.5:
       ver_alt:
       date: 2023-04-11
-      source_url: https://www.youtube.com/watch?v=cXhRVARAW7w
+      source_url: ~https://www.youtube.com/watch?v=cXhRVARAW7w
       source_url_alt:
       download_url: https://www.mediafire.com/file/3w5d8lb748t7rwk
       code:
@@ -3974,7 +3995,7 @@
   ver:
   ver_alt:
   date: 2023-03-26
-  source_url: https://www.youtube.com/watch?v=3TidS-RtoGw
+  source_url: ~https://www.youtube.com/watch?v=3TidS-RtoGw
   source_url_alt:
   download_url: https://www.mediafire.com/file/a202ktsjwcwqg8z
   code:
@@ -4283,16 +4304,81 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: World Z Update 3
-  ver_alt:
-  date: 2023-03-13
-  source_url: https://www.youtube.com/watch?v=6Csl71oijGM
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/wl5wbsnmeu6rcwf/MFCWS_World_Z_Update_3.zip/file
-  code:
-  download_url_alt:
-  file_name: MFCWS World Z Update 3.zip
-  file_url:
+  ver:
+  - World Z Update 3:
+      ver_alt:
+      date: 2023-03-13
+      current: true
+      source_url: https://www.youtube.com/watch?v=6Csl71oijGM
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/wl5wbsnmeu6rcwf/MFCWS_World_Z_Update_3.zip/file
+      code:
+      download_url_alt:
+      file_name: MFCWS World Z Update 3.zip
+      file_url:
+  - World Z Update 2:
+      ver_alt:
+      date: 2023-03-13
+      current: true
+      source_url: https://www.youtube.com/watch?v=6Csl71oijGM
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/MFCWS World Z Update 2.zip
+      file_url:
+  - World Z:
+      ver_alt:
+      date: 2023-03-12
+      current: true
+      source_url: https://www.youtube.com/watch?v=6Csl71oijGM
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/MFCWS World Z.zip
+      file_url:
+  - v0.5:
+      ver_alt:
+      date: 2023-01-20
+      current: true
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFCWS 0.5.zip
+      file_url:
+  - v0.25:
+      ver_alt:
+      date: 2022-12-07
+      source_url: https://www.youtube.com/watch?v=0oTzLoVQfkw
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/MFCWS 0.25.zip
+      file_url:
+  - v0.5 (old):
+      ver_alt:
+      date: 2022-07-17
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Cedilla Worlds (Version 0.5).zip
+      file_url:
+  - v0.25 (old):
+      ver_alt:
+      date: 2022-06-23
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Cedilla Worlds Series V.0.25.zip
+      file_url:
 - game: Mario Forever Legend
   game_alt:
   author: Niikes studios
@@ -4440,7 +4526,7 @@
   - v3.2:
       ver_alt:
       date: 2023-02-05
-      source_url: https://www.youtube.com/watch?v=h8LCCN7hL00
+      source_url: ~https://www.youtube.com/watch?v=h8LCCN7hL00
       source_url_alt:
       download_url: https://www.mediafire.com/file/7y28otbr3y81b18
       code:
@@ -4597,7 +4683,7 @@
   ver: v1.0
   ver_alt:
   date: 2023-01-16
-  source_url: https://www.youtube.com/watch?v=GUq8mn6WLMg
+  source_url: ~https://www.youtube.com/watch?v=GUq8mn6WLMg
   source_url_alt:
   download_url: https://www.mediafire.com/file/1osveqsetduu381
   code:
@@ -5092,7 +5178,7 @@
       date: 2022-09-13
       source_url:
       source_url_alt:
-      download_url: https://www.mediafire.com/file/0xafasqcdd8klt0
+      download_url: ~https://www.mediafire.com/file/0xafasqcdd8klt0
       code:
       download_url_alt:
       file_name: Mario Forever Weird Worlds v3.5.rar
@@ -5194,16 +5280,62 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v2.0
-  ver_alt:
-  date: 2022-09-10
-  source_url: https://www.youtube.com/watch?v=0zhmFyxHTHs
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/8bsms429ouihcen/Mario_Forever_TB_Worlds_2.0.rar/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever TB Worlds 2.0.rar
-  file_url:
+  ver:
+  - v2.0:
+      ver_alt:
+      date: 2022-09-10
+      source_url: https://www.youtube.com/watch?v=0zhmFyxHTHs
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/8bsms429ouihcen/Mario_Forever_TB_Worlds_2.0.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever TB Worlds 2.0.rar
+      file_url:
+  - v1.5:
+      ver_alt: 
+      date: 2022-07-27
+      source_url: https://www.youtube.com/watch?v=gQQndfu20bA
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever TB Worlds 1.5.rar
+      file_url: 
+  - v1.0:
+      ver_alt: 
+      date: 2022-07-14
+      source_url: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever TB Worlds Version 1.0.rar
+      file_url: 
+  - v0.5:
+      ver_alt: 
+      date: 2022-06-22
+      source_url: https://www.youtube.com/watch?v=e23S1NP5nPg
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever TB Worlds v0.5.rar
+      file_url: 
+  - v0.2:
+      ver_alt: 
+      date: 2022-06-12
+      source_url: https://www.youtube.com/watch?v=s0MkauYzKmY
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever TB Worlds Version 0.2.rar
+      file_url: 
+  - v0.1:
+      ver_alt: 
+      date: 2022-06-08
+      source_url: https://www.youtube.com/watch?v=_t7YrsccgRI
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever TB Worlds Version 0.1.rar
+      file_url: 
 - game: 'Mario Forever: Community Summer Project 2022'
   game_alt:
   author: MF community
@@ -5292,16 +5424,73 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.5
-  ver_alt:
-  date: 2022-08-20
-  source_url: https://www.marioforever.net/thread-2277-1-1.html
-  source_url_alt: https://www.youtube.com/watch?v=vri02kg2DAY
-  download_url: https://nx.wtf/s/tDmb5dZ37dfMDND
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Party Worlds v1.5.zip
-  file_url:
+  ver:
+  - v1.5:
+      ver_alt:
+      date: 2022-08-20
+      source_url: https://www.marioforever.net/thread-2277-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=vri02kg2DAY
+      download_url: https://nx.wtf/s/tDmb5dZ37dfMDND
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Party Worlds v1.5.zip
+      file_url:
+  - v1.41:
+      ver_alt:
+      date: 2021-10-31
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario_Forever_-_Party_Worlds_1.41.rar
+      file_url:
+  - v1.4:
+      ver_alt:
+      date: 2021-10-19
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario_Forever_-_Party_Worlds_1.4.rar
+      file_url:
+  - v1.3:
+      ver_alt: 
+      date: 2021-04-12
+      source_url: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - Party Worlds 1.3.zip
+      file_url: 
+  - v1.2:
+      ver_alt: 
+      date: 2021-04-11
+      source_url: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - Party Worlds 1.2.zip
+      file_url: 
+  - v1.1:
+      ver_alt: 
+      date: 2021-01-31
+      source_url: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - Party Worlds 1.1.zip
+      file_url: 
+  - v1.0:
+      ver_alt: 
+      date: 2021-01-25
+      source_url: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - Party Worlds.7z
+      file_url: 
 - game: Runner
   game_alt:
   author: LooPeR231
@@ -6124,16 +6313,152 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v4.0
-  ver_alt:
-  date: 2022-04-27
-  source_url: https://www.youtube.com/watch?v=qoD-wCJY-6Y
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/4125jiibjanmmda
-  code:
-  download_url_alt:
-  file_name: Mario Forever Newer Adventure v4.0.rar
-  file_url:
+  ver:
+  - v4.0:
+      ver_alt:
+      date: 2022-04-27
+      source_url: https://www.youtube.com/watch?v=qoD-wCJY-6Y
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/4125jiibjanmmda
+      code:
+      download_url_alt:
+      file_name: Mario Forever Newer Adventure v4.0.rar
+      file_url:
+  - v3.6:
+      ver_alt: 
+      date: 2022-01-17
+      source_url: https://www.youtube.com/watch?v=TGjOXhe-YZA
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v3.6.zip
+      file_url: 
+  - v3.3:
+      ver_alt: 
+      date: 2021-12-23
+      source_url: https://www.youtube.com/watch?v=8BBBfmqgIT4
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v3.3.zip
+      file_url: 
+  - v3.0:
+      ver_alt: 
+      date: 2021-11-14
+      source_url: https://www.youtube.com/watch?v=oqGh-mkCks0
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v3.0.zip
+      file_url: 
+  - v2.7:
+      ver_alt: 
+      date: 2021-10-22
+      source_url: https://www.youtube.com/watch?v=TRS4a5rPChw
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v2.7.zip
+      file_url: 
+  - v2.4:
+      ver_alt: 
+      date: 2021-10-10
+      source_url: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v2.4.zip
+      file_url: 
+  - v2.2:
+      ver_alt: 
+      date: 2021-10-06
+      source_url: https://www.youtube.com/watch?v=yPnHV8c_XbE
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v2.2.zip
+      file_url: 
+  - v2.1:
+      ver_alt: 
+      date: 2021-09-27
+      source_url: https://www.youtube.com/watch?v=7UMJM9H3GJ8
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v2.1.zip
+      file_url: 
+  - v2.0:
+      ver_alt: 
+      date: 2021-09-23
+      source_url: https://www.youtube.com/watch?v=7UMJM9H3GJ8
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure v2.0.zip
+      file_url: 
+  - World 7:
+      ver_alt: 
+      date: 2021-09-21
+      source_url: https://www.youtube.com/watch?v=ItYj3506GMw
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 7.zip
+      file_url: 
+  - World 6:
+      ver_alt: 
+      date: 2021-08-26
+      source_url: https://www.youtube.com/watch?v=pKP1ZK3eiPU
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 6.zip
+      file_url: 
+  - World 5:
+      ver_alt: 
+      date: 2021-07-24
+      source_url: https://www.youtube.com/watch?v=fHihnGFk1Mw
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 5.zip
+      file_url: 
+  - World 4:
+      ver_alt: 
+      date: 2021-07-14
+      source_url: https://www.youtube.com/watch?v=l6D3zDjvX5U
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 4.zip
+      file_url: 
+  - World 3:
+      ver_alt: 
+      date: 2021-06-22
+      source_url: https://www.youtube.com/watch?v=Hx6WMU-eUdE
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 3.zip
+      file_url: 
+  - World 2:
+      ver_alt: 
+      date: 2021-06-19
+      source_url: https://www.youtube.com/watch?v=o-HfgOfsOwg
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 2.zip
+      file_url: 
+  - World 1:
+      ver_alt: 
+      date: 2021-06-13
+      source_url: https://www.youtube.com/watch?v=WdfvKMmfs6E
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Newer Adventure World 1.zip
+      file_url: 
 - game: Super Mario Revived
   game_alt:
   author: 初音炽
@@ -7175,15 +7500,166 @@
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
   ver:
-  ver_alt:
-  date: 2021-08-14
-  source_url: https://marioforeverforum.boards.net/thread/839/chadooks-lost-world-remastered
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
-  code:
-  download_url_alt:
-  file_name: MFTLW.zip
-  file_url:
+  - Latest version:
+      ver_alt:
+      date: 2022-09-25
+      source_url: https://marioforeverforum.boards.net/thread/839/chadooks-lost-world-remastered
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      code:
+      download_url_alt:
+      file_name: MFTLW.zip
+      file_url:
+  - v2.5:
+      ver_alt:
+      date: 2021-08-13
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 2.5.zip
+      file_url: 
+  - v2.1:
+      ver_alt:
+      date: 2021-03-28
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 2.1.zip
+      file_url: 
+  - v2.0:
+      ver_alt:
+      date: 2021-02-25
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 2.0.zip
+      file_url: 
+  - v1.4.3:
+      ver_alt:
+      date: 2021-01-02
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.4.3.zip
+      file_url: 
+  - v1.4.2:
+      ver_alt:
+      date: 2020-12-13
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.4.2.zip
+      file_url: 
+  - v1.4.1:
+      ver_alt:
+      date: 2020-10-30
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.4.1.zip
+      file_url: 
+  - v1.4:
+      ver_alt:
+      date: 2020-09-22
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.4.zip
+      file_url: 
+  - v1.3:
+      ver_alt:
+      date: 2020-08-02
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.3.zip
+      file_url: 
+  - v1.2:
+      ver_alt:
+      date: 2020-07-04
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.2.zip
+      file_url: 
+  - v1.1:
+      ver_alt:
+      date: 2020-06-25
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW 1.1.zip
+      file_url: 
+  - v1.0:
+      ver_alt:
+      date: 2020-06-19
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW.zip
+      file_url: 
+  - Lost World 3:
+      ver_alt:
+      date: 2020-06-19
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MFTLW.zip
+      file_url: 
+  - Lost World 3:
+      ver_alt:
+      date: 2018-07-30
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Lost world_3_final.exe
+      file_url: 
+  - Lost World 2:
+      ver_alt:
+      date: 2018-04-17
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Lost World_2.zip
+      file_url: 
+  - Lost World 1:
+      ver_alt:
+      date: 2018-04-16
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Lost world_.exe
+      file_url: 
 - game: Mario Forever Violet Romance
   game_alt:
   author: Ultra Team
@@ -7295,16 +7771,67 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.5
-  ver_alt:
-  date: 2021-06-08
-  source_url: https://www.youtube.com/watch?v=G2Ux9x9BGN4
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/77n3qkt52h4dlnl/Mario+Forever+Wondrous+Journey+v0.5.rar/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever Wondrous Journey v0.5.rar
-  file_url:
+  ver:
+  - v0.5:
+      ver_alt:
+      date: 2021-06-08
+      source_url: https://www.youtube.com/watch?v=G2Ux9x9BGN4
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/77n3qkt52h4dlnl/Mario+Forever+Wondrous+Journey+v0.5.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Wondrous Journey v0.5.rar
+      file_url: 
+  - v0.4:
+      ver_alt: 
+      date: 2021-05-26
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Wondrous Journey v0.4.rar
+      file_url: 
+  - v0.3:
+      ver_alt: 
+      date: 2021-05-18
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Wondrous Journey v0.3.rar
+      file_url: 
+  - v0.2:
+      ver_alt: 
+      date: 2021-05-07
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Wondrous Journey v0.2.rar
+      file_url: 
+  - v0.1:
+      ver_alt: 
+      date: 2021-04-22
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Wondrous Journey v0.1.rar
+      file_url: 
+  - World 2 Beta:
+      ver_alt: 
+      date: 2021-04-17
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Wondrous Journey World 2 BETA.rar
+      file_url:  
 - game: Mario Forever Westside Island
   game_alt:
   author: Shadow_78
@@ -7312,16 +7839,197 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v3.03
-  ver_alt:
-  date: 2021-05-20
-  source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/36rwsc5vdziznld/Mario_Forever_Westside_Island_v3.03.rar/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever Westside Island v3.03.rar
-  file_url:
+  ver:
+  - v3.03:
+      ver_alt:
+      date: 2021-05-20
+      source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/36rwsc5vdziznld/Mario_Forever_Westside_Island_v3.03.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Westside Island v3.03.rar
+      file_url:
+  - v3.02a:
+      ver_alt: 
+      date: 2021-05-15
+      source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Westside Island v3.02a.rar
+      file_url: 
+  - v3.01:
+      ver_alt: 
+      date: 2021-05-12
+      source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Westside Island v3.01.rar
+      file_url: 
+  - v3.0:
+      ver_alt: 
+      date: 2021-05-07
+      source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Westside Island v3.0.rar
+      file_url: 
+  - v2.5.7:
+      ver_alt: 
+      date: 2020-05-19
+      source_url: https://www.youtube.com/watch?v=GlXaJkAi8pc
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v2.5.7.zip
+      file_url: 
+  - v2.5.1:
+      ver_alt: 
+      date: 2020-05-06
+      source_url: https://www.youtube.com/watch?v=GlXaJkAi8pc
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v2.5.1.rar
+      file_url: 
+  - v2.5:
+      ver_alt: 
+      date: 2020-05-04
+      source_url: https://www.youtube.com/watch?v=GlXaJkAi8pc
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v2.5.rar
+      file_url: 
+  - v2.3:
+      ver_alt: 
+      date: 2020-03-21
+      source_url: https://www.youtube.com/watch?v=hkSWL6qz2DQ
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v2.3.rar
+      file_url: 
+  - v2.1:
+      ver_alt: 
+      date: 2020-03-02
+      source_url: https://www.youtube.com/watch?v=Xllx6NE0Xw4
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v2.1.rar
+      file_url: 
+  - v2.0:
+      ver_alt: 
+      date: 2019-10-29
+      source_url: https://www.youtube.com/watch?v=FEHTYwrp8M0
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v2.0.rar
+      file_url: 
+  - v1.7:
+      ver_alt: 
+      date: 2019-10-03
+      source_url: https://www.youtube.com/watch?v=roEWIrkUc8M
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v1.7.rar
+      file_url: 
+  - v1.5:
+      ver_alt: 
+      date: 2019-09-02
+      source_url: https://www.youtube.com/watch?v=70VsqMNbLUQ
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v1.5.rar
+      file_url: 
+  - v1.2:
+      ver_alt: 
+      date: 2019-07-18
+      source_url: https://www.youtube.com/watch?v=X0vZOecAAOs
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v1.2.exe
+      file_url: 
+  - v1.0.1:
+      ver_alt: 
+      date: 2019-06-18
+      source_url: https://www.youtube.com/watch?v=l8KyhMzblRI
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v1.0.1.rar
+      file_url: 
+  - v1.0:
+      ver_alt: 
+      date: 2019-06-15
+      source_url: https://www.youtube.com/watch?v=l8KyhMzblRI
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v1.0.rar
+      file_url: 
+  - v0.7:
+      ver_alt: 
+      date: 2019-04-20
+      source_url: https://www.youtube.com/watch?v=-HerJn30Q24
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v0.7.rar
+      file_url: 
+  - v0.6:
+      ver_alt: 
+      date: 2019-03-24
+      source_url: https://www.youtube.com/watch?v=DreMpO46hTc
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v0.6.rar
+      file_url: 
+  - v0.5:
+      ver_alt: 
+      date: 2019-03-03
+      source_url: https://www.youtube.com/watch?v=rAk7nFz44iA
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v0.5.exe
+      file_url: 
+  - v0.3:
+      ver_alt: 
+      date: 2019-02-19
+      source_url: https://www.youtube.com/watch?v=rog3NH95pvs
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/MF Westside Island v0.3.rar
+      file_url: 
 - game: Autumn Travel
   game_alt:
   author: TNT与爬行者
@@ -7488,6 +8196,7 @@
   game_alt:
   alias:
   - 字母世界
+  - MWLWS
   - MW:LWS
   - "MW: LWS"
   author: TheMarioVariable
@@ -8586,16 +9295,207 @@
   wiki_en_url:
   video_zh:
   - WSW & 大爱实况解说（World 1~6）: https://space.bilibili.com/11239472/channel/collectiondetail?sid=3068164
-  ver: v1.5 Final
-  ver_alt:
-  date: 2020-09-02
-  source_url:
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/2m2dck914th1fjo/Mario+Forever+-+The+Lost+Map.zip
-  code:
-  download_url_alt:
-  file_name: Mario Forever - The Lost Map 1.5 Final.zip
-  file_url:
+  ver:
+  - v1.5 Final:
+      ver_alt:
+      date: 2020-09-02
+      source_url:
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/2m2dck914th1fjo/Mario+Forever+-+The+Lost+Map.zip
+      code:
+      download_url_alt:
+      file_name: Mario Forever - The Lost Map 1.5 Final.zip
+      file_url:
+  - v1.4.4 Final:
+      ver_alt: 
+      date: 2020-08-05
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.4.4 Final.zip
+      file_url: 
+  - v1.4.3:
+      ver_alt: 
+      date: 2020-06-26
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.4.3.zip
+      file_url: 
+  - v1.4.2:
+      ver_alt: 
+      date: 2020-06-24
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.4.2.zip
+      file_url: 
+  - v1.4.1:
+      ver_alt: 
+      date: 2020-06-11
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.4.1.zip
+      file_url: 
+  - v1.4:
+      ver_alt: 
+      date: 2020-06-10
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.4.zip
+      file_url: 
+  - v1.2:
+      ver_alt: 
+      date: 2020-05-07
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.2.zip
+      file_url: 
+  - v1.1.1:
+      ver_alt: 
+      date: 2020-05-05
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map 1.1.1.zip
+      file_url: 
+  - v1.0:
+      ver_alt: 
+      date: 2020-05-03
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map.zip
+      file_url: 
+  - Demo 1.10:
+      ver_alt: 
+      date: 2020-03-14
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.10.zip
+      file_url: 
+  - Demo 1.9.4:
+      ver_alt: 
+      date: 2020-03-03
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.9.4.zip
+      file_url: 
+  - Demo 1.9.3:
+      ver_alt: 
+      date: 2020-02-28
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.9.3.zip
+      file_url: 
+  - Demo 1.9.2:
+      ver_alt: 
+      date: 2019-08-24
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.9.2.zip
+      file_url: 
+  - Demo 1.9.1:
+      ver_alt: 
+      date: 2019-08-15
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.9.1.zip
+      file_url: 
+  - Demo 1.8.2:
+      ver_alt: 
+      date: 2019-08-01
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.8.2.zip
+      file_url: 
+  - Demo 1.8.1:
+      ver_alt: 
+      date: 2019-07-30
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.8.1.zip
+      file_url: 
+  - Demo 1.8:
+      ver_alt: 
+      date: 2019-07-26
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO v1.8.zip
+      file_url: 
+  - Demo 1.7.2:
+      ver_alt: 
+      date: 2019-03-24
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO 1.7.2.zip
+      file_url: 
+  - Demo 1.7.1:
+      ver_alt: 
+      date: 2019-03-24
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO v1.7.1.zip
+      file_url: 
+  - Demo 1.7:
+      ver_alt: 
+      date: 2019-03-23
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever - The Lost Map - DEMO v1.7.zip
+      file_url: 
 - game: Area Block - Card Dash!
   game_alt:
   alias:
@@ -8776,7 +9676,7 @@
       date: 2020-07-03
       source_url: https://www.youtube.com/watch?v=5hcVZclS1XI
       source_url_alt:
-      download_url:
+      download_url: http://www.mediafire.com/file/zmik5imm4nen8wq/
       code:
       download_url_alt:
       file_name: MFRW3.5.1.rar
@@ -8786,7 +9686,7 @@
       date: 2020-06-28
       source_url: https://www.youtube.com/watch?v=5hcVZclS1XI
       source_url_alt:
-      download_url: http://www.mediafire.com/file/zmik5imm4nen8wq/
+      download_url: 
       code:
       download_url_alt:
       file_name: old-versions/MFRW3.5.rar
@@ -8821,6 +9721,226 @@
       download_url_alt:
       file_name: old-versions/MFRW3.3.rar
       file_url:
+  - v3.2.10:
+      ver_alt: 
+      date: 2017-08-26
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.10.rar
+      file_url: 
+  - v3.2.9:
+      ver_alt: 
+      date: 2017-08-13
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.9.rar
+      file_url: 
+  - v3.2.8:
+      ver_alt: 
+      date: 2017-07-05
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.8.rar
+      file_url: 
+  - v3.2.6:
+      ver_alt: 
+      date: 2017-07-04
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.6.rar
+      file_url: 
+  - v3.2.5:
+      ver_alt: 
+      date: 2017-06-30
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.5.rar
+      file_url: 
+  - v3.2.4:
+      ver_alt: 
+      date: 2017-06-13
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.4.rar
+      file_url: 
+  - v3.2.0:
+      ver_alt: 
+      date: 2017-06-11
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.2.rar
+      file_url: 
+  - v3.1:
+      ver_alt: 
+      date: 2017-06-04
+      source_url: https://www.youtube.com/watch?v=QX9joYbKbJc
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.1.rar
+      file_url: 
+  - v3.0.6:
+      ver_alt: 
+      date: 2016-12-19
+      source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.0.6.rar
+      file_url: 
+  - v3.0.3:
+      ver_alt: 
+      date: 2016-12-04
+      source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.0.3.rar
+      file_url: 
+  - v3.0.2:
+      ver_alt: 
+      date: 2016-11-27
+      source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.0.2.rar
+      file_url: 
+  - v2.2.4:
+      ver_alt: 
+      date: 2016-06-30
+      source_url: https://www.youtube.com/watch?v=4nkvTY3E8SE
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds2.2.4.rar
+      file_url: 
+  - v2.2:
+      ver_alt: 
+      date: 2016-06-25
+      source_url: https://www.youtube.com/watch?v=4nkvTY3E8SE
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds2.2.rar
+      file_url: 
+  - v2.1.1:
+      ver_alt: 
+      date: 2016-03-08
+      source_url: https://www.youtube.com/watch?v=odha9J179dk
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds2.1.1.rar
+      file_url: 
+  - v2.1:
+      ver_alt: 
+      date: 2016-03-06
+      source_url: https://www.youtube.com/watch?v=odha9J179dk
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds2.1.rar
+      file_url: 
+  - v2.0.6:
+      ver_alt: 
+      date: 2016-02-13
+      source_url: https://www.youtube.com/watch?v=OfXE4iM2UZY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds2.0.6.rar
+      file_url: 
+  - v2.0.2:
+      ver_alt: 
+      date: 2016-02-10
+      source_url: https://www.youtube.com/watch?v=OfXE4iM2UZY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds2.0.2.rar
+      file_url: 
+  - v1.9:
+      ver_alt: 
+      date: 2015-12-24
+      source_url: https://www.youtube.com/watch?v=Yl_O0RMilcs
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds1.9.rar
+      file_url: 
+  - v1.8:
+      ver_alt: 
+      date: 2015-12-06
+      source_url: https://www.youtube.com/watch?v=Vk8wObBwJjk
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds1.8.rar
+      file_url: 
+  - v1.7:
+      ver_alt: 
+      date: 2015-11-20
+      source_url: https://www.youtube.com/watch?v=itEWZHsz0iY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds1.7.rar
+      file_url: 
+  - v1.6:
+      ver_alt: 
+      date: 2015-11-04
+      source_url: https://www.youtube.com/watch?v=oNdLAjbb7KA
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds1.6.rar
+      file_url: 
+  - v1.3:
+      ver_alt: 
+      date: 2015-10-04
+      source_url: 
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds1.3.rar
+      file_url: 
 - game: World11++
   game_alt:
   author: 克洛伊Prime
@@ -11473,7 +12593,7 @@
   download_url_alt:
   file_name: MF - World of Colors.rar
   file_url:
-- game: 'Mario Forever: Another Level #7'
+- game: 'Mario Forever: Another Level'
   game_alt:
   author: master171
   author_alt:
@@ -11481,15 +12601,83 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2018-02-11
-  source_url: https://marioforeverforum.boards.net/thread/804/mario-forever-another-level-series
-  source_url_alt:
-  download_url: ~http://www.sendspace.com/file/hbk9ek
-  code:
-  download_url_alt:
-  file_name: MFAL-Build007.rar
-  file_url:
+  - "#7":
+      ver_alt:
+      date: 2018-02-11
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/804/mario-forever-another-level-series
+      source_url_alt:
+      download_url: ~http://www.sendspace.com/file/hbk9ek
+      code:
+      download_url_alt:
+      file_name: MFAL-Build007.rar
+      file_url:
+  - "#6":
+      ver_alt:
+      date: 2017-12-30
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/762/mario-forever-another-level-6
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/64bnc95ke0espu2/MFAL-Build006.rar
+      code:
+      download_url_alt:
+      file_name: MFAL-Build006.rar
+      file_url:
+  - "#5":
+      ver_alt:
+      date: 2017-09-05
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/639/mario-forever-another-level-5
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/vc3g343bflze12r/MFAL-Build005.rar
+      code:
+      download_url_alt:
+      file_name: MFAL-Build005.rar
+      file_url:
+  - "#4":
+      ver_alt:
+      date: 2017-09-01
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/633/mario-forever-another-level-4
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/rclr24ux69cvpvc/MFAL-Build004.rar
+      code:
+      download_url_alt:
+      file_name: MFAL-Build004.rar
+      file_url:
+  - "#3":
+      ver_alt:
+      date: 2017-08-28
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/630/mario-forever-another-level-3
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/4o0r66oqjbfg0d0/MFAL-Build003.rar
+      code:
+      download_url_alt:
+      file_name: MFAL-Build003.rar
+      file_url:
+  - "#2":
+      ver_alt:
+      date: 2017-08-24
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/622/mario-forever-another-level-2
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/kbeng25r3hyg05l/MFAL-Build002.rar
+      code:
+      download_url_alt:
+      file_name: MFAL-Build002.rar
+      file_url:
+  - "#1":
+      ver_alt:
+      date: 2017-08-21
+      current: true
+      source_url: https://marioforeverforum.boards.net/thread/617/mario-forever-another-level-1
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bp1bc65p46c616d/MFALBuild%23001.rar
+      code:
+      download_url_alt:
+      file_name: MFALBuild%23001.rar
+      file_url:
 - game: Snowy Starland
   game_alt:
   author: The Lemon Tree
@@ -11650,23 +12838,6 @@
   download_url_alt:
   file_name: Mario Forever Dream Escape压缩音乐版.rar
   file_url:
-- game: 'Mario Forever: Another Level #6'
-  game_alt:
-  author: master171
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2017-12-30
-  source_url: https://marioforeverforum.boards.net/thread/762/mario-forever-another-level-6
-  source_url_alt:
-  download_url: http://www.mediafire.com/file/64bnc95ke0espu2/MFAL-Build006.rar
-  code:
-  download_url_alt:
-  file_name: MFAL-Build006.rar
-  file_url:
 - game: Speedy Timer
   game_alt:
   author: The Lemon Tree
@@ -11804,91 +12975,6 @@
       download_url_alt:
       file_name: 永吧十周年体验版.zip
       file_url:
-- game: 'Mario Forever: Another Level #5'
-  game_alt:
-  author: master171
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2017-09-05
-  source_url: https://marioforeverforum.boards.net/thread/639/mario-forever-another-level-5
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/vc3g343bflze12r/MFAL-Build005.rar
-  code:
-  download_url_alt:
-  file_name: MFAL-Build005.rar
-  file_url:
-- game: 'Mario Forever: Another Level #4'
-  game_alt:
-  author: master171
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2017-09-01
-  source_url: https://marioforeverforum.boards.net/thread/633/mario-forever-another-level-4
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/rclr24ux69cvpvc/MFAL-Build004.rar
-  code:
-  download_url_alt:
-  file_name: MFAL-Build004.rar
-  file_url:
-- game: 'Mario Forever: Another Level #3'
-  game_alt:
-  author: master171
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2017-08-28
-  source_url: https://marioforeverforum.boards.net/thread/630/mario-forever-another-level-3
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/4o0r66oqjbfg0d0/MFAL-Build003.rar
-  code:
-  download_url_alt:
-  file_name: MFAL-Build003.rar
-  file_url:
-- game: 'Mario Forever: Another Level #2'
-  game_alt:
-  author: master171
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2017-08-24
-  source_url: https://marioforeverforum.boards.net/thread/622/mario-forever-another-level-2
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/kbeng25r3hyg05l/MFAL-Build002.rar
-  code:
-  download_url_alt:
-  file_name: MFAL-Build002.rar
-  file_url:
-- game: 'Mario Forever: Another Level #1'
-  game_alt:
-  author: master171
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2017-08-21
-  source_url: https://marioforeverforum.boards.net/thread/617/mario-forever-another-level-1
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/bp1bc65p46c616d/MFALBuild%23001.rar
-  code:
-  download_url_alt:
-  file_name: MFALBuild%23001.rar
-  file_url:
 - game: Mario Forever New Worlds
   game_alt:
   author: jakubkrysa13
