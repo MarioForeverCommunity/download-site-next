@@ -9,7 +9,7 @@
     const smwpCollDate  = "20241012"
 </script>
 
-如遇到发布帖或下载地址失效/缺少想要的作品/作品信息、提取码错误等问题，[请在社区反馈专帖反馈](https://www.marioforever.net/thread-1635-1-1.html)。贴吧链接均为旧贴，请勿挖坟。
+如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）等问题，[请在社区反馈专帖反馈](https://www.marioforever.net/thread-1635-1-1.html)。贴吧链接均为旧贴，请勿挖坟。
 
 无下载按钮的作品可到发布页直接下载，并已包含在「SMWP 作品汇总」合集压缩包内，点击下面按钮即可下载作品合集。你也可以进入 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载 Mario Worker 相关资源，同时本页面还提供了 Mario Worker 资源备用地址以备不时之需（下载 100MB 以上文件需登录 123pan 账号）。
 
