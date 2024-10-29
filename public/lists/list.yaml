@@ -120,6 +120,8 @@
       file_url:
 - game: 空の檻
   game_alt:
+  alias:
+  - 空牢
   author: 大爱Mario_
   author_alt: Meowario
   type: chinese
@@ -10416,6 +10418,8 @@
   game_alt:
   alias:
   - SMMWW
+  - 星愿之旅
+  - 银河之愿
   author: dasasdhba
   author_alt:
   type: chinese
