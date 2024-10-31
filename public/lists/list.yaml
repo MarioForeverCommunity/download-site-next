@@ -1,4 +1,21 @@
 ---
+- game: "Mario Forever: Incredible Worlds"
+  game_alt:
+  author: MJXXX
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: 
+  ver_alt:
+  date: 2024-10-31
+  source_url: https://www.youtube.com/watch?v=RbyyniTTFe0
+  source_url_alt:
+  download_url: https://files.fm/f/cwsskhgebw?fk=9204b084
+  code:
+  download_url_alt:
+  file_name: Mario Forever Incredible Worlds.zip
+  file_url:
 - game: Mario Forever Cursed Crown
   game_alt:
   author: Mario Tube
