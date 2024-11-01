@@ -1,4 +1,21 @@
 ---
+- game: Mario Forever Midnight Challenger
+  game_alt:
+  author: 安德鲁斯123
+  author_alt: Andrews123
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver: 旧版 World 1
+  ver_alt: World 1
+  date: 2024-11-01
+  source_url: https://www.marioforever.net/thread-3429-1-1.html
+  source_url_alt:
+  download_url: https://wwrl.lanzn.com/iIzup2dzl17a
+  code: f9a6
+  download_url_alt:
+  file_name: MFMC W1 Old Ver.exe
+  file_url:
 - game: "Mario Forever: Incredible Worlds"
   game_alt:
   author: MJXXX
@@ -3551,7 +3568,7 @@
   game_alt:
   author:
   - 绿色的糖果
-  - Andrews123
+  - 安德鲁斯123
   author_alt:
   - Green Sweet
   - Andrews123
