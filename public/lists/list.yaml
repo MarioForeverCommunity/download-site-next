@@ -7,15 +7,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver: 
-  ver_alt:
-  date: 2024-10-31
-  source_url: https://www.youtube.com/watch?v=RbyyniTTFe0
-  source_url_alt:
-  download_url: https://files.fm/f/cwsskhgebw?fk=9204b084
-  code:
-  download_url_alt:
-  file_name: Mario Forever Incredible Worlds.zip
-  file_url:
+  - v1.0.1:
+      ver_alt:
+      date: 2024-11-01
+      source_url: https://www.youtube.com/watch?v=E2ejWE1Cgtw
+      source_url_alt:
+      download_url: https://files.fm/f/p5jf7gryhn
+      code:
+      download_url_alt:
+      file_name: Mario Forever Incredible Worlds.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2024-10-31
+      source_url: https://www.youtube.com/watch?v=RbyyniTTFe0
+      source_url_alt:
+      download_url: ~https://files.fm/f/cwsskhgebw
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Incredible Worlds.zip
+      file_url:
 - game: Mario Forever Cursed Crown
   game_alt:
   author: Mario Tube
@@ -535,6 +546,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.0:
+      ver_alt:
+      date: 2024-10-29
+      source_url: https://www.youtube.com/watch?v=NtwujyjvMQw
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/mwuodowih1gxqpd
+      code:
+      download_url_alt:
+      file_name: Mario Forever Dynamic Letter Worlds Series v2.0.rar
+      file_url:
   - v1.5:
       ver_alt:
       date: 2024-09-08
@@ -543,7 +564,7 @@
       download_url: https://www.mediafire.com/file/it6p3q10kyxw4dd
       code:
       download_url_alt:
-      file_name: Mario Forever Dynamic Letter Worlds Series v1.5.rar
+      file_name: old-versions/Mario Forever Dynamic Letter Worlds Series v1.5.rar
       file_url:
   - v1.0:
       ver_alt:
