@@ -5,7 +5,7 @@
     // 请在此设置作品汇总日期。
 
     const mwCollDate    = "20240504"
-    const mwCupCollDate = "20240824"
+    const mwCupCollDate = "20241104"
     const smwpCollDate  = "20241012"
 </script>
 
