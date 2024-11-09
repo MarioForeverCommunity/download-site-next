@@ -7480,7 +7480,7 @@
   ver: v2.01
   ver_alt:
   date: 2021-10-03
-  source_url: https://themariovariable.altervista.org/projects/mario-forever-hardcore-distopia/
+  source_url: https://themariovariable.altervista.org/mario-forever/mario-forever-hardcore-dystopia/
   source_url_alt:
   download_url: https://www.mediafire.com/file/1jy97w1w9vbvevc/MF_-_H%2Ardc%2Ar%2A_Dystopia_v2.01.rar/file
   code:
@@ -9045,7 +9045,7 @@
       ver_alt:
       date: 2021-01-10
       current: true
-      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url: https://themariovariable.altervista.org/mario-forever/mario-forever-remake/
       source_url_alt:
       download_url: https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file
       code:
@@ -9056,7 +9056,7 @@
       ver_alt:
       date: 2021-01-10
       current: true
-      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url: https://themariovariable.altervista.org/mario-forever/mario-forever-remake/
       source_url_alt:
       download_url: https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file
       code:
@@ -9066,7 +9066,7 @@
   - v4.01 (D3D9):
       ver_alt:
       date: 2021-01-09
-      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url: https://themariovariable.altervista.org/mario-forever/mario-forever-remake/
       source_url_alt:
       download_url:
       code:
@@ -9076,7 +9076,7 @@
   - v4.01:
       ver_alt:
       date: 2021-01-09
-      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url: https://themariovariable.altervista.org/mario-forever/mario-forever-remake/
       source_url_alt:
       download_url:
       code:
@@ -9086,7 +9086,7 @@
   - v4.0:
       ver_alt:
       date: 2021-01-07
-      source_url: https://themariovariable.altervista.org/projects/mario-forever-remake/
+      source_url: https://themariovariable.altervista.org/mario-forever/mario-forever-remake/
       source_url_alt:
       download_url:
       code:
@@ -11385,7 +11385,7 @@
   date: 2019-10-02
   source_url: https://www.youtube.com/watch?v=erQk2O6Q7OY
   source_url_alt:
-  download_url: https://themariovariable.altervista.org/projects/mario-forever-collection/
+  download_url: ~https://themariovariable.altervista.org/projects/mario-forever-collection/
   code:
   download_url_alt:
   file_name: TMV's MF Collection.7z
