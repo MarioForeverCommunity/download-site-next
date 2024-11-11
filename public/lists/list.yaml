@@ -975,6 +975,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  description_zh: 本游戏并不被社区承认。
+  description_en: This game is not recognized by the community.
   ver:
   ver_alt:
   date: 2024-08-11
@@ -3919,6 +3921,23 @@
       download_url_alt:
       file_name: old-versions/Mario Forever - World KP.rar
       file_url:
+- game: Mario Forever Renaissance 残卷
+  game_alt: Mario Forever Renaissance (Incomplete)
+  author: 数字1528君
+  author_alt: Num1528
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2023-06-10
+  source_url: ~https://www.marioforever.net/thread-2718-1-1.html
+  source_url_alt:
+  download_url: https://wwzr.lanzout.com/i0RNa0yta9cf
+  code: '1528'
+  download_url_alt:
+  file_name: Mario Forever Renaissance 残卷.zip
+  file_url:
 - game: Mario Forever World MT
   game_alt:
   author: MarioT02
