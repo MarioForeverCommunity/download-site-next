@@ -1,4 +1,34 @@
 ---
+- game: Mario Forever Bizarre Land
+  game_alt:
+  alias:
+  - MFBL
+  author: Dr.Chaos Kirby
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v2.0:
+      ver_alt:
+      date: 2024-11-17
+      source_url: https://www.marioforever.net/thread-3438-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1oAjcNgBGJNBXjtwSN4iSew
+      code: MFBL
+      download_url_alt:
+      file_name: MARIO FOREVER BIZARRE LAND V2.0.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2023-07-13
+      source_url: https://www.marioforever.net/thread-2775-1-1.html
+      source_url_alt:
+      download_url: https://wwpw.lanzouj.com/i7H3s12c36je
+      code: MFBL
+      download_url_alt:
+      file_name: MARIO FOREVER BIZARRE LAND V1.0.zip
+      file_url:
 - game: Mario Forever Plus Worlds Series Remake
   game_alt:
   author: SupraXOCan
@@ -18,8 +48,8 @@
   file_url:
 - game: Summer Day
   game_alt:
-  author: 混沌卡比.yjs
-  author_alt: Dr.Chaos Kirby
+  author: Dr.Chaos Kirby
+  author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -1781,8 +1811,8 @@
   file_url:
 - game: UNNAMED LEVEL
   game_alt:
-  author: 混沌卡比.yjs
-  author_alt: Dr.Chaos Kirby
+  author: Dr.Chaos Kirby
+  author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -3798,25 +3828,6 @@
   download_url_alt:
   file_name: Mario_Forever_But_Floor_Is_Lava_1.0-hotfix.zip
   file_url:
-- game: Mario Forever Bizarre Land
-  game_alt:
-  alias:
-  - MFBL
-  author: 混沌卡比.yjs
-  author_alt: Dr.Chaos Kirby
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver: v1.0
-  ver_alt:
-  date: 2023-07-13
-  source_url: https://www.marioforever.net/thread-2775-1-1.html
-  source_url_alt:
-  download_url: https://wwpw.lanzouj.com/i7H3s12c36je
-  code: MFBL
-  download_url_alt:
-  file_name: MARIO FOREVER BIZARRE LAND V1.0.zip
-  file_url:
 - game: PK!MF4 关卡集
   game_alt: PK!MF4 Collection
   alias:
@@ -4721,8 +4732,8 @@
       file_url:
 - game: RGB
   game_alt:
-  author: 混沌卡比.yjs
-  author_alt: Dr.Chaos Kirby
+  author: Dr.Chaos Kirby
+  author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -7084,8 +7095,8 @@
   game_alt:
   alias:
   - MFOMF
-  author: 混沌卡比.yjs
-  author_alt: Dr.Chaos Kirby
+  author: Dr.Chaos Kirby
+  author_alt:
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Onegai,My_Fantasy
   wiki_en_url:
