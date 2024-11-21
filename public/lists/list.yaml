@@ -11960,7 +11960,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever%EF%BC%9AMario_fantasy_tour%EF%BC%88%E9%A9%AC%E9%87%8C%E5%A5%A5%E5%B9%BB%E6%83%B3%E4%B9%8B%E6%97%85%EF%BC%89
   wiki_en_url:
-  ver:
+  ver: v4.0.6
   ver_alt:
   date: 2019-01-30
   source_url: https://archive.marioforever.net/post/6022383736.html
@@ -11968,7 +11968,7 @@
   download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
   code: mlqj
   download_url_alt:
-  file_name: 马里奥幻想之旅.zip
+  file_name: 马里奥幻想之旅V4.0.6.zip
   file_url:
 - game: 'Mario Forever: Russian Letter Worlds Series'
   game_alt:
@@ -13793,23 +13793,13 @@
       download_url_alt:
       file_name: Super Mario Forever JourneyV1.5.2(1).zip
       file_url:
-  - v1.5 new:
-      ver_alt:
-      date: 2016-08-22
-      source_url: https://tieba.baidu.com/p/4744229792
-      source_url_alt:
-      download_url: https://pan.baidu.com/s/1bpxD2Ez
-      code:
-      download_url_alt:
-      file_name: Super Mario Forever JourneyV1.5(1).zip
-      file_url:
   - v1.5:
       ver_alt:
       date: 2016-08-22
       source_url: https://tieba.baidu.com/p/4744229792
       source_url_alt:
       download_url: https://pan.baidu.com/s/1skTyKEx
-      code:
+      code: cvj3
       download_url_alt:
       file_name: Super Mario Forever JourneyV1.5.zip
       file_url:
