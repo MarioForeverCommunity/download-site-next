@@ -969,6 +969,16 @@
   alist: true
   file_name: A Random Space.7z
   file_url:
+- game: LOVE
+  author: s小s飞s侠s
+  smwp_ver: v1.7.6
+  date: 2022-02-11
+  source_url: ~https://www.marioforever.net/thread-1927-1-1.html
+  download_url:
+  code:
+  alist: true
+  file_name: 爆款MW吧吧友结婚纪念日赠妻礼物模板.7z
+  file_url:
 - game: Mario Worker Pursue
   alias:
   - MWP
