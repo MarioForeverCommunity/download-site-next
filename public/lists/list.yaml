@@ -1,4 +1,38 @@
 ---
+- game: Mario Forever - Community Edition
+  game_alt:
+  author: Meteo Dream
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v1.0
+  ver_alt:
+  date: 2024-11-29
+  source_url: https://www.youtube.com/watch?v=dR_aYILio4s
+  source_url_alt:
+  download_url: https://rnx.su/s/DZm6PEkZf3z4owp
+  code:
+  download_url_alt:
+  file_name: Mario Forever Community Edition 1.0.zip
+  file_url:
+- game: Mario Forever - Reversed Worlds
+  game_alt:
+  author: MrMikhy
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v1.0
+  ver_alt:
+  date: 2024-11-28
+  source_url: https://www.youtube.com/watch?v=UJmS59E0iRM
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/cps9fdsvoagekgr/Mario_Forever_Reversed_Worlds_1.0.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Reversed Worlds 1.0.zip
+  file_url:
 - game: Mario Forever Bizarre Land
   game_alt:
   alias:
