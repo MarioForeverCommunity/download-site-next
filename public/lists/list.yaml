@@ -1,6 +1,9 @@
 ---
 - game: Mario Forever - Community Edition
   game_alt:
+  alias:
+  - MFCE
+  - MF:CE
   author: Meteo Dream
   author_alt:
   type: international
