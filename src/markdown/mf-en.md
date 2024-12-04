@@ -4,10 +4,15 @@
 
 ## Download Mario Forever Remake
 
-<a class="md-button" href="https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file">Download Mario Forever Remake v4.02 (PAL, D3D9)</a>
-<a class="md-button" href="https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file">Download Mario Forever Remake v4.02 (PAL, Standard)</a>
-<a class="md-button" href="https://file.marioforever.net/mario-forever/games/chinese-fangames/2017/Mario%20Forever%20Remake%20v3.5.rar">Download Mario Forever Remake v3.5 (Chinese)</a>
-<a class="md-button" href="https://file.marioforever.net/mario-forever/games/chinese-fangames/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar">Download Mario Forever Advance Remake v1.5</a>
+<a class="md-button" target="_blank" href="https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file">Download Mario Forever Remake v4.02 (PAL, D3D9)</a>
+<a class="md-button" target="_blank" href="https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file">Download Mario Forever Remake v4.02 (PAL, Standard)</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/chinese-fangames/2017/Mario%20Forever%20Remake%20v3.5.rar">Download Mario Forever Remake v3.5 (Chinese)</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/chinese-fangames/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar">Download Mario Forever Advance Remake v1.5</a>
+
+## Download Mario Forever: Community Edition
+
+<a class="md-button" target="_blank" href="https://mfce.rnx.su/">Mario Forever: Community Edition Website</a>
+<a class="md-button" target="_blank" href="https://rnx.su/s/DZm6PEkZf3z4owp">Download Mario Forever: Community Edition</a>
 
 ## Download original Mario Forever
 

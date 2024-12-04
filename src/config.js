@@ -55,7 +55,7 @@ export const navTop = [
     "option" : "原版 MF 下载",
     "option_alt" : "MF & MFR Downloads",
     "title" : "Mario Forever 全版本汇总",
-    "title_alt" : "Original Mario Forever & Mario Forever Remake Downloads",
+    "title_alt" : "Original Mario Forever & MF Remakes Downloads",
     "show_en" : true
   },
   {
