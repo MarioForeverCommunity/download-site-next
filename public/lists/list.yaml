@@ -42,16 +42,39 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.0
-  ver_alt:
-  date: 2024-11-29
-  source_url: https://www.marioforever.net/thread-3452-1-1.html
-  source_url_alt: https://www.youtube.com/watch?v=dR_aYILio4s
-  download_url: https://rnx.su/s/DZm6PEkZf3z4owp
-  code:
-  download_url_alt:
-  file_name: Mario Forever Community Edition 1.0.zip
-  file_url:
+  ver:
+  - v1.1 Windows:
+      ver_alt:
+      date: 2024-12-06
+      current: true
+      source_url: https://www.marioforever.net/thread-3452-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=dR_aYILio4s
+      download_url: https://rnx.su/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 1.1 Windows.7z
+      file_url:
+  - v1.1 Linux:
+      ver_alt:
+      date: 2024-12-06
+      current: true
+      source_url: https://www.marioforever.net/thread-3452-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=dR_aYILio4s
+      download_url: https://rnx.su/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 1.1 Linux.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2024-11-29
+      source_url: https://www.marioforever.net/thread-3452-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=dR_aYILio4s
+      download_url: https://rnx.su/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Community Edition 1.0.zip
+      file_url:
 - game: Mario Forever - Reversed Worlds
   game_alt:
   author: MrMikhy
@@ -1685,16 +1708,29 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_Winter_Franchise
   wiki_en_url:
-  ver: v1.2
-  ver_alt:
-  date: 2024-06-07
-  source_url: https://www.marioforever.net/thread-3123-1-1.html
-  source_url_alt: https://www.youtube.com/watch?v=6yixjsfGwjQ
-  download_url: https://nx.wtf/s/WS7knnHZpQCELe8
-  code:
-  download_url_alt:
-  file_name: Mario Forever - Winter Franchise v1.2.7z
-  file_url:
+  ver:
+  - v1.2 Windows:
+      ver_alt:
+      date: 2024-06-07
+      current: true
+      source_url: https://www.marioforever.net/thread-3123-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=6yixjsfGwjQ
+      download_url: https://rnx.su/s/6pCpa4r2zqBdAeG
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Winter Franchise v1.2.7z
+      file_url:
+  - v1.2 Linux:
+      ver_alt:
+      date: 2024-06-07
+      current: true
+      source_url: https://www.marioforever.net/thread-3123-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=6yixjsfGwjQ
+      download_url: https://rnx.su/s/6pCpa4r2zqBdAeG
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Winter Franchise v1.2 Linux.7z
+      file_url:
 - game: Mario Forever - Spring Paradise
   game_alt:
   author: rAgnarok5
@@ -4969,16 +5005,29 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.2.2
-  ver_alt:
-  date: 2023-02-13
-  source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
-  source_url_alt:
-  download_url: https://nx.wtf/s/jmNFEKA3M9anm5f
-  code:
-  download_url_alt:
-  file_name: Mario Forever The Multiverse 2 v1.2.2 Windows.zip
-  file_url:
+  ver:
+  - v1.2.2 Windows:
+      ver_alt:
+      date: 2023-02-13
+      current: true
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url: https://rnx.su/s/LSksTmb9qqqHq8s
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.2.2 Windows.zip
+      file_url:
+  - v1.2.2 Linux:
+      ver_alt:
+      date: 2023-02-13
+      current: true
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url: https://rnx.su/s/LSksTmb9qqqHq8s
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.2.2 Linux.zip
+      file_url:
 - game: 'Mario Forever: Reverse Number Worlds Series'
   game_alt:
   author: MarioT02
@@ -5867,7 +5916,7 @@
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
-  wiki_zh_url:
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Flashing_Revolution
   wiki_en_url:
   video_zh:
   - WSW 直播回放: https://www.bilibili.com/video/BV14R4y1d76Z/
