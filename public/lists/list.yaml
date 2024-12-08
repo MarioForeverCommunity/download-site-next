@@ -13836,7 +13836,7 @@
   file_name: MF - XMAS EDITION.ZIP
   file_url:
 - game: Mario Forever Remake
-  game_alt: Mario Forever Remake (CN)
+  game_alt: Mario Forever Remake (Chinese)
   alias:
   - MFRa
   - MFRemake
@@ -13846,16 +13846,57 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Remake
   wiki_en_url:
-  ver: v3.5
-  ver_alt:
-  date: 2017-02-04
-  source_url: https://tieba.baidu.com/p/4965707653
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1jHZRwJ8
-  code:
-  download_url_alt:
-  file_name: Mario Forever Remake v3.5.rar
-  file_url:
+  ver:
+  - v3.5:
+      ver_alt:
+      date: 2017-02-04
+      source_url: https://tieba.baidu.com/p/4965707653
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1jHZRwJ8
+      code:
+      download_url_alt:
+      file_name: Mario Forever Remake v3.5.rar
+      file_url:
+  - v2.2:
+      ver_alt:
+      date: 2014-11-29
+      source_url: http://tieba.baidu.com/p/3439041647
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1o6qiNWY
+      code:
+      download_url_alt:
+      file_name: Mario Forever Remake 2.2.rar
+      file_url:
+  - v2.0:
+      ver_alt:
+      date: 2014-10-02
+      source_url: http://tieba.baidu.com/p/3327826697
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1kT40PRD
+      code:
+      download_url_alt:
+      file_name: Install Mario Forever Remake 2.0.exe
+      file_url:
+  - v1.7:
+      ver_alt:
+      date: 2014-09-08
+      source_url: https://tieba.baidu.com/p/3283857236
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1dD8amY1
+      code:
+      download_url_alt:
+      file_name: Mario Forever Remake 1.7.rar
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2014-01-30
+      source_url: https://tieba.baidu.com/p/2841218377
+      source_url_alt:
+      download_url: ~http://pan.baidu.com/s/1jGmiWSm
+      code:
+      download_url_alt:
+      file_name: Mario Forever Remake v1.0.rar
+      file_url:
 - game: Mario Forever Advance Remake
   game_alt:
   alias:
@@ -13866,16 +13907,27 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
-  ver: v1.5
-  ver_alt:
-  date: 2017-02-04
-  source_url: https://tieba.baidu.com/p/4965707653
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1slAQQ7b
-  code:
-  download_url_alt:
-  file_name: Mario Forever Advance Remake v1.5.rar
-  file_url:
+  ver:
+  - v1.5:
+      ver_alt:
+      date: 2017-02-04
+      source_url: https://tieba.baidu.com/p/4965707653
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1slAQQ7b
+      code:
+      download_url_alt:
+      file_name: Mario Forever Advance Remake v1.5.rar
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2016-08-12
+      source_url: https://tieba.baidu.com/p/4727461992
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1slKREzz
+      code:
+      download_url_alt:
+      file_name: Mario Forever Advance Remake.rar
+      file_url:
 - game: Mysterious Island 2 - Great Journey
   game_alt:
   alias:
