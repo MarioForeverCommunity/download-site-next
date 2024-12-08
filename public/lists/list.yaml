@@ -9441,6 +9441,19 @@
       file_url:
       data_file_name: old-versions/data_mfr35.rar
       data_file_url:
+  - v3.2:
+      ver_alt:
+      date: 2016-10-07
+      source_url: https://www.youtube.com/watch?v=7XUoqAc_BkQ
+      source_url_alt:
+      download_url: ~http://www.mediafire.com/file/2iuf41k16qbaklh/Mario_Forever_Remake_v3.2.rar/file
+      code:
+      download_url_alt:
+      data_download_url: http://www.mediafire.com/file/gpns6uwm77ivb36/data32.rar
+      file_name: old-versions/Mario Forever Remake v3.2.rar
+      file_url:
+      data_file_name: old-versions/data32.rar
+      data_file_url:
   - v3.1:
       ver_alt:
       date: 2016-07-11
@@ -10391,6 +10404,16 @@
       code: 
       download_url_alt: 
       file_name: old-versions/Mario Forever Roman Worlds3.0.2.rar
+      file_url: 
+  - v3.0:
+      ver_alt: 
+      date: 2016-11-23
+      source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: old-versions/Mario Forever Roman Worlds3.0.rar
       file_url: 
   - v2.2.4:
       ver_alt: 
@@ -14971,6 +14994,23 @@
   code:
   download_url_alt:
   file_name: "[1.01]MFE吧周年庆作品2in1(1).exe"
+  file_url:
+- game: 'Mario Worker: The Contest III'
+  game_alt:
+  author: TheMarioVariable
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2015-08-06
+  source_url: https://www.youtube.com/watch?v=oY7hzOzudVA
+  source_url_alt:
+  download_url: ~https://www.sendspace.com/file/6m00b8
+  code:
+  download_url_alt:
+  file_name: Mario Worker - The contest III.zip
   file_url:
 - game: World Dark
   game_alt:
