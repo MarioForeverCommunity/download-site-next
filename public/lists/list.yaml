@@ -35,7 +35,7 @@
   author_alt:
   type: international
   wiki_zh_url:
-  wiki_en_url:
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Revival
   ver: v1.0
   ver_alt:
   date: 2024-12-08
@@ -87,8 +87,8 @@
   author: Meteo Dream
   author_alt:
   type: international
-  wiki_zh_url:
-  wiki_en_url:
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   ver:
   - v1.1 Windows:
       ver_alt:
