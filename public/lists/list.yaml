@@ -1520,13 +1520,23 @@
   ver:
   - v2.4:
       ver_alt:
+      date: 2024-12-27
+      source_url: https://www.youtube.com/watch?v=J5Nw10a0Y2g
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ys4ulv52qzbxv00/MFEWS_v2.4.1_%2528BETA%2529.zip/file
+      code:
+      download_url_alt:
+      file_name: MFEWS v2.4.1 (BETA).zip
+      file_url:
+  - v2.4:
+      ver_alt:
       date: 2024-12-26
       source_url: https://www.youtube.com/watch?v=J5Nw10a0Y2g
       source_url_alt:
       download_url: https://www.mediafire.com/file/rap96avghh59i9t/MFEWS_v2.4_%2528BETA%2529.zip/file
       code:
       download_url_alt:
-      file_name: MFEWS v2.4 (BETA).zip
+      file_name: old-versions/MFEWS v2.4 (BETA).zip
       file_url:
   - v2.3:
       ver_alt:
