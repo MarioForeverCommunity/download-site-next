@@ -115,7 +115,7 @@ export const sourceName = [
     "desc_en" : "MF Forum"
   },
   {
-    "domain" : "themariovariable.altervista.org",
+    "domain" : "themariovariable.org",
     "desc_zh" : "TMV 个人网站",
     "desc_en" : "TMV's website"
   },
@@ -196,7 +196,7 @@ export const downloadName = [
     "desc_en" : "Sendspace"
   },
   {
-    "domain" : "themariovariable.altervista.org",
+    "domain" : "themariovariable.org",
     "desc_zh" : "TMV 个人网站",
     "desc_en" : "TMV's website"
   },
