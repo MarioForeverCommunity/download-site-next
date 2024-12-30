@@ -165,7 +165,7 @@ export const downloadName = [
   },
   {
     "domain" : "files.fm",
-    "desc_en" : "files.fme"
+    "desc_en" : "files.fm"
   },
   {
     "domain" : "mega.nz",
