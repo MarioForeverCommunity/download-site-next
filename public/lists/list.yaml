@@ -1047,6 +1047,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.0 Release:
+      ver_alt:
+      date: 2025-01-11
+      source_url: https://www.youtube.com/watch?v=_dpuFUXjBCk
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/4qgf43lvl7psbur/Mario_Forever_M-Series_v2.0_Release.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever M-Series v2.0 Release.rar
+      file_url:
   - v2.0 Beta Build 10:
       ver_alt:
       date: 2025-01-02
@@ -1055,7 +1065,7 @@
       download_url: https://www.mediafire.com/file/l6kbdwvzbn1b9sy/Mario_Forever_M-Series_v2.0_Beta_Build_10.rar/file
       code:
       download_url_alt:
-      file_name: Mario Forever M-Series v2.0 Beta Build 10.rar
+      file_name: old-versions/Mario Forever M-Series v2.0 Beta Build 10.rar
       file_url:
   - v2.0 Beta Build 9:
       ver_alt:
