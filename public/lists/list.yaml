@@ -1,4 +1,23 @@
 ---
+- game: Mario Forever.EXE
+  game_alt:
+  author: Rainbow_Star
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  description_zh: 该游戏含有恐怖元素，请谨慎游玩。
+  description_en: The game contains horror elements, please play with caution.
+  ver: v1.0.5
+  ver_alt:
+  date: 2024-12-08
+  source_url: https://www.youtube.com/watch?v=sQSxa0Koxms
+  source_url_alt:
+  download_url: https://gamejolt.com/games/marioforeverexe/964595
+  code:
+  download_url_alt:
+  file_name: mario-forever.zip
+  file_url:
 - game: Narrow Highway
   game_alt: 
   author: JJ带我飞
@@ -609,6 +628,16 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B%EF%BC%89
   wiki_en_url:
   ver:
+  - v1.5.0:
+      ver_alt:
+      date: 2025-01-13
+      source_url: https://www.marioforever.net/thread-3386-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛 v1.5.0.zip
+      file_url:
   - v1.4.2:
       ver_alt:
       date: 2024-11-10
@@ -773,16 +802,37 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.2.0
-  ver_alt:
-  date: 2024-10-22
-  source_url: https://www.marioforever.net/thread-3386-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
-  code: mlqj
-  download_url_alt:
-  file_name: 永远的马里奥：蘑菇岛——秋的记忆 v1.2.0.zip
-  file_url:
+  ver:
+  - v1.5.0:
+      ver_alt:
+      date: 2025-01-13
+      source_url: https://www.marioforever.net/thread-3386-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛——秋的记忆 v1.5.0.zip
+      file_url:
+  - v1.2.0:
+      ver_alt:
+      date: 2024-10-22
+      source_url: https://www.marioforever.net/thread-3386-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛——秋的记忆 v1.2.0.zip
+      file_url:
+  - v1.1.0:
+      ver_alt:
+      date: 2024-10-05
+      source_url: https://www.marioforever.net/thread-3386-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛/v1.1.0/永远的马里奥：蘑菇岛——秋的记忆.zip
+      file_url:
 - game: Mario Forever Math Symbole Worlds Series
   game_alt:
   author: Turkish_bussines
@@ -4449,16 +4499,27 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.5 Beta
-  ver_alt:
-  date: 2023-05-08
-  source_url: https://www.youtube.com/watch?v=-aFoQ8h7ObA
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/i3tpjyu9x2h4w1o/Mario_Forever_A_New_Journey_V1.5_Beta.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever A New Journey V1.5 Beta.zip
-  file_url:
+  ver:
+  - v1.5 Beta:
+      ver_alt:
+      date: 2023-05-08
+      source_url: https://www.youtube.com/watch?v=-aFoQ8h7ObA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/i3tpjyu9x2h4w1o/Mario_Forever_A_New_Journey_V1.5_Beta.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever A New Journey V1.5 Beta.zip
+      file_url:
+  - v0.7:
+      ver_alt:
+      date: 2021-11-11
+      source_url: https://www.youtube.com/watch?v=XD5JOx1agEk
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/f622vjfcjkuvy3h/Mario_Forever_A_New_Journey_v0.7.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever A New Journey V1.5 Beta.zip
+      file_url:
 - game: 'Mario Forever: Varied World'
   game_alt:
   author: MrWiktor15
