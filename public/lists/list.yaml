@@ -1,4 +1,44 @@
 ---
+- game: 永远的马里奥：蘑菇岛2
+  game_alt: 'Mario Forever: Mushroom Island 2'
+  alias:
+  - MFMI2
+  author: 面灵气酱
+  author_alt: MLQJ
+  type: chinese
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island_2%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B2%EF%BC%89
+  wiki_en_url:
+  ver:
+  - v1.0.2:
+      ver_alt:
+      date: 2025-01-18
+      source_url:
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛2 v1.0.2.zip
+      file_url:
+  - v1.0.1:
+      ver_alt:
+      date: 2025-01-16
+      source_url:
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛2 v1.0.1.zip
+      file_url:
+  - v1.0.0:
+      ver_alt:
+      date: 2025-01-16
+      source_url:
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛2 v1.0.0.zip
+      file_url:
 - game: Mario Forever.EXE
   game_alt:
   author: Rainbow_Star
@@ -1436,6 +1476,17 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - World 4:
+      ver_alt:
+      date: 2025-01-18
+      current: true
+      source_url: https://www.youtube.com/watch?v=YRPwtzhpXKs
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/na6cff0ng2o8oiw/Mario_Forever_-_The_New_Series_World_4.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - The New Series World 4.rar
+      file_url:
   - World 2:
       ver_alt:
       date: 2024-08-08
