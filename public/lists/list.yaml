@@ -48,16 +48,27 @@
   wiki_en_url:
   description_zh: 该游戏含有恐怖元素，请谨慎游玩。
   description_en: The game contains horror elements, please play with caution.
-  ver: v1.0.5
-  ver_alt:
-  date: 2025-01-13
-  source_url: https://www.youtube.com/watch?v=sQSxa0Koxms
-  source_url_alt:
-  download_url: https://gamejolt.com/games/marioforeverexe/964595
-  code:
-  download_url_alt:
-  file_name: mario-forever.zip
-  file_url:
+  ver:
+  - v1.1.0:
+      ver_alt:
+      date: 2025-01-24
+      source_url: https://www.youtube.com/watch?v=sQSxa0Koxms
+      source_url_alt:
+      download_url: https://gamejolt.com/games/marioforeverexe/964595
+      code:
+      download_url_alt:
+      file_name: mario-forever.zip
+      file_url:
+  - v1.0.5:
+      ver_alt:
+      date: 2025-01-13
+      source_url: https://www.youtube.com/watch?v=sQSxa0Koxms
+      source_url_alt:
+      download_url: https://gamejolt.com/games/marioforeverexe/964595
+      code:
+      download_url_alt:
+      file_name: old-versions/mario-forever.zip
+      file_url:
 - game: Narrow Highway
   game_alt: 
   author: JJ带我飞
@@ -881,6 +892,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v1.9:
+      ver_alt:
+      date: 2025-01-24
+      source_url: https://www.youtube.com/watch?v=pTGuEWy3pSo
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/7i4b4c547prkduq/Mario_Forever_Math_Symbole_Worlds_Series_v1.9.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Math Symbole Worlds Series v1.9.rar
+      file_url:
   - v1.7:
       ver_alt:
       date: 2024-11-14
@@ -889,7 +910,7 @@
       download_url: https://www.mediafire.com/file/pla6rltvuykejym/Mario_Forever_Math_Symbole_Worlds_Series_v1.7.rar/file
       code:
       download_url_alt:
-      file_name: Mario Forever Math Symbole Worlds Series v1.7.rar
+      file_name: old-versions/Mario Forever Math Symbole Worlds Series v1.7.rar
       file_url:
   - v1.6:
       ver_alt:
@@ -3547,6 +3568,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - "v1.5 Demo #2 Fix1":
+      ver_alt:
+      date: 2025-01-24
+      source_url: https://www.youtube.com/watch?v=Ry745Ey-vAE
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/z0snhae3ixkw490/MF_Fabulous_Letter_Worlds_Series_v1.5_Demo_%25232_Fix1.rar/file
+      code:
+      download_url_alt:
+      file_name: MF Fabulous Letter Worlds Series v1.5 Demo %232 Fix1.rar
+      file_url:
   - v1.5 Demo:
       ver_alt:
       date: 2024-11-22
@@ -3555,11 +3586,12 @@
       download_url: https://www.mediafire.com/file/ddhmu52gpelv2o8/MF_-_FABULOUS_LETTER_WORLDS_SERIES_VER_1.5_DEMO.RAR/file
       code:
       download_url_alt:
-      file_name: MF - FABULOUS LETTER WORLDS SERIES VER 1.5 DEMO.RAR
+      file_name: old-versions/MF - FABULOUS LETTER WORLDS SERIES VER 1.5 DEMO.RAR
       file_url:
   - v1.01:
       ver_alt:
       date: 2023-12-04
+      current: true
       source_url: https://www.youtube.com/watch?v=sqvFHQE8yAQ
       source_url_alt:
       download_url: https://www.mediafire.com/file/bj67oaw7q42w690/MF_-_FABULOUS_LETTER_WORLDS_SERIES_VER_1.01.RAR/file
