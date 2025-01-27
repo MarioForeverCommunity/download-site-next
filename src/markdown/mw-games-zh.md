@@ -6,7 +6,7 @@
 
     const mwCollDate    = "20240504"
     const mwCupCollDate = "20241104"
-    const smwpCollDate  = "20241012"
+    const smwpCollDate  = "20250127"
 </script>
 
 如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）等问题，[请在社区反馈专帖反馈](https://www.marioforever.net/thread-1635-1-1.html)。贴吧链接均为旧贴，请勿挖坟。
