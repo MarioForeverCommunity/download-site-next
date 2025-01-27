@@ -1,7 +1,7 @@
 ---
 - game: 探索F阶之美
   author: 有名氏
-  smwp_ver:
+  smwp_ver: v1.7.10
   date: 2025-01-27
   source_url: https://www.marioforever.net/thread-3498-1-1.html
   download_url:
@@ -10,8 +10,8 @@
   file_url:
 - game: YMS作品合集
   author: 有名氏
-  description: 关卡《树莓根下》音乐包可选
-  smwp_ver:
+  description: 关卡《树莓根下》音乐包可选；关卡《危途疑踪》SMWP 版本为 v1.7.9
+  smwp_ver: v1.7.10
   date: 2025-01-13
   source_url: https://www.marioforever.net/thread-3480-1-1.html
   download_url:
@@ -138,12 +138,13 @@
   file_url:
 - game: 微恐与抽象！乖乖隆地洞
   author: 有名氏
+  description: 已包含在 YMS 作品合集中，关卡文件名为：危途疑踪.smwl
   smwp_ver: v1.7.9
   date: 2024-07-28
   source_url: https://www.marioforever.net/thread-3293-1-1.html
   download_url:
   code:
-  file_name: 危途疑踪.smwl
+  file_name: YMS作品合集/危途疑踪.smwl
   file_url:
 - game: SLSE&SLSF前10关试玩版
   author: 把僵尸炖了
