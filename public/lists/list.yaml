@@ -1760,15 +1760,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2024-07-18
-  source_url: https://www.marioforever.net/thread-3142-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/14pCCITf_aljv-1iILHKsig?pwd=DCG2
-  code: DCG2
-  download_url_alt:
-  file_name: MF大冲关第二季 决赛.zip
-  file_url:
+  - 修复版:
+      ver_alt:
+      date: 2025-01-30
+      source_url: https://www.marioforever.net/thread-3142-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1IwAZh5VocTySfgvdgTOjqQ?pwd=tbg7
+      code: tbg7
+      download_url_alt:
+      file_name: MF大冲关第二季 决赛.exe
+      file_url:
+  - 初版:
+      ver_alt:
+      date: 2024-07-18
+      source_url: https://www.marioforever.net/thread-3142-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/14pCCITf_aljv-1iILHKsig?pwd=DCG2
+      code: DCG2
+      download_url_alt:
+      file_name: MF大冲关第二季 决赛.zip
+      file_url:
 - game: 'Mario Forever: Equal Worlds Series'
   game_alt:
   author: Xanderstar1456
@@ -8194,7 +8205,7 @@
   file_name: MF-LNY 2021 v2.0.rar
   file_url:
 - game: M F 大 冲 关
-  game_alt:
+  game_alt: MF Speedrun
   alias:
   - MF大冲关
   author: s小s飞s侠s
@@ -8202,7 +8213,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: MF Speedrun
+  ver:
   ver_alt:
   date: 2021-09-12
   source_url: https://www.marioforever.net/thread-1520-1-1.html
