@@ -167,11 +167,12 @@ Below are the meanings of each field.
 | `smwp_ver` | No | String | The version number of SMWP used in the game. If the game includes the use of multiple SMWP versions or involves other complex situations, it can be left blank. |
 | `date` | **Yes** | Date | The release date of the game. Please use the "YYYY-MM-DD" format for software parsing. |
 | `description` | No | String | The description of the game **on the game list**. |
-| `note` | No | String | Notes for game for future use, **will not** be displayed on the game list. |
 | `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
 | `source_url` | No | String | The link of the game's release post, release video, etc. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link (the same for other links below). |
 | `download_url` | No | String | The download link of the game. |
 | `code` | No  | String | If the game's download page requires a password, please fill it in here. |
+| `has_bundled_smwp` | No | Boolean | If the game has bundled SMWP, fill in `true`. |
+| `has_bgm` | No | Boolean | If the game has custom BGMs, fill in `true`. |
 | `file_name` | No | String | The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 | `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 
