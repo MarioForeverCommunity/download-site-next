@@ -43,6 +43,7 @@
   source_url: https://www.marioforever.net/thread-3480-1-1.html
   download_url:
   code:
+  has_bgm: true
   file_name: YMS作品合集/
   file_url:
 - game: Green Sweet SMWP 关卡精选集
@@ -116,7 +117,7 @@
   source_url: https://www.marioforever.net/thread-3400-1-1.html
   download_url: https://pan.baidu.com/s/1F93uOjqWByj1FpFGovYNOQ?pwd=a5az
   code: a5az
-  alist: true
+  has_bundled_smwp: true
   file_name: For Everyone - Little Level Lite (Ver1.1).rar
   file_url:
 - game: Super Mario Worker Maker v2.0.0
@@ -130,7 +131,7 @@
   source_url: https://www.marioforever.net/thread-3376-1-1.html
   download_url: https://wwmw.lanzoue.com/i8nIs2buwnxc
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Super Mario Worker Maker %5b010045A4F60B0000%5d %5b2.0.0%5d.nsp.zip
   file_url:
   video:
@@ -192,7 +193,7 @@
   source_url: https://www.marioforever.net/thread-3235-1-1.html
   download_url: https://wwk.lanzoue.com/igQuB22vml4d
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Wandering Earth II.zip
   file_url:
 - game: 20240610即兴关卡
@@ -212,7 +213,7 @@
   source_url: https://www.marioforever.net/thread-2000-1-1.html
   download_url: http://20xx.top
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: 20XX/
   file_url:
 - game: Welcome back to Marioworker Bar 2024
@@ -230,7 +231,7 @@
   source_url: https://www.marioforever.net/thread-3215-1-1.html
   download_url: https://wwl.lanzout.com/iBxZX21ixh3a
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Welcome back to Marioworker Bar 2024.zip
   file_url:
 - game: Fantastic Record 第一章试玩版
@@ -240,7 +241,7 @@
   source_url: https://www.marioforever.net/thread-3188-1-1.html
   download_url: https://pan.baidu.com/s/1Qvr8CRyuxhIwlJUML3cPjw
   code: 6dkf
-  alist: true
+  has_bundled_smwp: true
   file_name: Fahlee-Fantastic Record-Chapter 1(beta3).7z
   file_url:
 - game: Mario Worker Chimera III
@@ -358,7 +359,7 @@
   source_url: https://www.marioforever.net/thread-3059-1-1.html
   download_url: https://pan.baidu.com/s/1EsZLl_KEBizQJBdK5fwpwQ?pwd=lzpx
   code: lzpx
-  alist: true
+  has_bundled_smwp: true
   file_name: Someone's Diary-Volume 01.rar
   file_url:
 - game: Professor Road残卷
@@ -488,7 +489,7 @@
   source_url: https://www.marioforever.net/thread-2909-1-1.html
   download_url: https://longzongkuiyan.lanzouw.com/iNpSQ16j9t9e
   code: RSTT
-  alist: true
+  has_bundled_smwp: true
   file_name: LongZongKuiYan Worlds-Restart-单世界预览版.7z
   file_url:
 - game: AS的新年2023
@@ -498,7 +499,7 @@
   source_url: https://www.marioforever.net/thread-2904-1-1.html
   download_url: https://wwrl.lanzouw.com/iqqBk16gwduj
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: AS's New Year 2023.zip
   file_url:
 - game: 西安事变
@@ -548,7 +549,7 @@
   source_url: https://www.marioforever.net/thread-2741-1-1.html
   download_url: https://wwyd.lanzout.com/iC8I010omy7e
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: "[zqh works]I'mperfect.zip"
   file_url:
 - game: Welcome back to Marioworker Bar 2023
@@ -562,7 +563,7 @@
   source_url: https://www.marioforever.net/thread-2720-1-1.html
   download_url: https://wwyd.lanzout.com/iTvrp0ytrh8b
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Welcome back to Marioworker Bar 2023.zip
   file_url:
 - game: Obsidian
@@ -583,7 +584,7 @@
   source_url: https://www.marioforever.net/thread-2710-1-1.html
   download_url: https://pan.baidu.com/s/1ogQ769HMDRrmC5IBH7hFjw?pwd=jtiq
   code: jtiq
-  alist: true
+  has_bundled_smwp: true
   file_name: 【LLX's work】2023六一快乐关.rar
   file_url:
 - game: Mario Worker Chimera II
@@ -659,7 +660,7 @@
   source_url: https://www.marioforever.net/thread-2395-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  alist: true
+  has_bgm: true
   file_name: ARKana Album Vol. III -DETERMINATION-（22-12-31 Temporary Version）.7z
   file_url:
 - game: smfw9单关试玩版
@@ -732,7 +733,7 @@
   source_url: https://www.marioforever.net/thread-2341-1-1.html
   download_url: https://wwt.lanzouw.com/ivuEO0c8bayb
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Odyssey-An Epic Picture Scroll三关测试版.rar
   file_url:
 - game: Lost World
@@ -804,7 +805,7 @@
   source_url: https://www.marioforever.net/thread-2097-1-1.html
   download_url: https://wws.lanzout.com/iW4vy07mf1gh
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Welcome back to Marioworker Bar 2022.zip
   file_url:
 - game: All-inclusive
@@ -816,7 +817,7 @@
   source_url: https://www.marioforever.net/thread-2097-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: All-inclusive（包罗万象）完整版2022.6.12.7z
   file_url:
 - game: Mario Worker The Dragon Boat Festival
@@ -883,6 +884,7 @@
   source_url: https://www.marioforever.net/thread-2019-1-1.html
   download_url:
   code:
+  has_bgm: true
   file_name: Mario Worker Purse/
   file_url:
 - game: Silent/Endless Iceland
@@ -903,7 +905,7 @@
   source_url: ~https://www.marioforever.net/thread-2003-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Return to Neverland-Starcutter Map完整版(fix1).7z
   file_url:
 - game: Clear Sky/Air Attack
@@ -933,7 +935,7 @@
   source_url: https://www.marioforever.net/thread-1989-1-1.html
   download_url: https://wwm.lanzouw.com/inKPM01ovh9i
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Water Rhythm Fix1.zip
   file_url:
 - game: Greenfield
@@ -993,7 +995,7 @@
   source_url: https://www.marioforever.net/thread-923-5-1.html
   download_url: https://wwa.lanzouw.com/b0179ff8b
   code: 5ouy
-  alist: true
+  has_bundled_smwp: true
   file_name: lz Worlds - Universal Dilemma/
   file_url:
 - game: Puzzle Lake
@@ -1033,7 +1035,7 @@
   source_url: ~https://www.marioforever.net/thread-1940-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: A Random Space.7z
   file_url:
 - game: LOVE
@@ -1043,7 +1045,7 @@
   source_url: ~https://www.marioforever.net/thread-1927-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: 爆款MW吧吧友结婚纪念日赠妻礼物模板.7z
   file_url:
 - game: Mario Worker Pursue
@@ -1055,7 +1057,7 @@
   source_url: ~https://www.marioforever.net/thread-1926-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Pursue.7z
   file_url:
 - game: 4-Light or Dark Lake(fix)
@@ -1084,7 +1086,7 @@
   source_url: https://www.marioforever.net/thread-1909-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Godiac/
   file_url:
 - game: WSW Quest
@@ -1103,7 +1105,7 @@
   source_url: https://www.marioforever.net/thread-1901-1-1.html
   download_url: https://wwm.lanzouw.com/idux2za8aud
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: AS新年三件套 Fix2.zip
   file_url:
 - game: 不负责任的说
@@ -1113,7 +1115,7 @@
   source_url: ~https://www.marioforever.net/thread-1900-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: 不负责任的说.7z
   file_url:
 - game: Snakes Love Shaking D
@@ -1146,7 +1148,7 @@
   source_url: ~https://www.marioforever.net/thread-1886-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Random.7z
   file_url:
 - game: Mario Worker Random简易版
@@ -1159,7 +1161,7 @@
   source_url: ~https://www.marioforever.net/thread-1886-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Random简易版.7z
   file_url:
 - game: ladder.smwl
@@ -1217,7 +1219,7 @@
   source_url: https://www.marioforever.net/thread-1746-1-1.html
   download_url: https://wwa.lanzoui.com/is4xnwgxu9a
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker - Heresy (By zqh).zip
   file_url:
   video:
@@ -1230,7 +1232,7 @@
   source_url: https://www.marioforever.net/thread-1728-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Nhelv-MW.7z
   file_url:
   video:
@@ -1263,7 +1265,7 @@
   source_url: ~https://www.marioforever.net/thread-1702-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Outbreak.7z
   file_url:
 - game: 鲁比克之方
@@ -1303,7 +1305,7 @@
   source_url: ~https://www.marioforever.net/thread-1574-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Awaken.7z
   file_url:
 - game: Fantastic Journey
@@ -1333,7 +1335,7 @@
   source_url: ~https://www.marioforever.net/thread-1307-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Mario Worker Hiraeth.7z
   file_url:
 - game: AS没疯1
@@ -1343,7 +1345,7 @@
   source_url: https://www.marioforever.net/thread-1247-1-1.html
   download_url: http://helloandrews123.ysepan.com/
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: AS没疯1 1.1.zip
   file_url:
 - game: Find The Rainbow
@@ -1372,6 +1374,7 @@
   source_url: https://www.marioforever.net/thread-1050-1-1.html
   download_url: http://zhaomogu.ysepan.com/
   code:
+  has_bgm: true
   file_name: Terraria/
   file_url:
 - game: Welcome back to Marioworker Bar 2021
@@ -1389,7 +1392,7 @@
   source_url: https://www.marioforever.net/thread-1193-1-1.html
   download_url: https://wwa.lanzoui.com/iRWjtq06ofg
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Welcome back to Mario Worker Bar 2021.zip
   file_url:
 - game: xfx疯了
@@ -1399,7 +1402,7 @@
   source_url: ~https://www.marioforever.net/thread-1179-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: xfx疯了.zip
   file_url:
 - game: 他山之石
@@ -1428,6 +1431,7 @@
   source_url: https://www.marioforever.net/thread-1164-1-1.html
   download_url:
   code:
+  has_bgm: true
   file_name: Deja Vu/
   file_url:
 - game: 我不当谜语人
@@ -1438,6 +1442,7 @@
   source_url: https://www.marioforever.net/thread-1155-1-1.html
   download_url:
   code:
+  has_bgm: true
   file_name: 我不当谜语人/
   file_url:
 - game: xfxddhnbnhhshl？
@@ -1447,7 +1452,7 @@
   source_url: ~https://www.marioforever.net/thread-1153-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: xfxddhnbnhhshl.zip
   file_url:
 - game: 差不多得了????
@@ -1539,7 +1544,7 @@
   source_url: https://www.marioforever.net/thread-1001-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Aether/
   file_url:
 - game: Mario Worker Rainbow Land World 1
@@ -1665,7 +1670,7 @@
   source_url: https://www.marioforever.net/thread-801-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Nmnmoooh World Chapter 1（试玩版）.rar
   file_url:
 - game: 第9.5届MW杯
@@ -1704,7 +1709,7 @@
   source_url: https://www.marioforever.net/thread-764-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: Aleph-0/
   file_url:
 - game: Silent Movie
@@ -1714,7 +1719,7 @@
   source_url: ~https://www.marioforever.net/thread-13-1-1.html
   download_url:
   code:
-  alist: true
+  has_bundled_smwp: true
   file_name: 无声的电影.zip
   file_url:
 - game: MW Zeta Series
@@ -1763,6 +1768,7 @@
   source_url: https://www.marioforever.net/thread-729-1-1.html
   download_url:
   code:
+  has_bgm: true
   file_name: 116的小作/
   file_url:
 - game: Super Mario Worker Maker v1.0.0
@@ -1774,7 +1780,7 @@
   source_url: https://www.marioforever.net/thread-697-1-1.html
   download_url: https://pan.baidu.com/s/14yNuPBSMdL1k6EGYBSKLqg
   code: 6ctb
-  alist: true
+  has_bundled_smwp: true
   file_name: SuperMarioWorkerMaker_v1.0.0.nsp
   file_url:
 - game: 5日杀
@@ -1871,7 +1877,7 @@
   source_url: https://www.marioforever.net/thread-663-1-1.html
   download_url: https://pan.baidu.com/s/1JWt1qdQhAUNgGdgYjO1rsg
   code: gwue
-  alist: true
+  has_bgm: true
   file_name: MWNA v1.0.zip
   file_url:
 - game: Become hollow inside！
@@ -1892,7 +1898,7 @@
   source_url: https://www.marioforever.net/thread-624-1-1.html
   download_url: https://wwe.lanzoux.com/b015nxy8f
   code: 91cx
-  alist: true
+  has_bundled_smwp: true
   file_name: lz Worlds - Classic EPIC/
   file_url:
 - game: Welcome back to Marioworker Bar 2020
@@ -1905,6 +1911,7 @@
   source_url: https://www.marioforever.net/thread-558-1-1.html
   download_url: https://wwa.lanzoux.com/izv69eg7rsh
   code:
+  has_bgm: true
   file_name: Welcome back to Marioworker Bar 2020/
   file_url:
 - game: Castle Maze
@@ -1923,7 +1930,7 @@
   source_url: https://www.marioforever.net/thread-537-1-1.html
   download_url: https://pan.baidu.com/s/1JQCGVyHCarb2diWTJtmoiA
   code: 81s8
-  alist: true
+  has_bundled_smwp: true
   file_name: 【LLX's work】10th Anniversary Album （fix3）.zip
   file_url:
 - game: Mario Worker Conventional Worlds
@@ -1982,7 +1989,7 @@
   source_url: https://www.marioforever.net/thread-415-1-1.html
   download_url: https://www.lanzoux.com/b0159repc
   code: 7oxl
-  alist: true
+  has_bundled_smwp: true
   file_name: Program Rebirth/
   file_url:
 - game: Save ZMJ
@@ -2038,6 +2045,7 @@
   source_url: https://www.marioforever.net/thread-341-1-1.html
   download_url: ~http://nju161140035.ysepan.com/
   code:
+  has_bgm: true
   file_name: 【LLX‘s work】Moonlight（2020.02.14）/
   file_url:
 - game: Secret Land Stories B
@@ -2130,6 +2138,7 @@
   source_url: https://tieba.baidu.com/p/6213385129
   download_url: ~http://nju161140035.ysepan.com/
   code:
+  has_bgm: true
   file_name: 5A-LLX-Trade war/
   file_url:
 - game: Wonderland Secret Worlds 全集
@@ -2154,6 +2163,7 @@
   source_url: https://tieba.baidu.com/p/6156681489
   download_url: https://pan.baidu.com/s/1PQMRPA7oGBhq9YxirAsUjw
   code: luij
+  has_bgm: true
   file_name: Welcome Back to Marioworker Bar 2019/
   file_url:
 - game: Melody of Night Fisherman
@@ -2164,6 +2174,7 @@
   source_url:
   download_url: ~http://nju161140035.ysepan.com/
   code:
+  has_bgm: true
   file_name: 渔舟唱晚/
   file_url:
 - game: Lucky 52 (Sequel)
@@ -2234,6 +2245,7 @@
   source_url: https://tieba.baidu.com/p/5737130610
   download_url: http://zqh--123.ysepan.com/
   code:
+  has_bgm: true
   file_name: Welcome back to Marioworker Bar/
   file_url:
 - game: First Awakening of Love 十二世界完全版
@@ -2247,6 +2259,7 @@
   source_url: https://tieba.baidu.com/p/5550194904
   download_url: https://pan.baidu.com/s/1nxac3St
   code:
+  has_bgm: true
   file_name: First Awakening Of Love V2.0十二世界全/
   file_url:
 - game: Celebration!!!

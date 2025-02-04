@@ -33,7 +33,7 @@
       entry.category = "mw";
 
       // Automatically generate resource site link.
-      if (entry.file_name && !entry.file_url && entry.alist) {
+      if (entry.file_name && !entry.file_url) {
         if (entry.author == "合作作品") {
           entry.file_url = `https://file.marioforever.net/Mario Worker/合作作品/${entry.file_name}`;
         } else {
@@ -41,7 +41,7 @@
         }
       }
 
-      if (entry.smwp_ver && !entry.alist) {
+      if (entry.smwp_ver && !entry.has_bundled_smwp) {
         if (SmwpVersions[entry.smwp_ver]) {
           entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
         }
