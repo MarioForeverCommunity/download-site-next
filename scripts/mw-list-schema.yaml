@@ -41,6 +41,14 @@ definitions:
         anyOf:
           - type: 'null'
           - type: boolean
+      has_bgm:
+        anyOf:
+          - type: 'null'
+          - type: boolean
+      has_bundled_smwp:
+        anyOf:
+          - type: 'null'
+          - type: boolean
       alias:
         anyOf:
           - type: 'null'
