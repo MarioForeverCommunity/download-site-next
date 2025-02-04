@@ -518,7 +518,7 @@
   source_url: https://www.marioforever.net/thread-2772-1-1.html
   download_url:
   code:
-  file_name: "[Mldsdt work]Early-coming Christmas!.smwp"
+  file_name: "%5bMldsdt work%5dEarly-coming Christmas!.smwp"
   file_url:
 - game: 新年小挑战：车站大作战
   author: Andrews123
@@ -550,7 +550,7 @@
   download_url: https://wwyd.lanzout.com/iC8I010omy7e
   code:
   has_bundled_smwp: true
-  file_name: "[zqh works]I'mperfect.zip"
+  file_name: "%5bzqh works%5dI'mperfect.zip"
   file_url:
 - game: Welcome back to Marioworker Bar 2023
   alias:
@@ -706,7 +706,7 @@
   source_url: https://www.marioforever.net/thread-2376-1-1.html
   download_url: http://123568023.ysepan.com/
   code:
-  file_name: "[123568024 works]New The Four Seasons World V3.2/"
+  file_name: "%5b123568024 works%5dNew The Four Seasons World V3.2/"
   file_url:
 - game: 狼与香辛料-第一章：村庄
   author: 叶子的叶子
@@ -895,8 +895,8 @@
   download_url: https://pan.baidu.com/s/1ukHGrG81CwdhbA-pTIQ5NA
   code: 78bu
   file_name:
-  - "[Mldsdt Works]Common Maps(1~3)/2 of Common Maps(Normal).smwp"
-  - "[Mldsdt Works]Common Maps(1~3)/Endless Iceland(EX).smwp"
+  - "%5bMldsdt Works%5dCommon Maps(1~3)/2 of Common Maps(Normal).smwp"
+  - "%5bMldsdt Works%5dCommon Maps(1~3)/Endless Iceland(EX).smwp"
   file_url:
 - game: Mario Return to Neverland-Starcutter Map
   author: s小s飞s侠s
@@ -916,8 +916,8 @@
   download_url: https://pan.baidu.com/s/1CuOZZ9V0nz1yT9alQMtyhA
   code: vxt3
   file_name:
-  - "[Mldsdt Works]Common Maps(1~3)/1 of Common Maps(Normal).smwp"
-  - "[Mldsdt Works]Common Maps(1~3)/High-Power Air Attack!(EX).smwp"
+  - "%5bMldsdt Works%5dCommon Maps(1~3)/1 of Common Maps(Normal).smwp"
+  - "%5bMldsdt Works%5dCommon Maps(1~3)/High-Power Air Attack!(EX).smwp"
   file_url:
 - game: 即兴创作
   author: zqh——123
@@ -954,9 +954,9 @@
   source_url: https://www.marioforever.net/thread-1975-1-1.html
   download_url: https://pan.baidu.com/share/init?surl=5SQOi_E9PEF9JY3xOvkFPQ
   code: i0k3
-  file_name: 
-  - "[Mldsdt Works]Common Maps(1~3)/3 of Common Maps(Normal).smwp"
-  - "[Mldsdt Works]Common Maps(1~3)/Spring Outing through Qiantang Lake(EX).smwp"
+  file_name:
+  - "%5bMldsdt Works%5dCommon Maps(1~3)/3 of Common Maps(Normal).smwp"
+  - "%5bMldsdt Works%5dCommon Maps(1~3)/Spring Outing through Qiantang Lake(EX).smwp"
   file_url:
 - game: N's Road
   alias:
@@ -968,7 +968,7 @@
   source_url: https://www.marioforever.net/thread-1942-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
   code:
-  file_name: "[Nmnmoooh Works] NsRoad V0_98FixFix"
+  file_name: "%5bNmnmoooh Works%5d NsRoad V0_98FixFix"
   file_url:
 - game: 拖延症
   author: 把僵尸炖了
@@ -1006,7 +1006,7 @@
   source_url: https://www.marioforever.net/thread-1944-1-1.html
   download_url: http://wyf01234567.ysepan.com/
   code:
-  file_name: 
+  file_name:
   - D3-Puzzle Lake(easiest).smwl
   - D3-Puzzle Lake(no threat).smwl
   file_url:
@@ -1315,7 +1315,7 @@
   source_url: https://www.marioforever.net/thread-1492-1-1.html
   download_url: http://mlaalm.ysepan.com/
   code:
-  file_name: "[Mlaalm]Fantastic Journey v1.40/"
+  file_name: "%5bMlaalm%5dFantastic Journey v1.40/"
   file_url:
 - game: 创意关卡小合集
   author: s小s飞s侠s
@@ -1750,7 +1750,7 @@
   source_url: ~https://www.marioforever.net/thread-739-1-1.html
   download_url:
   code:
-  file_name: Tears of the Times（XFX Album）
+  file_name: Tears of the Times（XFX Album）/
   file_url:
 - game: Garbage Mountain
   author: '1168438795'
@@ -2027,7 +2027,7 @@
   source_url: https://www.marioforever.net/thread-352-1-1.html
   download_url: http://123568023.ysepan.com/
   code:
-  file_name: New The Four Seasons World V2.0--Summer beta
+  file_name: New The Four Seasons World V2.0--Summer beta/
   file_url:
 - game: 新人试炼关卡
   author: s小s飞s侠s
@@ -2079,7 +2079,7 @@
   source_url: https://www.marioforever.net/thread-297-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
   code:
-  file_name: "[Nmnmoooh Works] Unfolding Album/"
+  file_name: "%5bNmnmoooh Works%5d Unfolding Album/"
   file_url:
 - game: Match Makes Miracle
   author: '1168438795'
@@ -2228,7 +2228,7 @@
   file_name: An old tale残卷/
   file_url:
 - game: A Small Maze
-  author: 无视我……
+  author: 无视我233
   smwp_ver: v1.4.1
   date: 2018-06-09
   source_url: https://tieba.baidu.com/p/5738665884
@@ -2288,7 +2288,7 @@
   source_url: https://archive.marioforever.net/post/5255732090.html
   download_url: https://pan.baidu.com/s/1kVwtUg3
   code:
-  file_name: "[Mldsdt Works]Mldsdt Map 经典版/"
+  file_name: "%5bMldsdt Works%5dMldsdt Map 经典版/"
   file_url:
 - game: First Awakening of Love 八世界体验版
   alias:
@@ -2313,7 +2313,7 @@
   file_name: 关卡接力/
   file_url:
 - game: The Desolate Ruin
-  author: 无视我……
+  author: 无视我233
   smwp_ver: v0.2.4
   date: 2017-02-06
   source_url: https://tieba.baidu.com/p/4968389019

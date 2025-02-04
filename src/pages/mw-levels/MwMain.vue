@@ -34,11 +34,9 @@
 
       // Automatically generate resource site link.
       if (entry.file_name && !entry.file_url) {
-        if (entry.author == "合作作品") {
-          entry.file_url = `https://file.marioforever.net/Mario Worker/合作作品/${entry.file_name}`;
-        } else {
-          entry.file_url = `https://file.marioforever.net/Mario Worker/吧友作品/${entry.author}/${entry.file_name}`;
-        }
+        const fileName = Array.isArray(entry.file_name) ? entry.file_name[0] : entry.file_name;
+        const path = entry.author == "合作作品" ? "合作作品" : `吧友作品/${entry.author}`;
+        entry.file_url = `https://file.marioforever.net/Mario Worker/${path}/${fileName}`;
       }
 
       if (entry.smwp_ver && !entry.has_bundled_smwp) {
