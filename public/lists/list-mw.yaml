@@ -1,4 +1,22 @@
 ---
+- game: 墙来了2
+  author: 有名氏
+  smwp_ver: v1.7.10
+  date: 2025-02-11
+  source_url: https://www.marioforever.net/thread-3528-1-1.html
+  download_url:
+  code:
+  file_name: 墙来了2.smwl
+  file_url:
+- game: 墙来了
+  author: 有名氏
+  smwp_ver: v1.7.10
+  date: 2025-02-11
+  source_url: https://www.marioforever.net/thread-3527-1-1.html
+  download_url:
+  code:
+  file_name: 墙来了.smwl
+  file_url:
 - game: 25年MW杯热身赛评委组
   author: 有名氏
   smwp_ver: v1.7.10
