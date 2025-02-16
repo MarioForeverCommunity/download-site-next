@@ -1771,7 +1771,7 @@
   wiki_en_url:
   ver:
   - 修复版:
-      ver_alt:
+      ver_alt: Fix
       date: 2025-01-30
       source_url: https://www.marioforever.net/thread-3142-1-1.html
       source_url_alt:
@@ -1781,7 +1781,7 @@
       file_name: MF大冲关第二季 决赛.exe
       file_url:
   - 初版:
-      ver_alt:
+      ver_alt: Initial release
       date: 2024-07-18
       source_url: https://www.marioforever.net/thread-3142-1-1.html
       source_url_alt:
@@ -8371,15 +8371,26 @@
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1m84y1b7P9/
   ver:
-  ver_alt:
-  date: 2021-08-27
-  source_url: https://www.marioforever.net/thread-1485-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/10KRXSt5LpQ7u7KBhOk-nyw
-  code: a0qq
-  download_url_alt:
-  file_name: Mario Forever Unknown Area.exe
-  file_url:
+  - Fix:
+      ver_alt:
+      date: 2022-04-11
+      source_url: https://www.marioforever.net/thread-1485-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Unknown Area（fix）.exe
+      file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2021-08-27
+      source_url: https://www.marioforever.net/thread-1485-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/10KRXSt5LpQ7u7KBhOk-nyw
+      code: a0qq
+      download_url_alt:
+      file_name: Mario Forever Unknown Area.exe
+      file_url:
 - game: Mario Forever World DL
   game_alt:
   author: DolfyMF
