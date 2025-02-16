@@ -2148,16 +2148,14 @@
   code:
   file_name: Match Makes Miracle/
   file_url:
-- game: xfx的小型作品
+- game: xfx的小型作品（2020及之后）
   author: s小s飞s侠s
   smwp_ver:
   date: 2019-10-07
   source_url: ~https://www.marioforever.net/thread-13-1-1.html
   download_url:
   code:
-  file_name:
-  - xfx的小型作品（2019及之前）/
-  - xfx的小型作品（2020及之后）/
+  file_name: xfx的小型作品（2020及之后）/
   file_url:
 - game: Strange levels Series A
   author: 把僵尸炖了
@@ -2246,6 +2244,16 @@
   code:
   file_name: lucky 52(sequel)/
   file_url:
+- game: Desert v1.01
+  author: s小s飞s侠s
+  description: 发布帖为 v1.01
+  smwp_ver: v1.5.2
+  date: 2019-02-15
+  source_url: https://tieba.baidu.com/p/6027777266
+  download_url: http://x-f-x.ysepan.com/
+  code:
+  file_name: v1.03 desert（by xfx）/
+  file_url:
 - game: Brand New Experience Maps 全集
   alias:
   - BNEM
@@ -2321,6 +2329,16 @@
   has_bgm: true
   file_name: First Awakening Of Love V2.0十二世界全/
   file_url:
+- game: xfx的小型作品（2019及之前）
+  author: s小s飞s侠s
+  description: 取关卡fire or ice（备）.mfl发布日期
+  smwp_ver:
+  date: 2017-09-02
+  source_url:
+  download_url:
+  code:
+  file_name: xfx的小型作品（2019及之前）/
+  file_url:
 - game: Celebration!!!
   author: LLX奶油马里奥
   smwp_ver: v1.3.0
@@ -2337,7 +2355,7 @@
   source_url: https://tieba.baidu.com/p/5269303412
   download_url: https://pan.baidu.com/s/1bo85QyV
   code:
-  file_name: 
+  file_name:
   file_url:
 - game: Mldsdt Map Origin
   author: 玛丽的死对头
@@ -2388,15 +2406,13 @@
   code:
   file_name: Times Album/
   file_url:
-- game: Desert
+- game: Desert v0.92
   author: s小s飞s侠s
   description: v0.92 SMWP 版本为 v0.2.4，v1.03 部分关卡 SMWP 版本为 v1.5.2
-  smwp_ver:
+  smwp_ver: v0.2.4
   date: 2016-06-15
   source_url: https://tieba.baidu.com/p/4612314373
   download_url: http://x-f-x.ysepan.com/
   code:
-  file_name:
-  - v1.03 desert（by xfx）/
-  - v0.92 desert（by xfx）/
+  file_name: v0.92 desert（by xfx）/
   file_url:
