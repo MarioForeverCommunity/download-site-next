@@ -6316,16 +6316,37 @@
   wiki_en_url:
   video_zh:
   - WSW 直播回放: https://www.bilibili.com/video/BV14R4y1d76Z/
-  ver: v1.1
-  ver_alt:
-  date: 2022-08-21
-  source_url: https://www.marioforever.net/thread-2283-1-1.html
-  source_url_alt:
-  download_url: https://wwd.lanzouw.com/icrpw09yumwd
-  code:
-  download_url_alt:
-  file_name: Mario Forever Flashing Revolution v1.1.zip
-  file_url:
+  ver:
+  - v1.1:
+      ver_alt:
+      date: 2022-08-21
+      source_url: https://www.marioforever.net/thread-2283-1-1.html
+      source_url_alt:
+      download_url: https://wwd.lanzouw.com/icrpw09yumwd
+      code:
+      download_url_alt:
+      file_name: Mario Forever Flashing Revolution v1.1.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2022-08-21
+      source_url: https://www.marioforever.net/thread-2283-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Flashing Revolution v1.0.exe
+      file_url:
+  - v0.9.5 bugfix:
+      ver_alt:
+      date: 2022-08-18
+      source_url: https://www.marioforever.net/thread-2283-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Flashing Revolution v0.9.5bugfix.exe
+      file_url:
 - game: Mario Forever Party Worlds
   game_alt:
   author: LooPeR231
@@ -7826,16 +7847,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.3
-  ver_alt:
-  date: 2022-01-28
-  source_url: https://www.marioforever.net/thread-1359-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1XpZqL6_zbPvvBIaqSQUr7Q
-  code: gxbb
-  download_url_alt:
-  file_name: Mario Forever Tense 15 v1.3 储备框更新版本.rar
-  file_url:
+  ver:
+  - v1.3:
+      ver_alt:
+      date: 2022-01-28
+      source_url: https://www.marioforever.net/thread-1359-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1XpZqL6_zbPvvBIaqSQUr7Q
+      code: gxbb
+      download_url_alt:
+      file_name: Mario Forever Tense 15 v1.3 储备框更新版本.rar
+      file_url:
+  - v1.2:
+      ver_alt:
+      date: 2021-08-04
+      source_url: https://www.marioforever.net/thread-1359-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1vVcTnVNNsQvHjfG7i4fTVw 
+      code: Te15
+      download_url_alt:
+      file_name: Mario Forever Tense 15 v1.2.rar
+      file_url:
 - game: Mario Forever Hjb World 0
   game_alt:
   author: HTJ1026
@@ -8585,23 +8617,6 @@
   code:
   download_url_alt:
   file_name: Mario Forever Violet Romance.7z
-  file_url:
-- game: DEADLY LEVEL 2 DELUXE
-  game_alt:
-  author: 绿色的糖果
-  author_alt: Green Sweet
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2021-08-09
-  source_url: https://www.marioforever.net/thread-1382-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1Z_hAekCcHA-Lz6tJ6RUw-w
-  code: GT23
-  download_url_alt:
-  file_name: DEADLY LEVEL 2 DELUXE.exe
   file_url:
 - game: 'Mario Forever: Andection Project'
   game_alt:
@@ -12121,6 +12136,24 @@
   code:
   download_url_alt:
   file_name: Lootbox Mushroom v0.2.rar
+  file_url:
+- game: DEADLY LEVEL 2 DELUXE
+  game_alt:
+  author: 绿色的糖果
+  author_alt: Green Sweet
+  type: chinese
+  description_zh: 发布帖为补档
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2019-07-15
+  source_url: https://www.marioforever.net/thread-1382-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1Z_hAekCcHA-Lz6tJ6RUw-w
+  code: GT23
+  download_url_alt:
+  file_name: DEADLY LEVEL 2 DELUXE.exe
   file_url:
 - game: Mario Forever Project Zeta
   game_alt:
