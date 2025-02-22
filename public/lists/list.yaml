@@ -699,6 +699,16 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B%EF%BC%89
   wiki_en_url:
   ver:
+  - v1.5.2:
+      ver_alt:
+      date: 2025-02-16
+      source_url: https://www.marioforever.net/thread-3386-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛 v1.5.2.zip
+      file_url:
   - v1.5.1:
       ver_alt:
       date: 2025-01-26
@@ -884,6 +894,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v1.5.2:
+      ver_alt:
+      date: 2025-02-16
+      source_url: https://www.marioforever.net/thread-3386-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cN4gzeDZz81r3ALjwr3jMg?pwd=mlqj
+      code: mlqj
+      download_url_alt:
+      file_name: 永远的马里奥：蘑菇岛——秋的记忆 v1.5.2.zip
+      file_url:
   - v1.5.1:
       ver_alt:
       date: 2025-01-26
@@ -1805,7 +1825,17 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  - v2.4:
+  - v2.4.1.5:
+      ver_alt:
+      date: 2025-02-22
+      source_url: https://www.youtube.com/watch?v=J5Nw10a0Y2g
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/pxb7q39lx1imjue/MFEWS_v2.4.1.5_%28BETA%29.zip/file
+      code:
+      download_url_alt:
+      file_name: MFEWS v2.4.1.5 (BETA).zip
+      file_url:
+  - v2.4.1:
       ver_alt:
       date: 2024-12-27
       source_url: https://www.youtube.com/watch?v=J5Nw10a0Y2g
@@ -1813,7 +1843,7 @@
       download_url: https://www.mediafire.com/file/ys4ulv52qzbxv00/MFEWS_v2.4.1_%2528BETA%2529.zip/file
       code:
       download_url_alt:
-      file_name: MFEWS v2.4.1 (BETA).zip
+      file_name: old-versions/MFEWS v2.4.1 (BETA).zip
       file_url:
   - v2.4:
       ver_alt:
