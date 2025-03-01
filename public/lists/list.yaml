@@ -3653,10 +3653,30 @@
       date: 2021-10-15
       source_url: https://www.youtube.com/watch?v=JlAtSYrdZaI
       source_url_alt:
-      download_url: https://www.mediafire.com/file/cojslaqxf5ygj3j/Mario_Forever_Dreamworld_Accent_v0.7.rar/file
+      download_url: ~https://www.mediafire.com/file/y17vgm36kojeyhv/MF_Dreamworld_Accent_v0.5.rar/file
       code:
       download_url_alt:
       file_name: old-versions/MF Dreamworld Accent v0.5.rar
+      file_url:
+  - v0.3:
+      ver_alt:
+      date: 2021-09-07
+      source_url: https://www.youtube.com/watch?v=nCPL1saGMiM
+      source_url_alt:
+      download_url: ~https://www.mediafire.com/file/6748jqfzehftx8c/MF_Dreamworld_Accent_v0.3.rar/file
+      code:
+      download_url_alt:
+      file_name: old-versions/MF Dreamworld Accent v0.3.rar
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2021-07-15
+      source_url: https://www.youtube.com/watch?v=EzRH_ZORDwA
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: old-versions/Mario Forever Dreamworld Accent v0.1.rar
       file_url:
 - game: Mario Forever Fabulous Letter Worlds Series
   game_alt:
@@ -6426,7 +6446,7 @@
       ver_alt: 
       date: 2021-04-12
       source_url: 
-      download_url: 
+      download_url: ~https://mega.nz/file/DLQyhRqD#hTiny0aD8yKkfeZ0LJee4dks71SYKIi6FZfYXtFDR4w
       code: 
       download_url_alt: 
       file_name: old-versions/Mario Forever - Party Worlds 1.3.zip
