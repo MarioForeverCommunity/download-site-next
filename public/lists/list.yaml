@@ -69,6 +69,16 @@
   description_zh: 该游戏含有恐怖元素，请谨慎游玩。
   description_en: The game contains horror elements, please play with caution.
   ver:
+  - v1.2.0:
+      ver_alt:
+      date: 2025-02-18
+      source_url: https://www.youtube.com/watch?v=sQSxa0Koxms
+      source_url_alt:
+      download_url: https://gamejolt.com/games/marioforeverexe/964595
+      code:
+      download_url_alt:
+      file_name: mario-forever.zip
+      file_url:
   - v1.1.0:
       ver_alt:
       date: 2025-01-24
@@ -77,7 +87,7 @@
       download_url: https://gamejolt.com/games/marioforeverexe/964595
       code:
       download_url_alt:
-      file_name: mario-forever.zip
+      file_name: old-versions/Mario Forever.EXE/v1.1.0/mario-forever.zip
       file_url:
   - v1.0.5:
       ver_alt:
@@ -87,7 +97,7 @@
       download_url: https://gamejolt.com/games/marioforeverexe/964595
       code:
       download_url_alt:
-      file_name: old-versions/mario-forever.zip
+      file_name: old-versions/Mario Forever.EXE/v1.0.5/mario-forever.zip
       file_url:
 - game: Narrow Highway
   game_alt: 
@@ -561,7 +571,7 @@
       download_url: https://sites.google.com/view/turbo42/games
       code:
       download_url_alt:
-      file_name: old-versions/v1.2.7/MFTW v1.2.rar
+      file_name: old-versions/Mario Forever Turbo Worlds/v1.2.7/MFTW v1.2.rar
       file_url:
   - v1.2.5:
       ver_alt:
@@ -571,7 +581,7 @@
       download_url: https://sites.google.com/view/turbo42/games
       code:
       download_url_alt:
-      file_name: old-versions/v1.2.5/MFTW v1.2.rar
+      file_name: old-versions/Mario Forever Turbo Worlds/v1.2.5/MFTW v1.2.rar
       file_url:
 - game: Mario Forever - A Fabulous Space
   game_alt:
