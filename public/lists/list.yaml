@@ -1,4 +1,23 @@
 ---
+- game: MARIO FOREVER ONEGAI,MY FANTASY 20TH ANNIVERSARY EDITION
+  game_alt:
+  alias:
+  - MFOMF
+  author: Dr.Chaos Kirby
+  author_alt:
+  type: chinese
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Onegai,My_Fantasy
+  wiki_en_url:
+  ver: 20th Anniversary Edition
+  ver_alt:
+  date: 2025-03-17
+  source_url: https://www.marioforever.net/thread-3548-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1SP1Ol9fyzY_f04zZnSnx3g
+  code: MEKU
+  download_url_alt:
+  file_name: MFOMF 20TH ANNIVERSARY EDITION.zip
+  file_url:
 - game: 永远的马里奥：蘑菇岛2
   game_alt: 'Mario Forever: Mushroom Island 2'
   alias:
@@ -7787,6 +7806,16 @@
       code: MEKU
       download_url_alt:
       file_name: MF -ONEGAI,MY FANTASY.rar
+      file_url:
+  - v1:
+      ver_alt:
+      date: 2022-01-29
+      source_url: https://www.marioforever.net/thread-1906-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF -ONEGAI,MY FANTASY V1.rar
       file_url:
 - game: 'Mario Forever: The T Series'
   game_alt:
