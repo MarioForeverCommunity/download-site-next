@@ -1895,6 +1895,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.5:
+      ver_alt:
+      date: 2025-03-28
+      source_url: https://www.youtube.com/watch?v=CentNYAoTeA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ric6e92gzqggmba/MFEWS_v2.5.zip/file
+      code:
+      download_url_alt:
+      file_name: MFEWS v2.5.zip
+      file_url:
   - v2.4.1.5:
       ver_alt:
       date: 2025-02-22
@@ -1903,7 +1913,7 @@
       download_url: https://www.mediafire.com/file/pxb7q39lx1imjue/MFEWS_v2.4.1.5_%28BETA%29.zip/file
       code:
       download_url_alt:
-      file_name: MFEWS v2.4.1.5 (BETA).zip
+      file_name: old-versions/MFEWS v2.4.1.5 (BETA).zip
       file_url:
   - v2.4.1:
       ver_alt:
