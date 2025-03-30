@@ -1,4 +1,23 @@
 ---
+- game: Mario Forever The Epic Voyage
+  game_alt:
+  alias:
+  - MFTEV
+  author: Turbo 42
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v1.0.1
+  ver_alt:
+  date: 2025-03-30
+  source_url: https://www.youtube.com/watch?v=57Ll1RFKEEw
+  source_url_alt:
+  download_url: https://sites.google.com/view/turbo42/games
+  code:
+  download_url_alt:
+  file_name: Mario Forever The Epic Voyage v1.0.1.zip
+  file_url:
 - game: MARIO FOREVER ONEGAI,MY FANTASY 20TH ANNIVERSARY EDITION
   game_alt:
   alias:
