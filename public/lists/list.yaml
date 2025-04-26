@@ -2011,6 +2011,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.5.1 (Updated):
+      ver_alt:
+      date: 2025-04-21
+      source_url: https://www.youtube.com/watch?v=CentNYAoTeA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/71ol1yexk1lcxb7/MFEWS_v2.5.1.zip/file
+      code:
+      download_url_alt:
+      file_name: MFEWS v2.5.1.zip
+      file_url:
   - v2.5.1:
       ver_alt:
       date: 2025-03-31
@@ -2019,7 +2029,7 @@
       download_url: https://www.mediafire.com/file/71ol1yexk1lcxb7/MFEWS_v2.5.1.zip/file
       code:
       download_url_alt:
-      file_name: MFEWS v2.5.1.zip
+      file_name: old-versions/MFEWS v2.5.1.zip
       file_url:
   - v2.5:
       ver_alt:
