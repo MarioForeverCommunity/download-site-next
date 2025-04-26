@@ -1,4 +1,23 @@
 ---
+- game: 20240614即兴关卡
+  author: zqh——123
+  description: 作者称：“去年有个即兴关卡忘记发布了，现在补上”
+  smwp_ver: v1.7.10
+  date: 2025-04-21
+  source_url: https://www.marioforever.net/thread-3026-1-1.html
+  download_url:
+  code:
+  file_name: 20240614即兴关卡.smwp
+  file_url:
+- game: 20250419即兴关卡
+  author: zqh——123
+  smwp_ver: v1.7.10
+  date: 2025-04-19
+  source_url: https://www.marioforever.net/thread-3026-1-1.html
+  download_url:
+  code:
+  file_name: 20250419即兴关卡.smwp
+  file_url:
 - game: New Tall Castle 3(Beta)
   author: Fahlee
   smwp_ver: v1.7.10
