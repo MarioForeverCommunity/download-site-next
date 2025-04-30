@@ -1,4 +1,15 @@
 ---
+- game: Mario Worker Chimera IV
+  alias:
+  - 奇美拉4
+  author: 合作作品
+  smwp_ver: v1.7.10
+  date: 2025-04-30
+  source_url: https://www.marioforever.net/thread-3573-1-1.html
+  download_url:
+  code:
+  file_name: Mario Worker Chimera IV.smws
+  file_url:
 - game: Super Wario Worker Project
   author: 把僵尸炖了
   smwp_ver: v1.7.10
