@@ -7,6 +7,7 @@
 
 <a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Remake%20v3.5.rar">下载最新版 Mario Forever Remake</a>
 <a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar">下载最新版 Mario Forever Advance Remake</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/%E5%9B%BD%E5%A4%96%E4%BD%9C%E5%93%81/Meteo%20Dream/Mario%20Forever%20Community%20Edition%201.1%20Windows.7z">下载最新版 Mario Forever: Community Edition</a>
 <a class="md-button" target="_blank" href="https://www.123pan.com/s/U3vrVv-VD0f.html">备用下载地址 (提取码：MAat)</a><ClipboardButton lan="zh" code="MAat" />
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
@@ -28,6 +29,8 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 ④<span style="color:red">（Mario Forever 5.0～7.x，2011～）</span>4.4 之后，作者开发游戏的方向逐渐从可玩性转为所谓的“视觉特效”和“手感、流畅度”等方向。因为游戏制作平台从 Multimedia Fusion 1.5 迁移至 Multimedia Fusion 2，许多 Bug 莫名其妙地开始出现，但作者不再像以前对待游戏的更新那样用心，原版 Mario Forever 正一步一步地毁在作者的手上。
 
 ⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。
+
+⑥<span style="color:red">（Mario Forever: Community Edition，2024～）</span>2023年，Godot Engine开始在国内外Mario Forever社区流行，国内外社群已经制作出Godot上的Mario Forever游戏引擎。2024年，国外Meteo Dream制作组发布了Mario Forever: Community Edition（简称MF: CE），这是基于Godot 4的Thunder Engine制作的全新的Mario Forever复刻版本。由于Godot的Mario Forever完全从0开始，MF: CE实现了在Multimedia Fusion平台不可能实现的诸多特性，包括但不限于可以将关卡设定为2.16/4.4/6.0等不同版本风格、自定义玩家皮肤、高帧率等。虽然因为引擎不同导致游戏手感不可避免地与原版有些小差别，但作为Mario Forever二十年的集大成者，MF: CE值得新老玩家尝试。
 
 更新日志参见 [Wiki 页面](https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5)。
 
