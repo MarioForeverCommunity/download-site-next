@@ -50,8 +50,11 @@
             if (file_name_entry == null) {
               continue;
             };
-            const fileName = file_name_entry.replace(/\.[^.]*$/, "");
-            const path = entry.author == "合作作品" ? "合作作品" : `吧友作品/${entry.author}`;
+            var fileName = file_name_entry.replace(/\.[^.]*$/, "");
+            try {
+              fileName = decodeURIComponent(fileName);
+            } catch(e) {
+            }
             entry.file_urls.push({
               name: `社区资源站（${fileName}）`,
               url: generateResourceUrl(entry, file_name_entry)
