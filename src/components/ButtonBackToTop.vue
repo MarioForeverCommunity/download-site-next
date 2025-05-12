@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue';
-  import RocketIcon from './icons/IconRocket.vue';
+  import UpArrowIcon from './icons/IconUpArrow.vue';
 
   const showBackToTop = ref(false);
   
@@ -26,7 +26,7 @@
 
 <template>
     <Transition name="fade">
-        <RocketIcon v-show="showBackToTop" class="icon-inner back-to-top" @click="scrollToTop"></RocketIcon>
+        <UpArrowIcon v-show="showBackToTop" class="icon-inner back-to-top" @click="scrollToTop"></UpArrowIcon>
     </Transition>
 </template>
 
