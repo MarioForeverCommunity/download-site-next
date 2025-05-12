@@ -15,7 +15,7 @@
   import axios from 'axios';
   import { useFloating, flip, shift, offset } from '@floating-ui/vue';
   import {SmwpVersions} from "../../util/SmwpVersions.js"
-
+  import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   const originalLan = ref(getLanguage());
 
   const lan = "zh"
@@ -26,17 +26,44 @@
 
   const games = ref([]);
 
+  function generateResourceUrl(entry, fname) {
+    return `https://file.marioforever.net/Mario Worker/${entry.author == "合作作品" ? "合作作品" : `吧友作品/${entry.author}`}/${fname}`
+  }
+
 // Fetch game list.
 
   readList("list-mw.yaml").then((list) => {
     for (var entry of list) {
       entry.category = "mw";
 
-      // Automatically generate resource site link.
-      if (entry.file_name && !entry.file_url) {
-        const fileName = Array.isArray(entry.file_name) ? entry.file_name[0] : entry.file_name;
-        const path = entry.author == "合作作品" ? "合作作品" : `吧友作品/${entry.author}`;
-        entry.file_url = `https://file.marioforever.net/Mario Worker/${path}/${fileName}`;
+      if (entry.file_url) {
+        entry.file_urls = [{
+          name: `社区资源站`,
+          url: entry.file_url
+        }];
+      } else if (entry.file_name) {
+        // Automatically generate resource site link.
+        if (Array.isArray(entry.file_name)) {
+          entry.file_urls = [];
+          // For array, we generate all download links and give each link a name.
+          for (var file_name_entry of entry.file_name) {
+            if (file_name_entry == null) {
+              continue;
+            };
+            const fileName = file_name_entry.replace(/\.[^.]*$/, "");
+            const path = entry.author == "合作作品" ? "合作作品" : `吧友作品/${entry.author}`;
+            entry.file_urls.push({
+              name: `社区资源站（${fileName}）`,
+              url: generateResourceUrl(entry, file_name_entry)
+            });
+          }
+        } else {
+          // For single file, we generate a download link.
+          entry.file_urls = [{
+            name: "社区资源站",
+            url: generateResourceUrl(entry, entry.file_name)
+          }];
+        }
       }
 
       if (entry.smwp_ver && !entry.has_bundled_smwp) {
@@ -71,7 +98,7 @@
 
       games.value.push(entry);
       // Disable download button if link does not exist.
-      if (entry.download_url == null && entry.file_url == null) {
+      if (entry.download_url == null && entry.file_urls == null) {
         entry.disable_download = true;
       }
     }
@@ -277,7 +304,9 @@
           下载 {{ selectedDownload.game }}
         </div>
         <div class="button-line">
-          <a class="download" v-if="selectedDownload.file_url" :href="selectedDownload.file_url" target="_blank">社区资源站</a>
+          <span v-if="selectedDownload.file_urls">
+            <a class="download" v-for="url in selectedDownload.file_urls" :href="url.url" target="_blank">{{url.name}}</a>
+          </span>
           <a class="download" v-if="getDownloadLink(selectedDownload, 'zh')" :href="getDownloadLink(selectedDownload, 'zh')" target="_blank">{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, 'zh')" :code="getDownloadCode(selectedDownload, 'zh')" lan="zh"></ClipboardButton>
         </div>
@@ -300,8 +329,11 @@
 
   <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
   </div>
+  
+  <ButtonBackToTop />
 
   <FooterZh/>
+
 </template>
 
 <style scoped>

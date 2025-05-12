@@ -19,6 +19,7 @@
   import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
   import Tooltip from '../../components/Tooltip.vue';
+  import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import { useFloating, flip, shift, offset } from '@floating-ui/vue';
 
   const lan = ref(getLanguage());
@@ -420,6 +421,8 @@
 
   <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
   </div>
+  
+  <ButtonBackToTop />
 
   <FooterZh v-if="lan == 'zh'" />
   <FooterEn v-if="lan == 'en'" />

@@ -6,6 +6,7 @@
   import indexEn from '../../markdown/mf-en.md';
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
   import { navTop } from "../../config.js";
+  import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import FooterZh from '../../components/FooterZh.vue';
   import FooterEn from '../../components/FooterEn.vue';
   import 'vue3-carousel/dist/carousel.css'
@@ -61,6 +62,8 @@
       </template>
     </Carousel>
   </div>
+  
+  <ButtonBackToTop />
 
   <FooterZh v-if="lan == 'zh'" />
   <FooterEn v-if="lan == 'en'" />
