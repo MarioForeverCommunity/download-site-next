@@ -1,4 +1,53 @@
 ---
+- game: New Super Mario Forever 2014
+  game_alt:
+  author: GamesTV
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  description_zh: 日期为网盘显示的日期。
+  ver:
+  - v2.0.1:
+      ver_alt:
+      date: 2025-05-18
+      source_url: https://gamestvfreepcgames.blogspot.com/2014/11/new-super-mario-forever-2014-version.html
+      source_url_alt:
+      download_url: https://files.fm/f/hb77tddswt
+      code:
+      download_url_alt:
+      file_name: nsmf20142.0.1Installer.exe
+      file_url:
+  - v2.0:
+      ver_alt:
+      date: 2025-03-04
+      source_url: https://gamestvfreepcgames.blogspot.com/2014/09/new-super-mario-forever-2014-new.html
+      source_url_alt:
+      download_url: https://files.fm/u/bxdr58uzqz
+      code:
+      download_url_alt:
+      file_name: old-versions/nsmf20142.0.1Installer.exe
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2025-01-31
+      source_url: https://gamestvfreepcgames.blogspot.com/2014/08/new-super-mario-forever-2014-10.html
+      source_url_alt:
+      download_url: https://files.fm/f/9t87h7293d
+      code:
+      download_url_alt:
+      file_name: old-versions/nsmf20142.0.1Installer.exe
+      file_url:
+  - Demo:
+      ver_alt:
+      date: 2025-01-11
+      source_url: https://gamestvfreepcgames.blogspot.com/2014/08/new-super-mario-forever-2014-10.html
+      source_url_alt:
+      download_url: https://www.4shared.com/s/fLmUz2bvaku
+      code:
+      download_url_alt:
+      file_name: old-versions/New Super Mario Forever 2014 Demo (game by GamesTV).zip
+      file_url:
 - game: New Super Mario Forever 2042
   game_alt:
   author: Meteo Dream
