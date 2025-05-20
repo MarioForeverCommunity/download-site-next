@@ -1,4 +1,22 @@
 ---
+- game: 4-Don't recruit yourself anymore
+  game_alt:
+  author: 安德鲁斯123
+  author_alt: Andrews123
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  description_zh: 此为作者 PK!MF6 第二轮参赛关改版。
+  ver:
+  ver_alt:
+  date: 2025-05-20
+  source_url: https://www.marioforever.net/thread-3583-1-1.html
+  source_url_alt:
+  download_url: https://wwrl.lanzouy.com/iR8Wr2wqkngf
+  code: 2upx
+  download_url_alt:
+  file_name: 4-Don't recruit yourself anymore.exe
+  file_url:
 - game: New Super Mario Forever 2014
   game_alt:
   author: GamesTV
