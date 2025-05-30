@@ -91,10 +91,13 @@ body.dark .warning {
   border-color: #444 !important;
 }
 
-body.dark .icon,
-body.dark g {
+body.dark .icon {
   color: #bbb !important;
   fill: #bbb !important;
+}
+
+body.dark g {
+  stroke: #bbb !important;
 }
 
 body.dark input,
