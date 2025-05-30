@@ -95,7 +95,6 @@ body.dark .icon,
 body.dark g {
   color: #bbb !important;
   fill: #bbb !important;
-  stroke: #bbb !important;
 }
 
 body.dark input,
