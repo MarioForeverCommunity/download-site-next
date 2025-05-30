@@ -50,6 +50,10 @@ body.dark .card .game-date {
   color: #888 !important;
 }
 
+body.dark .card .last-line {
+  border-top: 1px solid #555 !important;
+}
+
 body.dark .md-button {
   background-color: #555 !important;
   color: #bbb !important;
