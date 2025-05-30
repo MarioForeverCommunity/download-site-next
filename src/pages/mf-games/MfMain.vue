@@ -216,8 +216,10 @@
     filter_option.value.repacked = true;
   }
 
+  const expandAllVersions = ref(false);
+
   const filteredGames = computed(() => {
-    return games.value.filter((a) => 
+    let list = games.value.filter((a) => 
       (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
       || (a.game_alt && (filter_option.value.name.trim() == "" || a.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
       || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
@@ -228,7 +230,66 @@
       || (filter_option.value.international && a.type == "international")
       || (filter_option.value.repacked && a.type == "repacked")
       || filter_option.value.force)
-    )
+    );
+    if (!expandAllVersions.value) {
+      return list;
+    } else {
+      // flatMap 优化：每个版本单独一条，所有筛选条件都在 verRaw 层判断
+      const expanded = games.value.flatMap((entry) => {
+        // 名称/作者/别名等只需判断一次
+        const nameMatch = (entry.game && (filter_option.value.name.trim() == "" || entry.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (entry.game_alt && (filter_option.value.name.trim() == "" || entry.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (getStrFromList(entry.author_alt) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author_alt).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || filterList(filter_option.value.name.trim(), entry.alias);
+        if (!nameMatch) return [];
+        if (!Array.isArray(entry.ver)) return [];
+        return entry.ver.map((verRaw) => {
+          const verKey = Object.keys(verRaw)[0];
+          const verObj = verRaw[verKey];
+          // 年份判断
+          const yearMatch = isNaN(parseInt(filter_option.value.year)) || (parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year));
+          // 类型判断
+          const typeVal = verObj.type || entry.type;
+          const typeMatch = (filter_option.value.chinese && typeVal == "chinese")
+            || (filter_option.value.international && typeVal == "international")
+            || (filter_option.value.repacked && typeVal == "repacked")
+            || filter_option.value.force;
+          if (yearMatch && typeMatch) {
+            return {
+              ...entry,
+              ver: [verRaw],
+              currentVer: parseVer(verRaw),
+              currentVerStr: verKey,
+              currentVerStrAlt: verObj.ver_alt,
+              type: typeVal,
+              _isVersionSplit: true
+            };
+          }
+          return null;
+        }).filter(Boolean);
+      });
+      // 按排序选项排序
+      if (sort_option.value.field === "game") {
+        expanded.sort((a, b) => sort_option.value.asc
+          ? getName(a, lan.value).localeCompare(getName(b, lan.value))
+          : getName(b, lan.value).localeCompare(getName(a, lan.value))
+        );
+      } else if (sort_option.value.field === "author") {
+        expanded.sort((a, b) => sort_option.value.asc
+          ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value))
+          : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value))
+        );
+      } else if (sort_option.value.field === "date") {
+        expanded.sort((a, b) => sort_option.value.asc
+          ? a.currentVer.date - b.currentVer.date
+          : b.currentVer.date - a.currentVer.date
+        );
+      } else {
+        expanded.sort((a, b) => b.currentVer.date - a.currentVer.date);
+      }
+      return expanded;
+    }
   });
 
   // Language changes.
@@ -335,7 +396,7 @@
         </div>
       </div>
       <div class="icon-container">
-        {{ lan == "en" ? "Filter " : "筛选 " }}
+        {{ lan == "en" ? "Filter" : "筛选" }}
         <div class="inline-block">
           <input v-model="filter_option.name" class="input">&nbsp;
         </div>
@@ -343,20 +404,20 @@
           {{ lan == "en" ? "Year" : "年份" }}
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-            <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()">{{year}}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()" :key="year">{{year}}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
-          <input v-model="filter_option.chinese" type="checkbox">
-          {{ lan == "en" ? "Chinese" : "国内作品" }}
+          <input v-model="filter_option.chinese" type="checkbox" id="filterChinese">
+          <label for="filterChinese">{{ lan == "en" ? "Chinese" : "国内作品" }}</label>
         </div>
         <div class="inline-block">
-          <input v-model="filter_option.international" type="checkbox">
-          {{ lan == "en" ? "International" : "国外作品" }}
+          <input v-model="filter_option.international" type="checkbox" id="filterInternational">
+          <label for="filterInternational">{{ lan == "en" ? "International" : "国外作品" }}</label>
         </div>
         <div class="inline-block">
-          <input v-model="filter_option.repacked" type="checkbox">
-          {{ lan == "en" ? "Repacked Games" : "重打包作品" }}
+          <input v-model="filter_option.repacked" type="checkbox" id="filterRepacked">
+          <label for="filterRepacked">{{ lan == "en" ? "Repacked" : "重打包作品" }}</label>
           <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
             <InfoIcon class="icon button-shift"></InfoIcon>
             <template #popper>
@@ -372,16 +433,33 @@
             </template>
           </Tooltip>
         </div>
+        <div class="inline-block">
+          <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
+          <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "多版本作品全部展开" }}</label>
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <InfoIcon class="icon button-shift"></InfoIcon>
+            <template #popper>
+              <span v-if="lan == 'zh'" style="text-align: left; display: block;">
+                勾选此项后，所有包含多个版本的作品将在列表中全部展开，每个版本单独显示；取消勾选则将同一作品的所有版本折叠为一条。由于展开后条目数量增多，可能影响排序性能，建议结合筛选功能使用。
+              </span>
+              <span v-else style="text-align: left; display: block;">
+                When checked, all games with multiple versions will be fully expanded in the list, with each version shown as a separate entry. When unchecked, all versions of a game will be collapsed into a single entry. Enabling this may reduce sorting performance due to the increased number of entries, so using filters is recommended.
+              </span>
+            </template>
+          </Tooltip>
+        </div>
       </div>
     </div>
   </div>
 
   <GameLineHeader v-if="wideScreen" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
-  <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan, sort_option]">
-    <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+  <div v-if="wideScreen">
+    <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
+      <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+    </div>
   </div>
-  <div v-if="!wideScreen" class="card-container">
-    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, lan, sort_option]">
+  <div v-else class="card-container">
+    <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
       <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
@@ -409,12 +487,16 @@
       <div class="modal-content" @click.stop="">
         <div>
           {{ lan == 'en' ? "Related videos of " : "相关视频：" }}{{ getName(selectedVideo, lan) }}
-          <p v-if="lan == 'zh'" v-for="video in selectedVideo.video_zh">
-            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], lan) }}）</a>
-          </p>
-          <p v-if="lan == 'en'" v-for="video in selectedVideo.video_en">
-            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
-          </p>
+          <div v-if="lan == 'zh'">
+            <p v-for="video in selectedVideo.video_zh" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
+              <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], lan) }}）</a>
+            </p>
+          </div>
+          <div v-if="lan == 'en'">
+            <p v-for="video in selectedVideo.video_en" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
+              <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
