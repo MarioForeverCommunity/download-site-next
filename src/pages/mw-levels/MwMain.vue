@@ -695,7 +695,7 @@
   }
 
   table tr:first-child {
-    border-top: 0;
+    border-top: 0 !important;
   }
 
   table tr {

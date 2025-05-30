@@ -131,3 +131,7 @@ body.dark input[type="checkbox"]:checked {
 body.dark input[type="checkbox"]:focus {
   outline: 1.5px solid #222 !important;
 }
+
+body.dark table tr {
+  border-top: solid 1px #444;
+}
