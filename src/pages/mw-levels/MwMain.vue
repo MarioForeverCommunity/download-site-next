@@ -16,6 +16,7 @@
   import { useFloating, flip, shift, offset } from '@floating-ui/vue';
   import {SmwpVersions} from "../../util/SmwpVersions.js"
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
+  import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
   const originalLan = ref(getLanguage());
 
   const lan = "zh"
@@ -334,6 +335,7 @@
   </div>
   
   <ButtonBackToTop />
+  <ButtonDarkMode />
 
   <FooterZh/>
 

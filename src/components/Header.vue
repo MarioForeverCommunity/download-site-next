@@ -29,7 +29,7 @@
 <template>
   <div class="topbar">
     <div class="topbar-inner">
-      <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+      <a v-for="item in topBar.filter(a => displayLan() == 'zh' || a.show_en)" :key="item.link" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
       <div style="float: right; display: inline;" v-if="pageEntry.show_en == true">
         <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
         <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
@@ -45,7 +45,7 @@
         <div class="logo"><a href="."><img :src="displayLan() == 'zh' ? './images/logo_hd.png' : './images/logo2_hd.png'"></a></div>
         <div class="nav">
           <div class="radio-inputs">
-            <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
+            <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" :key="nav.id" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
               <span class="radio-text" name="radio">
                 {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
               </span>

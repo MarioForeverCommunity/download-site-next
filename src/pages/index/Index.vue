@@ -7,6 +7,7 @@
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
   import { navTop } from "../../config.js";
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
+  import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
   import FooterZh from '../../components/FooterZh.vue';
   import FooterEn from '../../components/FooterEn.vue';
   import 'vue3-carousel/dist/carousel.css'
@@ -64,6 +65,7 @@
   </div>
   
   <ButtonBackToTop />
+  <ButtonDarkMode />
 
   <FooterZh v-if="lan == 'zh'" />
   <FooterEn v-if="lan == 'en'" />

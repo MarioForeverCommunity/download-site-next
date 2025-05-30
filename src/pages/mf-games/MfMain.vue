@@ -20,6 +20,7 @@
   import axios from 'axios';
   import Tooltip from '../../components/Tooltip.vue';
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
+  import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
   import { useFloating, flip, shift, offset } from '@floating-ui/vue';
 
   const lan = ref(getLanguage());
@@ -423,6 +424,7 @@
   </div>
   
   <ButtonBackToTop />
+  <ButtonDarkMode />
 
   <FooterZh v-if="lan == 'zh'" />
   <FooterEn v-if="lan == 'en'" />

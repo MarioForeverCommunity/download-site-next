@@ -44,7 +44,7 @@
 
   .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 90px;
     right: 30px;
     width: 20px;
     height: 20px;
@@ -63,6 +63,14 @@
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(-3px);
+  }
+
+  body.dark .back-to-top {
+    background-color: #555 !important;
+  }
+
+  body.dark .back-to-top:hover {
+    background-color: #444 !important;
   }
   
   .back-to-top span {

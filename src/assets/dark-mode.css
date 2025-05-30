@@ -1,0 +1,133 @@
+/* 暗色模式样式 */
+body.dark {
+  background-color: #111 !important;
+  color: #bbb !important;
+}
+
+body.dark .container,
+body.dark .md-container {
+  background-color: #333 !important;
+  color: #bbb !important;
+  border-color: #222 !important;
+}
+
+body.dark .topbar {
+  background-color: #222 !important;
+  color: #bbb !important;
+}
+
+body.dark .link-item,
+body.dark .lan-item,
+body.dark .radio-text {
+  color: #bbb !important;
+}
+
+body.dark .radio-inputs .radio.checked .radio-text {
+  color: #bbb !important;
+}
+
+body.dark .dropdown-content {
+  background-color: #333 !important;
+  color: #bbb !important;
+  border-color: #333 !important;
+}
+
+body.dark .dropdown:hover .dropdown-item:hover {
+  background-color: #444 !important;
+}
+
+body.dark .button {
+  background-color: #333 !important;
+  color: #bbb !important;
+  border-color: #333 !important;
+}
+
+body.dark .button:hover {
+  background-color: #444 !important;
+}
+
+body.dark .card .game-date {
+  color: #888 !important;
+}
+
+body.dark .md-button {
+  background-color: #555 !important;
+  color: #bbb !important;
+  border-color: #333 !important;
+}
+
+body.dark .md-button:hover {
+  background-color: #30acff !important;
+  color: #fff !important;
+}
+
+body.dark .download {
+  background-color: #555 !important;
+  color: #bbb !important;
+  border-color: #333 !important;
+}
+
+body.dark .download:hover, .download:focus {
+  background-color: #30acff !important;
+  color: #fff !important;
+}
+
+body.dark .download:active {
+  background-color: #007cdf !important;
+  color: #fff !important;
+}
+
+body.dark a:hover {
+  color: #30acff;
+}
+
+body.dark .modal-content {
+  background-color: #333 !important;
+}
+
+body.dark .warning {
+  background-color: #2c2c1e !important;
+  color: #ffeebb !important;
+  border-color: #444 !important;
+}
+
+body.dark .icon,
+body.dark g {
+  color: #bbb !important;
+  fill: #bbb !important;
+  stroke: #bbb !important;
+}
+
+body.dark input,
+body.dark select {
+  background-color: #222 !important;
+  color: #bbb !important;
+  border: 1px solid #444 !important;
+}
+
+body.dark input:focus,
+body.dark select:focus {
+  outline: 1px solid #4aa3ff !important;
+  background-color: #222 !important;
+  color: #bbb !important;
+}
+
+body.dark option {
+  background-color: #222 !important;
+  color: #bbb !important;
+}
+
+body.dark input[type="checkbox"] {
+  accent-color: #222 !important;
+  background-color: #222 !important;
+  border: 1.5px solid #222 !important;
+}
+
+body.dark input[type="checkbox"]:checked {
+  background-color: #222 !important;
+  border-color: #222 !important;
+}
+
+body.dark input[type="checkbox"]:focus {
+  outline: 1.5px solid #222 !important;
+}
