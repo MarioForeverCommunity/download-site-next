@@ -47,6 +47,8 @@
   file_name: Mario Worker Chimera IV.smws
   file_url:
 - game: Super Wario Worker Project
+  alias:
+  - SWWP
   author: 把僵尸炖了
   smwp_ver: v1.7.10
   date: 2025-04-30
@@ -276,10 +278,21 @@
   file_url:
   video:
   - 宣传片: https://www.bilibili.com/video/BV1YQxveLEKt
+- game: 秘密合战4
+  author: 合作作品
+  smwp_ver: v1.7.10
+  date: 2024-10-01
+  source_url: https://www.marioforever.net/thread-3377-1-1.html
+  download_url:
+  code:
+  has_bundled_smwp: true
+  file_name: 秘密合战4/
+  file_url:
 - game: 20240912即兴关卡
   author: zqh——123
   smwp_ver: v1.7.10
   date: 2024-09-16
+  description: 日期为发布于论坛的日期
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
@@ -294,6 +307,20 @@
   download_url:
   code:
   file_name: 20680819即兴关卡.smwp
+  file_url:
+- game: For xhy - Way to Grow
+  alias:
+  - WTG
+  - 一飞冲天
+  author: 马里奥奥里马
+  smwp_ver: v1.7.9
+  date: 2024-08-28
+  description: 这是作者 Welcome back to Marioworker Bar 2022 作品的单独发布版；另有所有关卡的 smwl，见发布帖，资源站暂未提供
+  source_url: https://www.marioforever.net/thread-3348-1-1.html
+  download_url: https://wwhf.lanzout.com/icW5b28knead
+  code:
+  has_bundled_smwp: true
+  file_name: For xhy - Way to Grow (By mlaalm).zip
   file_url:
 - game: 20240812即兴关卡
   author: 玛丽的死对头
@@ -339,7 +366,7 @@
 - game: 20240610即兴关卡
   author: zqh——123
   smwp_ver: v1.7.10
-  date: 2024-09-16
+  date: 2024-06-10
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
@@ -375,6 +402,8 @@
   file_name: Welcome back to Marioworker Bar 2024.zip
   file_url:
 - game: Fantastic Record 第一章试玩版
+  alias:
+  - FR
   author: Fahlee
   smwp_ver: v1.7.10
   date: 2024-05-24
@@ -604,6 +633,16 @@
   code:
   file_name: zqh room.smwp
   file_url:
+- game: 秘密合战3
+  author: 合作作品
+  smwp_ver: v1.7.10
+  date: 2023-09-29
+  source_url: https://www.marioforever.net/thread-2969-1-1.html
+  download_url:
+  code:
+  has_bundled_smwp: true
+  file_name: 秘密合战3/
+  file_url:
 - game: 马里奥和游戏
   author: Andrews123
   smwp_ver: v1.7.9
@@ -670,6 +709,8 @@
   file_name: 新年小挑战：车站大作战.smwl
   file_url:
 - game: A Day Out(S2简化版)
+  alias:
+  - ADO
   author: 玛丽的死对头
   description: 请使用 Welcome back to Marioworker Bar 2022 自带的 MW 游玩
   smwp_ver: v1.7.9
@@ -866,6 +907,16 @@
   code:
   file_name: MWWR2-MC.smwp
   file_url:
+- game: 秘密合战2
+  author: 合作作品
+  smwp_ver: v1.7.10
+  date: 2022-10-01
+  source_url: https://www.marioforever.net/thread-2350-1-1.html
+  download_url:
+  code:
+  has_bundled_smwp: true
+  file_name: 秘密合战2/
+  file_url:
 - game: Mario Worker Odyssey-An Epic Picture Scroll
   author: Andrews123
   smwp_ver: v1.7.8
@@ -934,6 +985,7 @@
   alias:
   - 高考回归2022
   - A Day Out
+  - ADO
   - The Chosen One
   - TCO
   - Way to Grow
@@ -1434,6 +1486,16 @@
   download_url: http://chao123.ysepan.com/
   code:
   file_name: Mystories Mountain/
+  file_url:
+- game: 秘密合战
+  author: 合作作品
+  smwp_ver: v1.7.8
+  date: 2021-10-01
+  description: 关卡作者：A-1168438795；B-s小s飞s侠s；C-我懂你不懂的lz；D-数字1528君
+  source_url: https://www.marioforever.net/thread-1528-1-1.html
+  download_url:
+  code:
+  file_name: 秘密合战/
   file_url:
 - game: Mario Worker Awaken
   alias:
