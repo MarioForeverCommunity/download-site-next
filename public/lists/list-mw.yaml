@@ -197,6 +197,16 @@
   code:
   file_name: Green Sweet SMWP 关卡精选集/
   file_url:
+- game: 20241209即兴关卡
+  author: 马里奥奥里马
+  description: 群内发布，未在社区发布
+  smwp_ver: v1.7.10
+  date: 2024-12-09
+  source_url:
+  download_url:
+  code:
+  file_name: 20241209即兴关卡.smwp
+  file_url:
 - game: 20241127即兴关卡
   author: 马里奥奥里马
   smwp_ver: v1.7.10
@@ -512,6 +522,16 @@
   code:
   file_name: 20240208即兴关卡.smwp
   file_url:
+- game: MW杯乱入关卡——不婚不育
+  author: LLX奶油马里奥
+  description: 此为第十三届 MW 杯热身赛乱入关卡，未在社区发布
+  smwp_ver: v1.7.10
+  date: 2024-02-03
+  source_url:
+  download_url:
+  code:
+  file_name: MW杯乱入关卡——不婚不育（LLX）.smwl
+  file_url:
 - game: MWO：IC废案
   author: Andrews123
   smwp_ver: v1.7.9
@@ -767,6 +787,16 @@
   code: jtiq
   has_bundled_smwp: true
   file_name: 【LLX's work】2023六一快乐关.rar
+  file_url:
+- game: Withershins
+  author: 毒蘑菇vn
+  description: 此为作者在群内发布的两个单关，未在社区发布
+  smwp_ver: v1.7.9
+  date: 2023-05-22
+  source_url:
+  download_url:
+  code:
+  file_name: Withershins/
   file_url:
 - game: Mario Worker Chimera II
   alias:
@@ -2167,6 +2197,16 @@
   download_url: http://2333ty.ysepan.com/
   code:
   file_name: Colorful Continents.smwp
+  file_url:
+- game: 塘埔冰室
+  author: Fahlee
+  description: 此为作者在群内发布的单关，未在社区发布
+  smwp_ver: v1.7.0
+  date: 2020-05-24
+  source_url:
+  download_url:
+  code:
+  file_name: 塘埔冰室.smwl
   file_url:
 - game: Hold Your Speed!
   author: ƒresh★LAKE
