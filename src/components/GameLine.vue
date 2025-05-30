@@ -22,13 +22,21 @@
 <template>
   <div class="container game-container">
     <div class="game-name">
+      {{ getName(game, lan) }}
+      <Tooltip v-if="game.type === 'chinese'">
+        <span class="region-icon dot cn-dot"><span class="cn-text">CN</span></span>
+        <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
+      </Tooltip>
+      <Tooltip v-if="game.type === 'international'">
+        <span class="region-icon dot en-dot"><span class="en-text">INT</span></span>
+        <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
+      </Tooltip>
       <Tooltip v-if="game.type == 'repacked'">
         <RepackIcon class="icon"></RepackIcon>
         <template #popper>
           {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
         </template>
       </Tooltip>
-      {{ getName(game, lan) }}
       <Tooltip v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">
         <InfoIcon class="icon button-shift"></InfoIcon>
         <template #popper>{{ game.description_zh }}</template>
@@ -146,6 +154,10 @@
     fill: #ccc;
   }
 
+  .icon.repack-icon {
+    margin-left: 0 !important;
+  }
+
   .button {
     border: 1px solid rgba(0, 0, 0, 0);
     padding: 4px;
@@ -191,6 +203,54 @@
   .content-center {
     display: inline-block;
     text-align: center;
+  }
+
+  .region-icon.dot {
+    display: inline-block;
+    width: 1.8em;
+    height: 1em;
+    border-radius: 0.6em;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    line-height: 1em;
+    transform: translateY(-1px);
+  }
+  .region-icon.cn-dot {
+    background: #ff3330;
+    border: 1.5px solid #b71c1c;
+  }
+  .region-icon.en-dot {
+    background: #008cff;
+    border: 1.5px solid #0d47a1;
+  }
+  body.dark .region-icon.cn-dot,
+  body.dark .region-icon.en-dot {
+    background: #bbb;
+    border: 0px;
+  }
+  body.dark .region-icon.dot .cn-text {
+    color: #eb3333;
+  }
+  body.dark .region-icon.dot .en-text {
+    color: #1160d8;
+  }
+  .region-icon.dot .cn-text,
+  .region-icon.dot .en-text {
+    color: #fff;
+    font-size: 0.75em;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
   }
 
 </style>

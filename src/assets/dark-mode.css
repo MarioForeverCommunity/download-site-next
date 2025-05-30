@@ -110,6 +110,10 @@ body.dark .icon {
   fill: #bbb !important;
 }
 
+body.dark .icon.invalid{
+  fill: #555 !important;
+}
+
 body.dark g {
   stroke: #bbb !important;
 }

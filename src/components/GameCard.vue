@@ -23,13 +23,21 @@
   <div class="container card">
     <div class="first-line">
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
+      {{ getName(game, lan) }}
+      <Tooltip v-if="game.type === 'chinese'">
+        <span class="region-icon dot cn-dot"><span class="cn-text">CN</span></span>
+        <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
+      </Tooltip>
+      <Tooltip v-if="game.type === 'international'">
+        <span class="region-icon dot en-dot"><span class="en-text">INT</span></span>
+        <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
+      </Tooltip>
         <Tooltip v-if="game.type == 'repacked'">
-          <RepackIcon class="icon"></RepackIcon>
+          <RepackIcon class="icon repack-icon"></RepackIcon>
           <template #popper>
             {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
           </template>
         </Tooltip>
-        {{ getName(game, lan) }}
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
         <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
@@ -54,9 +62,11 @@
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
         &nbsp;
       </span>
-      <span v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
-        <br v-if="authorindex != 0">&nbsp;
-      </span>
+      <template v-if="typeof getAuthorList(game, lan) != 'string'">
+        <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
+          <br v-if="authorindex != 0">&nbsp;
+        </span>
+      </template>
     </div>
     <div class="last-line">
       <div class="game-author">
@@ -64,9 +74,11 @@
           {{lan == "en" ? "By&nbsp;" : "作者："}}
         </span>
         <span v-if="typeof getAuthorList(game, lan) == 'string'">{{ getAuthorList(game, lan) }}</span>
-        <span class="inline-block" v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
-          {{ author }}{{ authorindex != getAuthorList(game, lan).length - 1 ? ",&nbsp;" : "" }}
-        </span>
+        <template v-if="typeof getAuthorList(game, lan) != 'string'">
+          <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
+            {{ author }}{{ authorindex != getAuthorList(game, lan).length - 1 ? ",\u00A0" : "" }}
+          </span>
+        </template>
       </div>
       <div class="game-options">
         <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
@@ -158,6 +170,10 @@
 
   .icon.invalid{
     fill: #ccc;
+  }
+
+  .icon.repack-icon {
+    margin-left: 0 !important;
   }
 
   .game-name {
@@ -254,6 +270,52 @@
   .content-center {
     display: inline-block;
     text-align: center;
+  }
+
+  .region-icon.dot {
+    display: inline-block;
+    width: 1.8em;
+    height: 1em;
+    border-radius: 0.6em;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    line-height: 1em;
+    transform: translateY(-1px);
+  }
+  .region-icon.cn-dot {
+    background: #ff3330;
+    border: 1.5px solid #b71c1c;
+  }
+  .region-icon.en-dot {
+    background: #008cff;
+    border: 1.5px solid #0d47a1;
+  }
+  body.dark .region-icon.cn-dot,
+  body.dark .region-icon.en-dot {
+    background: #bbb;
+    border: 0px;
+  }
+  body.dark .region-icon.dot .cn-text,
+  body.dark .region-icon.dot .en-text {
+    color: #333;
+  }
+  .region-icon.dot .cn-text,
+  .region-icon.dot .en-text {
+    color: #fff;
+    font-size: 0.75em;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
   }
 
 </style>
