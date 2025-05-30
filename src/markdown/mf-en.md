@@ -11,8 +11,8 @@
 
 ## Download Mario Forever: Community Edition
 
-<a class="md-button" target="_blank" href="https://mfce.rnx.su/">Mario Forever: Community Edition Website</a>
 <a class="md-button" target="_blank" href="https://rnx.su/s/DZm6PEkZf3z4owp">Download Mario Forever: Community Edition</a>
+<a class="md-button" target="_blank" href="https://mfce.rnx.su/">Mario Forever: Community Edition website</a>
 
 ## Download original Mario Forever
 
