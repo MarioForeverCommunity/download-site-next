@@ -53,7 +53,7 @@ onMounted(() => {
     width: 44px;
     height: 44px;
     background-color: #afdcff;
-    border: 1px solid rgba(0, 0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
     font-size: 22px;
     border-radius: 50%;
     transition: all 250ms;
@@ -67,8 +67,7 @@ onMounted(() => {
 
   .dark-mode-btn:hover {
     background-color: #97ccf5;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(51px);
   }

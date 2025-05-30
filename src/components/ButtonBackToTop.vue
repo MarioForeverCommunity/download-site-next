@@ -49,7 +49,7 @@
     width: 20px;
     height: 20px;
     background-color: #afdcff;
-    border: 1px solid rgba(0, 0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
     padding: 10px;
     border-radius: 50%;
     transition: all 250ms;
@@ -59,8 +59,7 @@
 
   .back-to-top:hover {
     background-color: #97ccf5;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(-3px);
   }

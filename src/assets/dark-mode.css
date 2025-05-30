@@ -19,10 +19,20 @@ body.dark .topbar {
 body.dark .link-item,
 body.dark .lan-item,
 body.dark .radio-text {
-  color: #bbb !important;
+  color: #999 !important;
 }
 
 body.dark .radio-inputs .radio.checked .radio-text {
+  color: #bbb !important;
+}
+
+body.dark .radio-inputs .radio:hover .radio-text {
+  color: #bbb !important;
+}
+
+body.dark .link-item:hover,
+body.dark .lan-item:hover,
+body.dark .lan-item.active {
   color: #bbb !important;
 }
 
@@ -140,4 +150,20 @@ body.dark input[type="checkbox"]:focus {
 
 body.dark table tr {
   border-top: solid 1px #444;
+}
+
+body.dark footer {
+  color: #999 !important;
+}
+
+body.dark footer a {
+  color: #999 !important;
+}
+
+body.dark footer a:hover {
+  color: #bbb !important;
+}
+
+body.dark footer span:not(:first-child) {
+  border-left: solid 1px #444;
 }
