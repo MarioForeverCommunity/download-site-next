@@ -13,7 +13,7 @@
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon } from "../../components/icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon } from "../../components/icons/Icons.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import { Collapse } from 'vue-collapsed'
@@ -214,6 +214,7 @@
     filter_option.value.chinese = true;
     filter_option.value.international = true;
     filter_option.value.repacked = true;
+    expandAllVersions.value = false;
   }
 
   const expandAllVersions = ref(false);
@@ -360,8 +361,7 @@
 
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
-      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
-      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon> -->
+      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
       <div class="icon-container" v-if="!wideScreen">
         {{ lan == "en" ? "Sort by " : "排序选项 " }}
         <div class="visible-button" @click="sortByName();">
@@ -448,6 +448,10 @@
             </template>
           </Tooltip>
         </div>
+        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+          <FilterIcon class="icon button" @click="clearFilter()" />
+          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+        </Tooltip>
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "../../components/icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
   import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -17,6 +17,7 @@
   import {SmwpVersions} from "../../util/SmwpVersions.js"
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+  import Tooltip from '../../components/Tooltip.vue';
   const originalLan = ref(getLanguage());
 
   const lan = "zh"
@@ -240,8 +241,7 @@
 
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
-      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon>
-      <FilterIcon v-if="!wideScreen" class="icon button" :class="filter_option.active ? 'active' : '' " @click="clearFilter(); filter_option.active = !filter_option.active"></FilterIcon> -->
+      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
       <div class="icon-container" v-if="!wideScreen">
         排序选项
         <div class="visible-button" @click="sortByName();">
@@ -276,7 +276,7 @@
         </div>
       </div>
       <div class="icon-container">
-        {{ lan == "en" ? "Filter " : "筛选 " }}
+        {{ lan == "en" ? "Filter" : "筛选" }}
         <div class="inline-block">
           <input v-model="filter_option.name" class="input">&nbsp;
         </div>
@@ -287,6 +287,10 @@
             <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()">{{year}}</option>
           </select>&nbsp;
         </div>
+      <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+        <FilterIcon class="icon button" @click="clearFilter()" />
+        <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+      </Tooltip>
       </div>
     </div>
   </div>
