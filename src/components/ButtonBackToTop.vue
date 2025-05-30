@@ -50,7 +50,7 @@
     height: 20px;
     background-color: #afdcff;
     box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 50%;
     transition: all 250ms;
     cursor: pointer;
