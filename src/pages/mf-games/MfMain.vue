@@ -435,7 +435,7 @@
         </div>
         <div class="inline-block">
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
-          <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "多版本作品全部展开" }}</label>
+          <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
             <InfoIcon class="icon button-shift"></InfoIcon>
             <template #popper>
