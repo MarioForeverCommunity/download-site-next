@@ -276,7 +276,7 @@
     filter_option.value.chinese = true;
     filter_option.value.international = true;
     filter_option.value.repacked = true;
-    expandAllVersions.value = false;
+    // expandAllVersions.value = false;
   }
 
   const expandAllVersions = ref(false);
