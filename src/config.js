@@ -53,7 +53,7 @@ export const navTop = [
     "id" : "index",
     "link" : "./",
     "option" : "原版 MF 下载",
-    "option_alt" : "MF & MFR Downloads",
+    "option_alt" : "MF Downloads",
     "title" : "Mario Forever 全版本汇总",
     "title_alt" : "Original Mario Forever & MF Remakes Downloads",
     "show_en" : true
@@ -64,7 +64,7 @@ export const navTop = [
     "option" : "MF 作品汇总",
     "option_alt" : "Fangame Downloads",
     "title" : "Mario Forever 作品汇总",
-    "title_alt" : "Mario Forever Fangame Downloads",
+    "title_alt" : "Mario Forever Fangames Catalog",
     "show_en" : true
   },
   {
