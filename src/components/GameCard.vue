@@ -255,6 +255,14 @@
     transform: translateY(0);
   }
 
+  .rotate-button {
+    transition: all 250ms;
+  }
+
+  .rotate-button:hover, .rotate-button:focus {
+    transform: rotate(180deg);
+  }
+
   .game-options {
     display: inline;
     float: right;
