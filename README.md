@@ -98,7 +98,7 @@ Here is an example of a multi-version game:
       download_url: https://www.mediafire.com/file/mfvo2ot63fuecqq/
       code:
       download_url_alt:
-      file_name: old-versions/LNY 2022 v2.0.rar
+      file_name: LNY 2022 v2.0.rar
       file_url:
 ```
 
@@ -111,6 +111,7 @@ Below are the meanings of each field. Since the site includes both Chinese and E
 | `alias` | No | String List | Abbreviations, aliases, translations in other languages, or frequently confused names of the game, to facilitate users to better search for this game.  <br>Please try to add aliases or author-specified game abbreviations and translations that are recognized and used by a certain number of players. |
 | `author` | **Yes** | String | The name of the author. |
 | `author_alt` | No | String | The English name of the author (if the author's name is in Chinese). |
+| `author_alias` | No | String | The name of the author used for file url (International games exclusive). |
 | `description_zh` | No | String | The description of the game on the Chinese page (if there is content that needs to be explained on the list page). |
 | `description_en` | No | String | The description of the game on the English page (if there is content that needs to be explained on the list page). |
 | `type` | **Yes** | String | Supports three fields for filtering function retrieval: <br>`chinese`: Games made by Chinese players. <br>`international`: Games made by international Mario Forever players. <br>`repacked`: Games that are originally published in either Chinese or international community, with the original download link invalid, and repackaged and uploaded by players other than the author. Note that there are special fields that need to be filled for this type of game. |
