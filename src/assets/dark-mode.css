@@ -16,6 +16,10 @@ body.dark .topbar {
   color: #bbb !important;
 }
 
+body.dark .os-scrollbar-handle {
+  background-color: #555 !important;
+}
+
 body.dark .link-item,
 body.dark .lan-item,
 body.dark .radio-text {
