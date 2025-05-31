@@ -24,11 +24,11 @@
     <div class="game-name">
       {{ getName(game, lan) }}
       <Tooltip v-if="game.type === 'chinese'">
-        <span class="dot cn-dot"><span class="cn-text">CN</span></span>
+        <span class="dot cn-dot"><span class="cn-text">{{ lan === 'en' ? 'CN' : '国内' }}</span></span>
         <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
       </Tooltip>
       <Tooltip v-if="game.type === 'international'">
-        <span class="dot en-dot"><span class="en-text">INT</span></span>
+        <span class="dot en-dot"><span class="en-text">{{ lan === 'en' ? 'INT' : '国外' }}</span></span>
         <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
       </Tooltip>
       <Tooltip v-if="game.type == 'repacked'">
@@ -39,13 +39,13 @@
       </Tooltip>
       <!-- MW自带标识 -->
       <Tooltip v-if="game.category === 'mw' && game.has_bundled_smwp">
-        <span class="dot mw-dot"><span class="mw-text">MW</span></span>
-        <template #popper>需专用 SMWP</template>
+        <span class="dot mw-dot"><span class="mw-text">专用MW</span></span>
+        <template #popper>需专用 MW</template>
       </Tooltip>
       <!-- BGM标识 -->
       <Tooltip v-if="game.category === 'mw' && game.has_bgm">
-        <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
-        <template #popper>需自定义 BGM</template>
+        <span class="dot bgm-dot"><span class="bgm-text">有BGM</span></span>
+        <template #popper>需替换自定义 BGM</template>
       </Tooltip>
       <Tooltip v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">
         <InfoIcon class="icon button-shift"></InfoIcon>
@@ -73,7 +73,7 @@
     <div class="game-version" v-if="game.category == 'mf'">
       <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
       <Tooltip v-if="game._isLatestVersion">
-        <span class="dot cur-dot"><span class="cur-text">CUR</span></span>
+        <span class="dot cur-dot"><span class="cur-text">{{ lan == 'en' ? 'CUR' : '最新' }}</span></span>
         <template #popper>{{ lan == 'en' ? 'Current version' : '当前最新' }}</template>
       </Tooltip>
       <div :class="game.ver.length > 1 ? 'dropdown' : ''">
@@ -223,7 +223,7 @@
 
   .dot {
     display: inline-block;
-    width: 1.8em;
+    width: 2em;
     height: 1em;
     border-radius: 0.6em;
     margin-left: 5px;
@@ -241,23 +241,21 @@
   }
   .dot.en-dot {
     background: #008cff;
-    width: 1.95em;
     border: 1.5px solid #0d47a1;
   }
   .dot.cur-dot {
-    width: 2.3em;
     background: #27ae60;
     border: 1.5px solid #1e824c;
   }
   /* 新增MW和BGM标识样式 */
   .dot.mw-dot {
     background: #f39c12;
-    width: 1.95em;
+    width: 3.5em;
     border: 1.5px solid #e67e22;
   }
   .dot.bgm-dot {
     background: #d5006d;
-    width: 2.3em;
+    width: 3.2em;
     border: 1.5px solid #a50036;
   }
   body.dark .dot.cn-dot,
@@ -299,6 +297,7 @@
     pointer-events: none;
     user-select: none;
     line-height: 1;
+    white-space: nowrap;
   }
 
 </style>
