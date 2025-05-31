@@ -95,17 +95,29 @@
         let trueLatestIdx = allLatestIdxs.length > 0 ? allLatestIdxs[0] : -1;
         entry.ver.forEach((verRaw, idx) => {
           const verObj = verRaw[Object.keys(verRaw)[0]];
-          if (!verObj.file_name) return;
-          // 不是current: true，且不是第一个最新，且file_name不以old-versions/开头才加前缀
-          if (
-            !currentIndexes.includes(idx) &&
-            (
-              // 不是最新，或虽然是最新但不是第一个
-              (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
-            ) &&
-            !verObj.file_name.startsWith("old-versions/")
-          ) {
-            verObj.file_name = "old-versions/" + verObj.file_name;
+          // file_name 归档
+          if (verObj.file_name) {
+            if (
+              !currentIndexes.includes(idx) &&
+              (
+                (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+              ) &&
+              !verObj.file_name.startsWith("old-versions/")
+            ) {
+              verObj.file_name = "old-versions/" + verObj.file_name;
+            }
+          }
+          // data_file_name 归档
+          if (verObj.data_file_name) {
+            if (
+              !currentIndexes.includes(idx) &&
+              (
+                (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+              ) &&
+              !verObj.data_file_name.startsWith("old-versions/")
+            ) {
+              verObj.data_file_name = "old-versions/" + verObj.data_file_name;
+            }
           }
         });
       }
@@ -562,8 +574,8 @@
           <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && getResourceURL(selectedDownload, lan)" :href="getResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
-          <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data Pack" : "下载数据包" }}</a>
-          <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data Pack (file.marioforever.net)" : "下载数据包 (资源站)" }}</a>
+          <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data" : "下载数据包" }}</a>
+          <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data (file.marioforever.net)" : "下载数据包 (资源站)" }}</a>
         </div>
       </div>
     </div>
