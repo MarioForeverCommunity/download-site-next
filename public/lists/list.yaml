@@ -293,6 +293,26 @@
       download_url_alt:
       file_name: 永远的马里奥：蘑菇岛2 v1.0.0.zip
       file_url:
+- game: 'Mario Forever: Mushroom Island 2 英文版'
+  game_alt: 'Mario Forever: Mushroom Island 2'
+  alias:
+  - MFMI2
+  author: 面灵气酱
+  author_alt: MLQJ
+  type: chinese
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island_2%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B2%EF%BC%89
+  wiki_en_url:
+  ver:
+  - World 2 Demo:
+      ver_alt:
+      date: 2024-11-12
+      source_url:
+      source_url_alt:
+      download_url: https://www.mediafire.com/folder/gp5msw75sbq9y/Mario_Forever_Game_by_mlqj
+      code:
+      download_url_alt:
+      file_name: Mario Forever Mushroom Island 2 （World2 Demo）.zip
+      file_url:
 - game: Mario Forever.EXE
   game_alt:
   author: Rainbow_Star
@@ -1780,7 +1800,7 @@
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
-  wiki_zh_url:
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B%EF%BC%89
   wiki_en_url:
   ver:
   - v0.5.3:
