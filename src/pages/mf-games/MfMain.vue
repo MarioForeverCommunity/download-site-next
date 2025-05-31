@@ -182,7 +182,7 @@
     }
     defaultSort();
 
-    // 收集所有链接
+    /* // 收集所有链接
     const allLinks = [];
     for (const entry of games.value) {
       if (Array.isArray(entry.ver)) {
@@ -192,7 +192,7 @@
         }
       }
     }
-    console.log(allLinks); // 这里是所有作品所有版本的 file_url_zh
+    console.log(allLinks); // 这里是所有作品所有版本的 file_url_zh */
   });
 
   const selectedDownload = ref(null); // For download modal.
