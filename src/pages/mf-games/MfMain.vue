@@ -45,7 +45,9 @@
       if (entry.ver == null) {
         entry.ver = "";
       }
-      if (typeof entry.author == "object") {
+      if (entry.type === "international" && entry.author_alias) {
+        entry.first_author = entry.author_alias;
+      } else if (typeof entry.author == "object") {
         entry.first_author = entry.author[0];
       } else {
         entry.first_author = entry.author;
@@ -70,6 +72,42 @@
       } else {
         entry.currentVerStr = Object.keys(entry.ver[0])[0];
         entry.currentVerStrAlt = entry.ver[0][entry.currentVerStr].ver_alt;
+      }
+
+      // 国际作品 old-versions/ 处理
+      if (entry.type === "international" && Array.isArray(entry.ver) && entry.ver.length > 0) {
+        // 找到所有current: true的索引
+        let currentIndexes = entry.ver.map((verRaw, idx) => {
+          const verObj = verRaw[Object.keys(verRaw)[0]];
+          return verObj.current === true ? idx : -1;
+        }).filter(idx => idx !== -1);
+        // 找到日期最新的最大时间戳
+        let maxDate = Math.max(...entry.ver.map(verRaw => {
+          const verObj = verRaw[Object.keys(verRaw)[0]];
+          return new Date(verObj.date).getTime();
+        }));
+        // 找到所有日期为maxDate的索引
+        let allLatestIdxs = entry.ver.map((verRaw, idx) => {
+          const verObj = verRaw[Object.keys(verRaw)[0]];
+          return new Date(verObj.date).getTime() === maxDate ? idx : -1;
+        }).filter(idx => idx !== -1);
+        // 只保留第一个为真正最新
+        let trueLatestIdx = allLatestIdxs.length > 0 ? allLatestIdxs[0] : -1;
+        entry.ver.forEach((verRaw, idx) => {
+          const verObj = verRaw[Object.keys(verRaw)[0]];
+          if (!verObj.file_name) return;
+          // 不是current: true，且不是第一个最新，且file_name不以old-versions/开头才加前缀
+          if (
+            !currentIndexes.includes(idx) &&
+            (
+              // 不是最新，或虽然是最新但不是第一个
+              (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+            ) &&
+            !verObj.file_name.startsWith("old-versions/")
+          ) {
+            verObj.file_name = "old-versions/" + verObj.file_name;
+          }
+        });
       }
 
       // Automatically generate file_url if file_name is provided.
@@ -143,6 +181,18 @@
       games.value.push(entry);
     }
     defaultSort();
+
+    // 收集所有链接
+    const allLinks = [];
+    for (const entry of games.value) {
+      if (Array.isArray(entry.ver)) {
+        for (const verRaw of entry.ver) {
+          const ver = verRaw[Object.keys(verRaw)[0]];
+          if (ver.file_url_zh) allLinks.push(ver.file_url_zh);
+        }
+      }
+    }
+    console.log(allLinks); // 这里是所有作品所有版本的 file_url_zh
   });
 
   const selectedDownload = ref(null); // For download modal.
@@ -279,13 +329,22 @@
             || (filter_option.value.international && typeVal == "international")
             || (filter_option.value.repacked && typeVal == "repacked")
             || filter_option.value.force;
+          // 国际作品旧版file_name前缀处理
+          let patchedVerRaw = { ...verRaw };
+          if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
+            if (!verObj.file_name.startsWith("old-versions/")) {
+              // 只patch file_name，不影响原数据
+              const newVerObj = { ...verObj, file_name: "old-versions/" + verObj.file_name };
+              patchedVerRaw = { [verKey]: newVerObj };
+            }
+          }
           if (yearMatch && typeMatch) {
             return {
               ...entry,
-              ver: [verRaw],
-              currentVer: parseVer(verRaw),
+              ver: [patchedVerRaw],
+              currentVer: parseVer(patchedVerRaw),
               currentVerStr: verKey,
-              currentVerStrAlt: verObj.ver_alt,
+              currentVerStrAlt: patchedVerRaw[verKey].ver_alt,
               type: typeVal,
               _isVersionSplit: true,
               _isLatestVersion: verKey && latestIndexes.includes(idx)

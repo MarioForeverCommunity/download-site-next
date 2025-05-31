@@ -18,6 +18,8 @@ definitions:
           "$ref": "#/definitions/Author"
         author_alt:
           "$ref": "#/definitions/AuthorAlt"
+        author_alias:
+          "$ref": "#/definitions/AuthorAlias"
         alias:
           "$ref": "#/definitions/Alias"
         video_zh:
@@ -185,6 +187,10 @@ definitions:
       items:
         type: string
     title: Alias
+  AuthorAlias:
+    anyOf:
+    - type: 'null'
+    - type: string
   AuthorAlt:
     oneOf:
     - type: 'null'
