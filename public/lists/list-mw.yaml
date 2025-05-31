@@ -384,13 +384,13 @@
   file_url:
 - game: 20XX
   author: '1168438795'
-  description: 需同时下载专用 MW 和音乐包
   smwp_ver: v1.7.10
   date: 2024-06-09
   source_url: https://www.marioforever.net/thread-2000-1-1.html
   download_url: http://20xx.top
   code:
   has_bundled_smwp: true
+  has_bgm: true
   file_name: 20XX/
   file_url:
 - game: Welcome back to Marioworker Bar 2024
@@ -1100,7 +1100,6 @@
   file_url:
 - game: Mario Worker Purse
   author: 把僵尸炖了
-  description: 附带音乐
   smwp_ver: v1.7.8
   date: 2022-04-08
   source_url: https://www.marioforever.net/thread-2019-1-1.html
@@ -1657,7 +1656,6 @@
   file_url:
 - game: Deja Vu
   author: '1168438795'
-  description: 附带音乐
   smwp_ver: v1.7.7
   date: 2021-05-21
   source_url: https://www.marioforever.net/thread-1164-1-1.html
@@ -1668,7 +1666,6 @@
   file_url:
 - game: 我不当谜语人
   author: 数字1528君
-  description: 附带音乐
   smwp_ver: v1.7.7
   date: 2021-05-15
   source_url: https://www.marioforever.net/thread-1155-1-1.html
@@ -2140,7 +2137,6 @@
   alias:
   - 高考回归2020
   author: 合作作品
-  description: 附带音乐
   smwp_ver: v1.7.4
   date: 2020-07-08
   source_url: https://www.marioforever.net/thread-558-1-1.html
@@ -2284,7 +2280,6 @@
   file_url:
 - game: Moonlight
   author: LLX奶油马里奥
-  description: 附带音乐
   smwp_ver: v1.6.5
   date: 2020-02-14
   source_url: https://www.marioforever.net/thread-341-1-1.html
@@ -2375,7 +2370,7 @@
   file_url:
 - game: 5A-LLX-Trade war
   author: LLX奶油马里奥
-  description: 第八届 MW 杯四分之一决赛乱入关卡，附带音乐
+  description: 第八届 MW 杯四分之一决赛乱入关卡
   smwp_ver: v1.6.5
   date: 2019-08-02
   source_url: https://tieba.baidu.com/p/6213385129
@@ -2400,7 +2395,7 @@
   alias:
   - 高考回归2019
   author: 合作作品
-  description: For xfx (By zqh) 关卡 SMWP 版本为 v1.6.1，附带音乐
+  description: For xfx (By zqh) 附带音乐、SMWP 版本为 v1.6.1
   smwp_ver: v1.6.2
   date: 2019-06-08
   source_url: https://tieba.baidu.com/p/6156681489
@@ -2411,7 +2406,7 @@
   file_url:
 - game: Melody of Night Fisherman
   author: LLX奶油马里奥
-  description: 蓝太阳庆生之作，附带音乐，BGM 为 cut 版
+  description: 蓝太阳庆生之作，BGM 为 cut 版
   smwp_ver: v1.6.2
   date: 2019-05-04
   source_url:
@@ -2492,7 +2487,6 @@
   alias:
   - 高考回归2018
   author: zqh——123
-  description: 附带音乐
   smwp_ver: v1.4.1
   date: 2018-06-08
   source_url: https://tieba.baidu.com/p/5737130610
@@ -2506,7 +2500,7 @@
   - QDCK
   - 情窦初开
   author: LLX奶油马里奥
-  description: 带存档；附带音乐
+  description: 附带存档
   smwp_ver: v0.2.4
   date: 2018-02-12
   source_url: https://tieba.baidu.com/p/5550194904

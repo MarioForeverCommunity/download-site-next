@@ -25,24 +25,34 @@
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
       {{ getName(game, lan) }}
       <Tooltip v-if="game.type === 'chinese'">
-        <span class="region-icon dot cn-dot"><span class="cn-text">CN</span></span>
+        <span class="dot cn-dot"><span class="cn-text">CN</span></span>
         <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
       </Tooltip>
       <Tooltip v-if="game.type === 'international'">
-        <span class="region-icon dot en-dot"><span class="en-text">INT</span></span>
+        <span class="dot en-dot"><span class="en-text">INT</span></span>
         <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
       </Tooltip>
-        <Tooltip v-if="game.type == 'repacked'">
-          <RepackIcon class="icon repack-icon"></RepackIcon>
-          <template #popper>
-            {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
-          </template>
-        </Tooltip>
+      <Tooltip v-if="game.type == 'repacked'">
+        <RepackIcon class="icon repack-icon"></RepackIcon>
+        <template #popper>
+          {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
+        </template>
+      </Tooltip>
+      <!-- MW自带标识 -->
+      <Tooltip v-if="game.category === 'mw' && game.has_bundled_smwp">
+        <span class="dot mw-dot"><span class="mw-text">MW</span></span>
+        <template #popper>需专用 SMWP</template>
+      </Tooltip>
+      <!-- BGM标识 -->
+      <Tooltip v-if="game.category === 'mw' && game.has_bgm">
+        <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
+        <template #popper>需自定义 BGM</template>
+      </Tooltip>
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
         <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
         <Tooltip v-if="game._isLatestVersion">
-          <span class="region-icon dot cur-dot"><span class="cur-text">CUR</span></span>
+          <span class="dot cur-dot"><span class="cur-text">CUR</span></span>
           <template #popper>{{ lan == 'en' ? 'Current version' : '当前最新' }}</template>
         </Tooltip>
         <div :class="game.ver.length > 1 ? 'dropdown' : ''">
@@ -314,7 +324,7 @@
     text-align: center;
   }
 
-  .region-icon.dot {
+  .dot {
     display: inline-block;
     width: 1.8em;
     height: 1em;
@@ -328,38 +338,58 @@
     line-height: 1em;
     transform: translateY(-1px);
   }
-  .region-icon.cn-dot {
+  .dot.cn-dot {
     background: #ff3330;
     border: 1.5px solid #b71c1c;
   }
-  .region-icon.en-dot {
+  .dot.en-dot {
     background: #008cff;
     width: 1.95em;
     border: 1.5px solid #0d47a1;
   }
-  .region-icon.cur-dot {
+  .dot.cur-dot {
     width: 2.3em;
     background: #27ae60;
     border: 1.5px solid #1e824c;
   }
-  body.dark .region-icon.cn-dot,
-  body.dark .region-icon.en-dot,
-  body.dark .region-icon.cur-dot {
+  .dot.mw-dot {
+    background: #ff9800;
+    width: 1.95em;
+    border: 1.5px solid #e65100;
+  }
+  .dot.bgm-dot {
+    background: #f50057;
+    width: 2.3em;
+    border: 1.5px solid #c51162;
+  }
+  body.dark .dot.cn-dot,
+  body.dark .dot.en-dot,
+  body.dark .dot.cur-dot,
+  body.dark .dot.mw-dot,
+  body.dark .dot.bgm-dot {
     background: #bbb;
     border: 0px;
   }
-  body.dark .region-icon.dot .cn-text {
+  body.dark .dot .cn-text {
     color: #eb3333;
   }
-  body.dark .region-icon.dot .en-text {
+  body.dark .dot .en-text {
     color: #1160d8;
   }
-  body.dark .region-icon.dot .cur-text {
+  body.dark .dot .cur-text {
     color: #1e824c;
   }
-  .region-icon.dot .cn-text,
-  .region-icon.dot .en-text,
-  .region-icon.dot .cur-text {
+  body.dark .dot .mw-text {
+    color: #f87400;
+  }
+  body.dark .dot .bgm-text {
+    color: #c51162;
+  }
+  .dot .cn-text,
+  .dot .en-text,
+  .dot .cur-text,
+  .dot .mw-text,
+  .dot .bgm-text {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;
