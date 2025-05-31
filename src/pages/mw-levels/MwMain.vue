@@ -176,9 +176,42 @@
     filter_option.value.author = "";
     filter_option.value.year = "";
     showOnlyBundledSmwp.value = false;
+    selectedSmwpVer.value = "";
   }
 
   const showOnlyBundledSmwp = ref(false);
+
+  const smwpVersionOptions = computed(() => {
+    // 收集所有主版本（如1.7）和完整版本（如1.7.6）
+    const allVers = Object.keys(SmwpVersions).map(v => v.replace(/^v/, ""));
+    // 语义版本排序函数
+    function semverDesc(a, b) {
+      const pa = a.split('.').map(Number);
+      const pb = b.split('.').map(Number);
+      for (let i = 0; i < 3; ++i) {
+        if ((pa[i]||0) !== (pb[i]||0)) return (pb[i]||0) - (pa[i]||0);
+      }
+      return 0;
+    }
+    // 主版本集合
+    const mainVersSet = new Set(allVers.map(v => v.split(".").slice(0,2).join(".")));
+    const mainVers = Array.from(mainVersSet).sort(semverDesc);
+    // 每个主版本下，主版本.x在最前，其次为所有完整版本
+    let options = [];
+    for (const main of mainVers) {
+      // 该主版本下所有完整版本，倒序
+      const subVers = allVers.filter(v => v.startsWith(main+".")).sort(semverDesc);
+      if (subVers.length > 1) {
+        options.push({ label: main+".x", value: main });
+        options.push(...subVers.map(v => ({ label: v, value: v })));
+      } else if (subVers.length === 1) {
+        // 只有一个次版本时，该次版本加粗
+        options.push({ label: subVers[0], value: subVers[0], bold: true });
+      }
+    }
+    return options;
+  });
+  const selectedSmwpVer = ref("");
 
   const filteredGames = computed(() => {
     let result = games.value.filter((a) => 
@@ -189,6 +222,14 @@
     );
     if (showOnlyBundledSmwp.value) {
       result = result.filter(a => a.has_bundled_smwp);
+    }
+    if (selectedSmwpVer.value) {
+      result = result.filter(a => {
+        if (!a.smwp_ver) return false;
+        const ver = a.smwp_ver.replace(/^v/, "");
+        // 精确匹配主版本或完整版本
+        return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value + ".");
+      });
     }
     return result;
   });
@@ -292,6 +333,13 @@
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
             <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()" :key="year">{{year}}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          SMWP 版本
+          <select v-model="selectedSmwpVer">
+            <option value="" style="font-weight:bold">全部</option>
+            <option v-for="opt in smwpVersionOptions" :key="opt.value" :value="opt.value" :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''">{{opt.label}}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
