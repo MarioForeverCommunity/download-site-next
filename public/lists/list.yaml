@@ -9549,7 +9549,7 @@
   - v1.51:
       ver_alt:
       date: 2021-03-19
-      current: true
+      current: true # 如果之后发了字母世界新版，这里的 current: true 必须去掉
       source_url: https://www.youtube.com/watch?v=BrVFVwOy4po
       source_url_alt:
       download_url: https://www.mediafire.com/file/vf2xjow94pn493t/Mario_Worker_-_Letter_Worlds_Series_v1.51.rar/file
@@ -9817,7 +9817,7 @@
       download_url: https://www.mediafire.com/file/o30bahy5hzsvf7r/Mario_Worker_-_F.exe/file
       code:
       download_url_alt:
-      file_name: old-versions/Mario Worker - World F.exe
+      file_name: old-versions/Mario Worker - World F.exe # 如果之后发了字母世界新版，这里的 old-versions/ 就可以去掉了
       file_url:
 - game: 'Mario Forever: Community''s New Year 2021 special'
   game_alt:
