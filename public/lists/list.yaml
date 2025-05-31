@@ -2311,7 +2311,7 @@
       download_url: https://www.mediafire.com/file/4pxeo5o8lne1yc6/MF_-_INSANE_WORLDS_SERIES_VER_2.0_DEMO_Bugfix_version.zip/file
       code:
       download_url_alt:
-      file_name: MF - INSANE WORLDS SERIES VER 2.0 DEMO Bugfix version.zip
+      file_name: old-versions/MF - INSANE WORLDS SERIES VER 2.0 DEMO Bugfix version.zip
       file_url:
   - v1.5:
       ver_alt:
@@ -5038,6 +5038,7 @@
   - v1.5 Beta:
       ver_alt:
       date: 2023-05-08
+      current: true
       source_url: https://www.youtube.com/watch?v=-aFoQ8h7ObA
       source_url_alt:
       download_url: https://www.mediafire.com/file/i3tpjyu9x2h4w1o/Mario_Forever_A_New_Journey_V1.5_Beta.zip/file
@@ -5048,12 +5049,13 @@
   - v0.7:
       ver_alt:
       date: 2021-11-11
+      current: true
       source_url: https://www.youtube.com/watch?v=XD5JOx1agEk
       source_url_alt:
       download_url: https://www.mediafire.com/file/f622vjfcjkuvy3h/Mario_Forever_A_New_Journey_v0.7.zip/file
       code:
       download_url_alt:
-      file_name: Mario Forever A New Journey V1.5 Beta.zip
+      file_name: Mario Forever A New Journey v0.7.zip
       file_url:
 - game: 'Mario Forever: Varied World'
   game_alt:
