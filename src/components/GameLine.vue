@@ -123,7 +123,7 @@
           </a>
           <template #popper>
             <span class="content-center">
-              {{ lan == "en" ? "Source Link" : "发布页" }}
+              {{ lan == "en" ? "Source" : "发布页" }}
               <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
             </span>
           </template>
@@ -133,7 +133,7 @@
             <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
           </a>
           <template #popper>
-            {{ lan == "en" ? "Release Video" : "发布视频" }}
+            {{ lan == "en" ? "YouTube" : "发布视频" }}
           </template>
         </Tooltip>
         <Tooltip v-if="!game.disable_download">

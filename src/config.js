@@ -103,7 +103,7 @@ export const sourceName = [
   {
     "domain" : "www.marioforever.net",
     "desc_zh" : "MF 社区",
-    "desc_en" : "CN Community"
+    "desc_en" : "marioforever.net"
   },
   {
     "domain" : "www.youtube.com",
@@ -112,7 +112,7 @@ export const sourceName = [
   {
     "domain" : "marioforeverforum.boards.net",
     "desc_zh" : "英文 MF 论坛",
-    "desc_en" : "MF Forum"
+    "desc_en" : "Mario Forever Forum"
   },
   {
     "domain" : "themariovariable.org",
