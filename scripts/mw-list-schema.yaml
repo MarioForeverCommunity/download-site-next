@@ -55,7 +55,7 @@ definitions:
           - type: array
             items:
               type: string
-      author_path:
+      author_alias:
         anyOf:
           - type: 'null'
           - type: string
