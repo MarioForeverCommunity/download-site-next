@@ -175,15 +175,22 @@
     filter_option.value.name = "";
     filter_option.value.author = "";
     filter_option.value.year = "";
+    showOnlyBundledSmwp.value = false;
   }
 
+  const showOnlyBundledSmwp = ref(false);
+
   const filteredGames = computed(() => {
-    return games.value.filter((a) => 
+    let result = games.value.filter((a) => 
       ((filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
       || (filter_option.value.name.trim() == "" || a.author.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
       || filterList(filter_option.value.name.trim(), a.alias))
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
-    )
+    );
+    if (showOnlyBundledSmwp.value) {
+      result = result.filter(a => a.has_bundled_smwp);
+    }
+    return result;
   });
 
   // Get last update date.
@@ -284,23 +291,29 @@
           {{ lan == "en" ? "Year" : "年份" }}
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()">{{year}}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()" :key="year">{{year}}</option>
           </select>&nbsp;
         </div>
-      <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-        <FilterIcon class="icon button" @click="clearFilter()" />
-        <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-      </Tooltip>
+        <div class="inline-block">
+          <input v-model="showOnlyBundledSmwp" type="checkbox" id="filterBundledSmwp" />
+          <label for="filterBundledSmwp">仅显示附带 MW 的作品</label>
+        </div>
+        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+          <FilterIcon class="icon button" @click="clearFilter()" />
+          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+        </Tooltip>
       </div>
     </div>
   </div>
 
   <GameLineHeader v-if="wideScreen" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
-  <div v-if="wideScreen" v-for="game in filteredGames" key="game.game" v-memo="game.game">
-    <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
-  </div>
-  <div v-if="!wideScreen" class="card-container">
-    <div v-for="game in filteredGames" key="game.game" v-memo="[game.game, 'zh']">
+  <template v-if="wideScreen">
+    <div v-for="game in filteredGames" :key="game.game" v-memo="game.game">
+      <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+    </div>
+  </template>
+  <div v-else class="card-container">
+    <div v-for="game in filteredGames" :key="game.game" v-memo="[game.game, 'zh']">
       <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
@@ -313,7 +326,7 @@
         </div>
         <div class="button-line">
           <span v-if="selectedDownload.file_urls">
-            <a class="download" v-for="url in selectedDownload.file_urls" :href="url.url" target="_blank">{{url.name}}</a>
+            <a class="download" v-for="url in selectedDownload.file_urls" :key="url.url" :href="url.url" target="_blank">{{url.name}}</a>
           </span>
           <a class="download" v-if="getDownloadLink(selectedDownload, 'zh')" :href="getDownloadLink(selectedDownload, 'zh')" target="_blank">{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, 'zh')" :code="getDownloadCode(selectedDownload, 'zh')" lan="zh"></ClipboardButton>
@@ -327,7 +340,7 @@
       <div class="modal-content" @click.stop="">
         <div>
           相关视频：{{ getName(selectedVideo, "zh") }}
-          <p v-for="video in selectedVideo.video">
+          <p v-for="video in selectedVideo.video" :key="Object.keys(video)[0]">
             <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], "zh") }}）</a>
           </p>
         </div>
