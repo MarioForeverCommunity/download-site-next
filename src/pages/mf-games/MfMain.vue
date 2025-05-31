@@ -54,7 +54,7 @@
         entry.currentVerStr = entry.ver;
         entry.currentVerStrAlt = entry.ver_alt;
         entry.ver = [{
-          "" : {
+          [entry.ver] : {
             code : entry.code,
             date : entry.date,
             download_url : entry.download_url,
@@ -245,7 +245,30 @@
           || filterList(filter_option.value.name.trim(), entry.alias);
         if (!nameMatch) return [];
         if (!Array.isArray(entry.ver)) return [];
-        return entry.ver.map((verRaw) => {
+        // 计算每个版本的最新版标记
+        let latestIndexes = [];
+        if (entry.ver.length > 0) {
+          // 先找所有 current: true
+          let currentIndexes = entry.ver.map((verRaw, idx) => {
+            const verObj = verRaw[Object.keys(verRaw)[0]];
+            return verObj.current === true ? idx : -1;
+          }).filter(idx => idx !== -1);
+          if (currentIndexes.length > 0) {
+            latestIndexes = currentIndexes;
+          } else {
+            // 没有 current: true，找日期最新，只保留第一个
+            let maxDate = Math.max(...entry.ver.map(verRaw => {
+              const verObj = verRaw[Object.keys(verRaw)[0]];
+              return new Date(verObj.date).getTime();
+            }));
+            let firstIdx = entry.ver.findIndex(verRaw => {
+              const verObj = verRaw[Object.keys(verRaw)[0]];
+              return new Date(verObj.date).getTime() === maxDate;
+            });
+            latestIndexes = firstIdx !== -1 ? [firstIdx] : [];
+          }
+        }
+        return entry.ver.map((verRaw, idx) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
           // 年份判断
@@ -264,7 +287,8 @@
               currentVerStr: verKey,
               currentVerStrAlt: verObj.ver_alt,
               type: typeVal,
-              _isVersionSplit: true
+              _isVersionSplit: true,
+              _isLatestVersion: verKey && latestIndexes.includes(idx)
             };
           }
           return null;

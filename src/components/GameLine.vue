@@ -43,7 +43,7 @@
       </Tooltip>
       <Tooltip v-if="lan == 'en' && game.category == 'mf' && game.description_en">
         <InfoIcon class="icon button-shift"></InfoIcon>
-        <template #popper class="tooltip-left-align">{{ game.description_en }}</template>
+        <template #popper><span class="tooltip-left-align">{{ game.description_en }}</span></template>
       </Tooltip>
       <Tooltip v-if="game.category == 'mw' && game.description">
         <InfoIcon class="icon button-shift"></InfoIcon>
@@ -54,12 +54,18 @@
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
         {{ getAuthorList(game, lan) }}
       </span>
-      <span v-if="typeof getAuthorList(game, lan) != 'string'" v-for="(author, authorindex) in getAuthorList(game, lan)">
-        <br v-if="authorindex != 0">{{ author }}
-      </span>
+      <template v-else>
+        <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
+          <br v-if="authorindex != 0">{{ author }}
+        </span>
+      </template>
     </div>
     <div class="game-version" v-if="game.category == 'mf'">
       <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
+      <Tooltip v-if="game._isLatestVersion">
+        <span class="region-icon dot cur-dot"><span class="cur-text">CUR</span></span>
+        <template #popper>{{ lan == 'en' ? 'Current version' : '当前最新' }}</template>
+      </Tooltip>
       <div :class="game.ver.length > 1 ? 'dropdown' : ''">
         <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
         <div v-if="game.ver.length > 1" class="dropdown-content">
@@ -225,10 +231,17 @@
   }
   .region-icon.en-dot {
     background: #008cff;
+    width: 1.95em;
     border: 1.5px solid #0d47a1;
   }
+  .region-icon.cur-dot {
+    width: 2.3em;
+    background: #27ae60;
+    border: 1.5px solid #1e824c;
+  }
   body.dark .region-icon.cn-dot,
-  body.dark .region-icon.en-dot {
+  body.dark .region-icon.en-dot,
+  body.dark .region-icon.cur-dot {
     background: #bbb;
     border: 0px;
   }
@@ -238,8 +251,12 @@
   body.dark .region-icon.dot .en-text {
     color: #1160d8;
   }
+  body.dark .region-icon.dot .cur-text {
+    color: #1e824c;
+  }
   .region-icon.dot .cn-text,
-  .region-icon.dot .en-text {
+  .region-icon.dot .en-text,
+  .region-icon.dot .cur-text {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;

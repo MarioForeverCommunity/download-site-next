@@ -41,6 +41,10 @@
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
         <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
+        <Tooltip v-if="game._isLatestVersion">
+          <span class="region-icon dot cur-dot"><span class="cur-text">CUR</span></span>
+          <template #popper>{{ lan == 'en' ? 'Current version' : '当前最新' }}</template>
+        </Tooltip>
         <div :class="game.ver.length > 1 ? 'dropdown' : ''">
           <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
           <div v-if="game.ver.length > 1" class="dropdown-content">
@@ -70,15 +74,32 @@
     </div>
     <div class="last-line">
       <div class="game-author">
-        <span class="inline-block">
-          {{lan == "en" ? "By&nbsp;" : "作者："}}
+        <Tooltip :in-card="true">
+        <span class="inline-block author-ellipsis">
+            <template v-if="typeof getAuthorList(game, lan) == 'string'">
+                {{ lan == "en" ? "By&nbsp;" : "作者：" }}{{ getAuthorList(game, lan) }}
+            </template>
+            <template v-else>
+                <!-- 添加作者前缀 -->
+                <span class="prefix">{{ lan == "en" ? "By&nbsp;" : "作者：" }}</span>
+                <!-- 遍历作者列表 -->
+                <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" 
+                    :key="author + authorindex">
+                {{ author }}<span v-if="authorindex != getAuthorList(game, lan).length - 1">,&nbsp;</span>
+                </span>
+            </template>
         </span>
-        <span v-if="typeof getAuthorList(game, lan) == 'string'">{{ getAuthorList(game, lan) }}</span>
-        <template v-if="typeof getAuthorList(game, lan) != 'string'">
-          <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
-            {{ author }}{{ authorindex != getAuthorList(game, lan).length - 1 ? ",\u00A0" : "" }}
-          </span>
-        </template>
+          <template #popper>
+            <span>
+              <span v-if="typeof getAuthorList(game, lan) == 'string'">{{ getAuthorList(game, lan) }}</span>
+              <template v-else>
+                <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
+                  {{ author }}<span v-if="authorindex != getAuthorList(game, lan).length - 1">, </span>
+                </span>
+              </template>
+            </span>
+          </template>
+        </Tooltip>
       </div>
       <div class="game-options">
         <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
@@ -273,6 +294,19 @@
     display: inline-block;
     margin-top: .1em;
     max-width: calc(100% - 100px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    cursor: pointer;
+  }
+  .author-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: top;
   }
 
   .content-center {
@@ -300,19 +334,32 @@
   }
   .region-icon.en-dot {
     background: #008cff;
+    width: 1.95em;
     border: 1.5px solid #0d47a1;
   }
+  .region-icon.cur-dot {
+    width: 2.3em;
+    background: #27ae60;
+    border: 1.5px solid #1e824c;
+  }
   body.dark .region-icon.cn-dot,
-  body.dark .region-icon.en-dot {
+  body.dark .region-icon.en-dot,
+  body.dark .region-icon.cur-dot {
     background: #bbb;
     border: 0px;
   }
-  body.dark .region-icon.dot .cn-text,
+  body.dark .region-icon.dot .cn-text {
+    color: #eb3333;
+  }
   body.dark .region-icon.dot .en-text {
-    color: #333;
+    color: #1160d8;
+  }
+  body.dark .region-icon.dot .cur-text {
+    color: #1e824c;
   }
   .region-icon.dot .cn-text,
-  .region-icon.dot .en-text {
+  .region-icon.dot .en-text,
+  .region-icon.dot .cur-text {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;
