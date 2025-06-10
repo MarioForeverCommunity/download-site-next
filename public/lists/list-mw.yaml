@@ -1,4 +1,19 @@
 ---
+- game: Welcome back to Marioworker Bar 2025
+  alias:
+  - 高考回归2025
+  - Free
+  - Refresh Lake
+  - RL
+  author: 合作作品
+  smwp_ver: v1.7.10
+  date: 2025-06-10
+  source_url: https://www.marioforever.net/thread-3595-1-1.html
+  download_url:
+  code:
+  has_bundled_smwp: true
+  file_name: Welcome back to Marioworker Bar 2025.7z
+  file_url:
 - game: 20250528即兴关卡-从前有座山
   author: 马里奥奥里马
   smwp_ver: v1.7.10
