@@ -63,7 +63,7 @@ export const navTop = [
     "link" : "./mf-games.html",
     "option" : "MF 作品汇总",
     "option_alt" : "Fangame Downloads",
-    "title" : "Mario Forever 作品汇总",
+    "title" : "Mario Forever 同人作品汇总",
     "title_alt" : "Mario Forever Fangames Catalog",
     "show_en" : true
   },
@@ -72,7 +72,7 @@ export const navTop = [
     "link" : "./mw-levels.html",
     "option" : "SMWP 作品汇总",
     "option_alt" : "SMWP Level Downloads",
-    "title" : "Super Mario Worker Project 作品汇总",
+    "title" : "Super Mario Worker Project 关卡作品汇总",
     "show_en" : false
   },
   // {
