@@ -211,10 +211,13 @@
     width: calc(100% - 165px);
     display: inline-block;
     vertical-align: top;
+    /* 保证与game-version垂直居中对齐 */
+    line-height: 1.25em;
   }
 
   .game-name.no-version {
     width: 100%;
+    line-height: 1.25em;
   }
 
   .game-version {
@@ -222,6 +225,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: right;
+    line-height: 1.25em;
   }
 
   .first-line {
