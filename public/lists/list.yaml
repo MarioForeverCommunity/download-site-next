@@ -1,4 +1,21 @@
 ---
+- game: Cube IV
+  game_alt:
+  author: 八雲桐
+  author_alt: Tonn Yakumo
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2025-06-22
+  source_url: https://www.marioforever.net/thread-3594-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1H95sTlZuE5ngqAgUMB6Ksg?pwd=q8tp
+  code: q8tp
+  download_url_alt:
+  file_name: Cube IV.exe
+  file_url:
 - game: Mysterious Seabed
   game_alt:
   author: 八雲桐
@@ -33,7 +50,7 @@
   download_url_alt:
   file_name: Pleasant Forest-八云桐 vs 绿糖.exe
   file_url:
-- game: Sweden.exe
+- game: Sweden
   game_alt:
   author: 八雲桐
   author_alt: Tonn Yakumo
