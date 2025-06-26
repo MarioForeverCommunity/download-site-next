@@ -24,7 +24,7 @@ export function getSourceDesc(item, lan) {
             return lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
         }
     }
-    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
+    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/)[1];
 }
 
 export function getName(item, lan) {
@@ -85,7 +85,7 @@ export function getDownloadDesc(item, lan) {
             return desc;
         }
     }
-    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
+    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/)[1];
 }
 
 export function getDownloadCode(item, lan) {
@@ -114,7 +114,7 @@ export function getVideoDesc(link, lan) {
             return lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
         }
     }
-    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/)[1];
+    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/)[1];
 }
 
 export function getVersion(item, lan) {

@@ -16,7 +16,6 @@
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon } from "../../components/icons/Icons.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
-  import { Collapse } from 'vue-collapsed'
   import axios from 'axios';
   import Tooltip from '../../components/Tooltip.vue';
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
@@ -547,6 +546,9 @@
           <FilterIcon class="icon button" @click="clearFilter()" />
           <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
         </Tooltip>
+        <div class="inline-block item-count">
+          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
+        </div>
       </div>
     </div>
   </div>

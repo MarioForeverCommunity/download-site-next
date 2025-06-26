@@ -51,11 +51,12 @@
           for (var file_name_entry of entry.file_name) {
             if (file_name_entry == null) {
               continue;
-            };
+            }
             var fileName = file_name_entry.replace(/\.[^.]*$/, "");
             try {
               fileName = decodeURIComponent(fileName);
             } catch(e) {
+              // Ignore decodeURIComponent errors
             }
             entry.file_urls.push({
               name: `社区资源站（${fileName}）`,
@@ -350,6 +351,9 @@
           <FilterIcon class="icon button" @click="clearFilter()" />
           <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
         </Tooltip>
+        <div class="inline-block item-count">
+          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
+        </div>
       </div>
     </div>
   </div>

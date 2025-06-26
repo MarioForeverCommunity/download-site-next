@@ -1,5 +1,5 @@
 <script setup>
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon } from "./icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "./icons/Icons.js";
 
   const props = defineProps({
     lan : {

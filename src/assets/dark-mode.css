@@ -175,3 +175,8 @@ body.dark footer a:hover {
 body.dark footer span:not(:first-child) {
   border-left: solid 1px #444;
 }
+
+body.dark .item-count {
+  background-color: #222;
+  border: 1px solid #444;
+}

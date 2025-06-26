@@ -104,6 +104,13 @@
   font-size: 0.8em;
 }
 
+.item-count {
+  padding: .2em .4em;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  border: 1px solid #cfd4db;
+}
+
 .card-container {
     width: 100vw;
     display: grid;
