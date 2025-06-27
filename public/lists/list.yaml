@@ -9615,6 +9615,7 @@
   - v1.0.2:
       ver_alt:
       date: 2021-04-13
+      current: true
       source_url:
       source_url_alt:
       download_url:
@@ -10250,6 +10251,7 @@
   - World Ż:
       ver_alt:
       date: 2021-01-25
+      current: true
       source_url: https://www.youtube.com/watch?v=j_KP5QYKtok
       source_url_alt:
       download_url: https://www.mediafire.com/file/hx7sfoqsd4kby89/MF+-+POLISH+LETTER+WORLD+ZY.RAR/file
