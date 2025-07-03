@@ -1,4 +1,13 @@
 ---
+- game: 20250614即兴关卡
+  author: zqh——123
+  smwp_ver: v1.7.10
+  date: 2025-06-14
+  source_url: https://www.marioforever.net/thread-3026-1-1.html
+  download_url:
+  code:
+  file_name: 20250614即兴关卡.smwp
+  file_url:
 - game: Welcome back to Marioworker Bar 2025
   alias:
   - 高考回归2025
@@ -74,7 +83,7 @@
   file_url:
 - game: 20240614即兴关卡
   author: zqh——123
-  description: 作者称：“去年有个即兴关卡忘记发布了，现在补上”
+  description: 作者注：“去年有个即兴关卡忘记发布了，现在补上”
   smwp_ver: v1.7.10
   date: 2025-04-21
   source_url: https://www.marioforever.net/thread-3026-1-1.html
@@ -244,6 +253,7 @@
   author: 马里奥奥里马
   smwp_ver: v1.7.10
   date: 2024-11-07
+  description: 日期为发布于论坛的日期
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
@@ -366,16 +376,23 @@
   code:
   file_name: YMS作品合集/危途疑踪.smwl
   file_url:
-- game: SLSE&SLSF前10关试玩版
+- game: SLSE前10关试玩版
   author: 把僵尸炖了
   smwp_ver: v1.7.10
   date: 2024-07-23
   source_url: https://www.marioforever.net/thread-3285-1-1.html
   download_url:
   code:
-  file_name:
-  - SLSE world1 demo.smwp
-  - SLSF world1 demo.smwp
+  file_name: SLSE world1 demo.smwp
+  file_url:
+- game: SLSF前10关试玩版
+  author: 把僵尸炖了
+  smwp_ver: v1.7.10
+  date: 2024-07-23
+  source_url: https://www.marioforever.net/thread-3285-1-1.html
+  download_url:
+  code:
+  file_name: SLSF world1 demo.smwp
   file_url:
 - game: 流浪地球2：太空电梯
   author: ƒresh★LAKE
@@ -460,6 +477,15 @@
   code:
   file_name: 神秘之山51版.smwp
   file_url:
+- game: 20240410即兴关卡2
+  author: 马里奥奥里马
+  smwp_ver: v1.7.10
+  date: 2024-04-10
+  source_url: https://www.marioforever.net/thread-3026-1-1.html
+  download_url:
+  code:
+  file_name: 20240410即兴关卡2.smwl
+  file_url:
 - game: 20240410即兴关卡
   author: 马里奥奥里马
   smwp_ver: v1.7.10
@@ -467,9 +493,7 @@
   source_url: https://www.marioforever.net/thread-3026-1-1.html
   download_url:
   code:
-  file_name:
-  - 20240410即兴关卡.smwl
-  - 20240410即兴关卡2.smwl
+  file_name: 20240410即兴关卡.smwl
   file_url:
 - game: 篇半下9wfms
   author: 超级玛丽迷01
@@ -566,7 +590,7 @@
   has_bundled_smwp: true
   file_name: Someone's Diary-Volume 01.rar
   file_url:
-- game: Professor Road残卷
+- game: Professor Road残卷——教程关
   author: LLX奶油马里奥
   smwp_ver: v1.7.10
   date: 2024-01-01
@@ -1330,7 +1354,7 @@
   smwp_ver: v1.7.8
   date: 2022-01-29
   source_url: https://www.marioforever.net/thread-1907-1-1.html
-  download_url: # https://zh.wsw233.com/files/view?f=kgswe0
+  download_url: https://zh.wsw233.com/files/view?f=kgswe0
   code:
   file_name: WSW Quest BETA fix 1/
   file_url:
