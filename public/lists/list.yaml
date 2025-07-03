@@ -16926,6 +16926,25 @@
   download_url_alt:
   file_name: Mario World Classical.rar
   file_url:
+- game: 永远的吧主吧友
+  game_alt: Bazhubayou Forever
+  alias:
+  - YYDBZBY
+  author: 虹原翼
+  author_alt: Lyh
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2014-08-12
+  source_url: https://tieba.baidu.com/p/2814538246
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: 吧主吧友 离线包140812_2.zip
+  file_url:
 - game: 'Mario Worker: The contest'
   game_alt:
   author: TheMarioVariable
