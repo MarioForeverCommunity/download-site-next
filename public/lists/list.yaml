@@ -4469,6 +4469,16 @@
       download_url_alt:
       file_name: Mario Forever Adventures v0.2.rar
       file_url:
+  - v0.1:
+      ver_alt:
+      date: 2023-03-24
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Adventures Version 0.1.zip
+      file_url:
 - game: 'Mario Forever: Difficult Mode'
   game_alt:
   author: MarioT02
@@ -6618,7 +6628,7 @@
   - v0.8:
       ver_alt:
       date: 2022-09-22
-      source_url: https://www.youtube.com/watch?v=Wq8ouAe62UQ
+      source_url: ~https://www.youtube.com/watch?v=Wq8ouAe62UQ
       source_url_alt:
       download_url: https://www.mediafire.com/file/iaof872rwd2k3v7/MF_-_EXCLAMATION_WORLDS_V0.8.rar/file
       code:
@@ -6664,6 +6674,36 @@
       code:
       download_url_alt:
       file_name: MF - EXCLAMATION WORLDS V0.4.rar
+      file_url:
+  - v0.3:
+      ver_alt:
+      date: 2022-05-25
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - EXCLAMATION WORLDS V0.3.rar
+      file_url:
+  - v0.2:
+      ver_alt:
+      date: 2022-05-16
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - EXCLAMATION WORLDS V0.2.rar
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2022-05-09
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - EXCLAMATION WORLDS V0.1.rar
       file_url:
 - game: Mario Forever Weird Worlds
   game_alt:
@@ -7632,7 +7672,7 @@
   - v1.0 (Full Fixed):
       ver_alt:
       date: 2022-05-04
-      source_url: https://www.youtube.com/watch?v=zfhFs_JF0YM
+      source_url: ~https://www.youtube.com/watch?v=zfhFs_JF0YM
       source_url_alt:
       download_url: https://www.mediafire.com/file/muhyepgrtve3dn6/MF_-_PROXY_WORLDS_V1.0_%2528FULL_FIXED%2529.rar/file
       code:
@@ -8330,16 +8370,47 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.4
-  ver_alt:
-  date: 2022-02-23
-  source_url: https://www.youtube.com/watch?v=MwoW8Z31wQI
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/057ohmc33x2pm0c/MF_-_THE_T_SERIES_V0.4.rar/file
-  code:
-  download_url_alt:
-  file_name: MF - THE T SERIES V0.4.rar
-  file_url:
+  ver:
+  - v0.4:
+      ver_alt:
+      date: 2022-02-23
+      source_url: ~https://www.youtube.com/watch?v=MwoW8Z31wQI
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/057ohmc33x2pm0c/MF_-_THE_T_SERIES_V0.4.rar/file
+      code:
+      download_url_alt:
+      file_name: MF - THE T SERIES V0.4.rar
+      file_url:
+  - v0.3:
+      ver_alt:
+      date: 2022-02-08
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - THE T SERIES V0.3.rar
+      file_url:
+  - v0.2:
+      ver_alt:
+      date: 2022-01-25
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - THE T SERIES V0.2.rar
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2022-01-20
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - THE T SERIES V0.1.rar
+      file_url:
 - game: Mario Forever H Series
   game_alt:
   author: mario2233
@@ -8533,16 +8604,47 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.1 Fix1
-  ver_alt:
-  date: 2022-01-02
-  source_url: https://www.marioforever.net/thread-1849-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1Bbk7oiryWvoxM1EwxFl4FQ
-  code: '2022'
-  download_url_alt:
-  file_name: MF - 2022 TNY 1.1 Fix1.zip
-  file_url:
+  ver:
+  - v1.1 Fix1:
+      ver_alt:
+      date: 2022-01-02
+      source_url: https://www.marioforever.net/thread-1849-1-1.html
+      source_url_alt:
+      download_url: ~https://pan.baidu.com/s/1Bbk7oiryWvoxM1EwxFl4FQ
+      code: '2022'
+      download_url_alt:
+      file_name: MF - 2022 TNY 1.1 Fix1.zip
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2022-01-02
+      source_url: https://www.marioforever.net/thread-1849-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - 2022 TNY 1.1.zip
+      file_url:
+  - Fix2:
+      ver_alt:
+      date: 2021-12-31
+      source_url: https://www.marioforever.net/thread-1849-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - 2022 TNY Fix2.zip
+      file_url:
+  - Fix1:
+      ver_alt:
+      date: 2021-12-31
+      source_url: https://www.marioforever.net/thread-1849-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - 2022 TNY Fix1.zip
+      file_url:
 - game: 'Mario Forever: Community New Year 2022'
   game_alt:
   alias:
@@ -9242,7 +9344,7 @@
   ver:
   ver_alt:
   date: 2021-08-05
-  source_url: https://www.youtube.com/watch?v=OB1tPj73eJI
+  source_url: ~https://www.youtube.com/watch?v=OB1tPj73eJI
   source_url_alt:
   download_url: https://www.mediafire.com/file/itoxu4d9x26h77z/MF_-_ANDECTION_PROJECT.rar/file
   code:
@@ -13748,7 +13850,7 @@
   download_url: ~https://yadi.sk/d/QjuOr6XM3WN92W
   code:
   download_url_alt:
-  file_name:
+  file_name: Mario Forever - World GH.rar
   file_url:
 - game: Lavaland of doom
   game_alt:
@@ -14650,16 +14752,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.50.1
-  ver_alt:
-  date: 2017-06-10
-  source_url: https://tieba.baidu.com/p/5155248354
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1dEWeJ65
-  code: zfi5
-  download_url_alt:
-  file_name: Super Mario 58(Version 0.50.1).rar
-  file_url:
+  ver:
+  - v0.55:
+      ver_alt:
+      date: 2017-10-24
+      source_url: https://tieba.baidu.com/p/5155248354
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Super Mario 58 V0.55U.zip
+      file_url:
+  - v0.50.1:
+      ver_alt:
+      date: 2017-06-10
+      source_url: https://tieba.baidu.com/p/5155248354
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1dEWeJ65
+      code: zfi5
+      download_url_alt:
+      file_name: Super Mario 58(Version 0.50.1).rar
+      file_url:
 - game: Mario Forever - World BM
   game_alt:
   author: Badr Mahiri
