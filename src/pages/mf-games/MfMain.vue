@@ -282,11 +282,17 @@
 
   const filteredGames = computed(() => {
     let list = games.value.filter((a) => 
-      (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
-      || (a.game_alt && (filter_option.value.name.trim() == "" || a.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-      || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-      || (getStrFromList(a.author_alt) && (filter_option.value.name.trim() == "" || getStrFromList(a.author_alt).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-      || filterList(filter_option.value.name.trim(), a.alias))
+      (
+        (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+        || (a.game_alt && (filter_option.value.name.trim() == "" || a.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+        || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+        || (getStrFromList(a.author_alt) && (filter_option.value.name.trim() == "" || getStrFromList(a.author_alt).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+        || filterList(filter_option.value.name.trim(), a.alias)
+        || (Array.isArray(a.ver) && a.ver.some(verRaw => {
+            const verObj = verRaw[Object.keys(verRaw)[0]];
+            return verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
+        }))
+      )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && ((filter_option.value.chinese && a.type == "chinese")
       || (filter_option.value.international && a.type == "international")
@@ -299,12 +305,13 @@
       // flatMap 优化：每个版本单独一条，所有筛选条件都在 verRaw 层判断
       const expanded = games.value.flatMap((entry) => {
         // 名称/作者/别名等只需判断一次
-        const nameMatch = (entry.game && (filter_option.value.name.trim() == "" || entry.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+        const nameMatch = (
+          (entry.game && (filter_option.value.name.trim() == "" || entry.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
           || (entry.game_alt && (filter_option.value.name.trim() == "" || entry.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
           || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
           || (getStrFromList(entry.author_alt) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author_alt).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || filterList(filter_option.value.name.trim(), entry.alias);
-        if (!nameMatch) return [];
+          || filterList(filter_option.value.name.trim(), entry.alias)
+        );
         if (!Array.isArray(entry.ver)) return [];
         // 计算每个版本的最新版标记
         let latestIndexes = [];
@@ -332,6 +339,9 @@
         return entry.ver.map((verRaw, idx) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
+          // file_name匹配
+          const fileNameMatch = verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
+          if (!nameMatch && !fileNameMatch) return null;
           // 年份判断
           const yearMatch = isNaN(parseInt(filter_option.value.year)) || (parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year));
           // 类型判断

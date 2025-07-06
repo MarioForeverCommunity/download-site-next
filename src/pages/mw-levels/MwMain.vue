@@ -216,9 +216,15 @@
 
   const filteredGames = computed(() => {
     let result = games.value.filter((a) => 
-      ((filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
-      || (filter_option.value.name.trim() == "" || a.author.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
-      || filterList(filter_option.value.name.trim(), a.alias))
+      (
+        (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
+        || (filter_option.value.name.trim() == "" || a.author.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
+        || filterList(filter_option.value.name.trim(), a.alias)
+        || (Array.isArray(a.file_name)
+            ? a.file_name.some(fn => fn && fn.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
+            : (a.file_name && a.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
+        )
+      )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
     );
     if (showOnlyBundledSmwp.value) {
