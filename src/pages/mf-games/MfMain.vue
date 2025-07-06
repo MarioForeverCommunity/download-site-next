@@ -576,7 +576,17 @@
           <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && getResourceURL(selectedDownload, lan)" :href="getResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
-          <a class="download" v-if="selectedDownload.currentVer.data_download_url" :href="selectedDownload.currentVer.data_download_url" target="_blank">{{ lan == "en" ? "Download Data" : "下载数据包" }}</a>
+          <template v-if="selectedDownload.currentVer.data_download_url">
+            <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
+              <template v-if="selectedDownload.currentVer.data_code">
+                {{ lan == 'en' ? `Download Data (Code: ${selectedDownload.currentVer.data_code})` : `下载数据包 (提取码: ${selectedDownload.currentVer.data_code})` }}
+              </template>
+              <template v-else>
+                {{ lan == "en" ? "Download Data" : "下载数据包" }}
+              </template>
+            </a>
+            <ClipboardButton v-if="selectedDownload.currentVer.data_code" :code="selectedDownload.currentVer.data_code" :lan="lan" style="margin-left:2px;" />
+          </template>
           <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data (file.marioforever.net)" : "下载数据包 (资源站)" }}</a>
         </div>
       </div>
