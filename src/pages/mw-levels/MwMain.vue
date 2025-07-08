@@ -183,8 +183,10 @@
   const showOnlyBundledSmwp = ref(false);
 
   const smwpVersionOptions = computed(() => {
-    // 收集所有主版本（如1.7）和完整版本（如1.7.6）
-    const allVers = Object.keys(SmwpVersions).map(v => v.replace(/^v/, ""));
+    // 收集所有主版本（如1.7）和完整版本（如1.7.6），只保留纯数字版本（不含字母）
+    const allVers = Object.keys(SmwpVersions)
+      .map(v => v.replace(/^v/, ""))
+      .filter(v => /^\d+\.\d+\.\d+$/.test(v));
     // 语义版本排序函数
     function semverDesc(a, b) {
       const pa = a.split('.').map(Number);
@@ -234,8 +236,15 @@
       result = result.filter(a => {
         if (!a.smwp_ver) return false;
         const ver = a.smwp_ver.replace(/^v/, "");
-        // 精确匹配主版本或完整版本
-        return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value + ".");
+        // 精确匹配主版本或完整版本，若选中如1.7.11，则1.7.11和1.7.11b都包含
+        if (/^\d+\.\d+$/.test(selectedSmwpVer.value)) {
+          // 选中主版本如1.7，匹配1.7.x
+          return ver.startsWith(selectedSmwpVer.value + ".");
+        } else if (/^\d+\.\d+\.\d+$/.test(selectedSmwpVer.value)) {
+          // 选中如1.7.11，匹配1.7.11和1.7.11+字母
+          return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value) && /[a-zA-Z]$/.test(ver);
+        }
+        return false;
       });
     }
     return result;

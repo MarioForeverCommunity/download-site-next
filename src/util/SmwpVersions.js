@@ -20,5 +20,7 @@ export const SmwpVersions = {
   "v1.7.7": "smwp-1.7.7.7z",
   "v1.7.8": "smwp-1.7.8.7z",
   "v1.7.9": "smwp-1.7.9.7z",
-  "v1.7.10": "smwp-1.7.10.7z"
+  "v1.7.10": "smwp-1.7.10.7z",
+  "v1.7.11": "smwp-1.7.11-beta1.7z",
+  "v1.7.11b": "smwp-1.7.11-beta1b.7z",
 }
