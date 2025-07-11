@@ -10813,16 +10813,37 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.2
-  ver_alt:
-  date: 2020-11-21
-  source_url: https://www.youtube.com/watch?v=DKmsMmkGGKQ
-  source_url_alt:
-  download_url: http://www.mediafire.com/file/tq1gkt0915ms48t/MF_-_Halloween_Project_2020_v1.2.rar/file
-  code:
-  download_url_alt:
-  file_name: MF - Halloween Project 2020 v1.2.rar
-  file_url:
+  ver:
+  - v1.2:
+      ver_alt:
+      date: 2020-11-21
+      source_url: https://www.youtube.com/watch?v=DKmsMmkGGKQ
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/tq1gkt0915ms48t/MF_-_Halloween_Project_2020_v1.2.rar/file
+      code:
+      download_url_alt:
+      file_name: MF - Halloween Project 2020 v1.2.rar
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2020-11-16
+      source_url: https://www.youtube.com/watch?v=DKmsMmkGGKQ
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/4jjyle086mzvti8/MF_-_Halloween_Project_2020_v1.1.rar/file
+      code:
+      download_url_alt:
+      file_name: MF - Halloween Project 2020 v1.1.rar
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2020-11-16
+      source_url: https://www.youtube.com/watch?v=DKmsMmkGGKQ
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Halloween Project 2020.rar
+      file_url:
 - game: 'Mario Forever: The Autumn Valley'
   game_alt:
   author: Eddy73
