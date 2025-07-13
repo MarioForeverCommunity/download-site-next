@@ -44,8 +44,8 @@
       </Tooltip>
       <!-- BGM标识 -->
       <Tooltip v-if="game.category === 'mw' && game.has_bgm">
-        <span class="dot bgm-dot"><span class="bgm-text">替换BGM</span></span>
-        <template #popper>需替换自定义 BGM</template>
+        <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
+        <template #popper>需替换或使用自定义 BGM</template>
       </Tooltip>
       <Tooltip v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">
         <InfoIcon class="icon button-shift"></InfoIcon>
@@ -255,7 +255,6 @@
   }
   .dot.bgm-dot {
     background: #d5006d;
-    width: 4em;
     border: 1.5px solid #a50036;
   }
   body.dark .dot.cn-dot,

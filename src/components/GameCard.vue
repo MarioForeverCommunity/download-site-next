@@ -45,8 +45,8 @@
       </Tooltip>
       <!-- BGM标识 -->
       <Tooltip v-if="game.category === 'mw' && game.has_bgm">
-        <span class="dot bgm-dot"><span class="bgm-text">替换BGM</span></span>
-        <template #popper>需替换自定义 BGM</template>
+        <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
+        <template #popper>需替换或使用自定义 BGM</template>
       </Tooltip>
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
@@ -361,7 +361,6 @@
   }
   .dot.bgm-dot {
     background: #f50057;
-    width: 4em;
     border: 1.5px solid #c51162;
   }
   body.dark .dot.cn-dot,
