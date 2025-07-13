@@ -255,6 +255,7 @@
   }
   .dot.bgm-dot {
     background: #d5006d;
+    width: 2.5em;
     border: 1.5px solid #a50036;
   }
   body.dark .dot.cn-dot,

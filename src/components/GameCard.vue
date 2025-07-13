@@ -361,6 +361,7 @@
   }
   .dot.bgm-dot {
     background: #f50057;
+    width: 2.5em;
     border: 1.5px solid #c51162;
   }
   body.dark .dot.cn-dot,
