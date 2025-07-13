@@ -2157,15 +2157,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2024-07-23
-  source_url:
-  source_url_alt:
-  download_url: https://rnx.su/s/LwNxr4CczHGyM8J
-  code:
-  download_url_alt:
-  file_name: Mario Minix - Community Edition.zip
-  file_url:
+  - Latest:
+      ver_alt:
+      date: 2024-07-25
+      source_url:
+      source_url_alt:
+      download_url: https://rnx.su/s/LwNxr4CczHGyM8J
+      code:
+      download_url_alt:
+      file_name: Mario Minix - Community Edition.zip
+      file_url:
+  - Initial Release:
+      ver_alt:
+      date: 2024-07-23
+      source_url:
+      source_url_alt:
+      download_url: https://rnx.su/s/LwNxr4CczHGyM8J
+      code:
+      download_url_alt:
+      file_name: Mario Minix - Community Edition.zip
+      file_url:
 - game: Mario Minix Extreme Advance
   game_alt:
   author: rAgnarok5
@@ -2634,6 +2645,26 @@
       code:
       download_url_alt:
       file_name: Mario Forever - Winter Franchise v1.2 Linux.7z
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2024-03-25
+      source_url: https://www.marioforever.net/thread-3123-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=6yixjsfGwjQ
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Winter Franchise v1.1.7z
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2024-03-11
+      source_url: https://www.marioforever.net/thread-3123-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=6yixjsfGwjQ
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Winter Franchise v1.0.7z
       file_url:
 - game: Mario Forever - Spring Paradise
   game_alt:
@@ -6024,6 +6055,86 @@
       code:
       download_url_alt:
       file_name: Mario Forever The Multiverse 2 v1.2.2 Linux.zip
+      file_url:
+  - v1.2.1:
+      ver_alt:
+      date: 2023-02-13
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.2.1.zip
+      file_url:
+  - v1.2 macOS:
+      ver_alt:
+      date: 2023-02-08
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2.dmg
+      file_url:
+  - v1.2 Linux:
+      ver_alt:
+      date: 2023-01-18
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.2 Linux.tar.xz
+      file_url:
+  - v1.2 Windows:
+      ver_alt:
+      date: 2023-01-14
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.2.zip
+      file_url:
+  - v1.1.4:
+      ver_alt:
+      date: 2022-12-20
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF The Multiverse 2 v1.1.4.zip
+      file_url:
+  - v1.1.2:
+      ver_alt:
+      date: 2022-12-18
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF The Multiverse 2 v1.1.2.zip
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2022-12-17
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF The Multiverse 2 v1.1.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2022-12-04
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - The Multiverse 2.zip
       file_url:
 - game: 'Mario Forever: Reverse Number Worlds Series'
   game_alt:
@@ -11260,7 +11371,7 @@
   download_url: https://mega.nz/file/9nRAQCgZ#-UnZEaDPwiXdvxzb9hQP21Xi0EKadt2icabbUU0egR4k
   code:
   download_url_alt:
-  file_name:
+  file_name: MF_The_Multiverse_v1.4.zip
   file_url:
 - game: Mario Craft Worlds
   game_alt:
