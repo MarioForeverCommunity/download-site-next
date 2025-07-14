@@ -1,6 +1,7 @@
 ---
 - game: 金芒山
   author: 有名氏
+  description: 关卡链接为更新版
   smwp_ver: v1.7.10
   date: 2025-07-13
   source_url: https://www.marioforever.net/thread-3627-1-1.html
@@ -8,7 +9,7 @@
   code:
   has_bgm: true
   file_name:
-  - 金芒山.smws
+  - 金芒山 (2).smws
   - 金芒山音乐包.zip
   file_url:
 - game: Mldsdt Map Origin（完全翻新版）
@@ -216,6 +217,7 @@
   file_url:
 - game: 硬核F阶关卡
   author: 有名氏
+  description: 关卡链接为更新版
   smwp_ver: v1.7.10
   date: 2025-01-27
   source_url: https://www.marioforever.net/thread-3498-1-1.html
