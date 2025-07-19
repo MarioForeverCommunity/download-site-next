@@ -1,4 +1,32 @@
 ---
+- game: Mario Forever 2
+  game_alt:
+  author: POSHI GAMER
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v1.5:
+      ver_alt:
+      date: 2025-07-14
+      source_url: https://poshigamer.blogspot.com/2025/07/mario-forever-2-v15-release.html
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/g37x3rn7n6iquud/Mario_Forever_2_V1.5_POSHI_GAMER.exe/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever 2 V1.5 POSHI GAMER.exe
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2025-07-11
+      source_url: https://poshigamer.blogspot.com/2025/07/mario-forever-2-v10-release.html
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/kuqnvra22hhama7/Mario_Forever_2_V1.0_POSHI_GAMER.exe/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever 2 V1.0 POSHI GAMER.exe
+      file_url:
 - game: Mario Forever Lap Madness
   game_alt:
   author: Turkish_bussines
@@ -42,7 +70,19 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - World -B:
+      current: true
+      ver_alt:
+      date: 2025-07-20
+      source_url: https://www.youtube.com/watch?v=82M9dWQUj9s
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/j9gbbafi71csern/MWMLWS_-_World_-B.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -B.zip
+      file_url:
   - World -A:
+      current: true
       ver_alt:
       date: 2025-06-26
       source_url: https://www.youtube.com/watch?v=W8YL_1407-s
