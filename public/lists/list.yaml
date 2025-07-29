@@ -961,6 +961,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v1.0.1:
+      ver_alt:
+      date: 2025-07-19
+      source_url: https://www.youtube.com/watch?v=LV8asbnEHt4
+      source_url_alt:
+      download_url: https://gamejolt.com/games/amfr/931270
+      code:
+      download_url_alt:
+      file_name: amfr-v101.rar
+      file_url:
   - v1.0:
       ver_alt:
       date: 2025-06-29
