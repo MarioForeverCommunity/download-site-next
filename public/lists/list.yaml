@@ -9,6 +9,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v1.0 Fix7:
+      ver_alt:
+      date: 2025-08-03
+      source_url: https://www.marioforever.net/thread-3669-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1jyNYVJka9__gqIU1rHvqLg?pwd=MFRJ
+      code: MFRJ
+      download_url_alt:
+      file_name: Mario Forever Ridiculous Journey fix7.rar
+      file_url:
+  - v1.0 Fix6:
+      ver_alt:
+      date: 2025-08-03
+      source_url: https://www.marioforever.net/thread-3669-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1ZpbfVzYWZpRbQG6Zb--Ktg?pwd=MFRJ
+      code: MFRJ
+      download_url_alt:
+      file_name: Mario Forever Ridiculous Journey fix6.zip
+      file_url:
   - v1.0 Fix4:
       ver_alt:
       date: 2025-08-03
@@ -86,44 +106,6 @@
   download_url_alt:
   file_name: Mario Forever - Beetroot World V1.0.rar
   file_url:
-- game: Mario Forever 2
-  game_alt:
-  author: POSHI GAMER
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  - v2.0:
-      ver_alt:
-      date: 2025-07-19
-      source_url: https://poshigamer.blogspot.com/2025/07/mario-forever-2-v20-realese.html
-      source_url_alt:
-      download_url: https://www.mediafire.com/file/2gp5qzsnypk21fr/Mario_Forever_2_V2.0_POSHI_GAMER.exe/file
-      code:
-      download_url_alt:
-      file_name: Mario Forever 2 V2.0 POSHI GAMER.exe
-      file_url:
-  - v1.5:
-      ver_alt:
-      date: 2025-07-14
-      source_url: https://poshigamer.blogspot.com/2025/07/mario-forever-2-v15-release.html
-      source_url_alt:
-      download_url: https://www.mediafire.com/file/g37x3rn7n6iquud/Mario_Forever_2_V1.5_POSHI_GAMER.exe/file
-      code:
-      download_url_alt:
-      file_name: Mario Forever 2 V1.5 POSHI GAMER.exe
-      file_url:
-  - v1.0:
-      ver_alt:
-      date: 2025-07-11
-      source_url: https://poshigamer.blogspot.com/2025/07/mario-forever-2-v10-release.html
-      source_url_alt:
-      download_url: https://www.mediafire.com/file/kuqnvra22hhama7/Mario_Forever_2_V1.0_POSHI_GAMER.exe/file
-      code:
-      download_url_alt:
-      file_name: Mario Forever 2 V1.0 POSHI GAMER.exe
-      file_url:
 - game: Mario Forever Lap Madness
   game_alt:
   author: Turkish_bussines
@@ -302,55 +284,6 @@
       code: 2upx
       download_url_alt:
       file_name: 4-Don't recruit yourself anymore.exe
-      file_url:
-- game: New Super Mario Forever 2014
-  game_alt:
-  author: GamesTV
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  description_zh: 日期为网盘显示的日期。
-  ver:
-  - v2.0.1:
-      ver_alt:
-      date: 2025-05-18
-      source_url: https://gamestvfreepcgames.blogspot.com/2014/11/new-super-mario-forever-2014-version.html
-      source_url_alt:
-      download_url: https://files.fm/f/hb77tddswt
-      code:
-      download_url_alt:
-      file_name: nsmf20142.0.1Installer.exe
-      file_url:
-  - v2.0:
-      ver_alt:
-      date: 2025-03-04
-      source_url: https://gamestvfreepcgames.blogspot.com/2014/09/new-super-mario-forever-2014-new.html
-      source_url_alt:
-      download_url: https://files.fm/u/bxdr58uzqz
-      code:
-      download_url_alt:
-      file_name: nsmf20142.0Installer.exe
-      file_url:
-  - v1.0:
-      ver_alt:
-      date: 2025-01-31
-      source_url: https://gamestvfreepcgames.blogspot.com/2014/08/new-super-mario-forever-2014-10.html
-      source_url_alt:
-      download_url: https://files.fm/f/9t87h7293d
-      code:
-      download_url_alt:
-      file_name: nsmf20141.0Installer.exe
-      file_url:
-  - Demo:
-      ver_alt:
-      date: 2025-01-11
-      source_url: https://gamestvfreepcgames.blogspot.com/2014/08/new-super-mario-forever-2014-10.html
-      source_url_alt:
-      download_url: https://www.4shared.com/s/fLmUz2bvaku
-      code:
-      download_url_alt:
-      file_name: New Super Mario Forever 2014 Demo (game by GamesTV).zip
       file_url:
 - game: New Super Mario Forever 2042
   game_alt:
