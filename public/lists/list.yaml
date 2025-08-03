@@ -1,4 +1,32 @@
 ---
+- game: Mario Forever Ridiculous Journey
+  game_alt:
+  author: TNT与爬行者
+  author_alt: CreepTNT
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v1.0.0:
+      ver_alt:
+      date: 2025-08-03
+      source_url: https://www.marioforever.net/thread-3669-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1FB2GlCL3TvVVELzPdJ9m7w?pwd=MFRJ
+      code: MFRJ
+      download_url_alt:
+      file_name: Mario Forever Ridiculous Journey.zip
+      file_url:
+  - Demo Fix1:
+      ver_alt:
+      date: 2024-09-21
+      source_url: https://www.marioforever.net/thread-3370-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1C_iCblFTY9WNuFd8emCvyw?pwd=MFRJ
+      code: MFRJ
+      download_url_alt:
+      file_name: Mario Forever Ridiculous Journey w1-w2 Demo fix1.zip
+      file_url:
 - game: Mario Forever - Beetroot World
   game_alt:
   author: LuigiTron17
@@ -1552,23 +1580,6 @@
       download_url_alt:
       file_name: Mario Forever Math Symbole Worlds Series v0.1.zip
       file_url:
-- game: Mario Forever Ridiculous Journey
-  game_alt:
-  author: TNT与爬行者
-  author_alt: CreepTNT
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver: Demo Fix1
-  ver_alt:
-  date: 2024-09-21
-  source_url: https://www.marioforever.net/thread-3370-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1C_iCblFTY9WNuFd8emCvyw?pwd=MFRJ
-  code: MFRJ
-  download_url_alt:
-  file_name: Mario Forever Ridiculous Journey w1-w2 Demo fix1.zip
-  file_url:
 - game: Mario Forever Horizon
   game_alt:
   alias:
