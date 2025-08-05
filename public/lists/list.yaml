@@ -2174,7 +2174,7 @@
       date: 2024-07-06
       source_url: https://www.marioforever.net/thread-3178-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=SxRtH9gNPy8
-      download_url: https://rnx.su/s/JtoRkqnCCi467BC
+      download_url:
       code:
       download_url_alt:
       file_name: 0.2b-win64.zip
@@ -2231,25 +2231,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  - Latest:
+  - v0.2:
+      current: false
       ver_alt:
       date: 2024-07-25
       source_url:
       source_url_alt:
-      download_url: https://rnx.su/s/LwNxr4CczHGyM8J
+      download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Old%20Versions%20%28Archive%29/Mario%20Minix%20-%20Community%20Edition
       code:
       download_url_alt:
-      file_name: Mario Minix - Community Edition.zip
+      file_name: Mario Minix - Community Edition v0.2.zip
       file_url:
-  - Initial Release:
+  - v0.1:
       ver_alt:
       date: 2024-07-23
       source_url:
       source_url_alt:
-      download_url: https://rnx.su/s/LwNxr4CczHGyM8J
+      download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Old%20Versions%20%28Archive%29/Mario%20Minix%20-%20Community%20Edition
       code:
       download_url_alt:
-      file_name: Mario Minix - Community Edition.zip
+      file_name: Mario Minix - Community Edition v0.1.zip
       file_url:
 - game: Mario Minix Extreme Advance
   game_alt:
@@ -3136,7 +3137,7 @@
   date: 2024-04-01
   source_url:
   source_url_alt:
-  download_url: https://nx.wtf/s/LsRgwfQwF8XHoWb
+  download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%202077%20%28April%20Fools%29
   code:
   download_url_alt:
   file_name: Mario Forever 2077 Gangster Edition.7z
@@ -5080,7 +5081,7 @@
   date: 2023-07-16
   source_url: https://www.youtube.com/watch?v=vQzXvmQ9Ggw
   source_url_alt:
-  download_url: https://nx.wtf/s/g3fsgxJDRwrn8dw?path=%2FGames%2FMario+Forever+But+Floor+Is+Lava
+  download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%2C%20But%20the%20Floor%20is%20Lava
   code:
   download_url_alt:
   file_name: Mario_Forever_But_Floor_Is_Lava_1.0-hotfix.zip
@@ -5573,7 +5574,7 @@
   date: 2023-04-01
   source_url:
   source_url_alt:
-  download_url: https://nx.wtf/s/g3fsgxJDRwrn8dw?path=%2FGames%2FMario%20forever%202077
+  download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%202077%20%28April%20Fools%29
   code:
   download_url_alt:
   file_name: New mario forever.7z
@@ -6727,7 +6728,7 @@
   date: 2022-10-08
   source_url: https://www.youtube.com/watch?v=p5ecAOMGRDs
   source_url_alt:
-  download_url: https://nx.wtf/s/g3fsgxJDRwrn8dw?path=%2FGames%2FAll-Stars%203
+  download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%20-%20All%20Stars%203
   code:
   download_url_alt:
   file_name: Mario Forever All Stars 3 v1.0.5.zip
@@ -7177,7 +7178,7 @@
       date: 2022-08-20
       source_url: https://www.marioforever.net/thread-2277-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=vri02kg2DAY
-      download_url: https://nx.wtf/s/tDmb5dZ37dfMDND
+      download_url:
       code:
       download_url_alt:
       file_name: Mario Forever - Party Worlds v1.5.zip
@@ -7250,7 +7251,7 @@
   date: 2022-08-17
   source_url: https://www.marioforever.net/thread-2272-1-1.html
   source_url_alt:
-  download_url: https://nx.wtf/s/KtqE2qApMkDNiDa
+  download_url:
   code:
   download_url_alt:
   file_name: Runner by LooPeR231 1.1.zip
@@ -7296,16 +7297,49 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.2
-  ver_alt:
-  date: 2022-08-02
-  source_url:
-  source_url_alt:
-  download_url: https://nx.wtf/s/g3fsgxJDRwrn8dw?path=%2FGames%2FTime%20Has%20Come%20v1.2
-  code:
-  download_url_alt:
-  file_name: Time Has Come 1.2.7z
-  file_url:
+  ver:
+  - v1.2 Windows:
+      current: true
+      ver_alt:
+      date: 2022-08-02
+      source_url:
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%20-%20Time%20Has%20Come
+      code:
+      download_url_alt:
+      file_name: Mario Forever Time Has Come v1.2 Windows.7z
+      file_url:
+  - v1.2 Linux:
+      current: true
+      ver_alt:
+      date: 2022-08-02
+      source_url:
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%20-%20Time%20Has%20Come
+      code:
+      download_url_alt:
+      file_name: Time Has Come 1.2.7z
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2022-03-05
+      source_url:
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Old%20Versions%20%28Archive%29/Mario%20Forever%20-%20Time%20Has%20Come
+      code:
+      download_url_alt:
+      file_name: TimeHasComeWindows v1.1.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2021-12-31
+      source_url:
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Old%20Versions%20%28Archive%29/Mario%20Forever%20-%20Time%20Has%20Come
+      code:
+      download_url_alt:
+      file_name: THC 1.0.7z
+      file_url:
 - game: Planet of MF 关卡集
   game_alt: Planet of MF Collection
   author: Mario Forever 社区
