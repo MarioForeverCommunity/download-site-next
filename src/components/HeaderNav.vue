@@ -1,8 +1,7 @@
 <script setup>
   import { navTop, topBar } from "../config.js";
-  import {defineEmits} from 'vue';
 
-  const BASE_URL = import.meta.env.BASE_URL;
+  // const BASE_URL = import.meta.env.BASE_URL;
 
   const props = defineProps({
     pageId: {

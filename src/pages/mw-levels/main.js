@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './MwMain.vue'
+import App from './MwLevels.vue'
 import 'overlayscrollbars/styles/overlayscrollbars.css';
 import { OverlayScrollbars, ClickScrollPlugin } from 'overlayscrollbars';
 import '../../assets/dark-mode.css';

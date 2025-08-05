@@ -1,6 +1,6 @@
 <script setup>
   import { ref } from 'vue';
-  import DownloadHeader from '../../components/Header.vue';
+  import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import indexZh from '../../markdown/mf-zh.md';
   import indexEn from '../../markdown/mf-en.md';

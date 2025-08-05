@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed } from 'vue';
-  import DownloadHeader from '../../components/Header.vue';
+  import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import FooterZh from '../../components/FooterZh.vue';
   import { navTop } from "../../config.js";
@@ -8,7 +8,7 @@
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
   import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -17,7 +17,7 @@
   import {SmwpVersions} from "../../util/SmwpVersions.js"
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
-  import Tooltip from '../../components/Tooltip.vue';
+  import Tooltip from '../../components/ToolTip.vue';
   const originalLan = ref(getLanguage());
 
   const lan = "zh"
@@ -268,6 +268,13 @@
     wideScreen.value = window.innerWidth >= 1100;
   })
 
+  // Display mode toggle (line/card)
+  const displayMode = ref('line'); // 'line' or 'card'
+  
+  function toggleDisplayMode() {
+    displayMode.value = displayMode.value === 'line' ? 'card' : 'line';
+  }
+
   // Optimized tooltip.
 
   function tooltipMouseEnter(obj) {
@@ -366,6 +373,12 @@
           <FilterIcon class="icon button" @click="clearFilter()" />
           <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
         </Tooltip>
+        <div class="inline-block display-mode-toggle" v-if="wideScreen">
+          <div class="icon button" @click="toggleDisplayMode()" :title="displayMode === 'line' ? '切换到卡片' : '切换到列表'">
+            <ListIcon v-if="displayMode === 'card'" />
+            <GridIcon v-if="displayMode === 'line'" />
+          </div>
+        </div>
         <div class="inline-block item-count">
           {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
         </div>
@@ -373,13 +386,13 @@
     </div>
   </div>
 
-  <GameLineHeader v-if="wideScreen" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
-  <template v-if="wideScreen">
+  <GameLineHeader v-if="wideScreen && displayMode === 'line'" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
+  <template v-if="wideScreen && displayMode === 'line'">
     <div v-for="game in filteredGames" :key="game.game" v-memo="game.game">
       <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </template>
-  <div v-else class="card-container">
+  <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="game in filteredGames" :key="game.game" v-memo="[game.game, 'zh']">
       <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>

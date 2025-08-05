@@ -1,7 +1,7 @@
 <script setup>
   import DownloadIcon from './icons/IconDownload.vue';
 
-  const props = defineProps({
+  defineProps({
     href: {
       type: String,
       required: true

@@ -1,9 +1,9 @@
-import { fileURLToPath, URL } from 'node:url'
+// import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Markdown from 'unplugin-vue-markdown/vite'
-import {resolve} from 'path'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,9 +20,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, "index.html"),
-        "mf-games": resolve(__dirname, "mf-games.html"),
-        "mw-games": resolve(__dirname, "mw-levels.html")
+        index: resolve(".", "index.html"),
+        "mf-games": resolve(".", "mf-games.html"),
+        "mw-games": resolve(".", "mw-levels.html")
       },
       output: {
         chunkFileNames: "js/[name]-[hash].js",

@@ -111,6 +111,10 @@
   border: 1px solid #cfd4db;
 }
 
+.display-mode-toggle .button {
+  display: inline-flex;
+}
+
 .card-container {
     width: 100vw;
     display: grid;

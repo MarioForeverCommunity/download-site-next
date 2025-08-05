@@ -1,11 +1,10 @@
 <script setup>
-  import {defineProps, defineEmits } from 'vue';
   import {parseVer} from "../util/Misc.js";
   import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
-  import Tooltip from "./Tooltip.vue";
+  import Tooltip from "./ToolTip.vue";
 
-  const props = defineProps({
+  defineProps({
     game: {
       type: Object,
       required: true
@@ -58,7 +57,7 @@
         <div :class="game.ver.length > 1 ? 'dropdown' : ''">
           <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
           <div v-if="game.ver.length > 1" class="dropdown-content">
-            <div v-for="ver in game.ver" class="dropdown-item" @click="game.currentVer=parseVer(ver); game.currentVerStr = Object.keys(ver)[0]; game.currentVerStrAlt = parseVer(ver).ver_alt;">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
+            <div v-for="ver in game.ver" :key="Object.keys(ver)[0]" class="dropdown-item" @click="$emit('selectGame', {...game, currentVer: parseVer(ver), currentVerStr: Object.keys(ver)[0], currentVerStrAlt: parseVer(ver).ver_alt})">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
           </div>
         </div>
       </div>

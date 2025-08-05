@@ -1,5 +1,5 @@
 <script setup>
-    import {ref, defineEmits} from 'vue';
+    import {ref} from 'vue';
 
     const thisDom = ref(null);
     const popperDom = ref(null);
