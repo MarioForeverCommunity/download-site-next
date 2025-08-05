@@ -97,9 +97,14 @@
           // file_name 归档
           if (verObj.file_name) {
             if (
-              !currentIndexes.includes(idx) &&
               (
-                (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+                verObj.current === false ||
+                (
+                  !currentIndexes.includes(idx) &&
+                  (
+                    (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+                  )
+                )
               ) &&
               !verObj.file_name.startsWith("old-versions/")
             ) {
@@ -109,9 +114,14 @@
           // data_file_name 归档
           if (verObj.data_file_name) {
             if (
-              !currentIndexes.includes(idx) &&
               (
-                (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+                verObj.current === false ||
+                (
+                  !currentIndexes.includes(idx) &&
+                  (
+                    (new Date(verObj.date).getTime() !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+                  )
+                )
               ) &&
               !verObj.data_file_name.startsWith("old-versions/")
             ) {
