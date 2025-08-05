@@ -10331,6 +10331,7 @@
       file_name: Mario Worker - World I.zip
       file_url:
   - World F (recompiled):
+      current: false
       ver_alt:
       date: 2022-10-13
       source_url: https://www.youtube.com/watch?v=3w5rdSt5WY0
@@ -10338,7 +10339,7 @@
       download_url: https://www.mediafire.com/file/o30bahy5hzsvf7r/Mario_Worker_-_F.exe/file
       code:
       download_url_alt:
-      file_name: old-versions/Mario Worker - World F.exe # 如果之后发了字母世界新版，这里的 old-versions/ 就可以去掉了
+      file_name: Mario Worker - World F.exe
       file_url:
 - game: 'Mario Forever: Community''s New Year 2021 special'
   game_alt:
