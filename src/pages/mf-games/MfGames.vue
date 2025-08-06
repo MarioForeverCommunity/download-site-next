@@ -483,39 +483,6 @@
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
       <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
-      <div class="icon-container" v-if="!wideScreen">
-        {{ lan == "en" ? "Sort by " : "排序选项 " }}
-        <div class="visible-button" @click="sortByName();">
-          {{ lan == "en" ? "Name" : "名称" }}
-          <span v-if="sort_option.field == 'game'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'game'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByAuthor();">
-          {{ lan == "en" ? "Author" : "作者" }}
-          <span v-if="sort_option.field == 'author'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'author'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByDate();">
-          {{ lan == "en" ? "Date" : "日期" }}
-          <span v-if="sort_option.field == 'date'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'date'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-      </div>
       <div class="icon-container">
         {{ lan == "en" ? "Filter" : "筛选" }}
         <div class="inline-block">
@@ -574,13 +541,49 @@
           <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
         </Tooltip>
         <div class="inline-block display-mode-toggle" v-if="wideScreen">
-          <div class="icon button" @click="toggleDisplayMode()" :title="displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to Line' : '切换到列表')">
-            <ListIcon v-if="displayMode === 'card'" />
-            <GridIcon v-if="displayMode === 'line'" />
-          </div>
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <div class="icon button" @click="toggleDisplayMode()">
+              <ListIcon v-if="displayMode === 'card'" />
+              <GridIcon v-if="displayMode === 'line'" />
+            </div>
+            <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
+          </Tooltip>
         </div>
         <div class="inline-block item-count">
           {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
+        </div>
+      </div>
+      <div class="icon-container" v-if="!wideScreen || (wideScreen && displayMode === 'card')">
+        {{ lan == "en" ? "Sort by " : "排序选项 " }}
+        <div class="visible-button" @click="sortByName();">
+          {{ lan == "en" ? "Name" : "名称" }}
+          <span v-if="sort_option.field == 'game'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'game'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+        <div class="visible-button" @click="sortByAuthor();">
+          {{ lan == "en" ? "Author" : "作者" }}
+          <span v-if="sort_option.field == 'author'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'author'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+        <div class="visible-button" @click="sortByDate();">
+          {{ lan == "en" ? "Date" : "日期" }}
+          <span v-if="sort_option.field == 'date'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'date'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
       </div>
     </div>

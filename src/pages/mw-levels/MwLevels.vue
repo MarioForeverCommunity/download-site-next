@@ -313,7 +313,47 @@
   <div class="hidden-container">
     <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
       <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
-      <div class="icon-container" v-if="!wideScreen">
+      <div class="icon-container">
+        {{ lan == "en" ? "Filter" : "筛选" }}
+        <div class="inline-block">
+          <input v-model="filter_option.name" class="input">&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Year" : "年份" }}
+          <select v-model="filter_option.year">
+            <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()" :key="year">{{year}}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          SMWP 版本
+          <select v-model="selectedSmwpVer">
+            <option value="" style="font-weight:bold">全部</option>
+            <option v-for="opt in smwpVersionOptions" :key="opt.value" :value="opt.value" :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''">{{opt.label}}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          <input v-model="showOnlyBundledSmwp" type="checkbox" id="filterBundledSmwp" />
+          <label for="filterBundledSmwp">仅显示附带 MW 的作品</label>
+        </div>
+        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+          <FilterIcon class="icon button" @click="clearFilter()" />
+          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+        </Tooltip>
+        <div class="inline-block display-mode-toggle" v-if="wideScreen">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <div class="icon button" @click="toggleDisplayMode()">
+              <ListIcon v-if="displayMode === 'card'" />
+              <GridIcon v-if="displayMode === 'line'" />
+            </div>
+            <template #popper>{{ displayMode === 'line' ? '切换到卡片' : '切换到列表' }}</template>
+          </Tooltip>
+        </div>
+        <div class="inline-block item-count">
+          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
+        </div>
+      </div>
+      <div class="icon-container" v-if="!wideScreen || (wideScreen && displayMode === 'card')">
         排序选项
         <div class="visible-button" @click="sortByName();">
           名称
@@ -344,43 +384,6 @@
           <span v-if="sort_option.field != 'date'">
             <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
           </span>
-        </div>
-      </div>
-      <div class="icon-container">
-        {{ lan == "en" ? "Filter" : "筛选" }}
-        <div class="inline-block">
-          <input v-model="filter_option.name" class="input">&nbsp;
-        </div>
-        <div class="inline-block">
-          {{ lan == "en" ? "Year" : "年份" }}
-          <select v-model="filter_option.year">
-            <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()" :key="year">{{year}}</option>
-          </select>&nbsp;
-        </div>
-        <div class="inline-block">
-          SMWP 版本
-          <select v-model="selectedSmwpVer">
-            <option value="" style="font-weight:bold">全部</option>
-            <option v-for="opt in smwpVersionOptions" :key="opt.value" :value="opt.value" :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''">{{opt.label}}</option>
-          </select>&nbsp;
-        </div>
-        <div class="inline-block">
-          <input v-model="showOnlyBundledSmwp" type="checkbox" id="filterBundledSmwp" />
-          <label for="filterBundledSmwp">仅显示附带 MW 的作品</label>
-        </div>
-        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-          <FilterIcon class="icon button" @click="clearFilter()" />
-          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-        </Tooltip>
-        <div class="inline-block display-mode-toggle" v-if="wideScreen">
-          <div class="icon button" @click="toggleDisplayMode()" :title="displayMode === 'line' ? '切换到卡片' : '切换到列表'">
-            <ListIcon v-if="displayMode === 'card'" />
-            <GridIcon v-if="displayMode === 'line'" />
-          </div>
-        </div>
-        <div class="inline-block item-count">
-          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
         </div>
       </div>
     </div>
