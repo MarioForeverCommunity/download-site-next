@@ -50,6 +50,10 @@ definitions:
           oneOf:
           - type: 'null'
           - type: string
+        image:
+          oneOf:
+          - type: 'null'
+          - type: string
         type:
           type: string
           enum:
@@ -159,6 +163,10 @@ definitions:
         - type: 'null'
         - type: string
       data_file_url:
+        anyOf:
+        - type: 'null'
+        - type: string
+      image:
         anyOf:
         - type: 'null'
         - type: string
