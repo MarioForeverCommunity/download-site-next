@@ -32,7 +32,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 
 ③<span style="color:red">（Mario Forever 4.15～4.4 & Mario Forever Advance，2009～2010）</span>2008 年左右，其他游戏制作人员因种种原因而离开作者，作者本人也因资金不足等原因而关闭了游戏官方网站，Mario Forever 也因此长期未更新。2009 年，作者将官方网站 Buziol Games 更名为 Softendo，发布了 Mario Forever 4.15、4.4 和 Mario Forever Advance Edition（简称 MFAE）等。其中，MFAE 是 Mario Forever 4.4 的加难版，难度较 Mario Forever 4.4 有所提高。Mario Forever 4.4 和 MFAE 也是多数人所认为的 Mario Forever 巅峰之作。
 
-④<span style="color:red">（Mario Forever 5.0～7.x，2011～）</span>4.4 之后，作者开发游戏的方向逐渐从可玩性转为所谓的“视觉特效”和“手感、流畅度”等方向。因为游戏制作平台从 Multimedia Fusion 1.5 迁移至 Multimedia Fusion 2，许多 Bug 莫名其妙地开始出现，但作者不再像以前对待游戏的更新那样用心，原版 Mario Forever 正一步一步地毁在作者的手上。
+④<span style="color:red">（Mario Forever 5.0～7.x，2011～2017）</span>4.4 之后，作者开发游戏的方向逐渐从可玩性转为所谓的“视觉特效”和“手感、流畅度”等方向。因为游戏制作平台从 Multimedia Fusion 1.5 迁移至 Multimedia Fusion 2，许多 Bug 莫名其妙地开始出现，但作者不再像以前对待游戏的更新那样用心，原版 Mario Forever 正一步一步地毁在作者的手上。
 
 ⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。
 
