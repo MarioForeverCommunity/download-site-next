@@ -18,7 +18,7 @@
     }
   });
 
-  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion']);
+  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog']);
 
   const selectVersion = (ver) => {
     // 通过emit事件通知父组件更新版本信息
@@ -37,6 +37,25 @@
 
   const getGameImage = () => {
     return props.getGameImage ? props.getGameImage(props.game) : null;
+  };
+
+  const handleSourceClick = (event) => {
+    const sourceUrl = getSourceLink(props.game, props.lan);
+    if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
+      const postId = sourceUrl.match(/\/p\/(\d+)/);
+      if (postId) {
+        const tid = parseInt(postId[1]);
+        if (tid > 6856592056) {
+          // 对于较新的帖子，直接访问，不弹框
+          return;
+        }
+        event.preventDefault();
+        emit('showTiebaDialog', {
+          originalUrl: sourceUrl,
+          archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
+        });
+      }
+    }
   };
 
 </script>
@@ -166,7 +185,7 @@
           </template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
-          <a :href="getSourceLink(game, lan)">
+          <a :href="getSourceLink(game, lan)" @click="handleSourceClick">
             <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
           </a>
           <template #popper>

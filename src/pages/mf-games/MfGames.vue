@@ -218,6 +218,7 @@
 
   const selectedDownload = ref(null); // For download modal.
   const selectedVideo = ref(null); // For download modal.
+  const tiebaDialog = ref(null); // For tieba dialog.
 
   // Sort operations.
 
@@ -616,12 +617,12 @@
   <GameLineHeader v-if="wideScreen && displayMode === 'line'" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen && displayMode === 'line'">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameLine :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameLine :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
     </div>
   </div>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameCard :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameCard :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
     </div>
   </div>
 
@@ -668,6 +669,24 @@
               <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
             </p>
           </div>
+        </div>
+      </div>
+    </div>
+  </Transition>
+
+  <Transition name="modal">
+    <div v-if="tiebaDialog != null" class="modal-bg" @click="tiebaDialog = null;">
+      <div class="modal-content" @click.stop="">
+        <div>
+          {{ lan == 'en' ? 'Choose Link to Visit' : '选择要访问的链接' }}
+        </div>
+        <div class="button-line">
+          <a class="download" :href="tiebaDialog.originalUrl" target="_blank" @click="tiebaDialog = null;">
+            {{ lan == 'en' ? 'Original Tieba (tieba.baidu.com)' : '百度贴吧源站' }}
+          </a>
+          <a class="download" :href="tiebaDialog.archiveUrl" target="_blank" @click="tiebaDialog = null;">
+            {{ lan == 'en' ? 'Archive Site (archive.marioforever.net)' : '社区备份站' }}
+          </a>
         </div>
       </div>
     </div>
