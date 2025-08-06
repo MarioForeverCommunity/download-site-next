@@ -3,6 +3,7 @@ import ClipboardIcon from "./IconClipboard.vue";
 import DownloadIcon from "./IconDownload.vue";
 import FilterIcon from "./IconFilter.vue";
 import GridIcon from "./IconGrid.vue";
+import ImageIcon from "./IconImage.vue";
 import InfoIcon from "./IconInfo.vue";
 import LinkIcon from "./IconLink.vue";
 import ListIcon from "./IconList.vue";
@@ -21,6 +22,7 @@ export {
     DownloadIcon,
     FilterIcon,
     GridIcon,
+    ImageIcon,
     InfoIcon,
     LinkIcon,
     ListIcon,

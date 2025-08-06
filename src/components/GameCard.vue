@@ -11,6 +11,10 @@
     }, 
     lan : {
       required: true
+    },
+    getGameImage: {
+      type: Function,
+      required: false
     }
   });
 
@@ -24,6 +28,15 @@
       currentVerStr: Object.keys(ver)[0],
       currentVerStrAlt: parseVer(ver).ver_alt
     });
+  };
+
+  const handleImageError = (event) => {
+    // 图片加载失败时隐藏图片容器
+    event.target.parentElement.style.display = 'none';
+  };
+
+  const getGameImage = () => {
+    return props.getGameImage ? props.getGameImage(props.game) : null;
   };
 
 </script>
@@ -80,6 +93,9 @@
       <p v-if="game.category == 'mw' && game.description">{{ game.description }}</p>
       <p v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">{{ game.description_zh }}</p>
       <p v-if="lan == 'en' && game.category == 'mf' && game.description_en">{{ game.description_en }}</p>
+    </div>
+    <div class="game-image" v-if="getGameImage()">
+      <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
     </div>
     <div class="last-line-padding">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
@@ -197,6 +213,20 @@
     font-variant-numeric: normal;
     font-variant-position: normal;
     font-variation-settings: normal;
+  }
+
+  .game-image {
+    width: 100%;
+    margin-top: 0.4em;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+
+  .game-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
   }
 
   .icon {

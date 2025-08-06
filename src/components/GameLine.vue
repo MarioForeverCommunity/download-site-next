@@ -1,6 +1,6 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon } from "./icons/Icons.js";
+  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
@@ -11,6 +11,10 @@
     }, 
     lan : {
       required: true
+    },
+    getGameImage: {
+      type: Function,
+      required: false
     }
   });
 
@@ -26,6 +30,11 @@
       currentVerStr: Object.keys(ver)[0],
       currentVerStrAlt: parseVer(ver).ver_alt
     });
+  };
+
+  const getImageUrl = () => {
+    if (!props.getGameImage) return null;
+    return props.getGameImage(props.game);
   };
 
 </script>
@@ -69,6 +78,14 @@
       <Tooltip v-if="game.category == 'mw' && game.description">
         <InfoIcon class="icon button-shift"></InfoIcon>
         <template #popper>{{ game.description }}</template>
+      </Tooltip>
+      <Tooltip v-if="getImageUrl()">
+        <ImageIcon class="icon image-icon"></ImageIcon>
+        <template #popper>
+          <div class="image-preview">
+            <img :src="getImageUrl()" :alt="getName(game, lan)" />
+          </div>
+        </template>
       </Tooltip>
       </div>
     <div class="game-author">
@@ -286,6 +303,27 @@
   body.dark .dot .cur-text {
     color: #1e824c;
   }
+
+  .image-icon {
+    margin-left: 5px;
+    color: #666;
+    transform: translateY(-1px);
+  }
+
+  body.dark .image-icon {
+    color: #aaa;
+  }
+
+  .image-preview {
+    max-width: 320px;
+  }
+
+  .image-preview img {
+    width: 100%;
+    height: auto;
+    margin: 6px 0 4px 0;
+  }
+
   body.dark .dot .mw-text {
     color: #f87400;
   }

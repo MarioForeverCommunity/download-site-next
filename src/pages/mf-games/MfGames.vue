@@ -444,6 +444,32 @@
     displayMode.value = displayMode.value === 'line' ? 'card' : 'line';
   }
 
+  // Image utilities.
+
+  const getGameImage = (game) => {
+    // 首先检查当前版本是否有图片
+    if (game.currentVer && game.currentVer.image) {
+      return getImageUrl(game.currentVer.image);
+    }
+    
+    // 然后检查游戏级别是否有图片
+    if (game.image) {
+      return getImageUrl(game.image);
+    }
+    
+    return null;
+  };
+
+  const getImageUrl = (image) => {
+    // 如果是URL（包含http或https），直接返回
+    if (image.startsWith('http://') || image.startsWith('https://')) {
+      return image;
+    }
+    
+    // 否则认为是文件名，从public/images/mf-games目录获取
+    return `/images/mf-games/${image}`;
+  };
+
   // Optimized tooltip.
 
   function tooltipMouseEnter(obj) {
@@ -542,10 +568,8 @@
         </Tooltip>
         <div class="inline-block display-mode-toggle" v-if="wideScreen">
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <div class="icon button" @click="toggleDisplayMode()">
-              <ListIcon v-if="displayMode === 'card'" />
-              <GridIcon v-if="displayMode === 'line'" />
-            </div>
+            <ListIcon class="icon button" v-if="displayMode === 'card'" @click="toggleDisplayMode()" />
+            <GridIcon class="icon button" v-if="displayMode === 'line'" @click="toggleDisplayMode()" />
             <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
           </Tooltip>
         </div>
@@ -592,12 +616,12 @@
   <GameLineHeader v-if="wideScreen && displayMode === 'line'" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen && displayMode === 'line'">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameLine :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameCard :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
 
