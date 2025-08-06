@@ -116,12 +116,17 @@
 }
 
 .card-container {
-    width: 100vw;
-    display: grid;
-    gap: 5px;
-    width: 100%;
-    margin: 10px auto;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  width: 100vw;
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  margin: 10px auto;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.last-update {
+  margin-top: .5em;
+  font-weight: bold;
 }
 
 @media (max-width: 1333px) and (min-width: 800px) {

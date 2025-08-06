@@ -1,5 +1,6 @@
 <script setup>
   import { ref } from 'vue';
+  import axios from 'axios';
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import indexZh from '../../markdown/mf-zh.md';
@@ -13,6 +14,24 @@
   import 'vue3-carousel/dist/carousel.css'
 
   const lan = ref(getLanguage());
+  const lastUpdateZh = ref(null);
+  const lastUpdateEn = ref(null);
+
+  // 获取中文版最后更新时间
+  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
+    const date = new Date(response.data[0].commit.committer.date);
+    const options = { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
+    lastUpdateZh.value = formattedDate;
+  });
+
+  // 获取英文版最后更新时间
+  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
+    const date = new Date(response.data[0].commit.committer.date);
+    const options = { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
+    lastUpdateEn.value = formattedDate;
+  });
 
   const pageId = "index"
 
@@ -50,8 +69,8 @@
 
   <div class="md-container">
     <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
-    <indexZh v-if="lan == 'zh'" />
-    <indexEn v-if="lan == 'en'" />
+    <indexZh v-if="lan === 'zh'" :lastUpdateZh="lastUpdateZh" />
+    <indexEn v-if="lan === 'en'" :lastUpdateEn="lastUpdateEn" />
     <h2>{{ lan == "zh" ? "截图预览" : "Screenshots" }}</h2>
     <Carousel :autoplay="2000" :wrap-around="true" :items-to-show="2.5">
       <Slide v-for="image in images" :key="image" style="width: 40%; aspect-ratio: 4/3;">

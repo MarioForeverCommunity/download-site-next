@@ -1,6 +1,12 @@
 <script setup>
     import DownloadButton from "../components/ButtonDownload.vue"
+    
+    defineProps({
+        lastUpdateEn: String
+    });
 </script>
+
+<p v-if="lastUpdateEn" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdateEn }}</p>
 
 ## Download Mario Forever Remake
 
@@ -42,10 +48,13 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 | v6.01 | 2013-05-09 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%206.01.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%206.01.7z" lan="en"/> |
 | v6.1 | 2015-12-02 | ★   |     | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%206.1.rar" lan="en"/> |
 | v6.11 | 2016-08-12 | ★★  |     | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%206.11.rar" lan="en"/> |
-| v7.01 Beta | 2017-10-22 | ☆   | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.01.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.01.7z" lan="en"/> |
-| v7.011 Beta | 2017-10-24 | ☆   | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.011.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.011.7z" lan="en"/> |
-| v7.02 Beta | 2017-10-26 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02.7z" lan="en"/> |
-| v7.02_31 (v7.03) | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.03.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.03.7z" lan="en"/> |
+| v7.01 Beta | 2017-10-22 | ☆   | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.01%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.01%20Beta.7z" lan="en"/> |
+| v7.011 Beta | 2017-10-24 | ☆   | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.011%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.011%20Beta.7z" lan="en"/> |
+| v7.02_10 Beta | 2017-10-25 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_10%20Beta.exe" lan="en"/> |     |
+| v7.02_11 Beta | 2017-10-25 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_11%20Beta.exe" lan="en"/> |     |
+| v7.02_13 Beta | 2017-10-25 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_13%20Beta.exe" lan="en"/> |     |
+| v7.02_15 Beta | 2017-10-29 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_15%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_15%20Beta.7z" lan="en"/> |
+| v7.02_31 Beta | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_31%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_31%20Beta.7z" lan="en"/> |
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20Edition.7z" lan="en"/> |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance%20v4.41.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20v4.41.7z" lan="en"/> |
 </div>

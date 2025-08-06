@@ -667,11 +667,6 @@
       border-color: #008cff
   }
 
-  .last-update {
-    margin-top: .5em;
-    font-weight: bold;
-  }
-
   .tooltip {
     position: relative;
     display: inline-block;

@@ -477,7 +477,7 @@
     <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
     <introZh v-if="lan == 'zh'" />
     <introEn v-if="lan == 'en'" />
-    <p v-if="lastUpdate" class="last-update">{{ lan == "en" ? "Last update: " : "最后更新：" }}{{ lastUpdate }}</p>
+    <p v-if="lastUpdate" class="last-update">{{ lan == "en" ? "Last updated: " : "最后更新：" }}{{ lastUpdate }}</p>
   </div>
 
   <div class="hidden-container">
@@ -885,11 +885,6 @@
   select:focus {
       cursor: auto;
       border-color: #008cff
-  }
-
-  .last-update {
-    margin-top: .5em;
-    font-weight: bold;
   }
 
   .italic {

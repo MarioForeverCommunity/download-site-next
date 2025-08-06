@@ -1,6 +1,10 @@
 <script setup>
     import ClipboardButton from "../components/ButtonClipboard.vue";
     import DownloadButton from "../components/ButtonDownload.vue"
+    
+    defineProps({
+        lastUpdateZh: String
+    });
 </script>
 
 本页面汇总了原版 Mario Forever 绝大部分版本的资源链接，同时提供最新版 Mario Forever Remake 下载链接。如有链接失效，[你可以在社区反馈专帖进行反馈](https://www.marioforever.net/thread-1635-1-1.html)。
@@ -13,6 +17,8 @@
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
 
 欢迎加入 Mario Forever 游戏资源群，群号：832497462
+
+<p v-if="lastUpdateZh" class="last-update" style="font-weight: bold;">最后更新：{{ lastUpdateZh }}</p>
 
 ## Mario Forever 发展史
 
@@ -60,10 +66,13 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.03）共计 20 多�
 | v6.01 | 2013-05-09 | ★☆  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%206.01.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%206.01.7z" lan="zh"/> |
 | v6.1 | 2015-12-02 | ★   |     | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%206.1.rar" lan="zh"/> |
 | v6.11 | 2016-08-12 | ★★  |     | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%206.11.rar" lan="zh"/> |
-| v7.01 Beta | 2017-10-22 | ☆   | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.01.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.01.7z" lan="zh"/> |
-| v7.011 Beta | 2017-10-24 | ☆   | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.011.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.011.7z" lan="zh"/> |
-| v7.02 Beta | 2017-10-26 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.02.7z" lan="zh"/> |
-| v7.02_31 (v7.03) | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.03.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.03.7z" lan="zh"/> |
+| v7.01 Beta | 2017-10-22 | ☆   | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.01%20Beta.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.01%20Beta.7z" lan="zh"/> |
+| v7.011 Beta | 2017-10-25 | ☆   | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.011%20Beta.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.011%20Beta.7z" lan="zh"/> |
+| v7.02_10 Beta | 2017-10-25 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_10%20Beta.exe" lan="zh"/> |     |
+| v7.02_11 Beta | 2017-10-26 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_11%20Beta.exe" lan="zh"/> |     |
+| v7.02_13 Beta | 2017-10-26 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_13%20Beta.exe" lan="zh"/> |     |
+| v7.02_15 Beta | 2017-10-29 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_15%20Beta.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.02_15%20Beta.7z" lan="zh"/> |
+| v7.02_31 Beta | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_31%20Beta.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.02_31%20Beta.7z" lan="zh"/> |
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20Edition.7z" lan="zh"/> |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance%20v4.41.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20v4.41.7z" lan="zh"/> |
 </div>
