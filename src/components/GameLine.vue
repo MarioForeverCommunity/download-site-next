@@ -4,7 +4,7 @@
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
-  defineProps({
+  const props = defineProps({
     game: {
       type: Object,
       required: true
@@ -14,7 +14,19 @@
     }
   });
 
-  defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip']);
+
+
+  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion']);
+
+  const selectVersion = (ver) => {
+    // 通过emit事件通知父组件更新版本信息
+    emit('selectVersion', {
+      ...props.game,
+      currentVer: parseVer(ver),
+      currentVerStr: Object.keys(ver)[0],
+      currentVerStrAlt: parseVer(ver).ver_alt
+    });
+  };
 
 </script>
 
@@ -78,7 +90,7 @@
       <div :class="game.ver.length > 1 ? 'dropdown' : ''">
         <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
         <div v-if="game.ver.length > 1" class="dropdown-content">
-          <div v-for="ver in game.ver" :key="Object.keys(ver)[0]" class="dropdown-item" @click="$emit('selectGame', {...game, currentVer: parseVer(ver), currentVerStr: Object.keys(ver)[0], currentVerStrAlt: parseVer(ver).ver_alt})">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
+          <div v-for="ver in game.ver" :key="Object.keys(ver)[0]" class="dropdown-item" @click="selectVersion(ver)">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
         </div>
       </div>
     </div>

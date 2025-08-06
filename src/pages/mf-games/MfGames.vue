@@ -592,12 +592,12 @@
   <GameLineHeader v-if="wideScreen && displayMode === 'line'" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen && displayMode === 'line'">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameLine :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameCard :game="game" :lan="lan" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
 

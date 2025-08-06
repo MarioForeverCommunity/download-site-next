@@ -392,12 +392,12 @@
   <GameLineHeader v-if="wideScreen && displayMode === 'line'" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <template v-if="wideScreen && displayMode === 'line'">
     <div v-for="game in filteredGames" :key="game.game" v-memo="game.game">
-      <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </template>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="game in filteredGames" :key="game.game" v-memo="[game.game, 'zh']">
-      <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
+      <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)"/>
     </div>
   </div>
 
