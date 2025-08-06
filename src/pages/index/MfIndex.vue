@@ -20,7 +20,7 @@
   // 获取中文版最后更新时间
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
     const date = new Date(response.data[0].commit.committer.date);
-    const options = { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
     lastUpdateZh.value = formattedDate;
   });
@@ -28,7 +28,7 @@
   // 获取英文版最后更新时间
   axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
     const date = new Date(response.data[0].commit.committer.date);
-    const options = { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
     lastUpdateEn.value = formattedDate;
   });
