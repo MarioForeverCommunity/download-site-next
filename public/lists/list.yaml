@@ -1,4 +1,21 @@
 ---
+- game: Just Another Completely Normal Mario Forever Fangame
+  game_alt:
+  author: Yoshi50Windows
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2025-08-06
+  source_url:
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/prbssowvvp7p493/JANMFF.exe/file
+  code:
+  download_url_alt:
+  file_name: JANMFF.exe
+  file_url:
 - game: Mario Forever Ridiculous Journey
   game_alt:
   alias:
