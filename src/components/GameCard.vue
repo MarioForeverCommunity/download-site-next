@@ -3,7 +3,6 @@
   import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
-  import LazyImage from "./LazyImage.vue";
 
   const props = defineProps({
     game: {
@@ -115,7 +114,7 @@
       <p v-if="lan == 'en' && game.category == 'mf' && game.description_en">{{ game.description_en }}</p>
     </div>
     <div class="game-image" v-if="getGameImage()">
-      <LazyImage :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
+      <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
     </div>
     <div class="last-line-padding">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
