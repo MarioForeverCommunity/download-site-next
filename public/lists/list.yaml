@@ -3138,7 +3138,7 @@
       download_url_alt:
       file_name: MF - Through The Rainbow v.2.5 (bug fixed).zip
       file_url:
-  - v2.5 bugfix:
+  - v2.5:
       ver_alt:
       date: 2023-08-13
       source_url: https://www.youtube.com/watch?v=cOm4qstreL0
@@ -5279,6 +5279,23 @@
   download_url_alt:
   file_name: Mario Forever Renaissance 残卷.zip
   file_url:
+- game: Mario Forever Unexplorated Worlds
+  game_alt:
+  author: Bullex
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v0.5
+  ver_alt:
+  date: 2023-06-03
+  source_url: https://www.youtube.com/watch?v=fLhHyRfvgt0
+  source_url_alt:
+  download_url: ~https://www.mediafire.com/file/2kagdvobeha9ivp/MF_UNEXPLORATED_WORLDS_0.5.zip/file
+  code:
+  download_url_alt:
+  file_name: MF UNEXPLORATED WORLDS 0.5.zip
+  file_url:
 - game: Mario Forever World MT
   game_alt:
   author: MarioT02
@@ -5348,7 +5365,7 @@
       download_url_alt:
       file_name: MF - ORDINARY WORLDS VER 2.0.zip
       file_url:
-  - v2.0:
+  - v1.5:
       ver_alt:
       date: 2023-01-23
       source_url: https://www.youtube.com/watch?v=R4UOlFcDq1k
@@ -5358,7 +5375,7 @@
       download_url_alt:
       file_name: MF - ORDINARY WORLDS VER 1.5.zip
       file_url:
-  - v2.0:
+  - v1.0:
       ver_alt:
       date: 2023-01-01
       source_url: https://www.youtube.com/watch?v=Nt5aSYHZ--U
