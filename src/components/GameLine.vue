@@ -1,8 +1,9 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon } from "./icons/Icons.js";
+  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, ImageIcon, InfoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
+  import LazyImage from "./LazyImage.vue";
 
   const props = defineProps({
     game: {
@@ -102,7 +103,7 @@
         <ImageIcon class="icon image-icon"></ImageIcon>
         <template #popper>
           <div class="image-preview">
-            <img :src="getImageUrl()" :alt="getName(game, lan)" />
+            <LazyImage :src="getImageUrl()" :alt="getName(game, lan)" />
           </div>
         </template>
       </Tooltip>
