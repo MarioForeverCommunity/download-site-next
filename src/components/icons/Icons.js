@@ -7,6 +7,7 @@ import ImageIcon from "./IconImage.vue";
 import InfoIcon from "./IconInfo.vue";
 import LinkIcon from "./IconLink.vue";
 import ListIcon from "./IconList.vue";
+import QuestionIcon from "./IconQuestion.vue";
 import RepackIcon from "./IconRepack.vue";
 import SortUpIcon from "./IconSortUp.vue";
 import SortDownIcon from "./IconSortDown.vue";
@@ -26,6 +27,7 @@ export {
     InfoIcon,
     LinkIcon,
     ListIcon,
+    QuestionIcon,
     RepackIcon,
     SortUpIcon,
     SortDownIcon,

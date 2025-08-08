@@ -13,7 +13,7 @@
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
+  import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
   import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
@@ -434,8 +434,10 @@
   // Get window width.
 
   const wideScreen = ref(window.innerWidth >= 1100);
+  const isMobile = ref(window.innerWidth <= 480);
   window.addEventListener('resize', () => {
     wideScreen.value = window.innerWidth >= 1100;
+    isMobile.value = window.innerWidth <= 480;
   })
 
   // Display mode toggle (line/card)
@@ -494,6 +496,28 @@
   {
     middleware: [flip(), shift(), offset(10)],
   });
+
+  // 根据文件名判断tooltip类型
+  function getTooltipType(download) {
+    if (!download || !download.currentVer || !download.currentVer.file_name) {
+      return 'archive'; // 默认为压缩包
+    }
+    
+    const fileName = download.currentVer.file_name.toLowerCase();
+    
+    // 检查是否包含安装相关关键词
+    if (fileName.includes('install') || fileName.includes('setup') || fileName.includes('安装')) {
+      return 'installer';
+    }
+    
+    // 检查是否为exe文件
+    if (fileName.endsWith('.exe')) {
+      return 'exe';
+    }
+    
+    // 默认为压缩包
+    return 'archive';
+  }
 
 </script>
 
@@ -631,6 +655,30 @@
       <div class="modal-content" @click.stop="">
         <div>
           {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedDownload, lan) }} {{ lan == 'en' && selectedDownload.currentVerStrAlt ? selectedDownload.currentVerStrAlt : selectedDownload.currentVerStr }}
+          <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;"/>
+            <template #popper>
+              <span v-if="isMobile" style="text-align: left; display: block;">
+                您当前正在使用手机浏览本页面。本作品为电脑平台设计，通常无法在手机上直接运行。<br>
+                如需游玩，请将下载的文件传输至电脑并在电脑上操作。
+              </span>
+              <template v-else>
+                <span v-if="getTooltipType(selectedDownload) === 'installer'" style="text-align: left; display: block;">
+                  本作品以安装程序形式提供，需运行安装程序完成安装，建议选择非系统盘作为安装路径。<br>
+                  安装完成后，打开桌面快捷方式即可启动游戏。
+                </span>
+                <span v-else-if="getTooltipType(selectedDownload) === 'exe'" style="text-align: left; display: block;">
+                  本作品为可执行文件（.exe），可以直接打开运行。<br>
+                  建议将其放在一个独立文件夹中，避免与其他作品的文件混合存放，不要将文件放在桌面。
+                </span>
+                <span v-else style="text-align: left; display: block;">
+                  本作品以压缩包形式提供，需使用解压软件（如 7-Zip）解压。<br>
+                  请将所有文件解压至一个单独文件夹，避免与其他作品的文件混合存放，不要将文件放在桌面。<br>
+                  解压完成后，打开生成的 .exe 文件即可启动游戏。
+                </span>
+              </template>
+            </template>
+          </Tooltip>
         </div>
         <div v-if="selectedDownload.type == 'repacked'" class="italic">{{ lan == "en" ? `Repacked by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}</div>
         <div class="button-line">
@@ -946,7 +994,7 @@
     width: max-content;
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
-    z-index: 1;
+    z-index: 3;
   }
 
 </style>
