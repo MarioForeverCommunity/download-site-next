@@ -11,15 +11,24 @@ export const siteVersion = `v${packageJson.version}`;
 
 export const topBar = [
   {
+    "link" : "https://discord.com/invite/pfnbfwRhUH",
+    "name" : "Discord",
+    "name_alt" : "Discord",
+    "show_zh" : false,
+    "show_en" : true
+
+  },
+  {
     "link" : "https://www.marioforever.net/",
     "name" : "社区",
-    "name_alt" : "CN Community",
+    "name_alt" : "Forum (CN)",
     "show_en" : true
   },
   {
     "link" : "https://file.marioforever.net/",
     "name" : "资源站",
-    "show_en" : false
+    "name_alt" : "Files",
+    "show_en" : true
   },
   {
     "link" : "https://wiki.marioforever.net/",
