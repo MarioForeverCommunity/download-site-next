@@ -136,13 +136,17 @@
         var ver = verRaw[Object.keys(verRaw)[0]];
         if (!ver.file_url) {
           if (ver.file_name) {
-            if (entry.type == "chinese") {
+            // 检查是否为APK文件，如果是则使用统一的安卓游戏路径
+            if (ver.file_name.toLowerCase().endsWith('.apk')) {
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${ver.file_name}`;
+            } else if (entry.type == "chinese") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
-            } if (entry.type == "repacked") {
+            } else if (entry.type == "repacked") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
-            } if (entry.type == "international") {
+            } else if (entry.type == "international") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
             }
@@ -153,13 +157,17 @@
         }
         if (!ver.data_file_url) {
           if (ver.data_file_name) {
-            if (entry.type == "chinese") {
+            // 检查是否为APK相关的数据文件，如果是则使用统一的安卓游戏路径
+            if (ver.data_file_name.toLowerCase().endsWith('.apk') || ver.file_name?.toLowerCase().endsWith('.apk')) {
+              ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${ver.data_file_name}`;
+              ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${ver.data_file_name}`;
+            } else if (entry.type == "chinese") {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
-            } if (entry.type == "repacked") {
+            } else if (entry.type == "repacked") {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.data_file_name}`;
-            } if (entry.type == "international") {
+            } else if (entry.type == "international") {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.data_file_name}`;
             }
@@ -515,6 +523,10 @@
       return 'exe';
     }
     
+    if (fileName.endsWith('.apk')) {
+      return 'apk';
+    }
+    
     // 默认为压缩包
     return 'archive';
   }
@@ -658,25 +670,33 @@
           <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
             <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;"/>
             <template #popper>
-              <span v-if="isMobile" style="text-align: left; display: block;">
-                您当前正在使用手机浏览本页面。本作品为电脑平台设计，通常无法在手机上直接运行。<br>
-                如需游玩，请将下载的文件传输至电脑并在电脑上操作。
-              </span>
-              <template v-else>
-                <span v-if="getTooltipType(selectedDownload) === 'installer'" style="text-align: left; display: block;">
-                  本作品以安装程序形式提供，需运行安装程序完成安装，建议选择非系统盘作为安装路径。<br>
-                  安装完成后，打开桌面快捷方式即可启动游戏。
-                </span>
-                <span v-else-if="getTooltipType(selectedDownload) === 'exe'" style="text-align: left; display: block;">
-                  本作品为可执行文件（.exe），可以直接打开运行。<br>
-                  建议将其放在一个独立文件夹中，避免与其他作品的文件混合存放，不要将文件放在桌面。
-                </span>
-                <span v-else style="text-align: left; display: block;">
-                  本作品以压缩包形式提供，需使用解压软件（如 7-Zip）解压。<br>
-                  请将所有文件解压至一个单独文件夹，避免与其他作品的文件混合存放，不要将文件放在桌面。<br>
-                  解压完成后，打开生成的 .exe 文件即可启动游戏。
-                </span>
-              </template>
+              <span v-if="isMobile && getTooltipType(selectedDownload) === 'apk'" style="text-align: left; display: block;">
+                   本作品为 .apk 文件，可在安卓手机上直接安装运行。<br>
+                   安装前请确保设备允许安装“未知来源”的应用。
+                 </span>
+                 <span v-else-if="isMobile" style="text-align: left; display: block;">
+                   您当前正在使用手机浏览本页面。本作品为电脑平台设计，通常无法在手机上直接运行。<br>
+                   如需游玩，请将下载的文件传输至电脑并在电脑上操作。
+                 </span>
+                <template v-else>
+                  <span v-if="getTooltipType(selectedDownload) === 'installer'" style="text-align: left; display: block;">
+                    本作品以安装程序形式提供，需运行安装程序完成安装，建议选择非系统盘作为安装路径。<br>
+                    安装完成后，打开桌面快捷方式即可启动游戏。
+                  </span>
+                  <span v-else-if="getTooltipType(selectedDownload) === 'exe'" style="text-align: left; display: block;">
+                    本作品为可执行文件（.exe），可以直接打开运行。<br>
+                    建议将其放在一个独立文件夹中，避免与其他作品的文件混合存放，不要将文件放在桌面。
+                  </span>
+                  <span v-else-if="getTooltipType(selectedDownload) === 'apk'" style="text-align: left; display: block;">
+                    本作品为 .apk 文件，为安卓设备专用，电脑无法直接运行。
+                    请在安卓设备上安装后游玩。
+                  </span>
+                  <span v-else style="text-align: left; display: block;">
+                    本作品以压缩包形式提供，需使用解压软件（如 7-Zip）解压。<br>
+                    请将所有文件解压至一个单独文件夹，避免与其他作品的文件混合存放，不要将文件放在桌面。<br>
+                    解压完成后，打开生成的 .exe 文件即可启动游戏。
+                  </span>
+                </template>
             </template>
           </Tooltip>
         </div>

@@ -1,6 +1,6 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
+  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
@@ -37,6 +37,13 @@
 
   const getGameImage = () => {
     return props.getGameImage ? props.getGameImage(props.game) : null;
+  };
+
+  const hasApkFile = () => {
+    if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
+      return false;
+    }
+    return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
   };
 
   const handleSourceClick = (event) => {
@@ -88,6 +95,10 @@
       <Tooltip v-if="game.category === 'mw' && game.has_bgm">
         <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
         <template #popper>需替换或使用自定义 BGM</template>
+      </Tooltip>
+      <Tooltip v-if="hasApkFile()">
+        <ApkIcon class="icon apk-icon"></ApkIcon>
+        <template #popper>{{ lan === 'en' ? 'Android' : '安卓游戏' }}</template>
       </Tooltip>
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">

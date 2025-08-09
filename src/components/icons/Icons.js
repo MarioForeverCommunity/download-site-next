@@ -1,3 +1,4 @@
+import ApkIcon from "./IconApk.vue";
 import ArrowIcon from "./IconArrow.vue";
 import ClipboardIcon from "./IconClipboard.vue";
 import DownloadIcon from "./IconDownload.vue";
@@ -18,6 +19,7 @@ import WikiIcon from "./IconWiki.vue";
 import YoutubeIcon from "./IconYoutube.vue";
 
 export {
+    ApkIcon,
     ArrowIcon,
     ClipboardIcon,
     DownloadIcon,

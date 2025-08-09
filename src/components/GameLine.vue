@@ -1,6 +1,6 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import { ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon } from "./icons/Icons.js";
+  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
@@ -35,6 +35,13 @@
   const getImageUrl = () => {
     if (!props.getGameImage) return null;
     return props.getGameImage(props.game);
+  };
+
+  const hasApkFile = () => {
+    if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
+      return false;
+    }
+    return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
   };
 
   const handleSourceClick = (event) => {
@@ -97,6 +104,10 @@
       <Tooltip v-if="game.category == 'mw' && game.description">
         <InfoIcon class="icon button-shift"></InfoIcon>
         <template #popper>{{ game.description }}</template>
+      </Tooltip>
+      <Tooltip v-if="hasApkFile()">
+        <ApkIcon class="icon apk-icon"></ApkIcon>
+        <template #popper>{{ lan === 'en' ? 'Android' : '安卓游戏' }}</template>
       </Tooltip>
       <Tooltip v-if="getImageUrl()">
         <ImageIcon class="icon image-icon"></ImageIcon>
