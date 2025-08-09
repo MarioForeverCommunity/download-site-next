@@ -738,6 +738,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Revival
+  image: MFRevival.png
   ver: v1.0
   ver_alt:
   date: 2024-12-08
@@ -2292,6 +2293,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MMCE.png
   ver:
   - v0.2:
       current: false
@@ -8534,11 +8536,13 @@
   game_alt:
   alias:
   - 4QW
+  - 第四象限世界
   author: 桜沫湲
   author_alt: Sakura Mowan
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: MF4QW.png
   ver:
   - v1.8.4 build 3494:
       ver_alt:
@@ -12925,6 +12929,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: MFXD.png
   ver:
   - v1.5:
       ver_alt:
