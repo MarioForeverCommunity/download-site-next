@@ -688,7 +688,7 @@
                     建议将其放在一个独立文件夹中，避免与其他作品的文件混合存放，不要将文件放在桌面。
                   </span>
                   <span v-else-if="getTooltipType(selectedDownload) === 'apk'" style="text-align: left; display: block;">
-                    本作品为 .apk 文件，为安卓设备专用，电脑无法直接运行。
+                    本作品为 .apk 文件，为安卓设备专用，电脑无法直接运行。<br>
                     请在安卓设备上安装后游玩。
                   </span>
                   <span v-else style="text-align: left; display: block;">
