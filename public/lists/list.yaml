@@ -25,6 +25,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: MFRJ.png
   ver:
   - v1.0 Fix9:
       ver_alt:
@@ -757,6 +758,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Inversive.png
   ver:
   - Retro Recall:
       ver_alt:
@@ -3225,6 +3227,7 @@
   alias:
   - LNY2022
   - LNY 2022
+  - LNY22
   author: Forever Team
   author_alt:
   type: international
@@ -3232,6 +3235,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=544483
+  image: LNY2022.png
   ver:
   - v3.0:
       ver_alt:
@@ -3375,12 +3379,14 @@
   alias:
   - CNY2023
   - CNY 2023
+  - CNY23
   author: MF community
   author_alt:
   author_alias: Phantom Sapphire
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: CNY23.png
   ver:
   - v1.5.1:
       ver_alt:
@@ -5721,6 +5727,7 @@
   wiki_en_url:
   video_zh:
   - WSW 直播回放: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48411
+  image: MITF.png
   ver:
   - v0.6.3 Fix1:
       ver_alt:
@@ -6803,6 +6810,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFAS3.png
   ver: v1.0.5
   ver_alt:
   date: 2022-10-08
@@ -7339,11 +7347,14 @@
   file_url:
 - game: 精确平台游戏 The Frontiers
   game_alt: The Frontiers
+  alias:
+  - TF
   author: zqh——123
   author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: TheFrontiers.png
   ver: v0.5.0
   ver_alt:
   date: 2022-08-08
@@ -7428,6 +7439,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: POMF.png
   ver:
   ver_alt:
   date: 2022-07-25
@@ -7681,6 +7693,7 @@
   wiki_en_url:
   video_zh:
   - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293308
+  image: PKMF3.png
   ver:
   ver_alt:
   date: 2022-06-28
@@ -7756,6 +7769,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_Old-blood_Memories
   wiki_en_url:
+  image: OBM.png
   ver:
   - v5.7:
       ver_alt:
@@ -8958,6 +8972,7 @@
   alias:
   - CNY2022
   - CNY 2022
+  - CNY22
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
@@ -9115,6 +9130,9 @@
       file_url:
 - game: 'Mario Forever: Vietnamese Letter Worlds Series'
   game_alt:
+  alias:
+  - VNLWS
+  - 越南字母世界
   author: JoséLPK.CF&MF
   author_alt:
   type: international
@@ -9251,6 +9269,7 @@
   alias:
   - LNY2021
   - LNY 2021
+  - LNY21
   author: Forever Team
   author_alt:
   type: international
@@ -9258,6 +9277,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=347766
+  image: LNY2021.png
   ver: v2.0
   ver_alt:
   date: 2021-09-12
@@ -9393,6 +9413,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1m84y1b7P9/
+  image: MFUA.png
   ver:
   - Fix:
       ver_alt:
@@ -10453,12 +10474,14 @@
   - Mario Forever Community New Year 2021 Special
   - CNY2021
   - CNY 2021
+  - CNY21
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: CNY21.png
   ver:
   - v2.05:
       ver_alt:
@@ -10773,7 +10796,7 @@
   type: international
   wiki_zh_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Remake
-  image: MFR35_1.png
+  image: MFR40.png
   ver:
   - v4.02 (D3D9):
       ver_alt:
@@ -10840,6 +10863,7 @@
       file_url:
       data_file_name: data_mfr37.rar
       data_file_url:
+      image: MFR35_1.png
   - v3.5:
       ver_alt:
       date: 2017-09-07
@@ -10853,6 +10877,7 @@
       file_url:
       data_file_name: data_mfr35.rar
       data_file_url:
+      image: MFR35_1.png
   - v3.2:
       ver_alt:
       date: 2016-10-07
@@ -11142,6 +11167,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Halloween.png
   ver:
   - v1.2:
       ver_alt:
@@ -11321,6 +11347,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: PKMF2.png
   ver: Fix1
   ver_alt:
   date: 2020-09-23
@@ -11553,6 +11580,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: ABCD.png
   ver:
   ver_alt:
   date: 2020-08-29
@@ -12823,6 +12851,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: LNY2020.png
   ver: v1.0
   ver_alt:
   date: 2020-01-25
@@ -12951,7 +12980,6 @@
   game_alt:
   alias:
   - MFSZ
-  - SZ
   - 拯救真强悍
   author: zqh——123
   author_alt:
@@ -12960,6 +12988,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48764
+  image: MFSZ.png
   ver:
   ver_alt:
   date: 2019-12-07
@@ -13697,6 +13726,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Musicale.png
   ver:
   ver_alt:
   date: 2019-01-06
@@ -14521,6 +14551,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: TTM.png
   ver:
   ver_alt:
   date: 2018-02-22
@@ -14574,6 +14605,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: MFAnotherSpace.png
   ver:
   ver_alt:
   date: 2018-02-21
@@ -14915,6 +14947,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293275
+  image: MFDE.png
   ver:
   ver_alt:
   date: 2018-01-13
@@ -15021,6 +15054,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E5%90%A7%E5%8D%81%E5%91%A8%E5%B9%B4
   wiki_en_url:
+  image: 永吧十周年.png
   ver:
   - v2.0:
       ver_alt:
@@ -15440,6 +15474,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
+  image: MFAER.png
   ver:
   - v1.5:
       ver_alt:
@@ -15579,6 +15614,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Christmas_Special
   wiki_en_url:
+  image: MFCS.png
   ver:
   ver_alt:
   date: 2017-01-06
@@ -16446,6 +16482,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mysterious_Island
   wiki_en_url:
+  image: MRI.png
   ver:
   - v1.2:
       ver_alt:
@@ -17148,6 +17185,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7yU/
+  image: SMF2014.png
   ver:
   - v1.25:
       ver_alt:
@@ -17475,6 +17513,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: bzby.png
   ver:
   ver_alt:
   date: 2014-08-12
