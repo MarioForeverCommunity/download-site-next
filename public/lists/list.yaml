@@ -1,11 +1,15 @@
 ---
 - game: Just Another Completely Normal Mario Forever Fangame
   game_alt:
+  alias:
+  - JANMFF
+  - JACNMFF
   author: Yoshi50Windows
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: JANMFF.png
   ver:
   ver_alt:
   date: 2025-08-06
@@ -124,6 +128,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Beetroot World.png
   ver: v1.0
   ver_alt:
   date: 2025-08-03
@@ -226,6 +231,7 @@
       download_url_alt:
       file_name: MWMLWS - World -B.zip
       file_url:
+      image: MWMLWSB.png
   - World -A:
       current: true
       ver_alt:
@@ -237,6 +243,7 @@
       download_url_alt:
       file_name: MWMLWS - World -A.zip
       file_url:
+      image: MWMLWSA.png
 - game: Cube IV
   game_alt:
   author: 八雲桐
@@ -307,11 +314,14 @@
   file_url:
 - game: Mario Forever Winter Memories
   game_alt:
+  alias:
+  - MFWM.png
   author: JJ带我飞
   author_alt: JJ
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: Mario Forever Winter Memories.png
   ver:
   ver_alt:
   date: 2025-06-07
@@ -377,6 +387,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Mario Forever The Epic Voyage.png
   ver: v1.0.1
   ver_alt:
   date: 2025-03-30
@@ -390,12 +401,13 @@
 - game: MARIO FOREVER ONEGAI,MY FANTASY 20TH ANNIVERSARY EDITION
   game_alt:
   alias:
-  - MFOMF
+  - MFOMF20th
   author: Dr.Chaos Kirby
   author_alt:
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Onegai,My_Fantasy
   wiki_en_url:
+  image: MFOMF20th.png
   ver:
   - Fix3:
       ver_alt:
@@ -1051,6 +1063,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: AMFR.png
   ver:
   - v1.0.1:
       ver_alt:
@@ -1111,11 +1124,14 @@
   file_url:
 - game: Mario Forever Turbo Worlds
   game_alt:
+  alias:
+  - MFTW
   author: Turbo 42
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Mario Forever Turbo Worlds.png
   ver:
   - v1.2.9:
       ver_alt:
@@ -1154,7 +1170,7 @@
   - Mario Forever 2 A Fabulous Space
   - MF2 A Fabulous Space
   author: gurcd
-  author_alt: CD
+  author_alt:
   type: repacked
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_A_Fabulous_Space
   wiki_en_url:
@@ -1482,12 +1498,13 @@
   file_name: 不能截图的关卡.7z
   file_url:
 - game: 永远的马里奥：蘑菇岛——秋的记忆
-  game_alt: 'Mario Forever: Mushroom Island - Autumn Memory'
+  game_alt: 'Mario Forever: Mushroom Island - Memory of Autumn'
   author: 面灵气酱
   author_alt: MLQJ
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: 秋的记忆.png
   ver:
   - v1.5.2:
       ver_alt:
@@ -2428,6 +2445,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFEWS.png
   ver:
   - v2.5.2:
       ver_alt:
@@ -4351,11 +4369,14 @@
       file_url:
 - game: Mario Forever Fabulous Letter Worlds Series
   game_alt:
+  alias:
+  - MFFLWS
   author: Bullex
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFFLWS.png
   ver:
   - v1.5.1:
       ver_alt:
@@ -7182,6 +7203,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=552287
+  image: 冬暖Demo.png
   ver:
   - Trial Version Fix 2:
       ver_alt:
@@ -7487,7 +7509,7 @@
   - Mario Forever 2 A Fabulous Space
   - MF2 A Fabulous Space
   author: gurcd
-  author_alt: CD
+  author_alt:
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_A_Fabulous_Space
   wiki_en_url:
@@ -10998,6 +11020,26 @@
   download_url_alt:
   file_name: MF - Santa is missing v1.0.rar
   file_url:
+- game: Mario Forever The Elite Voyage
+  game_alt:
+  alias:
+  - MFTEV
+  author: gurcd
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  image: MFTEV.png
+  ver: v0.3.1 Bugfix
+  ver_alt:
+  date: 2021-01-03
+  source_url:
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: MFTEV_Ver0.3.1_bugfix.rar
+  file_url:
 - game: MARIO FOREVER - KATAKANA WORLDS
   game_alt:
   author: Xykijun
@@ -12925,7 +12967,7 @@
   alias:
   - MFXD
   author: gurcd
-  author_alt: CD
+  author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -15040,6 +15082,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Revolution
+  image: MFRev.png
   ver: v0.0.0.1
   ver_alt:
   date: 2017-10-01
