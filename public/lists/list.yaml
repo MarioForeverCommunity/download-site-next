@@ -1163,36 +1163,6 @@
       download_url_alt:
       file_name: Mario Forever Turbo Worlds/v1.2.5/MFTW v1.2.rar
       file_url:
-- game: Mario Forever - A Fabulous Space
-  game_alt:
-  alias:
-  - AFS
-  - Mario Forever 2 A Fabulous Space
-  - MF2 A Fabulous Space
-  author: gurcd
-  author_alt:
-  type: repacked
-  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_A_Fabulous_Space
-  wiki_en_url:
-  ver:
-  - v3.0 (收藏版):
-      ver_alt: v3.0 (withdrawn)
-      date: 2017-06-26
-      repacker: 克洛伊Prime
-      repacker_alt: Koopa4
-      source_url:
-      source_url_alt:
-      file_name: MF A Fabulous Space V3.0（收藏版）.7z
-      file_url:
-  - v1.2:
-      ver_alt:
-      date: 2016-01-30
-      repacker: 戴维宁定理YST
-      repacker_alt: David YST
-      source_url: https://archive.marioforever.net/post/4330826050.html
-      source_url_alt:
-      file_name: MF2 A Fabulous Space V1.2.zip
-      file_url:
 - game: 空の檻
   game_alt:
   alias:
@@ -7567,6 +7537,15 @@
       download_url_alt:
       file_name: MF A Fabulous Space V3.0.rar
       file_url:
+  - v3.0 (收藏版):
+      ver_alt: v3.0 (withdrawn)
+      date: 2017-06-26
+      repacker: 克洛伊Prime
+      repacker_alt: Koopa4
+      source_url:
+      source_url_alt:
+      file_name: MF A Fabulous Space V3.0（收藏版）.7z
+      file_url:
   - v2.0.1:
       ver_alt:
       date: 2016-07-21
@@ -7586,6 +7565,15 @@
       code:
       download_url_alt: http://www.mediafire.com/download/1z47ts6gcsn35k2/Install_MF2_-_A_Fabulous_Space_V2.0.exe
       file_name: Install MF2 - A Fabulous Space V2.0.exe
+      file_url:
+  - v1.2:
+      ver_alt:
+      date: 2016-01-30
+      repacker: 戴维宁定理YST
+      repacker_alt: David YST
+      source_url: https://archive.marioforever.net/post/4330826050.html
+      source_url_alt:
+      file_name: MF2 A Fabulous Space V1.2.zip
       file_url:
   - Easy Mode:
       ver_alt:

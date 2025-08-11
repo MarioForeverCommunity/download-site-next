@@ -43,11 +43,11 @@ The Mario Forever game list is written in yaml (a data format that is easy for h
   - AFS
   author: gurcd
   author_alt: CD
-  type: repacked
+  type: chinese
   wiki_zh_url:
   wiki_en_url:
   ver: v3.0
-  ver_alt: v3.0 (withdrawn)
+  ver_alt: v3.0
   date: 2017-06-26
   source_url: https://some.website.com
   source_url_alt:
@@ -114,7 +114,7 @@ Below are the meanings of each field. Since the site includes both Chinese and E
 | `author_alias` | No | String | The name of the author used for file url (International games exclusive). |
 | `description_zh` | No | String | The description of the game on the Chinese page (if there is content that needs to be explained on the list page). |
 | `description_en` | No | String | The description of the game on the English page (if there is content that needs to be explained on the list page). |
-| `type` | **Yes** | String | Supports three fields for filtering function retrieval: <br>`chinese`: Games made by Chinese players. <br>`international`: Games made by international Mario Forever players. <br>`repacked`: Games that are originally published in either Chinese or international community, with the original download link invalid, and repackaged and uploaded by players other than the author. Note that there are special fields that need to be filled for this type of game. |
+| `type` | **Yes** | String | Supports three fields for filtering function retrieval: <br>`chinese`: Games made by Chinese players. <br>`international`: Games made by international Mario Forever players. |
 | `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
 | `wiki_en_url` | No | String | The link of the game in the English Mario Forever Wiki. |
 | `video_zh` | No | Dictionary List | Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
@@ -132,7 +132,7 @@ The following fields are for a specific version. For single-version games, pleas
 | `download_url` | No | String | The **official download link** provided by the author. |
 | `code` | No | String | If the game's download page requires a password, please fill it in here. |
 | `download_url_alt` | No | String | If the game provides download links on both Chinese and English websites, please fill in the Chinese download link in download_url and the English download link in download_url_alt, otherwise only fill in the download_url field. |
-| `repacker` | No | String | If `type` is `repacked`, fill in the repackager of the game's file. |
+| `repacker` | No | String | If the game is a repacked version, fill in the repackager of the game's file. |
 | `repacker_alt` | No | String | The English name of the `repacker` (if the repackager's name is in Chinese). |
 | `file_name` | No | String | The file name of the game in **file.marioforever.net**. Usually filled in by the file.marioforever.net maintainer. |
 | `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |

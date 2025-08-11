@@ -77,10 +77,10 @@
         <span class="dot en-dot"><span class="en-text">{{ lan === 'en' ? 'INT' : '国外' }}</span></span>
         <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
       </Tooltip>
-      <Tooltip v-if="game.type == 'repacked'">
+      <Tooltip v-if="game.currentVer && game.currentVer.repacker">
         <RepackIcon class="icon"></RepackIcon>
         <template #popper>
-          {{ lan == "en" ? "Repacked Game" : "重打包作品" }}
+          {{ lan == "en" ? "Repacked Game" : "重打包版本" }}
         </template>
       </Tooltip>
       <!-- MW自带标识 -->
@@ -226,10 +226,6 @@
 
   .icon.invalid{
     fill: #ccc;
-  }
-
-  .icon.repack-icon {
-    margin-left: 0 !important;
   }
 
   .button {

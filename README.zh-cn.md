@@ -42,11 +42,11 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
   - AFS
   author: gurcd
   author_alt: CD
-  type: repacked
+  type: chinese
   wiki_zh_url:
   wiki_en_url:
   ver: v3.0
-  ver_alt: v3.0 (withdrawn)
+  ver_alt: v3.0
   date: 2017-06-26
   source_url: https://some.website.com
   source_url_alt:
@@ -113,7 +113,7 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
 | `author_alias` | 否 | 字符串 | 仅对国外作品生效，用于替代资源站链接的作者名称。 |
 | `description_zh` | 否 | 字符串 | 作品在中文页面中的描述（如果有内容需要在列表网页中说明）。 |
 | `description_en` | 否 | 字符串 | 作品在英文页面中的描述（如果有内容需要在列表网页中说明）。 |
-| `type` | **是** | 字符串 | 支持三种字段，用于过滤功能检索：<br>`chinese` 由中文 Mario Forever 社区用户制作、发布在中文页面的作品。<br>`international` 由国际 Mario Forever 社区用户制作的作品。<br>`repacked` 无论发布于中文或国际社区的、原始下载链接失效、由其他用户整合打包上传的作品。请注意这类作品有特别需要填写的字段。 |
+| `type` | **是** | 字符串 | 支持两种字段，用于过滤功能检索：<br>`chinese` 由中文 Mario Forever 社区用户制作、发布在中文页面的作品。<br>`international` 由国际 Mario Forever 社区用户制作的作品。<br>`repacked` 无论发布于中文或国际社区的、原始下载链接失效、由其他用户整合打包上传的作品。请注意这类作品有特别需要填写的字段。 |
 | `wiki_zh_url` | 否 | 字符串 | 作品在中文 Mario Forever Wiki 中的链接。 |
 | `wiki_en_url` | 否 | 字符串 | 作品在英文 Mario Forever Wiki 中的链接。 |
 | `video_zh` | 否 | 字典列表 | 由其他玩家上传的、位于中文网页或主要语言为中文的、作品相关的视频（游玩视频、解说、二次创作等）。<br>有多个表项，每个表项请遵循 `- 视频标题: 视频链接` 的格式。 |
@@ -131,7 +131,7 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
 | `download_url` | 否 | 字符串 | 作者提供的**官方下载链接**。 |
 | `code` | 否 | 字符串 | 如作品的下载页需要密码，则在此处填写。 |
 | `download_url_alt` | 否 | 字符串 | 如果作品同时在中文和英文网站上提供下载链接，请在 `download_url` 填写中文下载链接，`download_url_alt` 填写英文下载链接。 |
-| `repacker` | 否 | 字符串 | 如果 `type` 是 `repacked`，则此处需填写该作品文件的打包者。 |
+| `repacker` | 否 | 字符串 | 如果版本为重打包，则此处需填写该作品文件的打包者。 |
 | `repacker_alt` | 否 | 字符串 | `repacker` 打包者的英文名（如果打包者名称为中文）。 |
 | `file_name` | 否 | 字符串 | 作品在**资源站**中的文件名。通常由资源站维护者进行填写。对于国外作品，现在此处一般无需添加 `old-versions` 前缀。 |
 | `file_url` | 否 | 字符串 | 作品在资源站中的完整链接。通常由资源站维护者进行填写。 |

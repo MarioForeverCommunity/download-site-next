@@ -59,35 +59,11 @@ definitions:
           enum:
             - chinese
             - international
-            - repacked
       required:
       - game
       - author
       - type
     - oneOf:
-      - allOf:
-        - "$ref": "#/definitions/VerSingle"
-        - properties:
-            type:
-              type: string
-              enum:
-                - repacked
-            repacker:
-              type: string
-            repacker_alt:
-              oneOf:
-              - type: 'null'
-          required:
-          - repacker
-      - properties:
-          type:
-            type: string
-            enum:
-              - repacked
-          ver:
-            "$ref": "#/definitions/VerRepacked"
-        required:
-        - ver
       - properties:
           type:
             type: string
@@ -170,6 +146,14 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
+      repacker:
+        anyOf:
+        - type: 'null'
+        - type: string
+      repacker_alt:
+        anyOf:
+        - type: 'null'
+        - type: string
     required:
     - date
     title: varObj
@@ -234,30 +218,3 @@ definitions:
     items:
       "$ref": "#/definitions/VerElement"
     title: VerMulti
-  VerRepacked:
-    type: array
-    items:
-      "$ref": "#/definitions/VerElementRepacked"
-    title: VerRepacked
-  VerElementRepacked:
-    type: object
-    patternProperties:
-      "^.*$":
-        "$ref": "#/definitions/VerObjRepacked"
-    required: []
-    title: VerElementRepacked
-  VerObjRepacked:
-    type: object
-    allOf:
-    - "$ref": "#/definitions/VerObj"
-    - properties:
-        repacker:
-          type: string
-        repacker_alt:
-          oneOf:
-          - type: 'null'
-          - type: string
-      required:
-      - repacker
-    unevaluatedProperties: false
-    title: VerObjRepacked

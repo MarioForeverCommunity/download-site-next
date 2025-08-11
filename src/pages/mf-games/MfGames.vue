@@ -140,12 +140,12 @@
             if (ver.file_name.toLowerCase().endsWith('.apk')) {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${ver.file_name}`;
+            } else if (ver.repacker) {
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
             } else if (entry.type == "chinese") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
-            } else if (entry.type == "repacked") {
-              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
-              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
             } else if (entry.type == "international") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
@@ -161,12 +161,12 @@
             if (ver.data_file_name.toLowerCase().endsWith('.apk') || ver.file_name?.toLowerCase().endsWith('.apk')) {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${ver.data_file_name}`;
+            } else if (ver.repacker) {
+              ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.data_file_name}`;
+              ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.data_file_name}`;
             } else if (entry.type == "chinese") {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
-            } else if (entry.type == "repacked") {
-              ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.data_file_name}`;
-              ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.data_file_name}`;
             } else if (entry.type == "international") {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.data_file_name}`;
@@ -285,7 +285,6 @@
     year : "",
     chinese : true,
     international : true,
-    repacked : true,
   });
 
   function clearFilter() {
@@ -293,7 +292,6 @@
     filter_option.value.year = "";
     filter_option.value.chinese = true;
     filter_option.value.international = true;
-    filter_option.value.repacked = true;
     // expandAllVersions.value = false;
   }
 
@@ -315,7 +313,6 @@
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && ((filter_option.value.chinese && a.type == "chinese")
       || (filter_option.value.international && a.type == "international")
-      || (filter_option.value.repacked && a.type == "repacked")
       || filter_option.value.force)
     );
     if (!expandAllVersions.value) {
@@ -367,7 +364,6 @@
           const typeVal = verObj.type || entry.type;
           const typeMatch = (filter_option.value.chinese && typeVal == "chinese")
             || (filter_option.value.international && typeVal == "international")
-            || (filter_option.value.repacked && typeVal == "repacked")
             || filter_option.value.force;
           // 国际作品旧版file_name前缀处理
           let patchedVerRaw = { ...verRaw };
@@ -567,24 +563,6 @@
           <label for="filterInternational">{{ lan == "en" ? "International" : "国外作品" }}</label>
         </div>
         <div class="inline-block">
-          <input v-model="filter_option.repacked" type="checkbox" id="filterRepacked">
-          <label for="filterRepacked">{{ lan == "en" ? "Repacked" : "重打包作品" }}</label>
-          <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <InfoIcon class="icon button-shift"></InfoIcon>
-            <template #popper>
-              <span style="text-align: left; display: block;">
-                重打包（Repacked）作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
-                <br>
-                重打包作品收录的原则是：<br>
-                1. 只收录原压缩包已失传的作品；<br>
-                2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
-                3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
-                4. 重打包的作品不应包含游玩过的存档文件。
-              </span>
-            </template>
-          </Tooltip>
-        </div>
-        <div class="inline-block">
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
           <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
@@ -700,7 +678,23 @@
             </template>
           </Tooltip>
         </div>
-        <div v-if="selectedDownload.type == 'repacked'" class="italic">{{ lan == "en" ? `Repacked by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}</div>
+        <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.repacker" class="italic">
+            {{ lan == "en" ? `Repacked by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}
+            <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+                <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;"/>
+                <template #popper>
+                <span style="text-align: left; display: block;">
+                    重打包作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
+                    <br>
+                    重打包作品收录的原则是：<br>
+                    1. 只收录原压缩包已失传的作品；<br>
+                    2. 作品内容（包括游戏本体、自带文档、BGM 等）不得被篡改；<br>
+                    3. 不影响游戏游玩的文件（BGM 除外）在保证不破坏游戏本体完整性的前提下可以缺失，但不得随意增删文件；<br>
+                    4. 重打包的作品不应包含游玩过的存档文件。
+                </span>
+                </template>
+            </Tooltip>
+        </div>
         <div class="button-line">
           <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && getResourceURL(selectedDownload, lan)" :href="getResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
           <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
