@@ -113,7 +113,7 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
 | `author_alias` | 否 | 字符串 | 仅对国外作品生效，用于替代资源站链接的作者名称。 |
 | `description_zh` | 否 | 字符串 | 作品在中文页面中的描述（如果有内容需要在列表网页中说明）。 |
 | `description_en` | 否 | 字符串 | 作品在英文页面中的描述（如果有内容需要在列表网页中说明）。 |
-| `type` | **是** | 字符串 | 支持两种字段，用于过滤功能检索：<br>`chinese` 由中文 Mario Forever 社区用户制作、发布在中文页面的作品。<br>`international` 由国际 Mario Forever 社区用户制作的作品。<br>`repacked` 无论发布于中文或国际社区的、原始下载链接失效、由其他用户整合打包上传的作品。请注意这类作品有特别需要填写的字段。 |
+| `type` | **是** | 字符串 | 支持两种字段，用于过滤功能检索：<br>`chinese` 由中文 Mario Forever 社区用户制作、发布在中文页面的作品。<br>`international` 由国际 Mario Forever 社区用户制作的作品。 |
 | `wiki_zh_url` | 否 | 字符串 | 作品在中文 Mario Forever Wiki 中的链接。 |
 | `wiki_en_url` | 否 | 字符串 | 作品在英文 Mario Forever Wiki 中的链接。 |
 | `video_zh` | 否 | 字典列表 | 由其他玩家上传的、位于中文网页或主要语言为中文的、作品相关的视频（游玩视频、解说、二次创作等）。<br>有多个表项，每个表项请遵循 `- 视频标题: 视频链接` 的格式。 |
