@@ -37,10 +37,6 @@ definitions:
         anyOf:
           - type: 'null'
           - type: string
-      alist:
-        anyOf:
-          - type: 'null'
-          - type: boolean
       has_bgm:
         anyOf:
           - type: 'null'

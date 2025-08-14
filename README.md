@@ -13,7 +13,7 @@ Special thanks to [Tomek839839](https://www.youtube.com/@Tomek839839) and [Class
 
 ### What's the difference from file.marioforever.net?
 
-Although file.marioforever.net also archives game resources and provides download links, it is limited by the [AList](https://github.com/alist-org/alist) mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about several games, such as release links, Wiki links, and related videos.
+Although file.marioforever.net also archives game resources and provides download links, it is limited by the [OpenList](github.com/OpenListTeam/OpenList) mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about several games, such as release links, Wiki links, and related videos.
 
 Moreover, the games in file.marioforever.net are uploaded and maintained by [Newlife2017](https://github.com/KHwang9883); in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of file.marioforever.net as well!
 
