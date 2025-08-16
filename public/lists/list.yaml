@@ -1,4 +1,34 @@
 ---
+- game: Mario Forever - World of Haste DX
+  game_alt:
+  author: 幽霊鬼yuureiki
+  author_alt: 
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v1.0 (Windows):
+      current: true
+      ver_alt:
+      date: 2025-08-16
+      source_url: https://www.marioforever.net/thread-3684-1-1.html
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/world_of_haste
+      code:
+      download_url_alt:
+      file_name: WoH_windows64_release.zip
+      file_url:
+  - v1.0 (Linux):
+      current: true
+      ver_alt:
+      date: 2025-08-16
+      source_url: https://www.marioforever.net/thread-3684-1-1.html
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/world_of_haste
+      code:
+      download_url_alt:
+      file_name: WoH_linux64_release.zip
+      file_url:
 - game: Just Another Completely Normal Mario Forever Fangame
   game_alt:
   alias:
@@ -11685,16 +11715,18 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.4
-  ver_alt:
-  date: 2020-08-11
-  source_url: https://marioforeverforum.boards.net/thread/969/multiverse-collab-looper-jue13-ddoomguy
-  source_url_alt:
-  download_url: https://mega.nz/file/9nRAQCgZ#-UnZEaDPwiXdvxzb9hQP21Xi0EKadt2icabbUU0egR4k
-  code:
-  download_url_alt:
-  file_name: MF_The_Multiverse_v1.4.zip
-  file_url:
+  ver:
+  - v1.4:
+      current: false
+      ver_alt:
+      date: 2020-08-11
+      source_url: https://marioforeverforum.boards.net/thread/969/multiverse-collab-looper-jue13-ddoomguy
+      source_url_alt:
+      download_url: https://mega.nz/file/9nRAQCgZ#-UnZEaDPwiXdvxzb9hQP21Xi0EKadt2icabbUU0egR4k
+      code:
+      download_url_alt:
+      file_name: MF_The_Multiverse_v1.4.zip
+      file_url:
 - game: Mario Craft Worlds
   game_alt:
   author: 烈火战神219
@@ -13187,6 +13219,7 @@
   wiki_en_url:
   ver:
   - v1.3:
+      current: false
       ver_alt:
       date: 2019-11-02
       source_url: https://marioforeverforum.boards.net/thread/990/mario-forever-world-haste
