@@ -194,11 +194,17 @@
   file_url:
 - game: Mario Forever Android
   game_alt:
+  alias:
+  - MF Android
+  - MFAndroid
+  - MF安卓版
+  - 永远的马里奥安卓版
   author: Alexandro Games
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFAndroid.png
   ver:
   - v2.8:
       ver_alt:
