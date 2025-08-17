@@ -1,4 +1,26 @@
 ---
+- game: PK!MF7 竞技赛关卡集
+  game_alt: PK!MF7 Competitive Collection
+  alias:
+  - PKMF7竞技赛关卡集
+  - PKMF7竞技赛整合
+  - PK!MF7竞技赛整合
+  - PK!MF7竞技赛关卡集
+  author: PK!MF 组委会
+  author_alt: PK!MF OC
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2025-08-17
+  source_url: https://www.marioforever.net/thread-3686-1-1.html
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: PK!MF7_Competitive_Collection.7z
+  file_url:
 - game: Mario Forever - World of Haste DX
   game_alt:
   author: 幽霊鬼yuureiki
