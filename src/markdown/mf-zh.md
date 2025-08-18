@@ -77,6 +77,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 20 多�
 | v7.02_15 Beta | 2017-10-29 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_15%20Beta.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.02_15%20Beta.7z" lan="zh"/> |
 | v7.02_31 Beta | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%207.02_31%20Beta.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%207.02_31%20Beta.7z" lan="zh"/> |
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20Edition.7z" lan="zh"/> |
+| Advance v4.4 (2011) | 2011-12-13 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance%20(2011).exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20(2011).7z" lan="zh"/> |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%20Advance%20v4.41.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%20Advance%20v4.41.7z" lan="zh"/> |
 </div>
 
@@ -87,4 +88,5 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 20 多�
 3. v6.0 及以后的版本官方的版本号比较混乱，v6.0，v6.01，v6.1，v6.11 是为了明确区分而使用的版本号。  
 4. v1.16.1 无绿色版，因为 BGM 资源文件被安装在 Windows 目录下；v6.1/v6.11 暂无安装版。绿色版移除了全部图标文件、url 快捷方式、卸载程序和广告插件安装包。  
 5. v5.011/v5.013 安装后的文件与 v5.01 完全相同，v5.08b 安装后的文件与 v5.08 相同。
+6. Advance v4.4 (2011) 的发布日期指 exe 文件的修改日期。
 </div>
