@@ -6,7 +6,7 @@ If you find a game missing and know its information, or find invalid download li
 
 Due to the goal of this list, we don't set any quality bar on games that appear on the list. A removal of certain game only occurs when:
 
-- The creators want to remove the game from the list.
+- The creator want to remove their game from the list.
 - The game violates other creators' rights, e.g., the game is made based on a decompiled version of other games.
 - The game contains computer virus and may harm others' devices.
 - The game contains topics that are not appropriate to be published on open Internet.
