@@ -1,6 +1,6 @@
 This list aims at collecting Mario Forever fangames for players to easily find their games to download. 
 
-If you find a game missing and know its information, or rind invalid download links, please report to newlife2017 via DM.
+If you find a game missing and know its information, or find invalid download links, please report to newlife2017 via DM.
 
 **This list is not for game recommendation.**
 
