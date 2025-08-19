@@ -291,8 +291,19 @@
       file_name: MWMLWS - World -B.zip
       file_url:
       image: MWMLWSB.png
-  - World -A:
+  - World -A (Bugfix):
       current: true
+      ver_alt:
+      date: 2025-07-01
+      source_url: https://www.youtube.com/watch?v=W8YL_1407-s
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/nsnqgpn5ka2n51p/MWMLWS_-_World_-A_%2528BUGFIX%2529.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -A (BUGFIX).zip
+      file_url:
+      image: MWMLWSA.png
+  - World -A:
       ver_alt:
       date: 2025-06-26
       source_url: https://www.youtube.com/watch?v=W8YL_1407-s
