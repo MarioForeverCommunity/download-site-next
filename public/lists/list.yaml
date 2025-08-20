@@ -30,8 +30,49 @@
   wiki_en_url:
   image: MFWoHDX.png
   ver:
-  - v1.0 (Windows):
+  - v1.2 (Windows):
       current: true
+      ver_alt:
+      date: 2025-08-20
+      source_url: https://www.marioforever.net/thread-3684-1-1.html
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/world_of_haste
+      code:
+      download_url_alt:
+      file_name: win64_release.zip
+      file_url:
+  - v1.2 (Linux):
+      current: true
+      ver_alt:
+      date: 2025-08-20
+      source_url: https://www.marioforever.net/thread-3684-1-1.html
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/world_of_haste
+      code:
+      download_url_alt:
+      file_name: linux64_release.zip
+      file_url:
+  - v1.1 (Windows):
+      ver_alt:
+      date: 2025-08-20
+      source_url: https://www.marioforever.net/thread-3684-1-1.html
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/world_of_haste
+      code:
+      download_url_alt:
+      file_name: win64_release.zip
+      file_url:
+  - v1.1 (Linux):
+      ver_alt:
+      date: 2025-08-20
+      source_url: https://www.marioforever.net/thread-3684-1-1.html
+      source_url_alt:
+      download_url: https://nx.wtf/index.php/s/world_of_haste
+      code:
+      download_url_alt:
+      file_name: linux64_release.zip
+      file_url:
+  - v1.0 (Windows):
       ver_alt:
       date: 2025-08-16
       source_url: https://www.marioforever.net/thread-3684-1-1.html
@@ -42,7 +83,6 @@
       file_name: WoH_windows64_release.zip
       file_url:
   - v1.0 (Linux):
-      current: true
       ver_alt:
       date: 2025-08-16
       source_url: https://www.marioforever.net/thread-3684-1-1.html
