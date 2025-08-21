@@ -16,13 +16,19 @@ export const topBar = [
     "name_alt" : "Discord",
     "show_zh" : false,
     "show_en" : true
-
+  },
+  {
+    "link" : "https://discord.gg/VwgV6GmwXv",
+    "name" : "Cloud Lounge",
+    "name_alt" : "Cloud Lounge",
+    "show_zh" : false,
+    "show_en" : true
   },
   {
     "link" : "https://www.marioforever.net/",
     "name" : "社区",
     "name_alt" : "Forum (CN)",
-    "show_en" : true
+    "show_en" : false
   },
   {
     "link" : "https://file.marioforever.net/",
