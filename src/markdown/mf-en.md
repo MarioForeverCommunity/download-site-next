@@ -69,5 +69,5 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 3. v5.011/v5.013 are identical to v5.01, and v5.08b is identical to v5.08. 
 4. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 are used for clarity.
 5. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
-6. The release date of Advance v4.4 (2011) refers to the modification date of the EXE file.
+6. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
 </div>
