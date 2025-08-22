@@ -12,8 +12,8 @@ body:
     attributes:
       label: "涉及的列表 / Target list"
       options:
-        - "Mario Forever（public/lists/list.yaml）"
-        - "Super Mario Worker Project（public/lists/list-mw.yaml）"
+        - "Mario Forever (public/lists/list.yaml)"
+        - "Super Mario Worker Project (public/lists/list-mw.yaml)"
     validations:
       required: true
   - type: checkboxes
