@@ -47,7 +47,9 @@ body:
     attributes:
       label: "期望的修正 / Expected correction"
       description: "具体应改为何值或如何处理 / What the value should be or how it should be fixed."
-      placeholder: "示例：download_url 应更新为 https://...；date 改为 2023-01-22。"
+      placeholder: |
+        示例（中文）：download_url 应更新为 https://...；date 改为 2025-01-22。
+        Examples (English): The download_url should be https://...; the date should be 2025-01-22.
     validations:
       required: true
   - type: checkboxes
@@ -56,9 +58,9 @@ body:
       label: "错误类别 / Error categories"
       options:
         - label: "链接错误或失效 / Link incorrect or dead"
-        - label: "文件名错误 / File name incorrect"
         - label: "版本信息错误 / Version info incorrect"
         - label: "日期/格式不符合规范 / Date/format invalid"
+        - label: "文件名错误 / File name incorrect"
         - label: "字段值错误或拼写问题 / Field value/spelling incorrect"
         - label: "其他 / Other"
     validations:
