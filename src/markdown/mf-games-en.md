@@ -1,6 +1,6 @@
 This catalog aims at collecting Mario Forever fangames for players to easily find their games to download. 
 
-If you find a game missing and know its information, or find invalid download links, please [open an issue](https://github.com/MarioForeverCommunity/download-site-next/issues/new/choose) or [report to maintainer via DM](discord://-/users/406048815460646912).
+If you find a game missing and know its information, or find dead links, please [open an issue](https://github.com/MarioForeverCommunity/download-site-next/issues/new/choose) or [report to maintainer via DM](discord://-/users/406048815460646912).
 
 **This catalog is not for game recommendation.**
 
