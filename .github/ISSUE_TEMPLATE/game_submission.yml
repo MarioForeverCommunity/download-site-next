@@ -58,8 +58,8 @@ body:
   - type: input
     id: extract_code
     attributes:
-      label: "（可选）提取码 / (Optional) password"
-      description: "若下载链接需要提取码或密码，请提供；如无可留空 / Provide if required by the download link; optional."
+      label: "（可选）提取码 / (Optional) access code"
+      description: "若下载链接需要提取码，请提供；如无可留空 / Provide if required by the download link; optional."
       placeholder: "示例 Example: abcd 或 1234"
     validations:
       required: false
