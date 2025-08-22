@@ -1,0 +1,90 @@
+name: "作品提交 / Game Submission"
+description: "提交新的 Mario Forever / SMWP 作品或版本 / Submit a new game or version"
+title: "[Submission] <游戏名 / Game Name> - <版本 / Version>"
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽可能按照 README 中的说明提供信息，以便我们更快地收录到列表中。/ Please provide information per README so we can add it faster.
+  - type: dropdown
+    id: target_list
+    attributes:
+      label: "提交至哪个列表 / Target list"
+      description: "请选择该作品应收录的列表 / Choose which list this submission belongs to."
+      options:
+        - "Mario Forever（public/lists/list.yaml）"
+        - "Super Mario Worker Project（public/lists/list-mw.yaml）"
+    validations:
+      required: true
+  - type: input
+    id: game_name
+    attributes:
+      label: "游戏名称（原始发布名称） / Game Name (Original)"
+      description: "请使用发布时的原始名称，避免别名、缩写、机翻；如有英文名可一并提供 / Use the original release name; avoid aliases/abbreviations; provide English name if available."
+      placeholder: "示例 Example: Mario Forever - A Fabulous Space"
+    validations:
+      required: true
+  - type: input
+    id: game_version
+    attributes:
+      label: "版本 / Version"
+      description: "若该提交为新增或修正某个版本，请填写版本号或名称；如无或不确定，请填写“无” / If this submission targets a specific version, provide its version name; if none/unknown, enter \"N/A\"."
+      placeholder: "示例 Example: v3.0 或 无 / N/A"
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: "作者 / Author"
+      placeholder: "示例 Example: gurcd"
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: "来源链接 / Source link (release post/video)"
+      description: "发布贴、发布视频等的链接；如无，请填写“无” / Link to release post/video; if none, enter \"N/A\"."
+      placeholder: "https://..."
+    validations:
+      required: true
+  - type: input
+    id: download_url
+    attributes:
+      label: "下载链接 / Download link"
+      placeholder: "https://..."
+    validations:
+      required: true
+  - type: input
+    id: extract_code
+    attributes:
+      label: "（可选）提取码 / (Optional) password"
+      description: "若下载链接需要提取码或密码，请提供；如无可留空 / Provide if required by the download link; optional."
+      placeholder: "示例 Example: abcd 或 1234"
+    validations:
+      required: false
+  - type: input
+    id: file_name
+    attributes:
+      label: "（可选）游戏文件名（下载所得） / (Optional) Downloaded file name"
+      description: "通过下载链接获得的实际文件名（压缩包/可执行文件），如未知可留空 / The exact filename obtained from the provided download link (archive/executable); optional."
+      placeholder: "示例 Example: MF LNY 2022 v3.0.rar"
+    validations:
+      required: false
+  - type: textarea
+    id: extra_notes
+    attributes:
+      label: "（可选）其他补充说明 / (Optional) Additional notes"
+      description: "任何有助于收录与验证的信息；若目标列表为 SMWP，请在下方专项补充勾选是否自带 BGM/SMWP / Any helpful info for listing and verification; if Target list is SMWP, use the checkboxes below to indicate whether it bundles BGM/SMWP."
+    validations:
+      required: false
+  - type: checkboxes
+    id: smwp_specific
+    attributes:
+      label: "（若为 SMWP）专项补充 / (If SMWP) Specific supplements"
+      description: "仅当目标列表选择 SMWP 时使用；若为 MF 可忽略 / Only relevant when Target list is SMWP; ignore for MF."
+      options:
+        - label: "是否自带 BGM / Bundles BGM"
+        - label: "是否自带 SMWP / Bundles SMWP"
+    validations:
+      required: false

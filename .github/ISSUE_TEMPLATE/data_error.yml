@@ -1,0 +1,114 @@
+name: "数据问题报告 / Data Issue Report"
+description: "报告游戏列表（YAML）中的数据问题（错误或缺漏），如字段填错、链接失效、信息缺失、版本信息不一致等 / Report issues in the data lists (YAML), e.g., wrong fields, dead links, missing info, inconsistent version info"
+title: "[Data Issue] <范围/条目简述 / Scope or entry summary>"
+labels: ["data-error"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽可能提供明确的条目与定位信息（例如游戏名、版本、字段名或片段），便于我们快速修复。/ Please provide clear entry and location details (game name, version, field name or snippet) to help us fix it quickly.
+  - type: dropdown
+    id: list_type
+    attributes:
+      label: "涉及的列表 / Target list"
+      options:
+        - "Mario Forever 列表（public/lists/list.yaml）"
+        - "Super Mario Worker Project 列表（public/lists/list-mw.yaml）"
+    validations:
+      required: true
+  - type: input
+    id: game_identifier
+    attributes:
+      label: "相关条目标识（可选） / (Optional) Entry identifier"
+      description: "例如：游戏名称、版本名或其他能唯一定位条目的信息 / E.g., game name, version name, or any identifier to locate the entry."
+      placeholder: "示例 Example: Mario Forever - A Fabulous Space / v3.0"
+    validations:
+      required: false
+  - type: textarea
+    id: current_snippet
+    attributes:
+      label: "（可选）当前数据片段 / (Optional) Current data snippet"
+      description: "可粘贴与问题相关的 YAML 片段，便于定位 / Paste the relevant YAML fragment for easier locating."
+      render: yaml
+    validations:
+      required: false
+  - type: textarea
+    id: error_description
+    attributes:
+      label: "问题描述 / Error description"
+      description: "说明哪里不对（字段/值/日期/链接等） / Describe what's wrong (field/value/date/link, etc.)."
+      placeholder: "示例：download_url 指向的链接已失效；date 使用了错误格式；author_alt 与作者不匹配。"
+    validations:
+      required: true
+  - type: textarea
+    id: expected_fix
+    attributes:
+      label: "期望的修正 / Expected correction"
+      description: "具体应改为何值或如何处理 / What the value should be or how it should be fixed."
+      placeholder: "示例：download_url 应更新为 https://...；date 改为 2023-01-22。"
+    validations:
+      required: true
+  - type: checkboxes
+    id: error_categories
+    attributes:
+      label: "错误类别 / Error categories"
+      options:
+        - label: "链接错误或失效 / Link incorrect or dead"
+        - label: "文件名错误 / File name incorrect"
+        - label: "版本信息错误 / Version info incorrect"
+        - label: "日期/格式不符合规范 / Date/format invalid"
+        - label: "字段值错误或拼写问题 / Field value/spelling incorrect"
+        - label: "其他 / Other"
+    validations:
+      required: false
+  - type: input
+    id: incorrect_link
+    attributes:
+      label: "（可选）当前错误链接 / (Optional) Incorrect link (current)"
+      placeholder: "https://..."
+    validations:
+      required: false
+  - type: input
+    id: correct_link
+    attributes:
+      label: "（可选）修正后的链接 / (Optional) Correct link"
+      placeholder: "https://..."
+    validations:
+      required: false
+  - type: input
+    id: incorrect_filename
+    attributes:
+      label: "（可选）当前错误文件名 / (Optional) Incorrect file name (current)"
+      placeholder: "Example: MF LNY 2022 v3.0.rar"
+    validations:
+      required: false
+  - type: input
+    id: correct_filename
+    attributes:
+      label: "（可选）修正后的文件名 / (Optional) Correct file name"
+      placeholder: "Example: MF LNY 2022 v3.0.rar"
+    validations:
+      required: false
+  - type: input
+    id: source_url
+    attributes:
+      label: "（可选）参考或来源链接 / (Optional) Reference or source links"
+      description: "用于佐证修正的发布贴/视频/Wiki 等链接；如无可留空 / Links (post/video/wiki) supporting the correction; optional."
+      placeholder: "https://..."
+    validations:
+      required: false
+  - type: input
+    id: download_url
+    attributes:
+      label: "（可选）下载链接 / (Optional) Download link"
+      description: "如与下载相关问题（链接变更/失效）可提供新的链接；如无可留空 / Provide new link if related to download changes or dead links; optional."
+      placeholder: "https://..."
+    validations:
+      required: false
+  - type: textarea
+    id: extra_context
+    attributes:
+      label: "（可选）补充信息 / (Optional) Additional context"
+      description: "任何有助于修复的问题背景、截图等 / Any additional background, screenshots, etc."
+    validations:
+      required: false

@@ -1,0 +1,53 @@
+name: "数据文件更新 / Data File Update"
+description: "用于更新数据列表（public/lists/list.yaml 或 public/lists/list-mw.yaml）的 Pull Request 表单 / Pull request form for updating the data lists (public/lists/list.yaml or public/lists/list-mw.yaml)"
+title: "[Data Update] <范围/条目简述 / Scope or entry summary>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请使用此表单提交对数据文件的更新，便于我们快速核对与合并。/ Use this form to submit updates to the data lists so we can review and merge faster.
+        目标文件：public/lists/list.yaml（Mario Forever）或 public/lists/list-mw.yaml（Super Mario Worker Project）。/ Target files: public/lists/list.yaml (MF) or public/lists/list-mw.yaml (SMWP).
+  - type: dropdown
+    id: target_list
+    attributes:
+      label: "涉及的列表 / Target list"
+      options:
+        - "Mario Forever（public/lists/list.yaml）"
+        - "Super Mario Worker Project（public/lists/list-mw.yaml）"
+    validations:
+      required: true
+  - type: checkboxes
+    id: change_types
+    attributes:
+      label: "变更类型 / Change type(s)"
+      description: "可多选 / You can select multiple."
+      options:
+        - label: "新增条目 / Add entry"
+        - label: "修改条目 / Modify entry"
+        - label: "修复链接 / Fix link"
+        - label: "修正文件名 / Correct file name"
+        - label: "修正版本/日期/字段值 / Fix version/date/field value"
+        - label: "添加图片 / Add image"
+        - label: "移除条目 / Remove entry"
+        - label: "其他 / Other"
+    validations:
+      required: false
+  - type: textarea
+    id: changes_summary
+    attributes:
+      label: "变更概要 / Summary of changes"
+      description: "用简短语句概述此次改动 / Briefly summarize the changes."
+      placeholder: |
+        例如：
+        - 为 MF 列表新增一个作品
+        - 将 download_url 更新为新的可用链接
+        - 修正 date 格式为 YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: extra_context
+    attributes:
+      label: "（可选）补充信息 / (Optional) Additional context"
+      description: "任何有助于审核与验证的信息（截图、参考链接等）/ Any additional information helpful for review (screenshots, reference links, etc.)."
+    validations:
+      required: false

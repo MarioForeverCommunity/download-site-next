@@ -25,7 +25,7 @@ Mario Worker Remake levels are maintained by an official and comprehensive [data
 
 If there are missing games or versions in the list, incorrect information, or if you want to add your videos to the related video list of a game, you can help us improve the game list in the following ways:
 - Contact [Newlife2017](https://github.com/KHwang9883) for feedback;
-- [Submit an Issue](https://github.com/MarioForeverCommunity/download-site-next/issues) and be detailed. If you have a Chinese MF community account, you can post in this [thread](https://www.marioforever.net/thread-1635-1-1.html);
+- [Open an Issue](https://github.com/MarioForeverCommunity/download-site-next/issues) and be detailed. If you have a Chinese MF community account, you can post in this [thread](https://www.marioforever.net/thread-1635-1-1.html);
 - If you have a GitHub account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list, and directly contribute to this repository through a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You don't need to download complex software like Git or have professional knowledge of version control. You can complete these operations using the fork, edit, and pull request functions on GitHub webpage! All you need to do is read the following instructions to learn how to edit the content in the game list correctly.
 
 ## Guide for Editing the List

@@ -1,0 +1,20 @@
+name: "网站 Bug / Website Bug"
+description: "报告 download.marioforever.net 网站的问题 / Report an issue with the website"
+title: "[Bug] <简要描述 / Short summary>"
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "问题描述 / Description"
+      description: "请描述问题现象 / Describe the issue."
+      placeholder: "发生了什么？期望是什么？ / What happened? What did you expect?"
+    validations:
+      required: true
+  - type: input
+    id: page_url
+    attributes:
+      label: "（可选）相关页面 URL / (Optional) Related page URL"
+      placeholder: "https://download.marioforever.net/..."
+    validations:
+      required: false
