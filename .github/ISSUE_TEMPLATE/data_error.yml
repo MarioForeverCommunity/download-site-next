@@ -37,7 +37,9 @@ body:
     attributes:
       label: "问题描述 / Error description"
       description: "说明哪里不对（字段/值/日期/链接等） / Describe what's wrong (field/value/date/link, etc.)."
-      placeholder: "示例：download_url 指向的链接已失效；date 使用了错误格式；author_alt 与作者不匹配。"
+      placeholder: |
+        示例（中文）：download_url 指向的链接已失效；date 使用了错误格式；author_alt 与作者不匹配。
+        Examples (English): The download_url is dead; the date uses a wrong format; author_alt doesn't match the author.
     validations:
       required: true
   - type: textarea
