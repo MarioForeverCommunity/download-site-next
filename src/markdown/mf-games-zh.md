@@ -9,7 +9,7 @@
 <span class="inline-block"><a class="md-button" href="https://www.123pan.com/s/U3vrVv-6D0f.html">国内作品备用下载地址 (提取码：Wj3a)</a><ClipboardButton lan="zh" code="Wj3a" /></span>
 <span class="inline-block"><a class="md-button" href="https://www.123pan.com/s/U3vrVv-yD0f.html">国外作品备用下载地址 (提取码：Lo5l)</a><ClipboardButton lan="zh" code="Lo5l" /></span>
 
-<a href="#" id="open-credits">本站离不开 Mario Forever 社区中众多贡献者的支持。我们愿向以下人士表示诚挚的感谢。</a>
+本站离不开 Mario Forever 社区中众多贡献者的支持。<a href="#" id="open-credits">我们愿向以下人士表示诚挚的感谢。</a>
 
 <div id="credits-content" style="display:none">
   <h3>致谢</h3>
