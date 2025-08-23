@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import { navTop } from "../../config.js";
@@ -25,6 +25,34 @@
   const lan = ref(getLanguage());
 
   const pageId = "mf-games"
+
+  // Credits modal state and click delegation on markdown content
+  const showCredits = ref(false);
+  const creditsHtml = ref("");
+  const mdContainer = ref(null);
+  const mdClickHandler = (e) => {
+    const opener = e.target.closest && e.target.closest('#open-credits');
+    if (opener) {
+      e.preventDefault();
+      const contentEl = mdContainer.value?.querySelector?.('#credits-content');
+      if (contentEl) {
+        creditsHtml.value = contentEl.innerHTML;
+        showCredits.value = true;
+      }
+    }
+  };
+
+  onMounted(() => {
+    if (mdContainer.value) {
+      mdContainer.value.addEventListener('click', mdClickHandler);
+    }
+  });
+
+  onBeforeUnmount(() => {
+    if (mdContainer.value) {
+      mdContainer.value.removeEventListener('click', mdClickHandler);
+    }
+  });
 
   // Change title.
 
@@ -532,7 +560,7 @@
 <template>
   <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
 
-  <div class="container md-container">
+  <div class="container md-container" ref="mdContainer">
     <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
     <introZh v-if="lan == 'zh'" />
     <introEn v-if="lan == 'en'" />
@@ -639,6 +667,14 @@
       <GameCard :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
     </div>
   </div>
+
+  <Transition name="modal">
+    <div v-if="showCredits" class="modal-bg" @click="showCredits = false;">
+      <div class="modal-content" @click.stop="">
+        <div v-html="creditsHtml"></div>
+      </div>
+    </div>
+  </Transition>
 
   <Transition name="modal">
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
