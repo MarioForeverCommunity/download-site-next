@@ -56,6 +56,7 @@ The Mario Forever game list is written in yaml (a data format that is easy for h
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  image: AFS.png
   ver: v3.0
   ver_alt: v3.0
   date: 2017-06-26
@@ -100,6 +101,7 @@ Here is an example of a multi-version game:
       download_url_alt:
       file_name: MF LNY 2022 v3.0.rar
       file_url:
+      image: LNY2022 v3.0.png
   - v2.0:
       ver_alt:
       date: 2023-01-22
@@ -110,6 +112,7 @@ Here is an example of a multi-version game:
       download_url_alt:
       file_name: LNY 2022 v2.0.rar
       file_url:
+      image: LNY2022 v2.0.png
 ```
 
 Below are the meanings of each field. Since the site includes both Chinese and English versions, we use `_alt`, `_zh`, `_en` fields for multi-language support.
@@ -129,16 +132,17 @@ Below are the meanings of each field. Since the site includes both Chinese and E
 | `wiki_en_url` | No | String | The link of the game in the English Mario Forever Wiki. |
 | `video_zh` | No | Dictionary List | Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
 | `video_en` | No | Dictionary List | Videos related to the game uploaded by other players, located on English pages or mainly in English, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
-| `ver` | No | String (Single Version) <br>Version List (Multiple Versions) | The version name of the game. Generally, different language versions of a game, different updates, different branch versions (such as difficult and easy versions), and a single world version of a collection are considered different versions of a game. <br>For single-version or games with only one version included in the list, ver can be empty or the name of the current version. <br>For multi-version games, ver needs to be a dictionary list, with dictionary names as version names, and the value of each dictionary item |
+| `image` | No | String | The cover image of the game. The image file should be located in `public/image/mf-games/`. |
+| `ver` | No | String (Single Version) <br>Version List (Multiple Versions) | The version name of the game. Generally, different language versions of a game, different updates, different branch versions (such as difficult and easy versions), and a single world version of a collection are considered different versions of a game. <br>For single-version or games with only one version included in the list, `ver` can be empty or the name of the current version. <br>For multi-version games, `ver` needs to be a dictionary list, with dictionary names as version names, and the value of each dictionary item. |
 
-The following fields are for a specific version. For single-version games, please fill in the fields directly for the game; for multi-version games, please refer to the example and fill in the following information for each version in the version list.
+The following fields are for a specific version. For single-version games, please fill in the fields directly for the game; for multi-version games, please refer to the example for multi-version games and fill in the following information for each version in the version list.
 
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
 | `ver_alt` | No | String | If the version name is in Chinese, the corresponding English name of the version can be filled in here. |
 | `date` | **Yes** | Date | The release date of the game or version. Please use the "YYYY-MM-DD" format for software parsing. |
 | `source_url` | No | String | The **release link** of the game (note not the download link), such as the release post on the forum, the release video on YouTube, etc. <br>Official release videos should be filled in here, and should not be expanded under the video_zh or video_en fields. <br>If the link has expired, you can mark it with a half-width tilde `~` in front of the link (the same for other links below). |
-| `source_url_alt` | No | String | If the game is released on both Chinese and English websites, please fill in the Chinese release link in source_url and the English release link in source_url_alt, so that the game list can display links in the corresponding language for different languages. <br>If the game is only released on Chinese or English websites, only fill in the source_url field; if there is no release link (such as released through instant messaging software, Discord servers, etc.), leave it blank. |
+| `source_url_alt` | No | String | If the game is released on both Chinese and English websites, please fill in the Chinese release link in `source_url` and the English release link in `source_url_alt`, so that the game list can display links in the corresponding language for different languages. <br>If the game is only released on Chinese or English websites, only fill in the source_url field; if there is no release link (such as released through instant messaging software, Discord servers, etc.), leave it blank. |
 | `download_url` | No | String | The **official download link** provided by the author. |
 | `code` | No | String | If the game's download page requires a password, please fill it in here. |
 | `download_url_alt` | No | String | If the game provides download links on both Chinese and English websites, please fill in the Chinese download link in download_url and the English download link in download_url_alt, otherwise only fill in the download_url field. |
@@ -149,6 +153,7 @@ The following fields are for a specific version. For single-version games, pleas
 | `data_download_url` | No | String | If the game includes a data package separated from the game itself (such as music), please fill in the download link of the data package here. |
 | `data_file_name` | No | String | The file name of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 | `data_file_url` | No | String | The complete link of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `image` | No | String | The cover image of the game for this version. The image file should be located in `public/image/mf-games/`. |
 
 ### Super Mario Worker Project Game List
 
