@@ -1,4 +1,24 @@
 ---
+- game: "Mario Forever: Generic World"
+  game_alt:
+  alias:
+  - MFGW
+  author: MJXXX
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image: MFGW.png
+  ver: v1.0.2
+  ver_alt:
+  date: 2025-08-24
+  source_url: https://www.youtube.com/watch?v=2euVzK7GqP0
+  source_url_alt:
+  download_url: https://www.dropbox.com/scl/fi/x6az4x05i8ztlkqn3181a/Mario-Forever-Generic-World-Release.zip?rlkey=87dcrwhh57h70la6vkdwbdbpt&st=dqtkggjs&dl=0
+  code:
+  download_url_alt:
+  file_name: Mario Forever Generic World Release.zip
+  file_url:
 - game: PK!MF7 竞技赛关卡集
   game_alt: PK!MF7 Competitive Collection
   alias:
