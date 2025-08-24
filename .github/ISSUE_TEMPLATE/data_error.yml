@@ -64,7 +64,7 @@ body:
         - label: "字段值错误或拼写问题 / Field value/spelling incorrect"
         - label: "其他 / Other"
     validations:
-      required: false
+      required: true
   - type: input
     id: incorrect_link
     attributes:
