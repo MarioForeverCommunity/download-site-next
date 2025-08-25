@@ -1,5 +1,6 @@
 <script setup>
   import { navTop, topBar } from "../config.js";
+  import { ref, onMounted, onBeforeUnmount } from 'vue';
 
   // const BASE_URL = import.meta.env.BASE_URL;
 
@@ -23,12 +24,51 @@
     }
     return props.lanVar;
   }
+
+  // Mobile menu for top-left links
+  const isMenuOpen = ref(false);
+  const menuRef = ref(null);
+  function handleClickOutside(e) {
+    if (menuRef.value && !menuRef.value.contains(e.target)) {
+      isMenuOpen.value = false;
+    }
+  }
+  onMounted(() => {
+    document.addEventListener('click', handleClickOutside);
+  });
+  onBeforeUnmount(() => {
+    document.removeEventListener('click', handleClickOutside);
+  });
 </script>
 
 <template>
   <div class="topbar">
     <div class="topbar-inner">
-      <a v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))" :key="item.link" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+      <!-- Desktop: show all left links -->
+      <div class="left-links desktop-only">
+        <a v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))" :key="item.link" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+      </div>
+      <!-- Mobile: collapse into a dropdown toggle at top-left -->
+      <div class="left-links mobile-only" ref="menuRef">
+        <button class="menu-toggle" @click.stop="isMenuOpen = !isMenuOpen" :aria-expanded="isMenuOpen" aria-haspopup="true" :aria-label="displayLan() == 'zh' ? '打开菜单' : 'Open menu'">
+          <span class="menu-label">{{ displayLan() == 'zh' ? '社区站点' : 'External Links' }}</span>
+          <svg class="chevron" :class="{ open: isMenuOpen }" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="mobile-menu" v-if="isMenuOpen">
+          <a v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))"
+             :key="item.link"
+             :href="item.link"
+             target="_blank"
+             class="mobile-menu-item"
+             @click="isMenuOpen = false">
+            {{ displayLan() == 'zh' ? item.name : item.name_alt }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: language switch (unchanged) -->
       <div style="float: right; display: inline;" v-if="pageEntry.show_en == true">
         <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
         <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
@@ -69,6 +109,55 @@
   margin: 0 auto;
 }
 
+/* mobile-first visibility */
+.desktop-only { display: none; }
+.mobile-only { display: inline-block; }
+
+/* top-left container for mobile dropdown */
+.left-links.mobile-only { position: relative; }
+.menu-toggle {
+  background: transparent;
+  border: none;
+  color: rgb(85, 85, 85);
+  cursor: pointer;
+  padding: 4px 6px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .2s ease;
+}
+.menu-toggle:hover {
+  color: #008CFF;
+}
+.menu-toggle[aria-expanded='true'] {
+  color: #008CFF;
+}
+.menu-toggle .chevron { transition: transform .2s ease; }
+.menu-toggle .chevron.open { transform: rotate(180deg); }
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 0;
+  z-index: 1000;
+  min-width: 120px;
+}
+.mobile-menu-item {
+  display: block;
+  padding: 8px 12px;
+  color: rgb(85, 85, 85);
+}
+.mobile-menu-item:hover {
+  background: #f3f4f6;
+  color: #008CFF;
+}
+
 @media (min-width: 800px) {
   .logo {
     width: auto;
@@ -89,6 +178,10 @@
   .nav .radio-inputs .radio {
     margin: 0 16px;
   }
+
+  /* desktop visibility */
+  .desktop-only { display: inline; }
+  .mobile-only { display: none; }
 }
 
   .topbar {

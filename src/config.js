@@ -11,9 +11,15 @@ export const siteVersion = `v${packageJson.version}`;
 
 export const topBar = [
   {
+    "link" : "https://www.marioforever.net/",
+    "name" : "社区",
+    "name_alt" : "Forum (CN)",
+    "show_en" : true
+  },
+  {
     "link" : "https://discord.com/invite/pfnbfwRhUH",
-    "name" : "Discord",
-    "name_alt" : "Discord",
+    "name" : "MF Discord",
+    "name_alt" : "MF Discord",
     "show_zh" : false,
     "show_en" : true
   },
@@ -23,12 +29,6 @@ export const topBar = [
     "name_alt" : "Cloud Lounge",
     "show_zh" : false,
     "show_en" : true
-  },
-  {
-    "link" : "https://www.marioforever.net/",
-    "name" : "社区",
-    "name_alt" : "Forum (CN)",
-    "show_en" : false
   },
   {
     "link" : "https://file.marioforever.net/",
@@ -43,8 +43,23 @@ export const topBar = [
     "show_en" : true
   },
   {
+    "link" : "https://mwcup.marioforever.net/",
+    "name" : "MW杯",
+    "show_en" : false
+  },
+  {
+    "link" : "https://pkmf.marioforever.net/",
+    "name" : "PK!MF",
+    "show_en" : false
+  },
+  {
     "link" : "https://archive.marioforever.net/",
     "name" : "Archive",
+    "show_en" : false
+  },
+  {
+    "link" : "https://space.bilibili.com/2136191287",
+    "name" : "关注B站",
     "show_en" : false
   },
   // {
