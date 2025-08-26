@@ -11,7 +11,7 @@ export const siteVersion = `v${packageJson.version}`;
 
 export const topBar = [
   {
-    "link" : "https://www.marioforever.space/",
+    "link" : "https://marioforever.space/",
     "name" : "Forum (EN)",
     "name_alt" : "Forum (EN)",
     "show_zh" : false,
