@@ -11,6 +11,13 @@ export const siteVersion = `v${packageJson.version}`;
 
 export const topBar = [
   {
+    "link" : "https://www.marioforever.space/",
+    "name" : "Forum (EN)",
+    "name_alt" : "Forum (EN)",
+    "show_zh" : false,
+    "show_en" : true
+  },
+  {
     "link" : "https://www.marioforever.net/",
     "name" : "社区",
     "name_alt" : "Forum (CN)",
@@ -136,12 +143,17 @@ export const sourceName = [
     "desc_en" : "marioforever.net"
   },
   {
+    "domain" : "marioforever.space",
+    "desc_zh" : "英文 MF 论坛 (新)",
+    "desc_en" : "Mario Forever Space"
+  },
+  {
     "domain" : "www.youtube.com",
     "desc_en" : "YouTube"
   },
   {
     "domain" : "marioforeverforum.boards.net",
-    "desc_zh" : "英文 MF 论坛",
+    "desc_zh" : "英文 MF 论坛 (旧)",
     "desc_en" : "Mario Forever Forum"
   },
   {
