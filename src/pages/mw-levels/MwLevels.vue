@@ -620,9 +620,11 @@
     transform: translate(-50%, -50%);
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 90vw;
+    max-width: 80vw;
+    max-height: 80vh;
     padding: 1em;
     border-radius: .5em;
+    overflow-y: auto;
   }
 
   .download {
