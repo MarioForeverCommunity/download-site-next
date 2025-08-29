@@ -11,8 +11,8 @@
   wiki_zh_url:
   wiki_en_url:
   image: MF大冲关3.png
-  ver: Practice track
-  ver_alt: 
+  ver: 练习赛道
+  ver_alt: Practice track
   date: 2025-08-26
   source_url: https://www.marioforever.net/thread-3696-1-1.html
   source_url_alt:
@@ -979,10 +979,31 @@
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   image: skrin1.avif
   ver:
+  - v2.0.0 Windows:
+      ver_alt:
+      date: 2025-08-29
+      current: true
+      source_url: https://www.youtube.com/watch?v=x418mJPtFms
+      source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
+      download_url: https://nx.wtf/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 2.0.0 Windows.zip
+      file_url:
+  - v2.0.0 Linux:
+      ver_alt:
+      date: 2025-08-29
+      current: true
+      source_url: https://www.youtube.com/watch?v=x418mJPtFms
+      source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
+      download_url: https://nx.wtf/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 2.0.0 Linux.zip
+      file_url:
   - v1.1 Windows:
       ver_alt:
       date: 2024-12-06
-      current: true
       source_url: https://www.marioforever.net/thread-3452-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=dR_aYILio4s
       download_url: https://rnx.su/s/DZm6PEkZf3z4owp
@@ -993,7 +1014,6 @@
   - v1.1 Linux:
       ver_alt:
       date: 2024-12-06
-      current: true
       source_url: https://www.marioforever.net/thread-3452-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=dR_aYILio4s
       download_url: https://rnx.su/s/DZm6PEkZf3z4owp
