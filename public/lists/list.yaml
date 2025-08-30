@@ -977,7 +977,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
-  image: skrin1.avif
+  image: MFCE2.0.png
   ver:
   - v2.0.0 Windows:
       ver_alt:
@@ -1031,6 +1031,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.0.zip
       file_url:
+      image: skrin1.avif
 - game: Mario Forever - Reversed Worlds
   game_alt:
   author: MrMikhy
