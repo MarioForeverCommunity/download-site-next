@@ -6736,6 +6736,8 @@
       file_url:
 - game: Mario Forever Space Travels
   game_alt:
+  alias:
+  - MFST
   author: Karol_Pik
   author_alt:
   type: international
