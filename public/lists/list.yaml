@@ -6742,6 +6742,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v4.0:
+      ver_alt:
+      date: 2025-09-01
+      source_url: https://www.youtube.com/watch?v=hJB-eS6AilQ
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ygqwdmpamsct9gz/Mario+Forever+Space+Travels.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Space Travels.zip
+      file_url:
   - v3.5.1:
       ver_alt:
       date: 2023-01-06
@@ -6821,6 +6831,36 @@
       code:
       download_url_alt:
       file_name: Mario Forever Space Travels v1.1.1.rar
+      file_url:
+  - v1.1:
+      ver_alt:
+      date: 2020-01-18
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFST v1.1.rar
+      file_url:
+  - v1.0.1:
+      ver_alt:
+      date: 2019-12-05
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFST 1.0.1.rar
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2019-11-24
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFST v1.0.rar
       file_url:
   - v0.5:
       ver_alt:
@@ -18160,6 +18200,7 @@
   game_alt:
   alias:
   - WU
+  - Underground World
   author: nmnmoooh
   author_alt:
   type: chinese
