@@ -1,4 +1,24 @@
 ---
+- game: "Mario Forever: The Grand Star"
+  game_alt:
+  alias:
+  - MFTGS
+  - MF:TGS
+  author: Laki
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: World 1 Demo
+  ver_alt:
+  date: 2025-09-03
+  source_url:
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/lpuyubq16jtp2si/Mario+Forever+-+The+Grand+Star+DEMO+1.0.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever - The Grand Star DEMO 1.0.zip
+  file_url:
 - game: Mario Forever大冲关 第三季
   game_alt: Mario Forever Platform Running Season III
   alias:
@@ -535,11 +555,14 @@
       file_url:
 - game: New Super Mario Forever 2042
   game_alt:
+  alias:
+  - NSMF2042
   author: Meteo Dream
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MF2042.png
   ver:
   ver_alt:
   date: 2025-04-01
@@ -956,6 +979,7 @@
       download_url_alt:
       file_name: MF RETRO RECALL v1.0.rar
       file_url:
+      image: Retro Recall.png
   - v1.0:
       ver_alt:
       date: 2019-12-24
@@ -1031,6 +1055,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.1 Windows.7z
       file_url:
+      image: MFCE.png
   - v1.1 Linux:
       ver_alt:
       date: 2024-12-06
@@ -1041,6 +1066,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.1 Linux.zip
       file_url:
+      image: MFCE.png
   - v1.0:
       ver_alt:
       date: 2024-11-29
@@ -1051,7 +1077,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.0.zip
       file_url:
-      image: skrin1.avif
+      image: MFCE.png
 - game: Mario Forever - Reversed Worlds
   game_alt:
   author: MrMikhy
@@ -1259,6 +1285,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Cursed Crown.png
   ver:
   ver_alt:
   date: 2024-10-28
@@ -1990,6 +2017,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: NertonW12.png
   ver: v1.0 final
   ver_alt:
   date: 2024-09-03
@@ -2747,6 +2775,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MinixRebirth.png
   ver: v1.0.1
   ver_alt:
   date: 2024-07-08
@@ -3393,11 +3422,14 @@
       file_url:
 - game: Mario Forever 2077 Gangster Edition
   game_alt:
+  alias:
+  - MF2077
   author: JUE13
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MF2077Gang.png
   ver:
   ver_alt:
   date: 2024-04-01
@@ -4648,6 +4680,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: HumanLabEdition.png
   ver:
   ver_alt:
   date: 2023-12-03
@@ -5351,6 +5384,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: FloorIsLava.png
   ver:
   ver_alt:
   date: 2023-07-16
@@ -5392,7 +5426,8 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: Demo
+  image: Depression.png
+  ver: v1.0 Demo
   ver_alt:
   date: 2023-07-10
   source_url:
@@ -5474,6 +5509,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: Reverof_Oiram.png
   ver:
   ver_alt:
   date: 2023-06-18
@@ -5684,11 +5720,15 @@
   file_url:
 - game: 'Mario Forever: Alphabet''s Lost Worlds'
   game_alt:
+  alias:
+  - MF:ALW
+  - MFALW
   author: Xykijun
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MF-ALW-menu.png
   ver:
   ver_alt:
   date: 2023-04-28
@@ -5861,6 +5901,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MF2077.png
   ver:
   ver_alt:
   date: 2023-04-01
@@ -6743,6 +6784,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFST.png
   ver:
   - v4.0:
       ver_alt:
@@ -9745,16 +9787,27 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
+  image: MFTLW.png
   ver:
   - Latest version:
       ver_alt:
-      date: 2022-09-25
-      source_url: https://marioforeverforum.boards.net/thread/839/chadooks-lost-world-remastered
+      date: 2025-07-15
+      source_url:
       source_url_alt:
       download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
       code:
       download_url_alt:
       file_name: MFTLW.zip
+      file_url:
+  - Ver (2022-09-26):
+      ver_alt:
+      date: 2022-09-26
+      source_url: https://marioforeverforum.boards.net/thread/839/chadooks-lost-world-remastered
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      code:
+      download_url_alt:
+      file_name: MFTLW (2022-09-26).zip
       file_url:
   - v2.5:
       ver_alt:
