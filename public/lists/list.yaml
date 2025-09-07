@@ -6817,6 +6817,16 @@
   wiki_en_url:
   image: MFST.png
   ver:
+  - v4.0.1:
+      ver_alt:
+      date: 2025-09-07
+      source_url: https://www.youtube.com/watch?v=hJB-eS6AilQ
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/tp9kfbvzo156che/Mario+Forever+Space+Travels+v4.0.1.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Space Travels v4.0.1.zip
+      file_url:
   - v4.0:
       ver_alt:
       date: 2025-09-01
