@@ -101,6 +101,26 @@
 </template>
 
 <style scoped>
+/* 移动端深色模式适配 */
+body.dark .menu-toggle {
+  color: #999 !important;
+}
+body.dark .menu-toggle:hover,
+body.dark .menu-toggle[aria-expanded='true'] {
+  color: #bbb !important;
+}
+body.dark .mobile-menu {
+  background-color: #333 !important;
+  border-color: #333 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+body.dark .mobile-menu-item {
+  color: #999 !important;
+}
+body.dark .mobile-menu-item:hover {
+  background-color: #444 !important;
+  color: #bbb !important;
+}
 
 .logo a img {
   width: auto;
