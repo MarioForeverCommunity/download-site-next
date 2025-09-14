@@ -1,4 +1,16 @@
 ---
+- game: Nmnmoooh World 试玩关卡
+  alias:
+  - NW
+  author: nmnmoooh
+  smwp_ver: v1.7.10
+  date: 2025-09-14
+  source_url: https://www.marioforever.net/thread-3705-1-1.html
+  download_url: http://nmnmoooh888.ysepan.com/
+  code:
+  has_bundled_smwp: true
+  file_name: NW Demo Levels.zip
+  file_url:
 - game: 金芒山
   author: 有名氏
   description: 关卡链接为更新版

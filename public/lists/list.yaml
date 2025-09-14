@@ -1,4 +1,24 @@
 ---
+- game: Mario Forever Compass Rose
+  game_alt:
+  alias:
+  - MFCR
+  author: Mario Tube
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image: MFCR.png
+  ver:
+  ver_alt:
+  date: 2025-09-14
+  source_url: https://www.youtube.com/watch?v=C6i9uYGM6QE
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/fmfazalnrflawn5/Mario+Forever+Compass+Rose.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Compass Rose.zip
+  file_url:
 - game: "Mario Forever: The Grand Star"
   game_alt:
   alias:
