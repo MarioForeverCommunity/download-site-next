@@ -253,6 +253,16 @@ export const downloadName = [
   {
     "domain" : "yadi.sk",
     "desc_en" : "Yandex"
+  },
+  {
+    "domain" : "123pan.com",
+    "desc_zh" : "123 云盘",
+    "desc_en" : "123Pan"
+  },
+  {
+    "domain" : /123\d{3}\.com/,
+    "desc_zh" : "123 云盘",
+    "desc_en" : "123Pan"
   }
 ];
 
