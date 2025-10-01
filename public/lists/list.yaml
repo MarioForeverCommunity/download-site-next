@@ -5089,6 +5089,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFPA1.9.png
   ver:
   - v1.9:
       ver_alt:
@@ -11160,6 +11161,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Polish_Letter_Worlds
+  image: MFPLWS.png
   ver:
   - World Ż:
       ver_alt:
@@ -11172,6 +11174,7 @@
       download_url_alt:
       file_name: MF - POLISH LETTER WORLD ZY.RAR
       file_url:
+      image: MFPLWSZY.png
   - v1.5:
       ver_alt:
       date: 2019-06-01
@@ -11436,6 +11439,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFKWLS.png
   ver: 20-12-2020 - FIX
   ver_alt:
   date: 2021-01-03
@@ -11520,11 +11524,14 @@
       file_url:
 - game: 'Mario Forever: Bowser''s Glacial Castle'
   game_alt:
+  alias:
+  - MFBGC
   author: crist1919
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFBGC
   ver: v1.0
   ver_alt:
   date: 2021-01-01
@@ -13405,6 +13412,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: MFASC.png
   ver: v1.01
   ver_alt:
   date: 2020-01-01
@@ -16137,7 +16145,7 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Christmas_Special
   wiki_en_url:
   image: MFCS.png
-  ver:
+  ver: Bugfix
   ver_alt:
   date: 2017-01-06
   source_url: https://www.youtube.com/watch?v=_kYRMzTnQS4
