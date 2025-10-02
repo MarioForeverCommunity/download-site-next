@@ -1,4 +1,14 @@
 ---
+- game: 秘密合战5
+  author: 合作作品
+  smwp_ver: v1.7.12
+  date: 2025-10-02
+  source_url: https://www.marioforever.net/thread-3719-1-1.html
+  download_url:
+  code:
+  has_bgm: true
+  file_name: 秘密合战5/
+  file_url:
 - game: The Sea
   author: 芝士未名
   smwp_ver: v1.7.11
