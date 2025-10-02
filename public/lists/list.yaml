@@ -2760,6 +2760,16 @@
   wiki_en_url:
   image: MFEWS.png
   ver:
+  - v2.5.5:
+      ver_alt:
+      date: 2025-10-01
+      source_url: https://www.youtube.com/watch?v=CentNYAoTeA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/4crgstxzq4xcnlh/MFEWS_v2.5.5.zip/file
+      code:
+      download_url_alt:
+      file_name: MFEWS v2.5.5.zip
+      file_url:
   - v2.5.2:
       ver_alt:
       date: 2025-06-18
