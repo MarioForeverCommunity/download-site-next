@@ -4454,7 +4454,18 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  image: WOCF.png
   ver:
+  - v2.0:
+      ver_alt:
+      date: 2025-10-02
+      source_url:
+      source_url_alt:
+      download_url: https://files.fm/f/yksg9py59j
+      code:
+      download_url_alt:
+      file_name: MF - WORLD OF CLUSTERFUCK (V2.0).rar
+      file_url:
   - v1.5:
       ver_alt:
       date: 2024-01-18
