@@ -4468,10 +4468,20 @@
   wiki_en_url:
   image: WOCF.png
   ver:
+  - v2.1:
+      ver_alt:
+      date: 2025-10-04
+      source_url: https://marioforever.space/topic/44/mario-forever-world-of-clusterfuck-2.0
+      source_url_alt:
+      download_url: https://files.fm/f/55frcrervb
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER - WORLD OF CLUSTERFUCK (V2.1).zip
+      file_url:
   - v2.0:
       ver_alt:
       date: 2025-10-02
-      source_url:
+      source_url: https://marioforever.space/topic/44/mario-forever-world-of-clusterfuck-2.0
       source_url_alt:
       download_url: https://files.fm/f/yksg9py59j
       code:
