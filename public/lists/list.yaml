@@ -1,4 +1,22 @@
 ---
+- game: SEGASLAYER64's Fever Dream 2 Demo
+  game_alt:
+  author: CasperTheMarioForeverFan
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image: Fever Dream 2 Demo.png
+  ver:
+  ver_alt:
+  date: 2025-10-08
+  source_url: https://www.youtube.com/watch?v=7avmfUa0sV4
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/opyoo942mcpo1px/SEGASLAYER64's+Fever+Dream+2+Demo.zip/file
+  code:
+  download_url_alt:
+  file_name: SEGASLAYER64s Fever Dream 2 Demo.zip
+  file_url:
 - game: Mario Forever Compass Rose
   game_alt:
   alias:
