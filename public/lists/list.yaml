@@ -490,6 +490,18 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - World -D:
+      current: true
+      ver_alt:
+      date: 2025-10-19
+      source_url: https://www.youtube.com/watch?v=XhykOvORK8g
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/b9xsby8lsjb2esr/MWMLWS_-_World_-D.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -D.zip
+      file_url:
+      image: MWMLWSD.png
   - World -C:
       current: true
       ver_alt:
