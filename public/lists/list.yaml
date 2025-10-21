@@ -490,8 +490,18 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - Vol.1:
+      ver_alt:
+      date: 2025-10-21
+      source_url:
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/e74elv4p94oq6qr/MWMLWS_-_Vol.1.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - Vol.1.zip
+      file_url:
+      image: MWMLWSV1.png
   - World -D:
-      current: true
       ver_alt:
       date: 2025-10-19
       source_url: https://www.youtube.com/watch?v=XhykOvORK8g
@@ -503,7 +513,6 @@
       file_url:
       image: MWMLWSD.png
   - World -C:
-      current: true
       ver_alt:
       date: 2025-10-04
       source_url: https://www.youtube.com/watch?v=wRoILDHZscM
@@ -515,7 +524,6 @@
       file_url:
       image: MWMLWSC.png
   - World -B:
-      current: true
       ver_alt:
       date: 2025-07-20
       source_url: https://www.youtube.com/watch?v=82M9dWQUj9s
@@ -527,7 +535,6 @@
       file_url:
       image: MWMLWSB.png
   - World -A (Bugfix):
-      current: true
       ver_alt:
       date: 2025-07-01
       source_url: https://www.youtube.com/watch?v=W8YL_1407-s
