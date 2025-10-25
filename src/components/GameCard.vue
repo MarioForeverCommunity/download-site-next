@@ -1,6 +1,6 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon } from "./icons/Icons.js";
+  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
@@ -186,6 +186,12 @@
         <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'">
           <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>相关视频</template>
+        </Tooltip>
+        <Tooltip v-if="game.repo">
+          <a :href="game.repo" target="_blank">
+            <GithubIcon class="icon button"></GithubIcon>
+          </a>
+          <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
           <a :href="getSourceLink(game, lan)">

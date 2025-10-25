@@ -17,6 +17,7 @@ import SortIcon from "./IconSort.vue";
 import VideoIcon from "./IconVideo.vue";
 import WikiIcon from "./IconWiki.vue";
 import YoutubeIcon from "./IconYoutube.vue";
+import GithubIcon from "./IconGithub.vue";
 
 export {
     ApkIcon,
@@ -37,5 +38,6 @@ export {
     SortIcon,
     VideoIcon,
     WikiIcon,
-    YoutubeIcon
+    YoutubeIcon,
+    GithubIcon
 };

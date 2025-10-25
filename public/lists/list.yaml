@@ -2603,6 +2603,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
+  repo: https://github.com/meteo-dream/party-worlds-reimagined
   image: mfpwr.png
   ver:
   - v1.0:
