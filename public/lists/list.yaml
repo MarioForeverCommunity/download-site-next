@@ -2605,6 +2605,16 @@
   repo: https://github.com/meteo-dream/party-worlds-reimagined
   image: mfpwr.png
   ver:
+  - v1.0.1:
+      ver_alt:
+      date: 2025-10-26
+      source_url: https://www.marioforever.net/thread-3734-1-1.html
+      source_url_alt: https://marioforever.space/topic/54/mario-forever-party-worlds-reimagined-source-included
+      download_url: https://rnx.su/index.php/s/YBz5YJQPQD6itFr
+      code:
+      download_url_alt:
+      file_name: Mario.Forever.Party.Worlds.Reimagined.1.0.1.zip
+      file_url:
   - v1.0:
       ver_alt:
       date: 2025-10-25
