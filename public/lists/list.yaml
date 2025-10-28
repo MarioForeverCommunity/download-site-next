@@ -9550,16 +9550,37 @@
   video_zh:
   - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1412579
   image: NEATitle.png
-  ver: 最终修复版
-  ver_alt: Final fix
-  date: 2021-12-31
-  source_url: https://www.marioforever.net/thread-1459-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1vfPHoVRKWFwRSER9S6KDmg
-  code: ZQH1
-  download_url_alt:
-  file_name: Mario Forever-Not Epic Adventure (fix final).zip
-  file_url:
+  ver:
+  - 最终修复版:
+      ver_alt: Final fix
+      date: 2021-12-31
+      source_url: https://www.marioforever.net/thread-1459-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1vfPHoVRKWFwRSER9S6KDmg
+      code: ZQH1
+      download_url_alt:
+      file_name: Mario Forever-Not Epic Adventure (fix final).zip
+      file_url:
+  - 主世界版:
+      ver_alt: Main Worlds
+      date: 2017-09-10
+      source_url: http://tieba.baidu.com/p/5314591753
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1dFjHjTR
+      code:
+      download_url_alt:
+      file_name: Not Epic Adventure.zip
+      file_url:
+  - Beta:
+      ver_alt:
+      date: 2017-08-16
+      source_url: 
+      source_url_alt:
+      download_url: 
+      code:
+      download_url_alt:
+      file_name: Not Epic Adventure Beta (World1).rar
+      file_url:
 - game: 'Mario Forever: Christmas Way'
   game_alt:
   author: TheMarioGamer
@@ -11545,16 +11566,27 @@
   wiki_zh_url:
   wiki_en_url:
   image: MFTEV.png
-  ver: v0.3.1 Bugfix
-  ver_alt:
-  date: 2021-01-03
-  source_url:
-  source_url_alt:
-  download_url:
-  code:
-  download_url_alt:
-  file_name: MFTEV_Ver0.3.1_bugfix.rar
-  file_url:
+  ver:
+  - v0.3.1 Bugfix:
+      ver_alt:
+      date: 2021-01-03
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MFTEV_Ver0.3.1_bugfix.rar
+      file_url:
+  - v0.3:
+      ver_alt:
+      date: 2021-01-02
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Elite Voyage Ver0.3.rar
+      file_url:
 - game: MARIO FOREVER - KATAKANA WORLDS
   game_alt:
   author: Xykijun
@@ -13409,6 +13441,23 @@
   download_url_alt:
   file_name: 兩個MF小作.zip
   file_url:
+- game: Project Monochrome
+  game_alt:
+  author: 幽霊鬼yuureiki
+  author_alt: 
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: Trial 0.1.8
+  ver_alt:
+  date: 2020-01-28
+  source_url: https://marioforeverforum.boards.net/thread/994/mario-forever-fanwork-project-monochrome
+  source_url_alt:
+  download_url: ~https://mega.nz/#!ZQ1hAS6Q!qmO3_S3dASweScAOuwJy6yfuRocWotJ6ihpqFeCUjcQ
+  code:
+  download_url_alt:
+  file_name: PROJECT MONOCHROME TRIAL.zip
+  file_url:
 - game: 'Mario Forever: Lunar New Year 2020 Special'
   game_alt:
   alias:
@@ -13681,6 +13730,16 @@
       code:
       download_url_alt:
       file_name: Mario Forever Minus Worlds v1.8.rar
+      file_url:
+  - World -6:
+      ver_alt:
+      date: 2015-04-12
+      source_url: https://www.youtube.com/watch?v=oRclV1mBals
+      source_url_alt:
+      download_url: https://drive.google.com/file/d/0B9sAjXFbLQQhaTlGNGRoVnp5N2s/view?usp=sharing
+      code:
+      download_url_alt:
+      file_name: MFMW_World-6.exe
       file_url:
   - v1.6 bugfix:
       ver_alt:
@@ -14351,16 +14410,47 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.3.0.2
-  ver_alt:
-  date: 2019-01-25
-  source_url: http://marioforeverforum.boards.net/thread/917/forever-russian-letter-worlds-series
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/9c0neub8upcb8pi/MF_Russian_Letter_Worlds_Series_v0.3.0.2_by_JUE13_%283%29.rar/file
-  code:
-  download_url_alt:
-  file_name: MF Russian Letter Worlds Series v0.3.0.2 by JUE13 (3).rar
-  file_url:
+  ver:
+  - v0.3.0.2:
+      ver_alt:
+      date: 2019-01-25
+      source_url: http://marioforeverforum.boards.net/thread/917/forever-russian-letter-worlds-series
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/9c0neub8upcb8pi/MF_Russian_Letter_Worlds_Series_v0.3.0.2_by_JUE13_%283%29.rar/file
+      code:
+      download_url_alt:
+      file_name: MF Russian Letter Worlds Series v0.3.0.2 by JUE13 (3).rar
+      file_url:
+  - v0.3:
+      ver_alt:
+      date: 2019-01-24
+      source_url: http://marioforeverforum.boards.net/thread/917/forever-russian-letter-worlds-series
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF Russian Letter Worlds v0.3 by JUE13.zip
+      file_url:
+  - v0.2:
+      ver_alt:
+      date: 2018-12-29
+      source_url: http://marioforeverforum.boards.net/thread/917/forever-russian-letter-worlds-series
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF Russian Letter Worlds Series v0.2 by JUE13.zip
+      file_url:
+  - World Б:
+      ver_alt:
+      date: 2018-12-04
+      source_url: http://marioforeverforum.boards.net/thread/917/forever-russian-letter-worlds-series
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever World Б.zip
+      file_url:
 - game: 2586world
   game_alt:
   author: 数字1528君
@@ -17553,6 +17643,23 @@
   code:
   download_url_alt:
   file_name: Mario Forever World 13-1 to 13-6(7).exe
+  file_url:
+- game: 'Submit a Level Project: Round 1 - Results'
+  game_alt:
+  author: crist1919
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2015-05-12
+  source_url: https://www.youtube.com/watch?v=U3w3brL39MM
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: MF_SAL1.exe
   file_url:
 - game: Mario Long March
   game_alt:
