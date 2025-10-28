@@ -496,6 +496,16 @@
   code:
   file_name: 20240610即兴关卡.smwp
   file_url:
+- game: For 6463 - Reply (By mlaalm)
+  author: 马里奥奥里马
+  description: 更新版，请使用 Welcome back to Marioworker Bar 2024 自带的 MW 游玩
+  smwp_ver: v1.7.10
+  date: 2024-06-10
+  source_url: https://www.marioforever.net/thread-3215-1-1.html
+  download_url:
+  code:
+  file_name: Welcome back to Marioworker Bar 2024.zip
+  file_url:
 - game: 20XX
   author: '1168438795'
   smwp_ver: v1.7.10
@@ -860,6 +870,19 @@
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
   code: xbr2
   file_name: A Day Out(S2简化版).smwp
+  file_url:
+- game: For yjs - Boundless World (By mlaalm)
+  alias:
+  - Boundless World
+  - BW
+  author: 马里奥奥里马
+  description: 简化+更新版，请使用Welcome back to Marioworker Bar 2023自带的MW游玩
+  smwp_ver: v1.7.10
+  date: 2023-06-30
+  source_url: https://www.marioforever.net/thread-2720-1-1.html
+  download_url: 
+  code:
+  file_name: For yjs - Boundless World (By mlaalm)/
   file_url:
 - game: I'mperfect
   alias:
@@ -1729,6 +1752,16 @@
   has_bgm: true
   file_name: Terraria/
   file_url:
+- game: For lz - Silent Traveller
+  author: '1168438795'
+  description: 此为单关smwl版，请使用Welcome back to Marioworker Bar 2021自带的MW游玩
+  smwp_ver: v1.7.6
+  date: 2021-06-09
+  source_url: https://www.marioforever.net/thread-1193-1-1.html
+  download_url:
+  code:
+  file_name: For lz - Silent Traveller/
+  file_url:
 - game: Welcome back to Marioworker Bar 2021
   alias:
   - 高考回归2021
@@ -2044,6 +2077,42 @@
   code:
   file_name: MW大冲关V.smwp
   file_url:
+- game: "."
+  author: 們桃螕
+  smwp_ver: v1.7.6
+  date: 2020-12-25
+  source_url: https://tieba.baidu.com/p/7167297747
+  download_url:
+  code:
+  file_name: "..smwl"
+  file_url:
+- game: "#"
+  author: 們桃螕
+  smwp_ver: v1.7.6
+  date: 2020-12-13
+  source_url: https://tieba.baidu.com/p/7147332634
+  download_url:
+  code:
+  file_name: "#.smwl"
+  file_url:
+- game: "!"
+  author: 們桃螕
+  smwp_ver: v1.7.6
+  date: 2020-12-08
+  source_url: https://tieba.baidu.com/p/7137406726
+  download_url: https://pan.baidu.com/s/1D33Tm-vavA4gDI99bfM0NQ
+  code: n8t8
+  file_name: "!.smwl"
+  file_url:
+- game: ","
+  author: 們桃螕
+  smwp_ver: v1.7.6
+  date: 2020-12-01
+  source_url: https://tieba.baidu.com/p/7123588455
+  download_url: https://pan.baidu.com/s/1IbV2Fc6s6eZuHmSYT3783w
+  code: t7ip
+  file_name: ",.smwl"
+  file_url:
 - game: Simply Linked Stages C
   author: 把僵尸炖了
   alias:
@@ -2265,6 +2334,16 @@
   code:
   has_bgm: true
   file_name: Welcome back to Marioworker Bar 2020/
+  file_url:
+- game: Decade（绿色简化版）
+  author: LLX奶油马里奥
+  description: 原作为10th Anniversary Album返场作品
+  smwp_ver: v1.7.3
+  date: 2020-06-27
+  source_url: https://www.marioforever.net/thread-537-1-1.html
+  download_url:
+  code:
+  file_name: Decade（绿色简化版）.smwp
   file_url:
 - game: Castle Maze
   author: 2333ty
@@ -2595,6 +2674,16 @@
   code:
   file_name: An old tale残卷/
   file_url:
+- game: Dream of Lunatic Seasons(Beta)
+  author: Fahlee
+  description: 本作的新版见Fahlee Album 6修复版
+  smwp_ver: v1.4.1
+  date: 2018-06-15
+  source_url:
+  download_url:
+  code:
+  file_name: Dream of Lunatic Seasons(Beta)/
+  file_url:
 - game: A Small Maze
   author: 无视我233
   smwp_ver: v1.4.1
@@ -2648,6 +2737,18 @@
   download_url: https://pan.baidu.com/s/1kVxaIbl
   code:
   file_name: Celebration!!!(91st birthday!!!)/
+  file_url:
+- game: Wonderland Secret Worlds 半集
+  alias:
+  - WLSW
+  author: 蓝太阳
+  smwp_ver: v1.2.7
+  date: 2017-08-15
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Wonderland_Secret_Worlds
+  source_url: https://tieba.baidu.com/p/5258983737
+  download_url: http://bluesun0505.ysepan.com/
+  code: r0wn
+  file_name: Wonderland Secret Worlds 半集/
   file_url:
 - game: Wonderful World
   author: 番木瓜反抗
