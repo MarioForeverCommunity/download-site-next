@@ -1,4 +1,32 @@
 ---
+- game: Mario Forever Idirfertat World
+  game_alt:
+  author: Ahiruku Tchi
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v0.1.2:
+      ver_alt:
+      date: 2025-11-02
+      source_url: https://www.youtube.com/watch?v=x7psRMJrm08
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/7wr2vkwsof2ho6a/Mario_Forever_Idirfertat_World_0.1.2.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Idirfertat World 0.1.2.rar
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2025-11-02
+      source_url: https://www.youtube.com/watch?v=x7psRMJrm08
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Idirfertat World 0.1.rar
+      file_url:
 - game: Rhzoidnik World
   game_alt:
   author: Yoshi50Windows
