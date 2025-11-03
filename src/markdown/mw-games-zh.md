@@ -27,3 +27,5 @@
 <a class="md-button" target="_blank" href="https://www.123pan.com/s/U3vrVv-uruf.html">Mario Worker 资源备用下载地址 (提取码：MAWO)</a><ClipboardButton lan="zh" code="MAWO" />
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
+
+欢迎加入 Mario Worker QQ 群，群号：140130677

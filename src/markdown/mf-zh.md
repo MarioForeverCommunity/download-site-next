@@ -16,7 +16,7 @@
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
 
-欢迎加入 Mario Forever 游戏资源群，群号：832497462
+欢迎加入 Mario Forever 玩家交流 · 游戏资源群，群号：832497462
 
 <p v-if="lastUpdateZh" class="last-update" style="font-weight: bold;">最后更新：{{ lastUpdateZh }}</p>
 
