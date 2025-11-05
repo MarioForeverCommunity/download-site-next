@@ -65,6 +65,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 20 多�
 | v5.08dx | 2011-11-28 | ★☆  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%205.08dx.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%205.08%20Direct%20X.7z" lan="zh"/> |
 | v5.9 | 2011-12-12 | ★☆  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%205.9.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%205.9.7z" lan="zh"/> |
 | v5.9s | 2012-04-02 | ★☆  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%205.9s.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%205.9s.7z" lan="zh"/> |
+| v5.9r | 2013-01-18 | ☆   | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%205.9r.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%205.9r.7z" lan="zh"/> |
 | v6.0 Beta | 2013-02-22 | ★☆  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%206.0.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%206.0.7z" lan="zh"/> |
 | v6.01 | 2013-05-09 | ★☆  | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/Mario%20Forever%206.01.exe" lan="zh"/> | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%206.01.7z" lan="zh"/> |
 | v6.1 | 2015-12-02 | ★   |     | <DownloadButton href="https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/Mario%20Forever%206.1.rar" lan="zh"/> |
@@ -85,8 +86,9 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 20 多�
 
 1. v1.16.1 在不引起歧义情况下可简称 v1.16，但这并不代表 v1.16.1 与已失传的 v1.16.0 相同。  
 2. v3.50 与 v3.51 均为官方版本。本站提供的 v3.50 安装包为国内二次打包版，故常被误称 v3.5 山寨版；对应地，v3.51 常被称为 v3.5 官方版。
-3. v6.0 及以后的版本官方的版本号比较混乱，v6.0，v6.01，v6.1，v6.11 是为了明确区分而使用的版本号。  
+3. v6.0 及以后的版本官方的版本号比较混乱，v6.0，v6.01，v6.1，v6.11 是为了明确区分而分配的版本号。  
 4. v1.16.1 无绿色版，因为 BGM 资源文件被安装在 Windows 目录下；v6.1/v6.11 暂无安装版。绿色版移除了全部图标文件、url 快捷方式、卸载程序和广告插件安装包。  
 5. v5.011/v5.013 安装后的文件与 v5.01 完全相同，v5.08b 安装后的文件与 v5.08 相同。
-6. Advance v4.4 (2011) 的发布日期指 exe 文件的修改日期。
+6. v5.9s/v5.9r 的版本号系为区分之用；v5.9r 的主程序修改日期为 2013-01-18，而[安装程序放出的日期疑似为 2014-06-26](https://archive.marioforever.net/post/3258680750.html)；该版本无法运行。
+7. Advance v4.4 (2011) 的发布日期指 exe 文件的修改日期。
 </div>

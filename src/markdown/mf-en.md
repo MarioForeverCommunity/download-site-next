@@ -47,6 +47,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 | v5.08dx | 2011-11-28 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%205.08dx.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%205.08%20Direct%20X.7z" lan="en"/> |
 | v5.9 | 2011-12-12 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%205.9.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%205.9.7z" lan="en"/> |
 | v5.9s | 2012-04-02 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%205.9s.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%205.9s.7z" lan="en"/> |
+| v5.9r | 2013-01-18 | ☆   | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%205.9r.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%205.9r.7z" lan="en"/> |
 | v6.0 Beta | 2013-02-22 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%206.0.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%206.0.7z" lan="en"/> |
 | v6.01 | 2013-05-09 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%206.01.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%206.01.7z" lan="en"/> |
 | v6.1 | 2015-12-02 | ★   |     | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%206.1.rar" lan="en"/> |
@@ -67,7 +68,8 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11.  
 2. The installer for v3.50 is a Chinese repack. This version contains a bug in World 4-2 that prevents from progressing through the game, which was fixed in v3.51.
 3. v5.011/v5.013 are identical to v5.01, and v5.08b is identical to v5.08. 
-4. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 are used for clarity.
+4. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 were designated for clarity.
 5. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
-6. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
+6. The version numbers v5.9s and v5.9r were designated for clarity. The v5.9r executable was last modified on 2013-01-18, while the installer [appears to have been released on 2014-06-26](https://archive.marioforever.net/post/3258680750.html). This version is known to be non-functional.
+7. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
 </div>
