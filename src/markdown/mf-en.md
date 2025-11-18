@@ -58,6 +58,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 | v7.02_11 Beta | 2017-10-25 | ★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_11%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_11%20Beta.7z" lan="en"/> |
 | v7.02_13 Beta | 2017-10-25 | ★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_13%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_13%20Beta.7z" lan="en"/> |
 | v7.02_15 Beta | 2017-10-29 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_15%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_15%20Beta.7z" lan="en"/> |
+| v7.02_30 Beta | 2017-11-04 | ★★  |     | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_30%20Beta.zip" lan="en"/> |
 | v7.02_31 Beta | 2017-11-09 | ★★  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02_31%20Beta.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02_31%20Beta.7z" lan="en"/> |
 | v7.02e | 2019-01-28 | ★☆  | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%207.02e.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%207.02e.7z" lan="en"/> |
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20Edition.7z" lan="en"/> |
@@ -66,7 +67,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 </div>
 <div class="foot-note" style="font-size:12px">
 
-1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11.  
+1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11/v7.02_30.  
 2. The installer for v3.50 is a Chinese repack. This version contains a bug in World 4-2 that prevents from progressing through the game, which was fixed in v3.51.
 3. v5.011/v5.013 are identical to v5.01, and v5.08b is identical to v5.08. 
 4. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 were designated for clarity.
