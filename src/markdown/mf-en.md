@@ -64,6 +64,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 | Advance v4.4 | 2009-07-08 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20Edition.7z" lan="en"/> |
 | Advance v4.4 (2011) | 2011-12-13 | ★★★★★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance%20(2011).exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20(2011).7z" lan="en"/> |
 | Advance v4.41 | 2017-10-24 | ★★★★☆ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20Advance%20v4.41.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20Advance%20v4.41.7z" lan="en"/> |
+| KIDS v7.02 | 2017-11-13 | ★ | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario%20Forever%20KIDS%207.02.exe" lan="en"/> | <DownloadButton href="https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario%20Forever%20KIDS%207.02.7z" lan="en"/> |
 </div>
 <div class="foot-note" style="font-size:12px">
 
