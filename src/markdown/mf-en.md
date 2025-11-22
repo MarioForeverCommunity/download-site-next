@@ -26,6 +26,7 @@
 Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wiki/Mario_Forever).
 
 <OriginalMfTable lan="en" />
+
 <div class="foot-note" style="font-size:12px">
 
 1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11/v7.02_30.  
@@ -37,3 +38,10 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 7. The installer of v7.02e is originally named `super-mario-forever-v702e.exe`. The installed v7.02e includes a file called `MarioForever 7.02 Beta.exe`, last modified on 2019-01-28. This file is not the actual game executable, as it's only a launcher that opens a window titled "Softendo Games Steam." The v7.02e game executable is identical to that of v7.02_31 Beta. 
 8. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
 </div>
+
+## Frequently Asked Questions
+**Q: Is Mario Forever safe? I've heard it contains a virus.**  
+**A:** Many people still believe that Mario Forever is some kind of "malware-infested game," but the truth is more nuanced: the game itself does **not** include any traditional virus. In certain versions, the installer comes with an Internet Explorer advertising add-on called "Mario Forever Toolbar." This add-on is unpopular and intrusive, but it is classified as adware rather than a virus.  
+That said, there is a legitimate security concern raised by researchers. According to [Cyble](https://cyble.com/blog/trojanized-super-mario-game-installer-spreads-supremebot-malware/), a particular installer for *super-mario-forever-v702e* was trojanized, bundling malicious components: an XMR miner, a SupremeBot mining client, and an open-source Umbral stealer. This is likely the origin of the widespread "MF contains a virus" rumor.  
+**Important note:** None of the versions offered on this site contain any of those malicious payloads identified by Cyble. We've verified that our installers are safe. Some versions' installers do bundle the "Mario Forever Toolbar," but you can opt not to install it during setup.  
+To ease any remaining concerns, we provide a portable version of the game. This version has no bundled toolbar and no irrelevant contents. You may alternatively choose to play one of the fan-made recreated versions, such as Mario Forever Remake or Mario Forever: Community Edition. 

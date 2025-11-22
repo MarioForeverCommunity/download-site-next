@@ -91,7 +91,6 @@
 </template>
 
 <style> 
-
   .md-container {
     width: 100vw;
     box-sizing: border-box;
@@ -114,7 +113,6 @@
     font-variant-numeric: normal;
     font-variant-position: normal;
     font-variation-settings: normal;
-    font-weight: 300;
     margin-bottom: 0;
   }
 

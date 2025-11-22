@@ -838,7 +838,6 @@
     font-variant-numeric: normal;
     font-variant-position: normal;
     font-variation-settings: normal;
-    font-weight: 300;
   }
 
   @media (max-width: 1333px) and (min-width: 800px) {
