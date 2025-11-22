@@ -36,7 +36,7 @@ Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 20 多�
 
 ⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。
 
-⑥<span style="color:red">（Mario Forever: Community Edition，2024～）</span>2023 年，Godot Engine 开始在国内外 Mario Forever 社区流行，国内外社群已经制作出 Godot 上的 Mario Forever 游戏引擎。2024 年，国外 Meteo Dream 制作组发布了 Mario Forever: Community Edition（简称 MF:CE），这是基于 Godot 4 的 Thunder Engine 制作的全新的 Mario Forever 复刻版本。由于 Godot 的 Mario Forever 完全从零开始，MF:CE 实现了在 Multimedia Fusion 平台不可能实现的诸多特性，包括但不限于可以将关卡设定为 2.16/4.4/6.0 等不同版本风格、自定义玩家皮肤、高帧率等。虽然因为引擎不同导致游戏手感不可避免地与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
+⑥<span style="color:red">（Mario Forever: Community Edition，2024～）</span>2023 年，Godot Engine 开始在国内外 Mario Forever 社区流行，国内外社群已经制作出 Godot 上的 Mario Forever 游戏引擎。2024 年，国外 Meteo Dream 制作组发布了 Mario Forever: Community Edition（简称 MF:CE），这是基于 Godot 4 的 Thunder Engine 制作的全新的 Mario Forever 复刻版本。由于 Godot 的 Mario Forever 完全从零开始，MF:CE 实现了在 Multimedia Fusion 平台不可能实现的诸多特性，包括但不限于可以将关卡设定为 2.16/4.4/6.0 等不同版本风格、自定义玩家皮肤、高帧率等。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
 
 更新日志参见 [Wiki 页面](https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5)。
 
