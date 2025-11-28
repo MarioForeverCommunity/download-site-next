@@ -4893,8 +4893,18 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFFLWS.png
+  image: MFFLWS1.8.png
   ver:
+  - v1.8:
+      ver_alt:
+      date: 2025-11-27
+      source_url: https://www.youtube.com/watch?v=raqFWk4Oknc
+      source_url_alt:
+      download_url: https://mega.nz/file/uNAgkQwC#h4_vrG2RFZO-4WRhvcTgKKXsGIKxsEnp3C8U_ExKBL4
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Fabulous Letter Worlds Series v1.8.rar
+      file_url:
   - v1.5.1:
       ver_alt:
       date: 2025-05-10
@@ -4905,6 +4915,7 @@
       download_url_alt:
       file_name: MF Fabulous Letter Worlds Series v1.5.1.rar
       file_url:
+      image: MFFLWS.png
   - v1.5:
       ver_alt:
       date: 2025-05-08
@@ -4915,6 +4926,7 @@
       download_url_alt:
       file_name: MF Fabulous Letter Worlds Series v1.5.rar
       file_url:
+      image: MFFLWS.png
   - "v1.5 Demo #2 Fix1":
       ver_alt:
       date: 2025-01-24
@@ -4925,6 +4937,7 @@
       download_url_alt:
       file_name: MF Fabulous Letter Worlds Series v1.5 Demo %232 Fix1.rar
       file_url:
+      image: MFFLWS.png
   - v1.5 Demo:
       ver_alt:
       date: 2024-11-22
@@ -4935,6 +4948,7 @@
       download_url_alt:
       file_name: MF - FABULOUS LETTER WORLDS SERIES VER 1.5 DEMO.RAR
       file_url:
+      image: MFFLWS.png
   - v1.01:
       ver_alt:
       date: 2023-12-04
