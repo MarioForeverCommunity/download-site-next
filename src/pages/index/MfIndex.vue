@@ -9,8 +9,7 @@
   import { navTop } from "../../config.js";
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
-  import FooterZh from '../../components/FooterZh.vue';
-  import FooterEn from '../../components/FooterEn.vue';
+  import SiteFooter from '../../components/SiteFooter.vue';
   import 'vue3-carousel/dist/carousel.css'
 
   const lan = ref(getLanguage());
@@ -86,8 +85,7 @@
   <ButtonBackToTop />
   <ButtonDarkMode />
 
-  <FooterZh v-if="lan == 'zh'" />
-  <FooterEn v-if="lan == 'en'" />
+  <SiteFooter />
 </template>
 
 <style> 

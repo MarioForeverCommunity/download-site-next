@@ -3,8 +3,7 @@
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import { navTop } from "../../config.js";
-  import FooterZh from '../../components/FooterZh.vue';
-  import FooterEn from '../../components/FooterEn.vue';
+  import SiteFooter from '../../components/SiteFooter.vue';
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
@@ -796,8 +795,7 @@
   <ButtonBackToTop />
   <ButtonDarkMode />
 
-  <FooterZh v-if="lan == 'zh'" />
-  <FooterEn v-if="lan == 'en'" />
+  <SiteFooter />
 </template>
 
 <style scoped>

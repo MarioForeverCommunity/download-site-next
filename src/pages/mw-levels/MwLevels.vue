@@ -2,7 +2,7 @@
   import { ref, computed } from 'vue';
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
-  import FooterZh from '../../components/FooterZh.vue';
+  import SiteFooter from '../../components/SiteFooter.vue';
   import { navTop } from "../../config.js";
   import {readList} from "../../util/ReadList.js";
   import GameLine from "../../components/GameLine.vue";
@@ -452,7 +452,7 @@
   <ButtonBackToTop />
   <ButtonDarkMode />
 
-  <FooterZh/>
+  <SiteFooter />
 
 </template>
 

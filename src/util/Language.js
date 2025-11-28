@@ -19,10 +19,20 @@ export function getLanguage() {
 
 export function setLanguageZh() {
     Cookies.set("language", "zh");
+    // 派发语言切换事件
+    if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('language-changed'));
+        window.dispatchEvent(new CustomEvent('custom-language-changed', { detail: { language: 'zh' } }));
+    }
     return "zh";
 }
 
 export function setLanguageEn() {
     Cookies.set("language", "en");
+    // 派发语言切换事件
+    if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('language-changed'));
+        window.dispatchEvent(new CustomEvent('custom-language-changed', { detail: { language: 'en' } }));
+    }
     return "en";
 }
