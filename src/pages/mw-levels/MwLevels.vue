@@ -235,6 +235,10 @@
     }
     if (selectedSmwpVer.value) {
       result = result.filter(a => {
+        if (selectedSmwpVer.value === "unspecified") {
+          // 选中"未指定"时，筛出没有指定SMWP版本的作品
+          return !a.smwp_ver;
+        }
         if (!a.smwp_ver) return false;
         const ver = a.smwp_ver.replace(/^v/, "");
         // 精确匹配主版本或完整版本，若选中如1.7.11，则1.7.11和1.7.11b都包含
@@ -331,6 +335,7 @@
           <select v-model="selectedSmwpVer">
             <option value="" style="font-weight:bold">全部</option>
             <option v-for="opt in smwpVersionOptions" :key="opt.value" :value="opt.value" :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''">{{opt.label}}</option>
+            <option value="unspecified" style="font-weight:bold">未指定</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
