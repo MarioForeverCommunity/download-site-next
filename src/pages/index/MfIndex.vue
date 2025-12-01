@@ -40,6 +40,7 @@
   document.title = lan.value == "zh" ? titleZh : titleEn;
 
   const images = [
+    "/images/index/title.webp",
     "/images/index/3-2.webp",
     "/images/index/3-4.webp",
     "/images/index/4-1.webp",
@@ -49,7 +50,6 @@
     "/images/index/HC2-3.webp",
     "/images/index/HL-1.webp",
     "/images/index/LM-4.webp",
-    "/images/index/title.webp",
   ]
 
   function pageSetLanguageZh() {
