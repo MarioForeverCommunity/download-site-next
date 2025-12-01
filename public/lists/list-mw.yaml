@@ -1329,9 +1329,7 @@
   download_url:
   code:
   has_bgm: true
-  file_name:
-  - 116的小作/Xord.smwl
-  - 116的小作/sms1.ogg
+  file_name: 116的小作/Xord/
   file_url:
 - game: Silent/Endless Iceland
   author: 玛丽的死对头

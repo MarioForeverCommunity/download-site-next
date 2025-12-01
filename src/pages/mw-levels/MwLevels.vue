@@ -52,14 +52,16 @@
             if (file_name_entry == null) {
               continue;
             }
-            var fileName = file_name_entry.replace(/\.[^.]*$/, "");
+            // Extract only the filename after the last slash for display
+            var displayFileName = file_name_entry.split('/').pop();
+            displayFileName = displayFileName.replace(/\.[^.]*$/, "");
             try {
-              fileName = decodeURIComponent(fileName);
+              displayFileName = decodeURIComponent(displayFileName);
             } catch(e) {
               // Ignore decodeURIComponent errors
             }
             entry.file_urls.push({
-              name: `社区资源站（${fileName}）`,
+              name: `社区资源站（${displayFileName}）`,
               url: generateResourceUrl(entry, file_name_entry)
             });
           }
