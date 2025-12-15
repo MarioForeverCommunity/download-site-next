@@ -1,4 +1,24 @@
 ---
+- game: Mario Forever Sensitive Journey
+  game_alt:
+  alias:
+  - MFSJ
+  author: FbdFeelingZ
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image: Mario Forever Sensitive Journey.png
+  ver: v0.3
+  ver_alt:
+  date: 2025-12-15
+  source_url: https://www.youtube.com/watch?v=XZ41nJMy2lc
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/1ejs0xm6wwe0og0/Mario_Forever_Sensitive_Journey_v0.3.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Sensitive Journey v0.3.zip
+  file_url:
 - game: 城堡单关
   game_alt: Castle
   author: LiseraForever
