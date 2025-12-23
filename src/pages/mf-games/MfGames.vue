@@ -779,10 +779,10 @@
         </div>
         <div class="button-line">
           <a class="download" :href="tiebaDialog.originalUrl" target="_blank" @click="tiebaDialog = null;">
-            {{ lan == 'en' ? 'Original Tieba (tieba.baidu.com)' : '百度贴吧源站' }}
+            {{ lan == 'en' ? 'Baidu Tieba (tieba.baidu.com)' : '百度贴吧源站' }}
           </a>
           <a class="download" :href="tiebaDialog.archiveUrl" target="_blank" @click="tiebaDialog = null;">
-            {{ lan == 'en' ? 'Archive Site (archive.marioforever.net)' : '社区备份站' }}
+            {{ lan == 'en' ? 'Tieba Archive (archive.marioforever.net)' : '社区备份站' }}
           </a>
         </div>
       </div>
