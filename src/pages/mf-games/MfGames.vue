@@ -19,7 +19,7 @@
   import Tooltip from '../../components/ToolTip.vue';
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
-  import { useFloating, flip, shift, offset } from '@floating-ui/vue';
+  import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 
   const lan = ref(getLanguage());
 
@@ -526,6 +526,7 @@
   const { floatingStyles} = useFloating(reference, floating, 
   {
     middleware: [flip(), shift(), offset(10)],
+    whileElementsMounted: autoUpdate,
   });
 
   // 根据文件名判断tooltip类型

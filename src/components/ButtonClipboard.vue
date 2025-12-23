@@ -1,5 +1,6 @@
 <script setup>
   import { ref, computed } from 'vue';
+  import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
   import ClipboardIcon from './icons/IconClipboard.vue';
 
   const props = defineProps({
@@ -29,14 +30,33 @@
     } else {
       return props.lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
     }
-  })
+  });
+
+  const reference = ref(null);
+  const floating = ref(null);
+  const showTooltip = ref(false);
+
+  const { floatingStyles } = useFloating(reference, floating, {
+    middleware: [flip(), shift(), offset(10)],
+    whileElementsMounted: autoUpdate,
+  });
+
+  function onMouseEnter() {
+    showTooltip.value = true;
+  }
+
+  function onMouseLeave() {
+    showTooltip.value = false;
+  }
 </script>
 
 <template>
-  <a class="tooltip">
-    <ClipboardIcon class="icon button" @click="copyCode();" />
-    <span class="tooltiptext tooltip-bottom">{{ clipboardCopyText }}</span>
-  </a>
+  <span style="display: inline-block;">
+    <ClipboardIcon ref="reference" class="icon button" @click="copyCode();" @mouseenter="onMouseEnter()" @mouseleave="onMouseLeave()" />
+    <Teleport to="body">
+      <div ref="floating" v-if="showTooltip" class="floating-obj" :style="floatingStyles">{{ clipboardCopyText }}</div>
+    </Teleport>
+  </span>
 </template>
 
 <style scoped>
@@ -79,32 +99,15 @@
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
   }
-  .tooltip {
-    position: relative;
-    display: inline-block;
-  }
 
-  .tooltip .tooltiptext {
-    top:40px;
-    left:50%;
-    transform:translate(-50%, -5px);
-    display:none;
+  .floating-obj {
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    padding: .25em .75em;
     width: max-content;
-    max-width: 70vw;
-  }
-
-  .tooltip .tooltiptext.tooltip-left-align {
-  text-align: left;
-  }
-
-  .tooltip:hover .tooltiptext {
-    display:block;
+    max-width: calc(min(800px, 90vw));
+    padding: .25em .75em;
+    z-index: 3;
   }
 </style>

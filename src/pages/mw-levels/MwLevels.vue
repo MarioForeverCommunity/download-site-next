@@ -13,7 +13,7 @@
   import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
-  import { useFloating, flip, shift, offset } from '@floating-ui/vue';
+  import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
   import {SmwpVersions} from "../../util/SmwpVersions.js"
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
@@ -304,6 +304,7 @@
   const { floatingStyles} = useFloating(reference, floating, 
   {
     middleware: [flip(), shift(), offset(10)],
+    whileElementsMounted: autoUpdate,
   });
 
 </script>
@@ -758,7 +759,7 @@
     width: max-content;
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
-    z-index: 1;
+    z-index: 3;
   }
 
 </style>
