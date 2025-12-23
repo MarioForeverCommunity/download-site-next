@@ -34,7 +34,7 @@
 <template>
   <footer>
     <span v-if="lan === 'zh'"><a target="_blank" href="https://status.marioforever.net/">网站状态</a></span>
-    <span v-else>This is NOT a Softendo/Nintendo official site. Mario and all relatives belong to Nintendo.</span>
+    <span v-else>This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo.</span>
     <span v-if="lan === 'zh'">网站版本：{{ siteVersion }}</span>
     <span v-else>Site version: {{ siteVersion }}</span>
     <span v-if="lan === 'zh'"><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
