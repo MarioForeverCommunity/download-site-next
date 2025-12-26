@@ -674,8 +674,31 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  - World -E:
+  - World -F:
       current: true
+      ver_alt:
+      date: 2025-12-26
+      source_url: https://www.youtube.com/watch?v=gra8ViW-VAE
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/a4mp3vf2ruwucaj/MWMLWS_-_World_-F.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -F.zip
+      file_url:
+      image: MWMLWSF.png
+  - World -E (Bugfix):
+      current: true
+      ver_alt:
+      date: 2025-12-26
+      source_url: https://www.youtube.com/watch?v=73fdT--c_aA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/qg6x4wdzgin125c/MWMLWS_-_World_-E_%2528BUGFIX%2529.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -E (BUGFIX).zip
+      file_url:
+      image: MWMLWSE.png
+  - World -E:
       ver_alt:
       date: 2025-12-06
       source_url: https://www.youtube.com/watch?v=73fdT--c_aA
