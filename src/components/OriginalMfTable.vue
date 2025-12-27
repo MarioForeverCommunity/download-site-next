@@ -14,11 +14,13 @@ const props = defineProps({
 const baseUrls = {
   'zh': {
     installer: 'https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/',
-    portable: 'https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/'
+    portable: 'https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/',
+    nsmf_installer: 'https://file.marioforever.net/Mario%20Forever/New%20Super%20Mario%20Forever%20%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/'
   },
   'en': {
     installer: 'https://file.marioforever.net/mario-forever/games/original-mf/installer/',
-    portable: 'https://file.marioforever.net/mario-forever/games/original-mf/portable/'
+    portable: 'https://file.marioforever.net/mario-forever/games/original-mf/portable/',
+    nsmf_installer: 'https://file.marioforever.net/mario-forever/games/softendo/installer/'
   }
 };
 
@@ -46,7 +48,8 @@ const formatDate = (dateString) => {
 // 获取下载链接
 const getDownloadUrl = (version, type) => {
   if (type === 'installer' && version.installer) {
-    return `${baseUrls[props.lan].installer}${version.installer}`;
+    const baseUrl = version.nsmf ? baseUrls[props.lan].nsmf_installer : baseUrls[props.lan].installer;
+    return `${baseUrl}${version.installer}`;
   } else if (type === 'portable' && version.portable) {
     return `${baseUrls[props.lan].portable}${version.portable}`;
   }

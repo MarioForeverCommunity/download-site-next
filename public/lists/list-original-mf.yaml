@@ -111,10 +111,14 @@
 - ver: v6.1
   date: 2015-12-02
   rating: ★
+  installer: Super Mario Forever (2016-02-11).exe
+  nsmf: true
   portable: Mario Forever 6.1.rar
 - ver: v6.11
   date: 2016-08-12
   rating: ★★
+  installer: Super Mario Forever (2016-08-12).exe
+  nsmf: true
   portable: Mario Forever 6.11.rar
 - ver: v7.01 Beta
   date: 2017-10-22

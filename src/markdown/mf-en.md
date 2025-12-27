@@ -29,14 +29,15 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 
 <div class="foot-note" style="font-size:12px">
 
-1. There is no portable archive for v1.16.1, and there is no installer for v6.1/v6.11/v7.02_30.  
+1. There is no portable archive for v1.16.1, as this version installs its assets in the Windows directory. There is no installer for v7.02_30.
 2. The installer for v3.50 is a Chinese repack. This version contains a bug in World 4-2 that prevents from progressing through the game, which was fixed in v3.51.
 3. v5.011/v5.013 are identical to v5.01, and v5.08b is identical to v5.08. 
-4. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 were designated for clarity.
-5. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
-6. The version numbers v5.9s and v5.9r were designated for clarity. The v5.9r executable was last modified on 2013-01-18, while the installer [appears to have been released on 2014-06-26](https://archive.marioforever.net/post/3258680750.html). This version is known to be non-functional.
+4. The version numbers v5.9s and v5.9r were designated for clarity. The v5.9r executable was last modified on 2013-01-18, while the installer [appears to have been released on 2014-06-26](https://archive.marioforever.net/post/3258680750.html). This version is known to be non-functional.
+5. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 were designated for clarity.
+6. The files for v6.1/v6.11 originate from the Super Mario Forever 2016 Pack released by Softendo.
 7. The installer of v7.02e is originally named `super-mario-forever-v702e.exe`. The installed v7.02e includes a file called `MarioForever 7.02 Beta.exe`, last modified on 2019-01-28. This file is not the actual game executable, as it's only a launcher that opens a window titled "Softendo Games Steam." The v7.02e game executable is identical to that of v7.02_31 Beta. 
 8. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
+9. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
 </div>
 
 ## Frequently Asked Questions
