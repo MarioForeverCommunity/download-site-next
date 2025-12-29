@@ -1,4 +1,22 @@
 ---
+- game: "Mario Forever: Advanced Mario Bros."
+  game_alt:
+  author: AppliconReal
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image: MFAMB.png
+  ver: v0.8 Demo
+  ver_alt:
+  date: 2025-12-27
+  source_url: https://marioforever.space/topic/58
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/ft9dnqicjfkb9jf/Mario+Forever+Advanced+Mario+Bros.+v0.8+Demo.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Advanced Mario Bros. v0.8 Demo.zip
+  file_url:
 - game: Mario Forever Sensitive Journey
   game_alt:
   alias:
