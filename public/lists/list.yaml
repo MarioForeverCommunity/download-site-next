@@ -1,4 +1,22 @@
 ---
+- game: Mario Forever Lost Map X
+  game_alt:
+  author: ƒresh★LAKE
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  image: Lost Map X Title Screen.webp
+  ver:
+  ver_alt:
+  date: 2026-01-01
+  source_url: https://www.marioforever.net/thread-3771-1-1.html
+  source_url_alt:
+  download_url: https://wwazi.lanzoue.com/iMH8a3eyr2zg
+  code: LMX
+  download_url_alt:
+  file_name: Lost Map X.exe
+  file_url:
 - game: "Mario Forever: Advanced Mario Bros."
   game_alt:
   author: AppliconReal
