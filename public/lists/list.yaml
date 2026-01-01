@@ -9,6 +9,7 @@
   image: MFNY2026.webp
   ver:
   - v0.5 Windows:
+      current: true
       ver_alt:
       date: 2026-01-01
       source_url: https://www.marioforever.net/thread-3766-1-1.html
