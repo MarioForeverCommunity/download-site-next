@@ -1,11 +1,41 @@
 ---
+- game: Mario Forever - The New Year 2026
+  game_alt:
+  author: 马里奥X7
+  author_alt: MarioX7
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  image: MFNY2026.webp
+  ver:
+  - v0.5 Windows:
+      ver_alt:
+      date: 2026-01-01
+      source_url: https://www.marioforever.net/thread-3766-1-1.html
+      source_url_alt:
+      download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
+      code: 
+      download_url_alt:
+      file_name: MFNY2026-windows-x86.zip
+      file_url:
+  - v0.5 Linux:
+      current: true
+      ver_alt:
+      date: 2026-01-01
+      source_url: https://www.marioforever.net/thread-3766-1-1.html
+      source_url_alt:
+      download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
+      code: 
+      download_url_alt:
+      file_name: MFNY2026-linux-x86_64.tar
+      file_url:
 - game: Mario Forever Lost Map X
   game_alt:
   author: ƒresh★LAKE
   author_alt:
   type: chinese
-  wiki_zh_url:
-  wiki_en_url:
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Lost_Map_X
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Lost_Map_X
   image: Lost Map X Title Screen.webp
   ver:
   ver_alt:
@@ -24,7 +54,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFAMB.png
+  image: MFAMB.webp
   ver: v0.8 Demo
   ver_alt:
   date: 2025-12-27
@@ -44,7 +74,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFSJ.png
+  image: MFSJ.webp
   ver:
   - v0.7:
       ver_alt:
@@ -83,7 +113,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: Castle.png
+  image: Castle.webp
   ver:
   ver_alt:
   date: 2025-12-07
@@ -101,7 +131,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Mario Forever The Wanderlust.png
+  image: Mario Forever The Wanderlust.webp
   ver:
   - v1.0.1:
       ver_alt:
@@ -130,7 +160,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: mf1161mod.png
+  image: mf1161mod.webp
   ver:
   ver_alt:
   date: 2025-11-17
@@ -177,7 +207,7 @@
   wiki_zh_url:
   wiki_en_url:
   description_en: Rhzoidnik World is a terrible MF fangame where you will experience the most random, probably hillarious, and audiopolluted MF world EVER! Full of memes, some references from Brazilian media and my old games. Can't think of a better description lolololol
-  image: rhyzoidnic.png
+  image: rhyzoidnic.webp
   ver:
   ver_alt:
   date: 2025-10-28
@@ -195,7 +225,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Fever Dream 2 Demo.png
+  image: Fever Dream 2 Demo.webp
   ver:
   ver_alt:
   date: 2025-10-08
@@ -215,7 +245,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFCR.png
+  image: MFCR.webp
   ver:
   ver_alt:
   date: 2025-09-14
@@ -236,7 +266,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFTGS.png
+  image: MFTGS.webp
   ver:
   - Demo 2.0.2:
       ver_alt:
@@ -289,7 +319,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MF大冲关3.png
+  image: MF大冲关3.webp
   ver: 练习赛道
   ver_alt: Practice track
   date: 2025-08-26
@@ -309,7 +339,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFGW.png
+  image: MFGW.webp
   ver: v1.0.2
   ver_alt:
   date: 2025-08-24
@@ -349,7 +379,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFWoHDX.png
+  image: MFWoHDX.webp
   ver:
   - v1.3 (Windows):
       current: true
@@ -443,7 +473,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: JANMFF.png
+  image: JANMFF.webp
   ver:
   ver_alt:
   date: 2025-08-06
@@ -463,7 +493,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFRJ.png
+  image: MFRJ.webp
   ver:
   - v1.0 Fix9:
       ver_alt:
@@ -562,7 +592,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Beetroot World.png
+  image: Beetroot World.webp
   ver: v1.0
   ver_alt:
   date: 2025-08-03
@@ -585,7 +615,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFAndroid.png
+  image: MFAndroid.webp
   ver:
   - v2.8.8:
       ver_alt:
@@ -721,7 +751,7 @@
       download_url_alt:
       file_name: MWMLWS - World -F.zip
       file_url:
-      image: MWMLWSF.png
+      image: MWMLWSF.webp
   - World -E (Bugfix):
       current: true
       ver_alt:
@@ -733,7 +763,7 @@
       download_url_alt:
       file_name: MWMLWS - World -E (BUGFIX).zip
       file_url:
-      image: MWMLWSE.png
+      image: MWMLWSE.webp
   - World -E:
       ver_alt:
       date: 2025-12-06
@@ -744,7 +774,7 @@
       download_url_alt:
       file_name: MWMLWS - World -E.zip
       file_url:
-      image: MWMLWSE.png
+      image: MWMLWSE.webp
   - Vol.1:
       current: true
       ver_alt:
@@ -756,7 +786,7 @@
       download_url_alt:
       file_name: MWMLWS - Vol.1.zip
       file_url:
-      image: MWMLWSV1.png
+      image: MWMLWSV1.webp
   - World -D:
       ver_alt:
       date: 2025-10-19
@@ -767,7 +797,7 @@
       download_url_alt:
       file_name: MWMLWS - World -D.zip
       file_url:
-      image: MWMLWSD.png
+      image: MWMLWSD.webp
   - World -C:
       ver_alt:
       date: 2025-10-04
@@ -778,7 +808,7 @@
       download_url_alt:
       file_name: MWMLWS - World -C.zip
       file_url:
-      image: MWMLWSC.png
+      image: MWMLWSC.webp
   - World -B:
       ver_alt:
       date: 2025-07-20
@@ -789,7 +819,7 @@
       download_url_alt:
       file_name: MWMLWS - World -B.zip
       file_url:
-      image: MWMLWSB.png
+      image: MWMLWSB.webp
   - World -A (Bugfix):
       ver_alt:
       date: 2025-07-01
@@ -800,7 +830,7 @@
       download_url_alt:
       file_name: MWMLWS - World -A (BUGFIX).zip
       file_url:
-      image: MWMLWSA.png
+      image: MWMLWSA.webp
   - World -A:
       ver_alt:
       date: 2025-06-26
@@ -811,7 +841,7 @@
       download_url_alt:
       file_name: MWMLWS - World -A.zip
       file_url:
-      image: MWMLWSA.png
+      image: MWMLWSA.webp
 - game: Cube IV
   game_alt:
   author: 八雲桐
@@ -883,13 +913,13 @@
 - game: Mario Forever Winter Memories
   game_alt:
   alias:
-  - MFWM.png
+  - MFWM.webp
   author: JJ带我飞
   author_alt: JJ
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: Mario Forever Winter Memories.png
+  image: Mario Forever Winter Memories.webp
   ver:
   ver_alt:
   date: 2025-06-07
@@ -938,7 +968,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MF2042.png
+  image: MF2042.webp
   ver:
   ver_alt:
   date: 2025-04-01
@@ -958,7 +988,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Mario Forever The Epic Voyage.png
+  image: Mario Forever The Epic Voyage.webp
   ver: v1.0.1
   ver_alt:
   date: 2025-03-30
@@ -978,7 +1008,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Onegai,My_Fantasy
   wiki_en_url:
-  image: MFOMF20th.png
+  image: MFOMF20th.webp
   ver:
   - Fix3:
       ver_alt:
@@ -1019,7 +1049,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island_2%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B2%EF%BC%89
   wiki_en_url:
-  image: MGD2TPNEW.png
+  image: MGD2TPNEW.webp
   ver:
   - v1.5.4:
       ver_alt:
@@ -1321,7 +1351,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Revival
-  image: MFRevival.png
+  image: MFRevival.webp
   ver: v1.0
   ver_alt:
   date: 2024-12-08
@@ -1342,7 +1372,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Inversive.png
+  image: Inversive.webp
   ver:
   - Retro Recall:
       ver_alt:
@@ -1355,7 +1385,7 @@
       download_url_alt:
       file_name: MF RETRO RECALL v1.0.rar
       file_url:
-      image: Retro Recall.png
+      image: Retro Recall.webp
   - v1.0:
       ver_alt:
       date: 2019-12-24
@@ -1377,7 +1407,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
-  image: MFCE2.0.png
+  image: MFCE2.0.webp
   ver:
   - v2.0.2 Windows:
       ver_alt:
@@ -1451,7 +1481,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.1 Windows.7z
       file_url:
-      image: MFCE.png
+      image: MFCE.webp
   - v1.1 Linux:
       ver_alt:
       date: 2024-12-06
@@ -1462,7 +1492,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.1 Linux.zip
       file_url:
-      image: MFCE.png
+      image: MFCE.webp
   - v1.0:
       ver_alt:
       date: 2024-11-29
@@ -1473,7 +1503,7 @@
       download_url_alt:
       file_name: Mario Forever Community Edition 1.0.zip
       file_url:
-      image: MFCE.png
+      image: MFCE.webp
 - game: Mario Forever - Reversed Worlds
   game_alt:
   author: MrMikhy
@@ -1511,7 +1541,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Bizarre_Land
   wiki_en_url:
-  image: MFBL2.0.png
+  image: MFBL2.0.webp
   ver:
   - v2.0.8.5:
       ver_alt:
@@ -1681,7 +1711,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Cursed Crown.png
+  image: Cursed Crown.webp
   ver:
   ver_alt:
   date: 2024-10-28
@@ -1699,7 +1729,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: AMFR.png
+  image: AMFR.webp
   ver:
   - v1.0.1:
       ver_alt:
@@ -1767,7 +1797,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Mario Forever Turbo Worlds.png
+  image: Mario Forever Turbo Worlds.webp
   ver:
   - v1.2.9:
       ver_alt:
@@ -1894,7 +1924,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Mushroom_Island%EF%BC%88%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5%EF%BC%9A%E8%98%91%E8%8F%87%E5%B2%9B%EF%BC%89
   wiki_en_url:
-  image: MGDF1.png
+  image: MGDF1.webp
   ver:
   - v1.5.6:
       ver_alt:
@@ -2110,7 +2140,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: 秋的记忆.png
+  image: 秋的记忆.webp
   ver:
   - v1.5.2:
       ver_alt:
@@ -2413,7 +2443,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: NertonW12.png
+  image: NertonW12.webp
   ver: v1.0 final
   ver_alt:
   date: 2024-09-03
@@ -2780,7 +2810,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFTNS.png
+  image: MFTNS.webp
   ver:
   - Build 1 Update:
       ver_alt:
@@ -2859,7 +2889,7 @@
   wiki_zh_url:
   wiki_en_url:
   repo: https://github.com/meteo-dream/party-worlds-reimagined
-  image: mfpwr.png
+  image: mfpwr.webp
   ver:
   - v1.0.1:
       ver_alt:
@@ -2952,7 +2982,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MMCE.png
+  image: MMCE.webp
   ver:
   - v0.2:
       current: false
@@ -3058,7 +3088,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MF大冲关2.png
+  image: MF大冲关2.webp
   ver:
   - 修复版:
       ver_alt: Fix
@@ -3087,7 +3117,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFEWS.png
+  image: MFEWS.webp
   ver:
   - v2.5.5:
       ver_alt:
@@ -3216,7 +3246,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MinixRebirth.png
+  image: MinixRebirth.webp
   ver: v1.0.1
   ver_alt:
   date: 2024-07-08
@@ -3870,7 +3900,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MF2077Gang.png
+  image: MF2077Gang.webp
   ver:
   ver_alt:
   date: 2024-04-01
@@ -3911,7 +3941,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=544483
-  image: LNY2022.png
+  image: LNY2022.webp
   ver:
   - v3.0:
       ver_alt:
@@ -4062,7 +4092,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: CNY23.png
+  image: CNY23.webp
   ver:
   - v1.5.1:
       ver_alt:
@@ -4145,7 +4175,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=2030073
-  image: Season.png
+  image: Season.webp
   ver:
   - 完整版:
       ver_alt: Full
@@ -4599,7 +4629,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_All_Stars_2
-  image: MF_AS2_title.png
+  image: MF_AS2_title.webp
   ver:
   - 'v1.6 Bugfix #1':
       ver_alt:
@@ -4783,7 +4813,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: WOCF.png
+  image: WOCF.webp
   ver:
   - v2.1:
       ver_alt:
@@ -5053,7 +5083,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFFLWS1.8.png
+  image: MFFLWS1.8.webp
   ver:
   - v1.8.2:
       ver_alt:
@@ -5085,7 +5115,7 @@
       download_url_alt:
       file_name: MF Fabulous Letter Worlds Series v1.5.1.rar
       file_url:
-      image: MFFLWS.png
+      image: MFFLWS.webp
   - v1.5:
       ver_alt:
       date: 2025-05-08
@@ -5096,7 +5126,7 @@
       download_url_alt:
       file_name: MF Fabulous Letter Worlds Series v1.5.rar
       file_url:
-      image: MFFLWS.png
+      image: MFFLWS.webp
   - "v1.5 Demo #2 Fix1":
       ver_alt:
       date: 2025-01-24
@@ -5107,7 +5137,7 @@
       download_url_alt:
       file_name: MF Fabulous Letter Worlds Series v1.5 Demo %232 Fix1.rar
       file_url:
-      image: MFFLWS.png
+      image: MFFLWS.webp
   - v1.5 Demo:
       ver_alt:
       date: 2024-11-22
@@ -5118,7 +5148,7 @@
       download_url_alt:
       file_name: MF - FABULOUS LETTER WORLDS SERIES VER 1.5 DEMO.RAR
       file_url:
-      image: MFFLWS.png
+      image: MFFLWS.webp
   - v1.01:
       ver_alt:
       date: 2023-12-04
@@ -5166,7 +5196,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: HumanLabEdition.png
+  image: HumanLabEdition.webp
   ver:
   ver_alt:
   date: 2023-12-03
@@ -5473,7 +5503,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFPA1.9.png
+  image: MFPA1.9.webp
   ver:
   - v1.9:
       ver_alt:
@@ -5871,7 +5901,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: FloorIsLava.png
+  image: FloorIsLava.webp
   ver:
   ver_alt:
   date: 2023-07-16
@@ -5913,7 +5943,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Depression.png
+  image: Depression.webp
   ver: v1.0 Demo
   ver_alt:
   date: 2023-07-10
@@ -5996,7 +6026,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Reverof_Oiram.png
+  image: Reverof_Oiram.webp
   ver:
   ver_alt:
   date: 2023-06-18
@@ -6215,7 +6245,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MF-ALW-menu.png
+  image: MF-ALW-menu.webp
   ver:
   ver_alt:
   date: 2023-04-28
@@ -6388,7 +6418,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MF2077.png
+  image: MF2077.webp
   ver:
   ver_alt:
   date: 2023-04-01
@@ -6461,7 +6491,7 @@
   wiki_en_url:
   video_zh:
   - WSW 直播回放: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48411
-  image: MITF.png
+  image: MITF.webp
   ver:
   - v0.6.3 Fix1:
       ver_alt:
@@ -7180,7 +7210,7 @@
   wiki_en_url:
   video_zh:
   - WSW 直播回放: https://www.bilibili.com/video/BV1ux4y177uT/
-  image: Rabyrinth.png
+  image: Rabyrinth.webp
   ver:
   ver_alt:
   date: 2023-01-22
@@ -7272,7 +7302,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFST.png
+  image: MFST.webp
   ver:
   - v4.0.1:
       ver_alt:
@@ -7578,7 +7608,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFAS3.png
+  image: MFAS3.webp
   ver: v1.0.5
   ver_alt:
   date: 2022-10-08
@@ -7948,7 +7978,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=552287
-  image: 冬暖Demo.png
+  image: 冬暖Demo.webp
   ver:
   - Trial Version Fix 2:
       ver_alt:
@@ -7991,7 +8021,7 @@
   wiki_en_url:
   video_zh:
   - WSW 直播回放: https://www.bilibili.com/video/BV14R4y1d76Z/
-  image: MFFR.jpg
+  image: MFFR.webp
   ver:
   - v1.1:
       ver_alt:
@@ -8123,7 +8153,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: TheFrontiers.png
+  image: TheFrontiers.webp
   ver: v0.5.0
   ver_alt:
   date: 2022-08-08
@@ -8208,7 +8238,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: POMF.png
+  image: POMF.webp
   ver:
   ver_alt:
   date: 2022-07-25
@@ -8260,7 +8290,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说（4.0）: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48781
-  image: AFS4.0.jpg
+  image: AFS4.0.webp
   ver:
   - v5.1:
       ver_alt:
@@ -8480,7 +8510,7 @@
   wiki_en_url:
   video_zh:
   - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293308
-  image: PKMF3.png
+  image: PKMF3.webp
   ver:
   ver_alt:
   date: 2022-06-28
@@ -8535,7 +8565,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFAO.png
+  image: MFAO.webp
   ver:
   ver_alt:
   date: 2022-06-03
@@ -8556,7 +8586,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_Old-blood_Memories
   wiki_en_url:
-  image: OBM.png
+  image: OBM.webp
   ver:
   - v5.7:
       ver_alt:
@@ -9171,7 +9201,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=341382
-  image: MFEM.png
+  image: MFEM.webp
   ver:
   ver_alt:
   date: 2022-04-05
@@ -9274,7 +9304,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFCW.png
+  image: MFCW.webp
   ver:
   - v2:
       ver_alt:
@@ -9327,7 +9357,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MF4QW.png
+  image: MF4QW.webp
   ver:
   - v1.8.4 build 3494:
       ver_alt:
@@ -9789,7 +9819,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFBNS.png
+  image: MFBNS.webp
   ver:
   ver_alt:
   date: 2022-01-01
@@ -9811,7 +9841,7 @@
   wiki_en_url:
   video_zh:
   - WSW 实况解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1412579
-  image: NEATitle.png
+  image: NEATitle.webp
   ver:
   - 最终修复版:
       ver_alt: Final fix
@@ -9872,7 +9902,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=134239
-  image: SMF2021.png
+  image: SMF2021.webp
   ver:
   ver_alt:
   date: 2021-12-03
@@ -9895,7 +9925,7 @@
   wiki_en_url:
   video_zh:
   - 宣传视频: https://www.bilibili.com/video/BV1UX4y1V7R4
-  image: MFO的封面图片.png
+  image: MFO的封面图片.webp
   ver:
   - v1.5.0 (Deluxe):
       ver_alt:
@@ -9907,7 +9937,7 @@
       download_url_alt:
       file_name: Mario Forever Odyssey Deluxe Edition.zip
       file_url:
-      image: MFO豪华版标题.png
+      image: MFO豪华版标题.webp
   - v1.2.1:
       ver_alt:
       date: 2021-06-12
@@ -9992,7 +10022,7 @@
   description_en: Has a game made in Super Mario Worker Project with the same name. Playing the final level requires to complete both MF and SMWP versions.
   video_zh:
   - WSW 直播回放: https://www.bilibili.com/video/BV1ma4y1f7FW/
-  image: Nhelv.png
+  image: Nhelv.webp
   ver: Fix2
   ver_alt:
   date: 2021-11-06
@@ -10047,7 +10077,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFLP.png
+  image: MFLP.webp
   ver:
   ver_alt:
   date: 2021-09-19
@@ -10088,7 +10118,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=347766
-  image: LNY2021.png
+  image: LNY2021.webp
   ver: v2.0
   ver_alt:
   date: 2021-09-12
@@ -10224,7 +10254,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1m84y1b7P9/
-  image: MFUA.png
+  image: MFUA.webp
   ver:
   - Fix:
       ver_alt:
@@ -10306,7 +10336,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
-  image: MFTLW.png
+  image: MFTLW.webp
   ver:
   - Latest version:
       ver_alt:
@@ -10488,7 +10518,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFVR.jpg
+  image: MFVR.webp
   ver:
   ver_alt:
   date: 2021-08-14
@@ -10864,7 +10894,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_An_Unprecedented_Expedition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_An_Unprecedented_Expedition
-  image: AUE040_cover.png
+  image: AUE040_cover.webp
   ver: v0.4.5
   ver_alt:
   date: 2021-05-04
@@ -10886,7 +10916,7 @@
   wiki_en_url:
   video_zh:
   - 宣传片: https://www.bilibili.com/video/BV1H54y1t7b6/
-  image: MarioForeverEuphoria.png
+  image: MarioForeverEuphoria.webp
   ver:
   - v4:
       ver_alt:
@@ -11014,7 +11044,7 @@
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Worker:_Letter_Worlds_Series
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1762606
-  image: MWLWS_Title.png
+  image: MWLWS_Title.webp
   ver:
   - v1.51:
       ver_alt:
@@ -11303,7 +11333,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: CNY21.png
+  image: CNY21.webp
   ver:
   - v2.05:
       ver_alt:
@@ -11374,7 +11404,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFCT.png
+  image: MFCT.webp
   ver:
   - v1.1:
       ver_alt:
@@ -11472,7 +11502,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293300
-  image: TCG.png
+  image: TCG.webp
   ver:
   - Fix1:
       ver_alt:
@@ -11567,7 +11597,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Polish_Letter_Worlds
-  image: MFPLWS.png
+  image: MFPLWS.webp
   ver:
   - World Ż:
       ver_alt:
@@ -11580,7 +11610,7 @@
       download_url_alt:
       file_name: MF - POLISH LETTER WORLD ZY.RAR
       file_url:
-      image: MFPLWSZY.png
+      image: MFPLWSZY.webp
   - v1.5:
       ver_alt:
       date: 2019-06-01
@@ -11620,7 +11650,7 @@
   type: international
   wiki_zh_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Remake
-  image: MFR40.png
+  image: MFR40.webp
   ver:
   - v4.02 (D3D9):
       ver_alt:
@@ -11687,7 +11717,7 @@
       file_url:
       data_file_name: data_mfr37.rar
       data_file_url:
-      image: MFR35_1.png
+      image: MFR35_1.webp
   - v3.5:
       ver_alt:
       date: 2017-09-07
@@ -11701,7 +11731,7 @@
       file_url:
       data_file_name: data_mfr35.rar
       data_file_url:
-      image: MFR35_1.png
+      image: MFR35_1.webp
   - v3.2:
       ver_alt:
       date: 2016-10-07
@@ -11827,7 +11857,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFTEV.png
+  image: MFTEV.webp
   ver:
   - v0.3.1 Bugfix:
       ver_alt:
@@ -11856,7 +11886,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFKWLS.png
+  image: MFKWLS.webp
   ver: 20-12-2020 - FIX
   ver_alt:
   date: 2021-01-03
@@ -11948,7 +11978,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFBGC.png
+  image: MFBGC.webp
   ver: v1.0
   ver_alt:
   date: 2021-01-01
@@ -12026,7 +12056,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Halloween.png
+  image: Halloween.webp
   ver:
   - v1.2:
       ver_alt:
@@ -12142,7 +12172,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293295
-  image: MFAI.png
+  image: MFAI.webp
   ver:
   - Fix11:
       ver_alt:
@@ -12206,7 +12236,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: PKMF2.png
+  image: PKMF2.webp
   ver: Fix1
   ver_alt:
   date: 2020-09-23
@@ -12439,7 +12469,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: ABCD.png
+  image: ABCD.webp
   ver:
   ver_alt:
   date: 2020-08-29
@@ -12571,7 +12601,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E8%B1%A1%E7%89%99%E5%A1%94
   wiki_en_url:
-  image: 象牙塔.png
+  image: 象牙塔.webp
   ver: v0.5.3
   ver_alt:
   date: 2020-07-27
@@ -12611,7 +12641,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Roman_Worlds
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Roman_Worlds
-  image: Mario_Forever_Roman_Worlds_Title.png
+  image: Mario_Forever_Roman_Worlds_Title.webp
   ver:
   - v3.5.1:
       ver_alt:
@@ -13229,7 +13259,7 @@
   video_zh:
   - 宣传片: https://www.bilibili.com/video/BV1x7411B7Ci/
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48848
-  image: SMMWW.png
+  image: SMMWW.webp
   ver:
   - v10:
       ver_alt:
@@ -13340,7 +13370,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293258
-  image: Decasamsara_Worlds_Main_Menu.png
+  image: Decasamsara_Worlds_Main_Menu.webp
   ver:
   - v1.8.4:
       ver_alt:
@@ -13634,7 +13664,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48811
-  image: MFRL2.0封面.png
+  image: MFRL2.0封面.webp
   ver:
   - v2.0:
       ver_alt:
@@ -13730,7 +13760,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: LNY2020.png
+  image: LNY2020.webp
   ver: v1.0
   ver_alt:
   date: 2020-01-25
@@ -13767,7 +13797,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Uncharted_Territory
   wiki_en_url:
-  image: MFUT封面.png
+  image: MFUT封面.webp
   ver: v1.0
   ver_alt:
   date: 2020-01-23
@@ -13804,7 +13834,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFXD.png
+  image: MFXD.webp
   ver:
   - v1.5:
       ver_alt:
@@ -13846,7 +13876,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFASC.png
+  image: MFASC.webp
   ver: v1.01
   ver_alt:
   date: 2020-01-01
@@ -13869,7 +13899,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48764
-  image: MFSZ.png
+  image: MFSZ.webp
   ver:
   ver_alt:
   date: 2019-12-07
@@ -13893,7 +13923,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Minus_Worlds
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Minus_Worlds
-  image: Minus.png
+  image: Minus.webp
   ver:
   - World -13:
       ver_alt:
@@ -14132,7 +14162,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFEA.jpg
+  image: MFEA.webp
   ver:
   - v1.1 fixed:
       ver_alt:
@@ -14208,7 +14238,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Project_Zeta
   wiki_en_url:
-  image: MFZ.png
+  image: MFZ.webp
   ver:
   - v1.8 顶头不减速版:
       ver_alt: v1.8 special version
@@ -14424,7 +14454,7 @@
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Legend_World_Remake
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=47035
-  image: LGR2.0.png
+  image: LGR2.0.webp
   ver: 
   - v2.0.6:
       ver_alt:
@@ -14647,7 +14677,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV19t411C7xD/
-  image: MFW11Plus.jpg
+  image: MFW11Plus.webp
   ver: v1.0fix
   ver_alt:
   date: 2019-02-05
@@ -14750,7 +14780,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: Musicale.png
+  image: Musicale.webp
   ver:
   ver_alt:
   date: 2019-01-06
@@ -14904,7 +14934,7 @@
   video_zh:
   - WSW 解说（v1.0）: https://www.bilibili.com/video/BV1zb41167t1/
   - WSW 直播回放（v1.1）: https://www.bilibili.com/video/BV1kT421a7nN/
-  image: MFIT.png
+  image: MFIT.webp
   ver:
   - v1.1:
       ver_alt:
@@ -15072,7 +15102,7 @@
   wiki_en_url:
   video_zh: 
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48399
-  image: MFML.png
+  image: MFML.webp
   ver:
   - v3.6:
       ver_alt:
@@ -15191,7 +15221,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48736
-  image: xfxw.png
+  image: xfxw.webp
   ver:
   - v3.0 fix7:
       ver_alt:
@@ -15575,7 +15605,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: TTM.png
+  image: TTM.webp
   ver:
   ver_alt:
   date: 2018-02-22
@@ -15629,7 +15659,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: MFAnotherSpace.png
+  image: MFAnotherSpace.webp
   ver:
   ver_alt:
   date: 2018-02-21
@@ -15706,7 +15736,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48424
-  image: SMF2014dx.png
+  image: SMF2014dx.webp
   ver: v1.05fix
   ver_alt:
   date: 2018-02-15
@@ -15948,7 +15978,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Peanuts_1_-_The_Confused_Season
   wiki_en_url:
-  image: TCS-Logo.png
+  image: TCS-Logo.webp
   ver: Chapter1 公测版
   ver_alt: Chapter1 Open Test
   date: 2018-01-31
@@ -15971,7 +16001,7 @@
   wiki_en_url:
   video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293275
-  image: MFDE.png
+  image: MFDE.webp
   ver:
   ver_alt:
   date: 2018-01-13
@@ -16059,7 +16089,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Revolution
-  image: MFRev.png
+  image: MFRev.webp
   ver: v0.0.0.1
   ver_alt:
   date: 2017-10-01
@@ -16079,7 +16109,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E5%90%A7%E5%8D%81%E5%91%A8%E5%B9%B4
   wiki_en_url:
-  image: 永吧十周年.png
+  image: 永吧十周年.webp
   ver:
   - v2.0:
       ver_alt:
@@ -16436,7 +16466,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Remake
   wiki_en_url:
-  image: MFRa.jpg
+  image: MFRa.webp
   ver:
   - v3.5:
       ver_alt:
@@ -16488,7 +16518,7 @@
       download_url_alt:
       file_name: Mario Forever Remake v1.0.rar
       file_url:
-      image: MFR_Title.PNG
+      image: MFR_Title.webp
 - game: Mario Forever Advance Remake
   game_alt:
   alias:
@@ -16499,7 +16529,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Advance_Remake
-  image: MFAER.png
+  image: MFAER.webp
   ver:
   - v1.5:
       ver_alt:
@@ -16533,7 +16563,7 @@
   wiki_en_url:
   video_zh: 
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48385
-  image: MRI2.png
+  image: MRI2.webp
   ver:
   - v1.5:
       ver_alt:
@@ -16639,7 +16669,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Christmas_Special
   wiki_en_url:
-  image: MFCS.png
+  image: MFCS.webp
   ver: Bugfix
   ver_alt:
   date: 2017-01-06
@@ -17175,7 +17205,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1Gs411q7p2/
-  image: MFC.png
+  image: MFC.webp
   ver:
   - 八世界版:
       ver_alt: 8 worlds version
@@ -17295,7 +17325,7 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Great_Bowser_Castle
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Great_Bowser%27s_Castle
-  image: GBC_Titlescreen.png
+  image: GBC_Titlescreen.webp
   ver:
   - Fixed:
       ver_alt:
@@ -17366,7 +17396,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_All-Stars
-  image: MFAllStars_MainMenu.jpg
+  image: MFAllStars_MainMenu.webp
   ver:
   ver_alt:
   date: 2016-01-02
@@ -17507,7 +17537,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mysterious_Island
   wiki_en_url:
-  image: MRI.png
+  image: MRI.webp
   ver:
   - v1.2:
       ver_alt:
@@ -18227,7 +18257,7 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV1Ux411t7yU/
-  image: SMF2014.png
+  image: SMF2014.webp
   ver:
   - v1.25:
       ver_alt:
@@ -18545,7 +18575,7 @@
   download_url_alt:
   file_name: Mario World Classical.rar
   file_url:
-  image: MWC.png
+  image: MWC.webp
 - game: 永远的吧主吧友
   game_alt: Bazhubayou Forever
   alias:
@@ -18555,7 +18585,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: bzby.png
+  image: bzby.webp
   ver:
   ver_alt:
   date: 2014-08-12
@@ -18983,7 +19013,7 @@
   download_url_alt:
   file_name: World U.rar
   file_url:
-  image: World_U.png
+  image: World_U.webp
 - game: New Advanture World 1
   game_alt:
   alias:
@@ -19227,7 +19257,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Syzxchulun%27s_Worlds
   wiki_en_url:
-  image: MFW10.png
+  image: MFW10.webp
   ver:
   ver_alt:
   date: 2013-08-05
@@ -19248,7 +19278,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Syzxchulun%27s_Worlds
   wiki_en_url:
-  image: MFW9.png
+  image: MFW9.webp
   ver:
   - 单世界版:
       ver_alt: World 9
@@ -19282,7 +19312,7 @@
       download_url_alt:
       file_name: Mario Forever 9-4.rar
       file_url:
-      image: MF9-4.png
+      image: MF9-4.webp
   - 9-3 (更新版):
       ver_alt: 9-3 (Updated)
       date: 2013-02-09

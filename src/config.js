@@ -263,6 +263,11 @@ export const downloadName = [
     "domain" : /123\d{3}\.com/,
     "desc_zh" : "123 云盘",
     "desc_en" : "123Pan"
+  },
+  {
+    "domain": "1drv.ms",
+    "desc_zh": "OneDrive",
+    "desc_en": "OneDrive"
   }
 ];
 
