@@ -12,7 +12,7 @@
 
 <a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Remake%20v3.5.rar">下载最新版 Mario Forever Remake</a>
 <a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/国内作品/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar">下载最新版 Mario Forever Advance Remake</a>
-<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/%E5%9B%BD%E5%A4%96%E4%BD%9C%E5%93%81/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.0.2%20Windows.zip">下载最新版 Mario Forever: Community Edition</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/%E5%9B%BD%E5%A4%96%E4%BD%9C%E5%93%81/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.1.0%20Windows.zip">下载最新版 Mario Forever: Community Edition</a>
 <a class="md-button" target="_blank" href="https://www.123pan.com/s/U3vrVv-VD0f.html">备用下载地址 (提取码：MAat)</a><ClipboardButton lan="zh" code="MAat" />
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
