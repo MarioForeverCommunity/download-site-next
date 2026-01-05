@@ -1431,10 +1431,31 @@
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   image: MFCE2.0.webp
   ver:
+  - v2.1.1 Windows:
+      ver_alt:
+      date: 2026-01-05
+      current: true
+      source_url: https://www.marioforever.net/thread-3698-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
+      download_url: https://nx.wtf/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 2.1.1 Windows.zip
+      file_url:
+  - v2.1.1 Linux:
+      ver_alt:
+      date: 2026-01-05
+      current: true
+      source_url: https://www.marioforever.net/thread-3698-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
+      download_url: https://nx.wtf/s/DZm6PEkZf3z4owp
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 2.1.1 Linux.zip
+      file_url:
   - v2.1.0 Windows:
       ver_alt:
       date: 2026-01-03
-      current: true
       source_url: https://www.marioforever.net/thread-3698-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
       download_url: https://nx.wtf/s/DZm6PEkZf3z4owp
@@ -1445,7 +1466,6 @@
   - v2.1.0 Linux:
       ver_alt:
       date: 2026-01-03
-      current: true
       source_url: https://www.marioforever.net/thread-3698-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
       download_url: https://nx.wtf/s/DZm6PEkZf3z4owp
