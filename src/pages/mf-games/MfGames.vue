@@ -163,10 +163,10 @@
         var ver = verRaw[Object.keys(verRaw)[0]];
         if (!ver.file_url) {
           if (ver.file_name) {
-            // 检查是否为APK文件，如果是则使用统一的安卓游戏路径
+            // 检查是否为APK文件，如果是则使用包含作者名的安卓游戏路径
             if (ver.file_name.toLowerCase().endsWith('.apk')) {
-              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${ver.file_name}`;
-              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${ver.file_name}`;
+              ver.file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${entry.first_author}/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${ver.file_name}`;
             } else if (ver.repacker) {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
@@ -184,10 +184,10 @@
         }
         if (!ver.data_file_url) {
           if (ver.data_file_name) {
-            // 检查是否为APK相关的数据文件，如果是则使用统一的安卓游戏路径
+            // 检查是否为APK相关的数据文件，如果是则使用包含作者名的安卓游戏路径
             if (ver.data_file_name.toLowerCase().endsWith('.apk') || ver.file_name?.toLowerCase().endsWith('.apk')) {
-              ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${ver.data_file_name}`;
-              ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${ver.data_file_name}`;
+              ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${entry.first_author}/${ver.data_file_name}`;
+              ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${ver.data_file_name}`;
             } else if (ver.repacker) {
               ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.data_file_name}`;
               ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.data_file_name}`;
