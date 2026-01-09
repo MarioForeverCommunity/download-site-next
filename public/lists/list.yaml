@@ -16381,6 +16381,7 @@
   wiki_en_url:
   ver:
   - World 13 v2.0:
+      current: true
       ver_alt:
       date: 2019-09-20
       source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
@@ -16391,6 +16392,7 @@
       file_name: MFA World 13 Edition v2.0.apk
       file_url:
   - World 12 v2.0:
+      current: true
       ver_alt:
       date: 2019-09-12
       source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
@@ -16401,6 +16403,7 @@
       file_name: MFA World 12 Edition v2.0.apk
       file_url:
   - World 11 v2.0:
+      current: true
       ver_alt:
       date: 2019-09-10
       source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
@@ -16411,6 +16414,7 @@
       file_name: MFA World 11 Edition v2.0.apk
       file_url:
   - World 10 v2.0:
+      current: true
       ver_alt:
       date: 2019-09-10
       source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
@@ -16421,6 +16425,7 @@
       file_name: MFA World 10 Edition v2.0.apk
       file_url:
   - World 9 v2.0:
+      current: true
       ver_alt:
       date: 2019-09-10
       source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
