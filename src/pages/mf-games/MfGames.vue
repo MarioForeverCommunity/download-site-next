@@ -133,7 +133,8 @@
                   )
                 )
               ) &&
-              !verObj.file_name.startsWith("old-versions/")
+              !verObj.file_name.startsWith("old-versions/") &&
+              !verObj.file_name.toLowerCase().endsWith('.apk')
             ) {
               verObj.file_name = "old-versions/" + verObj.file_name;
             }
@@ -150,7 +151,8 @@
                   )
                 )
               ) &&
-              !verObj.data_file_name.startsWith("old-versions/")
+              !verObj.data_file_name.startsWith("old-versions/") &&
+              !verObj.data_file_name.toLowerCase().endsWith('.apk')
             ) {
               verObj.data_file_name = "old-versions/" + verObj.data_file_name;
             }
@@ -395,7 +397,7 @@
           // 国际作品旧版file_name前缀处理
           let patchedVerRaw = { ...verRaw };
           if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
-            if (!verObj.file_name.startsWith("old-versions/")) {
+            if (!verObj.file_name.startsWith("old-versions/") && !verObj.file_name.toLowerCase().endsWith('.apk')) {
               // 只patch file_name，不影响原数据
               const newVerObj = { ...verObj, file_name: "old-versions/" + verObj.file_name };
               patchedVerRaw = { [verKey]: newVerObj };
