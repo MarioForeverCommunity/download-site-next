@@ -16325,6 +16325,69 @@
       download_url_alt:
       file_name: Mario Forever 2016 V0.7.zip
       file_url:
+- game: Mario Forever Android World Edition
+  game_alt:
+  alias:
+  - MF Android
+  - MFAndroid
+  - MF安卓版
+  - 永远的马里奥安卓版
+  author: Alexandro Games
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - World 13 v2.0:
+      ver_alt:
+      date: 2019-09-20
+      source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/hj46w070m1kyrp0/MFA_World_13_Edition_v2.0.apk/file
+      code:
+      download_url_alt:
+      file_name: MFA World 13 Edition v2.0.apk
+      file_url:
+  - World 12 v2.0:
+      ver_alt:
+      date: 2019-09-12
+      source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/yuji8mgob93kp3y/MFA_World_12_Edition_v2.0.apk/file
+      code:
+      download_url_alt:
+      file_name: MFA World 12 Edition v2.0.apk
+      file_url:
+  - World 11 v2.0:
+      ver_alt:
+      date: 2019-09-10
+      source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/fcu3utby2m7hd3i/MFA_World_11_Edition_v2.0.apk/file
+      code:
+      download_url_alt:
+      file_name: MFA World 11 Edition v2.0.apk
+      file_url:
+  - World 10 v2.0:
+      ver_alt:
+      date: 2019-09-10
+      source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/t1dxdu6z0ylf1kh/MFA_World_10_Edition_v2.0.apk/file
+      code:
+      download_url_alt:
+      file_name: MFA World 10 Edition v2.0.apk
+      file_url:
+  - World 9 v2.0:
+      ver_alt:
+      date: 2019-09-10
+      source_url: https://alexandrogames.altervista.org/mario-forever-android-world-edition-reissuse/
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/o16mx4cytcqk968/MFA_World_9_Edition_v2.0.apk/file
+      code:
+      download_url_alt:
+      file_name: MFA World 9 Edition v2.0.apk
+      file_url:
 - game: Mario Forever World CH
   game_alt:
   author: Shadow_78
