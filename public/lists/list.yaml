@@ -182,6 +182,24 @@
   download_url_alt:
   file_name: Mario Forever 1.16.1-mod.zip
   file_url:
+- game: Mario Forever 1.16.1 for Android
+  game_alt:
+  author: Sanyario
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image:
+  ver:
+  ver_alt:
+  date: 2025-11-13
+  source_url: https://youtube.com/playlist?list=PLY3o5kBzb9EXPTvbD5ZbXqkqbiKK3nzvN&si=U_OaT7NV6iG8EBS2
+  source_url_alt:
+  download_url: https://mega.nz/file/hnxmlABI#lghNwv5zYSBdGuzJ3CBN6NmerOTWwnN2d3ohsh91qdA
+  code:
+  download_url_alt:
+  file_name: Mario Forever 1.16.1.apk
+  file_url:
 - game: Mario Forever Idirfertat World
   game_alt:
   author: Ahiruku Tchi
