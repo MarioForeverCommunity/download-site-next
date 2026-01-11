@@ -1,4 +1,42 @@
 ---
+- game: Mario Forever Sunset Worlds
+  game_alt:
+  author: SakuraMotchi 2020
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v3.1:
+      ver_alt:
+      date: 2026-01-10
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sunset Worlds V3.1.rar
+      file_url:
+  - v2.0:
+      ver_alt:
+      date: 2022-12-12
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sunset Worlds V2.0.rar
+      file_url:
+  - v1.11:
+      ver_alt:
+      date: 2022-05-03
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sunset Worlds V1.11.rar
+      file_url:
 - game: Mario Forever - The New Year 2026
   game_alt:
   author: 马里奥X7
