@@ -134,6 +134,33 @@ export function getResourceURL(item, lan) {
     return item.currentVer.file_url_zh
 }
 
+export function getAuthorFolderURL(item, author, lan) {
+    // Android 游戏：统一指向 mobile-fangames，不分国内外
+    if (item.currentVer && item.currentVer.file_name &&
+        item.currentVer.file_name.toLowerCase().endsWith('.apk')) {
+        const folder = item.author_alias || author || item.first_author;
+        if (!folder) {
+            return null;
+        }
+        if (lan == "en") {
+            return `https://file.marioforever.net/mobile-fangames/${encodeURIComponent(folder)}/`;
+        }
+        return `https://file.marioforever.net/Mario Forever/安卓游戏/${encodeURIComponent(folder)}/`;
+    }
+    // 非 Android 保持原有逻辑
+    if (item.type !== "international") {
+        return null;
+    }
+    const folder = item.author_alias || author || item.first_author;
+    if (!folder) {
+        return null;
+    }
+    if (lan == "en") {
+        return `https://file.marioforever.net/mario-forever/games/international-fangames/${encodeURIComponent(folder)}/`;
+    }
+    return `https://file.marioforever.net/Mario Forever/国外作品/${encodeURIComponent(folder)}/`;
+}
+
 export function getDataResourceURL(item, lan) {
     if (lan == "en") {
         return item.currentVer.data_file_url_en

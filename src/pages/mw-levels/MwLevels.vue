@@ -175,6 +175,9 @@
     year : ""
   });
 
+  function clearName() {
+    filter_option.value.name = "";
+  }
   function clearFilter() {
     filter_option.value.name = "";
     filter_option.value.author = "";
@@ -323,9 +326,10 @@
       <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
       <div class="icon-container">
         {{ lan == "en" ? "Filter" : "筛选" }}
-        <div class="inline-block">
-          <input v-model="filter_option.name" class="input">&nbsp;
-        </div>
+        <div class="inline-block search-box">
+          <input v-model="filter_option.name" class="input" @input="onSearchInput">
+          <span v-if="filter_option.name" class="clear-btn" @click="clearName" title="Clear">✕</span>
+        </div>&nbsp;
         <div class="inline-block">
           {{ lan == "en" ? "Year" : "年份" }}
           <select v-model="filter_option.year">
@@ -673,6 +677,28 @@
   .input:focus {
       cursor: auto;
       border-color: #008cff
+  }
+
+  .search-box {
+    position: relative;
+    display: inline-block;
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    font-size: 14px;
+    line-height: 1;
+    padding: 2px 4px;
+    user-select: none;
+  }
+
+  .clear-btn:hover {
+    color: #333;
   }
 
   select {

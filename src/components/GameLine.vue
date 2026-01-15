@@ -1,7 +1,7 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
   import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon, GithubIcon } from "./icons/Icons.js";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList} from "../util/GemeUtil.js";
+  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
   const props = defineProps({
@@ -120,11 +120,26 @@
       </div>
     <div class="game-author">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
-        {{ getAuthorList(game, lan) }}
+        <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
+          <a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank" rel="noreferrer">
+            {{ getAuthorList(game, lan) }}
+          </a>
+        </template>
+        <template v-else>
+          {{ getAuthorList(game, lan) }}
+        </template>
       </span>
       <template v-else>
         <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
-          <br v-if="authorindex != 0">{{ author }}
+          <br v-if="authorindex != 0" />
+          <template v-if="getAuthorFolderURL(game, author, lan)">
+            <a :href="getAuthorFolderURL(game, author, lan)" target="_blank" rel="noreferrer">
+              {{ author }}
+            </a>
+          </template>
+          <template v-else>
+            {{ author }}
+          </template>
         </span>
       </template>
     </div>
@@ -258,6 +273,16 @@
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
+  }
+
+  .game-author a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .game-author a:hover {
+    color: inherit;
+    text-decoration: underline;
   }
 
   .rotate-button {

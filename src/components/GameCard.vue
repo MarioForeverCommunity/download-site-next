@@ -1,7 +1,7 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
   import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon } from "./icons/Icons.js";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion} from "../util/GemeUtil.js";
+  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
   const props = defineProps({
@@ -142,15 +142,26 @@
         <Tooltip :in-card="true">
         <span class="inline-block author-ellipsis">
             <template v-if="typeof getAuthorList(game, lan) == 'string'">
-                {{ lan == "en" ? "By&nbsp;" : "作者：" }}{{ getAuthorList(game, lan) }}
+                <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
+                  <span v-if="lan == 'en'">By </span><span v-else>作者：</span><a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank" rel="noreferrer">{{ getAuthorList(game, lan) }}</a>
+                </template>
+                <template v-else>
+                  <span v-if="lan == 'en'">By </span><span v-else>作者：</span>{{ getAuthorList(game, lan) }}
+                </template>
             </template>
             <template v-else>
-                <!-- 添加作者前缀 -->
-                <span class="prefix">{{ lan == "en" ? "By&nbsp;" : "作者：" }}</span>
-                <!-- 遍历作者列表 -->
+                <span class="prefix">{{ lan == "en" ? "By " : "作者：" }}</span>
                 <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" 
                     :key="author + authorindex">
-                {{ author }}<span v-if="authorindex != getAuthorList(game, lan).length - 1">,&nbsp;</span>
+                  <template v-if="getAuthorFolderURL(game, author, lan)">
+                    <a :href="getAuthorFolderURL(game, author, lan)" target="_blank" rel="noreferrer">
+                      {{ author }}
+                    </a>
+                  </template>
+                  <template v-else>
+                    {{ author }}
+                  </template>
+                  <span v-if="authorindex != getAuthorList(game, lan).length - 1">,&nbsp;</span>
                 </span>
             </template>
         </span>
@@ -359,6 +370,16 @@
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
+  }
+
+  .game-author a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .game-author a:hover {
+    color: inherit;
+    text-decoration: underline;
   }
 
   .rotate-button {
