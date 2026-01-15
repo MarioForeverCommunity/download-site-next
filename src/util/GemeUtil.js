@@ -147,6 +147,15 @@ export function getAuthorFolderURL(item, author, lan) {
         }
         return `https://file.marioforever.net/Mario Forever/安卓游戏/${encodeURIComponent(folder)}/`;
     }
+    // Mario Worker 作品：区分“合作作品”
+    if (item.category === 'mw') {
+        const folder = author || item.author;
+        if (!folder) return null;
+        if (folder === '合作作品') {
+            return 'https://file.marioforever.net/Mario Worker/合作作品/';
+        }
+        return `https://file.marioforever.net/Mario Worker/吧友作品/${encodeURIComponent(folder)}/`;
+    }
     // 非 Android 保持原有逻辑
     if (item.type !== "international") {
         return null;
