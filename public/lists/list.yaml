@@ -6,7 +6,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MF2.16Sanyario.png
+  image: MF2.16Sanyario.webp
   ver:
   ver_alt:
   date: 2026-01-16
@@ -24,7 +24,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MFSunset.png
+  image: MFSunset.webp
   ver:
   - v3.1:
       ver_alt:
@@ -134,6 +134,16 @@
   wiki_en_url:
   image: MFSJ.webp
   ver:
+  - v1.3:
+      ver_alt:
+      date: 2026-01-16
+      source_url: https://www.youtube.com/watch?v=Ij4hbS0WWMY
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/arvzu3g4t8u0zx7/Mario_Forever_Sensitive_Journey_v1.3.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sensitive Journey v1.3.rar
+      file_url:
   - v1.0:
       ver_alt:
       date: 2026-01-03
