@@ -9,19 +9,25 @@
 
 <p v-if="lastUpdateEn" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdateEn }}</p>
 
+## Download Mario Forever: Community Edition
+
+Recommended. Suitable for relatively modern PCs, with controller support and high FPS support. Tweaks are integrated for customizing the player‘s gameplay experience. Also supports custom character skins.
+
+<a class="md-button" target="_blank" href="https://rnx.su/s/DZm6PEkZf3z4owp">Download Mario Forever: Community Edition</a>
+<a class="md-button" target="_blank" href="https://mfce.rnx.su/">Mario Forever: Community Edition website</a>
+
 ## Download Mario Forever Remake
+
+Suitable for the vast majority of Windows PCs. Runs better on some modern computers, compared to the original Mario Forever. It also adds several fan-made worlds.
 
 <a class="md-button" target="_blank" href="https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file">Download Mario Forever Remake v4.02 (PAL, D3D9)</a>
 <a class="md-button" target="_blank" href="https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file">Download Mario Forever Remake v4.02 (PAL, Standard)</a>
 <a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/chinese-fangames/2017/Mario%20Forever%20Remake%20v3.5.rar">Download Mario Forever Remake v3.5 (Chinese)</a>
 <a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/chinese-fangames/2017/Mario%20Forever%20Advance%20Remake%20v1.5.rar">Download Mario Forever Advance Remake v1.5</a>
 
-## Download Mario Forever: Community Edition
-
-<a class="md-button" target="_blank" href="https://rnx.su/s/DZm6PEkZf3z4owp">Download Mario Forever: Community Edition</a>
-<a class="md-button" target="_blank" href="https://mfce.rnx.su/">Mario Forever: Community Edition website</a>
-
 ## Download original Mario Forever
+
+For those seeking the most authentic and original experience. Versions 4.4 and earlier do not run smoothly on Windows 7 or newer. Versions 5.0 and later are generally unsatisfactory; try them only if you're curious.
 
 Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wiki/Mario_Forever).
 
