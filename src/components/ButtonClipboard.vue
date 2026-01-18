@@ -25,10 +25,11 @@
   const displayCopied = ref(false);
 
   const clipboardCopyText = computed(() => {
+    const isEn = props.lan === "en";
     if (displayCopied.value) {
-      return props.lan.value == "en" ? "Copied!" : "已复制！";
+      return isEn ? "Copied!" : "已复制！";
     } else {
-      return props.lan.value == "en" ? "Copy code to Clipboard" : "复制提取码到剪贴板";
+      return isEn ? "Copy code to Clipboard" : "复制提取码到剪贴板";
     }
   });
 
