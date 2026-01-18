@@ -115,7 +115,24 @@
         </div>
       </div>
       <div class="game-version" v-if="game.category == 'mw' && getVersion(game, lan)">
-        {{ game.smwp_ver ? "SMWP "+game.smwp_ver : "" }}
+        <template v-if="game.smwp_ver">
+          <Tooltip v-if="game.smwp_url && !game.has_bundled_smwp">
+            <a
+              :href="game.smwp_url"
+              target="_blank"
+              rel="noreferrer"
+              class="smwp-link"
+            >
+              SMWP {{ game.smwp_ver }}
+            </a>
+            <template #popper>
+              下载 SMWP {{ game.smwp_ver }}
+            </template>
+          </Tooltip>
+          <template v-else>
+            SMWP {{ game.smwp_ver }}
+          </template>
+        </template>
       </div>
     </div>
     <div class="body-line">
@@ -379,6 +396,15 @@
 
   .game-author a:hover {
     color: inherit;
+    text-decoration: underline;
+  }
+
+  .smwp-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .smwp-link:hover {
     text-decoration: underline;
   }
 

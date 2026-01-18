@@ -158,7 +158,7 @@
     </div>
     <div class="game-version" v-if="game.category == 'mw'">
       {{ game.smwp_ver }}
-      <Tooltip v-if="game.smwp_url">
+      <Tooltip v-if="game.smwp_url && !game.has_bundled_smwp">
         <a :href="game.smwp_url" target="_blank">
           <DownloadIcon class="icon button"></DownloadIcon>
         </a>
