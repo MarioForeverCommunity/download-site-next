@@ -53,53 +53,139 @@ export function getStrFromList(src) {
     return src;
 }
 
-export function getDownloadLink(item, lan) {
-    if (lan == "en" && item.currentVer.download_url_alt) {
-        return item.currentVer.download_url_alt;
+function getDownloadInvalidFlag(item, link) {
+    if (!item || !item.currentVer || !link) {
+        return false;
     }
-    return item.currentVer.download_url;
+    const current = item.currentVer;
+    if (link === current.download_url_alt) {
+        if (current.download_url_invalid_alt !== undefined) {
+            return current.download_url_invalid_alt;
+        }
+        if (current.download_url_alt_invalid !== undefined) {
+            return current.download_url_alt_invalid;
+        }
+        return false;
+    }
+    if (link === current.download_url) {
+        if (current.download_url_invalid !== undefined) {
+            return current.download_url_invalid;
+        }
+        return false;
+    }
+    return false;
 }
 
-export function getDownloadLinkValidity(item, lan) {
-    if (lan == "en" && item.currentVer.download_url_alt) {
-        return !item.currentVer.download_url_invalid_alt;
-    }
-    return !item.currentVer.download_url_invalid;
-}
-
-export function getDownloadDesc(item, lan) {
-    const link = getDownloadLink(item, lan);
-
+function getDownloadInfo(item, link, lan) {
     if (!link) {
-        return null
+        return null;
     }
+    const invalid = getDownloadInvalidFlag(item, link);
     for (var entry of downloadName) {
         if (link.match(entry.domain)) {
             var desc = lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
             if (entry.show_code == true && item.currentVer.code) {
-                desc += ` (${lan == "zh" ? "提取码：" : "Code: "}${item.currentVer.code})`
+                desc += ` (${lan == "zh" ? "提取码：" : "Code: "}${item.currentVer.code})`;
             }
-            if (!getDownloadLinkValidity(item, lan)) {
-                desc += ` (${lan == "zh" ? "已失效" : "Outdated"})`
+            if (invalid) {
+                desc += ` (${lan == "zh" ? "已失效" : "Invalid"})`;
             }
-            return desc;
+            var code = null;
+            if (entry.show_code == true && item.currentVer.code) {
+                code = item.currentVer.code;
+            }
+            return {
+                url: link,
+                desc: desc,
+                code: code
+            };
         }
     }
-    return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/)[1];
+    var match = link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/);
+    if (match) {
+        return {
+            url: link,
+            desc: match[1],
+            code: null
+        };
+    }
+    return {
+        url: link,
+        desc: link,
+        code: null
+    };
+}
+
+export function getDownloadEntries(item, lan) {
+    if (!item || !item.currentVer) {
+        return [];
+    }
+    var links = [];
+    if (lan == "en") {
+        if (item.currentVer.download_url_alt) {
+            links.push(item.currentVer.download_url_alt);
+        }
+        if (item.currentVer.download_url) {
+            links.push(item.currentVer.download_url);
+        }
+    } else {
+        if (item.currentVer.download_url) {
+            links.push(item.currentVer.download_url);
+        }
+        if (item.currentVer.download_url_alt) {
+            links.push(item.currentVer.download_url_alt);
+        }
+    }
+    var result = [];
+    for (var i = 0; i < links.length; i++) {
+        var info = getDownloadInfo(item, links[i], lan);
+        if (info) {
+            result.push(info);
+        }
+    }
+    return result;
+}
+
+export function getDownloadLink(item, lan) {
+    var entries = getDownloadEntries(item, lan);
+    if (entries.length == 0) {
+        return null;
+    }
+    if (lan == "en" && item.currentVer && item.currentVer.download_url_alt) {
+        for (var i = 0; i < entries.length; i++) {
+            if (entries[i].url == item.currentVer.download_url_alt) {
+                return entries[i].url;
+            }
+        }
+    }
+    return entries[0].url;
+}
+
+export function getDownloadLinkValidity(item, lan) {
+    const link = getDownloadLink(item, lan);
+    if (!link) {
+        return false;
+    }
+    return !getDownloadInvalidFlag(item, link);
+}
+
+export function getDownloadDesc(item, lan) {
+    const link = getDownloadLink(item, lan);
+    if (!link) {
+        return null;
+    }
+    const info = getDownloadInfo(item, link, lan);
+    if (!info) {
+        return null;
+    }
+    return info.desc;
 }
 
 export function getDownloadCode(item, lan) {
-    const link = getDownloadLink(item, lan);
-
-    if (!link) {
-        return null
-    }
-    for (var entry of downloadName) {
-        if (link.match(entry.domain)) {
-            if (entry.show_code == true && item.currentVer.code) {
-                return item.currentVer.code;
-            }
-            return null;
+    var entries = getDownloadEntries(item, lan);
+    for (var i = 0; i < entries.length; i++) {
+        if (entries[i].code) {
+            return entries[i].code;
         }
     }
     return null;

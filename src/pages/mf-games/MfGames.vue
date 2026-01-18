@@ -13,7 +13,7 @@
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-  import {getDownloadLink, getDownloadDesc, getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList} from "../../util/GemeUtil.js"
+  import {getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
   import Tooltip from '../../components/ToolTip.vue';
@@ -229,7 +229,7 @@
         }
 
         if (ver.download_url_alt != null && ver.download_url_alt[0] == "~") {
-          ver.download_url_alt = ver.download_url.substring(1);
+          ver.download_url_alt = ver.download_url_alt.substring(1);
           ver.download_url_alt_invalid = true
         } else {
           ver.download_url_alt_invalid = false
@@ -560,6 +560,25 @@
     return 'archive';
   }
 
+  function getDownloadEntriesForView(game) {
+    if (!game) {
+      return [];
+    }
+    return getDownloadEntries(game, lan.value);
+  }
+
+  function shouldShowResourceLink(game) {
+    if (!game) {
+      return false;
+    }
+    const entries = getDownloadEntriesForView(game);
+    if (!entries.length) {
+      return !!getResourceURL(game, lan.value);
+    }
+    const hasFileMirror = entries.some((e) => e.url && e.url.indexOf('file.marioforever.net') >= 0);
+    return !hasFileMirror && !!getResourceURL(game, lan.value);
+  }
+
 </script>
 
 <template>
@@ -738,9 +757,15 @@
             </Tooltip>
         </div>
         <div class="button-line">
-          <a class="download" v-if="!getDownloadLink(selectedDownload, lan) || getDownloadLink(selectedDownload, lan).indexOf('file.marioforever.net') < 0 && getResourceURL(selectedDownload, lan)" :href="getResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
-          <a class="download" v-if="getDownloadLink(selectedDownload, lan)" :href="getDownloadLink(selectedDownload, lan)" target="_blank">{{ getDownloadDesc(selectedDownload, lan) }}</a>
-          <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
+          <a class="download" v-if="shouldShowResourceLink(selectedDownload)" :href="getResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+          <template v-for="entry in getDownloadEntriesForView(selectedDownload)" :key="entry.url">
+            <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
+            <ClipboardButton
+              v-if="entry.url === (selectedDownload.currentVer.download_url || selectedDownload.currentVer.download_url_alt) && getDownloadCode(selectedDownload, lan)"
+              :code="getDownloadCode(selectedDownload, lan)"
+              :lan="lan"
+            ></ClipboardButton>
+          </template>
           <template v-if="selectedDownload.currentVer.data_download_url">
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               <template v-if="selectedDownload.currentVer.data_code">
