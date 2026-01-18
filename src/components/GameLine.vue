@@ -121,14 +121,9 @@
     <div class="game-author">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
         <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
-          <Tooltip>
-            <a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank" rel="noreferrer">
-              {{ getAuthorList(game, lan) }}
-            </a>
-            <template #popper>
-              {{ lan == 'en' ? ('View all games by ' + getAuthorList(game, lan)) : ('查看 ' + getAuthorList(game, lan) + ' 所有作品') }}
-            </template>
-          </Tooltip>
+          <a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank" rel="noreferrer">
+            {{ getAuthorList(game, lan) }}
+          </a>
         </template>
         <template v-else>
           {{ getAuthorList(game, lan) }}
@@ -138,14 +133,9 @@
         <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
           <br v-if="authorindex != 0" />
           <template v-if="getAuthorFolderURL(game, author, lan)">
-            <Tooltip>
-              <a :href="getAuthorFolderURL(game, author, lan)" target="_blank" rel="noreferrer">
-                {{ author }}
-              </a>
-              <template #popper>
-                {{ lan == 'en' ? ('View all games by ' + author) : ('查看 ' + author + ' 所有作品') }}
-              </template>
-            </Tooltip>
+            <a :href="getAuthorFolderURL(game, author, lan)" target="_blank" rel="noreferrer">
+              {{ author }}
+            </a>
           </template>
           <template v-else>
             {{ author }}
