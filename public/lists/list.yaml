@@ -416,16 +416,27 @@
   wiki_zh_url:
   wiki_en_url:
   image: MF大冲关3.webp
-  ver: 练习赛道
-  ver_alt: Practice track
-  date: 2025-08-26
-  source_url: https://www.marioforever.net/thread-3696-1-1.html
-  source_url_alt:
-  download_url: https://wwyx.lanzout.com/ibeZK34lavhc
-  code: 8d3i
-  download_url_alt:
-  file_name: MF大冲关第三季练习赛道.exe
-  file_url:
+  ver:
+  - 练习赛道更新版:
+      ver_alt: Practice track (Updated)
+      date: 2025-12-30
+      source_url: https://www.marioforever.net/thread-3696-1-1.html
+      source_url_alt:
+      download_url: https://wwblj.lanzout.com/i7N6y3euy0if
+      code: 3a61
+      download_url_alt:
+      file_name: MF大冲关第三季测试.exe
+      file_url:
+  - 练习赛道:
+      ver_alt: Practice track
+      date: 2025-08-26
+      source_url: https://www.marioforever.net/thread-3696-1-1.html
+      source_url_alt:
+      download_url: https://wwyx.lanzout.com/ibeZK34lavhc
+      code: 8d3i
+      download_url_alt:
+      file_name: MF大冲关第三季练习赛道.exe
+      file_url:
 - game: "Mario Forever: Generic World"
   game_alt:
   alias:
