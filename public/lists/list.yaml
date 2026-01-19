@@ -1,22 +1,44 @@
 ---
-- game: Mario Forever 2.16 for Android
+- game: Mario Forever for Android
   game_alt:
   author: Sanyario
   author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
-  image: MF2.16Sanyario.webp
   ver:
-  ver_alt:
-  date: 2026-01-16
-  source_url: http://youtube.com/post/UgkxCv3BhHHHUHpWcoP2_ueNtXqk7J_S2r8g?si=y_xkvydy60WpXY4o
-  source_url_alt:
-  download_url: https://mega.nz/file/xi4DECSJ#kWw1rpWrDjFp6jloCTYaNGOFdNLP4Wym0ZtPeZQQ3K8
-  code:
-  download_url_alt:
-  file_name: Mario Forever 2.16.apk
-  file_url:
+  - v3.0:
+      ver_alt:
+      date: 2026-01-19
+      source_url: http://youtube.com/post/UgkxLbevD3Gi1rnNv2rB22cd3qXYawDbC_Ub?si=-wOf8CP_Pzjrxcq-
+      source_url_alt:
+      download_url: https://mega.nz/file/wqxXmLpb#6LUsXtnYujMMpiRndj0Z2tGiNJAz3PI_68IEoR_GMYA
+      code:
+      download_url_alt:
+      file_name: Mario Forever 3.0.apk
+      file_url:
+      image: MF3.0Sanyario.webp
+  - v2.16:
+      ver_alt:
+      date: 2026-01-16
+      source_url: http://youtube.com/post/UgkxCv3BhHHHUHpWcoP2_ueNtXqk7J_S2r8g?si=y_xkvydy60WpXY4o
+      source_url_alt:
+      download_url: https://mega.nz/file/xi4DECSJ#kWw1rpWrDjFp6jloCTYaNGOFdNLP4Wym0ZtPeZQQ3K8
+      code:
+      download_url_alt:
+      file_name: Mario Forever 2.16.apk
+      file_url:
+      image: MF2.16Sanyario.webp
+  - v1.16.1:
+      ver_alt:
+      date: 2025-11-13
+      source_url: https://youtube.com/playlist?list=PLY3o5kBzb9EXPTvbD5ZbXqkqbiKK3nzvN&si=U_OaT7NV6iG8EBS2
+      source_url_alt:
+      download_url: https://mega.nz/file/hnxmlABI#lghNwv5zYSBdGuzJ3CBN6NmerOTWwnN2d3ohsh91qdA
+      code:
+      download_url_alt:
+      file_name: Mario Forever 1.16.1.apk
+      file_url:
 - game: Mario Forever Sunset Worlds
   game_alt:
   author: SakuraMotchi 2020
@@ -248,24 +270,6 @@
   code:
   download_url_alt:
   file_name: Mario Forever 1.16.1-mod.zip
-  file_url:
-- game: Mario Forever 1.16.1 for Android
-  game_alt:
-  author: Sanyario
-  author_alt:
-  type: international
-  wiki_zh_url:
-  wiki_en_url:
-  image:
-  ver:
-  ver_alt:
-  date: 2025-11-13
-  source_url: https://youtube.com/playlist?list=PLY3o5kBzb9EXPTvbD5ZbXqkqbiKK3nzvN&si=U_OaT7NV6iG8EBS2
-  source_url_alt:
-  download_url: https://mega.nz/file/hnxmlABI#lghNwv5zYSBdGuzJ3CBN6NmerOTWwnN2d3ohsh91qdA
-  code:
-  download_url_alt:
-  file_name: Mario Forever 1.16.1.apk
   file_url:
 - game: Mario Forever Idirfertat World
   game_alt:
