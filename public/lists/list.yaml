@@ -12675,6 +12675,24 @@
       download_url_alt: 
       file_name: Mario Forever - The Lost Map - DEMO v1.7.zip
       file_url:
+  - Demo 1.4:
+      ver_alt: 
+      date: 2018-12-01
+      repacker: JUE13
+      repacker_alt:
+      source_url: 
+      source_url_alt: 
+      file_name: Mario Forever - The Lost Map - DEMO v1.4.zip
+      file_url:
+  - Demo 1.0:
+      ver_alt: 
+      date: 2018-10-21
+      repacker: JUE13
+      repacker_alt:
+      source_url: 
+      source_url_alt: 
+      file_name: Mario Forever - The Lost Map - DEMO.zip
+      file_url:
 - game: Area Block - Card Dash!
   game_alt:
   alias:
@@ -16286,15 +16304,46 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2017-10-13
-  source_url: https://marioforeverforum.boards.net/thread/415/mario-forever-remastered-releases
-  source_url_alt:
-  download_url: ~http://www.mediafire.com/file/1j91jgf2i6sjlj2/INSTALACJA+-+MF.EXE
-  code:
-  download_url_alt:
-  file_name: INSTALACJA - MF.EXE
-  file_url:
+  - 2018-08-06 ver.:
+      current: true
+      ver_alt:
+      date: 2018-08-06
+      repacker: JUE13
+      repacker_alt:
+      source_url: https://marioforeverforum.boards.net/thread/415/mario-forever-remastered-releases
+      source_url_alt:
+      file_name: Mario Forever Remastered 2018-08-06.7z
+      file_url:
+  - 2018-07-13 ver.:
+      ver_alt:
+      date: 2018-07-13
+      repacker: JUE13
+      repacker_alt:
+      source_url: https://marioforeverforum.boards.net/thread/415/mario-forever-remastered-releases
+      source_url_alt:
+      file_name: Mario Forever Remastered 2018-07-13.zip
+      file_url:
+  - 'Update #3':
+      current: true
+      ver_alt:
+      date: 2017-10-13
+      source_url: https://marioforeverforum.boards.net/thread/415/mario-forever-remastered-releases
+      source_url_alt:
+      download_url: ~http://www.mediafire.com/file/1j91jgf2i6sjlj2/INSTALACJA+-+MF.EXE
+      code:
+      download_url_alt:
+      file_name: INSTALACJA - MF.EXE
+      file_url:
+  - 'Update #2':
+      ver_alt:
+      date: 2017-04-07
+      source_url: https://marioforeverforum.boards.net/thread/415/mario-forever-remastered-releases
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: INSTALACJA - MARIO FOREVER.EXE
+      file_url:
 - game: Mario Forever Revolution
   game_alt:
   alias:
