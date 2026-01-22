@@ -25,6 +25,7 @@ Some old versions of fangames are available on [file.marioforever.net](https://f
     <li>SuperMarioFan01 - for privately providing several scattered game files that helped fill gaps in the collection.</li>
     <li>Happy Mario 8 - for providing several Chinese fangames released in 2015.</li>
     <li>Green Sweet and WSW - for collecting a number of fangame links in the early stage of this website (2020–2021), which helped shape the foundation of the archive.</li>
+    <li>JUE13 - for providing several repacked versions of fangames.</li>
   </ul>
   <p>We are grateful to all of the above, as well as many other community members whose efforts (large or small) have helped preserve the history of Mario Forever fangames. Please forgive us if any contributors were unintentionally omitted; we sincerely thank them as well.</p>
 </div>
