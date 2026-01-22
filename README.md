@@ -16,6 +16,7 @@ The archive would not have been possible without the efforts of many contributor
 - Super Mario Fan 01 - for privately providing several scattered game files that helped fill gaps in the collection.
 - Happy Mario 8 - for providing several Chinese fangames released in 2015.
 - Green Sweet and WSW - for collecting a number of fangame links in the early stage of this website (2020–2021), which helped shape the foundation of the archive.
+- JUE13 - for providing several repacked versions of fangames.
 
 We are grateful to all of the above, as well as many other community members whose efforts (large or small) have helped preserve the history of Mario Forever fangames. Please forgive us if any contributors were unintentionally omitted; we sincerely thank them as well.
 
