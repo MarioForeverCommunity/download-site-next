@@ -715,7 +715,7 @@
   download_url_alt:
   file_name: Mario Forever - Beetroot World V1.0.rar
   file_url:
-- game: Mario Forever Android
+- game: Super Mario Forever Android
   game_alt:
   alias:
   - MF Android
@@ -729,6 +729,16 @@
   wiki_en_url:
   image: MFAndroid.webp
   ver:
+  - v3.0:
+      ver_alt:
+      date: 2026-01-22
+      source_url: https://alexandrogames.altervista.org/mario-forever-android-versions/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/pko205rgkq24khe/Sup3r+M4ri0+F0rev3r.apk/file
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever Android v3.0.apk
+      file_url:
   - v2.8.8:
       ver_alt:
       date: 2025-09-13
