@@ -1,4 +1,42 @@
 ---
+- game: Division -/- Limbo
+  game_alt:
+  author: TNT与爬行者
+  author_alt: CreepTNT
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  description_zh: 这是作者在PK!MF联赛2025~2026年度第3赛区的参赛关卡。该游戏含有恐怖元素。
+  description_en: Contest level in PK!MF duel Sector 3. THIS LEVEL CONTAINS FLASHING LIGHTS, SCREAM SOUND AND TERROR SCENCES.
+  image: Division - Limbo.webp
+  ver:
+  date: 2026-01-21
+  source_url: https://www.youtube.com/watch?v=WoSQj244dI0
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/2m7umeip9z45uao/Division_--_Limbo.rar/file
+  code:
+  download_url_alt:
+  file_name: Division -- Limbo.rar
+  file_url:
+- game: Fear the Eye
+  game_alt:
+  author: 无视我233
+  author_alt: WSW
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  description_zh: 这是作者在PK!MF联赛2025~2026年度第3赛区参赛关卡的英文版；中文版可前往PK!MF7比赛主页获取。
+  description_en: Contest level in PK!MF duel Sector 3. The contest's theme is "Emotions".
+  image: Fear The Eye.webp
+  ver:
+  date: 2026-01-20
+  source_url: https://www.youtube.com/watch?v=mLU4ZnSkl-8
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/4osj51gkozpkalo/Fear_The_Eye.zip/file
+  code:
+  download_url_alt: https://en.wsw233.com/files/view?f=gct9p5
+  file_name: Fear The Eye.zip
+  file_url:
 - game: Mario Forever for Android
   game_alt:
   author: Sanyario
