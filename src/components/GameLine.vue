@@ -121,7 +121,7 @@
     <div class="game-author">
       <span v-if="typeof getAuthorList(game, lan) == 'string'">
         <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
-          <a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank" rel="noreferrer">
+          <a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank">
             {{ getAuthorList(game, lan) }}
           </a>
         </template>
@@ -133,7 +133,7 @@
         <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
           <br v-if="authorindex != 0" />
           <template v-if="getAuthorFolderURL(game, author, lan)">
-            <a :href="getAuthorFolderURL(game, author, lan)" target="_blank" rel="noreferrer">
+            <a :href="getAuthorFolderURL(game, author, lan)" target="_blank">
               {{ author }}
             </a>
           </template>

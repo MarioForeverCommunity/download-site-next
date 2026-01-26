@@ -120,7 +120,6 @@
             <a
               :href="game.smwp_url"
               target="_blank"
-              rel="noreferrer"
               class="smwp-link"
             >
               SMWP {{ game.smwp_ver }}
@@ -160,7 +159,7 @@
         <span class="inline-block author-ellipsis">
             <template v-if="typeof getAuthorList(game, lan) == 'string'">
                 <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
-                  <span v-if="lan == 'en'">By </span><span v-else>作者：</span><a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank" rel="noreferrer">{{ getAuthorList(game, lan) }}</a>
+                  <span v-if="lan == 'en'">By </span><span v-else>作者：</span><a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank">{{ getAuthorList(game, lan) }}</a>
                 </template>
                 <template v-else>
                   <span v-if="lan == 'en'">By </span><span v-else>作者：</span>{{ getAuthorList(game, lan) }}
@@ -171,7 +170,7 @@
                 <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" 
                     :key="author + authorindex">
                   <template v-if="getAuthorFolderURL(game, author, lan)">
-                    <a :href="getAuthorFolderURL(game, author, lan)" target="_blank" rel="noreferrer">
+                    <a :href="getAuthorFolderURL(game, author, lan)" target="_blank">
                       {{ author }}
                     </a>
                   </template>
@@ -196,13 +195,13 @@
       </div>
       <div class="game-options">
         <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
-          <a :href="game.wiki_zh_url">
+          <a :href="game.wiki_zh_url" target="_blank">
             <WikiIcon class="icon button"></WikiIcon>
           </a>
           <template #popper>Wiki 页面</template>
         </Tooltip>
         <Tooltip v-if="game.wiki_en_url != null && lan == 'en'">
-          <a :href="game.wiki_en_url">
+          <a :href="game.wiki_en_url" target="_blank">
             <WikiIcon class="icon button"></WikiIcon>
           </a>
           <template #popper>Wiki Page</template>
@@ -222,7 +221,7 @@
           <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
-          <a :href="getSourceLink(game, lan)">
+          <a :href="getSourceLink(game, lan)" target="_blank">
             <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
           </a>
           <template #popper>
@@ -230,7 +229,7 @@
           </template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
-          <a :href="getSourceLink(game, lan)" @click="handleSourceClick">
+          <a :href="getSourceLink(game, lan)" target="_blank" @click="handleSourceClick">
             <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
           </a>
           <template #popper>
