@@ -767,12 +767,23 @@
   wiki_en_url:
   image: MFAndroid.webp
   ver:
+  - v3.0.1:
+      ver_alt:
+      date: 2026-01-25
+      source_url: https://alexandrogames.altervista.org/super-mario-forever-3-0-released/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/pko205rgkq24khe/Sup3r+M4ri0+F0rev3r.apk/file
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever Android v3.0.1.apk
+      file_url:
+      image: MFAndroidTitleScreen3.0.webp
   - v3.0:
       ver_alt:
       date: 2026-01-22
-      source_url: https://alexandrogames.altervista.org/mario-forever-android-versions/
+      source_url: https://alexandrogames.altervista.org/super-mario-forever-3-0-released/
       source_url_alt:
-      download_url: https://www.mediafire.com/file/pko205rgkq24khe/Sup3r+M4ri0+F0rev3r.apk/file
+      download_url:
       code:
       download_url_alt:
       file_name: Super Mario Forever Android v3.0.apk
@@ -783,7 +794,7 @@
       date: 2025-09-13
       source_url: https://alexandrogames.altervista.org/mario-forever-android-versions/
       source_url_alt:
-      download_url: https://www.mediafire.com/file/pko205rgkq24khe/Sup3r+M4ri0+F0rev3r.apk/file
+      download_url:
       code:
       download_url_alt:
       file_name: Super Mario Forever Android v2.8.8.apk
@@ -793,7 +804,7 @@
       date: 2025-09-07
       source_url: https://alexandrogames.altervista.org/mario-forever-android-versions/
       source_url_alt:
-      download_url: https://www.mediafire.com/file/pko205rgkq24khe/Sup3r+M4ri0+F0rev3r.apk/file
+      download_url:
       code:
       download_url_alt:
       file_name: Super Mario Forever Android v2.8.7.apk
@@ -803,7 +814,7 @@
       date: 2025-08-29
       source_url: https://alexandrogames.altervista.org/mario-forever-android-versions/
       source_url_alt:
-      download_url: https://www.mediafire.com/file/pko205rgkq24khe/Sup3r+M4ri0+F0rev3r.apk/file
+      download_url:
       code:
       download_url_alt:
       file_name: Super Mario Forever Android v2.8.6.apk
@@ -813,7 +824,7 @@
       date: 2025-07-10
       source_url: https://alexandrogames.altervista.org/mario-forever-android-versions/
       source_url_alt:
-      download_url: https://www.mediafire.com/file/xam7fpblfmq5lyk/Super_M4rio_F0rever_v2.8.rar/file
+      download_url:
       code:
       download_url_alt:
       file_name: Super Mario Forever Android v2.8.apk
