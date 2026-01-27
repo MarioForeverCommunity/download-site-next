@@ -29,7 +29,7 @@ Suitable for the vast majority of Windows PCs. Runs better on some modern comput
 
 ## Download original Mario Forever
 
-For those seeking the most authentic and original experience. Versions 4.4 and earlier do not run smoothly on Windows 7 or newer. Versions 5.0 and later are generally unsatisfactory; try them only if you're curious.
+For those seeking the most authentic and original experience. Versions 4.4 and earlier may not run smoothly on Windows 7 or newer (due to their usage of the Standard render mode). Versions 5.0 and later are generally unsatisfactory; try them only if you're curious.
 
 Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wiki/Mario_Forever).
 
