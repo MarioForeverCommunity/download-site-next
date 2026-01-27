@@ -138,7 +138,7 @@ export const sourceName = [
     "desc_en" : "Tieba Archive"
   },
   {
-    "domain" : "www.marioforever.net",
+    "domain" : "marioforever.net",
     "desc_zh" : "MF 社区",
     "desc_en" : "marioforever.net"
   },
@@ -148,7 +148,7 @@ export const sourceName = [
     "desc_en" : "Mario Forever Space"
   },
   {
-    "domain" : "www.youtube.com",
+    "domain" : "youtube.com",
     "desc_en" : "YouTube"
   },
   {
