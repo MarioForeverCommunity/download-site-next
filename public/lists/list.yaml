@@ -3604,10 +3604,19 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.0:
+      ver_alt:
+      date: 2026-01-27
+      source_url: https://www.youtube.com/watch?v=KRYHZjCj_xE
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/l05zk8t9sniy8u3/Mario_Forever_-_Better_Worlds_v2.0.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better Worlds v2.0.zip
+      file_url:
   - World 6:
       ver_alt:
       date: 2024-06-15
-      current: true
       source_url: ~https://www.youtube.com/watch?v=pop-KA48M5M
       source_url_alt:
       download_url: https://www.mediafire.com/file/ijv3uvswfyl0v9t/Mario+Forever+-+Better+World+6.zip/file
@@ -3618,7 +3627,6 @@
   - World 5 (Fixed):
       ver_alt:
       date: 2024-05-15
-      current: true
       source_url: ~https://www.youtube.com/watch?v=xxQJ0q6_qM0
       source_url_alt:
       download_url: https://www.mediafire.com/file/z5u95u9s0f09pvc/Mario+Forever+-+Better+World+5+(fixed).zip/file
@@ -3639,7 +3647,6 @@
   - World 4:
       ver_alt:
       date: 2024-05-01
-      current: true
       source_url: ~https://www.youtube.com/watch?v=vmgzuMxN0mI
       source_url_alt:
       download_url: https://www.mediafire.com/file/u8y3kmlsqw6b25w/Mario+Forever+-+Better+World+4.zip/file
@@ -3655,12 +3662,11 @@
       download_url: https://www.mediafire.com/file/moc2ub4g2bi9qt9/Mario+Forever+-+Better+World+4.zip/file
       code:
       download_url_alt:
-      file_name: Mario Forever - Better World 4.zip
+      file_name: Mario Forever - Better World 4 (April Fools Day ver.).zip
       file_url:
   - World 3:
       ver_alt:
       date: 2024-02-16
-      current: true
       source_url: ~https://www.youtube.com/watch?v=LeBvadY8LQ4
       source_url_alt:
       download_url: https://www.mediafire.com/file/ccvyugfp0g6ushr/Mario+Forever+-+Better+World+3.zip/file
@@ -3671,7 +3677,6 @@
   - World 2:
       ver_alt:
       date: 2024-01-30
-      current: true
       source_url: ~https://www.youtube.com/watch?v=qT8P7yTYkDA
       source_url_alt:
       download_url: https://www.mediafire.com/file/iqoshgxach3gajk/Mario+Forever+-+Better+World+2.zip/file
@@ -3682,13 +3687,12 @@
   - World 1:
       ver_alt:
       date: 2024-01-21
-      current: true
       source_url: ~https://www.youtube.com/watch?v=i77XmtrYnwk
       source_url_alt:
       download_url: https://www.mediafire.com/file/s1q1b9yua6hzhrr/Mario+Forever+-+Better+World+1.zip/file
       code:
       download_url_alt:
-      file_name: Mario Forever - Better World 1(2).zip
+      file_name: Mario Forever - Better World 1.zip
       file_url:
 - game: Mario Forever - Winter Franchise
   game_alt:
