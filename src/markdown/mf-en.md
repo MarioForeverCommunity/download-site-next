@@ -14,8 +14,8 @@
 **Recommended.** Suitable for relatively modern PCs, with controller support and high FPS support. Tweaks are integrated for customizing the player's gameplay experience. Also supports custom character skins.
 
 <a class="md-button" target="_blank" href="https://rnx.su/s/DZm6PEkZf3z4owp">Download Mario Forever: Community Edition</a>
-<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.1.2%20Windows.zip">Download Mario Forever: Community Edition (Windows, mirror)</a>
-<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.1.2%20Linux.zip">Download Mario Forever: Community Edition (Linux, mirror)</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.1.3%20Windows.zip">Download Mario Forever: Community Edition (Windows, mirror)</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.1.3%20Linux.zip">Download Mario Forever: Community Edition (Linux, mirror)</a>
 <a class="md-button" target="_blank" href="https://mfce.rnx.su/">Mario Forever: Community Edition website</a>
 
 ## Download Mario Forever Remake
