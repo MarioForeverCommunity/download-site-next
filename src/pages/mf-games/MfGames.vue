@@ -124,6 +124,7 @@
           // file_name 归档
           if (verObj.file_name) {
             if (
+              !verObj.repacker &&
               (
                 verObj.current === false ||
                 (
@@ -142,6 +143,7 @@
           // data_file_name 归档
           if (verObj.data_file_name) {
             if (
+              !verObj.repacker &&
               (
                 verObj.current === false ||
                 (
