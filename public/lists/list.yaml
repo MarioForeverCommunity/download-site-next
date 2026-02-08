@@ -3715,6 +3715,16 @@
   wiki_en_url:
   image: MFBetterWorlds.webp
   ver:
+  - v2.1:
+      ver_alt:
+      date: 2026-02-07
+      source_url: https://www.youtube.com/watch?v=KRYHZjCj_xE
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/6dcyndwacz51a5n/Mario+Forever+-+Better+Worlds+v2.1.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Better Worlds v2.1.zip
+      file_url:
   - v2.0:
       ver_alt:
       date: 2026-01-27
