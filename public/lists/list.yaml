@@ -8,15 +8,25 @@
   wiki_en_url:
   image: MFTLM3.webp
   ver:
-  - v1.0.2:
+  - v1.0.3:
       ver_alt:
-      date: 2026-02-05
+      date: 2026-02-08
       source_url: https://www.youtube.com/watch?v=Xq0yYmXxF6Q
       source_url_alt:
       download_url: https://www.dropbox.com/scl/fi/kxvffzwkj2jiuew94ewnv/Mario-Forever-The-Lost-Map-3.zip?rlkey=xry0sbvudy2es9ymtab16y0gv&st=ncxpsq8s&dl=0&v=Xq0yYmXxF6Q
       code:
       download_url_alt:
       file_name: Mario Forever - The Lost Map 3.zip
+      file_url:
+  - v1.0.2:
+      ver_alt:
+      date: 2026-02-05
+      source_url: https://www.youtube.com/watch?v=Xq0yYmXxF6Q
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever - The Lost Map 3/v1.0.2/Mario Forever - The Lost Map 3.zip
       file_url:
   - v1.0.1:
       ver_alt:
