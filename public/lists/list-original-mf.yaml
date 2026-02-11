@@ -48,51 +48,61 @@
   rating: ★★
   installer: Mario Forever 5.0.exe
   portable: Mario Forever 5.0.7z
+  toolbar: true
 - ver: v5.01
   date: 2011-01-14
   rating: ★★
   installer: Mario Forever 5.01.exe
   portable: Mario Forever 5.01.7z
+  toolbar: true
 - ver: v5.011
   date: 2011-06-22
   rating: ★★
   installer: Mario Forever 5.011.exe
   portable: Mario Forever 5.01.7z
+  toolbar: true
 - ver: v5.013
   date: 2011-07-08
   rating: ★★
   installer: Mario Forever 5.013.exe
   portable: Mario Forever 5.01.7z
+  toolbar: true
 - ver: v5.05
   date: 2011-07-21
   rating: ★★
   installer: Mario Forever 5.05.exe
   portable: Mario Forever 5.05.7z
+  toolbar: true
 - ver: v5.08
   date: 2011-08-28
   rating: ★☆
   installer: Mario Forever 5.08.exe
   portable: Mario Forever 5.08.7z
+  toolbar: true
 - ver: v5.08b
   date: 2011-09-12
   rating: ★☆
   installer: Mario Forever 5.08 b.exe
   portable: Mario Forever 5.08.7z
+  toolbar: true
 - ver: v5.08dx
   date: 2011-11-28
   rating: ★☆
   installer: Mario Forever 5.08dx.exe
   portable: Mario Forever 5.08 Direct X.7z
+  toolbar: true
 - ver: v5.9
   date: 2011-12-12
   rating: ★☆
   installer: Mario Forever 5.9.exe
   portable: Mario Forever 5.9.7z
+  toolbar: true
 - ver: v5.9s
   date: 2012-04-02
   rating: ★☆
   installer: Mario Forever 5.9s.exe
   portable: Mario Forever 5.9s.7z
+  toolbar: true
 - ver: v5.9r
   date: 2013-01-18
   rating: ☆
@@ -103,6 +113,7 @@
   rating: ★☆
   installer: Mario Forever 6.0.exe
   portable: Mario Forever 6.0.7z
+  toolbar: true
 - ver: v6.01
   date: 2013-05-09
   rating: ★☆
@@ -174,6 +185,7 @@
   rating: ★★★★★
   installer: Mario Forever Advance (2011).exe
   portable: Mario Forever Advance (2011).7z
+  toolbar: true
 - ver: Advance v4.41
   date: 2017-10-24
   rating: ★★★★☆

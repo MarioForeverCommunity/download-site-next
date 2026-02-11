@@ -81,6 +81,8 @@ const getDownloadUrl = (version, type) => {
               v-if="getDownloadUrl(version, 'installer')" 
               :href="getDownloadUrl(version, 'installer')"
               :lan="lan"
+              :hasToolbar="!!version.toolbar"
+              type="installer"
             />
           </td>
           <td>
@@ -88,6 +90,8 @@ const getDownloadUrl = (version, type) => {
               v-if="getDownloadUrl(version, 'portable')" 
               :href="getDownloadUrl(version, 'portable')"
               :lan="lan"
+              :hasToolbar="!!version.toolbar"
+              type="portable"
             />
           </td>
         </tr>
