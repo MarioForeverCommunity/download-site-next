@@ -48,11 +48,11 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 9. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
 </div>
 
-## Mods
+## Download mods of original Mario Forever
 There are several known mods based on the original Mario Forever.
 
 <a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/JUE13/Mario%20Forever%201.16.1-mod.zip">Download Mario Forever v1.16.1 Mod by JUE13</a>
-<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/original-mf/portable/MF%204.4%20Fixed%20Speedrun%20Edition.zip">Download Mario Forever v4.4 Fixed Speedrun Edition by JUE13</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/JUE13/MF%204.4%20Fixed%20Speedrun%20Edition.zip">Download Mario Forever v4.4 Fixed Speedrun Edition by JUE13</a>
 
 ## Frequently Asked Questions
 **Q: Is Mario Forever safe? I've heard it contains a virus.**  
