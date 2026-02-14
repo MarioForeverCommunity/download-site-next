@@ -7,3 +7,5 @@ node_modules
 dist
 /.vscode
 .editorconfig
+.trae/*
+AGENTS.md
