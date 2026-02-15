@@ -185,8 +185,29 @@
   wiki_en_url:
   image: MFNY2026.webp
   ver:
-  - v0.5 Windows:
+  - v1.0 Windows:
       current: true
+      ver_alt:
+      date: 2026-02-15
+      source_url: https://www.marioforever.net/thread-3766-1-1.html
+      source_url_alt:
+      download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
+      code: 
+      download_url_alt:
+      file_name: Mario Forever - The New Year 2026/v1.0/MFNY2026-windows-x86.zip
+      file_url:
+  - v1.0 Linux:
+      current: true
+      ver_alt:
+      date: 2026-02-15
+      source_url: https://www.marioforever.net/thread-3766-1-1.html
+      source_url_alt:
+      download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
+      code: 
+      download_url_alt:
+      file_name: Mario Forever - The New Year 2026/v1.0/MFNY2026-linux-x86_64.tar
+      file_url:
+  - v0.5 Windows:
       ver_alt:
       date: 2026-01-01
       source_url: https://www.marioforever.net/thread-3766-1-1.html
@@ -194,10 +215,9 @@
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
       code: 
       download_url_alt:
-      file_name: MFNY2026-windows-x86.zip
+      file_name: Mario Forever - The New Year 2026/v0.5/MFNY2026-windows-x86.zip
       file_url:
   - v0.5 Linux:
-      current: true
       ver_alt:
       date: 2026-01-01
       source_url: https://www.marioforever.net/thread-3766-1-1.html
@@ -205,7 +225,7 @@
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
       code: 
       download_url_alt:
-      file_name: MFNY2026-linux-x86_64.tar
+      file_name: Mario Forever - The New Year 2026/v0.5/MFNY2026-linux-x86_64.tar
       file_url:
 - game: Mario Forever Lost Map X
   game_alt:
