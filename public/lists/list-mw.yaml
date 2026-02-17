@@ -1,4 +1,18 @@
 ---
+- game: For yjs - Boundless World
+  alias:
+  - Boundless World
+  - BW
+  author: 马里奥奥里马
+  description: 这是作者 Welcome back to Marioworker Bar 2023 作品的单独发布版；另有所有关卡的 smwl，见发布帖，资源站暂未提供
+  smwp_ver: v1.7.10
+  date: 2026-02-17
+  source_url: https://www.marioforever.net/thread-3804-1-1.html
+  download_url: https://wwatr.lanzout.com/i3KP33in2abi
+  has_bundled_smwp: true
+  code:
+  file_name: For yjs - Boundless World (By mlaalm).zip
+  file_url:
 - game: 深潜（B面）
   author: 有名氏
   smwp_ver: v1.7.12
@@ -955,19 +969,6 @@
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
   code: xbr2
   file_name: A Day Out(S2简化版).smwp
-  file_url:
-- game: For yjs - Boundless World (By mlaalm)
-  alias:
-  - Boundless World
-  - BW
-  author: 马里奥奥里马
-  description: 简化+更新版，请使用Welcome back to Marioworker Bar 2023自带的MW游玩
-  smwp_ver: v1.7.10
-  date: 2023-06-30
-  source_url: https://www.marioforever.net/thread-2720-1-1.html
-  download_url: 
-  code:
-  file_name: For yjs - Boundless World (By mlaalm)/
   file_url:
 - game: I'mperfect
   alias:
