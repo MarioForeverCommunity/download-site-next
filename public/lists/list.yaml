@@ -104,12 +104,23 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v3.5:
+      ver_alt:
+      date: 2026-02-17
+      source_url: http://youtube.com/post/UgkxQ9uMGJscKHdSvyF1FvUOhxgG3BkGZCFP?si=K_0dSjSlHr9M1gdC
+      source_url_alt:
+      download_url: https://mega.nz/folder/1z5ggBbD#OsJ85hOpyaaW9vSL3HLrOA
+      code:
+      download_url_alt:
+      file_name: Mario Forever 3.5.apk
+      file_url:
+      image: MF3.5Sanyario.webp
   - v3.0:
       ver_alt:
       date: 2026-01-19
       source_url: http://youtube.com/post/UgkxLbevD3Gi1rnNv2rB22cd3qXYawDbC_Ub?si=-wOf8CP_Pzjrxcq-
       source_url_alt:
-      download_url: https://mega.nz/file/wqxXmLpb#6LUsXtnYujMMpiRndj0Z2tGiNJAz3PI_68IEoR_GMYA
+      download_url: https://mega.nz/folder/1z5ggBbD#OsJ85hOpyaaW9vSL3HLrOA
       code:
       download_url_alt:
       file_name: Mario Forever 3.0.apk
@@ -120,7 +131,7 @@
       date: 2026-01-16
       source_url: http://youtube.com/post/UgkxCv3BhHHHUHpWcoP2_ueNtXqk7J_S2r8g?si=y_xkvydy60WpXY4o
       source_url_alt:
-      download_url: https://mega.nz/file/xi4DECSJ#kWw1rpWrDjFp6jloCTYaNGOFdNLP4Wym0ZtPeZQQ3K8
+      download_url: https://mega.nz/folder/1z5ggBbD#OsJ85hOpyaaW9vSL3HLrOA
       code:
       download_url_alt:
       file_name: Mario Forever 2.16.apk
@@ -128,10 +139,10 @@
       image: MF2.16Sanyario.webp
   - v1.16.1:
       ver_alt:
-      date: 2025-11-13
+      date: 2025-11-09
       source_url: https://youtube.com/playlist?list=PLY3o5kBzb9EXPTvbD5ZbXqkqbiKK3nzvN&si=U_OaT7NV6iG8EBS2
       source_url_alt:
-      download_url: https://mega.nz/file/hnxmlABI#lghNwv5zYSBdGuzJ3CBN6NmerOTWwnN2d3ohsh91qdA
+      download_url: https://mega.nz/folder/1z5ggBbD#OsJ85hOpyaaW9vSL3HLrOA
       code:
       download_url_alt:
       file_name: Mario Forever 1.16.1.apk
