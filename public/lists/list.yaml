@@ -1,4 +1,23 @@
 ---
+- game: Mario Forever One Day Trip
+  game_alt:
+  author: Firecat Bro
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  image: MFOneDay2.0.webp
+  ver:
+  - v2.0:
+      ver_alt:
+      date: 2026-02-21
+      source_url: https://www.youtube.com/watch?v=zxeGOzdDlMY
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/jo52r667ogxv9u1/MF_-_One_day_Trip_v.2.0.zip/file
+      code:
+      download_url_alt: https://drive.google.com/file/d/1P3-15n9g--7N7MG3DTbc6z_3PgkKeJMT/view
+      file_name: MF - One day Trip v.2.0.zip
+      file_url:
 - game: "Mario Forever: The Lost Map 3"
   game_alt:
   author: Alpha Team
