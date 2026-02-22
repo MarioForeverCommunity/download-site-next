@@ -8,6 +8,16 @@
   wiki_en_url:
   image: MFOneDay2.0.webp
   ver:
+  - v2.0.1:
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://www.youtube.com/watch?v=zxeGOzdDlMY
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/juud8rhzkdl5n1d/MF_-_One_day_Trip_v.2.0.1.zip/file
+      code:
+      download_url_alt: https://drive.google.com/file/d/1lhy7kuPuG094MDgJTOGYBhRF_9B_RDMV/view
+      file_name: MF - One day Trip v.2.0.1.zip
+      file_url:
   - v2.0:
       ver_alt:
       date: 2026-02-21
