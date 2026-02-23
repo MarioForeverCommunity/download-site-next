@@ -12,15 +12,25 @@
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1293317
   image: MFWW.webp
   ver:
+  - v0.9.1:
+      ver_alt:
+      date: 2026-02-23
+      source_url: https://www.marioforever.net/thread-3807-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1wTzlMSDMtGy6CiHNsuw9Sg?pwd=mfww
+      code: mfww
+      download_url_alt:
+      file_name: Mario Forever Wonderful Worlds/v0.9.1/Mario Forever Wonderful Worlds.7z
+      file_url:
   - v0.9:
       ver_alt:
       date: 2026-02-23
       source_url: https://www.marioforever.net/thread-3807-1-1.html
       source_url_alt:
-      download_url: https://pan.baidu.com/s/1yD_zqB9sQDUqxxNJHyRftQ?pwd=mfww
+      download_url: ~https://pan.baidu.com/s/1yD_zqB9sQDUqxxNJHyRftQ?pwd=mfww
       code: mfww
       download_url_alt:
-      file_name: Mario Forever Wonderful Worlds.7z
+      file_name: Mario Forever Wonderful Worlds/v0.9/Mario Forever Wonderful Worlds.7z
       file_url:
   - v0.5:
       ver_alt:
@@ -743,7 +753,7 @@
       download_url: https://nx.wtf/index.php/s/world_of_haste
       code:
       download_url_alt:
-      file_name: win64_release.zip
+      file_name: Mario Forever - World of Haste DX/v1.2/win64_release.zip
       file_url:
   - v1.2 (Linux):
       ver_alt:
