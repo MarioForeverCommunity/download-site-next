@@ -314,6 +314,16 @@
   wiki_en_url:
   image: MFSJ.webp
   ver:
+  - v1.8:
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://www.youtube.com/watch?v=5krGrYjCQAQ
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/9glz7depvnlqswb/Mario_Forever_Sensitive_Journey_v1.8.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sensitive Journey v1.8.zip
+      file_url:
   - v1.5:
       ver_alt:
       date: 2026-02-01
