@@ -43,9 +43,10 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 4. The version numbers v5.9s and v5.9r were designated for clarity. The v5.9r executable was last modified on 2013-01-18, while the installer [appears to have been released on 2014-06-26](https://archive.marioforever.net/post/3258680750.html). This version is known to be non-functional.
 5. Since v6.0, the official version numbering has been somewhat confusing. The numbers v6.0, v6.01, v6.1, and v6.11 were designated for clarity.
 6. The files for v6.1/v6.11 originate from the Super Mario Forever 2016 Pack released by Softendo.
-7. The installer of v7.02e is originally named `super-mario-forever-v702e.exe`. The installed v7.02e includes a file called `MarioForever 7.02 Beta.exe`, last modified on 2019-01-28. This file is not the actual game executable, as it's only a launcher that opens a window titled "Softendo Games Steam." The v7.02e game executable is identical to that of v7.02_31 Beta. 
-8. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
-9. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
+7. v6.000027 (2018), also known as "Mario Forever 6.00 Fixed Version", is unclear as to why Softendo released this version after v7.02.
+8. The installer of v7.02e is originally named `super-mario-forever-v702e.exe`. The installed v7.02e includes a file called `MarioForever 7.02 Beta.exe`, last modified on 2019-01-28. This file is not the actual game executable, as it's only a launcher that opens a window titled "Softendo Games Steam." The v7.02e game executable is identical to that of v7.02_31 Beta. 
+9. The release date of Advance v4.4 (2011) refers to the modification date of the game executable.
+10. Portable version removes all icons, URL shortcuts, uninstallers and adware. 
 </div>
 
 ## Download mods of original Mario Forever

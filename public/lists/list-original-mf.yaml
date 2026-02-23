@@ -170,6 +170,11 @@
   rating: ★★
   installer: Mario Forever 7.02_31 Beta.exe
   portable: Mario Forever 7.02_31 Beta.7z
+- ver: v6.000027 (2018)
+  date: 2018-03-07
+  rating: ★★
+  installer: Mario Forever 6.000027 (2018).exe
+  portable: Mario Forever 6.000027 (2018).7z
 - ver: v7.02e
   date: 2019-01-28
   rating: ★☆
@@ -196,3 +201,8 @@
   rating: ★
   installer: Mario Forever KIDS 7.02.exe
   portable: Mario Forever KIDS 7.02.7z
+- ver: The Lost Map
+  date: 2009-07-08
+  rating: ★★★★☆
+  installer: Mario Forever The Lost Map.exe
+  portable: Mario Forever The Lost Map.7z
