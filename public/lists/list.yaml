@@ -969,17 +969,26 @@
   wiki_en_url:
   image: MFAndroid.webp
   ver:
-  - v3.3:
+  - v3.3.1:
       ver_alt:
-      date: 2026-02-20
-      source_url: https://alexandrogames.altervista.org/super-mario-forever-3-0-released/
+      date: 2026-02-23
+      source_url: https://alexandrogames.altervista.org/super-mario-forever-v3-3-android-windows-released/
       source_url_alt:
       download_url: https://www.mediafire.com/file/69lzqa0hbs3g60u/Sup3r_M4ri0_F0rev3r_Android.apk/file
       code:
       download_url_alt:
+      file_name: Super Mario Forever Android v3.3.1.apk
+      file_url:
+  - v3.3:
+      ver_alt:
+      date: 2026-02-20
+      source_url: https://alexandrogames.altervista.org/super-mario-forever-v3-3-android-windows-released/
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Super Mario Forever Android v3.3.apk
       file_url:
-      image: MFAndroidTitleScreen3.0.webp
   - v3.2:
       ver_alt:
       date: 2026-02-10
@@ -990,7 +999,6 @@
       download_url_alt:
       file_name: Super Mario Forever Android v3.2.apk
       file_url:
-      image: MFAndroidTitleScreen3.0.webp
   - v3.0.2:
       ver_alt:
       date: 2026-01-28
@@ -1001,7 +1009,6 @@
       download_url_alt:
       file_name: Super Mario Forever Android v3.0.2.apk
       file_url:
-      image: MFAndroidTitleScreen3.0.webp
   - v3.0.1:
       ver_alt:
       date: 2026-01-25
@@ -1012,7 +1019,6 @@
       download_url_alt:
       file_name: Super Mario Forever Android v3.0.1.apk
       file_url:
-      image: MFAndroidTitleScreen3.0.webp
   - v3.0:
       ver_alt:
       date: 2026-01-22
@@ -1023,7 +1029,6 @@
       download_url_alt:
       file_name: Super Mario Forever Android v3.0.apk
       file_url:
-      image: MFAndroidTitleScreen3.0.webp
   - v2.8.8:
       ver_alt:
       date: 2025-09-13
@@ -15997,16 +16002,28 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.9
-  ver_alt:
-  date: 2018-05-06
-  source_url: https://alexandrogames.altervista.org/super-mario-forever-android-pc-pre-release/
-  source_url_alt:
-  download_url: http://www.mediafire.com/file/hv3teoh1ilcf2vg/Super-MFA-for-PC.exe
-  code:
-  download_url_alt:
-  file_name: Super-MFA-for-PC.exe
-  file_url:
+  image: MFAndroid.webp
+  ver:
+  - v3.3.1:
+      ver_alt:
+      date: 2026-02-23
+      source_url: https://alexandrogames.altervista.org/super-mario-forever-v3-3-android-windows-released/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/i5mgz6fqozonu43/Sup3r_M4ri0_F0r3v3r_PC.rar/file
+      code:
+      download_url_alt:
+      file_name: Super Mario Forever PC v3.3.1.rar
+      file_url:
+  - v1.9:
+      ver_alt:
+      date: 2018-05-06
+      source_url: https://alexandrogames.altervista.org/super-mario-forever-android-pc-pre-release/
+      source_url_alt:
+      download_url: http://www.mediafire.com/file/hv3teoh1ilcf2vg/Super-MFA-for-PC.exe
+      code:
+      download_url_alt:
+      file_name: Super-MFA-for-PC.exe
+      file_url:
 - game: Mario Forever Worlds 2016 - 2017
   game_alt:
   author: Alexandro Games
