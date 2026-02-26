@@ -7128,6 +7128,16 @@
       download_url_alt:
       file_name: Mario In The FOREST V0.6.0[Fix4].7z
       file_url:
+  - v0.6.0 Fix3:
+      ver_alt:
+      date: 2022-01-02
+      source_url: https://www.marioforever.net/thread-1303-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario In The FOREST V0.6.0[Fix3].7z
+      file_url:
   - v0.6.0 Fix2:
       ver_alt:
       date: 2022-01-01
@@ -11502,16 +11512,157 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_An_Unprecedented_Expedition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_An_Unprecedented_Expedition
   image: AUE040_cover.webp
-  ver: v0.4.5
-  ver_alt:
-  date: 2021-05-04
-  source_url: https://www.marioforever.net/thread-694-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1-blThHrYsA9PcWqlU6znJA
-  code: AnUE
-  download_url_alt:
-  file_name: MF：AUE V0.4.5.zip
-  file_url:
+  ver:
+  - v0.4.5:
+      ver_alt:
+      date: 2021-05-04
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1-blThHrYsA9PcWqlU6znJA
+      code: AnUE
+      download_url_alt: http://www.mediafire.com/folder/avrjbao6eqaru/MF：AUE
+      file_name: MF：AUE V0.4.5.zip
+      file_url:
+  - v0.4.4:
+      ver_alt:
+      date: 2020-10-15
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.4.zip
+      file_url:
+  - v0.4.3 Update 1:
+      ver_alt:
+      date: 2020-10-07
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.3 Update 1.zip
+      file_url:
+  - v0.4.3:
+      ver_alt:
+      date: 2020-10-04
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.3.zip
+      file_url:
+  - v0.4.2 Update 2:
+      ver_alt:
+      date: 2020-09-20
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.2 Update 2.zip
+      file_url:
+  - v0.4.2 Update 1:
+      ver_alt:
+      date: 2020-09-20
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.2 Update 1.zip
+      file_url:
+  - v0.4.2:
+      ver_alt:
+      date: 2020-09-20
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.2.zip
+      file_url:
+  - v0.4.1 Update 1:
+      ver_alt:
+      date: 2020-09-19
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.1 Update 1.zip
+      file_url:
+  - v0.4.1:
+      ver_alt:
+      date: 2020-09-18
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.1.zip
+      file_url:
+  - v0.4.0 Update 5:
+      ver_alt:
+      date: 2020-09-13
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.0 Update 5.zip
+      file_url:
+  - v0.4.0 Fix 4:
+      ver_alt:
+      date: 2020-09-13
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.0 Fix 4.zip
+      file_url:
+  - v0.4.0 Fix 3:
+      ver_alt:
+      date: 2020-09-13
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.0 Fix 3.zip
+      file_url:
+  - v0.4.0 Fix 2:
+      ver_alt:
+      date: 2020-09-12
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.0 Fix 2.zip
+      file_url:
+  - v0.4.0 Fix 1:
+      ver_alt:
+      date: 2020-09-12
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.0 Fix 1.zip
+      file_url:
+  - v0.4.0:
+      ver_alt:
+      date: 2020-09-12
+      source_url: https://www.marioforever.net/thread-694-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF：AUE V0.4.0.zip
+      file_url:
 - game: Mario Forever Euphoria
   game_alt:
   alias:
@@ -11693,6 +11844,16 @@
       code: 
       download_url_alt: 
       file_name: Mario Worker - Letter Worlds Series v1.07.rar
+      file_url:
+  - v1.061:
+      ver_alt: 
+      date: 2020-10-15
+      source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
+      source_url_alt: 
+      download_url: 
+      code: 
+      download_url_alt: 
+      file_name: Mario Worker - Letter Worlds Series v1.061.rar
       file_url:
   - v1.06:
       ver_alt: 
@@ -13206,16 +13367,47 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E8%B1%A1%E7%89%99%E5%A1%94
   wiki_en_url:
   image: 象牙塔.webp
-  ver: v0.5.3
-  ver_alt:
-  date: 2020-07-27
-  source_url: https://www.marioforever.net/thread-308-1-1.html
-  source_url_alt:
-  download_url: https://wwa.lanzouj.com/b00ns8kxi
-  code: 3csh
-  download_url_alt:
-  file_name: 象牙塔 v0.5.3.exe
-  file_url:
+  ver:
+  - v0.5.3:
+      ver_alt:
+      date: 2020-07-27
+      source_url: https://www.marioforever.net/thread-308-1-1.html
+      source_url_alt:
+      download_url: https://wwa.lanzouj.com/b00ns8kxi
+      code: 3csh
+      download_url_alt:
+      file_name: 象牙塔 v0.5.3.exe
+      file_url:
+  - v0.5.2:
+      ver_alt:
+      date: 2020-07-27
+      source_url: https://www.marioforever.net/thread-308-1-1.html
+      source_url_alt:
+      download_url: https://wwa.lanzouj.com/b00ns8kxi
+      code: 3csh
+      download_url_alt:
+      file_name: 象牙塔 v0.5.2.rar
+      file_url:
+  - v0.5.1:
+      ver_alt:
+      date: 2020-07-26
+      source_url: https://www.marioforever.net/thread-308-1-1.html
+      source_url_alt:
+      download_url: https://wwa.lanzouj.com/b00ns8kxi
+      code: 3csh
+      download_url_alt:
+      file_name: 象牙塔 v0.5.1.exe
+      file_url:
+  - v0.5.0:
+      ver_alt:
+      date: 2020-07-25
+      source_url: https://www.marioforever.net/thread-308-1-1.html
+      source_url_alt:
+      download_url: https://wwa.lanzouj.com/b00ns8kxi
+      code: 3csh
+      download_url_alt:
+      file_name: 象牙塔.zip
+      file_url:
 - game: 危机合约：深夜海滨
   game_alt: 'Crisis Contract: Late Night Waterfront'
   author: 把僵尸炖了
@@ -14036,6 +14228,16 @@
       download_url_alt:
       file_name: MF - Decasamsara Worlds v1.8.1 fix3.zip
       file_url:
+  - v1.8.1 Fix1:
+      ver_alt:
+      date: 2019-07-21
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.8.1 fix1.zip
+      file_url:
   - v1.8.1:
       ver_alt:
       date: 2019-07-21
@@ -14056,6 +14258,16 @@
       download_url_alt:
       file_name: MF - Decasamsara Worlds v1.8.zip
       file_url:
+  - v1.7:
+      ver_alt:
+      date: 2019-04-07
+      source_url: https://tieba.baidu.com/p/6040879109
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.7 Official.zip
+      file_url:
   - v1.7 Pre 2.5:
       ver_alt:
       date: 2019-02-19
@@ -14065,6 +14277,16 @@
       code:
       download_url_alt:
       file_name: MF - Decasamsara Worlds v1.7 Pre 2.5.zip
+      file_url:
+  - v1.7 Pre 2:
+      ver_alt:
+      date: 2019-02-16
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.7 Pre 2.zip
       file_url:
   - v1.7 Snapshot 1:
       ver_alt:
@@ -14086,6 +14308,36 @@
       download_url_alt:
       file_name: MF - Decasamsara Worlds v1.6.3 Official.zip
       file_url:
+  - v1.6.2:
+      ver_alt:
+      date: 2018-08-08
+      source_url: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.6.2 Official.zip
+      file_url:
+  - v1.6.1:
+      ver_alt:
+      date: 2018-08-03
+      source_url: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.6.1 Official.zip
+      file_url:
+  - v1.6:
+      ver_alt:
+      date: 2018-07-31
+      source_url: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.6 Official.zip
+      file_url:
   - v1.5.2:
       ver_alt:
       date: 2018-07-05
@@ -14095,6 +14347,26 @@
       code:
       download_url_alt:
       file_name: MF - Decasamsara Worlds v1.5.2 Official.zip
+      file_url:
+  - v1.5.1:
+      ver_alt:
+      date: 2018-07-04
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.5.1 Official.zip
+      file_url:
+  - v1.5:
+      ver_alt:
+      date: 2018-07-03
+      source_url: https://archive.marioforever.net/post/5083357884.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MF - Decasamsara Worlds v1.5 Official.zip
       file_url:
   - v1.4.3:
       ver_alt:
@@ -15839,13 +16111,43 @@
   ver:
   - v3.0 fix7:
       ver_alt:
-      date: 2018-07-25
+      date: 2018-08-03
       source_url: https://www.marioforever.net/thread-14-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1IyYLvYmDjpLhfM9zJTBAZA
       code:
       download_url_alt:
       file_name: xfx's world （V3.0）（fix7）.zip
+      file_url:
+  - v3.0 fix4:
+      ver_alt:
+      date: 2018-07-26
+      source_url: https://tieba.baidu.com/p/5809690908
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: xfx's world （V3.0）fix4.7z
+      file_url:
+  - v3.0 fix2:
+      ver_alt:
+      date: 2018-07-25
+      source_url: https://tieba.baidu.com/p/5809690908
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: xfx's world （V3.0）fix2.7z
+      file_url:
+  - v3.0:
+      ver_alt:
+      date: 2018-07-25
+      source_url: https://tieba.baidu.com/p/5809690908
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1IyYLvYmDjpLhfM9zJTBAZA
+      code:
+      download_url_alt:
+      file_name: xfx world.7z
       file_url:
   - v2.0:
       ver_alt:
@@ -16363,16 +16665,27 @@
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48424
   image: SMF2014dx.webp
-  ver: v1.05fix
-  ver_alt:
-  date: 2018-02-15
-  source_url: https://www.marioforever.net/thread-61-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1TFTqWSFKY_WmsolOsegA1g
-  code:
-  download_url_alt:
-  file_name: SMF2014dx v1.05fix.7z
-  file_url:
+  ver:
+  - v1.05fix:
+      ver_alt:
+      date: 2018-06-28
+      source_url: https://www.marioforever.net/thread-61-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1TFTqWSFKY_WmsolOsegA1g
+      code:
+      download_url_alt:
+      file_name: SMF2014dx v1.05fix.7z
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2018-02-15
+      source_url: https://www.marioforever.net/thread-61-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1TFTqWSFKY_WmsolOsegA1g
+      code:
+      download_url_alt:
+      file_name: SMF2014dx.7z
+      file_url:
 - game: Mario Forever - World of Colors
   game_alt:
   author: JoséLPK.CF&MF
