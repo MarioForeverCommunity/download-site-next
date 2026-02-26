@@ -40,7 +40,7 @@ export const topBar = [
   {
     "link" : "https://file.marioforever.net/",
     "name" : "资源站",
-    "name_alt" : "Files",
+    "name_alt" : "File Hub",
     "show_en" : true
   },
   {
