@@ -76,29 +76,44 @@ function getDownloadInvalidFlag(item, link) {
     return false;
 }
 
+function getDownloadCodeForLink(item, link) {
+    if (!item || !item.currentVer || !link) {
+        return null;
+    }
+    const current = item.currentVer;
+    if (link === current.download_url_alt) {
+        return current.code_alt || null;
+    }
+    if (link === current.download_url) {
+        return current.code || null;
+    }
+    return null;
+}
+
 function getDownloadInfo(item, link, lan) {
     if (!link) {
         return null;
     }
     const invalid = getDownloadInvalidFlag(item, link);
+    const code = getDownloadCodeForLink(item, link);
     for (var entry of downloadName) {
         if (link.match(entry.domain)) {
             var desc = lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
-            if (entry.show_code == true && item.currentVer.code) {
-                desc += ` (${lan == "zh" ? "提取码：" : "Code: "}${item.currentVer.code})`;
+            if (entry.show_code == true && code) {
+                desc += ` (${lan == "zh" ? "提取码：" : "Code: "}${code})`;
             }
             if (invalid) {
                 desc += ` (${lan == "zh" ? "已失效" : "Invalid"})`;
             }
-            var code = null;
-            if (entry.show_code == true && item.currentVer.code) {
-                code = item.currentVer.code;
-            }
-            return {
+            var result = {
                 url: link,
                 desc: desc,
-                code: code
+                code: null
             };
+            if (entry.show_code == true && code) {
+                result.code = code;
+            }
+            return result;
         }
     }
     var match = link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/);

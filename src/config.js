@@ -202,6 +202,12 @@ export const downloadName = [
     "desc_en" : "YSEpan"
   },
   {
+    "domain" : "pan.quark.cn",
+    "desc_zh" : "夸克网盘",
+    "desc_en" : "Quark",
+    "show_code" : true
+  },
+  {
     "domain" : "mediafire.com",
     "desc_en" : "MediaFire"
   },
@@ -257,12 +263,14 @@ export const downloadName = [
   {
     "domain" : "123pan.com",
     "desc_zh" : "123 云盘",
-    "desc_en" : "123Pan"
+    "desc_en" : "123Pan",
+    "show_code" : true
   },
   {
     "domain" : /123\d{3}\.com/,
     "desc_zh" : "123 云盘",
-    "desc_en" : "123Pan"
+    "desc_en" : "123Pan",
+    "show_code" : true
   },
   {
     "domain": "1drv.ms",

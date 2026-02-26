@@ -118,6 +118,10 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
+      code_alt:
+        anyOf:
+        - type: 'null'
+        - type: string
       file_name:
         anyOf:
         - type: 'null'

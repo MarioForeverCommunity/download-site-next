@@ -13,7 +13,7 @@
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-  import {getDownloadCode, getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries} from "../../util/GemeUtil.js"
+  import {getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
   import Tooltip from '../../components/ToolTip.vue';
@@ -763,8 +763,8 @@
           <template v-for="entry in getDownloadEntriesForView(selectedDownload)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
             <ClipboardButton
-              v-if="entry.url === (selectedDownload.currentVer.download_url || selectedDownload.currentVer.download_url_alt) && getDownloadCode(selectedDownload, lan)"
-              :code="getDownloadCode(selectedDownload, lan)"
+              v-if="entry.code"
+              :code="entry.code"
               :lan="lan"
             ></ClipboardButton>
           </template>
