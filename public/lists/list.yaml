@@ -212,6 +212,46 @@
   download_url_alt: https://en.wsw233.com/files/view?f=gct9p5
   file_name: Fear The Eye.zip
   file_url:
+- game: "New Super Mario Forever 2012: Slightly-Fixed Edition"
+  game_alt:
+  author: CST1229
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  repo: https://github.com/CST1229/NSMF2012SlightlyFixed
+  image: NSMF2012.webp
+  ver:
+  - v1.1.1:
+      ver_alt:
+      date: 2026-01-20
+      source_url: https://github.com/CST1229/NSMF2012SlightlyFixed/releases/tag/v1.1.1
+      source_url_alt:
+      download_url: https://github.com/CST1229/NSMF2012SlightlyFixed/releases/download/v1.1.1/NSMFSlightlyFixed-v1.1.1.zip
+      code:
+      download_url_alt:
+      file_name: NSMFSlightlyFixed-v1.1.1.zip
+      file_url:
+  - v1.1-beta:
+      ver_alt:
+      date: 2025-07-07
+      source_url: https://github.com/CST1229/NSMF2012SlightlyFixed/releases/tag/v1%2C1-beta
+      source_url_alt:
+      download_url: https://github.com/CST1229/NSMF2012SlightlyFixed/releases/download/v1%2C1-beta/NSMFSlightlyFixed-v1.1-beta.zip
+      code:
+      download_url_alt:
+      file_name: NSMFSlightlyFixed-v1.1-beta.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2024-12-04
+      source_url: https://github.com/CST1229/NSMF2012SlightlyFixed/releases/tag/v1.0
+      source_url_alt:
+      download_url: https://github.com/CST1229/NSMF2012SlightlyFixed/releases/download/v1.0/NSMF2012.Slightly-Fixed.Edition.zip
+      code:
+      download_url_alt:
+      file_name: NSMF2012.Slightly-Fixed.Edition.zip
+      file_url:
 - game: Mario Forever for Android
   game_alt:
   author: Sanyario
