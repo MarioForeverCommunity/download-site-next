@@ -16795,12 +16795,22 @@
       download_url_alt:
       file_name: SMF2014dx v1.05fix.7z
       file_url:
+  - v1.0 bugfix:
+      ver_alt:
+      date: 2018-02-18
+      source_url: https://tieba.baidu.com/p/5553143991
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1c346XfM
+      code:
+      download_url_alt:
+      file_name: SMF2014dxbugfix.7z
+      file_url:
   - v1.0:
       ver_alt:
       date: 2018-02-15
-      source_url: https://www.marioforever.net/thread-61-1-1.html
+      source_url: https://tieba.baidu.com/p/5553143991
       source_url_alt:
-      download_url: https://pan.baidu.com/s/1TFTqWSFKY_WmsolOsegA1g
+      download_url:
       code:
       download_url_alt:
       file_name: SMF2014dx.7z
