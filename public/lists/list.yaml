@@ -12923,7 +12923,7 @@
   ver:
   - Fix11:
       ver_alt:
-      date: 2020-10-01
+      date: 2021-02-10
       source_url: https://www.marioforever.net/thread-638-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1p1Oj24GMMK-ZtaMukdPihw
@@ -12931,9 +12931,19 @@
       download_url_alt:
       file_name: MarioForeverAdventureIslandfix11.exe
       file_url:
-  - Fix10 (Fix25861524):
+  - Fix10:
       ver_alt:
-      date: 2020-10-01
+      date: 2021-01-15
+      source_url: https://www.marioforever.net/thread-638-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name:
+      file_url:
+  - Fix9 (Fix25861524):
+      ver_alt:
+      date: 2020-11-29
       source_url: https://www.marioforever.net/thread-638-1-1.html
       source_url_alt:
       download_url:
@@ -12943,7 +12953,7 @@
       file_url:
   - Fix8:
       ver_alt:
-      date: 2020-10-01
+      date: 2020-11-29
       source_url: https://www.marioforever.net/thread-638-1-1.html
       source_url_alt:
       download_url:
@@ -12951,9 +12961,19 @@
       download_url_alt:
       file_name: MarioForeverAdventureIslandFix8.exe
       file_url:
+  - Fix6:
+      ver_alt:
+      date: 2020-10-18
+      source_url: https://www.marioforever.net/thread-638-1-1.html
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name:
+      file_url:
   - Fix5:
       ver_alt:
-      date: 2020-10-01
+      date: 2020-10-02
       source_url: https://www.marioforever.net/thread-638-1-1.html
       source_url_alt:
       download_url:
