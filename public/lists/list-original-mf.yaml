@@ -103,6 +103,12 @@
   installer: Mario Forever 5.9s.exe
   portable: Mario Forever 5.9s.7z
   toolbar: true
+- ver: v5.9s (2)
+  date: 2012-04-12
+  rating: ★☆
+  installer: Mario Forever 5.9s (2).exe
+  portable: Mario Forever 5.9s.7z
+  toolbar: true
 - ver: v5.9r
   date: 2013-01-18
   rating: ☆
