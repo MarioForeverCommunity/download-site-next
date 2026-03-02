@@ -24,7 +24,7 @@
 
 你也可以进入 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载 Mario Worker 相关资源，同时本页面提供 Mario Worker 资源备用地址以备不时之需（**备用地址下载需登录 123pan 账号**）。
 
-<a class="md-button" target="_blank" href="https://www.123pan.com/s/U3vrVv-uruf.html">Mario Worker 资源备用下载地址 (提取码：MAWO)</a><ClipboardButton lan="zh" code="MAWO" />
+<a class="md-button" target="_blank" href="https://www.123684.com/s/U3vrVv-uruf.html">Mario Worker 资源备用下载地址 (提取码：MAWO)</a><ClipboardButton lan="zh" code="MAWO" />
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
 
