@@ -1,6 +1,6 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
-  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon } from "./icons/Icons.js";
+  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon } from "./icons/Icons.js";
   import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
@@ -159,14 +159,15 @@
         <span class="inline-block author-ellipsis">
             <template v-if="typeof getAuthorList(game, lan) == 'string'">
                 <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
-                  <span v-if="lan == 'en'">By </span><span v-else>作者：</span><a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank">{{ getAuthorList(game, lan) }}</a>
+                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text"><a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank">{{ getAuthorList(game, lan) }}</a></span>
                 </template>
                 <template v-else>
-                  <span v-if="lan == 'en'">By </span><span v-else>作者：</span>{{ getAuthorList(game, lan) }}
+                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text">{{ getAuthorList(game, lan) }}</span>
                 </template>
             </template>
             <template v-else>
-                <span class="prefix">{{ lan == "en" ? "By " : "作者：" }}</span>
+                <UserIcon class="icon author-icon"></UserIcon>
+                <span class="author-text">
                 <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" 
                     :key="author + authorindex">
                   <template v-if="getAuthorFolderURL(game, author, lan)">
@@ -178,6 +179,7 @@
                     {{ author }}
                   </template>
                   <span v-if="authorindex != getAuthorList(game, lan).length - 1">,&nbsp;</span>
+                </span>
                 </span>
             </template>
         </span>
@@ -305,6 +307,19 @@
     fill: #ccc;
   }
 
+  .author-icon {
+    margin-left: 0;
+    margin-right: 3px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .author-text {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+
   .game-name {
     width: calc(100% - 165px);
     display: inline-block;
@@ -319,10 +334,9 @@
   }
 
   .game-version {
-    width: 165px;
-    display: inline-block;
+    display: inline-flex;
     vertical-align: top;
-    text-align: right;
+    float: right;
     line-height: 1.25em;
   }
 
