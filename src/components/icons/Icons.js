@@ -14,6 +14,7 @@ import SortUpIcon from "./IconSortUp.vue";
 import SortDownIcon from "./IconSortDown.vue";
 import SortUpDownIcon from "./IconSortUpDown.vue";
 import SortIcon from "./IconSort.vue";
+import UserIcon from "./IconUser.vue";
 import VideoIcon from "./IconVideo.vue";
 import WikiIcon from "./IconWiki.vue";
 import YoutubeIcon from "./IconYoutube.vue";
@@ -36,6 +37,7 @@ export {
     SortDownIcon,
     SortUpDownIcon,
     SortIcon,
+    UserIcon,
     VideoIcon,
     WikiIcon,
     YoutubeIcon,

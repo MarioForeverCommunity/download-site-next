@@ -112,6 +112,13 @@ export const navTop = [
     "title" : "Super Mario Worker Project 关卡作品汇总",
     "show_en" : false
   },
+  {
+    "id" : "assets",
+    "link" : "./assets.html",
+    "option" : "创作资源",
+    "title" : "创作资源",
+    "show_en" : false
+  },
   // {
   //   "id" : "smwp-download",
   //   "link" : "https://smwp.marioforever.net/downloads/",

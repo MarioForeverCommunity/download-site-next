@@ -28,7 +28,10 @@ export function getSourceDesc(item, lan) {
 }
 
 export function getName(item, lan) {
-    return lan == "en" && item.game_alt != null ? item.game_alt : item.game;
+    if (lan == "en" && item.game_alt != null) {
+        return item.game_alt;
+    }
+    return item.game || item.name;
 }
 
 export function getAuthor(item, lan) {

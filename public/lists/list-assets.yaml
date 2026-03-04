@@ -1,0 +1,176 @@
+---
+- name: Super Mario Ultra Edition
+  alias:
+  - UE
+  - UEL
+  - UER
+  author: dasasdhba
+  type: engine
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-705-1-1.html
+  download_url: https://wwi.lanzoui.com/b02bgtrub
+  code:
+  download_url_alt: http://dasasdhba.ys168.com/
+  code_alt:
+  path: Super Mario Ultra Edition
+  variants:
+  - Full:
+      ver: "260226.1"
+      date: 2026-02-26
+      file_name: UE Full 260226.1ver.7z
+  - Single:
+      ver: "260226.1"
+      date: 2026-02-26
+      file_name: UE Single 260226.1ver.7z
+  - Beta Full:
+      ver: "260226.1"
+      date: 2026-02-26
+      file_name: UE Beta Full 260226.1ver.7z
+  - Beta Single:
+      ver: "260226.1"
+      date: 2026-02-26
+      file_name: UE Beta Single 260226.1ver.7z
+  - Mod:
+      ver: "260227.1"
+      date: 2026-02-27
+      file_name: UE Mod 260227.1ver.7z
+  - Mod Beta:
+      ver: "260227.1"
+      date: 2026-02-27
+      file_name: UE Mod Beta 260227.1ver.7z
+  - Autotile:
+      ver: "260220.1"
+      date: 2026-02-20
+      file_name: UE Autotile 260220.1ver.7z
+  - Animation:
+      ver: "220801.1"
+      date: 2022-08-01
+      file_name: UEL Animation 220801.1ver.7z
+  - Boss:
+      ver: "230828.1"
+      date: 2023-08-28
+      file_name: UEL Boss 230828.1ver.7z
+  - Dialog:
+      ver: "231011.1"
+      date: 2023-10-11
+      file_name: UER Dialog 231011.1ver.7z
+- name: 关卡区域强行连通模板
+  author: 绿色的糖果
+  type: addon
+  description:
+  image: Random.webp
+  source_url: https://www.marioforever.net/thread-3773-1-1.html
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v1
+  date: 2026-01-05
+  file_name: Random Level Part Template_v1.zip
+- name: 节气式选关界面 (单关存档情况适用)
+  author: 绿色的糖果
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-3614-1-1.html
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v1
+  date: 2025-07-03
+  file_name: Level-pass Sav Sys by Green_^_sweeT_v1.mfa
+- name: 星星金币收集系统 (通用)
+  author: 绿色的糖果
+  type: addon
+  description:
+  image: starcoin.webp
+  source_url: https://www.marioforever.net/thread-3608-1-1.html
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v1
+  date: 2025-06-21
+  file_name: Star-coin System by Green_^_sweeT_v1.mfa
+- name: 绿糖的自制或高仿品种拓展包
+  author: 绿色的糖果
+  type: addon
+  description:
+  image: enemies.webp
+  source_url: https://www.marioforever.net/thread-1911-1-1.html
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v0.9.31
+  date: 2025-01-30
+  file_name: 绿糖的自制或高仿品种拓展包 v0.9.31.7z
+- name: SMW运动员 for RE
+  author: 绿色的糖果
+  type: addon
+  description:
+  image: CharginChuck.webp
+  source_url: https://www.marioforever.net/thread-3074-1-1.html
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v1
+  date: 2024-01-30
+  file_name: SMW运动员 for RE_v1.mfa
+- name: 自制 & DX11 修复特效合集
+  author: dasasdhba
+  type: effect
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-425-1-1.html
+  download_url: http://dasasdhba.ysepan.com/
+  code:
+  ver:
+  date: 2020-03-20
+  file_name:
+- name: Rainbow Engine
+  alias:
+  - RE
+  - 彩虹引擎
+  author: 虹原翼
+  type: engine
+  description:
+  image: rainbow.webp
+  source_url: https://tieba.baidu.com/p/5067765973
+  download_url: http://mfresources.ysepan.com/
+  code:
+  path: RE系引擎及其二开
+  variants:
+  - 含开始页:
+      ver: 0.10.7.1
+      date: 2018-09-29
+      file_name: RainbowEngine 0.10.7.1（含开始页）.7z
+  - 单关版:
+      ver: 0.10.7.1
+      date: 2018-09-29
+      file_name: RainbowEngine 0.10.7.1 单关版.7z
+  - HTML5版:
+      ver: 0.10.7.1
+      date: 2018-09-29
+      file_name: RainbowEngine 0.10.7.1 HTML5.7z
+  - 含开始页:
+      ver: 0.10.7.0
+      date: 2017-09-30
+      file_name: RainbowEngine 0.10.7.0（含开始页）.7z
+  - 单关版:
+      ver: 0.10.7.0
+      date: 2017-09-30
+      file_name: RainbowEngine 0.10.7.0 单关版.7z
+  - HTML5版:
+      ver: 0.10.7.0
+      date: 2017-09-30
+      file_name: RainbowEngine 0.10.7.0（HTML5版）.7z
+  - 含开始页:
+      ver: 0.10.6.1
+      date: 2016-08-10
+      file_name: RainbowEngine_0.10.6.1带开始页.7z
+  - 单关版:
+      ver: 0.10.6.1
+      date: 2016-08-10
+      file_name: RainbowEngine_0.10.6.1单关版.7z
+  - 含开始页:
+      ver: 0.9.9
+      date: 2015-08-07
+      file_name: RainbowEngine_0.9.9_150807带开始页.7z
+  - 单关版:
+      ver: 0.9.9
+      date: 2015-08-07
+      file_name: RainbowEngine_0.9.9_150807单关版.7z
