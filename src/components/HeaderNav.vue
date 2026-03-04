@@ -27,10 +27,15 @@
 
   // Mobile menu for top-left links
   const isMenuOpen = ref(false);
+  const isNavOpen = ref(false);
   const menuRef = ref(null);
+  const navRef = ref(null);
   function handleClickOutside(e) {
     if (menuRef.value && !menuRef.value.contains(e.target)) {
       isMenuOpen.value = false;
+    }
+    if (navRef.value && !navRef.value.contains(e.target)) {
+      isNavOpen.value = false;
     }
   }
   onMounted(() => {
@@ -76,18 +81,33 @@
     </div>
   </div>
   <header>
-    <div class="container header-container">
+    <div class="header-container">
       <!-- <div class="header-row">
         <h1>{{ displayLan() == 'zh' ? pageEntry.title : pageEntry.title_alt }}</h1>
       </div> -->
       <div class="header-row nav-row">
         <div class="logo"><a href="."><img :src="displayLan() == 'zh' ? './images/logo_hd.png' : './images/logo2_hd.png'"></a></div>
-        <div class="nav">
+        <!-- Desktop nav -->
+        <div class="nav desktop-only">
           <div class="radio-inputs">
             <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" :key="nav.id" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
               <span class="radio-text" name="radio">
                 {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
               </span>
+            </a>
+          </div>
+        </div>
+        <!-- Mobile nav dropdown -->
+        <div class="nav-mobile mobile-only" ref="navRef">
+          <button class="nav-toggle" @click.stop="isNavOpen = !isNavOpen" :aria-expanded="isNavOpen" aria-haspopup="true" :aria-label="displayLan() == 'zh' ? '打开导航' : 'Open navigation'">
+            <span class="nav-toggle-text">{{ displayLan() == 'zh' ? pageEntry.option : pageEntry.option_alt }}</span>
+            <svg class="chevron" :class="{ open: isNavOpen }" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-dropdown" v-if="isNavOpen">
+            <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" :key="nav.id" class="nav-dropdown-item" :class="nav.id == props.pageId ? 'active' : ''" :href="nav.link">
+              {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
             </a>
           </div>
         </div>
@@ -101,7 +121,10 @@
 </template>
 
 <style scoped>
-/* 移动端深色模式适配 */
+/* 深色模式适配 */
+body.dark header {
+  background-color: #3a3a3a !important;
+}
 body.dark .menu-toggle {
   color: #999 !important;
 }
@@ -122,11 +145,35 @@ body.dark .mobile-menu-item:hover {
   color: #bbb !important;
 }
 
+body.dark .nav-toggle {
+  color: #e0e0e0 !important;
+}
+body.dark .nav-toggle:hover,
+body.dark .nav-toggle[aria-expanded='true'] {
+  color: #e0e0e0 !important;
+}
+body.dark .nav-dropdown {
+  background-color: #333 !important;
+  border-color: #333 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+body.dark .nav-dropdown-item {
+  color: #999 !important;
+  border-color: #444 !important;
+}
+body.dark .nav-dropdown-item:hover {
+  background-color: #444 !important;
+  color: #bbb !important;
+}
+body.dark .nav-dropdown-item.active {
+  background-color: #3a4a5a !important;
+  color: #6abaff !important;
+}
+
 .logo a img {
   width: auto;
-  height: 64px;
+  height: 60px;
   display: block;
-  margin: 0 auto;
 }
 
 /* mobile-first visibility */
@@ -178,21 +225,77 @@ body.dark .mobile-menu-item:hover {
   color: #008CFF;
 }
 
+/* Mobile nav dropdown */
+.nav-mobile {
+  position: relative;
+  display: inline-block;
+}
+.nav-toggle {
+  background: transparent;
+  border: none;
+  color: #24292e;
+  cursor: pointer;
+  padding: 6px 12px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .15s ease-in-out;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nav-toggle:hover {
+  color: black;
+}
+.nav-toggle[aria-expanded='true'] {
+  color: black;
+}
+.nav-toggle .chevron { transition: transform .2s ease; }
+.nav-toggle .chevron.open { transform: rotate(180deg); }
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 0;
+  z-index: 1000;
+  min-width: 140px;
+  font-size: 14px;
+}
+.nav-dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: rgb(85, 85, 85);
+  border-bottom: 1px solid #f0f0f0;
+}
+.nav-dropdown-item:last-child {
+  border-bottom: none;
+}
+.nav-dropdown-item:hover {
+  background: #f3f4f6;
+  color: #008CFF;
+}
+.nav-dropdown-item.active {
+  font-weight: 600;
+  color: #008CFF;
+  background: #f0f7ff;
+}
+
 @media (min-width: 800px) {
   .logo {
     width: auto;
-    height: 64px;
-    margin: 0;
-    margin-right: 20px;
+    height: 60px;
     display: inline-block;
+    vertical-align: middle;
   }
 
-  .nav {
-    width: calc(100% - 200px);
-    display: inline;
-    float: right;
-    transform: translateY(16px);
-    width: fit-content;
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .nav .radio-inputs .radio {
@@ -205,7 +308,7 @@ body.dark .mobile-menu-item:hover {
 }
 
   .topbar {
-    background-color: #e6e6e6;
+    background-color: #f5f5f5;
     font-size: 13px;
     line-height: 30px;
     height: 35px;
@@ -238,11 +341,19 @@ body.dark .mobile-menu-item:hover {
     float: right;
   }
 
+  header {
+    background-color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    height: 90px;
+  }
+
   .header-container {
     width: 100vw;
-    padding: 10px 20px;
-    margin: 20px auto;
+    margin: 0 auto;
     box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
   }
 
   .nav-row {
@@ -251,9 +362,25 @@ body.dark .mobile-menu-item:hover {
     vertical-align: middle;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 799px) {
     .logo {
-      margin: 10px auto;
+      margin: 0;
+      margin-left: 12px;
+      display: inline-block;
+      vertical-align: middle;
+      height: 60px;
+    }
+    .logo a img {
+      height: 64px;
+    }
+    .header-container {
+      padding: 0px 12px;
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
     }
 
     .topbar-inner {
@@ -287,7 +414,7 @@ body.dark .mobile-menu-item:hover {
   }
 
   .header-row {
-    margin: 5px auto;
+    height: 90px;
   }
 
   .radio-inputs {
