@@ -45,7 +45,7 @@ Mario Worker Remake 作品已经有官方、完善的 [数据库](https://mariow
 
 ### Mario Forever 作品列表
 
-Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑的数据格式）编写，位于 `public/lists/list.yaml` 中。部分作品可能有多个版本，每个版本有不同的下载链接，因此单版本和多版本作品的格式略有区别。这是一个单版本作品的示例（*请注意，出于演示目的，一些描述和实际作品信息并不完全相同*）：
+Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑的数据格式）编写，位于 `public/lists/list-mf.yaml` 中。部分作品可能有多个版本，每个版本有不同的下载链接，因此单版本和多版本作品的格式略有区别。这是一个单版本作品的示例（*请注意，出于演示目的，一些描述和实际作品信息并不完全相同*）：
 
 ```yaml
 - game: Mario Forever - A Fabulous Space

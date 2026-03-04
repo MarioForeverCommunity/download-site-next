@@ -45,7 +45,7 @@ This repository includes lists of Mario Forever and Super Mario Worker Project g
 
 ### Mario Forever Game List
 
-The Mario Forever game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/lists/list.yaml`. Some games may have multiple versions with different download links, so there is a slight difference in the format of single-version and multi-version games. Here is an example of a single-version game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
+The Mario Forever game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/lists/list-mf.yaml`. Some games may have multiple versions with different download links, so there is a slight difference in the format of single-version and multi-version games. Here is an example of a single-version game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
 
 ```yaml
 - game: Mario Forever - A Fabulous Space

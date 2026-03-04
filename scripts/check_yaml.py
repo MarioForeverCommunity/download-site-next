@@ -62,19 +62,19 @@ class MFListTest(TestCase):
         load_mf_schema()
         self.assertTrue(os.path.isdir(ROOT))
         try:
-            mf_list_path = os.path.join(ROOT, 'public', 'lists', 'list.yaml')
+            mf_list_path = os.path.join(ROOT, 'public', 'lists', 'list-mf.yaml')
             mf_list_file = open(mf_list_path, 'r', encoding="utf-8")
         except Exception:
-            self.fail(msg='Cannot open the list.yaml file.')
+            self.fail(msg='Cannot open the list-mf.yaml file.')
         try:
             mf_list_yml = yaml.load(mf_list_file.read(), Loader=NoDatesSafeLoader)
         except Exception:
-            self.fail(msg='list.yaml file is invalid.')
+            self.fail(msg='list-mf.yaml file is invalid.')
         try:
             validator = jsonschema.Draft201909Validator(MF_SCHEMA, format_checker=jsonschema.FormatChecker())
             validator.validate(mf_list_yml)
         except jsonschema.exceptions.ValidationError:
-            self.fail(msg=f'list.yaml contains invalid properties')
+            self.fail(msg=f'list-mf.yaml contains invalid properties')
         mf_list_file.close()
 
 class MWListTest(TestCase):
@@ -85,16 +85,16 @@ class MWListTest(TestCase):
             mw_list_path = os.path.join(ROOT, 'public', 'lists', 'list-mw.yaml')
             mw_list_file = open(mw_list_path, 'r', encoding="utf-8")
         except Exception:
-            self.fail(msg='Cannot open the list.yaml file.')
+            self.fail(msg='Cannot open the list-mf.yaml file.')
         try:
             mw_list_yml = yaml.load(mw_list_file.read(), Loader=NoDatesSafeLoader)
         except Exception:
-            self.fail(msg='list.yaml file is invalid.')
+            self.fail(msg='list-mf.yaml file is invalid.')
         try:
             validator = jsonschema.Draft201909Validator(MW_SCHEMA, format_checker=jsonschema.FormatChecker())
             validator.validate(mw_list_yml)
         except jsonschema.exceptions.ValidationError:
-            self.fail(msg=f'list.yaml contains invalid properties')
+            self.fail(msg=f'list-mf.yaml contains invalid properties')
         mw_list_file.close()
 
 def run_test(testcases, msg):

@@ -64,7 +64,7 @@
 
   const games = ref([]);
 
-  readList("list.yaml").then((list) => {
+  readList("list-mf.yaml").then((list) => {
     for (var entry of list) {
       entry.category = "mf";
       // Support single and multiple versions.
@@ -462,7 +462,7 @@
 
   const lastUpdate = ref(null);
 
-  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist.yaml&page=1&per_page=1").then((response) => {
+  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist-mf.yaml&page=1&per_page=1").then((response) => {
     const date = new Date(response.data[0].commit.committer.date);
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
