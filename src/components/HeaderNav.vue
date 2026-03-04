@@ -269,7 +269,6 @@ body.dark .nav-dropdown-item.active {
   display: block;
   padding: 10px 16px;
   color: rgb(85, 85, 85);
-  border-bottom: 1px solid #f0f0f0;
 }
 .nav-dropdown-item:last-child {
   border-bottom: none;
