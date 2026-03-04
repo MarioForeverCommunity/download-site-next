@@ -22,7 +22,8 @@ export default defineConfig({
       input: {
         index: resolve(".", "index.html"),
         "mf-games": resolve(".", "mf-games.html"),
-        "mw-games": resolve(".", "mw-levels.html")
+        "mw-games": resolve(".", "mw-levels.html"),
+        "assets": resolve(".", "assets.html"),
       },
       output: {
         chunkFileNames: "js/[name]-[hash].js",
