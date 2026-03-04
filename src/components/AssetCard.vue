@@ -395,6 +395,16 @@
     color: #ff9800;
   }
 
+  body.dark .asset-image {
+    background-color: #2a2a2a;
+  }
+
+  body.dark .asset-ver,
+  body.dark .asset-date,
+  body.dark .asset-variant {
+    color: #888;
+  }
+
   .dot .dot-text {
     color: #fff;
     font-size: 0.75em;

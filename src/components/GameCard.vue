@@ -518,6 +518,9 @@
   body.dark .dot .bgm-text {
     color: #c51162;
   }
+  body.dark .game-image {
+    background-color: #2a2a2a;
+  }
   .dot .cn-text,
   .dot .en-text,
   .dot .cur-text,
