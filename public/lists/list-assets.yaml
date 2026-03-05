@@ -303,6 +303,7 @@
 - name: Mario Forever Mole Editor
   alias:
   - 地鼠引擎
+  - Godot4
   author: 克洛伊Prime
   type: engine
   description: 本项目使用了 git submodules，clone 后请 init submodules；编辑地形需要安装 Tiled 编辑器
@@ -336,6 +337,7 @@
 - name: Thunder Engine
   alias:
   - TE
+  - Godot4
   author: Meteo Dream
   type: engine
   description:
@@ -386,6 +388,7 @@
 - name: Mario Forever Berry Editor
   alias:
   - BE
+  - Godot3
   author: dasasdhba
   type: engine
   description: 黑历史项目，各种耦合比较严重
@@ -425,6 +428,8 @@
 - name: Super Mario Vandal Editor
   alias:
   - VE
+  - GameMaker8.2
+  - GM8.2
   author: dasasdhba
   type: engine
   description: Super Mario Vandal Editor 是由 dasasdhba 基于 Gamemaker 8.2 开发的 Mario Forever 制作模板。
