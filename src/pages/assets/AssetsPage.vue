@@ -261,7 +261,7 @@
           <template #popper>重置筛选</template>
         </Tooltip>
         <div class="inline-block item-count">
-          {{ filteredAssets.length }} 个条目
+          {{ lan == "en" ? `${filteredAssets.length} items` : `${filteredAssets.length} 个条目` }}
         </div>
       </div>
     </div>
