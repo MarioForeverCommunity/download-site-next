@@ -383,6 +383,19 @@
   ver:
   date: 2022-10-22
   file_name: Smooth_Outline.zip
+- name: Mario Forever Berry Editor
+  alias:
+  - BE
+  author: dasasdhba
+  type: engine
+  description: 黑历史项目，各种耦合比较严重
+  image:
+  source_url: https://www.marioforever.net/thread-2020-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/dasasdhba/Mario_Forever_Berry_Editor
+  ver:
+  date: 2022-07-25
 - name: DX9下的HSV特效修复
   author: 数字1528君
   type: effect
@@ -530,7 +543,7 @@
   - RainbowEngineMod
   author: TheMachinumps
   type: engine
-  description:
+  description: 原名 Rainbow Engine Mod
   image: SpectrumEngine.webp
   source_url: https://marioforeverforum.boards.net/thread/63/spectrum-engine-rem-1
   download_url: https://www.mediafire.com/folder/1s3kwfyagbhc2/Rainbow%20Engine%20Mod
@@ -701,6 +714,20 @@
       ver: 0.9.9
       date: 2015-08-07
       file_name: RainbowEngine_0.9.9_150807单关版.7z
+- name: Cauldron Engine
+  alias:
+  - MFEEB
+  author: 马里奥X7
+  type: engine
+  description: 原名 Mario Forever Engine Every Body
+  image:
+  source_url: https://tieba.baidu.com/p/3811450205
+  download_url: https://pan.baidu.com/s/1qWzEDqs
+  code:
+  path: RE系引擎及其二开
+  ver: v1.10.2
+  date: 2018-02-23
+  file_name: Cauldron Engine 1.10.2.zip
 - name: Mario Forever Editor (MF Remake Engine)
   alias:
   - MFRE
@@ -743,5 +770,19 @@
   code:
   path: 原版系引擎
   ver:
-  date: 2023-10-06
+  date: 2013-10-06
   file_name: Mario Forever World 10 Engine.rar
+- name: Dunami Mario Forever Engine
+  alias:
+  - MFE
+  author: Mario Forever Remake Team
+  type: engine
+  description:
+  image:
+  source_url:
+  download_url:
+  code:
+  path: 其他MMF引擎
+  ver: v2.3
+  date: 2013-08-23
+  file_name: Dunami Mario Forever Engine v2.3.zip
