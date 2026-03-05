@@ -55,6 +55,19 @@
       ver: "231011.1"
       date: 2023-10-11
       file_name: UER Dialog 231011.1ver.7z
+- name: Thunder Engine
+  alias:
+  - TE
+  author: Meteo Dream
+  type: engine
+  description:
+  image: ThunderEngine.webp
+  source_url: https://www.marioforever.net/thread-2646-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/Thunder-Engine-Dev/thunder-engine
+  ver:
+  date: 2023-03-02
 - name: 关卡区域强行连通模板
   author: 绿色的糖果
   type: addon

@@ -190,12 +190,6 @@
           <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>相关视频</template>
         </Tooltip>
-        <Tooltip v-if="game.repo">
-          <a :href="game.repo" target="_blank" class="inline-block">
-            <GithubIcon class="icon button"></GithubIcon>
-          </a>
-          <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
-        </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
           <a :href="getSourceLink(game, lan)" target="_blank" class="inline-block" @click="handleSourceClick">
             <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
@@ -214,6 +208,12 @@
           <template #popper>
             {{ lan == "en" ? "YouTube" : "发布视频" }}
           </template>
+        </Tooltip>
+        <Tooltip v-if="game.repo">
+          <a :href="game.repo" target="_blank" class="inline-block">
+            <GithubIcon class="icon button"></GithubIcon>
+          </a>
+          <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
         </Tooltip>
         <Tooltip v-if="hasDownloadableContent(game)">
           <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>

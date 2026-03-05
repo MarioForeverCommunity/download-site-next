@@ -1,5 +1,5 @@
 <script setup>
-  import { LinkIcon, DownloadIcon, UserIcon } from "./icons/Icons.js";
+  import { LinkIcon, DownloadIcon, UserIcon, GithubIcon } from "./icons/Icons.js";
   import { getName, getAuthorList, hasDownloadableContent } from "../util/GemeUtil.js";
   import { sourceName } from "../config.js";
   import Tooltip from "./ToolTip.vue";
@@ -121,7 +121,7 @@
         {{ getName(asset, 'zh') }}<span v-if="getVariantName()" class="asset-variant"> ({{ getVariantName() }})</span><span v-if="getVersionString()" class="asset-ver">{{ getVersionString() }}</span>
       </div>
       <div class="asset-type">
-        <Tooltip :in-card="true" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+        <Tooltip>
           <span class="dot" :class="getTypeClass(asset.type)"><span class="dot-text">{{ getTypeLabel(asset.type) }}</span></span>
           <template #popper>{{ getTypeTooltip(asset.type) }}</template>
         </Tooltip>
@@ -139,7 +139,7 @@
     </div>
     <div class="last-line">
       <div class="asset-author">
-        <Tooltip :in-card="true" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+        <Tooltip>
           <span class="inline-block author-ellipsis">
             <UserIcon class="icon author-icon"></UserIcon>
             <span class="author-text">
@@ -167,7 +167,7 @@
         </Tooltip>
       </div>
       <div class="asset-options">
-        <Tooltip v-if="getAssetSourceLink(asset)" :in-card="true" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+        <Tooltip v-if="getAssetSourceLink(asset)">
           <a :href="getAssetSourceLink(asset)" target="_blank" @click="handleSourceClick">
             <LinkIcon class="icon button" :class="getAssetSourceLinkValidity(asset) ? '' : 'invalid'"></LinkIcon>
           </a>
@@ -178,7 +178,13 @@
             </span>
           </template>
         </Tooltip>
-        <Tooltip v-if="hasDownloadableContent(asset)" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+        <Tooltip v-if="asset.repo">
+          <a :href="asset.repo" target="_blank">
+            <GithubIcon class="icon button"></GithubIcon>
+          </a>
+          <template #popper>源代码</template>
+        </Tooltip>
+        <Tooltip v-if="hasDownloadableContent(asset)">
           <DownloadIcon class="icon button" @click="$emit('selectDownload', asset)"></DownloadIcon>
           <template #popper>下载链接</template>
         </Tooltip>

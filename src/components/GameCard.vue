@@ -155,7 +155,7 @@
     </div>
     <div class="last-line">
       <div class="game-author">
-        <Tooltip :in-card="true">
+        <Tooltip>
         <span class="inline-block author-ellipsis">
             <template v-if="typeof getAuthorList(game, lan) == 'string'">
                 <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
@@ -216,12 +216,6 @@
           <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>相关视频</template>
         </Tooltip>
-        <Tooltip v-if="game.repo">
-          <a :href="game.repo" target="_blank">
-            <GithubIcon class="icon button"></GithubIcon>
-          </a>
-          <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
-        </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
           <a :href="getSourceLink(game, lan)" target="_blank">
             <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
@@ -241,7 +235,13 @@
             </span>
           </template>
         </Tooltip>
-        <Tooltip v-if="hasDownloadableContent(game)" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+        <Tooltip v-if="game.repo">
+          <a :href="game.repo" target="_blank">
+            <GithubIcon class="icon button"></GithubIcon>
+          </a>
+          <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
+        </Tooltip>
+        <Tooltip v-if="hasDownloadableContent(game)">
           <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
           <template #popper>
             {{ lan == "en" ? "Download" : "下载链接" }}
