@@ -177,24 +177,42 @@
     return null;
   }
 
-  function getAssetResourceURL(asset) {
+  function getAssetResourceURLs(asset) {
     if (!asset.currentVer || !asset.currentVer.file_name) {
-      return null;
+      return [];
     }
-    const fileName = asset.currentVer.file_name;
-    const encodedFileName = encodeURIComponent(fileName);
-    if (asset.type === 'effect') {
-      return `https://file.marioforever.net/Mario Forever/引擎/CTF 特效/${encodedFileName}`;
-    } else if (asset.type === 'addon') {
-      return `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
-    } else if (asset.type === 'engine') {
-      const path = asset.path || '';
-      const encodedPath = path ? encodeURIComponent(path) + '/' : '';
-      return `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
-    } else if (asset.type === 'sprite') {
-      return `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
-    }
-    return null;
+    const fileNames = Array.isArray(asset.currentVer.file_name) 
+      ? asset.currentVer.file_name.filter(fn => fn != null)
+      : [asset.currentVer.file_name];
+    
+    return fileNames.map(fileName => {
+      const encodedFileName = encodeURIComponent(fileName);
+      let url;
+      if (asset.type === 'effect') {
+        url = `https://file.marioforever.net/Mario Forever/引擎/CTF 特效/${encodedFileName}`;
+      } else if (asset.type === 'addon') {
+        url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
+      } else if (asset.type === 'engine') {
+        const path = asset.path || '';
+        const encodedPath = path ? encodeURIComponent(path) + '/' : '';
+        url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
+      } else if (asset.type === 'sprite') {
+        url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
+      }
+      
+      let displayFileName = fileName.split('/').pop();
+      displayFileName = displayFileName.replace(/\.[^.]*$/, "");
+      try {
+        displayFileName = decodeURIComponent(displayFileName);
+      } catch(e) {
+        // Ignore decodeURIComponent errors
+      }
+      
+      return {
+        name: fileNames.length > 1 ? `社区资源站（${displayFileName}）` : '社区资源站',
+        url: url
+      };
+    });
   }
 
   // Optimized tooltip.
@@ -280,7 +298,9 @@
           下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
         </div>
         <div class="button-line">
-          <a class="download" v-if="getAssetResourceURL(selectedDownload)" :href="getAssetResourceURL(selectedDownload)" target="_blank">社区资源站</a>
+          <span v-if="getAssetResourceURLs(selectedDownload).length > 0">
+            <a class="download" v-for="url in getAssetResourceURLs(selectedDownload)" :key="url.url" :href="url.url" target="_blank">{{url.name}}</a>
+          </span>
           <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
             <ClipboardButton

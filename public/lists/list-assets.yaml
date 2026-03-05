@@ -357,6 +357,19 @@
   ver: v1.0
   date: 2023-01-06
   file_name: AUEResourcePackV1.0.mfa
+- name: 自制四色与Glitch特效
+  author: 数字1528君
+  type: effect
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-2428-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2022-11-28
+  file_name:
+  - GBstyle.zip
+  - SZJGlitch.zip
 - name: CTF 描边特效
   alias:
   - Smooth_Outline
