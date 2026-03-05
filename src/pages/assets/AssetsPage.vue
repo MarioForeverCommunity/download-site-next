@@ -122,8 +122,11 @@
       }).filter(item => item !== null);
     });
     expanded.sort((a, b) => {
-      const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date) : new Date(0);
-      const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date) : new Date(0);
+      const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date) : null;
+      const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date) : null;
+      if (dateA === null && dateB === null) return 0;
+      if (dateA === null) return 1;
+      if (dateB === null) return -1;
       return dateB - dateA;
     });
     return expanded;
