@@ -242,19 +242,19 @@
         </div>&nbsp;
         <div class="inline-block">
           <input v-model="filter_option.type_engine" type="checkbox" id="filterEngine">
-          <label for="filterEngine">引擎</label>
+          <label for="filterEngine">制作模板 (引擎)</label>
         </div>
         <div class="inline-block">
           <input v-model="filter_option.type_addon" type="checkbox" id="filterAddon">
           <label for="filterAddon">拓展资源</label>
         </div>
         <div class="inline-block">
-          <input v-model="filter_option.type_effect" type="checkbox" id="filterEffect">
-          <label for="filterEffect">特效</label>
-        </div>
-        <div class="inline-block">
           <input v-model="filter_option.type_sprite" type="checkbox" id="filterSprite">
           <label for="filterSprite">素材</label>
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.type_effect" type="checkbox" id="filterEffect">
+          <label for="filterEffect">特效</label>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
