@@ -123,6 +123,19 @@
   ver: v1
   date: 2025-06-21
   file_name: Star-coin System by Green_^_sweeT_v1.mfa
+- name: UE Mar Mario
+  alias:
+  - 红果状态
+  author: 绿色的糖果
+  type: addon
+  description: 发布在7楼
+  image:
+  source_url: https://www.marioforever.net/thread-3008-1-1.html
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v3
+  date: 2025-05-08
+  file_name: UE Mar Mario_v3.mfa
 - name: MFGG Graphics Selection
   author: 绿色的糖果
   type: addon
@@ -171,6 +184,17 @@
   ver:
   date: 2024-03-24
   file_name: 粒子效果（2024.03.24公开版）.7z
+- name: UE Patch For RainbowEngine
+  author: dasasdhba
+  type: addon
+  description: 与原帖的 RE 碰撞检测增强包不兼容。
+  image:
+  source_url: https://www.marioforever.net/thread-650-1-1.html
+  download_url: http://dasasdhba.ysepan.com/
+  code:
+  ver:
+  date: 2024-02-11
+  file_name: UE Patch For RainbowEngine.7z
 - name: SMW运动员 for RE
   author: 绿色的糖果
   type: addon
@@ -182,6 +206,39 @@
   ver: v1
   date: 2024-01-30
   file_name: SMW运动员 for RE_v1.mfa
+- name: Ninji Run Race Mod
+  author: 绿色的糖果
+  type: addon
+  description:
+  image:
+  source_url:
+  download_url: http://greensweet.ysepan.com/
+  code:
+  ver: v3
+  date: 2024-01-25
+  file_name: Ninji Run Race Mod_v3（需要Fini和QuickHash object）.mfa
+- name: SMM Objects Extension for UEL
+  author: 绿色的糖果
+  type: addon
+  description: 本 Pack 已加入 UE Mod，此版为旧版
+  image: SMMExt.webp
+  source_url: https://www.marioforever.net/thread-3008-1-1.html
+  download_url:
+  code:
+  ver: v1
+  date: 2023-11-12
+  file_name: SMM Objects Extension for UEL_v1.rar
+- name: AUE 背景 & 物品素材包
+  author: 无视我233
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-2498-1-1.html
+  download_url: https://zh.wsw233.com/files/view?f=faqvre
+  code:
+  ver: v1.0
+  date: 2023-01-06
+  file_name: AUEResourcePackV1.0.mfa
 - name: Rainbow Engine素材优化包
   author: 冻结的双重射手
   type: addon
@@ -215,6 +272,17 @@
   ver:
   date: 2021-04-17
   file_name: MFIT扩展包（210417）.zip
+- name: Rainbow Engine 碰撞检测增强包
+  author: dasasdhba
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-650-1-1.html
+  download_url: http://dasasdhba.ysepan.com/
+  code:
+  ver:
+  date: 2020-08-13
+  file_name: RE 碰撞检测增强包.mfa
 - name: 自制 & DX11 修复特效合集
   author: dasasdhba
   type: effect
