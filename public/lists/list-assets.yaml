@@ -218,6 +218,8 @@
   date: 2024-01-25
   file_name: Ninji Run Race Mod_v3（需要Fini和QuickHash object）.mfa
 - name: SMM Objects Extension for UEL
+  alias:
+  - 马造
   author: 绿色的糖果
   type: addon
   description: 本 Pack 已加入 UE Mod，此版为旧版
@@ -228,6 +230,26 @@
   ver: v1
   date: 2023-11-12
   file_name: SMM Objects Extension for UEL_v1.rar
+- name: Cloud Engine
+  alias:
+  - CE
+  author: Meteo Dream
+  type: engine
+  description:
+  image:
+  source_url:
+  download_url: https://rnx.su/s/krPdrXTqqoS82YS
+  code:
+  path: 原版系引擎
+  variants:
+  - 本体:
+      ver: v2.2
+      date: 2023-05-05
+      file_name: Cloud Engine 2.2.7z
+  - Official Plugins:
+      ver: r9
+      date: 2022-03-11
+      file_name: Cloud Engine - Official Plugins r9.mfa
 - name: AUE 背景 & 物品素材包
   author: 无视我233
   type: addon
@@ -263,6 +285,36 @@
   ver:
   date: 2022-06-04
   file_name: DX9下的HSV修复.zip
+- name: Geography Engine Ultimate
+  alias:
+  - GEU
+  - 地理引擎
+  author: 马里奥X7
+  type: engine
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-1973-1-1.html
+  download_url: https://pan.baidu.com/s/1s_4WD0yQ-FxteCmPWFEwKQ?pwd=geu0
+  code: geu0
+  path: 其他MMF引擎
+  ver: 2022-0518-4
+  date: 2022-05-18
+  file_name: GEU 2022-0518-4.zip
+- name: Mario Forever Feather Engine
+  alias:
+  - FE
+  - 羽毛引擎
+  author: TheMarioVariable
+  type: engine
+  description:
+  image: MFFeather.webp
+  source_url: https://www.themariovariable.org/engines/feather-engine/
+  download_url:
+  code:
+  path: 原版系引擎
+  ver: v1.6
+  date: 2021-12-13
+  file_name: Mario_Forever_-_Feather_Engine_v1.6.rar
 - name: Rainbow Engine素材优化包
   author: 冻结的双重射手
   type: addon
@@ -329,6 +381,78 @@
   ver:
   date: 2020-03-20
   file_name:
+- name: Super Mario Ultra Engine
+  alias:
+  - UE
+  author: dasasdhba
+  type: engine
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-383-1-1.html
+  download_url: https://www.lanzoui.com/b0bd46ji
+  code:
+  path: 其他MMF引擎
+  variants:
+  - 本体:
+      ver: 200309v1
+      date: 2020-03-09
+      file_name: Super Mario Ultra Engine 200309v1.7z
+  - 特效包:
+      ver:
+      date: 2019-07-03
+      file_name: Ultra Engine 特效包.7z
+- name: Mario Forever Star Engine
+  author: 马里奥X7
+  type: engine
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-328-1-1.html
+  download_url: https://pan.baidu.com/s/1W3CSvk2niHRs-tMSGbxZng
+  code: 729o
+  path: 其他MMF引擎
+  ver: v1.3
+  date: 2020-02-20
+  file_name: MF Star Engine v1.3.zip
+- name: Neverland Engine
+  alias:
+  - NE
+  author: dasasdhba
+  type: engine
+  description:
+  image: NeverlandE.webp
+  source_url: https://tieba.baidu.com/p/5052963558
+  download_url: http://dasasdhba.ysepan.com/
+  code:
+  path: RE系引擎及其二开
+  variants:
+  - All:
+      ver: "201205"
+      date: 2020-12-05
+      file_name: NeverlandEngineAll201205.zip
+  - 单关版:
+      ver: "170809"
+      date: 2017-08-09
+      file_name: NeverlandEngine单关版170809.zip
+  - Mod:
+      ver: "170809"
+      date: 2017-08-09
+      file_name: NeverlandEngineMod170809.zip
+- name: Factory Engine
+  alias:
+  - FE
+  - 工厂引擎
+  - 工房引擎
+  author: DET Factory
+  type: engine
+  description:
+  image:
+  source_url:
+  download_url:
+  code:
+  path: RE系引擎及其二开
+  ver:
+  date: 2018-08-28
+  file_name: Factory Engine.7z
 - name: Rainbow Engine
   alias:
   - RE
@@ -382,3 +506,47 @@
       ver: 0.9.9
       date: 2015-08-07
       file_name: RainbowEngine_0.9.9_150807单关版.7z
+- name: Mario Forever Editor (MF Remake Engine)
+  alias:
+  - MFRE
+  - W10E
+  author: Mario Forever Remake Team
+  type: engine
+  description:
+  image:
+  source_url:
+  download_url: http://mfresources.ysepan.com/
+  code:
+  path: 原版系引擎
+  ver:
+  date: 2017-04-02
+  file_name: Mario Forever Editor ( MF Remake Engine )（适用于MMF2 R249HWA及以上版本）.zip
+- name: Rainbow Engine Pro
+  alias:
+  - REPro
+  author: gurcd
+  type: engine
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/4718690733
+  download_url: https://pan.baidu.com/s/1i5lVkWl
+  code:
+  path: RE系引擎及其二开
+  ver: v0.8
+  date: 2016-08-08
+  file_name: RainbowEnginePro.rar
+- name: Mario Forever World 10 Engine
+  alias:
+  - MFW10E
+  - 第十世界引擎
+  author: Mario Forever Remake Team
+  type: engine
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/2635652692
+  download_url:
+  code:
+  path: 原版系引擎
+  ver:
+  date: 2023-10-06
+  file_name: Mario Forever World 10 Engine.rar
