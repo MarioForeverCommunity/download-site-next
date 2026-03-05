@@ -239,6 +239,30 @@
   ver: v1.0
   date: 2023-01-06
   file_name: AUEResourcePackV1.0.mfa
+- name: CTF 描边特效
+  alias:
+  - Smooth_Outline
+  author: 无视我233
+  type: effect
+  description:
+  image: Smooth_Outline.webp
+  source_url: https://www.marioforever.net/thread-2384-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2022-10-22
+  file_name: Smooth_Outline.zip
+- name: DX9下的HSV特效修复
+  author: 数字1528君
+  type: effect
+  description:
+  image: Smooth_Outline.webp
+  source_url: https://www.marioforever.net/thread-2384-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2022-06-04
+  file_name: DX9下的HSV修复.zip
 - name: Rainbow Engine素材优化包
   author: 冻结的双重射手
   type: addon
@@ -261,6 +285,17 @@
   ver: bugfix
   date: 2021-08-27
   file_name: SMBX 地面素材包（XBR 4x缩回处理）bugfix.mfa
+- name: CTF2.5 Effects 包整合
+  author: dasasdhba
+  type: effect
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-1187-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2021-06-05
+  file_name: 【CTF2.5 】Effects 包.7z
 - name: MFIT扩展包
   author: DET Factory
   type: addon
