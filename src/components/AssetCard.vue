@@ -363,7 +363,7 @@
 
   .dot {
     display: inline-block;
-    width: 2.1em;
+    width: 2em;
     height: 1em;
     border-radius: 0.6em;
     margin-left: 5px;
