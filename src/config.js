@@ -116,7 +116,7 @@ export const navTop = [
     "id" : "assets",
     "link" : "./assets.html",
     "option" : "创作资源",
-    "title" : "创作资源",
+    "title" : "Mario Forever 创作资源汇总",
     "show_en" : false
   },
   // {
