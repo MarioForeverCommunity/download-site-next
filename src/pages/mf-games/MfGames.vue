@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
   import DownloadHeader from '../../components/HeaderNav.vue';
-  import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
+  import {getLanguage, setLanguageZh, setLanguageEn, getDisplayMode, setDisplayModeLine, setDisplayModeCard} from "../../util/Language.js";
   import { navTop } from "../../config.js";
   import SiteFooter from '../../components/SiteFooter.vue';
   import {readList} from "../../util/ReadList.js";
@@ -479,10 +479,14 @@
   })
 
   // Display mode toggle (line/card)
-  const displayMode = ref('line'); // 'line' or 'card'
+  const displayMode = ref(getDisplayMode()); // 'line' or 'card'
   
   function toggleDisplayMode() {
-    displayMode.value = displayMode.value === 'line' ? 'card' : 'line';
+    if (displayMode.value === 'line') {
+      displayMode.value = setDisplayModeCard();
+    } else {
+      displayMode.value = setDisplayModeLine();
+    }
   }
 
   // Image utilities.

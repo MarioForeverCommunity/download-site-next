@@ -36,3 +36,23 @@ export function setLanguageEn() {
     }
     return "en";
 }
+
+export function getDisplayMode() {
+    if (Cookies.get("displayMode") == "line") {
+        return "line";
+    }
+    if (Cookies.get("displayMode") == "card") {
+        return "card";
+    }
+    return "line";
+}
+
+export function setDisplayModeLine() {
+    Cookies.set("displayMode", "line");
+    return "line";
+}
+
+export function setDisplayModeCard() {
+    Cookies.set("displayMode", "card");
+    return "card";
+}
