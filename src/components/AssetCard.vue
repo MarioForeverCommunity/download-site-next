@@ -1,6 +1,6 @@
 <script setup>
   import { LinkIcon, DownloadIcon, UserIcon } from "./icons/Icons.js";
-  import { getName, getAuthorList } from "../util/GemeUtil.js";
+  import { getName, getAuthorList, hasDownloadableContent } from "../util/GemeUtil.js";
   import { sourceName } from "../config.js";
   import Tooltip from "./ToolTip.vue";
 
@@ -178,7 +178,7 @@
             </span>
           </template>
         </Tooltip>
-        <Tooltip @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+        <Tooltip v-if="hasDownloadableContent(asset)" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
           <DownloadIcon class="icon button" @click="$emit('selectDownload', asset)"></DownloadIcon>
           <template #popper>下载链接</template>
         </Tooltip>

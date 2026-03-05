@@ -281,6 +281,20 @@ export function getDataResourceURL(item, lan) {
     return item.currentVer.data_file_url_zh
 }
 
+export function hasDownloadableContent(item) {
+    if (!item || !item.currentVer) {
+        return false;
+    }
+    const hasDownloadUrl = item.currentVer.download_url || item.currentVer.download_url_alt;
+    const hasFileName = item.currentVer.file_name;
+    const hasFileUrl = item.currentVer.file_url_zh || item.currentVer.file_url_en || item.currentVer.file_url;
+    const hasFileUrls = item.file_urls && item.file_urls.length > 0;
+    const hasDataDownloadUrl = item.currentVer.data_download_url || item.currentVer.data_download_url_alt;
+    const hasDataFileName = item.currentVer.data_file_name;
+    const hasDataFileUrl = item.currentVer.data_file_url_zh || item.currentVer.data_file_url_en;
+    return hasDownloadUrl || hasFileName || hasFileUrl || hasFileUrls || hasDataDownloadUrl || hasDataFileName || hasDataFileUrl;
+}
+
 export function filterList(target, aliasList) {
     if (aliasList == null) {
         return false;

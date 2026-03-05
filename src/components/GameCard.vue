@@ -1,7 +1,7 @@
 <script setup>
   import {parseVer} from "../util/Misc.js";
   import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon } from "./icons/Icons.js";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL} from "../util/GemeUtil.js";
+  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL, hasDownloadableContent} from "../util/GemeUtil.js";
   import Tooltip from "./ToolTip.vue";
 
   const props = defineProps({
@@ -241,7 +241,7 @@
             </span>
           </template>
         </Tooltip>
-        <Tooltip v-if="!game.disable_download">
+        <Tooltip v-if="hasDownloadableContent(game)" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
           <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
           <template #popper>
             {{ lan == "en" ? "Download" : "下载链接" }}

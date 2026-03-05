@@ -105,10 +105,6 @@
       }
 
       games.value.push(entry);
-      // Disable download button if link does not exist.
-      if (entry.download_url == null && entry.file_urls == null) {
-        entry.disable_download = true;
-      }
     }
     games.value.sort((a, b) => b.date - a.date)
     // console.log(games);
