@@ -30,6 +30,21 @@
   readList("list-assets.yaml").then((list) => {
     for (var entry of list) {
       if (entry.variants) {
+        entry.variants = entry.variants.map(variant => {
+          const variantKey = Object.keys(variant)[0];
+          const variantData = variant[variantKey];
+          return {
+            [variantKey]: {
+              ...variantData,
+              download_url: entry.download_url,
+              download_url_alt: entry.download_url_alt,
+              code: entry.code,
+              code_alt: entry.code_alt,
+              source_url: entry.source_url,
+              source_url_alt: entry.source_url_alt
+            }
+          };
+        });
         entry.currentVer = parseVer(entry.variants[0]);
         entry.currentVerStr = Object.keys(entry.variants[0])[0];
         entry.ver = entry.variants;
@@ -70,6 +85,7 @@
     type_engine: true,
     type_addon: true,
     type_effect: true,
+    type_sprite: true,
   });
 
   function clearName() {
@@ -80,6 +96,7 @@
     filter_option.value.type_engine = true;
     filter_option.value.type_addon = true;
     filter_option.value.type_effect = true;
+    filter_option.value.type_sprite = true;
   }
 
   const filteredAssets = computed(() => {
@@ -93,7 +110,8 @@
         );
         const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")
-          || (filter_option.value.type_effect && entry.type == "effect");
+          || (filter_option.value.type_effect && entry.type == "effect")
+          || (filter_option.value.type_sprite && entry.type == "sprite");
         if (!nameMatch || !typeMatch) return [];
         return [entry];
       }
@@ -111,7 +129,8 @@
         if (!nameMatch && !fileNameMatch) return null;
         const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")
-          || (filter_option.value.type_effect && entry.type == "effect");
+          || (filter_option.value.type_effect && entry.type == "effect")
+          || (filter_option.value.type_sprite && entry.type == "sprite");
         if (!typeMatch) return null;
         return {
           ...entry,
@@ -172,6 +191,8 @@
       const path = asset.path || '';
       const encodedPath = path ? encodeURIComponent(path) + '/' : '';
       return `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
+    } else if (asset.type === 'sprite') {
+      return `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
     }
     return null;
   }
@@ -230,6 +251,10 @@
         <div class="inline-block">
           <input v-model="filter_option.type_effect" type="checkbox" id="filterEffect">
           <label for="filterEffect">特效</label>
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.type_sprite" type="checkbox" id="filterSprite">
+          <label for="filterSprite">素材</label>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />

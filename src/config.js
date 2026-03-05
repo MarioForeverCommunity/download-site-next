@@ -209,6 +209,11 @@ export const downloadName = [
     "desc_en" : "YSEpan"
   },
   {
+    "domain" : "ys168.com",
+    "desc_zh" : "永硕 E 盘",
+    "desc_en" : "YSEpan"
+  },
+  {
     "domain" : "pan.quark.cn",
     "desc_zh" : "夸克网盘",
     "desc_en" : "Quark",
