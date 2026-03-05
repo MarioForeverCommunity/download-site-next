@@ -370,6 +370,36 @@
   ver:
   date: 2020-08-13
   file_name: RE 碰撞检测增强包.mfa
+- name: Spectrum Engine
+  alias:
+  - SE
+  - REMod
+  - RainbowEngineMod
+  author: TheMachinumps
+  type: engine
+  description:
+  image: SpectrumEngine.webp
+  source_url: https://marioforeverforum.boards.net/thread/63/spectrum-engine-rem-1
+  download_url: https://www.mediafire.com/folder/1s3kwfyagbhc2/Rainbow%20Engine%20Mod
+  code:
+  path: RE系引擎及其二开
+  variants:
+  - Full MFA:
+      ver: v1.0
+      date: 2020-05-20
+      file_name: Spectrum Engine.7z
+  - Level only MFA:
+      ver: v1.0
+      date: 2020-05-20
+      file_name: SE1.0-fix1.mfa
+  - Experimental:
+      ver: v1.0
+      date: 2020-05-28
+      file_name: Spectrum Engine Experimental.7z
+  - Demonstration:
+      ver: v1.0
+      date: 2020-05-18
+      file_name: Spectrum Engine Demo.7z
 - name: 自制 & DX11 修复特效合集
   author: dasasdhba
   type: effect
