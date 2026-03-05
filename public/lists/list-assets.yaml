@@ -112,6 +112,17 @@
   ver: v0.9.31
   date: 2025-01-30
   file_name: 绿糖的自制或高仿品种拓展包 v0.9.31.7z
+- name: MMF粒子效果扩展包
+  author: 克洛伊Prime
+  type: addon
+  description:
+  image: Particle.webp
+  source_url: https://www.marioforever.net/thread-3137-1-1.html
+  download_url: https://wwi.lanzoup.com/b02fz17de
+  code: mole
+  ver:
+  date: 2024-03-24
+  file_name: 粒子效果（2024.03.24公开版）.7z
 - name: SMW运动员 for RE
   author: 绿色的糖果
   type: addon
