@@ -2,7 +2,7 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
   import axios from 'axios';
   import DownloadHeader from '../../components/HeaderNav.vue';
-  import {setLanguageZh} from "../../util/Language.js";
+  import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
   import SiteFooter from '../../components/SiteFooter.vue';
   import AssetCard from '../../components/AssetCard.vue';
   import {getName, getDownloadEntries} from "../../util/GemeUtil.js";
@@ -16,14 +16,14 @@
   import {readList} from "../../util/ReadList.js";
   import {parseVer} from "../../util/Misc.js";
   import introContent from '../../markdown/assets.md';
+  import { navTop } from "../../config.js";
+  const originalLan = ref(getLanguage());
 
   const lan = ref("zh");
 
   const pageId = "assets"
 
-  const title = "Mario Forever 创作资源汇总";
-
-  document.title = title;
+  const titleZh = navTop.find(item => item.id === pageId).title;
 
   const assets = ref([]);
 
@@ -151,11 +151,6 @@
     return expanded;
   });
 
-  function pageSetLanguageZh() {
-    lan.value = setLanguageZh();
-    document.title = title;
-  }
-
   const wideScreen = ref(window.innerWidth > 800);
 
   function updateWideScreen() {
@@ -242,10 +237,10 @@
 </script>
 
 <template>
-  <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();"/>
+  <DownloadHeader pageId="assets" :lan-var="originalLan" @change-lan-zh="originalLan = setLanguageZh(); " @change-lan-en="originalLan = setLanguageEn(); "/>
 
   <div class="container md-container">
-    <h1>{{ title }}</h1>
+    <h1>{{ titleZh }}</h1>
     <introContent />
     <p v-if="lastUpdate" class="last-update">最后更新：{{ lastUpdate }}</p>
   </div>

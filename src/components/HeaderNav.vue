@@ -47,6 +47,9 @@
 </script>
 
 <template>
+  <div class="warning" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
+    <strong>Warning: </strong>You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="./">here</a> to return to the index.
+  </div>
   <div class="topbar">
     <div class="topbar-inner">
       <!-- Desktop: show all left links -->
@@ -111,10 +114,6 @@
             </a>
           </div>
         </div>
-      </div>
-      <div class="header-row nav-row warning" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
-        <strong>Warning:</strong><br>
-        You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="./">here</a> to return to the index.
       </div>
     </div>
   </header>
@@ -519,7 +518,9 @@ body.dark .nav-dropdown-item.active {
     border-radius: .5em;
     background-color: rgb(255, 243, 205);
     padding: .5em;
-    color: rgb(133, 100, 4)
+    color: rgb(133, 100, 4);
+    text-align: center;
+    font-size: 14px;
   }
 
   a:hover {
