@@ -178,6 +178,10 @@ export const sourceName = [
     "desc_zh" : "X / Twitter",
     "desc_en" : "X / Twitter"
   },
+  {
+    "domain" : "github.com",
+    "desc_en" : "GitHub"
+  }
 ];
 
 // downloadName - Website name parser of the download button.
@@ -286,8 +290,11 @@ export const downloadName = [
   },
   {
     "domain": "1drv.ms",
-    "desc_zh": "OneDrive",
     "desc_en": "OneDrive"
+  },
+  {
+    "domain" : "github.com",
+    "desc_en" : "GitHub"
   }
 ];
 
