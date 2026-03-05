@@ -86,8 +86,8 @@
 
   const getTypeTooltip = (type) => {
     const tooltips = {
-      engine: '引擎',
-      addon: '拓展',
+      engine: '制作模板 (引擎)',
+      addon: '拓展资源',
       effect: '特效',
       sprite: '素材'
     };
