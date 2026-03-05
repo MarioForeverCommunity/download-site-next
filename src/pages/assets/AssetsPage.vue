@@ -534,8 +534,7 @@
     outline: none;
     transition: all .2s ease;
     height: 1.3em;
-    padding: 0 .5em;
-    width: 120px;
+    line-height: 1.3em;
   }
 
   .input:focus {
