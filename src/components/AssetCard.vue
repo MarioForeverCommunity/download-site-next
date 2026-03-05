@@ -68,7 +68,8 @@
     const types = {
       engine: '引擎',
       addon: '拓展',
-      effect: '特效'
+      effect: '特效',
+      sprite: '素材'
     };
     return types[type] || type;
   };
@@ -77,7 +78,8 @@
     const classes = {
       engine: 'engine-dot',
       addon: 'addon-dot',
-      effect: 'effect-dot'
+      effect: 'effect-dot',
+      sprite: 'sprite-dot'
     };
     return classes[type] || '';
   };
@@ -86,7 +88,8 @@
     const tooltips = {
       engine: '引擎',
       addon: '拓展',
-      effect: '特效'
+      effect: '特效',
+      sprite: '素材'
     };
     return tooltips[type] || type;
   };
@@ -129,7 +132,7 @@
     </div>
     <div class="body-line">
       <div class="asset-date" v-if="getDateString()">发布于 {{ getDateString() }}</div>
-      <p v-if="asset.description" class="asset-description">{{ asset.description }}</p>
+      <p v-if="asset.description">{{ asset.description }}</p>
     </div>
     <div class="asset-image" v-if="getAssetImage()">
       <img :src="getAssetImage()" :alt="getName(asset, 'zh')" @error="handleImageError" />
@@ -280,13 +283,6 @@
     color: #666;
   }
 
-  .asset-description {
-    margin: 0.5em 0;
-    font-size: 0.9em;
-    color: #444;
-    line-height: 1.4;
-  }
-
   .last-line-padding {
     padding-bottom: 1em;
     opacity: 0;
@@ -395,9 +391,15 @@
     border: 1.5px solid #e65100;
   }
 
+  .dot.sprite-dot {
+    background: #4caf50;
+    border: 1.5px solid #388e3c;
+  }
+
   body.dark .dot.engine-dot,
   body.dark .dot.addon-dot,
-  body.dark .dot.effect-dot {
+  body.dark .dot.effect-dot,
+  body.dark .dot.sprite-dot {
     background: #bbb;
     border: 0px;
   }
@@ -411,7 +413,11 @@
   }
 
   body.dark .dot.effect-dot .dot-text {
-    color: #ff9800;
+    color: #f87400;
+  }
+
+  body.dark .dot.sprite-dot .dot-text {
+    color: #4caf50;
   }
 
   body.dark .asset-image {

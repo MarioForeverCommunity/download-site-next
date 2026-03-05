@@ -11,7 +11,7 @@
   source_url: https://www.marioforever.net/thread-705-1-1.html
   download_url: https://wwi.lanzoui.com/b02bgtrub
   code:
-  download_url_alt: http://dasasdhba.ys168.com/
+  download_url_alt: http://dasasdhba.ysepan.com/
   code_alt:
   path: Super Mario Ultra Edition
   variants:
@@ -55,6 +55,17 @@
       ver: "231011.1"
       date: 2023-10-11
       file_name: UER Dialog 231011.1ver.7z
+- name: Tilesets（适用于 UE Autotile）
+  author: dasasdhba
+  type: sprite
+  description: 
+  image: Tileset.webp
+  source_url: https://www.marioforever.net/thread-3783-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2026-01-20
+  file_name:
 - name: Thunder Engine
   alias:
   - TE
@@ -79,6 +90,17 @@
   ver: v1
   date: 2026-01-05
   file_name: Random Level Part Template_v1.zip
+- name: MW_LUI_WEEGEE
+  author: 绿色的糖果
+  type: sprite
+  description: 原图来自 Mario Forever Thunder Engine by Meteo Dream
+  image: mw_luigi.webp
+  source_url: https://www.marioforever.net/thread-3617-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2025-07-05
+  file_name:
 - name: 节气式选关界面 (单关存档情况适用)
   author: 绿色的糖果
   type: addon
@@ -101,6 +123,18 @@
   ver: v1
   date: 2025-06-21
   file_name: Star-coin System by Green_^_sweeT_v1.mfa
+- name: MFGG Graphics Selection
+  author: 绿色的糖果
+  type: addon
+  description: 使用时请根据作者相关要求进行 Credit。
+  image: MFGG.webp
+  source_url: https://www.marioforever.net/thread-3318-1-1.html
+  download_url: https://wwyc.lanzouq.com/b00uyd6gef
+  code: cm3l
+  download_url_alt: http://greensweet.ysepan.com/
+  ver: v20250413
+  date: 2025-04-13
+  file_name: "[GT+]MFGG Collections_v20250413.rar"
 - name: 绿糖的自制或高仿品种拓展包
   author: 绿色的糖果
   type: addon
@@ -112,6 +146,20 @@
   ver: v0.9.31
   date: 2025-01-30
   file_name: 绿糖的自制或高仿品种拓展包 v0.9.31.7z
+- name: Talking Flower Sprite
+  alias:
+  - 闲聊花花
+  - 惊奇
+  author: 绿色的糖果
+  type: sprite
+  description:
+  image: tf.png
+  source_url: https://www.marioforever.net/thread-3617-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2024-07-16
+  file_name:
 - name: MMF粒子效果扩展包
   author: 克洛伊Prime
   type: addon
@@ -134,6 +182,28 @@
   ver: v1
   date: 2024-01-30
   file_name: SMW运动员 for RE_v1.mfa
+- name: Rainbow Engine素材优化包
+  author: 冻结的双重射手
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-1491-1-1.html
+  download_url: https://wwe.lanzoui.com/iZJV2taozyh
+  code:
+  ver:
+  date: 2021-08-28
+  file_name: RE素材优化包.zip
+- name: SMBX 地面素材包（XBR 4x缩回处理）
+  author: 绿色的糖果
+  type: addon
+  description:
+  image: SMBX.webp
+  source_url: https://www.marioforever.net/thread-1484-1-1.html
+  download_url:
+  code:
+  ver: bugfix
+  date: 2021-08-27
+  file_name: SMBX 地面素材包（XBR 4x缩回处理）bugfix.mfa
 - name: MFIT扩展包
   author: DET Factory
   type: addon
