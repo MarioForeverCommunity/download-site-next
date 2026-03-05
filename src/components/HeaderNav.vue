@@ -298,7 +298,7 @@ body.dark .nav-dropdown-item.active {
   }
 
   .nav .radio-inputs .radio {
-    margin: 0 16px;
+    margin: 0 8px;
   }
 
   /* desktop visibility */
