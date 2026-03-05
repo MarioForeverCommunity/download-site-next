@@ -186,7 +186,7 @@
     if (asset.type === 'effect') {
       return `https://file.marioforever.net/Mario Forever/引擎/CTF 特效/${encodedFileName}`;
     } else if (asset.type === 'addon') {
-      return `https://file.marioforever.net/Mario Forever/引擎/CTF 拓展资源包/${encodedFileName}`;
+      return `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
     } else if (asset.type === 'engine') {
       const path = asset.path || '';
       const encodedPath = path ? encodeURIComponent(path) + '/' : '';
