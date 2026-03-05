@@ -277,7 +277,7 @@
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
         <div>
-          下载 {{ getName(selectedDownload, lan) }}
+          下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
         </div>
         <div class="button-line">
           <a class="download" v-if="getAssetResourceURL(selectedDownload)" :href="getAssetResourceURL(selectedDownload)" target="_blank">社区资源站</a>
