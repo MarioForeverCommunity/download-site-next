@@ -9,7 +9,7 @@
     const smwpCollDate  = "20251201"
 </script>
 
-如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）等问题，[请在社区反馈专帖反馈](https://www.marioforever.net/thread-1635-1-1.html)。贴吧链接均为旧贴，请勿挖坟。
+如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）等问题，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。贴吧链接均为旧贴，请勿挖坟。
 
 游玩作品前需要先下载 Super Mario Worker Project。SMWP 下载页包含所有可用的版本，建议下载最新版；作品列表中的 SMWP 版本号旁也有对应版本的下载按钮。不要忘记下载并解压音乐包！
 
