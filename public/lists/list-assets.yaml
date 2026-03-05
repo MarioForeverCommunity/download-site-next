@@ -422,6 +422,19 @@
   ver: 2022-0518-4
   date: 2022-05-18
   file_name: GEU 2022-0518-4.zip
+- name: Super Mario Vandal Editor
+  alias:
+  - VE
+  author: dasasdhba
+  type: engine
+  description: Super Mario Vandal Editor 是由 dasasdhba 基于 Gamemaker 8.2 开发的 Mario Forever 制作模板。
+  image:
+  source_url: https://www.marioforever.net/thread-1458-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/dasasdhba/Super-Mario-Vandal-Editor
+  ver:
+  date: 2022-01-26
 - name: Mario Forever Feather Engine
   alias:
   - FE
