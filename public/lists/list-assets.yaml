@@ -66,19 +66,6 @@
   ver:
   date: 2026-01-20
   file_name:
-- name: Thunder Engine
-  alias:
-  - TE
-  author: Meteo Dream
-  type: engine
-  description:
-  image: ThunderEngine.webp
-  source_url: https://www.marioforever.net/thread-2646-1-1.html
-  download_url:
-  code:
-  repo: https://github.com/Thunder-Engine-Dev/thunder-engine
-  ver:
-  date: 2023-03-02
 - name: 关卡区域强行连通模板
   author: 绿色的糖果
   type: addon
@@ -148,6 +135,32 @@
   ver: v20250413
   date: 2025-04-13
   file_name: "[GT+]MFGG Collections_v20250413.rar"
+- name: 夕立改二皮肤
+  alias:
+  - 舰娘
+  author: 表白彼方的JCL
+  type: sprite
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-3562-1-1.html
+  download_url: https://wwru.lanzoub.com/imiPZ2sdr15c
+  code:
+  ver:
+  date: 2025-04-01
+  file_name:
+- name: koopa4的资源分享楼
+  alias:
+  - k4
+  author: 克洛伊Prime
+  type: sprite
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-3536-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2025-03-03
+  file_name: 
 - name: 绿糖的自制或高仿品种拓展包
   author: 绿色的糖果
   type: addon
@@ -159,6 +172,19 @@
   ver: v0.9.31
   date: 2025-01-30
   file_name: 绿糖的自制或高仿品种拓展包 v0.9.31.7z
+- name: MFHorizon 原创素材
+  alias:
+  - 地平线
+  author: dasasdhba
+  type: sprite
+  description:
+  image: MFHorizon-NPCs.webp
+  source_url: https://www.marioforever.net/thread-3282-1-1.html
+  download_url: http://dasasdhba.ysepan.com
+  code:
+  ver:
+  date: 2024-07-22
+  file_name:
 - name: Talking Flower Sprite
   alias:
   - 闲聊花花
@@ -173,6 +199,17 @@
   ver:
   date: 2024-07-16
   file_name:
+- name: My Melody
+  author: Dr.Chaos Kirby
+  type: addon
+  description: 神秘蘑菇素材扩展
+  image:
+  source_url: https://www.marioforever.net/thread-3155-1-1.html
+  download_url: https://pan.baidu.com/s/1UgsJDQUBwhl-qIwtr4iF8A
+  code: MELO
+  ver:
+  date: 2024-04-10
+  file_name: MY MELO.mfa
 - name: MMF粒子效果扩展包
   author: 克洛伊Prime
   type: addon
@@ -184,6 +221,17 @@
   ver:
   date: 2024-03-24
   file_name: 粒子效果（2024.03.24公开版）.7z
+- name: 吧友贴图
+  author: 冻结的双重射手
+  type: sprite
+  description:
+  image: MFBY.webp
+  source_url: https://www.marioforever.net/thread-3067-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2024-02-14
+  file_name:
 - name: UE Patch For RainbowEngine
   author: dasasdhba
   type: addon
@@ -230,6 +278,41 @@
   ver: v1
   date: 2023-11-12
   file_name: SMM Objects Extension for UEL_v1.rar
+- name: 马里奥制造 SMB3 风格地鼠素材
+  author: 克洛伊Prime
+  type: sprite
+  description:
+  image: SMB3地鼠_2x.png
+  source_url: https://www.marioforever.net/thread-2939-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2023-09-13
+  file_name: 
+- name: 地鼠素材（没有白边版）
+  author: 克洛伊Prime
+  type: sprite
+  description:
+  image: 地鼠2x.png
+  source_url: https://www.marioforever.net/thread-2938-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2023-09-12
+  file_name: 
+- name: Mario Forever Mole Editor
+  alias:
+  - 地鼠引擎
+  author: 克洛伊Prime
+  type: engine
+  description: 本项目使用了 git submodules，clone 后请 init submodules；编辑地形需要安装 Tiled 编辑器
+  image:
+  source_url: https://www.marioforever.net/thread-2873-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/ChloePrime/MarioForeverMoleEditor
+  ver:
+  date: 2023-08-16
 - name: Cloud Engine
   alias:
   - CE
@@ -250,6 +333,19 @@
       ver: r9
       date: 2022-03-11
       file_name: Cloud Engine - Official Plugins r9.mfa
+- name: Thunder Engine
+  alias:
+  - TE
+  author: Meteo Dream
+  type: engine
+  description:
+  image: ThunderEngine.webp
+  source_url: https://www.marioforever.net/thread-2646-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/Thunder-Engine-Dev/thunder-engine
+  ver:
+  date: 2023-03-02
 - name: AUE 背景 & 物品素材包
   author: 无视我233
   type: addon
@@ -315,6 +411,39 @@
   ver: v1.6
   date: 2021-12-13
   file_name: Mario_Forever_-_Feather_Engine_v1.6.rar
+- name: WSW的城市素材
+  author: 无视我233
+  type: sprite
+  description:
+  image: IcKtxI.webp
+  source_url: https://www.marioforever.net/thread-1750-1-1.html
+  download_url:
+  code:
+  ver: 
+  date: 2021-11-14
+  file_name: 
+- name: New Styled Mario Forever Logo
+  author: 马里奥X7
+  type: sprite
+  description:
+  image: I0mymn.png
+  source_url: https://www.marioforever.net/thread-1743-1-1.html
+  download_url:
+  code:
+  ver: 
+  date: 2021-11-11
+  file_name: 
+- name: MFIT背景包
+  author: "1168438795"
+  type: addon
+  description: 已集成到UE Mod
+  image:
+  source_url: https://www.marioforever.net/thread-1509-1-1.html
+  download_url: http://modunlocker.ysepan.com/
+  code:
+  ver: 
+  date: 2021-09-02
+  file_name: MFIT背景包.mfa
 - name: Rainbow Engine素材优化包
   author: 冻结的双重射手
   type: addon
@@ -337,6 +466,17 @@
   ver: bugfix
   date: 2021-08-27
   file_name: SMBX 地面素材包（XBR 4x缩回处理）bugfix.mfa
+- name: RE 库巴手感动画运动优化控件包
+  author: 绿色的糖果
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-1309-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2021-07-20
+  file_name: 库巴手感动画运动优化控件包 by 绿色的糖果.mfa
 - name: CTF2.5 Effects 包整合
   author: dasasdhba
   type: effect
@@ -400,6 +540,18 @@
       ver: v1.0
       date: 2020-05-18
       file_name: Spectrum Engine Demo.7z
+- name: Mario Forever Editor (MCW Special)
+  author: Fire_1220
+  type: engine
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-473-1-1.html
+  download_url: https://pan.baidu.com/s/1_cGZL51VCUQ9-ZaslEQhuQ
+  code: hyfd
+  path: 原版系引擎
+  ver: v0.3
+  date: 2020-05-19
+  file_name: 【0.3.0】MFEditorV1 (MCW Special)200519.mfa
 - name: 自制 & DX11 修复特效合集
   author: dasasdhba
   type: effect
