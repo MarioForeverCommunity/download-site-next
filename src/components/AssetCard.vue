@@ -121,7 +121,7 @@
         {{ getName(asset, 'zh') }}<span v-if="getVariantName()" class="asset-variant"> ({{ getVariantName() }})</span><span v-if="getVersionString()" class="asset-ver">{{ getVersionString() }}</span>
       </div>
       <div class="asset-type">
-        <Tooltip :in-card="true">
+        <Tooltip :in-card="true" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
           <span class="dot" :class="getTypeClass(asset.type)"><span class="dot-text">{{ getTypeLabel(asset.type) }}</span></span>
           <template #popper>{{ getTypeTooltip(asset.type) }}</template>
         </Tooltip>
@@ -139,23 +139,35 @@
     </div>
     <div class="last-line">
       <div class="asset-author">
-        <span class="inline-block author-ellipsis">
-          <UserIcon class="icon author-icon"></UserIcon>
-          <span class="author-text">
-          <template v-if="typeof getAuthorList(asset, 'zh') == 'string'">
-            {{ getAuthorList(asset, 'zh') }}
-          </template>
-          <template v-else>
-            <span class="inline-block" v-for="(author, authorindex) in getAuthorList(asset, 'zh')" 
-                :key="author + authorindex">
-              {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">,&nbsp;</span>
+        <Tooltip :in-card="true" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
+          <span class="inline-block author-ellipsis">
+            <UserIcon class="icon author-icon"></UserIcon>
+            <span class="author-text">
+            <template v-if="typeof getAuthorList(asset, 'zh') == 'string'">
+              {{ getAuthorList(asset, 'zh') }}
+            </template>
+            <template v-else>
+              <span class="inline-block" v-for="(author, authorindex) in getAuthorList(asset, 'zh')" 
+                  :key="author + authorindex">
+                {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">,&nbsp;</span>
+              </span>
+            </template>
+            </span>
+          </span>
+          <template #popper>
+            <span>
+              <span v-if="typeof getAuthorList(asset, 'zh') == 'string'">{{ getAuthorList(asset, 'zh') }}</span>
+              <template v-else>
+                <span v-for="(author, authorindex) in getAuthorList(asset, 'zh')" :key="author + authorindex">
+                  {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">, </span>
+                </span>
+              </template>
             </span>
           </template>
-          </span>
-        </span>
+        </Tooltip>
       </div>
       <div class="asset-options">
-        <Tooltip v-if="getAssetSourceLink(asset)" :in-card="true">
+        <Tooltip v-if="getAssetSourceLink(asset)" :in-card="true" @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
           <a :href="getAssetSourceLink(asset)" target="_blank" @click="handleSourceClick">
             <LinkIcon class="icon button" :class="getAssetSourceLinkValidity(asset) ? '' : 'invalid'"></LinkIcon>
           </a>
@@ -166,7 +178,7 @@
             </span>
           </template>
         </Tooltip>
-        <Tooltip>
+        <Tooltip @show-tooltip="(obj)=>$emit('showTooltip', obj)" @hide-tooltip="()=>$emit('hideTooltip')">
           <DownloadIcon class="icon button" @click="$emit('selectDownload', asset)"></DownloadIcon>
           <template #popper>下载链接</template>
         </Tooltip>
@@ -330,6 +342,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: top;
+    cursor: pointer;
   }
 
   .author-ellipsis {
