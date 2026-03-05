@@ -7,7 +7,7 @@
   author: dasasdhba
   type: engine
   description:
-  image:
+  image: UEL.webp
   source_url: https://www.marioforever.net/thread-705-1-1.html
   download_url: https://wwi.lanzoui.com/b02bgtrub
   code:
@@ -134,6 +134,17 @@
   ver: v1
   date: 2024-01-30
   file_name: SMW运动员 for RE_v1.mfa
+- name: MFIT扩展包
+  author: DET Factory
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-1078-1-1.html
+  download_url: https://wwx.lanzoui.com/ieEbdo7teti
+  code:
+  ver:
+  date: 2021-04-17
+  file_name: MFIT扩展包（210417）.zip
 - name: 自制 & DX11 修复特效合集
   author: dasasdhba
   type: effect
