@@ -83,7 +83,7 @@
       <Tooltip v-if="game.currentVer && game.currentVer.repacker">
         <RepackIcon class="icon"></RepackIcon>
         <template #popper>
-          {{ lan == "en" ? "Repacked Game" : "重打包版本" }}
+          {{ lan == "en" ? "Repackaged Game" : "重打包版本" }}
         </template>
       </Tooltip>
       <!-- MW自带标识 -->

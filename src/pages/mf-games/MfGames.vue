@@ -173,7 +173,7 @@
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${ver.file_name}`;
             } else if (ver.repacker) {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
-              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.file_name}`;
+              ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repackaged-fangames/${ver.file_name}`;
             } else if (entry.type == "chinese") {
               ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
               ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
@@ -746,7 +746,7 @@
           </Tooltip>
         </div>
         <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.repacker" class="italic">
-            {{ lan == "en" ? `Repacked by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}
+            {{ lan == "en" ? `Repackaged by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}
             <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
                 <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;"/>
                 <template #popper>
