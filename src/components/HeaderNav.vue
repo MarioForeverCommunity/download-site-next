@@ -1,6 +1,6 @@
 <script setup>
   import { navTop, topBar } from "../config.js";
-  import { ref, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 
   // const BASE_URL = import.meta.env.BASE_URL;
 
@@ -30,6 +30,11 @@
   const isNavOpen = ref(false);
   const menuRef = ref(null);
   const navRef = ref(null);
+  const topbarRef = ref(null);
+  const warningRef = ref(null);
+  const isScrolled = ref(false);
+  const scrollThreshold = ref(36);
+
   function handleClickOutside(e) {
     if (menuRef.value && !menuRef.value.contains(e.target)) {
       isMenuOpen.value = false;
@@ -38,19 +43,34 @@
       isNavOpen.value = false;
     }
   }
+
+  function handleScroll() {
+    isScrolled.value = window.scrollY > scrollThreshold.value;
+  }
+
   onMounted(() => {
     document.addEventListener('click', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
+    if (topbarRef.value) {
+      scrollThreshold.value = topbarRef.value.offsetHeight + (window.innerWidth >= 800 ? 12 : 0);
+    }
+    nextTick(() => {
+      if (warningRef.value) {
+        scrollThreshold.value += warningRef.value.offsetHeight;
+      }
+    });
   });
   onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside);
+    window.removeEventListener('scroll', handleScroll);
   });
 </script>
 
 <template>
-  <div class="warning" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
+  <div class="warning" ref="warningRef" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
     <strong>Warning: </strong>You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="./">here</a> to return to the index.
   </div>
-  <div class="topbar">
+  <div class="topbar" ref="topbarRef">
     <div class="topbar-inner">
       <!-- Desktop: show all left links -->
       <div class="left-links desktop-only">
@@ -83,7 +103,7 @@
       </div>
     </div>
   </div>
-  <header>
+  <header :class="{ 'is-scrolled': isScrolled }">
     <div class="header-container">
       <!-- <div class="header-row">
         <h1>{{ displayLan() == 'zh' ? pageEntry.title : pageEntry.title_alt }}</h1>
@@ -117,6 +137,7 @@
       </div>
     </div>
   </header>
+  <div class="header-placeholder" v-if="isScrolled"></div>
 </template>
 
 <style scoped>
@@ -296,6 +317,14 @@ body.dark .nav-dropdown-item.active {
     justify-content: space-between;
   }
 
+  header.is-scrolled {
+    height: 70px;
+  }
+
+  header.is-scrolled .nav-row {
+    height: 70px;
+  }
+
   .nav .radio-inputs .radio {
     margin: 0 8px;
   }
@@ -309,7 +338,7 @@ body.dark .nav-dropdown-item.active {
     background-color: #f5f5f5;
     font-size: 13px;
     line-height: 30px;
-    height: 35px;
+    height: 36px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -341,8 +370,27 @@ body.dark .nav-dropdown-item.active {
 
   header {
     background-color: white;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 2px #eaeaea;
     height: 90px;
+  }
+
+  header.is-scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 6px #bbb;
+  }
+
+  .header-placeholder {
+    height: 90px;
+  }
+
+  @media (min-width: 800px) {
+    .header-placeholder {
+      height: 70px;
+    }
   }
 
   .header-container {
