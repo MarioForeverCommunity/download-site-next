@@ -72,11 +72,41 @@
 
   const lastUpdate = ref(null);
 
-  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist-assets.yaml&page=1&per_page=1").then((response) => {
-    const date = new Date(response.data[0].commit.committer.date);
+  const yamlUpdateDate = ref(null);
+  const mdUpdateDate = ref(null);
+
+  const formatDate = (date) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
-    lastUpdate.value = formattedDate;
+    return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
+  };
+
+  const getLatestDate = () => {
+    const dates = [];
+    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+    if (mdUpdateDate.value) dates.push(new Date(mdUpdateDate.value));
+    if (dates.length === 0) return null;
+    const maxDate = new Date(Math.max(...dates));
+    return formatDate(maxDate);
+  };
+
+  const updateLastUpdate = () => {
+    lastUpdate.value = getLatestDate();
+  };
+
+  const fetchYamlUpdate = () => {
+    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist-assets.yaml&page=1&per_page=1").then((response) => {
+      yamlUpdateDate.value = response.data[0].commit.committer.date;
+    });
+  };
+
+  const fetchMdUpdate = () => {
+    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fassets.md&page=1&per_page=1").then((response) => {
+      mdUpdateDate.value = response.data[0].commit.committer.date;
+    });
+  };
+
+  Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
+    updateLastUpdate();
   });
 
   const filter_option = ref({

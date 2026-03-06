@@ -16,20 +16,60 @@
   const lastUpdateZh = ref(null);
   const lastUpdateEn = ref(null);
 
-  // 获取中文版最后更新时间
-  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
-    const date = new Date(response.data[0].commit.committer.date);
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
-    lastUpdateZh.value = formattedDate;
-  });
+  const yamlUpdateDate = ref(null);
+  const mdUpdateDateZh = ref(null);
+  const mdUpdateDateEn = ref(null);
+  const allDatesLoaded = ref(false);
 
-  // 获取英文版最后更新时间
-  axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
-    const date = new Date(response.data[0].commit.committer.date);
+  const formatDate = (date) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    const formattedDate = date.toLocaleDateString('zh-CN', options).replace(/\//g, '-'); // YYYY-MM-DD
-    lastUpdateEn.value = formattedDate;
+    return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
+  };
+
+  const getLatestDateZh = () => {
+    const dates = [];
+    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+    if (mdUpdateDateZh.value) dates.push(new Date(mdUpdateDateZh.value));
+    if (dates.length === 0) return null;
+    const maxDate = new Date(Math.max(...dates));
+    return formatDate(maxDate);
+  };
+
+  const getLatestDateEn = () => {
+    const dates = [];
+    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+    if (mdUpdateDateEn.value) dates.push(new Date(mdUpdateDateEn.value));
+    if (dates.length === 0) return null;
+    const maxDate = new Date(Math.max(...dates));
+    return formatDate(maxDate);
+  };
+
+  const updateLastUpdate = () => {
+    lastUpdateZh.value = getLatestDateZh();
+    lastUpdateEn.value = getLatestDateEn();
+  };
+
+  const fetchYamlUpdate = () => {
+    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist-original-mf.yaml&page=1&per_page=1").then((response) => {
+      yamlUpdateDate.value = response.data[0].commit.committer.date;
+    });
+  };
+
+  const fetchMdUpdateZh = () => {
+    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
+      mdUpdateDateZh.value = response.data[0].commit.committer.date;
+    });
+  };
+
+  const fetchMdUpdateEn = () => {
+    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
+      mdUpdateDateEn.value = response.data[0].commit.committer.date;
+    });
+  };
+
+  Promise.all([fetchYamlUpdate(), fetchMdUpdateZh(), fetchMdUpdateEn()]).then(() => {
+    allDatesLoaded.value = true;
+    updateLastUpdate();
   });
 
   const pageId = "index"
@@ -55,11 +95,17 @@
   function pageSetLanguageZh() {
     lan.value =  setLanguageZh();
     document.title=titleZh;
+    if (allDatesLoaded.value) {
+      updateLastUpdate();
+    }
   }
 
   function pageSetLanguageEn() {
     lan.value =  setLanguageEn();
     document.title=titleEn;
+    if (allDatesLoaded.value) {
+      updateLastUpdate();
+    }
   }
 </script>
 
