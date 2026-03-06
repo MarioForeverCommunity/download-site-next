@@ -43,6 +43,10 @@
 </template>
 
 <style scoped>
+  * {
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  }
+
   footer {
     margin: 0 auto;
     padding-top: 30px;

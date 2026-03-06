@@ -38,6 +38,11 @@ export const topBar = [
     "show_en" : true
   },
   {
+    "link" : "https://download.marioforever.net/",
+    "name" : "作品汇总",
+    "show_en" : false
+  },
+  {
     "link" : "https://file.marioforever.net/",
     "name" : "资源站",
     "name_alt" : "File Hub",

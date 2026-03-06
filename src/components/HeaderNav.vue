@@ -141,9 +141,14 @@
 </template>
 
 <style scoped>
+* {
+  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+}
+
 /* 深色模式适配 */
 body.dark header {
   background-color: #3a3a3a !important;
+  box-shadow: 0 1px 0 0 #4a4a4a;
 }
 body.dark .menu-toggle {
   color: #999 !important;
@@ -351,8 +356,13 @@ body.dark .nav-dropdown-item.active {
   }
 
   .link-item {
-    margin-right: 20px;
+    margin: 0 2px;
+    padding: 0 4px;
     color: rgb(85, 85, 85);
+  }
+
+  .link-item::after {
+    content: '\a0\a0\a0';
   }
 
   .lan-item {
