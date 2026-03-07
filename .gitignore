@@ -9,3 +9,4 @@ dist
 .editorconfig
 .trae/*
 AGENTS.md
+public/data/image-index.json

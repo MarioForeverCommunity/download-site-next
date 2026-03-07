@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-image-index.js && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "deploy": "bash deploy.sh"
+    "deploy": "bash deploy.sh",
+    "generate-images": "node scripts/generate-image-index.js"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.5",

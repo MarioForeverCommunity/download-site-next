@@ -18,6 +18,7 @@
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
   import Tooltip from '../../components/ToolTip.vue';
+  import { createGameImageResolver } from "../../util/ImageUtil.js";
   const originalLan = ref(getLanguage());
 
   const lan = "zh"
@@ -34,7 +35,9 @@
 
 // Fetch game list.
 
-  readList("list-mw.yaml").then((list) => {
+  const imageResolver = createGameImageResolver('mw-levels');
+
+  Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
     for (var entry of list) {
       entry.category = "mw";
 
@@ -107,8 +110,11 @@
       games.value.push(entry);
     }
     games.value.sort((a, b) => b.date - a.date)
-    // console.log(games);
   });
+
+  const getGameImage = (game) => {
+    return imageResolver.resolve(game);
+  };
 
   const selectedDownload = ref(null); // For download modal.
   const selectedVideo = ref(null); // For download modal.
@@ -435,12 +441,12 @@
   <GameLineHeader v-if="wideScreen && displayMode === 'line'" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <template v-if="wideScreen && displayMode === 'line'">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + idx">
-      <GameLine :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
+      <GameLine :game="game" lan="zh" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
     </div>
   </template>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + idx">
-      <GameCard :game="game" lan="zh" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
+      <GameCard :game="game" lan="zh" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
     </div>
   </div>
 

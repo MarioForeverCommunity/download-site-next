@@ -20,6 +20,7 @@
   import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
   import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
+  import { createGameImageResolver } from "../../util/ImageUtil.js";
 
   const lan = ref(getLanguage());
 
@@ -64,7 +65,9 @@
 
   const games = ref([]);
 
-  readList("list-mf.yaml").then((list) => {
+  const imageResolver = createGameImageResolver('mf-games');
+
+  Promise.all([readList("list-mf.yaml"), imageResolver.init()]).then(([list]) => {
     for (var entry of list) {
       entry.category = "mf";
       // Support single and multiple versions.
@@ -240,6 +243,7 @@
       entry.currentVer = parseVer(entry.ver[0]);
       games.value.push(entry);
     }
+    
     defaultSort();
 
     /* // 收集所有链接
@@ -544,29 +548,8 @@
   }
 
   // Image utilities.
-
   const getGameImage = (game) => {
-    // 首先检查当前版本是否有图片
-    if (game.currentVer && game.currentVer.image) {
-      return getImageUrl(game.currentVer.image);
-    }
-    
-    // 然后检查游戏级别是否有图片
-    if (game.image) {
-      return getImageUrl(game.image);
-    }
-    
-    return null;
-  };
-
-  const getImageUrl = (image) => {
-    // 如果是URL（包含http或https），直接返回
-    if (image.startsWith('http://') || image.startsWith('https://')) {
-      return image;
-    }
-    
-    // 否则认为是文件名，从public/images/mf-games目录获取
-    return `/images/mf-games/${image}`;
+    return imageResolver.resolve(game);
   };
 
   // Optimized tooltip.
