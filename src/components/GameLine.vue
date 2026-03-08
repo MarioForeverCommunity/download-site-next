@@ -20,7 +20,7 @@
 
 
 
-  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog']);
+  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
 
   const selectVersion = (ver) => {
     // 通过emit事件通知父组件更新版本信息
@@ -63,12 +63,24 @@
     }
   };
 
+  const handleGameNameClick = () => {
+    emit('showGameDetail', props.game);
+  };
+
+  const getDisplayAuthorList = () => {
+    const authorList = getAuthorList(props.game, props.lan);
+    if (props.game.category === 'mw' && Array.isArray(authorList)) {
+      return '合作作品';
+    }
+    return authorList;
+  };
+
 </script>
 
 <template>
   <div class="container game-container">
     <div class="game-name">
-      {{ getName(game, lan) }}
+      <span class="game-name-link" @click="handleGameNameClick">{{ getName(game, lan) }}</span>
       <Tooltip v-if="game.type === 'chinese'">
         <span class="dot cn-dot"><span class="cn-text">{{ lan === 'en' ? 'CN' : '国内' }}</span></span>
         <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
@@ -119,18 +131,18 @@
       </Tooltip>
       </div>
     <div class="game-author">
-      <span v-if="typeof getAuthorList(game, lan) == 'string'">
-        <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
-          <a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank">
-            {{ getAuthorList(game, lan) }}
+      <span v-if="typeof getDisplayAuthorList() == 'string'">
+        <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
+          <a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">
+            {{ getDisplayAuthorList() }}
           </a>
         </template>
         <template v-else>
-          {{ getAuthorList(game, lan) }}
+          {{ getDisplayAuthorList() }}
         </template>
       </span>
       <template v-else>
-        <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
+        <span v-for="(author, authorindex) in getDisplayAuthorList()" :key="author + authorindex">
           <br v-if="authorindex != 0" />
           <template v-if="getAuthorFolderURL(game, author, lan)">
             <a :href="getAuthorFolderURL(game, author, lan)" target="_blank">
@@ -281,6 +293,18 @@
   }
 
   .game-author a:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .game-name-link {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    margin-right: 0.25em;
+  }
+
+  .game-name-link:hover {
     color: inherit;
     text-decoration: underline;
   }

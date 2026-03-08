@@ -16,6 +16,7 @@
     "axios": "^1.13.5",
     "js-cookie": "^3.0.5",
     "js-yaml": "^4.1.1",
+    "markdown-it": "^14.1.1",
     "overlayscrollbars": "^2.10.0",
     "overlayscrollbars-vue": "^0.5.9",
     "unplugin-vue-markdown": "^0.26.2",

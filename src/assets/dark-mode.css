@@ -95,6 +95,10 @@ body.dark .download:active {
   color: #fff !important;
 }
 
+body.dark a {
+  color: #4da3ff;
+}
+
 body.dark a:hover {
   color: #30acff;
 }

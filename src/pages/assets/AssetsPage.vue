@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
   import axios from 'axios';
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
@@ -17,6 +17,7 @@
   import {parseVer} from "../../util/Misc.js";
   import introContent from '../../markdown/assets.md';
   import { navTop } from "../../config.js";
+  import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
   const originalLan = ref(getLanguage());
 
   const lan = ref("zh");
@@ -195,9 +196,21 @@
     window.removeEventListener('resize', updateWideScreen);
   });
 
+  watch([selectedDownload, tiebaDialog], ([newDownload, newTieba]) => {
+    if (newDownload || newTieba) {
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+      disableScroll();
+    } else {
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      enableScroll();
+    }
+  });
+
   function getAssetImage(asset) {
     if (asset.image) {
-      return `/images/assets/${asset.image}`;
+      return `/data/assets/${asset.image}`;
     }
     return null;
   }

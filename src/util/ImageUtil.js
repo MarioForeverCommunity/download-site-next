@@ -4,6 +4,16 @@ let imageIndex = null;
 let indexLoading = false;
 let indexPromise = null;
 
+const pathCache = new Map();
+const showcaseCache = new Map();
+
+const REGEX = {
+  titleVersion: /^title_(.+)\.[^.]+$/i,
+  titleImage: /^title_.+\.[^.]+$/i,
+  titleSimple: /^title\.[a-z]+$/i,
+  showcase: /^showcase_.+\.[^.]+$/i
+};
+
 async function loadImageIndex() {
   if (imageIndex) {
     return imageIndex;
@@ -30,14 +40,14 @@ async function loadImageIndex() {
 }
 
 function parseTitleVersion(filename) {
-  const match = filename.match(/^title_(.+)\.[^.]+$/i);
+  const match = filename.match(REGEX.titleVersion);
   return match ? match[1] : null;
 }
 
 function findTitleImageForVersion(images, currentVerStr) {
   if (!images || images.length === 0 || !currentVerStr) return null;
   
-  const titleImages = images.filter(img => /^title_.+\.[^.]+$/i.test(img));
+  const titleImages = images.filter(img => REGEX.titleImage.test(img));
   if (titleImages.length === 0) return null;
   
   for (const img of titleImages) {
@@ -53,8 +63,7 @@ function findTitleImageForVersion(images, currentVerStr) {
 function findTitleImage(images) {
   if (!images || images.length === 0) return null;
   
-  const titlePattern = /^title\.[a-z]+$/i;
-  const titleImage = images.find(img => titlePattern.test(img.toLowerCase()));
+  const titleImage = images.find(img => REGEX.titleSimple.test(img.toLowerCase()));
   return titleImage || null;
 }
 
@@ -63,11 +72,62 @@ function getFirstImageByAlpha(images) {
   return images[0];
 }
 
+function getCacheKey(gameName, category, currentVerStr) {
+  return `${category}:${gameName}:${currentVerStr || ''}`;
+}
+
+function getShowcaseCacheKey(gameName, category) {
+  return `${category}:${gameName}`;
+}
+
+function getShowcaseImagesInternal(game, category) {
+  if (!game) return [];
+  
+  const gameName = game.game;
+  if (!gameName) return [];
+  
+  const cacheKey = getShowcaseCacheKey(gameName, category);
+  if (showcaseCache.has(cacheKey)) {
+    return showcaseCache.get(cacheKey);
+  }
+  
+  const gameMapping = imageIndex?.[category];
+  if (!gameMapping) return [];
+  
+  const gameInfo = gameMapping[gameName];
+  if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return [];
+  
+  const images = gameInfo.images;
+  const dirName = gameInfo.dirName;
+  
+  const showcaseImages = images.filter(img => REGEX.showcase.test(img));
+  
+  if (showcaseImages.length === 0) {
+    showcaseCache.set(cacheKey, []);
+    return [];
+  }
+  
+  const result = showcaseImages.map(img => ({
+    url: `/data/${category}/${dirName}/${img}`,
+    name: img
+  }));
+  
+  showcaseCache.set(cacheKey, result);
+  return result;
+}
+
 function getGameImagePath(game, category) {
   if (!game) return null;
   
   const gameName = game.game;
   if (!gameName) return null;
+  
+  const currentVerStr = game.currentVerStr;
+  const cacheKey = getCacheKey(gameName, category, currentVerStr);
+  
+  if (pathCache.has(cacheKey)) {
+    return pathCache.get(cacheKey);
+  }
   
   const gameMapping = imageIndex?.[category];
   if (!gameMapping) return null;
@@ -77,8 +137,6 @@ function getGameImagePath(game, category) {
   
   const images = gameInfo.images;
   const dirName = gameInfo.dirName;
-  const isFlat = gameInfo.isFlat;
-  const currentVerStr = game.currentVerStr;
   
   let imagePath = null;
   
@@ -94,11 +152,10 @@ function getGameImagePath(game, category) {
   
   if (!imagePath) return null;
   
-  if (isFlat) {
-    return `/images/${category}/${imagePath}`;
-  }
+  const result = `/data/${category}/${dirName}/${imagePath}`;
   
-  return `/images/${category}/${dirName}/${imagePath}`;
+  pathCache.set(cacheKey, result);
+  return result;
 }
 
 export async function getGameImage(game, category = 'mf-games') {
@@ -111,6 +168,18 @@ export function getGameImageSync(game, category = 'mf-games') {
     return null;
   }
   return getGameImagePath(game, category);
+}
+
+export async function getShowcaseImages(game, category = 'mf-games') {
+  await loadImageIndex();
+  return getShowcaseImagesInternal(game, category);
+}
+
+export function getShowcaseImagesSync(game, category = 'mf-games') {
+  if (!imageIndex) {
+    return [];
+  }
+  return getShowcaseImagesInternal(game, category);
 }
 
 export function createGameImageResolver(category) {

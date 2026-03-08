@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn, getDisplayMode, setDisplayModeLine, setDisplayModeCard} from "../../util/Language.js";
   import { navTop } from "../../config.js";
@@ -21,6 +21,8 @@
   import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
   import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
   import { createGameImageResolver } from "../../util/ImageUtil.js";
+  import FullscreenModal from '../../components/FullscreenModal.vue';
+  import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
 
   const lan = ref(getLanguage());
 
@@ -262,6 +264,19 @@
   const selectedDownload = ref(null); // For download modal.
   const selectedVideo = ref(null); // For download modal.
   const tiebaDialog = ref(null); // For tieba dialog.
+  const selectedGameDetail = ref(null); // For game detail modal.
+
+  watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail, showCredits], ([newDownload, newVideo, newTieba, newGameDetail, newShowCredits]) => {
+    if (newDownload || newVideo || newTieba || newGameDetail || newShowCredits) {
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+      disableScroll();
+    } else {
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      enableScroll();
+    }
+  });
 
   // Sort operations.
 
@@ -727,12 +742,12 @@
   <GameLineHeader v-if="wideScreen && displayMode === 'line'" :lan="lan" category="mf" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
   <div v-if="wideScreen && displayMode === 'line'">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameLine :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
+      <GameLine :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}" @show-game-detail="(entry) => {selectedGameDetail = entry;}"/>
     </div>
   </div>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
-      <GameCard :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
+      <GameCard :game="game" :lan="lan" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}" @show-game-detail="(entry) => {selectedGameDetail = entry;}"/>
     </div>
   </div>
 
@@ -863,6 +878,8 @@
       </div>
     </div>
   </Transition>
+
+  <FullscreenModal :show="selectedGameDetail != null" :game="selectedGameDetail" :lan="lan" category="mf-games" @close="selectedGameDetail = null" />
 
   <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
   </div>

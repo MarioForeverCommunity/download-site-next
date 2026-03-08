@@ -18,7 +18,7 @@
     }
   });
 
-  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog']);
+  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
 
   const selectVersion = (ver) => {
     // 通过emit事件通知父组件更新版本信息
@@ -65,13 +65,25 @@
     }
   };
 
+  const handleGameNameClick = () => {
+    emit('showGameDetail', props.game);
+  };
+
+  const getDisplayAuthorList = () => {
+    const authorList = getAuthorList(props.game, props.lan);
+    if (props.game.category === 'mw' && Array.isArray(authorList)) {
+      return '合作作品';
+    }
+    return authorList;
+  };
+
 </script>
 
 <template>
   <div class="container card">
     <div class="first-line">
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
-      {{ getName(game, lan) }}
+      <span class="game-name-link" @click="handleGameNameClick">{{ getName(game, lan) }}</span>
       <Tooltip v-if="game.type === 'chinese'">
         <span class="dot cn-dot"><span class="cn-text">{{ lan === 'en' ? 'CN' : '国内' }}</span></span>
         <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
@@ -144,11 +156,11 @@
       <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
     </div>
     <div class="last-line-padding">
-      <span v-if="typeof getAuthorList(game, lan) == 'string'">
+      <span v-if="typeof getDisplayAuthorList() == 'string'">
         &nbsp;
       </span>
-      <template v-if="typeof getAuthorList(game, lan) != 'string'">
-        <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
+      <template v-if="typeof getDisplayAuthorList() != 'string'">
+        <span v-for="(author, authorindex) in getDisplayAuthorList()" :key="author + authorindex">
           <br v-if="authorindex != 0">&nbsp;
         </span>
       </template>
@@ -157,18 +169,18 @@
       <div class="game-author">
         <Tooltip>
         <span class="inline-block author-ellipsis">
-            <template v-if="typeof getAuthorList(game, lan) == 'string'">
-                <template v-if="getAuthorFolderURL(game, getAuthorList(game, lan), lan)">
-                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text"><a :href="getAuthorFolderURL(game, getAuthorList(game, lan), lan)" target="_blank">{{ getAuthorList(game, lan) }}</a></span>
+            <template v-if="typeof getDisplayAuthorList() == 'string'">
+                <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
+                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text"><a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">{{ getDisplayAuthorList() }}</a></span>
                 </template>
                 <template v-else>
-                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text">{{ getAuthorList(game, lan) }}</span>
+                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text">{{ getDisplayAuthorList() }}</span>
                 </template>
             </template>
             <template v-else>
                 <UserIcon class="icon author-icon"></UserIcon>
                 <span class="author-text">
-                <span class="inline-block" v-for="(author, authorindex) in getAuthorList(game, lan)" 
+                <span class="inline-block" v-for="(author, authorindex) in getDisplayAuthorList()" 
                     :key="author + authorindex">
                   <template v-if="getAuthorFolderURL(game, author, lan)">
                     <a :href="getAuthorFolderURL(game, author, lan)" target="_blank">
@@ -178,17 +190,17 @@
                   <template v-else>
                     {{ author }}
                   </template>
-                  <span v-if="authorindex != getAuthorList(game, lan).length - 1">,&nbsp;</span>
+                  <span v-if="authorindex != getDisplayAuthorList().length - 1">,&nbsp;</span>
                 </span>
                 </span>
             </template>
         </span>
           <template #popper>
             <span>
-              <span v-if="typeof getAuthorList(game, lan) == 'string'">{{ getAuthorList(game, lan) }}</span>
+              <span v-if="typeof getDisplayAuthorList() == 'string'">{{ getDisplayAuthorList() }}</span>
               <template v-else>
-                <span v-for="(author, authorindex) in getAuthorList(game, lan)" :key="author + authorindex">
-                  {{ author }}<span v-if="authorindex != getAuthorList(game, lan).length - 1">, </span>
+                <span v-for="(author, authorindex) in getDisplayAuthorList()" :key="author + authorindex">
+                  {{ author }}<span v-if="authorindex != getDisplayAuthorList().length - 1">, </span>
                 </span>
               </template>
             </span>
@@ -328,6 +340,18 @@
     line-height: 1.25em;
   }
 
+  .game-name-link {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    margin-right: 0.25em;
+  }
+
+  .game-name-link:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+
   .game-name.no-version {
     width: 100%;
     line-height: 1.25em;
@@ -418,6 +442,7 @@
   }
 
   .smwp-link:hover {
+    color: inherit;
     text-decoration: underline;
   }
 
