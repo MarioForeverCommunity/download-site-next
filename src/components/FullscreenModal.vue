@@ -146,6 +146,11 @@
     return result;
   });
 
+  const repoUrl = computed(() => {
+    if (!props.game || !props.game.repo) return null;
+    return props.game.repo;
+  });
+
   const authors = computed(() => {
     if (!props.game) return [];
     const authorList = getAuthorList(props.game, props.lan);
@@ -420,6 +425,15 @@
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无发布链接' : 'No source links available' }}</p>
           </div>
           
+          <div v-if="repoUrl" class="content-section">
+            <h3 class="section-title">{{ lan === 'zh' ? '开源地址' : 'Repository' }}</h3>
+            <ul class="repo-list">
+              <li>
+                <a :href="repoUrl" target="_blank" class="repo-link">{{ repoUrl }}</a>
+              </li>
+            </ul>
+          </div>
+          
           <div class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? `作者` : `Author${authors.length > 1 ? 's' : ''}` }}</h3>
             <ul v-if="authors.length > 0" class="author-list">
@@ -678,7 +692,8 @@
   .source-link,
   .download-link,
   .video-link,
-  .wiki-link {
+  .wiki-link,
+  .repo-link {
     text-decoration: none;
     word-break: break-all;
   }
@@ -686,7 +701,8 @@
   .source-link:hover,
   .video-link:hover,
   .wiki-link:hover,
-  .download-link:hover {
+  .download-link:hover,
+  .repo-link:hover {
     text-decoration: underline;
   }
 
@@ -864,7 +880,8 @@
   body.dark .source-link,
   body.dark .download-link,
   body.dark .video-link,
-  body.dark .wiki-link {
+  body.dark .wiki-link,
+  body.dark .repo-link {
     color: #4da3ff;
   }
 
