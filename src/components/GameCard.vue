@@ -84,29 +84,11 @@
     <div class="first-line">
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
       <span class="game-name-link" @click="handleGameNameClick">{{ getName(game, lan) }}</span>
-      <Tooltip v-if="game.type === 'chinese'">
-        <span class="dot cn-dot"><span class="cn-text">{{ lan === 'en' ? 'CN' : '国内' }}</span></span>
-        <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
-      </Tooltip>
-      <Tooltip v-if="game.type === 'international'">
-        <span class="dot en-dot"><span class="en-text">{{ lan === 'en' ? 'INT' : '国外' }}</span></span>
-        <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
-      </Tooltip>
       <Tooltip v-if="game.currentVer && game.currentVer.repacker">
         <RepackIcon class="icon"></RepackIcon>
         <template #popper>
           {{ lan == "en" ? "Repackaged Game" : "重打包版本" }}
         </template>
-      </Tooltip>
-      <!-- MW自带标识 -->
-      <Tooltip v-if="game.category === 'mw' && game.has_bundled_smwp">
-        <span class="dot mw-dot"><span class="mw-text">专用MW</span></span>
-        <template #popper>需专用 MW</template>
-      </Tooltip>
-      <!-- BGM标识 -->
-      <Tooltip v-if="game.category === 'mw' && game.has_bgm">
-        <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
-        <template #popper>需替换或使用自定义 BGM</template>
       </Tooltip>
       <Tooltip v-if="hasApkFile()">
         <ApkIcon class="icon apk-icon"></ApkIcon>
@@ -147,7 +129,25 @@
       </div>
     </div>
     <div class="body-line">
-      <div class="game-date">{{ lan == "en" ? "Released on " : "发布于 " }}{{ game.currentVer.date.toISOString().split('T')[0] }}</div>
+      <div class="game-date">
+        <Tooltip v-if="game.type === 'chinese'">
+          <span class="dot cn-dot"><span class="cn-text">{{ lan === 'en' ? 'CN' : '国内' }}</span></span>
+          <template #popper>{{ lan === 'en' ? 'Chinese' : '国内作品' }}</template>
+        </Tooltip>
+        <Tooltip v-if="game.type === 'international'">
+          <span class="dot en-dot"><span class="en-text">{{ lan === 'en' ? 'INT' : '国外' }}</span></span>
+          <template #popper>{{ lan === 'en' ? 'International' : '国外作品' }}</template>
+        </Tooltip>
+        <Tooltip v-if="game.category === 'mw' && game.has_bundled_smwp">
+          <span class="dot mw-dot"><span class="mw-text">专用MW</span></span>
+          <template #popper>需专用 MW</template>
+        </Tooltip>
+        <Tooltip v-if="game.category === 'mw' && game.has_bgm">
+          <span class="dot bgm-dot"><span class="bgm-text">BGM</span></span>
+          <template #popper>需替换或使用自定义 BGM</template>
+        </Tooltip>
+        {{ game.currentVer.date.toISOString().split('T')[0] }}
+      </div>
       <p v-if="game.category == 'mw' && game.description">{{ game.description }}</p>
       <p v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">{{ game.description_zh }}</p>
       <p v-if="lan == 'en' && game.category == 'mf' && game.description_en">{{ game.description_en }}</p>
@@ -333,11 +333,13 @@
   }
 
   .game-name {
-    width: calc(100% - 165px);
     display: inline-block;
     vertical-align: top;
-    /* 保证与game-version垂直居中对齐 */
     line-height: 1.25em;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    padding-right: 0.5em;
   }
 
   .game-name-link {
@@ -360,13 +362,16 @@
   .game-version {
     display: inline-flex;
     vertical-align: top;
-    float: right;
     line-height: 1.25em;
+    flex-shrink: 0;
   }
 
   .first-line {
     width: 100%;
     vertical-align: top;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.1em;
   }
 
   .dropdown-content {
@@ -489,8 +494,6 @@
     width: 2em;
     height: 1em;
     border-radius: 0.6em;
-    margin-left: 5px;
-    margin-right: 5px;
     vertical-align: middle;
     box-sizing: border-box;
     position: relative;

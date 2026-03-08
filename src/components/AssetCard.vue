@@ -123,15 +123,15 @@
       <div class="asset-name">
         {{ getName(asset, 'zh') }}<span v-if="getVariantName()" class="asset-variant"> ({{ getVariantName() }})</span><span v-if="getVersionString()" class="asset-ver">{{ getVersionString() }}</span>
       </div>
-      <div class="asset-type">
+    </div>
+    <div class="body-line">
+      <div class="asset-date">
         <Tooltip>
           <span class="dot" :class="getTypeClass(asset.type)"><span class="dot-text">{{ getTypeLabel(asset.type) }}</span></span>
           <template #popper>{{ getTypeTooltip(asset.type) }}</template>
         </Tooltip>
+        <span v-if="getDateString()">{{ getDateString() }}</span>
       </div>
-    </div>
-    <div class="body-line">
-      <div class="asset-date" v-if="getDateString()">发布于 {{ getDateString() }}</div>
       <p v-if="asset.description">{{ asset.description }}</p>
     </div>
     <div class="asset-image" v-if="getAssetImage()">
@@ -272,6 +272,7 @@
   .first-line {
     width: 100%;
     vertical-align: top;
+    margin-bottom: 0.1em;
   }
 
   .asset-date {
@@ -366,8 +367,7 @@
     width: 2em;
     height: 1em;
     border-radius: 0.6em;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 4px;
     vertical-align: middle;
     box-sizing: border-box;
     position: relative;
