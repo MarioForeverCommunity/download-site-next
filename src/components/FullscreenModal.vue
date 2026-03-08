@@ -686,7 +686,6 @@
   }
 
   .version-label {
-    color: #666;
     margin-right: 0.5em;
   }
 
@@ -868,10 +867,6 @@
 
   body.dark .section-divider {
     border-color: #444;
-  }
-
-  body.dark .version-label {
-    color: #aaa;
   }
 
   body.dark .source-link,
