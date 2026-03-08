@@ -109,6 +109,6 @@
     width: max-content;
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
-    z-index: 3;
+    z-index: 1002;
   }
 </style>

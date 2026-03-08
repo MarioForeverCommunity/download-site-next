@@ -657,14 +657,14 @@
   }
 
   .modal-bg {
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
+    position: fixed;
+    z-index: 1001;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
   }
 
   .modal-enter-active,
@@ -839,7 +839,7 @@
     width: max-content;
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
-    z-index: 3;
+    z-index: 1002;
   }
 
 </style>

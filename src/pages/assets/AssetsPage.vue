@@ -507,7 +507,7 @@
 
   .modal-bg {
     position: fixed;
-    z-index: 2;
+    z-index: 1001;
     left: 0;
     top: 0;
     width: 100%;
@@ -630,7 +630,7 @@
     width: max-content;
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
-    z-index: 3;
+    z-index: 1002;
   }
 </style>
 
