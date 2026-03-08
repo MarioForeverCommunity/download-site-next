@@ -422,7 +422,7 @@
             <span v-if="smwpUrl" class="smwp-value">
               <a :href="smwpUrl" target="_blank">{{ smwpVersion }}</a>
             </span>
-            <span v-else class="smwp-value">{{ smwpVersion }}</span>
+            <span v-else class="smwp-value">{{ smwpVersion }} (作品自带)</span>
           </div>
           
           <div v-if="!isMwLevel" class="title-image-container">
@@ -628,7 +628,7 @@
 
   .smwp-label {
     color: #666;
-    margin-right: 0.5em;
+    margin-right: 0.3em;
   }
 
   .smwp-value {
