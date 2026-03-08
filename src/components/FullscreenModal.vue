@@ -255,10 +255,16 @@
     
     if (isMwLevel.value) {
       if (props.game.file_urls && props.game.file_urls.length > 0) {
-        return props.game.file_urls.map(item => ({
-          version: item.name || '下载',
-          url: item.url
-        }));
+        return props.game.file_urls.map(item => {
+          const url = item.url || '';
+          const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
+          return {
+            version: item.name || '下载',
+            url: url,
+            isRepackaged: isRepackaged,
+            repacker: null
+          };
+        });
       }
       return [];
     }
@@ -273,9 +279,23 @@
       
       const urlKey = props.lan === 'zh' ? 'file_url_zh' : 'file_url_en';
       if (ver[urlKey]) {
+        const url = ver[urlKey];
+        const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
+        
+        let repacker = null;
+        if (isRepackaged && ver.repacker) {
+          if (props.lan === 'en' && ver.repacker_alt) {
+            repacker = ver.repacker_alt;
+          } else {
+            repacker = ver.repacker;
+          }
+        }
+        
         entries.push({
           version: versionKey || (props.lan === 'zh' ? '下载' : 'Download'),
-          url: ver[urlKey]
+          url: url,
+          isRepackaged: isRepackaged,
+          repacker: repacker
         });
       }
     }
@@ -495,8 +515,16 @@
             <h3 class="section-title">{{ lan === 'zh' ? '下载' : 'Downloads' }}</h3>
             <ul v-if="downloadEntries.length > 0" class="download-list">
               <li v-for="(entry, index) in downloadEntries" :key="index" class="download-item">
-                <span class="floppy-icon">💾</span>
+                <span class="floppy-icon">{{ entry.isRepackaged ? '📦' : '💾' }}</span>
                 <a :href="entry.url" target="_blank" class="download-link">{{ entry.version }}</a>
+                <span v-if="entry.isRepackaged" class="repackaged-label">
+                  <template v-if="entry.repacker">
+                    {{ lan === 'zh' ? `(由 ${entry.repacker} 重打包)` : `(Repackaged by ${entry.repacker})` }}
+                  </template>
+                  <template v-else>
+                    {{ lan === 'zh' ? '(重打包)' : '(Repackaged)' }}
+                  </template>
+                </span>
               </li>
               <li v-if="hasDataDownload" class="download-item">
                 <span class="floppy-icon">💾</span>
@@ -733,6 +761,11 @@
     line-height: 1;
   }
 
+  .repackaged-label {
+    color: #666;
+    font-size: 0.9em;
+  }
+
   .short-desc {
     padding: 0.2em 0 0.2em 0.6em;
     line-height: 1.3;
@@ -882,6 +915,10 @@
   body.dark .no-data,
   body.dark .no-logo {
     color: #777;
+  }
+
+  body.dark .repackaged-label {
+    color: #aaa;
   }
 
   body.dark .description-content {

@@ -798,7 +798,7 @@
           </Tooltip>
         </div>
         <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.repacker" class="italic">
-            {{ lan == "en" ? `Repackaged by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 打包。` }}
+            {{ lan == "en" ? `Repackaged by ${selectedDownload.currentVer.repacker_alt ? selectedDownload.currentVer.repacker_alt : selectedDownload.currentVer.repacker}.` : `该版本由 ${selectedDownload.currentVer.repacker} 重打包。` }}
             <Tooltip v-if="lan == 'zh'" :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
                 <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;"/>
                 <template #popper>
