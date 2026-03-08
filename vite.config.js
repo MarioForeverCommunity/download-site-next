@@ -11,7 +11,7 @@ export default defineConfig({
     vue({
       include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown and yaml files
     }),
-    Markdown({ /* options */ }),
+    Markdown({ markdownItOptions: { breaks: true } }),
   ],
   server: {
     hmr: true,

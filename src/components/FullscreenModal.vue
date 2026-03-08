@@ -27,7 +27,7 @@
 
   const emit = defineEmits(['close']);
 
-  const md = new MarkdownIt();
+  const md = new MarkdownIt({ breaks: true });
   const showImagePreview = ref(false);
   const previewImageUrl = ref('');
   const previewImageIndex = ref(0);
@@ -856,12 +856,8 @@
   .description-content :deep(h1),
   .description-content :deep(h2),
   .description-content :deep(h3) {
-    margin-top: 1em;
+    margin-top: 0.5em;
     margin-bottom: 0.5em;
-  }
-
-  .description-content :deep(p) {
-    margin-bottom: 1em;
   }
 
   .description-content :deep(a:hover) {
