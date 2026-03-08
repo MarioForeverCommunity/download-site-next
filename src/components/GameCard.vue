@@ -384,6 +384,10 @@
     color: #666;
   }
 
+  .game-date > :not(:first-child) .dot {
+    margin-left: 4px;
+  }
+
   .last-line-padding {
     padding-bottom: 1em;
     opacity: 0;

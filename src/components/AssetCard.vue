@@ -283,6 +283,10 @@
     color: #666;
   }
 
+  .asset-date > :not(:first-child) .dot {
+    margin-left: 4px;
+  }
+
   .asset-variant {
     color: #666;
   }
