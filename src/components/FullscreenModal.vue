@@ -658,19 +658,24 @@
     margin-right: 0.5em;
   }
 
-  .source-link {
-    color: #008cff;
+  .source-link,
+  .download-link,
+  .video-link,
+  .wiki-link {
     text-decoration: none;
     word-break: break-all;
+  }
+
+  .source-link:hover,
+  .video-link:hover,
+  .wiki-link:hover,
+  .download-link:hover {
+    text-decoration: underline;
   }
 
   .source-link.invalid {
     color: #999;
     font-style: italic;
-  }
-
-  .source-link:hover {
-    text-decoration: underline;
   }
 
   .source-link.invalid:hover {
@@ -693,19 +698,6 @@
     font-size: 16px;
     flex-shrink: 0;
     line-height: 1;
-  }
-
-  .download-link,
-  .video-link,
-  .wiki-link {
-    text-decoration: none;
-    word-break: break-all;
-  }
-
-  .video-link:hover,
-  .wiki-link:hover,
-  .download-link:hover {
-    text-decoration: underline;
   }
 
   .showcase-grid {
@@ -855,14 +847,8 @@
   }
 
   body.dark .source-link.invalid,
-  body.dark .invalid-label {
-    color: #777;
-  }
-
-  body.dark .no-data {
-    color: #777;
-  }
-
+  body.dark .invalid-label,
+  body.dark .no-data,
   body.dark .no-logo {
     color: #777;
   }
