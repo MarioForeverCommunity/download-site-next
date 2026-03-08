@@ -96,13 +96,5 @@ export async function loadDescription(game, category, lan) {
   const localizedContent = await tryLoadFile(`${filePath}/${fileName}`);
   if (localizedContent) return localizedContent;
   
-  const descKey = lan === 'zh' ? 'description_zh' : 'description_en';
-  if (game[descKey]) {
-    return game[descKey];
-  }
-  if (game.description) {
-    return game.description;
-  }
-  
   return null;
 }

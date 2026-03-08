@@ -334,6 +334,19 @@
     return md.render(markdownContent.value);
   });
 
+  const shortDesc = computed(() => {
+    if (!props.game) return null;
+    
+    const descKey = props.lan === 'zh' ? 'description_zh' : 'description_en';
+    if (props.game[descKey]) {
+      return props.game[descKey];
+    }
+    if (props.game.description) {
+      return props.game.description;
+    }
+    return null;
+  });
+
   const loadMarkdownDescription = async () => {
     if (!props.game) {
       markdownContent.value = '';
@@ -479,6 +492,11 @@
               </li>
             </ul>
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无下载链接' : 'No download links' }}</p>
+          </div>
+          
+          <div v-if="shortDesc" class="content-section">
+            <h3 class="section-title">{{ lan === 'zh' ? '简介' : 'ShortDesc' }}</h3>
+            <p class="short-desc">{{ shortDesc }}</p>
           </div>
           
           <div v-if="renderedDescription" class="content-section">
@@ -634,8 +652,7 @@
   }
 
   .no-data {
-    padding: 0.2em 0;
-    padding-left: 0.6em;
+    padding: 0.2em 0 0.2em 0.6em;
     line-height: 1.3;
   }
 
@@ -698,6 +715,11 @@
     font-size: 16px;
     flex-shrink: 0;
     line-height: 1;
+  }
+
+  .short-desc {
+    padding: 0.2em 0 0.2em 0.6em;
+    line-height: 1.3;
   }
 
   .showcase-grid {
