@@ -512,6 +512,7 @@
   .dot.cur-dot {
     background: #27ae60;
     border: 1.5px solid #1e824c;
+    margin-left: 5px;
   }
   .dot.mw-dot {
     background: #ff9800;
