@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const publicDir = join(__dirname, '..', 'public');
-const imagesDir = join(publicDir, 'images');
+const imagesDir = join(publicDir, 'data');
 const listsDir = join(publicDir, 'lists');
 const outputDir = join(publicDir, 'data');
 const outputFile = join(outputDir, 'image-index.json');
