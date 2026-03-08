@@ -800,7 +800,7 @@
   .invalid-label {
     color: #999;
     font-style: italic;
-    margin-left: 0.5em;
+    margin-left: 0.25em;
   }
 
   .download-item {
