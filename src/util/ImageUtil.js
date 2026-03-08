@@ -80,6 +80,29 @@ function getShowcaseCacheKey(gameName, category) {
   return `${category}:${gameName}`;
 }
 
+function naturalSort(a, b) {
+  const regex = /(\d+)|(\D+)/g;
+  const aParts = a.match(regex) || [];
+  const bParts = b.match(regex) || [];
+  
+  for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+    const aPart = aParts[i] || '';
+    const bPart = bParts[i] || '';
+    
+    const aNum = parseInt(aPart, 10);
+    const bNum = parseInt(bPart, 10);
+    
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      if (aNum !== bNum) return aNum - bNum;
+    } else {
+      const cmp = aPart.localeCompare(bPart);
+      if (cmp !== 0) return cmp;
+    }
+  }
+  
+  return 0;
+}
+
 function getShowcaseImagesInternal(game, category) {
   if (!game) return [];
   
@@ -106,6 +129,8 @@ function getShowcaseImagesInternal(game, category) {
     showcaseCache.set(cacheKey, []);
     return [];
   }
+  
+  showcaseImages.sort(naturalSort);
   
   const result = showcaseImages.map(img => ({
     url: `/data/${category}/${dirName}/${img}`,
