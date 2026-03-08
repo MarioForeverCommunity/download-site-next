@@ -556,6 +556,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
   }
 
   .close-button {
@@ -775,10 +776,6 @@
 
   .description-content :deep(p) {
     margin-bottom: 1em;
-  }
-
-  .description-content :deep(a) {
-    color: #008cff;
   }
 
   .description-content :deep(a:hover) {
