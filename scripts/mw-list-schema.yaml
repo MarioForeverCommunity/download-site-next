@@ -11,7 +11,12 @@ definitions:
       game:
         type: string
       author:
-        type: string
+        anyOf:
+          - type: 'null'
+          - type: string
+          - type: array
+            items:
+              type: string
       smwp_ver:
         anyOf:
           - type: 'null'
