@@ -121,7 +121,10 @@
   <div class="container card">
     <div class="first-line">
       <div class="asset-name">
-        {{ getName(asset, 'zh') }}<span v-if="getVariantName()" class="asset-variant"> ({{ getVariantName() }})</span><span v-if="getVersionString()" class="asset-ver">{{ getVersionString() }}</span>
+        {{ getName(asset, 'zh') }}<span v-if="getVariantName()" class="asset-variant"> ({{ getVariantName() }})</span>
+      </div>
+      <div class="asset-version" v-if="getVersionString()">
+        <span>{{ getVersionString() }}</span>
       </div>
     </div>
     <div class="body-line">
@@ -255,24 +258,24 @@
     display: inline-block;
     vertical-align: top;
     line-height: 1.25em;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
   }
 
-  .asset-ver {
-    color: #666;
-    margin-left: 0.5em;
-    font-size: 0.9em;
-  }
-
-  .asset-type {
-    display: inline-block;
+  .asset-version {
+    display: inline-flex;
     vertical-align: top;
     line-height: 1.25em;
+    flex-shrink: 0;
   }
 
   .first-line {
     width: 100%;
     vertical-align: top;
     margin-bottom: 0.1em;
+    display: flex;
+    justify-content: space-between;
   }
 
   .asset-date {
