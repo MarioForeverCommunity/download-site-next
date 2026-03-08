@@ -30,6 +30,7 @@
   const md = new MarkdownIt();
   const showImagePreview = ref(false);
   const previewImageUrl = ref('');
+  const previewImageIndex = ref(0);
   const markdownContent = ref('');
 
   const isMwLevel = computed(() => {
@@ -398,14 +399,30 @@
     }
   });
 
-  const openImagePreview = (url) => {
+  const openImagePreview = (url, index) => {
     previewImageUrl.value = url;
+    previewImageIndex.value = index;
     showImagePreview.value = true;
   };
 
   const closeImagePreview = () => {
     showImagePreview.value = false;
     previewImageUrl.value = '';
+    previewImageIndex.value = 0;
+  };
+
+  const prevImage = () => {
+    if (previewImageIndex.value > 0) {
+      previewImageIndex.value--;
+      previewImageUrl.value = showcaseImages.value[previewImageIndex.value].url;
+    }
+  };
+
+  const nextImage = () => {
+    if (previewImageIndex.value < showcaseImages.value.length - 1) {
+      previewImageIndex.value++;
+      previewImageUrl.value = showcaseImages.value[previewImageIndex.value].url;
+    }
   };
 </script>
 
@@ -413,7 +430,12 @@
   <Transition name="modal">
     <div v-if="show" class="fullscreen-modal-bg" @click="emit('close')">
       <div class="fullscreen-modal-content" @click.stop>
-        <button class="close-button" @click="emit('close')">&times;</button>
+        <button class="close-button" @click="emit('close')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <div class="modal-body">
           <h1 class="game-title">{{ gameName }}</h1>
           
@@ -495,7 +517,7 @@
                 :src="img.url" 
                 :alt="`Showcase ${index + 1}`"
                 class="showcase-thumbnail"
-                @click="openImagePreview(img.url)"
+                @click="openImagePreview(img.url, index)"
               />
             </div>
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无图片' : 'No showcase images' }}</p>
@@ -553,8 +575,34 @@
   <Transition name="modal">
     <div v-if="showImagePreview" class="image-preview-bg" @click="closeImagePreview">
       <div class="image-preview-content" @click.stop>
-        <button class="close-button" @click="closeImagePreview">&times;</button>
+        <button class="preview-close-button" @click="closeImagePreview">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <button 
+          v-if="previewImageIndex > 0" 
+          class="nav-button prev-button" 
+          @click.stop="prevImage"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
         <img :src="previewImageUrl" :alt="lan === 'zh' ? '预览图片' : 'Preview image'" class="preview-image" />
+        <button 
+          v-if="previewImageIndex < showcaseImages.length - 1" 
+          class="nav-button next-button" 
+          @click.stop="nextImage"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+        <div class="preview-caption">
+          {{ lan === 'zh' ? `图片 ${previewImageIndex + 1}/${showcaseImages.length}` : `Showcase ${previewImageIndex + 1}/${showcaseImages.length}` }}
+        </div>
       </div>
     </div>
   </Transition>
@@ -591,10 +639,10 @@
     position: absolute;
     top: 0.5em;
     right: 0.5em;
-    font-size: 2.3em;
-    font-weight: bold;
     color: #666;
-    background: none;
+    background-color: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
     width: 40px;
     height: 40px;
@@ -607,6 +655,12 @@
 
   .close-button:hover {
     color: #000;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .close-button svg {
+    width: 20px;
+    height: 20px;
   }
 
   .modal-body {
@@ -862,12 +916,95 @@
     position: relative;
     max-width: 90vw;
     max-height: 90vh;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 4px;
   }
 
   .preview-image {
     max-width: 100%;
-    max-height: 90vh;
+    max-height: calc(90vh - 40px);
     object-fit: contain;
+    display: block;
+  }
+
+  .preview-caption {
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    text-align: center;
+    padding: 8px 0 4px;
+    color: #333;
+    font-size: 0.9em;
+  }
+
+  .preview-close-button {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    z-index: 10;
+  }
+
+  .preview-close-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .preview-close-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+
+  .nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .nav-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .prev-button {
+    left: 5px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .next-button {
+    right: 5px;
+    border-radius: 4px 0 0 4px;
+  }
+
+  body.dark .image-preview-content {
+    background-color: #2a2a2a;
+  }
+
+  body.dark .preview-caption {
+    color: #ccc;
   }
 
   body.dark .fullscreen-modal-content {
@@ -876,10 +1013,12 @@
 
   body.dark .close-button {
     color: #aaa;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   body.dark .close-button:hover {
     color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
   body.dark .game-title {
