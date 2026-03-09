@@ -178,8 +178,10 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - 通关视频（社区官方）: https://www.bilibili.com/video/BV1qqzjBzEjh/
   description_zh: 这是作者在PK!MF联赛2025~2026年度第3赛区的参赛关卡。该游戏含有恐怖元素。
-  description_en: Contest level in PK!MF duel Sector 3. THIS LEVEL CONTAINS FLASHING LIGHTS, SCREAM SOUND AND TERROR SCENCES.
+  description_en: Contest level in PK!MF duel Sector 3.
   ver:
   date: 2026-01-21
   source_url: https://www.youtube.com/watch?v=WoSQj244dI0
@@ -196,12 +198,14 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - 通关视频（社区官方）: https://www.bilibili.com/video/BV1qqzjBzEx5/
   description_zh: 这是作者在PK!MF联赛2025~2026年度第3赛区参赛关卡的英文版；中文版可前往PK!MF7比赛主页获取。
   description_en: Contest level in PK!MF duel Sector 3. The contest's theme is "Emotions".
   ver:
   date: 2026-01-20
   source_url: https://www.youtube.com/watch?v=mLU4ZnSkl-8
-  source_url_alt:
+  source_url_alt: https://marioforever.space/topic/62/single-level-fear-the-eye
   download_url: https://www.mediafire.com/file/4osj51gkozpkalo/Fear_The_Eye.zip/file
   code:
   download_url_alt: https://en.wsw233.com/files/view?f=gct9p5
@@ -716,6 +720,8 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - 竞速赛视频: https://www.bilibili.com/video/BV1WvZ4B4EPa
   ver:
   - 练习赛道更新版:
       ver_alt: Practice track (Updated)
@@ -3608,6 +3614,10 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
+  video_zh:
+  - 示例视频: https://www.bilibili.com/video/BV12A4m1A7zV
+  - 娱乐赛视频: https://www.bilibili.com/video/BV1fYfDYbEig
+  - 总决赛视频: https://www.bilibili.com/video/BV1WNxMzGEzU
   ver:
   - 修复版:
       ver_alt: Fix
