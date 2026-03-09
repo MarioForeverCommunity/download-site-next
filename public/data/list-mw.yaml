@@ -1551,6 +1551,8 @@
   file_name: Cold Winter.smwl
   file_url:
 - game: lz Worlds - Universal Dilemma
+  alias:
+  - 庄子世界
   author: 我懂你不懂的lz
   smwp_ver: v1.7.8
   date: 2022-02-20
@@ -2583,6 +2585,8 @@
   - Become hollow liside(Forced roller).smwl
   file_url:
 - game: lz Worlds - Classic EPIC
+  alias:
+  - 老子世界
   author: 我懂你不懂的lz
   smwp_ver: v1.7.6
   date: 2020-08-03
