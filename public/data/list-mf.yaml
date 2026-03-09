@@ -527,6 +527,7 @@
   author: Turbo 42
   author_alt:
   type: international
+  homepage_en: https://sites.google.com/view/turbo42/games
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -535,7 +536,7 @@
       date: 2025-12-02
       source_url: https://www.youtube.com/watch?v=VQl0PXJaamQ
       source_url_alt:
-      download_url: https://sites.google.com/view/turbo42/games
+      download_url: https://drive.google.com/file/d/1UqLCkCU_454uCPF-uQ4n115C-T9ZIsVr/view?usp=sharing
       code:
       download_url_alt:
       file_name: Mario Forever The Wanderlust v1.0.1.zip
@@ -545,7 +546,7 @@
       date: 2025-12-01
       source_url: https://www.youtube.com/watch?v=VQl0PXJaamQ
       source_url_alt:
-      download_url: https://sites.google.com/view/turbo42/games
+      download_url:
       code:
       download_url_alt:
       file_name: Mario Forever The Wanderlust v1.0.zip
@@ -1454,6 +1455,7 @@
   author: Turbo 42
   author_alt:
   type: international
+  homepage_en: https://sites.google.com/view/turbo42/games
   wiki_zh_url:
   wiki_en_url:
   ver: v1.0.1
@@ -1461,7 +1463,7 @@
   date: 2025-03-30
   source_url: https://www.youtube.com/watch?v=57Ll1RFKEEw
   source_url_alt:
-  download_url: https://sites.google.com/view/turbo42/games
+  download_url: https://drive.google.com/file/d/1Vm8tFXn_NjjaN30Vw-vr_hfEn3pplrlc/view?usp=drive_link
   code:
   download_url_alt:
   file_name: Mario Forever The Epic Voyage v1.0.1.zip
@@ -2331,6 +2333,7 @@
   author: Turbo 42
   author_alt:
   type: international
+  homepage_en: https://sites.google.com/view/turbo42/games
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -2339,7 +2342,7 @@
       date: 2024-10-21
       source_url: https://www.youtube.com/watch?v=Sm7NeybhYHQ
       source_url_alt:
-      download_url: https://sites.google.com/view/turbo42/games
+      download_url: https://drive.google.com/file/d/1GqnYQ6Mvzf9TW8O9qFPZeZYMu5IEKNP9/view?usp=drive_link
       code:
       download_url_alt:
       file_name: MFTW v1.2.rar
@@ -2349,7 +2352,7 @@
       date: 2024-10-16
       source_url: https://www.youtube.com/watch?v=Sm7NeybhYHQ
       source_url_alt:
-      download_url: https://sites.google.com/view/turbo42/games
+      download_url:
       code:
       download_url_alt:
       file_name: Mario Forever Turbo Worlds/v1.2.7/MFTW v1.2.rar
@@ -2359,7 +2362,7 @@
       date: 2024-10-13
       source_url: https://www.youtube.com/watch?v=Sm7NeybhYHQ
       source_url_alt:
-      download_url: https://sites.google.com/view/turbo42/games
+      download_url:
       code:
       download_url_alt:
       file_name: Mario Forever Turbo Worlds/v1.2.5/MFTW v1.2.rar
