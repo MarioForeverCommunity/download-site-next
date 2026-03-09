@@ -8,7 +8,7 @@
   import GameLine from "../../components/GameLine.vue";
   import GameCard from '../../components/GameCard.vue';
   import GameLineHeader from '../../components/GameLineHeader.vue';
-  import {getAuthor, getName} from "../../util/GemeUtil.js";
+  import {getAuthor, getName, getAuthorList} from "../../util/GemeUtil.js";
   import {parseVer} from "../../util/Misc.js";
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
@@ -247,7 +247,7 @@
     }
     
     defaultSort();
-
+    checkUrlGameParam();
     /* // 收集所有链接
     const allLinks = [];
     for (const entry of games.value) {
@@ -260,6 +260,30 @@
     }
     console.log(allLinks); // 这里是所有作品所有版本的 file_url_zh */
   });
+
+  const getGameSlug = (entry, language) => {
+    const name = getName(entry, language);
+    const author = getAuthorList(entry);
+    const authorStr = Array.isArray(author) ? author.join('-') : author;
+    const slug = `${name}-${authorStr}`.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '');
+    return slug;
+  };
+
+  const checkUrlGameParam = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameSlug = urlParams.get('game');
+    if (!gameSlug) return;
+
+    const found = games.value.find(entry => {
+      const slugZh = getGameSlug(entry, 'zh');
+      const slugEn = getGameSlug(entry, 'en');
+      return slugZh === gameSlug || slugEn === gameSlug;
+    });
+
+    if (found) {
+      selectedGameDetail.value = found;
+    }
+  };
 
   const selectedDownload = ref(null); // For download modal.
   const selectedVideo = ref(null); // For download modal.

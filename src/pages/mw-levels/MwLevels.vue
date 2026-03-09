@@ -142,16 +142,40 @@
       games.value.push(entry);
     }
     games.value.sort((a, b) => b.date - a.date)
+    checkUrlGameParam();
   });
 
-  const getGameImage = (game) => {
-    return imageResolver.resolve(game);
+  const getGameSlug = (entry) => {
+    const name = entry.game;
+    const author = getStrFromList(entry.author);
+    const authorStr = Array.isArray(author) ? author.join('-') : author;
+    const slug = `${name}-${authorStr}`.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '');
+    return slug;
+  };
+
+  const checkUrlGameParam = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameSlug = urlParams.get('game');
+    if (!gameSlug) return;
+
+    const found = games.value.find(entry => {
+      const slug = getGameSlug(entry);
+      return slug === gameSlug;
+    });
+
+    if (found) {
+      selectedGameDetail.value = found;
+    }
   };
 
   const selectedDownload = ref(null); // For download modal.
   const selectedVideo = ref(null); // For download modal.
   const tiebaDialog = ref(null); // For tieba dialog.
   const selectedGameDetail = ref(null); // For game detail modal.
+
+  const getGameImage = (game) => {
+    return imageResolver.resolve(game);
+  };
 
   watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newDownload, newVideo, newTieba, newGameDetail]) => {
     if (newDownload || newVideo || newTieba || newGameDetail) {

@@ -469,12 +469,37 @@
       document.documentElement.classList.add('modal-open');
       document.body.classList.add('modal-open');
       disableScroll();
+      updateUrl();
     } else {
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
       enableScroll();
+      clearUrl();
     }
   });
+
+  const getGameSlug = () => {
+    if (!props.game) return null;
+    const name = getName(props.game, props.lan);
+    const author = getAuthorList(props.game);
+    const authorStr = Array.isArray(author) ? author.join('-') : author;
+    const slug = `${name}-${authorStr}`.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '');
+    return slug;
+  };
+
+  const updateUrl = () => {
+    const slug = getGameSlug();
+    if (!slug) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('game', slug);
+    window.history.replaceState({}, '', url.toString());
+  };
+
+  const clearUrl = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('game');
+    window.history.replaceState({}, '', url.toString());
+  };
 
   const openImagePreview = (url, index) => {
     previewImageUrl.value = url;
