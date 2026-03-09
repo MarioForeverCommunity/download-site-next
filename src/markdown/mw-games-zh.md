@@ -13,14 +13,11 @@
 
 游玩作品前需要先下载 Super Mario Worker Project。SMWP 下载页包含所有可用的版本，建议下载最新版；作品列表中的 SMWP 版本号旁也有对应版本的下载按钮。不要忘记下载并解压音乐包！
 
-<a class="md-button" target="_blank" href="https://smwp.marioforever.net/downloads/">Super Mario Worker Project 下载页</a>
-<a class="md-button" target="_blank" href="https://file.marioforever.net/smwp/Data.7z">最新版 Super Mario Worker Project 音乐包</a>
+<a class="md-button" target="_blank" href="https://smwp.marioforever.net/downloads/">Super Mario Worker Project 下载页</a><a class="md-button" target="_blank" href="https://file.marioforever.net/smwp/Data.7z">最新版 Super Mario Worker Project 音乐包</a>
 
 为方便玩家，特别整理提供 Mario Worker 作品合集，合集内包含大部分不附带 Mario Worker 本体的作品。
 
-<a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/SMWP%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${smwpCollDate}.7z`">SMWP 作品合集（截止至 {{smwpCollDate.slice(0, 4)}}-{{smwpCollDate.slice(4, 6)}}-{{smwpCollDate.slice(6, 8)}}）</a>
-<a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW4.4%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${mwCollDate}.7z`">MW4.4 作品合集（截止至 {{mwCollDate.slice(0, 4)}}-{{mwCollDate.slice(4, 6)}}-{{mwCollDate.slice(6, 8)}}）</a>
-<a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW%E6%9D%AF%E7%9B%B8%E5%85%B3%E6%B1%87%E6%80%BB${mwCupCollDate}.7z`">MW 杯相关合集（截止至 {{mwCupCollDate.slice(0, 4)}}-{{mwCupCollDate.slice(4, 6)}}-{{mwCupCollDate.slice(6, 8)}}）</a>
+<a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/SMWP%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${smwpCollDate}.7z`">SMWP 作品合集（截止至 {{smwpCollDate.slice(0, 4)}}-{{smwpCollDate.slice(4, 6)}}-{{smwpCollDate.slice(6, 8)}}）</a><a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW4.4%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${mwCollDate}.7z`">MW4.4 作品合集（截止至 {{mwCollDate.slice(0, 4)}}-{{mwCollDate.slice(4, 6)}}-{{mwCollDate.slice(6, 8)}}）</a><a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW%E6%9D%AF%E7%9B%B8%E5%85%B3%E6%B1%87%E6%80%BB${mwCupCollDate}.7z`">MW 杯相关合集（截止至 {{mwCupCollDate.slice(0, 4)}}-{{mwCupCollDate.slice(4, 6)}}-{{mwCupCollDate.slice(6, 8)}}）</a>
 
 你也可以到 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载 Mario Worker 相关资源，同时本页面提供 Mario Worker 资源备用地址以备不时之需（**备用地址下载需登录 123 云盘账号**）。
 
