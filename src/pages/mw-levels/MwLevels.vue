@@ -10,7 +10,7 @@
   import GameLineHeader from '../../components/GameLineHeader.vue';
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
-  import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList} from "../../util/GemeUtil.js"
+  import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
   import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
@@ -243,8 +243,8 @@
   const filteredGames = computed(() => {
     let result = games.value.filter((a) => 
       (
-        (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
-        || (filter_option.value.name.trim() == "" || a.author.toUpperCase().match(filter_option.value.name.trim().toUpperCase()))
+        (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+        || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
         || filterList(filter_option.value.name.trim(), a.alias)
         || (Array.isArray(a.file_name)
             ? a.file_name.some(fn => fn && fn.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
