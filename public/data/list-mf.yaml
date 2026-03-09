@@ -1022,6 +1022,7 @@
   author: Alexandro Games
   author_alt:
   type: international
+  homepage_en: https://alexandrogames.altervista.org/
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -1866,6 +1867,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  homepage_en: https://mfce.rnx.su/
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   ver:
@@ -10667,12 +10669,13 @@
   author: TheMarioVariable
   author_alt:
   type: international
+  homepage_en: https://www.themariovariable.org/mario-forever/mario-forever-hardcore-dystopia/
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Hardcore_Dystopia
   ver: v2.01
   ver_alt:
   date: 2021-10-03
-  source_url: https://www.themariovariable.org/mario-forever/mario-forever-hardcore-dystopia/
+  source_url: https://www.youtube.com/watch?v=tC4GPDXygIs
   source_url_alt:
   download_url: https://www.mediafire.com/file/1jy97w1w9vbvevc/MF_-_H%2Ardc%2Ar%2A_Dystopia_v2.01.rar/file
   code:
@@ -12376,6 +12379,7 @@
   author: TheMarioVariable
   author_alt:
   type: international
+  homepage_en: https://www.themariovariable.org/mario-forever/mario-forever-remake/
   wiki_zh_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Remake
   ver:
@@ -12383,7 +12387,7 @@
       ver_alt:
       date: 2021-01-10
       current: true
-      source_url: https://www.themariovariable.org/mario-forever/mario-forever-remake/
+      source_url: ~https://www.youtube.com/watch?v=WXdPjiyatMw
       source_url_alt:
       download_url: https://www.mediafire.com/file/y6gkzn4uq3b1p6x/MFRemake_v4.02_%2528direct_3d_9%2529.rar/file
       code:
@@ -12394,7 +12398,7 @@
       ver_alt:
       date: 2021-01-10
       current: true
-      source_url: https://www.themariovariable.org/mario-forever/mario-forever-remake/
+      source_url: ~https://www.youtube.com/watch?v=WXdPjiyatMw
       source_url_alt:
       download_url: https://www.mediafire.com/file/2o1sxkbu2r5chyn/MFRemake_v4.02.rar/file
       code:
@@ -12404,7 +12408,7 @@
   - v4.01 (D3D9):
       ver_alt:
       date: 2021-01-09
-      source_url: https://www.themariovariable.org/mario-forever/mario-forever-remake/
+      source_url: ~https://www.youtube.com/watch?v=WXdPjiyatMw
       source_url_alt:
       download_url:
       code:
@@ -12414,7 +12418,7 @@
   - v4.01:
       ver_alt:
       date: 2021-01-09
-      source_url: https://www.themariovariable.org/mario-forever/mario-forever-remake/
+      source_url: ~https://www.youtube.com/watch?v=WXdPjiyatMw
       source_url_alt:
       download_url:
       code:
@@ -12424,7 +12428,7 @@
   - v4.0:
       ver_alt:
       date: 2021-01-07
-      source_url: https://www.themariovariable.org/mario-forever/mario-forever-remake/
+      source_url: ~https://www.youtube.com/watch?v=WXdPjiyatMw
       source_url_alt:
       download_url:
       code:
@@ -15364,6 +15368,8 @@
   author: INNOVATION LEAP
   author_alt:
   type: chinese
+  homepage_zh: https://inleap.marioforever.net/cn/legend-world-remake/
+  homepage_en: https://inleap.marioforever.net/en/legend-world-remake/
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Legend_World_Remake
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Legend_World_Remake
   video_zh:
@@ -16354,6 +16360,7 @@
   author: Alexandro Games
   author_alt:
   type: international
+  homepage_en: https://alexandrogames.altervista.org/
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -17249,6 +17256,7 @@
   author: Alexandro Games
   author_alt:
   type: international
+  homepage_en: https://alexandrogames.altervista.org/
   wiki_zh_url:
   wiki_en_url:
   ver:

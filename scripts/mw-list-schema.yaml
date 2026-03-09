@@ -78,6 +78,10 @@ definitions:
         oneOf:
         - type: 'null'
         - type: string
+      homepage:
+        anyOf:
+          - type: 'null'
+          - type: string
     required:
       - author
       - date

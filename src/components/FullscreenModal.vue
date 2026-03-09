@@ -164,6 +164,27 @@
     return props.game.repo;
   });
 
+  const authorHomepage = computed(() => {
+    if (!props.game) return null;
+    
+    if (isMwLevel.value) {
+      return props.game.homepage || null;
+    }
+    
+    const homepageZh = props.game.homepage_zh;
+    const homepageEn = props.game.homepage_en;
+    
+    if (props.lan === 'zh') {
+      if (homepageZh) return homepageZh;
+      if (homepageEn) return homepageEn;
+      return null;
+    } else {
+      if (homepageEn) return homepageEn;
+      if (homepageZh) return homepageZh;
+      return null;
+    }
+  });
+
   const authors = computed(() => {
     if (!props.game) return [];
     const authorList = getAuthorList(props.game, props.lan);
@@ -479,6 +500,15 @@
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无发布链接' : 'No source links available' }}</p>
           </div>
           
+          <div v-if="authorHomepage" class="content-section">
+            <h3 class="section-title">{{ lan === 'zh' ? '作者主页' : "Author's homepage" }}</h3>
+            <ul class="homepage-list">
+              <li>
+                <a :href="authorHomepage" target="_blank" class="homepage-link">{{ authorHomepage }}</a>
+              </li>
+            </ul>
+          </div>
+          
           <div v-if="repoUrl" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '开源地址' : 'Repository' }}</h3>
             <ul class="repo-list">
@@ -748,7 +778,8 @@
   .author-list,
   .date-list,
   .video-list,
-  .wiki-list {
+  .wiki-list,
+  .homepage-list {
     list-style: disc;
     padding-left: 1.5em;
     margin: 0;
@@ -770,7 +801,8 @@
   .date-list li,
   .download-list li,
   .video-list li,
-  .wiki-list li {
+  .wiki-list li,
+  .homepage-list li {
     padding: 0.2em 0;
     line-height: 1.3;
   }
@@ -787,6 +819,7 @@
   .download-link,
   .video-link,
   .wiki-link,
+  .homepage-link,
   .repo-link {
     text-decoration: none;
     word-break: break-all;
@@ -796,6 +829,7 @@
   .video-link:hover,
   .wiki-link:hover,
   .download-link:hover,
+  .homepage-link:hover,
   .repo-link:hover {
     text-decoration: underline;
   }
@@ -1053,6 +1087,7 @@
   body.dark .download-link,
   body.dark .video-link,
   body.dark .wiki-link,
+  body.dark .homepage-link,
   body.dark .repo-link {
     color: #4da3ff;
   }

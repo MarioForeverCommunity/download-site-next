@@ -50,6 +50,14 @@ definitions:
           oneOf:
           - type: 'null'
           - type: string
+        homepage_zh:
+          oneOf:
+          - type: 'null'
+          - type: string
+        homepage_en:
+          oneOf:
+          - type: 'null'
+          - type: string
         image:
           oneOf:
           - type: 'null'
