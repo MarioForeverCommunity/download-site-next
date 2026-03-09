@@ -4,11 +4,13 @@ on:
   pull_request:
     branches: [ main, next ]
     paths:
-      - public/lists/**
+      - public/data/list-mf.yaml
+      - public/data/list-mw.yaml
   push: 
     branches: [ main, next ]
     paths:
-      - public/lists/**
+      - public/data/list-mf.yaml
+      - public/data/list-mw.yaml
 
 jobs:
   build:

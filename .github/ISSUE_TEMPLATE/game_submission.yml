@@ -13,8 +13,8 @@ body:
       label: "提交至哪个列表 / Target list"
       description: "请选择该作品应收录的列表 / Choose which list this submission belongs to."
       options:
-        - "Mario Forever (public/lists/list-mf.yaml)"
-        - "Super Mario Worker Project (public/lists/list-mw.yaml)"
+        - "Mario Forever (public/data/list-mf.yaml)"
+        - "Super Mario Worker Project (public/data/list-mw.yaml)"
     validations:
       required: true
   - type: input

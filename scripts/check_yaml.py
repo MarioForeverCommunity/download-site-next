@@ -62,7 +62,7 @@ class MFListTest(TestCase):
         load_mf_schema()
         self.assertTrue(os.path.isdir(ROOT))
         try:
-            mf_list_path = os.path.join(ROOT, 'public', 'lists', 'list-mf.yaml')
+            mf_list_path = os.path.join(ROOT, 'public', 'data', 'list-mf.yaml')
             mf_list_file = open(mf_list_path, 'r', encoding="utf-8")
         except Exception:
             self.fail(msg='Cannot open the list-mf.yaml file.')
@@ -82,7 +82,7 @@ class MWListTest(TestCase):
         load_mw_schema()
         self.assertTrue(os.path.isdir(ROOT))
         try:
-            mw_list_path = os.path.join(ROOT, 'public', 'lists', 'list-mw.yaml')
+            mw_list_path = os.path.join(ROOT, 'public', 'data', 'list-mw.yaml')
             mw_list_file = open(mw_list_path, 'r', encoding="utf-8")
         except Exception:
             self.fail(msg='Cannot open the list-mf.yaml file.')

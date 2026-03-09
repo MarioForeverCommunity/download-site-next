@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 
 const publicDir = join(__dirname, '..', 'public');
 const imagesDir = join(publicDir, 'data');
-const listsDir = join(publicDir, 'lists');
+const listsDir = join(publicDir, 'data');
 const outputDir = join(publicDir, 'data');
 const outputFile = join(outputDir, 'image-index.json');
 

@@ -45,7 +45,7 @@ This repository includes lists of Mario Forever and Super Mario Worker Project g
 
 ### Mario Forever Game List
 
-The Mario Forever game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/lists/list-mf.yaml`. Some games may have multiple versions with different download links, so there is a slight difference in the format of single-version and multi-version games. Here is an example of a single-version game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
+The Mario Forever game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/data/list-mf.yaml`. Some games may have multiple versions with different download links, so there is a slight difference in the format of single-version and multi-version games. Here is an example of a single-version game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
 
 ```yaml
 - game: Mario Forever - A Fabulous Space
@@ -57,7 +57,6 @@ The Mario Forever game list is written in yaml (a data format that is easy for h
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  image: AFS.png
   ver: v3.0
   ver_alt: v3.0
   date: 2017-06-26
@@ -102,7 +101,6 @@ Here is an example of a multi-version game:
       download_url_alt:
       file_name: MF LNY 2022 v3.0.rar
       file_url:
-      image: LNY2022 v3.0.png
   - v2.0:
       ver_alt:
       date: 2023-01-22
@@ -113,7 +111,6 @@ Here is an example of a multi-version game:
       download_url_alt:
       file_name: LNY 2022 v2.0.rar
       file_url:
-      image: LNY2022 v2.0.png
 ```
 
 Below are the meanings of each field. Since the site includes both Chinese and English versions, we use `_alt`, `_zh`, `_en` fields for multi-language support.
@@ -134,7 +131,6 @@ Below are the meanings of each field. Since the site includes both Chinese and E
 | `video_zh` | No | Dictionary List | Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
 | `video_en` | No | Dictionary List | Videos related to the game uploaded by other players, located on English pages or mainly in English, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
 | `repo` | No | String | The source code repository url of the game. |
-| `image` | No | String | The cover image of the game. The image file should be located in `public/image/mf-games/`. |
 | `ver` | No | String (Single Version) <br>Version List (Multiple Versions) | The version name of the game. Generally, different language versions of a game, different updates, different branch versions (such as difficult and easy versions), and a single world version of a collection are considered different versions of a game. <br>For single-version or games with only one version included in the list, `ver` can be empty or the name of the current version. <br>For multi-version games, `ver` needs to be a dictionary list, with dictionary names as version names, and the value of each dictionary item. |
 
 The following fields are for a specific version. For single-version games, please fill in the fields directly for the game; for multi-version games, please refer to the example for multi-version games and fill in the following information for each version in the version list.
@@ -155,11 +151,10 @@ The following fields are for a specific version. For single-version games, pleas
 | `data_download_url` | No | String | If the game includes a data package separated from the game itself (such as music), please fill in the download link of the data package here. |
 | `data_file_name` | No | String | The file name of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 | `data_file_url` | No | String | The complete link of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
-| `image` | No | String | The cover image of the game for this version. The image file should be located in `public/image/mf-games/`. |
 
 ### Super Mario Worker Project Game List
 
-The Super Mario Worker Project game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/lists/list-mw.yaml`. Since SMWP is usually popular in the Chinese MF community, the game list only provides the display for the Chinese page, and does not support English. Here is an example of an SMWP game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
+The Super Mario Worker Project game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/data/list-mw.yaml`. Since SMWP is usually popular in the Chinese MF community, the game list only provides the display for the Chinese page, and does not support English. Here is an example of an SMWP game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
 
 ```yaml
 - game: A Day Out(S2简化版)
@@ -181,7 +176,7 @@ Below are the meanings of each field.
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
 | `game` | **Yes** | String | The name of the game. |
-| `author` | **Yes** | String | The name of the author. If there are multiple authors, please fill in `合作作品`. |
+| `author` | **Yes** | String | The name of the author. Multiple authors is allowed. |
 | `smwp_ver` | No | String | The version number of SMWP used in the game. If the game includes the use of multiple SMWP versions or involves other complex situations, it can be left blank. |
 | `date` | **Yes** | Date | The release date of the game. Please use the "YYYY-MM-DD" format for software parsing. |
 | `description` | No | String | The description of the game **on the game list**. |

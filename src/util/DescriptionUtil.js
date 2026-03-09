@@ -17,7 +17,7 @@ async function loadYamlList(category) {
   const listFile = category === 'mw-levels' ? 'list-mw.yaml' : 'list-mf.yaml';
   
   try {
-    const response = await axios.get(`/lists/${listFile}`);
+    const response = await axios.get(`/data/${listFile}`);
     if (response.status === 200) {
       const list = yaml.load(response.data) || [];
       listCache[category] = list;

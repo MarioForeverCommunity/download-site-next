@@ -95,7 +95,7 @@
   };
 
   const fetchYamlUpdate = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Flists%2Flist-assets.yaml&page=1&per_page=1").then((response) => {
+    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-assets.yaml&page=1&per_page=1").then((response) => {
       yamlUpdateDate.value = response.data[0].commit.committer.date;
     });
   };

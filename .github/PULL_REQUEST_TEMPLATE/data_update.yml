@@ -1,19 +1,19 @@
 name: "数据文件更新 / Data File Update"
-description: "用于更新数据列表（public/lists/list-mf.yaml 或 public/lists/list-mw.yaml）的 Pull Request 表单 / Pull request form for updating the data lists (public/lists/list-mf.yaml or public/lists/list-mw.yaml)"
+description: "用于更新数据列表（public/data/list-mf.yaml 或 public/data/list-mw.yaml）的 Pull Request 表单 / Pull request form for updating the data lists (public/data/list-mf.yaml or public/data/list-mw.yaml)"
 title: "[Data Update] <范围/条目简述 / Scope or entry summary>"
 body:
   - type: markdown
     attributes:
       value: |
         请使用此表单提交对数据文件的更新，便于我们快速核对与合并。/ Use this form to submit updates to the data lists so we can review and merge faster.
-        目标文件：public/lists/list-mf.yaml（Mario Forever）或 public/lists/list-mw.yaml（Super Mario Worker Project）。/ Target files: public/lists/list-mf.yaml (MF) or public/lists/list-mw.yaml (SMWP).
+        目标文件：public/data/list-mf.yaml（Mario Forever）或 public/data/list-mw.yaml（Super Mario Worker Project）。/ Target files: public/data/list-mf.yaml (MF) or public/data/list-mw.yaml (SMWP).
   - type: dropdown
     id: target_list
     attributes:
       label: "涉及的列表 / Target list"
       options:
-        - "Mario Forever (public/lists/list-mf.yaml)"
-        - "Super Mario Worker Project (public/lists/list-mw.yaml)"
+        - "Mario Forever (public/data/list-mf.yaml)"
+        - "Super Mario Worker Project (public/data/list-mw.yaml)"
     validations:
       required: true
   - type: checkboxes
