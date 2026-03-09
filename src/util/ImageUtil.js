@@ -11,6 +11,7 @@ const REGEX = {
   titleVersion: /^title_(.+)\.[^.]+$/i,
   titleImage: /^title_.+\.[^.]+$/i,
   titleSimple: /^title\.[a-z]+$/i,
+  logoImage: /^logo\.[a-z]+$/i,
   showcase: /^showcase_.+\.[^.]+$/i
 };
 
@@ -65,6 +66,13 @@ function findTitleImage(images) {
   
   const titleImage = images.find(img => REGEX.titleSimple.test(img.toLowerCase()));
   return titleImage || null;
+}
+
+function findLogoImage(images) {
+  if (!images || images.length === 0) return null;
+  
+  const logoImage = images.find(img => REGEX.logoImage.test(img.toLowerCase()));
+  return logoImage || null;
 }
 
 function getFirstImageByAlpha(images) {
@@ -205,6 +213,94 @@ export function getShowcaseImagesSync(game, category = 'mf-games') {
     return [];
   }
   return getShowcaseImagesInternal(game, category);
+}
+
+function getModalImagePath(game, category) {
+  if (!game) return null;
+  
+  const gameName = game.game;
+  if (!gameName) return null;
+  
+  const gameMapping = imageIndex?.[category];
+  if (!gameMapping) return null;
+  
+  const gameInfo = gameMapping[gameName];
+  if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
+  
+  const images = gameInfo.images;
+  const dirName = gameInfo.dirName;
+  
+  let imagePath = findLogoImage(images);
+  
+  if (!imagePath) {
+    imagePath = findTitleImage(images);
+  }
+  
+  if (!imagePath) {
+    imagePath = getFirstImageByAlpha(images);
+  }
+  
+  if (!imagePath) return null;
+  
+  return `/data/${category}/${dirName}/${imagePath}`;
+}
+
+export function getModalImageSync(game, category = 'mf-games') {
+  if (!imageIndex) {
+    return null;
+  }
+  return getModalImagePath(game, category);
+}
+
+function getTitleImagePath(game, category) {
+  if (!game) return null;
+  
+  const gameName = game.game;
+  if (!gameName) return null;
+  
+  const gameMapping = imageIndex?.[category];
+  if (!gameMapping) return null;
+  
+  const gameInfo = gameMapping[gameName];
+  if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
+  
+  const images = gameInfo.images;
+  const dirName = gameInfo.dirName;
+  
+  const titlePath = findTitleImage(images);
+  if (!titlePath) return null;
+  
+  return `/data/${category}/${dirName}/${titlePath}`;
+}
+
+export function getTitleImageSync(game, category = 'mf-games') {
+  if (!imageIndex) {
+    return null;
+  }
+  return getTitleImagePath(game, category);
+}
+
+function hasLogoImage(game, category) {
+  if (!game) return false;
+  
+  const gameName = game.game;
+  if (!gameName) return false;
+  
+  const gameMapping = imageIndex?.[category];
+  if (!gameMapping) return false;
+  
+  const gameInfo = gameMapping[gameName];
+  if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return false;
+  
+  const images = gameInfo.images;
+  return !!findLogoImage(images);
+}
+
+export function hasLogoImageSync(game, category = 'mf-games') {
+  if (!imageIndex) {
+    return false;
+  }
+  return hasLogoImage(game, category);
 }
 
 export function createGameImageResolver(category) {

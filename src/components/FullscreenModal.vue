@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed, watch } from 'vue';
   import { getName, getAuthorList, getDataResourceURL } from '../util/GemeUtil.js';
-  import { getGameImageSync, getShowcaseImagesSync } from '../util/ImageUtil.js';
+  import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync } from '../util/ImageUtil.js';
   import { loadDescription } from '../util/DescriptionUtil.js';
   import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
   import MarkdownIt from 'markdown-it';
@@ -54,12 +54,24 @@
 
   const titleImage = computed(() => {
     if (!props.game) return null;
-    return getGameImageSync(props.game, props.category);
+    return getModalImageSync(props.game, props.category);
   });
 
   const showcaseImages = computed(() => {
     if (!props.game) return [];
-    return getShowcaseImagesSync(props.game, props.category);
+    
+    const showcases = getShowcaseImagesSync(props.game, props.category);
+    const titleImage = getTitleImageSync(props.game, props.category);
+    const hasLogo = hasLogoImageSync(props.game, props.category);
+    
+    if (hasLogo && titleImage) {
+      const titleInShowcases = showcases.some(img => img.url === titleImage);
+      if (!titleInShowcases) {
+        return [{ url: titleImage, name: 'title' }, ...showcases];
+      }
+    }
+    
+    return showcases;
   });
 
   const sourceUrls = computed(() => {
