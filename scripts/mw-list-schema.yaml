@@ -42,6 +42,20 @@ definitions:
         anyOf:
           - type: 'null'
           - type: string
+      data_download_url:
+        anyOf:
+          - type: 'null'
+          - type: string
+      data_code:
+        anyOf:
+          - type: 'null'
+          - type: string
+      data_file_name:
+        $ref: '#/definitions/FileName'
+      data_file_url:
+        anyOf:
+          - type: 'null'
+          - type: string
       has_bgm:
         anyOf:
           - type: 'null'

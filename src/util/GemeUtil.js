@@ -93,12 +93,12 @@ function getDownloadCodeForLink(item, link) {
     return null;
 }
 
-function getDownloadInfo(item, link, lan) {
+export function getDownloadInfo(item, link, lan) {
     if (!link) {
         return null;
     }
-    const invalid = getDownloadInvalidFlag(item, link);
-    const code = getDownloadCodeForLink(item, link);
+    const invalid = item ? getDownloadInvalidFlag(item, link) : false;
+    const code = item ? getDownloadCodeForLink(item, link) : null;
     for (var entry of downloadName) {
         if (link.match(entry.domain)) {
             var desc = lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
@@ -305,4 +305,83 @@ export function filterList(target, aliasList) {
         }
     }
     return false;
+}
+
+export function processFileNamesWithVolumes(fileNames) {
+    if (!fileNames || !Array.isArray(fileNames)) {
+        return fileNames ? [processSingleFileName(fileNames)] : [];
+    }
+    
+    const processed = fileNames.map((fn, idx) => {
+        if (fn == null) return null;
+        return {
+            original: fn,
+            index: idx
+        };
+    }).filter(item => item !== null);
+    
+    const displayNames = processed.map(item => {
+        let displayName = item.original.split('/').pop();
+        displayName = removeExtensions(displayName);
+        try {
+            displayName = decodeURIComponent(displayName);
+        } catch(e) {
+            // Ignore decodeURIComponent errors
+        }
+        return { ...item, displayName };
+    });
+    
+    const nameGroups = new Map();
+    displayNames.forEach((item, i) => {
+        const baseName = getBaseNameWithoutVolume(item.displayName);
+        if (!nameGroups.has(baseName)) {
+            nameGroups.set(baseName, []);
+        }
+        nameGroups.get(baseName).push({ ...item, originalIndex: i });
+    });
+    
+    const result = new Array(displayNames.length);
+    
+    nameGroups.forEach((group, baseName) => {
+        if (group.length > 1) {
+            const volumePattern = /\.(7z|rar|zip)\.(\d+)$/i;
+            group.forEach(item => {
+                const match = item.original.match(volumePattern);
+                if (match) {
+                    const volumeNum = parseInt(match[2], 10);
+                    result[item.originalIndex] = `${baseName} (分卷 ${volumeNum})`;
+                } else {
+                    result[item.originalIndex] = item.displayName;
+                }
+            });
+        } else {
+            result[group[0].originalIndex] = group[0].displayName;
+        }
+    });
+    
+    return result;
+}
+
+function processSingleFileName(fileName) {
+    let displayName = fileName.split('/').pop();
+    displayName = removeExtensions(displayName);
+    try {
+        displayName = decodeURIComponent(displayName);
+    } catch(e) {
+        // Ignore decodeURIComponent errors
+    }
+    return displayName;
+}
+
+function removeExtensions(fileName) {
+    const volumePattern = /\.(7z|rar|zip)\.\d+$/i;
+    if (volumePattern.test(fileName)) {
+        return fileName.replace(volumePattern, '');
+    }
+    return fileName.replace(/\.[^.]*$/, '');
+}
+
+function getBaseNameWithoutVolume(displayName) {
+    const volumePattern = /\s*\(分卷 \d+\)$/;
+    return displayName.replace(volumePattern, '');
 }

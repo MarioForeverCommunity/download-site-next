@@ -10,7 +10,7 @@
   import GameLineHeader from '../../components/GameLineHeader.vue';
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
   import introZh from '../../markdown/mw-games-zh.md';
-  import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList} from "../../util/GemeUtil.js"
+  import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
   import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
@@ -54,20 +54,14 @@
         if (Array.isArray(entry.file_name)) {
           entry.file_urls = [];
           // For array, we generate all download links and give each link a name.
-          for (var file_name_entry of entry.file_name) {
+          const displayNames = processFileNamesWithVolumes(entry.file_name);
+          for (var i = 0; i < entry.file_name.length; i++) {
+            var file_name_entry = entry.file_name[i];
             if (file_name_entry == null) {
               continue;
             }
-            // Extract only the filename after the last slash for display
-            var displayFileName = file_name_entry.split('/').pop();
-            displayFileName = displayFileName.replace(/\.[^.]*$/, "");
-            try {
-              displayFileName = decodeURIComponent(displayFileName);
-            } catch(e) {
-              // Ignore decodeURIComponent errors
-            }
             entry.file_urls.push({
-              name: `社区资源站（${displayFileName}）`,
+              name: `社区资源站 (${displayNames[i]})`,
               url: generateResourceUrl(entry, file_name_entry)
             });
           }
@@ -86,6 +80,36 @@
         }
       }
 
+      // Generate data file URLs if data_file_name is provided.
+      if (!entry.data_file_url) {
+        if (entry.data_file_name) {
+          if (Array.isArray(entry.data_file_name)) {
+            entry.data_file_urls = [];
+            const displayNames = processFileNamesWithVolumes(entry.data_file_name);
+            for (var j = 0; j < entry.data_file_name.length; j++) {
+              var data_file_name_entry = entry.data_file_name[j];
+              if (data_file_name_entry == null) {
+                continue;
+              }
+              entry.data_file_urls.push({
+                name: `社区资源站 (${displayNames[j]})`,
+                url: generateResourceUrl(entry, data_file_name_entry)
+              });
+            }
+          } else {
+            entry.data_file_urls = [{
+              name: "社区资源站",
+              url: generateResourceUrl(entry, entry.data_file_name)
+            }];
+          }
+        }
+      } else {
+        entry.data_file_urls = [{
+          name: `社区资源站`,
+          url: entry.data_file_url
+        }];
+      }
+
       // For compability, we still have a "fake" currentVer field.
       entry.currentVer = {
         code : entry.code,
@@ -93,6 +117,11 @@
         download_url : entry.download_url,
         file_url : entry.file_url,
         source_url : entry.source_url,
+        data_file_name : entry.data_file_name,
+        data_file_url : entry.data_file_url,
+        data_file_urls : entry.data_file_urls,
+        data_download_url : entry.data_download_url,
+        data_code : entry.data_code,
       }
 
       // Check validity of urls.
@@ -479,6 +508,23 @@
           <a class="download" v-if="getDownloadLink(selectedDownload, 'zh')" :href="getDownloadLink(selectedDownload, 'zh')" target="_blank">{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, 'zh')" :code="getDownloadCode(selectedDownload, 'zh')" lan="zh"></ClipboardButton>
         </div>
+        <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
+          <span>下载 {{ selectedDownload.game }} 数据包</span>
+        </div>
+        <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line">
+          <span v-if="selectedDownload.currentVer.data_file_urls">
+            <a class="download" v-for="url in selectedDownload.currentVer.data_file_urls" :key="url.url" :href="url.url" target="_blank">{{ url.name }}</a>
+          </span>
+          <template v-if="selectedDownload.currentVer.data_download_url">
+            <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
+              {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, 'zh').desc }}
+              <template v-if="selectedDownload.currentVer.data_code">
+                (提取码: {{ selectedDownload.currentVer.data_code }})
+              </template>
+            </a>
+            <ClipboardButton v-if="selectedDownload.currentVer.data_code" :code="selectedDownload.currentVer.data_code" lan="zh" style="margin-left:2px;" />
+          </template>
+        </div>
       </div>
     </div>
   </Transition>
@@ -489,7 +535,7 @@
         <div>
           相关视频：{{ getName(selectedVideo, "zh") }}
           <p v-for="video in selectedVideo.video" :key="Object.keys(video)[0]">
-            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], "zh") }}）</a>
+            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], "zh") }})</a>
           </p>
         </div>
       </div>

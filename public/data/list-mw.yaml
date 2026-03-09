@@ -131,10 +131,12 @@
   download_url:
   code:
   has_bgm: true
-  file_name:
-  - 金芒山 (2).smws
-  - 金芒山音乐包.zip
+  file_name: 金芒山 (2).smws
   file_url:
+  data_download_url: https://pan.baidu.com/s/1PExdKL2iCfETcMiQxzFWrA?pwd=bdsy 
+  data_code: bdsy
+  data_file_name: 金芒山音乐包.zip
+  data_file_url:
 - game: Mldsdt Map Origin（完全翻新版）
   author: 玛丽的死对头
   smwp_ver: v1.7.11
@@ -375,6 +377,8 @@
   has_bgm: true
   file_name: YMS作品合集/
   file_url:
+  data_file_name: YMS作品合集/25.1.13音乐集.zip
+  data_file_url:
 - game: Green Sweet SMWP 关卡精选集
   author: 绿色的糖果
   smwp_ver:
@@ -603,13 +607,20 @@
   author: '1168438795'
   smwp_ver: v1.7.10
   date: 2024-06-09
+  homepage: http://20xx.top/
   source_url: https://www.marioforever.net/thread-2000-1-1.html
-  download_url: http://20xx.top
+  download_url: https://zh.wsw233.com/files/view?f=ynefv6
   code:
   has_bundled_smwp: true
   has_bgm: true
-  file_name: 20XX/
+  file_name: 
+  - 20XX/20XX专用MW.7z
+  - 20XX/20XX_WorldA.smws
   file_url:
+  data_download_url: https://zh.wsw233.com/files/view?f=dlt2pr
+  data_code: 
+  data_file_name: 20XX/20XX音乐包.7z
+  data_file_url:
 - game: Welcome back to Marioworker Bar 2024
   alias:
   - 高考回归2024
@@ -1977,6 +1988,8 @@
   file_name: Fahlee-Album6(20210627fix)/
   file_url:
 - game: Terraria
+  alias:
+  - 泰拉瑞亚
   author: 把僵尸炖了
   description: 音乐包可选
   smwp_ver: v1.7.6
@@ -1987,6 +2000,10 @@
   has_bgm: true
   file_name: Terraria/
   file_url:
+  data_file_name: 
+  - Terraria/音乐包（可选）.7z.001
+  - Terraria/音乐包（可选）.7z.002
+  data_file_url:
 - game: For lz - Silent Traveller
   author: '1168438795'
   description: 此为单关smwl版，请使用Welcome back to Marioworker Bar 2021自带的MW游玩

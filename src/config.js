@@ -201,7 +201,7 @@ export const downloadName = [
     "desc_en" : "file.marioforever.net"
   },
   {
-    "domain" : "pan.baidu.com",
+    "domain" : /(pan|yun)\.baidu\.com/,
     "desc_zh" : "百度网盘",
     "desc_en" : "Baidu Netdisk",
     "show_code" : true
@@ -213,12 +213,7 @@ export const downloadName = [
     "show_code" : true
   },
   {
-    "domain" : "ysepan.com",
-    "desc_zh" : "永硕 E 盘",
-    "desc_en" : "YSEpan"
-  },
-  {
-    "domain" : "ys168.com",
+    "domain" : /(ysepan|ys168)\.com/,
     "desc_zh" : "永硕 E 盘",
     "desc_en" : "YSEpan"
   },
@@ -270,6 +265,11 @@ export const downloadName = [
     "desc_en" : "TMV's website"
   },
   {
+    "domain" : "wsw233.com",
+    "desc_zh" : "秘帆文件站",
+    "desc_en" : "WSW Zone"
+  },
+  {
     "domain" : "easypaste.org",
     "desc_en" : "EasyPaste"
   },
@@ -282,13 +282,7 @@ export const downloadName = [
     "desc_en" : "Yandex"
   },
   {
-    "domain" : "123pan.com",
-    "desc_zh" : "123 云盘",
-    "desc_en" : "123Pan",
-    "show_code" : true
-  },
-  {
-    "domain" : /123\d{3}\.com/,
+    "domain" : /123(pan|\d{3})\.com/,
     "desc_zh" : "123 云盘",
     "desc_en" : "123Pan",
     "show_code" : true

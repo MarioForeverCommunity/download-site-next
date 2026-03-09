@@ -13,7 +13,7 @@
   import introZh from '../../markdown/mf-games-zh.md';
   import introEn from '../../markdown/mf-games-en.md';
   import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-  import {getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries} from "../../util/GemeUtil.js"
+  import {getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo} from "../../util/GemeUtil.js"
   import ClipboardButton from '../../components/ButtonClipboard.vue';
   import axios from 'axios';
   import Tooltip from '../../components/ToolTip.vue';
@@ -637,6 +637,13 @@
     return !hasFileMirror && !!getResourceURL(game, lan.value);
   }
 
+  function hasDataDownload(game) {
+    if (!game || !game.currentVer) {
+      return false;
+    }
+    return !!(game.currentVer.data_download_url || getDataResourceURL(game, lan.value));
+  }
+
 </script>
 
 <template>
@@ -824,18 +831,21 @@
               :lan="lan"
             ></ClipboardButton>
           </template>
+        </div>
+        <div v-if="hasDataDownload(selectedDownload)" class="button-line" style="margin-top: 8px;">
+          <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
+        </div>
+        <div v-if="hasDataDownload(selectedDownload)" class="button-line">
           <template v-if="selectedDownload.currentVer.data_download_url">
+            <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
+              {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
               <template v-if="selectedDownload.currentVer.data_code">
-                {{ lan == 'en' ? `Download Data (Code: ${selectedDownload.currentVer.data_code})` : `下载数据包 (提取码: ${selectedDownload.currentVer.data_code})` }}
-              </template>
-              <template v-else>
-                {{ lan == "en" ? "Download Data" : "下载数据包" }}
+                ({{ lan == 'en' ? `Code: ${selectedDownload.currentVer.data_code}` : `提取码: ${selectedDownload.currentVer.data_code}` }})
               </template>
             </a>
             <ClipboardButton v-if="selectedDownload.currentVer.data_code" :code="selectedDownload.currentVer.data_code" :lan="lan" style="margin-left:2px;" />
           </template>
-          <a class="download" v-if="getDataResourceURL(selectedDownload, lan)" :href="getDataResourceURL(selectedDownload, lan)" target="_blank">{{ lan == "en" ? "Download Data (file.marioforever.net)" : "下载数据包 (资源站)" }}</a>
         </div>
       </div>
     </div>
@@ -848,7 +858,7 @@
           {{ lan == 'en' ? "Related videos of " : "相关视频：" }}{{ getName(selectedVideo, lan) }}
           <div v-if="lan == 'zh'">
             <p v-for="video in selectedVideo.video_zh" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
-              <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }}（{{ getVideoDesc(Object.values(video)[0], lan) }}）</a>
+              <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
             </p>
           </div>
           <div v-if="lan == 'en'">

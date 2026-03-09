@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed, watch } from 'vue';
-  import { getName, getAuthorList, getDataResourceURL } from '../util/GemeUtil.js';
+  import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/GemeUtil.js';
   import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync } from '../util/ImageUtil.js';
   import { loadDescription } from '../util/DescriptionUtil.js';
   import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
@@ -289,14 +289,27 @@
     
     if (isMwLevel.value) {
       if (props.game.file_urls && props.game.file_urls.length > 0) {
-        return props.game.file_urls.map(item => {
+        const fileNames = props.game.file_name;
+        const isArray = Array.isArray(fileNames);
+        const displayNames = isArray ? processFileNamesWithVolumes(fileNames) : null;
+        
+        return props.game.file_urls.map((item, idx) => {
           const url = item.url || '';
           const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
+          
+          let version;
+          if (isArray && displayNames && displayNames[idx]) {
+            version = props.lan === 'zh' ? `下载 ${displayNames[idx]}` : `Download ${displayNames[idx]}`;
+          } else {
+            version = props.lan === 'zh' ? '下载作品' : 'Download';
+          }
+          
           return {
-            version: item.name || '下载',
+            version,
             url: url,
             isRepackaged: isRepackaged,
-            repacker: null
+            repacker: null,
+            isData: false
           };
         });
       }
@@ -306,14 +319,16 @@
     if (!props.game.ver) return [];
     
     const entries = [];
+    const fileUrlKey = props.lan === 'zh' ? 'file_url_zh' : 'file_url_en';
+    const dataUrlKey = props.lan === 'zh' ? 'data_file_url_zh' : 'data_file_url_en';
+    
     for (const verRaw of props.game.ver) {
       const verKey = Object.keys(verRaw)[0];
       const ver = verRaw[verKey];
       const versionKey = (props.lan === 'en' && ver.ver_alt) ? ver.ver_alt : verKey;
       
-      const urlKey = props.lan === 'zh' ? 'file_url_zh' : 'file_url_en';
-      if (ver[urlKey]) {
-        const url = ver[urlKey];
+      if (ver[fileUrlKey]) {
+        const url = ver[fileUrlKey];
         const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
         
         let repacker = null;
@@ -329,7 +344,18 @@
           version: versionKey || (props.lan === 'zh' ? '下载' : 'Download'),
           url: url,
           isRepackaged: isRepackaged,
-          repacker: repacker
+          repacker: repacker,
+          isData: false
+        });
+      }
+      
+      if (ver[dataUrlKey]) {
+        entries.push({
+          version: props.lan === 'zh' ? `数据包 (${versionKey})` : `Data (${versionKey})`,
+          url: ver[dataUrlKey],
+          isRepackaged: false,
+          repacker: null,
+          isData: true
         });
       }
     }
@@ -337,10 +363,28 @@
     return entries;
   });
 
-  const hasDataDownload = computed(() => {
-    if (!props.game || !props.game.currentVer) return false;
-    return props.game.currentVer.data_file_name || props.game.currentVer.data_file_url || 
-           props.game.currentVer.data_file_url_zh || props.game.currentVer.data_file_url_en;
+  const dataDownloadEntries = computed(() => {
+    if (!props.game || !props.game.currentVer) return [];
+    
+    if (!isMwLevel.value) return [];
+    
+    if (props.game.currentVer.data_file_urls && props.game.currentVer.data_file_urls.length > 0) {
+      const dataFileNames = props.game.currentVer.data_file_name;
+      const isArray = Array.isArray(dataFileNames);
+      const displayNames = isArray ? processFileNamesWithVolumes(dataFileNames) : null;
+      
+      return props.game.currentVer.data_file_urls.map((item, idx) => {
+        let name;
+        if (isArray && displayNames && displayNames[idx]) {
+          name = props.lan === 'zh' ? `下载 ${displayNames[idx]}` : `Download ${displayNames[idx]}`;
+        } else {
+          name = props.lan === 'zh' ? '下载数据包' : 'Download Data';
+        }
+        
+        return { name, url: item.url };
+      });
+    }
+    return [];
   });
 
   const videos = computed(() => {
@@ -579,7 +623,7 @@
             <h3 class="section-title">{{ lan === 'zh' ? '下载' : 'Downloads' }}</h3>
             <ul v-if="downloadEntries.length > 0" class="download-list">
               <li v-for="(entry, index) in downloadEntries" :key="index" class="download-item">
-                <span class="floppy-icon">{{ entry.isRepackaged ? '📦' : '💾' }}</span>
+                <span class="floppy-icon">{{ entry.isData ? '🗂️' : (entry.isRepackaged ? '📦' : '📥') }}</span>
                 <a :href="entry.url" target="_blank" class="download-link">{{ entry.version }}</a>
                 <span v-if="entry.isRepackaged" class="repackaged-label">
                   <template v-if="entry.repacker">
@@ -590,10 +634,10 @@
                   </template>
                 </span>
               </li>
-              <li v-if="hasDataDownload" class="download-item">
-                <span class="floppy-icon">💾</span>
-                <a :href="getDataResourceURL(game, lan)" target="_blank" class="download-link">
-                  {{ lan === 'zh' ? '数据包' : 'Data' }}
+              <li v-for="(entry, index) in dataDownloadEntries" :key="index" class="download-item">
+                <span class="floppy-icon">🗂️</span>
+                <a :href="entry.url" target="_blank" class="download-link">
+                  {{ entry.name }}
                 </a>
               </li>
             </ul>
