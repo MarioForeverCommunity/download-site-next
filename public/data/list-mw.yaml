@@ -133,7 +133,7 @@
   has_bgm: true
   file_name: 金芒山 (2).smws
   file_url:
-  data_download_url: https://pan.baidu.com/s/1PExdKL2iCfETcMiQxzFWrA?pwd=bdsy 
+  data_download_url: https://pan.baidu.com/s/1PExdKL2iCfETcMiQxzFWrA?pwd=bdsy
   data_code: bdsy
   data_file_name: 金芒山音乐包.zip
   data_file_url:
@@ -377,6 +377,8 @@
   has_bgm: true
   file_name: YMS作品合集/
   file_url:
+  data_download_url: http://custommla.ysepan.com/
+  data_code: 
   data_file_name: YMS作品合集/25.1.13音乐集.zip
   data_file_url:
 - game: Green Sweet SMWP 关卡精选集
