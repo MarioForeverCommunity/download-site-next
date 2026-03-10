@@ -27,7 +27,11 @@
 
   const emit = defineEmits(['close']);
 
-  const md = new MarkdownIt({ breaks: true });
+  const md = new MarkdownIt({ 
+    breaks: true,
+    linkify: true,
+    html: false
+  });
   const showImagePreview = ref(false);
   const previewImageUrl = ref('');
   const previewImageIndex = ref(0);
