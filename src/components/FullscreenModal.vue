@@ -1006,6 +1006,13 @@
     font-family: monospace;
   }
 
+  .description-content :deep(blockquote) {
+    border-left: 4px solid #aaa;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background-color: #ddd;
+  }
+
   .description-content :deep(pre) {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 1em;
@@ -1204,5 +1211,10 @@
 
   body.dark .description-content :deep(pre) {
     background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  body.dark .description-content :deep(blockquote) {
+    border-left-color: #666;
+    background-color: #333;
   }
 </style>
