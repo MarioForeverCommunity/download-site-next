@@ -1002,4 +1002,8 @@
   .md-button:active {
     background-color: #007cdf;
   }
+
+  .md-button:hover {
+    color: white;
+  }
 </style>

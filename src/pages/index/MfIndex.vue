@@ -263,6 +263,10 @@
     background-color: #007cdf;
   }
 
+  .md-button:hover {
+    color: white;
+  }
+
   .foot-note ol {
     padding-left: 30px;
   }
