@@ -314,7 +314,7 @@
     border: 1px solid rgba(0, 0, 0, 0);
     padding: 4px;
     border-radius: .25em;
-    transition: all 250ms;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     margin-left: -5px;
     margin-right: 5px;

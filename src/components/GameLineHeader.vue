@@ -89,7 +89,7 @@
     -o-user-select: none;
     user-select: none;
     width: 1em;
-    transition: all 250ms;
+    transition: transform 0.25s ease;
   }
 
   .button:hover {
@@ -98,6 +98,10 @@
 
   .button-shift {
     transform: translateY(-1px);
+  }
+
+  body.dark .button.button-shift:hover {
+    background-color: transparent !important;
   }
 
   .icon {

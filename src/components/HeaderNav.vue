@@ -265,7 +265,6 @@ body.dark .nav-dropdown-item.active {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all .15s ease-in-out;
   font-size: 14px;
   font-weight: 600;
 }
@@ -496,7 +495,6 @@ body.dark .nav-dropdown-item.active {
     border: none;
     padding: .5rem;
     color: rgb(105, 105, 105);
-    transition: all .15s ease-in-out;
     display: inline-block;
   }
 

@@ -1004,7 +1004,7 @@
     border: 1px solid rgba(0, 0, 0, 0);
     padding: 4px;
     border-radius: .25em;
-    transition: all 250ms;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     display: inline-block;
   }
@@ -1032,7 +1032,7 @@
     padding: 2px .5em;
     margin-right: .5em;
     border-radius: .25em;
-    transition: all 250ms;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     display: inline-block;
     -webkit-user-select: none;
@@ -1118,14 +1118,13 @@
     border: 1px solid #cfd4db;
     border-radius: 5px;
     outline: none;
-    transition: all .2s ease;
     height: 1.3em;
     line-height: 1.3em;
   }
 
   .input:focus {
-      cursor: auto;
-      border-color: #008cff
+    cursor: auto;
+    border-color: #008cff
   }
 
   .search-box {
@@ -1157,13 +1156,12 @@
     border: 1px solid #cfd4db;
     border-radius: 5px;
     outline: none;
-    transition: all .2s ease;
     padding: .2em .6em;
   }
 
   select:focus {
-      cursor: auto;
-      border-color: #008cff
+    cursor: auto;
+    border-color: #008cff
   }
 
   .italic {

@@ -387,7 +387,6 @@
     border: none;
     padding: .5rem;
     color: rgba(51, 65, 85, 1);
-    transition: all .15s ease-in-out;
     display: inline-block;
   }
 
