@@ -133,7 +133,9 @@ body.dark select {
   border: 1px solid #444 !important;
 }
 
+body.dark input:hover,
 body.dark input:focus,
+body.dark select:hover,
 body.dark select:focus {
   outline: 1px solid #4aa3ff !important;
   background-color: #222 !important;
@@ -147,22 +149,19 @@ body.dark option {
 
 body.dark input[type="checkbox"] {
   color-scheme: dark;
-  accent-color: #222 !important;
-  background-color: #222 !important;
-  border: 1.5px solid #222 !important;
 }
 
-body.dark input[type="checkbox"]:checked {
-  background-color: #222 !important;
-  border-color: #222 !important;
-}
-
+body.dark input[type="checkbox"]:hover,
 body.dark input[type="checkbox"]:focus {
   outline: 1.5px solid #222 !important;
 }
 
 body.dark table tr {
   border-top: solid 1px #444;
+}
+
+body.dark .clear-btn:hover {
+  color: #ccc;
 }
 
 body.dark footer {

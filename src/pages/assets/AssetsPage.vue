@@ -577,7 +577,7 @@
     line-height: 1.3em;
   }
 
-  .input:focus {
+  .input:hover, .input:focus {
     cursor: auto;
     border-color: #008cff
   }
@@ -614,8 +614,8 @@
     padding: .2em .6em;
   }
 
-  select:focus {
-    cursor: auto;
+  select:hover, select:focus {
+    cursor: pointer;
     border-color: #008cff
   }
 
