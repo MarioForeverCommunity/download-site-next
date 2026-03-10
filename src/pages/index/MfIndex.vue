@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import axios from 'axios';
   import DownloadHeader from '../../components/HeaderNav.vue';
   import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
@@ -79,7 +79,9 @@
 
   document.title = lan.value == "zh" ? titleZh : titleEn;
 
-  const images = [
+  const currentTab = ref(lan.value === "zh" ? "original" : "ce");
+
+  const imagesOriginal = [
     "/images/index/title.webp",
     "/images/index/3-2.webp",
     "/images/index/3-4.webp",
@@ -90,11 +92,75 @@
     "/images/index/HC2-3.webp",
     "/images/index/HL-1.webp",
     "/images/index/LM-4.webp",
-  ]
+  ];
+
+  const imagesRemakeZh = [
+    "/data/mf-games/Mario Forever Remake/title.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_1.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_2.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_3.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_4.webp",
+  ];
+
+  const imagesRemakeEn = [
+    "/data/mf-games/Mario Forever Remake (PAL)/title.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_1.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_2.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_3.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_4.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_5.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_6.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_7.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_8.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_9.webp",
+  ];
+
+  const imagesCe = [
+    "/data/mf-games/Mario Forever - Community Edition/title.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_1.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_2.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_3.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_4.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_5.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_6.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_7.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_8.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_9.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_10.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_11.webp",
+  ];
+
+  const currentImages = computed(() => {
+    if (currentTab.value === "original") {
+      return imagesOriginal;
+    } else if (currentTab.value === "remake") {
+      return lan.value === "zh" ? imagesRemakeZh : imagesRemakeEn;
+    } else if (currentTab.value === "ce") {
+      return imagesCe;
+    }
+    return imagesOriginal;
+  });
+
+  const tabs = computed(() => {
+    if (lan.value === "zh") {
+      return [
+        { id: "original", labelZh: "原版 MF", labelEn: "Original MF" },
+        { id: "remake", labelZh: "MF Remake", labelEn: "MF Remake" },
+        { id: "ce", labelZh: "MF: CE", labelEn: "MF: CE" }
+      ];
+    } else {
+      return [
+        { id: "ce", labelZh: "MF: CE", labelEn: "MF: CE" },
+        { id: "remake", labelZh: "MF Remake", labelEn: "MF Remake" },
+        { id: "original", labelZh: "原版 MF", labelEn: "Original MF" }
+      ];
+    }
+  });
 
   function pageSetLanguageZh() {
     lan.value =  setLanguageZh();
     document.title=titleZh;
+    currentTab.value = "original";
     if (allDatesLoaded.value) {
       updateLastUpdate();
     }
@@ -103,6 +169,7 @@
   function pageSetLanguageEn() {
     lan.value =  setLanguageEn();
     document.title=titleEn;
+    currentTab.value = "ce";
     if (allDatesLoaded.value) {
       updateLastUpdate();
     }
@@ -117,8 +184,18 @@
     <indexZh v-if="lan === 'zh'" :lastUpdateZh="lastUpdateZh" />
     <indexEn v-if="lan === 'en'" :lastUpdateEn="lastUpdateEn" />
     <h2>{{ lan == "zh" ? "截图预览" : "Screenshots" }}</h2>
+    <div class="tab-container">
+      <button 
+        v-for="tab in tabs" 
+        :key="tab.id"
+        :class="['tab-button', { 'active': currentTab === tab.id }]"
+        @click="currentTab = tab.id"
+      >
+        {{ lan == "zh" ? tab.labelZh : tab.labelEn }}
+      </button>
+    </div>
     <Carousel :autoplay="2000" :wrap-around="true" :items-to-show="2.5">
-      <Slide v-for="image in images" :key="image" style="width: 40%; aspect-ratio: 4/3;">
+      <Slide v-for="image in currentImages" :key="image" style="width: 40%; aspect-ratio: 4/3;">
         <img :src="image" style="width: 100%; height: 100%;">
       </Slide>
       <template #addons>
@@ -269,5 +346,38 @@
 
   .foot-note ol {
     padding-left: 30px;
+  }
+
+  .tab-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .tab-button {
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    color: #333;
+  }
+
+  .tab-button:hover {
+    background-color: #e8e8e8;
+    border-color: #d0d0d0;
+  }
+
+  .tab-button.active {
+    background-color: #008cff;
+    color: white;
+    border-color: #008cff;
+  }
+
+  .tab-button.active:hover {
+    background-color: #007cdf;
   }
 </style>
