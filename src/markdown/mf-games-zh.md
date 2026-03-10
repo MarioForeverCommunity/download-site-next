@@ -6,7 +6,7 @@
 
 某些国外作品的链接可能需要通过技术手段访问，本页面提供 [社区资源站](https://file.marioforever.net/Mario%20Forever/) 上的作品资源直链以方便玩家下载，且同时提供备用地址以备不时之需（**备用地址下载需登录 123 云盘账号**）。
 
-<span class="inline-block"><a class="md-button" href="https://www.123684.com/s/U3vrVv-6D0f">国内作品备用下载地址 (提取码：Wj3a)</a><ClipboardButton lan="zh" code="Wj3a" /></span><span class="inline-block"><a class="md-button" href="https://www.123684.com/s/U3vrVv-yD0f">国外作品备用下载地址 (提取码：Lo5l)</a><ClipboardButton lan="zh" code="Lo5l" /></span>
+<span class="inline-block"><a class="md-button" href="https://www.123684.com/s/U3vrVv-6D0f">国内作品备用下载地址 (提取码: Wj3a)</a><ClipboardButton lan="zh" code="Wj3a" /></span><span class="inline-block"><a class="md-button" href="https://www.123684.com/s/U3vrVv-yD0f">国外作品备用下载地址 (提取码: Lo5l)</a><ClipboardButton lan="zh" code="Lo5l" /></span>
 
 本站离不开 Mario Forever 社区中众多贡献者的支持。<a href="#" id="open-credits">我们愿向以下人士表示诚挚的感谢。</a>
 

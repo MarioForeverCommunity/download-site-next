@@ -103,7 +103,7 @@ export function getDownloadInfo(item, link, lan) {
         if (link.match(entry.domain)) {
             var desc = lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
             if (entry.show_code == true && code) {
-                desc += ` (${lan == "zh" ? "提取码：" : "Code: "}${code})`;
+                desc += ` (${lan == "zh" ? "提取码: " : "Code: "}${code})`;
             }
             if (invalid) {
                 desc += ` (${lan == "zh" ? "已失效" : "Invalid"})`;
