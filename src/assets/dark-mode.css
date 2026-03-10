@@ -146,6 +146,7 @@ body.dark option {
 }
 
 body.dark input[type="checkbox"] {
+  color-scheme: dark;
   accent-color: #222 !important;
   background-color: #222 !important;
   border: 1.5px solid #222 !important;
