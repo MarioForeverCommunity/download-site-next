@@ -100,6 +100,12 @@
     "/data/mf-games/Mario Forever Remake/showcase_2.webp",
     "/data/mf-games/Mario Forever Remake/showcase_3.webp",
     "/data/mf-games/Mario Forever Remake/showcase_4.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_5.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_6.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_7.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_8.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_9.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_10.webp",
   ];
 
   const imagesRemakeEn = [
