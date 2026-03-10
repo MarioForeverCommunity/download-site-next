@@ -144,15 +144,15 @@
   const tabs = computed(() => {
     if (lan.value === "zh") {
       return [
-        { id: "original", labelZh: "原版 MF", labelEn: "Original MF" },
-        { id: "remake", labelZh: "MF Remake", labelEn: "MF Remake" },
-        { id: "ce", labelZh: "MF: CE", labelEn: "MF: CE" }
+        { id: "original", label: "原版 Mario Forever" },
+        { id: "remake", label: "Mario Forever Remake" },
+        { id: "ce", label: "Mario Forever: Community Edition" }
       ];
     } else {
       return [
-        { id: "ce", labelZh: "MF: CE", labelEn: "MF: CE" },
-        { id: "remake", labelZh: "MF Remake", labelEn: "MF Remake" },
-        { id: "original", labelZh: "原版 MF", labelEn: "Original MF" }
+        { id: "ce", label: "Mario Forever: Community Edition" },
+        { id: "remake", label: "Mario Forever Remake" },
+        { id: "original", label: "Original Mario Forever" }
       ];
     }
   });
@@ -184,15 +184,18 @@
     <indexZh v-if="lan === 'zh'" :lastUpdateZh="lastUpdateZh" />
     <indexEn v-if="lan === 'en'" :lastUpdateEn="lastUpdateEn" />
     <h2>{{ lan == "zh" ? "截图预览" : "Screenshots" }}</h2>
-    <div class="tab-container">
-      <button 
+    <div class="radio-inputs">
+      <a 
         v-for="tab in tabs" 
         :key="tab.id"
-        :class="['tab-button', { 'active': currentTab === tab.id }]"
+        class="radio"
+        :class="{ 'checked': currentTab === tab.id }"
         @click="currentTab = tab.id"
       >
-        {{ lan == "zh" ? tab.labelZh : tab.labelEn }}
-      </button>
+        <span class="radio-text">
+          {{ tab.label }}
+        </span>
+      </a>
     </div>
     <Carousel :autoplay="2000" :wrap-around="true" :items-to-show="2.5">
       <Slide v-for="image in currentImages" :key="image" style="width: 40%; aspect-ratio: 4/3;">
@@ -211,7 +214,7 @@
   <SiteFooter />
 </template>
 
-<style> 
+<style>
   .md-container {
     width: 100vw;
     box-sizing: border-box;
@@ -347,37 +350,71 @@
   .foot-note ol {
     padding-left: 30px;
   }
-
-  .tab-container {
+</style>
+<style scoped>
+  .radio-inputs {
+    position: relative;
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
     flex-wrap: wrap;
-  }
-
-  .tab-button {
-    padding: 8px 16px;
-    border: 1px solid #e0e0e0;
-    background-color: #f5f5f5;
-    cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     font-size: 14px;
-    transition: all 0.3s ease;
-    color: #333;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    line-height: 1.2em;
   }
 
-  .tab-button:hover {
-    background-color: #e8e8e8;
-    border-color: #d0d0d0;
+  .radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+    border-radius: 0.35rem;
+    margin: 0.2rem;
   }
 
-  .tab-button.active {
-    background-color: #008cff;
-    color: white;
-    border-color: #008cff;
+  .radio-inputs .radio-text {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: .5rem;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+    display: inline-block;
   }
 
-  .tab-button.active:hover {
-    background-color: #007cdf;
+  @media (min-width: 864px) {
+    .radio-inputs .radio {
+      flex: 1 1 0;
+    }
+  }
+
+  .radio-inputs .radio.checked {
+    background-color: #fff;
+    font-weight: 600;
+  }
+
+  .radio-inputs .radio:hover {
+    background-color: #f7f7f7;
+  }
+
+  body.dark .radio-inputs {
+    background-color: #3a3a3a;
+    border-color: #444;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  body.dark .radio-inputs .radio-text {
+    color: rgba(220, 220, 220, 1);
+  }
+
+  body.dark .radio-inputs .radio.checked {
+    background-color: #4a4a4a;
+  }
+
+  body.dark .radio-inputs .radio:hover {
+    background-color: #555;
   }
 </style>
