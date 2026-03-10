@@ -32,6 +32,7 @@
   const previewImageUrl = ref('');
   const previewImageIndex = ref(0);
   const markdownContent = ref('');
+  const originalTitle = ref(document.title);
 
   const isMwLevel = computed(() => {
     return props.category === 'mw-levels';
@@ -462,6 +463,9 @@
 
   watch(() => [props.game, props.lan], () => {
     loadMarkdownDescription();
+    if (props.show) {
+      updateTitle();
+    }
   }, { immediate: true });
 
   watch(() => props.show, (newVal) => {
@@ -470,11 +474,13 @@
       document.body.classList.add('modal-open');
       disableScroll();
       updateUrl();
+      updateTitle();
     } else {
       document.documentElement.classList.remove('modal-open');
       document.body.classList.remove('modal-open');
       enableScroll();
       clearUrl();
+      restoreTitle();
     }
   });
 
@@ -499,6 +505,16 @@
     const url = new URL(window.location.href);
     url.searchParams.delete('game');
     window.history.replaceState({}, '', url.toString());
+  };
+
+  const updateTitle = () => {
+    if (!props.game) return;
+    const name = getName(props.game, props.lan);
+    document.title = `${name} - ${originalTitle.value}`;
+  };
+
+  const restoreTitle = () => {
+    document.title = originalTitle.value;
   };
 
   const openImagePreview = (url, index) => {
