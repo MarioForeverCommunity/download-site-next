@@ -106,6 +106,7 @@
     "/data/mf-games/Mario Forever Remake/showcase_8.webp",
     "/data/mf-games/Mario Forever Remake/showcase_9.webp",
     "/data/mf-games/Mario Forever Remake/showcase_10.webp",
+    "/data/mf-games/Mario Forever Remake/showcase_11.webp",
   ];
 
   const imagesRemakeEn = [
@@ -203,8 +204,8 @@
         </span>
       </a>
     </div>
-    <Carousel :autoplay="2000" :wrap-around="true" :items-to-show="2.5">
-      <Slide v-for="image in currentImages" :key="image" style="width: 40%; aspect-ratio: 4/3;">
+    <Carousel :autoplay="3000" :wrap-around="true" :items-to-show="2">
+      <Slide v-for="image in currentImages" :key="image" style="width: 50%; aspect-ratio: 4/3;">
         <img :src="image" style="width: 100%; height: 100%;">
       </Slide>
       <template #addons>
