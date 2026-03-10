@@ -773,6 +773,7 @@
     margin-right: .5em;
     margin: .25em;
     display: inline-block;
+    line-height: 1.5em;
   }
 
   .download:hover, .download:focus {
@@ -995,14 +996,10 @@
 
   .md-button:hover, .md-button:focus {
     background-color: #30acff;
+    text-decoration: none;
   }
 
   .md-button:active {
     background-color: #007cdf;
-  }
-
-  .md-button:hover {
-    color: white;
-    text-decoration: none;
   }
 </style>

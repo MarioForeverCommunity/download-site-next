@@ -256,15 +256,11 @@
 
   .md-button:hover, .md-button:focus {
     background-color: #30acff;
+    text-decoration: none;
   }
 
   .md-button:active {
     background-color: #007cdf;
-  }
-
-  .md-button:hover {
-    color: white;
-    text-decoration: none;
   }
 
   .foot-note ol {
