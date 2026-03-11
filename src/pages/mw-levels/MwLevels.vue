@@ -727,6 +727,12 @@
     transform: translateY(0);
   }
 
+  body.dark .visible-button:active {
+    background-color: #444 !important;
+    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;
+    color: #bbb !important;
+  }
+
   .modal-bg {
     position: fixed;
     z-index: 1001;

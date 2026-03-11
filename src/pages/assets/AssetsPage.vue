@@ -482,30 +482,6 @@
     transform: translateY(0);
   }
 
-  .visible-button {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    padding: 2px .5em;
-    margin-right: .5em;
-    border-radius: .25em;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: pointer;
-    display: inline-block;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .visible-button:hover, .visible-button:focus {
-    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px;
-  }
-
-  .visible-button:active {
-    background-color: #F0F0F1;
-    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
-    color: rgba(0, 0, 0, 0.65);
-    transform: translateY(0);
-  }
-
   .modal-bg {
     position: fixed;
     z-index: 1001;
