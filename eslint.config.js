@@ -113,7 +113,7 @@ export default [
         flatTernaryExpressions: false,
         ignoredNodes: ['TemplateLiteral']
       }],
-      'linebreak-style': ['error', 'unix'],
+      'linebreak-style': 'off',
       'quotes': 'off',
       'semi': 'off',
       'comma-dangle': 'off',
