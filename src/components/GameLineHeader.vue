@@ -93,10 +93,6 @@
   }
 
   .button:hover {
-    transform: translateY(-2px);
-  }
-
-  .button-shift {
     transform: translateY(-1px);
   }
 

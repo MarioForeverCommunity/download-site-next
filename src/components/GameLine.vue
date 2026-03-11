@@ -275,9 +275,9 @@
     color: rgba(0, 0, 0, 0.65);
   }
 
-  /* .button:hover {
+  .button:hover {
     transform: translateY(-1px);
-  } */
+  }
 
   .button:active {
     background-color: #F0F0F1;

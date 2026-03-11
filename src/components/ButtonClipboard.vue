@@ -89,16 +89,11 @@
     color: rgba(0, 0, 0, 0.65);
   }
 
-  .button:hover {
-    transform: translateY(-1px);
-  }
-
   .button:active {
     background-color: #F0F0F1;
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
-    transform: translateY(0);
   }
 
   .floating-obj {
