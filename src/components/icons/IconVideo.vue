@@ -1,9 +1,10 @@
 <template>
-    <svg width="800px" height="800px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-television">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <path d="M15.381,5.06 L9.468,5.06 L12.207,1.27 L11.195,1.047 L8.303,5.06 L8.295,5.06 L5.403,1.047 L4.389,1.27 L7.128,5.06 L0.656,5.06 C0.328,5.06 0.063,5.315 0.063,5.631 L0.063,16.416 C0.063,16.733 0.328,16.988 0.656,16.988 L15.379,16.988 C15.708,16.988 15.973,16.733 15.973,16.416 L15.973,5.631 C15.975,5.314 15.71,5.06 15.381,5.06 L15.381,5.06 Z M13,14.67 C13,14.876 12.848,15.042 12.658,15.042 L2.263,15.042 C2.075,15.042 1.922,14.876 1.922,14.67 L1.922,7.304 C1.922,7.1 2.074,6.932 2.263,6.932 L12.658,6.932 C12.847,6.932 13,7.1 13,7.304 L13,14.67 L13,14.67 Z M15,15.042 L14,15.042 L14,14 L15,14 L15,15.042 L15,15.042 Z" fill="#434343" class="si-glyph-fill">
-
-    </path>
+    <svg fill="#000000" width="800px" height="800px" viewBox="-0.13 0 32.268 32.268" xmlns="http://www.w3.org/2000/svg">
+        <g id="Group_34" data-name="Group 34" transform="translate(-94.002 -249.427)">
+            <path id="Path_291" data-name="Path 291" d="M122,255.7H98a4,4,0,0,0-4,4v18a4,4,0,0,0,4,4h24a4,4,0,0,0,4-4v-18A4,4,0,0,0,122,255.7Zm0,22H98v-18h24Z"/>
+            <path id="Path_292" data-name="Path 292" d="M106.769,257.791l-4.949-4.95a2,2,0,0,1,0-2.828h0a2,2,0,0,1,2.828,0l5.95,5.949"/>
+            <path id="Path_293" data-name="Path 293" d="M109.406,255.962l5.949-5.949a2,2,0,0,1,2.829,0h0a2,2,0,0,1,0,2.828l-4.95,4.95"/>
+            <rect id="Rectangle_4" data-name="Rectangle 4" width="16" height="10" transform="translate(102.002 263.695)"/>
         </g>
     </svg>
 </template>

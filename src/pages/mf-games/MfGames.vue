@@ -880,16 +880,16 @@
       <div class="modal-content" @click.stop="">
         <div>
           {{ lan == 'en' ? "Related videos of " : "相关视频：" }}{{ getName(selectedVideo, lan) }}
-          <div v-if="lan == 'zh'">
-            <p v-for="video in selectedVideo.video_zh" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
-              <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
-            </p>
-          </div>
-          <div v-if="lan == 'en'">
-            <p v-for="video in selectedVideo.video_en" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
-              <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
-            </p>
-          </div>
+          <ul v-if="lan == 'zh'">
+            <li v-for="video in selectedVideo.video_zh" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
+              <a :href="Object.values(video)[0]" target="_blank">{{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
+            </li>
+          </ul>
+          <ul v-if="lan == 'en'">
+            <li v-for="video in selectedVideo.video_en" :key="Object.keys(video)[0] + (Object.values(video)[0] || '')">
+              <a :href="Object.values(video)[0]" target="_blank">{{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

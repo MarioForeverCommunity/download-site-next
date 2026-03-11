@@ -558,9 +558,11 @@
       <div class="modal-content" @click.stop="">
         <div>
           相关视频：{{ getName(selectedVideo, "zh") }}
-          <p v-for="video in selectedVideo.video" :key="Object.keys(video)[0]">
-            <a :href="Object.values(video)[0]" target="_blank">▶ {{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], "zh") }})</a>
-          </p>
+          <ul>
+            <li v-for="video in selectedVideo.video" :key="Object.keys(video)[0]">
+              <a :href="Object.values(video)[0]" target="_blank">{{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], "zh") }})</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
