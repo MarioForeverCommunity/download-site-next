@@ -106,7 +106,7 @@
   smwp_ver: v1.7.11
   date: 2025-09-20
   source_url: https://www.marioforever.net/thread-3711-1-1.html
-  download_url: 
+  download_url:
   code:
   file_name: "[36s Extreme level] 1-1 Hell.smwl"
   file_url:
@@ -217,7 +217,7 @@
 - game: Mario Worker Chimera IV
   alias:
   - 奇美拉4
-  author: 
+  author:
   - ƒresh★LAKE
   - 有名氏
   - 超级玛丽迷01
@@ -378,7 +378,7 @@
   file_name: YMS作品合集/
   file_url:
   data_download_url: http://custommla.ysepan.com/
-  data_code: 
+  data_code:
   data_file_name: YMS作品合集/25.1.13音乐集.zip
   data_file_url:
 - game: Green Sweet SMWP 关卡精选集
@@ -615,12 +615,12 @@
   code:
   has_bundled_smwp: true
   has_bgm: true
-  file_name: 
+  file_name:
   - 20XX/20XX专用MW.7z
   - 20XX/20XX_WorldA.smws
   file_url:
   data_download_url: https://zh.wsw233.com/files/view?f=dlt2pr
-  data_code: 
+  data_code:
   data_file_name: 20XX/20XX音乐包.7z
   data_file_url:
 - game: Welcome back to Marioworker Bar 2024
@@ -2002,7 +2002,7 @@
   has_bgm: true
   file_name: Terraria/
   file_url:
-  data_file_name: 
+  data_file_name:
   - Terraria/音乐包（可选）.7z.001
   - Terraria/音乐包（可选）.7z.002
   data_file_url:
@@ -3311,7 +3311,14 @@
   file_name: QDCK体验版 170801/
   file_url:
 - game: 关卡接力活动
-  author: 合作作品
+  author:
+  - 哈德萝·戈德纹
+  - Fahlee
+  - LLX奶油马里奥
+  - s小s飞s侠s
+  - R大次郎
+  - 把僵尸炖了
+  - 玛丽的死对头
   description: 活动发起人为哈德萝·戈德纹（百步穿杨又飞剑），现在已咕；发布日期取活动开始时间
   smwp_ver: v0.2.4
   date: 2017-04-15
