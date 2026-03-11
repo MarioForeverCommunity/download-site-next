@@ -77,8 +77,8 @@ const getDownloadUrl = (version, type) => {
             <span class="rating">{{ version.rating }}</span>
           </td>
           <td>
-            <ButtonDownload 
-              v-if="getDownloadUrl(version, 'installer')" 
+            <ButtonDownload
+              v-if="getDownloadUrl(version, 'installer')"
               :href="getDownloadUrl(version, 'installer')"
               :lan="lan"
               :hasToolbar="!!version.toolbar"
@@ -86,8 +86,8 @@ const getDownloadUrl = (version, type) => {
             />
           </td>
           <td>
-            <ButtonDownload 
-              v-if="getDownloadUrl(version, 'portable')" 
+            <ButtonDownload
+              v-if="getDownloadUrl(version, 'portable')"
               :href="getDownloadUrl(version, 'portable')"
               :lan="lan"
               :hasToolbar="!!version.toolbar"

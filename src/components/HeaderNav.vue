@@ -1,69 +1,70 @@
 <script setup>
-  import { navTop, topBar } from "../config.js";
-  import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { navTop, topBar } from "../config.js";
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 
-  // const BASE_URL = import.meta.env.BASE_URL;
+// const BASE_URL = import.meta.env.BASE_URL;
 
-  const props = defineProps({
-    pageId: {
-      type: String,
-      required: true
-    },
-    lanVar : {
-      required: true
+const props = defineProps({
+  pageId: {
+    type: String,
+    required: true
+  },
+  lanVar: {
+    type: String,
+    required: true
+  }
+});
+
+defineEmits(['changeLanZh', 'changeLanEn']);
+
+const pageEntry = navTop.find(item => item.id === props.pageId);
+
+function displayLan() {
+  if (pageEntry.show_en == false && props.lanVar == "en") {
+    return "zh";
+  }
+  return props.lanVar;
+}
+
+// Mobile menu for top-left links
+const isMenuOpen = ref(false);
+const isNavOpen = ref(false);
+const menuRef = ref(null);
+const navRef = ref(null);
+const topbarRef = ref(null);
+const warningRef = ref(null);
+const isScrolled = ref(false);
+const scrollThreshold = ref(36);
+
+function handleClickOutside(e) {
+  if (menuRef.value && !menuRef.value.contains(e.target)) {
+    isMenuOpen.value = false;
+  }
+  if (navRef.value && !navRef.value.contains(e.target)) {
+    isNavOpen.value = false;
+  }
+}
+
+function handleScroll() {
+  isScrolled.value = window.scrollY > scrollThreshold.value;
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+  window.addEventListener('scroll', handleScroll);
+  if (topbarRef.value) {
+    scrollThreshold.value = topbarRef.value.offsetHeight + (window.innerWidth >= 800 ? 12 : 0);
+  }
+  nextTick(() => {
+    if (warningRef.value) {
+      scrollThreshold.value += warningRef.value.offsetHeight;
     }
   });
-
-  defineEmits(['changeLanZh', 'changeLanEn']);
-
-  const pageEntry = navTop.find(item => item.id === props.pageId);
-
-  function displayLan() {
-    if (pageEntry.show_en == false && props.lanVar == "en") {
-      return "zh";
-    }
-    return props.lanVar;
-  }
-
-  // Mobile menu for top-left links
-  const isMenuOpen = ref(false);
-  const isNavOpen = ref(false);
-  const menuRef = ref(null);
-  const navRef = ref(null);
-  const topbarRef = ref(null);
-  const warningRef = ref(null);
-  const isScrolled = ref(false);
-  const scrollThreshold = ref(36);
-
-  function handleClickOutside(e) {
-    if (menuRef.value && !menuRef.value.contains(e.target)) {
-      isMenuOpen.value = false;
-    }
-    if (navRef.value && !navRef.value.contains(e.target)) {
-      isNavOpen.value = false;
-    }
-  }
-
-  function handleScroll() {
-    isScrolled.value = window.scrollY > scrollThreshold.value;
-  }
-
-  onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
-    window.addEventListener('scroll', handleScroll);
-    if (topbarRef.value) {
-      scrollThreshold.value = topbarRef.value.offsetHeight + (window.innerWidth >= 800 ? 12 : 0);
-    }
-    nextTick(() => {
-      if (warningRef.value) {
-        scrollThreshold.value += warningRef.value.offsetHeight;
-      }
-    });
-  });
-  onBeforeUnmount(() => {
-    document.removeEventListener('click', handleClickOutside);
-    window.removeEventListener('scroll', handleScroll);
-  });
+});
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
@@ -74,23 +75,52 @@
     <div class="topbar-inner">
       <!-- Desktop: show all left links -->
       <div class="left-links desktop-only">
-        <a v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))" :key="item.link" :href="item.link" target="_blank" class="link-item">{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
+        <a
+          v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))"
+          :key="item.link"
+          :href="item.link"
+          target="_blank"
+          class="link-item"
+        >{{ displayLan() == 'zh' ? item.name : item.name_alt }}</a>
       </div>
       <!-- Mobile: collapse into a dropdown toggle at top-left -->
       <div class="left-links mobile-only" ref="menuRef">
-        <button class="menu-toggle" @click.stop="isMenuOpen = !isMenuOpen" :aria-expanded="isMenuOpen" aria-haspopup="true" :aria-label="displayLan() == 'zh' ? '打开菜单' : 'Open menu'">
+        <button
+          class="menu-toggle"
+          @click.stop="isMenuOpen = !isMenuOpen"
+          :aria-expanded="isMenuOpen"
+          aria-haspopup="true"
+          :aria-label="displayLan() == 'zh' ? '打开菜单' : 'Open menu'"
+        >
           <span class="menu-label">{{ displayLan() == 'zh' ? '社区站点' : 'External Links' }}</span>
-          <svg class="chevron" :class="{ open: isMenuOpen }" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="chevron"
+            :class="{ open: isMenuOpen }"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M7 10l5 5 5-5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <div class="mobile-menu" v-if="isMenuOpen">
-          <a v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))"
-             :key="item.link"
-             :href="item.link"
-             target="_blank"
-             class="mobile-menu-item"
-             @click="isMenuOpen = false">
+          <a
+            v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))"
+            :key="item.link"
+            :href="item.link"
+            target="_blank"
+            class="mobile-menu-item"
+            @click="isMenuOpen = false"
+          >
             {{ displayLan() == 'zh' ? item.name : item.name_alt }}
           </a>
         </div>
@@ -113,7 +143,13 @@
         <!-- Desktop nav -->
         <div class="nav desktop-only">
           <div class="radio-inputs">
-            <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" :key="nav.id" class="radio" :class="nav.id == props.pageId ? 'checked' : ''" :href="nav.link">
+            <a
+              v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)"
+              :key="nav.id"
+              class="radio"
+              :class="nav.id == props.pageId ? 'checked' : ''"
+              :href="nav.link"
+            >
               <span class="radio-text" name="radio">
                 {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
               </span>
@@ -122,14 +158,41 @@
         </div>
         <!-- Mobile nav dropdown -->
         <div class="nav-mobile mobile-only" ref="navRef">
-          <button class="nav-toggle" @click.stop="isNavOpen = !isNavOpen" :aria-expanded="isNavOpen" aria-haspopup="true" :aria-label="displayLan() == 'zh' ? '打开导航' : 'Open navigation'">
+          <button
+            class="nav-toggle"
+            @click.stop="isNavOpen = !isNavOpen"
+            :aria-expanded="isNavOpen"
+            aria-haspopup="true"
+            :aria-label="displayLan() == 'zh' ? '打开导航' : 'Open navigation'"
+          >
             <span class="nav-toggle-text">{{ displayLan() == 'zh' ? pageEntry.option : pageEntry.option_alt }}</span>
-            <svg class="chevron" :class="{ open: isNavOpen }" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              class="chevron"
+              :class="{ open: isNavOpen }"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 10l5 5 5-5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div class="nav-dropdown" v-if="isNavOpen">
-            <a v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)" :key="nav.id" class="nav-dropdown-item" :class="nav.id == props.pageId ? 'active' : ''" :href="nav.link">
+            <a
+              v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)"
+              :key="nav.id"
+              class="nav-dropdown-item"
+              :class="nav.id == props.pageId ? 'active' : ''"
+              :href="nav.link"
+            >
               {{ displayLan() == 'zh' ? nav.option : nav.option_alt }}
             </a>
           </div>

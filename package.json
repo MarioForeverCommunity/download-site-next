@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "node scripts/generate-image-index.js && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint": "eslint . --fix",
     "deploy": "bash deploy.sh",
     "generate-images": "node scripts/generate-image-index.js"
   },
@@ -26,9 +26,11 @@
     "vue3-carousel": "^0.3.4"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@vitejs/plugin-vue": "^5.0.5",
-    "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.23.0",
+    "eslint": "^10.0.3",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.4.0",
     "sass-embedded": "^1.79.5",
     "vite": "^6.4.1"
   }

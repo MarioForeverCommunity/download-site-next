@@ -1,415 +1,415 @@
 <script setup>
-  import { ref, computed, watch } from 'vue';
-  import DownloadHeader from '../../components/HeaderNav.vue';
-  import {getLanguage, setLanguageZh, setLanguageEn, getDisplayMode, setDisplayModeLine, setDisplayModeCard} from "../../util/Language.js";
-  import SiteFooter from '../../components/SiteFooter.vue';
-  import { navTop } from "../../config.js";
-  import {readList} from "../../util/ReadList.js";
-  import GameLine from "../../components/GameLine.vue";
-  import GameCard from '../../components/GameCard.vue';
-  import GameLineHeader from '../../components/GameLineHeader.vue';
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
-  import introZh from '../../markdown/mw-games-zh.md';
-  import {getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo} from "../../util/GemeUtil.js"
-  import ClipboardButton from '../../components/ButtonClipboard.vue';
-  import axios from 'axios';
-  import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
-  import {SmwpVersions} from "../../util/SmwpVersions.js"
-  import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
-  import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
-  import Tooltip from '../../components/ToolTip.vue';
-  import { createGameImageResolver } from "../../util/ImageUtil.js";
-  import FullscreenModal from '../../components/FullscreenModal.vue';
-  import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
-  const originalLan = ref(getLanguage());
+import { ref, computed, watch } from 'vue';
+import DownloadHeader from '../../components/HeaderNav.vue';
+import { getLanguage, setLanguageZh, setLanguageEn, getDisplayMode, setDisplayModeLine, setDisplayModeCard } from "../../util/Language.js";
+import SiteFooter from '../../components/SiteFooter.vue';
+import { navTop } from "../../config.js";
+import { readList } from "../../util/ReadList.js";
+import GameLine from "../../components/GameLine.vue";
+import GameCard from '../../components/GameCard.vue';
+import GameLineHeader from '../../components/GameLineHeader.vue';
+import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
+import introZh from '../../markdown/mw-games-zh.md';
+import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo } from "../../util/GemeUtil.js"
+import ClipboardButton from '../../components/ButtonClipboard.vue';
+import axios from 'axios';
+import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
+import { SmwpVersions } from "../../util/SmwpVersions.js"
+import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
+import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+import Tooltip from '../../components/ToolTip.vue';
+import { createGameImageResolver } from "../../util/ImageUtil.js";
+import FullscreenModal from '../../components/FullscreenModal.vue';
+import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+const originalLan = ref(getLanguage());
 
-  const lan = "zh"
+const lan = "zh"
 
-  const pageId = "mw-levels"
+const pageId = "mw-levels"
 
-  const titleZh = navTop.find(item => item.id === pageId).title;
+const titleZh = navTop.find(item => item.id === pageId).title;
 
-  const games = ref([]);
+const games = ref([]);
 
-  function generateResourceUrl(entry, fname) {
-    const author = Array.isArray(entry.author) ? "合作作品" : entry.author;
-    return `https://file.marioforever.net/Mario Worker/${author == "合作作品" ? "合作作品" : `吧友作品/${author}`}/${fname}`
-  }
+function generateResourceUrl(entry, fname) {
+  const author = Array.isArray(entry.author) ? "合作作品" : entry.author;
+  return `https://file.marioforever.net/Mario Worker/${author == "合作作品" ? "合作作品" : `吧友作品/${author}`}/${fname}`
+}
 
 // Fetch game list.
 
-  const imageResolver = createGameImageResolver('mw-levels');
+const imageResolver = createGameImageResolver('mw-levels');
 
-  Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
-    for (var entry of list) {
-      entry.category = "mw";
+Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
+  for (const entry of list) {
+    entry.category = "mw";
 
-      if (entry.file_url) {
+    if (entry.file_url) {
+      entry.file_urls = [{
+        name: `社区资源站`,
+        url: entry.file_url
+      }];
+    } else if (entry.file_name) {
+      // Automatically generate resource site link.
+      if (Array.isArray(entry.file_name)) {
+        entry.file_urls = [];
+        // For array, we generate all download links and give each link a name.
+        const displayNames = processFileNamesWithVolumes(entry.file_name);
+        for (let i = 0; i < entry.file_name.length; i++) {
+          const file_name_entry = entry.file_name[i];
+          if (file_name_entry == null) {
+            continue;
+          }
+          entry.file_urls.push({
+            name: `社区资源站 (${displayNames[i]})`,
+            url: generateResourceUrl(entry, file_name_entry)
+          });
+        }
+      } else {
+        // For single file, we generate a download link.
         entry.file_urls = [{
-          name: `社区资源站`,
-          url: entry.file_url
+          name: "社区资源站",
+          url: generateResourceUrl(entry, entry.file_name)
         }];
-      } else if (entry.file_name) {
-        // Automatically generate resource site link.
-        if (Array.isArray(entry.file_name)) {
-          entry.file_urls = [];
-          // For array, we generate all download links and give each link a name.
-          const displayNames = processFileNamesWithVolumes(entry.file_name);
-          for (var i = 0; i < entry.file_name.length; i++) {
-            var file_name_entry = entry.file_name[i];
-            if (file_name_entry == null) {
+      }
+    }
+
+    if (entry.smwp_ver && !entry.has_bundled_smwp) {
+      if (SmwpVersions[entry.smwp_ver]) {
+        entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
+      }
+    }
+
+    // Generate data file URLs if data_file_name is provided.
+    if (!entry.data_file_url) {
+      if (entry.data_file_name) {
+        if (Array.isArray(entry.data_file_name)) {
+          entry.data_file_urls = [];
+          const displayNames = processFileNamesWithVolumes(entry.data_file_name);
+          for (let j = 0; j < entry.data_file_name.length; j++) {
+            const data_file_name_entry = entry.data_file_name[j];
+            if (data_file_name_entry == null) {
               continue;
             }
-            entry.file_urls.push({
-              name: `社区资源站 (${displayNames[i]})`,
-              url: generateResourceUrl(entry, file_name_entry)
+            entry.data_file_urls.push({
+              name: `社区资源站 (${displayNames[j]})`,
+              url: generateResourceUrl(entry, data_file_name_entry)
             });
           }
         } else {
-          // For single file, we generate a download link.
-          entry.file_urls = [{
+          entry.data_file_urls = [{
             name: "社区资源站",
-            url: generateResourceUrl(entry, entry.file_name)
+            url: generateResourceUrl(entry, entry.data_file_name)
           }];
         }
       }
-
-      if (entry.smwp_ver && !entry.has_bundled_smwp) {
-        if (SmwpVersions[entry.smwp_ver]) {
-          entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
-        }
-      }
-
-      // Generate data file URLs if data_file_name is provided.
-      if (!entry.data_file_url) {
-        if (entry.data_file_name) {
-          if (Array.isArray(entry.data_file_name)) {
-            entry.data_file_urls = [];
-            const displayNames = processFileNamesWithVolumes(entry.data_file_name);
-            for (var j = 0; j < entry.data_file_name.length; j++) {
-              var data_file_name_entry = entry.data_file_name[j];
-              if (data_file_name_entry == null) {
-                continue;
-              }
-              entry.data_file_urls.push({
-                name: `社区资源站 (${displayNames[j]})`,
-                url: generateResourceUrl(entry, data_file_name_entry)
-              });
-            }
-          } else {
-            entry.data_file_urls = [{
-              name: "社区资源站",
-              url: generateResourceUrl(entry, entry.data_file_name)
-            }];
-          }
-        }
-      } else {
-        entry.data_file_urls = [{
-          name: `社区资源站`,
-          url: entry.data_file_url
-        }];
-      }
-
-      // For compability, we still have a "fake" currentVer field.
-      entry.currentVer = {
-        code : entry.code,
-        date : entry.date,
-        download_url : entry.download_url,
-        file_url : entry.file_url,
-        source_url : entry.source_url,
-        data_file_name : entry.data_file_name,
-        data_file_url : entry.data_file_url,
-        data_file_urls : entry.data_file_urls,
-        data_download_url : entry.data_download_url,
-        data_code : entry.data_code,
-      }
-
-      // Check validity of urls.
-      if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] == "~") {
-        entry.currentVer.source_url = entry.currentVer.source_url.substring(1);
-        entry.currentVer.source_url_invalid = true
-      } else {
-        entry.currentVer.source_url_invalid = false
-      }
-
-      if (entry.currentVer.download_url != null && entry.currentVer.download_url[0] == "~") {
-        entry.currentVer.download_url = entry.currentVer.download_url.substring(1);
-        entry.currentVer.download_url_invalid = true
-      } else {
-        entry.currentVer.download_url_invalid = false
-      }
-
-      games.value.push(entry);
+    } else {
+      entry.data_file_urls = [{
+        name: `社区资源站`,
+        url: entry.data_file_url
+      }];
     }
-    games.value.sort((a, b) => b.date - a.date)
-    checkUrlGameParam();
+
+    // For compability, we still have a "fake" currentVer field.
+    entry.currentVer = {
+      code : entry.code,
+      date : entry.date,
+      download_url : entry.download_url,
+      file_url : entry.file_url,
+      source_url : entry.source_url,
+      data_file_name : entry.data_file_name,
+      data_file_url : entry.data_file_url,
+      data_file_urls : entry.data_file_urls,
+      data_download_url : entry.data_download_url,
+      data_code : entry.data_code,
+    }
+
+    // Check validity of urls.
+    if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] == "~") {
+      entry.currentVer.source_url = entry.currentVer.source_url.substring(1);
+      entry.currentVer.source_url_invalid = true
+    } else {
+      entry.currentVer.source_url_invalid = false
+    }
+
+    if (entry.currentVer.download_url != null && entry.currentVer.download_url[0] == "~") {
+      entry.currentVer.download_url = entry.currentVer.download_url.substring(1);
+      entry.currentVer.download_url_invalid = true
+    } else {
+      entry.currentVer.download_url_invalid = false
+    }
+
+    games.value.push(entry);
+  }
+  games.value.sort((a, b) => b.date - a.date)
+  checkUrlGameParam();
+});
+
+const getGameSlug = (entry) => {
+  const name = entry.game;
+  const author = getStrFromList(entry.author);
+  const authorStr = Array.isArray(author) ? author.join('-') : author;
+  const slug = `${name}-${authorStr}`.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '');
+  return slug;
+};
+
+const checkUrlGameParam = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const gameSlug = urlParams.get('game');
+  if (!gameSlug) return;
+
+  const found = games.value.find(entry => {
+    const slug = getGameSlug(entry);
+    return slug === gameSlug;
   });
 
-  const getGameSlug = (entry) => {
-    const name = entry.game;
-    const author = getStrFromList(entry.author);
-    const authorStr = Array.isArray(author) ? author.join('-') : author;
-    const slug = `${name}-${authorStr}`.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '');
-    return slug;
-  };
-
-  const checkUrlGameParam = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameSlug = urlParams.get('game');
-    if (!gameSlug) return;
-
-    const found = games.value.find(entry => {
-      const slug = getGameSlug(entry);
-      return slug === gameSlug;
-    });
-
-    if (found) {
-      selectedGameDetail.value = found;
-    }
-  };
-
-  const selectedDownload = ref(null); // For download modal.
-  const selectedVideo = ref(null); // For download modal.
-  const tiebaDialog = ref(null); // For tieba dialog.
-  const selectedGameDetail = ref(null); // For game detail modal.
-
-  const getGameImage = (game) => {
-    return imageResolver.resolve(game);
-  };
-
-  watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newDownload, newVideo, newTieba, newGameDetail]) => {
-    if (newDownload || newVideo || newTieba || newGameDetail) {
-      document.documentElement.classList.add('modal-open');
-      document.body.classList.add('modal-open');
-      disableScroll();
-    } else {
-      document.documentElement.classList.remove('modal-open');
-      document.body.classList.remove('modal-open');
-      enableScroll();
-    }
-  });
-
-  // Sort operations.
-
-  const sort_option = ref({
-    active : false,
-    field : null,
-    asc : true
-  });
-
-  function defaultSort() {
-    games.value.sort((a, b) => b.date - a.date);
-    sort_option.value.field = null;
+  if (found) {
+    selectedGameDetail.value = found;
   }
+};
 
-  function sortByName() {
-    if (sort_option.value.field != "game") {
-      sort_option.value.field = "game";
-      sort_option.value.asc = true;
-    } else if (sort_option.value.asc == true) {
-      sort_option.value.asc = false;
-    } else {
-      defaultSort();
-      return; 
-    }
-    games.value = games.value.sort((a, b) => sort_option.value.asc ? a.game.localeCompare(b.game) : b.game.localeCompare(a.game));
+const selectedDownload = ref(null); // For download modal.
+const selectedVideo = ref(null); // For download modal.
+const tiebaDialog = ref(null); // For tieba dialog.
+const selectedGameDetail = ref(null); // For game detail modal.
+
+const getGameImage = (game) => {
+  return imageResolver.resolve(game);
+};
+
+watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newDownload, newVideo, newTieba, newGameDetail]) => {
+  if (newDownload || newVideo || newTieba || newGameDetail) {
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    disableScroll();
+  } else {
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+    enableScroll();
   }
+});
 
-  function sortByAuthor() {
-    if (sort_option.value.field != "author") {
-      sort_option.value.field = "author";
-      sort_option.value.asc = true;
-    } else if (sort_option.value.asc == true) {
-      sort_option.value.asc = false;
-    } else {
-      defaultSort();
-      return; 
-    }
-    games.value = games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, "zh").localeCompare(getAuthor(b, "zh")) : getAuthor(b, "zh").localeCompare(getAuthor(a, "zh")));
+// Sort operations.
+
+const sort_option = ref({
+  active : false,
+  field : null,
+  asc : true
+});
+
+function defaultSort() {
+  games.value.sort((a, b) => b.date - a.date);
+  sort_option.value.field = null;
+}
+
+function sortByName() {
+  if (sort_option.value.field != "game") {
+    sort_option.value.field = "game";
+    sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
+  } else {
+    defaultSort();
+    return;
   }
+  games.value = games.value.sort((a, b) => sort_option.value.asc ? a.game.localeCompare(b.game) : b.game.localeCompare(a.game));
+}
 
-  function sortByDate() {
-    if (sort_option.value.field != "date") {
-      sort_option.value.field = "date";
-      sort_option.value.asc = true;
-    } else {
-      sort_option.value.asc = !sort_option.value.asc;
-    }
-    games.value = games.value.sort((a, b) => sort_option.value.asc ? a.date - b.date : b.date - a.date);
+function sortByAuthor() {
+  if (sort_option.value.field != "author") {
+    sort_option.value.field = "author";
+    sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
+  } else {
+    defaultSort();
+    return;
   }
+  games.value = games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, "zh").localeCompare(getAuthor(b, "zh")) : getAuthor(b, "zh").localeCompare(getAuthor(a, "zh")));
+}
 
-  // Filter operations.
-
-  const filter_option = ref({
-    active : false,
-    name : "",
-    year : ""
-  });
-
-  function clearName() {
-    filter_option.value.name = "";
+function sortByDate() {
+  if (sort_option.value.field != "date") {
+    sort_option.value.field = "date";
+    sort_option.value.asc = true;
+  } else {
+    sort_option.value.asc = !sort_option.value.asc;
   }
-  function clearFilter() {
-    filter_option.value.name = "";
-    filter_option.value.author = "";
-    filter_option.value.year = "";
-    showOnlyBundledSmwp.value = false;
-    selectedSmwpVer.value = "";
-  }
+  games.value = games.value.sort((a, b) => sort_option.value.asc ? a.date - b.date : b.date - a.date);
+}
 
-  const showOnlyBundledSmwp = ref(false);
+// Filter operations.
 
-  const smwpVersionOptions = computed(() => {
-    // 收集所有主版本（如1.7）和完整版本（如1.7.6），只保留纯数字版本（不含字母）
-    const allVers = Object.keys(SmwpVersions)
-      .map(v => v.replace(/^v/, ""))
-      .filter(v => /^\d+\.\d+\.\d+$/.test(v));
+const filter_option = ref({
+  active : false,
+  name : "",
+  year : ""
+});
+
+function clearName() {
+  filter_option.value.name = "";
+}
+function clearFilter() {
+  filter_option.value.name = "";
+  filter_option.value.author = "";
+  filter_option.value.year = "";
+  showOnlyBundledSmwp.value = false;
+  selectedSmwpVer.value = "";
+}
+
+const showOnlyBundledSmwp = ref(false);
+
+const smwpVersionOptions = computed(() => {
+  // 收集所有主版本（如1.7）和完整版本（如1.7.6），只保留纯数字版本（不含字母）
+  const allVers = Object.keys(SmwpVersions)
+    .map(v => v.replace(/^v/, ""))
+    .filter(v => /^\d+\.\d+\.\d+$/.test(v));
     // 语义版本排序函数
-    function semverDesc(a, b) {
-      const pa = a.split('.').map(Number);
-      const pb = b.split('.').map(Number);
-      for (let i = 0; i < 3; ++i) {
-        if ((pa[i]||0) !== (pb[i]||0)) return (pb[i]||0) - (pa[i]||0);
-      }
-      return 0;
+  function semverDesc(a, b) {
+    const pa = a.split('.').map(Number);
+    const pb = b.split('.').map(Number);
+    for (let i = 0; i < 3; ++i) {
+      if ((pa[i]||0) !== (pb[i]||0)) return (pb[i]||0) - (pa[i]||0);
     }
-    // 主版本集合
-    const mainVersSet = new Set(allVers.map(v => v.split(".").slice(0,2).join(".")));
-    const mainVers = Array.from(mainVersSet).sort(semverDesc);
-    // 每个主版本下，主版本.x在最前，其次为所有完整版本
-    let options = [];
-    for (const main of mainVers) {
-      // 该主版本下所有完整版本，倒序
-      const subVers = allVers.filter(v => v.startsWith(main+".")).sort(semverDesc);
-      if (subVers.length > 1) {
-        options.push({ label: main+".x", value: main });
-        options.push(...subVers.map(v => ({ label: v, value: v })));
-      } else if (subVers.length === 1) {
-        // 只有一个次版本时，该次版本加粗
-        options.push({ label: subVers[0], value: subVers[0], bold: true });
-      }
+    return 0;
+  }
+  // 主版本集合
+  const mainVersSet = new Set(allVers.map(v => v.split(".").slice(0,2).join(".")));
+  const mainVers = Array.from(mainVersSet).sort(semverDesc);
+  // 每个主版本下，主版本.x在最前，其次为所有完整版本
+  const options = [];
+  for (const main of mainVers) {
+    // 该主版本下所有完整版本，倒序
+    const subVers = allVers.filter(v => v.startsWith(main+".")).sort(semverDesc);
+    if (subVers.length > 1) {
+      options.push({ label: main+".x", value: main });
+      options.push(...subVers.map(v => ({ label: v, value: v })));
+    } else if (subVers.length === 1) {
+      // 只有一个次版本时，该次版本加粗
+      options.push({ label: subVers[0], value: subVers[0], bold: true });
     }
-    return options;
-  });
-  const selectedSmwpVer = ref("");
+  }
+  return options;
+});
+const selectedSmwpVer = ref("");
 
-  const filteredGames = computed(() => {
-    let result = games.value.filter((a) => 
-      (
-        (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+const filteredGames = computed(() => {
+  let result = games.value.filter((a) =>
+    (
+      (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
         || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
         || filterList(filter_option.value.name.trim(), a.alias)
         || (Array.isArray(a.file_name)
-            ? a.file_name.some(fn => fn && fn.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
-            : (a.file_name && a.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
+          ? a.file_name.some(fn => fn && fn.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
+          : (a.file_name && a.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
         )
-      )
+    )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
-    );
-    if (showOnlyBundledSmwp.value) {
-      result = result.filter(a => a.has_bundled_smwp);
-    }
-    if (selectedSmwpVer.value) {
-      result = result.filter(a => {
-        if (selectedSmwpVer.value === "unspecified") {
-          // 选中"未指定"时，筛出没有指定SMWP版本的作品
-          return !a.smwp_ver;
-        }
-        if (!a.smwp_ver) return false;
-        const ver = a.smwp_ver.replace(/^v/, "");
-        // 精确匹配主版本或完整版本，若选中如1.7.11，则1.7.11和1.7.11b都包含
-        if (/^\d+\.\d+$/.test(selectedSmwpVer.value)) {
-          // 选中主版本如1.7，匹配1.7.x
-          return ver.startsWith(selectedSmwpVer.value + ".");
-        } else if (/^\d+\.\d+\.\d+$/.test(selectedSmwpVer.value)) {
-          // 选中如1.7.11，匹配1.7.11和1.7.11+字母
-          return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value) && /[a-zA-Z]$/.test(ver);
-        }
-        return false;
-      });
-    }
-    return result;
-  });
-
-  // Get last update date.
-
-  const lastUpdate = ref(null);
-
-  const yamlUpdateDate = ref(null);
-  const mdUpdateDate = ref(null);
-
-  const formatDate = (date) => {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
-  };
-
-  const getLatestDate = () => {
-    const dates = [];
-    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-    if (mdUpdateDate.value) dates.push(new Date(mdUpdateDate.value));
-    if (dates.length === 0) return null;
-    const maxDate = new Date(Math.max(...dates));
-    return formatDate(maxDate);
-  };
-
-  const updateLastUpdate = () => {
-    lastUpdate.value = getLatestDate();
-  };
-
-  const fetchYamlUpdate = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-mw.yaml&page=1&per_page=1").then((response) => {
-      yamlUpdateDate.value = response.data[0].commit.committer.date;
+  );
+  if (showOnlyBundledSmwp.value) {
+    result = result.filter(a => a.has_bundled_smwp);
+  }
+  if (selectedSmwpVer.value) {
+    result = result.filter(a => {
+      if (selectedSmwpVer.value === "unspecified") {
+        // 选中"未指定"时，筛出没有指定SMWP版本的作品
+        return !a.smwp_ver;
+      }
+      if (!a.smwp_ver) return false;
+      const ver = a.smwp_ver.replace(/^v/, "");
+      // 精确匹配主版本或完整版本，若选中如1.7.11，则1.7.11和1.7.11b都包含
+      if (/^\d+\.\d+$/.test(selectedSmwpVer.value)) {
+        // 选中主版本如1.7，匹配1.7.x
+        return ver.startsWith(selectedSmwpVer.value + ".");
+      } else if (/^\d+\.\d+\.\d+$/.test(selectedSmwpVer.value)) {
+        // 选中如1.7.11，匹配1.7.11和1.7.11+字母
+        return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value) && /[a-zA-Z]$/.test(ver);
+      }
+      return false;
     });
-  };
+  }
+  return result;
+});
 
-  const fetchMdUpdate = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmw-games-zh.md&page=1&per_page=1").then((response) => {
-      mdUpdateDate.value = response.data[0].commit.committer.date;
-    });
-  };
+// Get last update date.
 
-  Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
-    updateLastUpdate();
+const lastUpdate = ref(null);
+
+const yamlUpdateDate = ref(null);
+const mdUpdateDate = ref(null);
+
+const formatDate = (date) => {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
+};
+
+const getLatestDate = () => {
+  const dates = [];
+  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+  if (mdUpdateDate.value) dates.push(new Date(mdUpdateDate.value));
+  if (dates.length === 0) return null;
+  const maxDate = new Date(Math.max(...dates));
+  return formatDate(maxDate);
+};
+
+const updateLastUpdate = () => {
+  lastUpdate.value = getLatestDate();
+};
+
+const fetchYamlUpdate = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-mw.yaml&page=1&per_page=1").then((response) => {
+    yamlUpdateDate.value = response.data[0].commit.committer.date;
   });
+};
 
-  // Get window width.
+const fetchMdUpdate = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmw-games-zh.md&page=1&per_page=1").then((response) => {
+    mdUpdateDate.value = response.data[0].commit.committer.date;
+  });
+};
 
-  const wideScreen = ref(window.innerWidth >= 1100);
-  window.addEventListener('resize', () => {
-    wideScreen.value = window.innerWidth >= 1100;
-  })
+Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
+  updateLastUpdate();
+});
 
-  // Display mode toggle (line/card)
-  const displayMode = ref(getDisplayMode()); // 'line' or 'card'
-  
-  function toggleDisplayMode() {
-    if (displayMode.value === 'line') {
-      displayMode.value = setDisplayModeCard();
-    } else {
-      displayMode.value = setDisplayModeLine();
-    }
+// Get window width.
+
+const wideScreen = ref(window.innerWidth >= 1100);
+window.addEventListener('resize', () => {
+  wideScreen.value = window.innerWidth >= 1100;
+})
+
+// Display mode toggle (line/card)
+const displayMode = ref(getDisplayMode()); // 'line' or 'card'
+
+function toggleDisplayMode() {
+  if (displayMode.value === 'line') {
+    displayMode.value = setDisplayModeCard();
+  } else {
+    displayMode.value = setDisplayModeLine();
   }
+}
 
-  // Optimized tooltip.
+// Optimized tooltip.
 
-  function tooltipMouseEnter(obj) {
-    if (obj[0] != reference.value) {
-      reference.value = obj[0];
-      floatingText.value = obj[1];
-    }
+function tooltipMouseEnter(obj) {
+  if (obj[0] != reference.value) {
+    reference.value = obj[0];
+    floatingText.value = obj[1];
   }
+}
 
-  function tooltipMouseLeave(obj) {
-    if (obj == reference.value) {
-      reference.value = null;
-      floatingText.value = null;
-    }
+function tooltipMouseLeave(obj) {
+  if (obj == reference.value) {
+    reference.value = null;
+    floatingText.value = null;
   }
+}
 
-  const reference = ref(null);
-  const floating = ref(null);
-  const floatingText = ref(null);
-  const { floatingStyles} = useFloating(reference, floating, 
+const reference = ref(null);
+const floating = ref(null);
+const floatingText = ref(null);
+const { floatingStyles } = useFloating(reference, floating,
   {
     middleware: [flip(), shift(), offset(10)],
     whileElementsMounted: autoUpdate,
@@ -418,7 +418,12 @@
 </script>
 
 <template>
-  <DownloadHeader pageId="mw-levels" :lan-var="originalLan" @change-lan-zh="originalLan = setLanguageZh(); " @change-lan-en="originalLan = setLanguageEn(); "/>
+  <DownloadHeader
+    pageId="mw-levels"
+    :lan-var="originalLan"
+    @change-lan-zh="originalLan = setLanguageZh(); "
+    @change-lan-en="originalLan = setLanguageEn(); "
+  />
 
   <div class="container md-container">
     <h1>{{ titleZh }}</h1>
@@ -433,20 +438,30 @@
         {{ lan == "en" ? "Filter" : "筛选" }}
         <div class="inline-block search-box">
           <input v-model="filter_option.name" class="input" @input="onSearchInput">
-          <span v-if="filter_option.name" class="clear-btn" @click="clearName" title="Clear">✕</span>
+          <span
+            v-if="filter_option.name"
+            class="clear-btn"
+            @click="clearName"
+            title="Clear"
+          >✕</span>
         </div>&nbsp;
         <div class="inline-block">
           {{ lan == "en" ? "Year" : "年份" }}
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()" :key="year">{{year}}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2016+1}, (_, i) => i + 2016).reverse()" :key="year">{{ year }}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
           SMWP 版本
           <select v-model="selectedSmwpVer">
             <option value="" style="font-weight:bold">全部</option>
-            <option v-for="opt in smwpVersionOptions" :key="opt.value" :value="opt.value" :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''">{{opt.label}}</option>
+            <option
+              v-for="opt in smwpVersionOptions"
+              :key="opt.value"
+              :value="opt.value"
+              :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''"
+            >{{ opt.label }}</option>
             <option value="unspecified" style="font-weight:bold">未指定</option>
           </select>&nbsp;
         </div>
@@ -507,15 +522,45 @@
     </div>
   </div>
 
-  <GameLineHeader v-if="wideScreen && displayMode === 'line'" lan="zh" category="mw" :sort_option="sort_option" @sort-by-name="sortByName();" @sort-by-author="sortByAuthor();" @sort-by-date="sortByDate();"/>
+  <GameLineHeader
+    v-if="wideScreen && displayMode === 'line'"
+    lan="zh"
+    category="mw"
+    :sort_option="sort_option"
+    @sort-by-name="sortByName();"
+    @sort-by-author="sortByAuthor();"
+    @sort-by-date="sortByDate();"
+  />
   <template v-if="wideScreen && displayMode === 'line'">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + idx">
-      <GameLine :game="game" lan="zh" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}" @show-game-detail="(entry) => {selectedGameDetail = entry;}"/>
+      <GameLine
+        :game="game"
+        lan="zh"
+        :get-game-image="getGameImage"
+        @select-game="(entry) => {selectedDownload = entry;}"
+        @select-videos="(entry) => {selectedVideo = entry;}"
+        @select-version="(entry) => {Object.assign(game, entry);}"
+        @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
+        @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
+        @show-tieba-dialog="(data) => {tiebaDialog = data;}"
+        @show-game-detail="(entry) => {selectedGameDetail = entry;}"
+      />
     </div>
   </template>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
     <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + idx">
-      <GameCard :game="game" lan="zh" :get-game-image="getGameImage" @select-game="(entry) => {selectedDownload = entry;}" @select-videos="(entry) => {selectedVideo = entry;}" @select-version="(entry) => {Object.assign(game, entry);}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}" @show-game-detail="(entry) => {selectedGameDetail = entry;}"/>
+      <GameCard
+        :game="game"
+        lan="zh"
+        :get-game-image="getGameImage"
+        @select-game="(entry) => {selectedDownload = entry;}"
+        @select-videos="(entry) => {selectedVideo = entry;}"
+        @select-version="(entry) => {Object.assign(game, entry);}"
+        @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
+        @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
+        @show-tieba-dialog="(data) => {tiebaDialog = data;}"
+        @show-game-detail="(entry) => {selectedGameDetail = entry;}"
+      />
     </div>
   </div>
 
@@ -527,9 +572,20 @@
         </div>
         <div class="button-line">
           <span v-if="selectedDownload.file_urls">
-            <a class="download" v-for="url in selectedDownload.file_urls" :key="url.url" :href="url.url" target="_blank">{{url.name}}</a>
+            <a
+              class="download"
+              v-for="url in selectedDownload.file_urls"
+              :key="url.url"
+              :href="url.url"
+              target="_blank"
+            >{{ url.name }}</a>
           </span>
-          <a class="download" v-if="getDownloadLink(selectedDownload, 'zh')" :href="getDownloadLink(selectedDownload, 'zh')" target="_blank">{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
+          <a
+            class="download"
+            v-if="getDownloadLink(selectedDownload, 'zh')"
+            :href="getDownloadLink(selectedDownload, 'zh')"
+            target="_blank"
+          >{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
           <ClipboardButton v-if="getDownloadCode(selectedDownload, 'zh')" :code="getDownloadCode(selectedDownload, 'zh')" lan="zh"></ClipboardButton>
         </div>
         <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
@@ -537,7 +593,13 @@
         </div>
         <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line">
           <span v-if="selectedDownload.currentVer.data_file_urls">
-            <a class="download" v-for="url in selectedDownload.currentVer.data_file_urls" :key="url.url" :href="url.url" target="_blank">{{ url.name }}</a>
+            <a
+              class="download"
+              v-for="url in selectedDownload.currentVer.data_file_urls"
+              :key="url.url"
+              :href="url.url"
+              target="_blank"
+            >{{ url.name }}</a>
           </span>
           <template v-if="selectedDownload.currentVer.data_download_url">
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
@@ -546,7 +608,12 @@
                 (提取码: {{ selectedDownload.currentVer.data_code }})
               </template>
             </a>
-            <ClipboardButton v-if="selectedDownload.currentVer.data_code" :code="selectedDownload.currentVer.data_code" lan="zh" style="margin-left:2px;" />
+            <ClipboardButton
+              v-if="selectedDownload.currentVer.data_code"
+              :code="selectedDownload.currentVer.data_code"
+              lan="zh"
+              style="margin-left:2px;"
+            />
           </template>
         </div>
       </div>
@@ -582,11 +649,23 @@
     </div>
   </Transition>
 
-  <FullscreenModal :show="selectedGameDetail != null" :game="selectedGameDetail" :lan="lan" category="mw-levels" @close="selectedGameDetail = null" />
+  <FullscreenModal
+    :show="selectedGameDetail != null"
+    :game="selectedGameDetail"
+    :lan="lan"
+    category="mw-levels"
+    @close="selectedGameDetail = null"
+  />
 
-  <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
+  <div
+    ref="floating"
+    class="floating-obj"
+    v-if="floatingText"
+    :style="floatingStyles"
+    v-html="floatingText"
+  >
   </div>
-  
+
   <ButtonBackToTop />
   <ButtonDarkMode />
 
@@ -660,7 +739,7 @@
       margin-top: -10px;
     }
   }
-  
+
   .icon {
     color: #000;
     width: 16px;
@@ -958,7 +1037,7 @@
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline; 
+    vertical-align: baseline;
     line-height: 1.5em;
   }
 
@@ -980,11 +1059,11 @@
   table tr {
     border-top: solid 1px #eee;
   }
-  
+
   table td {
     padding: 0.5em 1em 0.5em 1em;
   }
-  
+
   table th {
     padding: 0.5em 1em 0.5em 1em;
   }

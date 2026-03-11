@@ -1,21 +1,24 @@
 <script setup>
-  import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "./icons/Icons.js";
+import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "./icons/Icons.js";
 
-  const props = defineProps({
-    lan : {
-      required: true
-    },
-    category : {
-      required: true
-    },
-    sort_option : {
-      required: true
-    }
-  });
-
-  function getSortOption() {
-    return props.sort_option;
+const props = defineProps({
+  lan: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  sort_option: {
+    type: Object,
+    required: true
   }
+});
+
+function getSortOption() {
+  return props.sort_option;
+}
 
 </script>
 

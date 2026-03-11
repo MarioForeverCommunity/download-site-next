@@ -1,120 +1,121 @@
 <script setup>
-  import { LinkIcon, DownloadIcon, UserIcon, GithubIcon } from "./icons/Icons.js";
-  import { getName, getAuthorList, hasDownloadableContent } from "../util/GemeUtil.js";
-  import { sourceName } from "../config.js";
-  import Tooltip from "./ToolTip.vue";
+import { LinkIcon, DownloadIcon, UserIcon, GithubIcon } from "./icons/Icons.js";
+import { getName, getAuthorList, hasDownloadableContent } from "../util/GemeUtil.js";
+import { sourceName } from "../config.js";
+import Tooltip from "./ToolTip.vue";
 
-  const props = defineProps({
-    asset: {
-      type: Object,
-      required: true
-    },
-    getAssetImage: {
-      type: Function,
-      required: false
-    }
-  });
+const props = defineProps({
+  asset: {
+    type: Object,
+    required: true
+  },
+  getAssetImage: {
+    type: Function,
+    required: false,
+    default: () => null
+  }
+});
 
-  const emit = defineEmits(['selectDownload', 'showTooltip', 'hideTooltip', 'showTiebaDialog']);
+const emit = defineEmits(['selectDownload', 'showTooltip', 'hideTooltip', 'showTiebaDialog']);
 
-  const handleImageError = (event) => {
-    event.target.parentElement.style.display = 'none';
-  };
+const handleImageError = (event) => {
+  event.target.parentElement.style.display = 'none';
+};
 
-  const getAssetImage = () => {
-    return props.getAssetImage ? props.getAssetImage(props.asset) : null;
-  };
+const getAssetImage = () => {
+  return props.getAssetImage ? props.getAssetImage(props.asset) : null;
+};
 
-  const getAssetSourceLink = (asset) => {
-    return asset.source_url || null;
-  };
+const getAssetSourceLink = (asset) => {
+  return asset.source_url || null;
+};
 
-  const getAssetSourceLinkValidity = (asset) => {
-    return !asset.source_url_invalid;
-  };
+const getAssetSourceLinkValidity = (asset) => {
+  return !asset.source_url_invalid;
+};
 
-  const getAssetSourceDesc = (asset) => {
-    const link = getAssetSourceLink(asset);
-    if (!link) {
-      return null;
-    }
-    for (var entry of sourceName) {
-      if (link.match(entry.domain)) {
-        return entry.desc_zh || entry.desc_en;
-      }
-    }
+const getAssetSourceDesc = (asset) => {
+  const link = getAssetSourceLink(asset);
+  if (!link) {
     return null;
-  };
+  }
+  for (const entry of sourceName) {
+    if (link.match(entry.domain)) {
+      return entry.desc_zh || entry.desc_en;
+    }
+  }
+  return null;
+};
 
-  const handleSourceClick = (event) => {
-    const sourceUrl = getAssetSourceLink(props.asset);
-    if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
-      const postId = sourceUrl.match(/\/p\/(\d+)/);
-      if (postId) {
-        const tid = parseInt(postId[1]);
-        if (tid > 6856592056) {
-          return;
-        }
-        event.preventDefault();
-        emit('showTiebaDialog', {
-          originalUrl: sourceUrl,
-          archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
-        });
+const handleSourceClick = (event) => {
+  const sourceUrl = getAssetSourceLink(props.asset);
+  if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
+    const postId = sourceUrl.match(/\/p\/(\d+)/);
+    if (postId) {
+      const tid = parseInt(postId[1]);
+      if (tid > 6856592056) {
+        return;
       }
+      event.preventDefault();
+      emit('showTiebaDialog', {
+        originalUrl: sourceUrl,
+        archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
+      });
     }
-  };
+  }
+};
 
-  const getTypeLabel = (type) => {
-    const types = {
-      engine: '引擎',
-      addon: '拓展',
-      effect: '特效',
-      sprite: '素材'
-    };
-    return types[type] || type;
+const getTypeLabel = (type) => {
+  const types = {
+    engine: '引擎',
+    addon: '拓展',
+    effect: '特效',
+    sprite: '素材'
   };
+  return types[type] || type;
+};
 
-  const getTypeClass = (type) => {
-    const classes = {
-      engine: 'engine-dot',
-      addon: 'addon-dot',
-      effect: 'effect-dot',
-      sprite: 'sprite-dot'
-    };
-    return classes[type] || '';
+const getTypeClass = (type) => {
+  const classes = {
+    engine: 'engine-dot',
+    addon: 'addon-dot',
+    effect: 'effect-dot',
+    sprite: 'sprite-dot'
   };
+  return classes[type] || '';
+};
 
-  const getTypeTooltip = (type) => {
-    const tooltips = {
-      engine: '制作模板 (引擎)',
-      addon: '拓展资源',
-      effect: '特效',
-      sprite: '素材'
-    };
-    return tooltips[type] || type;
+const getTypeTooltip = (type) => {
+  const tooltips = {
+    engine: '制作模板 (引擎)',
+    addon: '拓展资源',
+    effect: '特效',
+    sprite: '素材'
   };
+  return tooltips[type] || type;
+};
 
-  const getVersionString = () => {
-    if (props.asset.currentVer && props.asset.currentVer.ver) {
-      return props.asset.currentVer.ver;
+const getVersionString = () => {
+  if (props.asset.currentVer && props.asset.currentVer.ver) {
+    return props.asset.currentVer.ver;
+  }
+  return '';
+};
+
+const getDateString = () => {
+  if (props.asset.currentVer && props.asset.currentVer.date) {
+    const date = props.asset.currentVer.date;
+    if (typeof date === 'string') {
+      return date;
     }
-    return '';
-  };
+    return date.toISOString().split('T')[0];
+  }
+  return '';
+};
 
-  const getDateString = () => {
-    if (props.asset.currentVer && props.asset.currentVer.date) {
-      const date = props.asset.currentVer.date;
-      if (typeof date === 'string') {
-        return date;
-      }
-      return date.toISOString().split('T')[0];
-    }
-    return '';
-  };
-
-  const getVariantName = () => {
-    return props.asset._variantName || null;
-  };
+const getVariantName = () => {
+  return props.asset._variantName || null;
+};
 </script>
 
 <template>
@@ -149,15 +150,18 @@
           <span class="inline-block author-ellipsis">
             <UserIcon class="icon author-icon"></UserIcon>
             <span class="author-text">
-            <template v-if="typeof getAuthorList(asset, 'zh') == 'string'">
-              {{ getAuthorList(asset, 'zh') }}
-            </template>
-            <template v-else>
-              <span class="inline-block" v-for="(author, authorindex) in getAuthorList(asset, 'zh')" 
-                  :key="author + authorindex">
-                {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">,&nbsp;</span>
-              </span>
-            </template>
+              <template v-if="typeof getAuthorList(asset, 'zh') == 'string'">
+                {{ getAuthorList(asset, 'zh') }}
+              </template>
+              <template v-else>
+                <span
+                  class="inline-block"
+                  v-for="(author, authorindex) in getAuthorList(asset, 'zh')"
+                  :key="author + authorindex"
+                >
+                  {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">,&nbsp;</span>
+                </span>
+              </template>
             </span>
           </span>
           <template #popper>

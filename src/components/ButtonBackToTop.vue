@@ -1,33 +1,33 @@
 <script setup>
-  import { ref, onMounted, onUnmounted } from 'vue';
-  import UpArrowIcon from './icons/IconUpArrow.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import UpArrowIcon from './icons/IconUpArrow.vue';
 
-  const showBackToTop = ref(false);
-  
-  function handleScroll() {
-    showBackToTop.value = window.scrollY > 300;
-  }
-  
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-  
-  onMounted(() => {
-    window.addEventListener('scroll', handleScroll);
+const showBackToTop = ref(false);
+
+function handleScroll() {
+  showBackToTop.value = window.scrollY > 300;
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
   });
-  
-  onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
-  });
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-    <Transition name="fade">
-        <UpArrowIcon v-show="showBackToTop" class="icon-inner back-to-top" @click="scrollToTop"></UpArrowIcon>
-    </Transition>
+  <Transition name="fade">
+    <UpArrowIcon v-show="showBackToTop" class="icon-inner back-to-top" @click="scrollToTop"></UpArrowIcon>
+  </Transition>
 </template>
 
 <style scoped>
@@ -71,17 +71,17 @@
   body.dark .back-to-top:hover {
     background-color: #444 !important;
   }
-  
+
   .back-to-top span {
     font-size: 20px;
     font-weight: bold;
   }
-  
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.3s ease;
   }
-  
+
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;

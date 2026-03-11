@@ -81,7 +81,7 @@ export const topBar = [
   // },
 ]
 
-// navTop - Navigator entries. 
+// navTop - Navigator entries.
 // `id` is pageId referenced in header component.
 // `link` is link of the entry.
 // `option` is option name in Chinese.

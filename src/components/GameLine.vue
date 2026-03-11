@@ -1,79 +1,79 @@
 <script setup>
-  import {parseVer} from "../util/Misc.js";
-  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon, GithubIcon } from "./icons/Icons.js";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent} from "../util/GemeUtil.js";
-  import Tooltip from "./ToolTip.vue";
+import { parseVer } from "../util/Misc.js";
+import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon, GithubIcon } from "./icons/Icons.js";
+import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent } from "../util/GemeUtil.js";
+import Tooltip from "./ToolTip.vue";
 
-  const props = defineProps({
-    game: {
-      type: Object,
-      required: true
-    }, 
-    lan : {
-      required: true
-    },
-    getGameImage: {
-      type: Function,
-      required: false
-    }
+const props = defineProps({
+  game: {
+    type: Object,
+    required: true
+  },
+  lan: {
+    type: String,
+    required: true
+  },
+  getGameImage: {
+    type: Function,
+    required: false,
+    default: () => null
+  }
+});
+
+const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
+
+const selectVersion = (ver) => {
+  // 通过emit事件通知父组件更新版本信息
+  emit('selectVersion', {
+    ...props.game,
+    currentVer: parseVer(ver),
+    currentVerStr: Object.keys(ver)[0],
+    currentVerStrAlt: parseVer(ver).ver_alt
   });
+};
 
+const getImageUrl = () => {
+  if (!props.getGameImage) return null;
+  return props.getGameImage(props.game);
+};
 
+const hasApkFile = () => {
+  if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
+    return false;
+  }
+  return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
+};
 
-  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
-
-  const selectVersion = (ver) => {
-    // 通过emit事件通知父组件更新版本信息
-    emit('selectVersion', {
-      ...props.game,
-      currentVer: parseVer(ver),
-      currentVerStr: Object.keys(ver)[0],
-      currentVerStrAlt: parseVer(ver).ver_alt
-    });
-  };
-
-  const getImageUrl = () => {
-    if (!props.getGameImage) return null;
-    return props.getGameImage(props.game);
-  };
-
-  const hasApkFile = () => {
-    if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
-      return false;
-    }
-    return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
-  };
-
-  const handleSourceClick = (event) => {
-    const sourceUrl = getSourceLink(props.game, props.lan);
-    if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
-      const postId = sourceUrl.match(/\/p\/(\d+)/);
-      if (postId) {
-        const tid = parseInt(postId[1]);
-        if (tid > 6856592056) {
-          // 对于较新的帖子，直接访问，不弹框
-          return;
-        }
-        event.preventDefault();
-        emit('showTiebaDialog', {
-          originalUrl: sourceUrl,
-          archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
-        });
+const handleSourceClick = (event) => {
+  const sourceUrl = getSourceLink(props.game, props.lan);
+  if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
+    const postId = sourceUrl.match(/\/p\/(\d+)/);
+    if (postId) {
+      const tid = parseInt(postId[1]);
+      if (tid > 6856592056) {
+        // 对于较新的帖子，直接访问，不弹框
+        return;
       }
+      event.preventDefault();
+      emit('showTiebaDialog', {
+        originalUrl: sourceUrl,
+        archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
+      });
     }
-  };
+  }
+};
 
-  const handleGameNameClick = () => {
-    emit('showGameDetail', props.game);
-  };
+const handleGameNameClick = () => {
+  emit('showGameDetail', props.game);
+};
 
-  const getDisplayAuthorList = () => {
-    const authorList = getAuthorList(props.game, props.lan);
-    if (props.game.category === 'mw' && Array.isArray(authorList)) {
-      return '合作作品';
-    }
-    return authorList;
-  };
+const getDisplayAuthorList = () => {
+  const authorList = getAuthorList(props.game, props.lan);
+  if (props.game.category === 'mw' && Array.isArray(authorList)) {
+    return '合作作品';
+  }
+  return authorList;
+};
 
 </script>
 
@@ -129,7 +129,7 @@
           </div>
         </template>
       </Tooltip>
-      </div>
+    </div>
     <div class="game-author">
       <span v-if="typeof getDisplayAuthorList() == 'string'">
         <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
@@ -164,7 +164,12 @@
       <div :class="game.ver.length > 1 ? 'dropdown' : ''">
         <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
         <div v-if="game.ver.length > 1" class="dropdown-content">
-          <div v-for="ver in game.ver" :key="Object.keys(ver)[0]" class="dropdown-item" @click="selectVersion(ver)">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
+          <div
+            v-for="ver in game.ver"
+            :key="Object.keys(ver)[0]"
+            class="dropdown-item"
+            @click="selectVersion(ver)"
+          >{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
         </div>
       </div>
     </div>
@@ -203,7 +208,12 @@
           <template #popper>相关视频</template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
-          <a :href="getSourceLink(game, lan)" target="_blank" class="inline-block" @click="handleSourceClick">
+          <a
+            :href="getSourceLink(game, lan)"
+            target="_blank"
+            class="inline-block"
+            @click="handleSourceClick"
+          >
             <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
           </a>
           <template #popper>
@@ -370,7 +380,7 @@
   body.dark .dot.cn-dot,
   body.dark .dot.en-dot,
   body.dark .dot.cur-dot,
-  body.dark .dot.mw-dot, 
+  body.dark .dot.mw-dot,
   body.dark .dot.bgm-dot {
     background: #bbb;
     border: 0px;

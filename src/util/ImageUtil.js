@@ -19,11 +19,11 @@ async function loadImageIndex() {
   if (imageIndex) {
     return imageIndex;
   }
-  
+
   if (indexLoading && indexPromise) {
     return indexPromise;
   }
-  
+
   indexLoading = true;
   indexPromise = axios.get('/data/image-index.json')
     .then(response => {
@@ -36,7 +36,7 @@ async function loadImageIndex() {
       indexLoading = false;
       return imageIndex;
     });
-  
+
   return indexPromise;
 }
 
@@ -47,30 +47,30 @@ function parseTitleVersion(filename) {
 
 function findTitleImageForVersion(images, currentVerStr) {
   if (!images || images.length === 0 || !currentVerStr) return null;
-  
+
   const titleImages = images.filter(img => REGEX.titleImage.test(img));
   if (titleImages.length === 0) return null;
-  
+
   for (const img of titleImages) {
     const titleVer = parseTitleVersion(img);
     if (titleVer && currentVerStr.includes(titleVer)) {
       return img;
     }
   }
-  
+
   return null;
 }
 
 function findTitleImage(images) {
   if (!images || images.length === 0) return null;
-  
+
   const titleImage = images.find(img => REGEX.titleSimple.test(img.toLowerCase()));
   return titleImage || null;
 }
 
 function findLogoImage(images) {
   if (!images || images.length === 0) return null;
-  
+
   const logoImage = images.find(img => REGEX.logoImage.test(img.toLowerCase()));
   return logoImage || null;
 }
@@ -92,14 +92,14 @@ function naturalSort(a, b) {
   const regex = /(\d+)|(\D+)/g;
   const aParts = a.match(regex) || [];
   const bParts = b.match(regex) || [];
-  
+
   for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
     const aPart = aParts[i] || '';
     const bPart = bParts[i] || '';
-    
+
     const aNum = parseInt(aPart, 10);
     const bNum = parseInt(bPart, 10);
-    
+
     if (!isNaN(aNum) && !isNaN(bNum)) {
       if (aNum !== bNum) return aNum - bNum;
     } else {
@@ -107,86 +107,86 @@ function naturalSort(a, b) {
       if (cmp !== 0) return cmp;
     }
   }
-  
+
   return 0;
 }
 
 function getShowcaseImagesInternal(game, category) {
   if (!game) return [];
-  
+
   const gameName = game.game;
   if (!gameName) return [];
-  
+
   const cacheKey = getShowcaseCacheKey(gameName, category);
   if (showcaseCache.has(cacheKey)) {
     return showcaseCache.get(cacheKey);
   }
-  
+
   const gameMapping = imageIndex?.[category];
   if (!gameMapping) return [];
-  
+
   const gameInfo = gameMapping[gameName];
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return [];
-  
+
   const images = gameInfo.images;
   const dirName = gameInfo.dirName;
-  
+
   const showcaseImages = images.filter(img => REGEX.showcase.test(img));
-  
+
   if (showcaseImages.length === 0) {
     showcaseCache.set(cacheKey, []);
     return [];
   }
-  
+
   showcaseImages.sort(naturalSort);
-  
+
   const result = showcaseImages.map(img => ({
     url: `/data/${category}/${dirName}/${img}`,
     name: img
   }));
-  
+
   showcaseCache.set(cacheKey, result);
   return result;
 }
 
 function getGameImagePath(game, category) {
   if (!game) return null;
-  
+
   const gameName = game.game;
   if (!gameName) return null;
-  
+
   const currentVerStr = game.currentVerStr;
   const cacheKey = getCacheKey(gameName, category, currentVerStr);
-  
+
   if (pathCache.has(cacheKey)) {
     return pathCache.get(cacheKey);
   }
-  
+
   const gameMapping = imageIndex?.[category];
   if (!gameMapping) return null;
-  
+
   const gameInfo = gameMapping[gameName];
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
-  
+
   const images = gameInfo.images;
   const dirName = gameInfo.dirName;
-  
+
   let imagePath = null;
-  
+
   if (category === 'mf-games' && currentVerStr) {
     imagePath = findTitleImageForVersion(images, currentVerStr);
   }
-  
+
   if (!imagePath) {
-    imagePath = category === 'mf-games' 
+    imagePath = category === 'mf-games'
       ? findTitleImage(images) || getFirstImageByAlpha(images)
       : getFirstImageByAlpha(images);
   }
-  
+
   if (!imagePath) return null;
-  
+
   const result = `/data/${category}/${dirName}/${imagePath}`;
-  
+
   pathCache.set(cacheKey, result);
   return result;
 }
@@ -217,31 +217,31 @@ export function getShowcaseImagesSync(game, category = 'mf-games') {
 
 function getModalImagePath(game, category) {
   if (!game) return null;
-  
+
   const gameName = game.game;
   if (!gameName) return null;
-  
+
   const gameMapping = imageIndex?.[category];
   if (!gameMapping) return null;
-  
+
   const gameInfo = gameMapping[gameName];
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
-  
+
   const images = gameInfo.images;
   const dirName = gameInfo.dirName;
-  
+
   let imagePath = findLogoImage(images);
-  
+
   if (!imagePath) {
     imagePath = findTitleImage(images);
   }
-  
+
   if (!imagePath) {
     imagePath = getFirstImageByAlpha(images);
   }
-  
+
   if (!imagePath) return null;
-  
+
   return `/data/${category}/${dirName}/${imagePath}`;
 }
 
@@ -254,22 +254,22 @@ export function getModalImageSync(game, category = 'mf-games') {
 
 function getTitleImagePath(game, category) {
   if (!game) return null;
-  
+
   const gameName = game.game;
   if (!gameName) return null;
-  
+
   const gameMapping = imageIndex?.[category];
   if (!gameMapping) return null;
-  
+
   const gameInfo = gameMapping[gameName];
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
-  
+
   const images = gameInfo.images;
   const dirName = gameInfo.dirName;
-  
+
   const titlePath = findTitleImage(images);
   if (!titlePath) return null;
-  
+
   return `/data/${category}/${dirName}/${titlePath}`;
 }
 
@@ -282,16 +282,16 @@ export function getTitleImageSync(game, category = 'mf-games') {
 
 function hasLogoImage(game, category) {
   if (!game) return false;
-  
+
   const gameName = game.game;
   if (!gameName) return false;
-  
+
   const gameMapping = imageIndex?.[category];
   if (!gameMapping) return false;
-  
+
   const gameInfo = gameMapping[gameName];
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return false;
-  
+
   const images = gameInfo.images;
   return !!findLogoImage(images);
 }
@@ -305,7 +305,7 @@ export function hasLogoImageSync(game, category = 'mf-games') {
 
 export function createGameImageResolver(category) {
   let loaded = false;
-  
+
   return {
     async init() {
       if (!loaded) {
@@ -313,14 +313,14 @@ export function createGameImageResolver(category) {
         loaded = true;
       }
     },
-    
+
     resolve(game) {
       if (!loaded || !imageIndex) {
         return null;
       }
       return getGameImagePath(game, category);
     },
-    
+
     isLoaded() {
       return loaded;
     }

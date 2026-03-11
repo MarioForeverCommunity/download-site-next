@@ -1,81 +1,83 @@
 <script setup>
-  import {parseVer} from "../util/Misc.js";
-  import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon } from "./icons/Icons.js";
-  import {getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL, hasDownloadableContent} from "../util/GemeUtil.js";
-  import Tooltip from "./ToolTip.vue";
+import { parseVer } from "../util/Misc.js";
+import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon } from "./icons/Icons.js";
+import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL, hasDownloadableContent } from "../util/GemeUtil.js";
+import Tooltip from "./ToolTip.vue";
 
-  const props = defineProps({
-    game: {
-      type: Object,
-      required: true
-    }, 
-    lan : {
-      required: true
-    },
-    getGameImage: {
-      type: Function,
-      required: false
-    }
+const props = defineProps({
+  game: {
+    type: Object,
+    required: true
+  },
+  lan: {
+    type: String,
+    required: true
+  },
+  getGameImage: {
+    type: Function,
+    required: false,
+    default: () => null
+  }
+});
+
+const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
+
+const selectVersion = (ver) => {
+  // 通过emit事件通知父组件更新版本信息
+  emit('selectVersion', {
+    ...props.game,
+    currentVer: parseVer(ver),
+    currentVerStr: Object.keys(ver)[0],
+    currentVerStrAlt: parseVer(ver).ver_alt
   });
+};
 
-  const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
+const handleImageError = (event) => {
+  // 图片加载失败时隐藏图片容器
+  event.target.parentElement.style.display = 'none';
+};
 
-  const selectVersion = (ver) => {
-    // 通过emit事件通知父组件更新版本信息
-    emit('selectVersion', {
-      ...props.game,
-      currentVer: parseVer(ver),
-      currentVerStr: Object.keys(ver)[0],
-      currentVerStrAlt: parseVer(ver).ver_alt
-    });
-  };
+const getGameImage = () => {
+  return props.getGameImage ? props.getGameImage(props.game) : null;
+};
 
-  const handleImageError = (event) => {
-    // 图片加载失败时隐藏图片容器
-    event.target.parentElement.style.display = 'none';
-  };
+const hasApkFile = () => {
+  if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
+    return false;
+  }
+  return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
+};
 
-  const getGameImage = () => {
-    return props.getGameImage ? props.getGameImage(props.game) : null;
-  };
-
-  const hasApkFile = () => {
-    if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
-      return false;
-    }
-    return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
-  };
-
-  const handleSourceClick = (event) => {
-    const sourceUrl = getSourceLink(props.game, props.lan);
-    if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
-      const postId = sourceUrl.match(/\/p\/(\d+)/);
-      if (postId) {
-        const tid = parseInt(postId[1]);
-        if (tid > 6856592056) {
-          // 对于较新的帖子，直接访问，不弹框
-          return;
-        }
-        event.preventDefault();
-        emit('showTiebaDialog', {
-          originalUrl: sourceUrl,
-          archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
-        });
+const handleSourceClick = (event) => {
+  const sourceUrl = getSourceLink(props.game, props.lan);
+  if (sourceUrl && sourceUrl.includes('tieba.baidu.com/p/')) {
+    const postId = sourceUrl.match(/\/p\/(\d+)/);
+    if (postId) {
+      const tid = parseInt(postId[1]);
+      if (tid > 6856592056) {
+        // 对于较新的帖子，直接访问，不弹框
+        return;
       }
+      event.preventDefault();
+      emit('showTiebaDialog', {
+        originalUrl: sourceUrl,
+        archiveUrl: `https://archive.marioforever.net/post/${postId[1]}`
+      });
     }
-  };
+  }
+};
 
-  const handleGameNameClick = () => {
-    emit('showGameDetail', props.game);
-  };
+const handleGameNameClick = () => {
+  emit('showGameDetail', props.game);
+};
 
-  const getDisplayAuthorList = () => {
-    const authorList = getAuthorList(props.game, props.lan);
-    if (props.game.category === 'mw' && Array.isArray(authorList)) {
-      return '合作作品';
-    }
-    return authorList;
-  };
+const getDisplayAuthorList = () => {
+  const authorList = getAuthorList(props.game, props.lan);
+  if (props.game.category === 'mw' && Array.isArray(authorList)) {
+    return '合作作品';
+  }
+  return authorList;
+};
 
 </script>
 
@@ -83,17 +85,17 @@
   <div class="container card">
     <div class="first-line">
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
-      <span class="game-name-link" @click="handleGameNameClick">{{ getName(game, lan) }}</span>
-      <Tooltip v-if="game.currentVer && game.currentVer.repacker">
-        <RepackIcon class="icon"></RepackIcon>
-        <template #popper>
-          {{ lan == "en" ? "Repackaged Game" : "重打包版本" }}
-        </template>
-      </Tooltip>
-      <Tooltip v-if="hasApkFile()">
-        <ApkIcon class="icon apk-icon"></ApkIcon>
-        <template #popper>{{ lan === 'en' ? 'Android' : '安卓游戏' }}</template>
-      </Tooltip>
+        <span class="game-name-link" @click="handleGameNameClick">{{ getName(game, lan) }}</span>
+        <Tooltip v-if="game.currentVer && game.currentVer.repacker">
+          <RepackIcon class="icon"></RepackIcon>
+          <template #popper>
+            {{ lan == "en" ? "Repackaged Game" : "重打包版本" }}
+          </template>
+        </Tooltip>
+        <Tooltip v-if="hasApkFile()">
+          <ApkIcon class="icon apk-icon"></ApkIcon>
+          <template #popper>{{ lan === 'en' ? 'Android' : '安卓游戏' }}</template>
+        </Tooltip>
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
         <span style="display: inline-block;" :class="game.ver.length > 1 ? 'dropdown' : ''">{{ lan == "en" && game.currentVerStrAlt ? game.currentVerStrAlt : game.currentVerStr }}</span>
@@ -104,7 +106,12 @@
         <div :class="game.ver.length > 1 ? 'dropdown' : ''">
           <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
           <div v-if="game.ver.length > 1" class="dropdown-content">
-            <div v-for="ver in game.ver" :key="Object.keys(ver)[0]" class="dropdown-item" @click="selectVersion(ver)">{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
+            <div
+              v-for="ver in game.ver"
+              :key="Object.keys(ver)[0]"
+              class="dropdown-item"
+              @click="selectVersion(ver)"
+            >{{ lan == "en" && parseVer(ver).ver_alt != null ? parseVer(ver).ver_alt : Object.keys(ver)[0] }}</div>
           </div>
         </div>
       </div>
@@ -168,20 +175,23 @@
     <div class="last-line">
       <div class="game-author">
         <Tooltip>
-        <span class="inline-block author-ellipsis">
+          <span class="inline-block author-ellipsis">
             <template v-if="typeof getDisplayAuthorList() == 'string'">
-                <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
-                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text"><a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">{{ getDisplayAuthorList() }}</a></span>
-                </template>
-                <template v-else>
-                  <UserIcon class="icon author-icon"></UserIcon><span class="author-text">{{ getDisplayAuthorList() }}</span>
-                </template>
+              <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
+                <UserIcon class="icon author-icon"></UserIcon><span class="author-text"><a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">{{ getDisplayAuthorList() }}</a></span>
+              </template>
+              <template v-else>
+                <UserIcon class="icon author-icon"></UserIcon><span class="author-text">{{ getDisplayAuthorList() }}</span>
+              </template>
             </template>
             <template v-else>
-                <UserIcon class="icon author-icon"></UserIcon>
-                <span class="author-text">
-                <span class="inline-block" v-for="(author, authorindex) in getDisplayAuthorList()" 
-                    :key="author + authorindex">
+              <UserIcon class="icon author-icon"></UserIcon>
+              <span class="author-text">
+                <span
+                  class="inline-block"
+                  v-for="(author, authorindex) in getDisplayAuthorList()"
+                  :key="author + authorindex"
+                >
                   <template v-if="getAuthorFolderURL(game, author, lan)">
                     <a :href="getAuthorFolderURL(game, author, lan)" target="_blank">
                       {{ author }}
@@ -192,9 +202,9 @@
                   </template>
                   <span v-if="authorindex != getDisplayAuthorList().length - 1">,&nbsp;</span>
                 </span>
-                </span>
+              </span>
             </template>
-        </span>
+          </span>
           <template #popper>
             <span>
               <span v-if="typeof getDisplayAuthorList() == 'string'">{{ getDisplayAuthorList() }}</span>

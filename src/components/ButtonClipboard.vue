@@ -1,61 +1,72 @@
 <script setup>
-  import { ref, computed } from 'vue';
-  import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
-  import ClipboardIcon from './icons/IconClipboard.vue';
+import { ref, computed } from 'vue';
+import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
+import ClipboardIcon from './icons/IconClipboard.vue';
 
-  const props = defineProps({
-    code: {
-      type: String,
-      required: true
-    }, 
-    lan : {
-      type: String,
-      required: true
-    }
-  });
-
-  function copyCode() {
-    navigator.clipboard.writeText(props.code);
-    displayCopied.value = true;
-    setTimeout(() => {
-      displayCopied.value = false;
-    }, 3000);
+const props = defineProps({
+  code: {
+    type: String,
+    required: true
+  },
+  lan: {
+    type: String,
+    required: true
   }
+});
 
-  const displayCopied = ref(false);
+function copyCode() {
+  navigator.clipboard.writeText(props.code);
+  displayCopied.value = true;
+  setTimeout(() => {
+    displayCopied.value = false;
+  }, 3000);
+}
 
-  const clipboardCopyText = computed(() => {
-    const isEn = props.lan === "en";
-    if (displayCopied.value) {
-      return isEn ? "Copied!" : "已复制！";
-    } else {
-      return isEn ? "Copy code to Clipboard" : "复制提取码到剪贴板";
-    }
-  });
+const displayCopied = ref(false);
 
-  const reference = ref(null);
-  const floating = ref(null);
-  const showTooltip = ref(false);
-
-  const { floatingStyles } = useFloating(reference, floating, {
-    middleware: [flip(), shift(), offset(10)],
-    whileElementsMounted: autoUpdate,
-  });
-
-  function onMouseEnter() {
-    showTooltip.value = true;
+const clipboardCopyText = computed(() => {
+  const isEn = props.lan === "en";
+  if (displayCopied.value) {
+    return isEn ? "Copied!" : "已复制！";
+  } else {
+    return isEn ? "Copy code to Clipboard" : "复制提取码到剪贴板";
   }
+});
 
-  function onMouseLeave() {
-    showTooltip.value = false;
-  }
+const reference = ref(null);
+const floating = ref(null);
+const showTooltip = ref(false);
+
+const { floatingStyles } = useFloating(reference, floating, {
+  middleware: [flip(), shift(), offset(10)],
+  whileElementsMounted: autoUpdate,
+});
+
+function onMouseEnter() {
+  showTooltip.value = true;
+}
+
+function onMouseLeave() {
+  showTooltip.value = false;
+}
 </script>
 
 <template>
   <span style="display: inline-block;">
-    <ClipboardIcon ref="reference" class="icon button" @click="copyCode();" @mouseenter="onMouseEnter()" @mouseleave="onMouseLeave()" />
+    <ClipboardIcon
+      ref="reference"
+      class="icon button"
+      @click="copyCode();"
+      @mouseenter="onMouseEnter()"
+      @mouseleave="onMouseLeave()"
+    />
     <Teleport to="body">
-      <div ref="floating" v-if="showTooltip" class="floating-obj" :style="floatingStyles">{{ clipboardCopyText }}</div>
+      <div
+        ref="floating"
+        v-if="showTooltip"
+        class="floating-obj"
+        :style="floatingStyles"
+      >{{ clipboardCopyText }}</div>
     </Teleport>
   </span>
 </template>

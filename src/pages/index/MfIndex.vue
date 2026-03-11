@@ -1,189 +1,194 @@
 <script setup>
-  import { ref, computed } from 'vue';
-  import axios from 'axios';
-  import DownloadHeader from '../../components/HeaderNav.vue';
-  import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
-  import indexZh from '../../markdown/mf-zh.md';
-  import indexEn from '../../markdown/mf-en.md';
-  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-  import { navTop } from "../../config.js";
-  import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
-  import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
-  import SiteFooter from '../../components/SiteFooter.vue';
-  import 'vue3-carousel/dist/carousel.css'
+import { ref, computed } from 'vue';
+import axios from 'axios';
+import DownloadHeader from '../../components/HeaderNav.vue';
+import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
+import indexZh from '../../markdown/mf-zh.md';
+import indexEn from '../../markdown/mf-en.md';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { navTop } from "../../config.js";
+import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
+import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+import SiteFooter from '../../components/SiteFooter.vue';
+import 'vue3-carousel/dist/carousel.css'
 
-  const lan = ref(getLanguage());
-  const lastUpdateZh = ref(null);
-  const lastUpdateEn = ref(null);
+const lan = ref(getLanguage());
+const lastUpdateZh = ref(null);
+const lastUpdateEn = ref(null);
 
-  const yamlUpdateDate = ref(null);
-  const mdUpdateDateZh = ref(null);
-  const mdUpdateDateEn = ref(null);
-  const allDatesLoaded = ref(false);
+const yamlUpdateDate = ref(null);
+const mdUpdateDateZh = ref(null);
+const mdUpdateDateEn = ref(null);
+const allDatesLoaded = ref(false);
 
-  const formatDate = (date) => {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
-  };
+const formatDate = (date) => {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
+};
 
-  const getLatestDateZh = () => {
-    const dates = [];
-    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-    if (mdUpdateDateZh.value) dates.push(new Date(mdUpdateDateZh.value));
-    if (dates.length === 0) return null;
-    const maxDate = new Date(Math.max(...dates));
-    return formatDate(maxDate);
-  };
+const getLatestDateZh = () => {
+  const dates = [];
+  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+  if (mdUpdateDateZh.value) dates.push(new Date(mdUpdateDateZh.value));
+  if (dates.length === 0) return null;
+  const maxDate = new Date(Math.max(...dates));
+  return formatDate(maxDate);
+};
 
-  const getLatestDateEn = () => {
-    const dates = [];
-    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-    if (mdUpdateDateEn.value) dates.push(new Date(mdUpdateDateEn.value));
-    if (dates.length === 0) return null;
-    const maxDate = new Date(Math.max(...dates));
-    return formatDate(maxDate);
-  };
+const getLatestDateEn = () => {
+  const dates = [];
+  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+  if (mdUpdateDateEn.value) dates.push(new Date(mdUpdateDateEn.value));
+  if (dates.length === 0) return null;
+  const maxDate = new Date(Math.max(...dates));
+  return formatDate(maxDate);
+};
 
-  const updateLastUpdate = () => {
-    lastUpdateZh.value = getLatestDateZh();
-    lastUpdateEn.value = getLatestDateEn();
-  };
+const updateLastUpdate = () => {
+  lastUpdateZh.value = getLatestDateZh();
+  lastUpdateEn.value = getLatestDateEn();
+};
 
-  const fetchYamlUpdate = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-original-mf.yaml&page=1&per_page=1").then((response) => {
-      yamlUpdateDate.value = response.data[0].commit.committer.date;
-    });
-  };
-
-  const fetchMdUpdateZh = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
-      mdUpdateDateZh.value = response.data[0].commit.committer.date;
-    });
-  };
-
-  const fetchMdUpdateEn = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
-      mdUpdateDateEn.value = response.data[0].commit.committer.date;
-    });
-  };
-
-  Promise.all([fetchYamlUpdate(), fetchMdUpdateZh(), fetchMdUpdateEn()]).then(() => {
-    allDatesLoaded.value = true;
-    updateLastUpdate();
+const fetchYamlUpdate = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-original-mf.yaml&page=1&per_page=1").then((response) => {
+    yamlUpdateDate.value = response.data[0].commit.committer.date;
   });
+};
 
-  const pageId = "index"
+const fetchMdUpdateZh = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
+    mdUpdateDateZh.value = response.data[0].commit.committer.date;
+  });
+};
 
-  const titleZh = navTop.find(item => item.id === pageId).title;
-  const titleEn = navTop.find(item => item.id === pageId).title_alt;
+const fetchMdUpdateEn = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
+    mdUpdateDateEn.value = response.data[0].commit.committer.date;
+  });
+};
 
-  document.title = lan.value == "zh" ? titleZh : titleEn;
+Promise.all([fetchYamlUpdate(), fetchMdUpdateZh(), fetchMdUpdateEn()]).then(() => {
+  allDatesLoaded.value = true;
+  updateLastUpdate();
+});
 
-  const currentTab = ref(lan.value === "zh" ? "original" : "ce");
+const pageId = "index"
 
-  const imagesOriginal = [
-    "/images/index/title.webp",
-    "/images/index/3-2.webp",
-    "/images/index/3-4.webp",
-    "/images/index/4-1.webp",
-    "/images/index/6-3.webp",
-    "/images/index/8-3.webp",
-    "/images/index/8-4.webp",
-    "/images/index/HC2-3.webp",
-    "/images/index/HL-1.webp",
-    "/images/index/LM-4.webp",
-  ];
+const titleZh = navTop.find(item => item.id === pageId).title;
+const titleEn = navTop.find(item => item.id === pageId).title_alt;
 
-  const imagesRemakeZh = [
-    "/data/mf-games/Mario Forever Remake/title.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_1.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_2.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_3.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_4.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_5.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_6.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_7.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_8.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_9.webp",
-    "/data/mf-games/Mario Forever Remake/showcase_10.webp",
-  ];
+document.title = lan.value == "zh" ? titleZh : titleEn;
 
-  const imagesRemakeEn = [
-    "/data/mf-games/Mario Forever Remake (PAL)/title.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_1.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_2.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_3.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_4.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_5.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_6.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_7.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_8.webp",
-    "/data/mf-games/Mario Forever Remake (PAL)/showcase_9.webp",
-  ];
+const currentTab = ref(lan.value === "zh" ? "original" : "ce");
 
-  const imagesCe = [
-    "/data/mf-games/Mario Forever - Community Edition/title.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_1.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_2.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_3.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_4.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_5.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_6.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_7.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_8.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_9.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_10.webp",
-    "/data/mf-games/Mario Forever - Community Edition/showcase_11.webp",
-  ];
+const imagesOriginal = [
+  "/images/index/title.webp",
+  "/images/index/3-2.webp",
+  "/images/index/3-4.webp",
+  "/images/index/4-1.webp",
+  "/images/index/6-3.webp",
+  "/images/index/8-3.webp",
+  "/images/index/8-4.webp",
+  "/images/index/HC2-3.webp",
+  "/images/index/HL-1.webp",
+  "/images/index/LM-4.webp",
+];
 
-  const currentImages = computed(() => {
-    if (currentTab.value === "original") {
-      return imagesOriginal;
-    } else if (currentTab.value === "remake") {
-      return lan.value === "zh" ? imagesRemakeZh : imagesRemakeEn;
-    } else if (currentTab.value === "ce") {
-      return imagesCe;
-    }
+const imagesRemakeZh = [
+  "/data/mf-games/Mario Forever Remake/title.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_1.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_2.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_3.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_4.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_5.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_6.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_7.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_8.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_9.webp",
+  "/data/mf-games/Mario Forever Remake/showcase_10.webp",
+];
+
+const imagesRemakeEn = [
+  "/data/mf-games/Mario Forever Remake (PAL)/title.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_1.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_2.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_3.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_4.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_5.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_6.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_7.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_8.webp",
+  "/data/mf-games/Mario Forever Remake (PAL)/showcase_9.webp",
+];
+
+const imagesCe = [
+  "/data/mf-games/Mario Forever - Community Edition/title.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_1.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_2.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_3.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_4.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_5.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_6.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_7.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_8.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_9.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_10.webp",
+  "/data/mf-games/Mario Forever - Community Edition/showcase_11.webp",
+];
+
+const currentImages = computed(() => {
+  if (currentTab.value === "original") {
     return imagesOriginal;
-  });
-
-  const tabs = computed(() => {
-    if (lan.value === "zh") {
-      return [
-        { id: "original", label: "原版 Mario Forever" },
-        { id: "remake", label: "Mario Forever Remake" },
-        { id: "ce", label: "Mario Forever: Community Edition" }
-      ];
-    } else {
-      return [
-        { id: "ce", label: "Mario Forever: Community Edition" },
-        { id: "remake", label: "Mario Forever Remake" },
-        { id: "original", label: "Original Mario Forever" }
-      ];
-    }
-  });
-
-  function pageSetLanguageZh() {
-    lan.value =  setLanguageZh();
-    document.title=titleZh;
-    currentTab.value = "original";
-    if (allDatesLoaded.value) {
-      updateLastUpdate();
-    }
+  } else if (currentTab.value === "remake") {
+    return lan.value === "zh" ? imagesRemakeZh : imagesRemakeEn;
+  } else if (currentTab.value === "ce") {
+    return imagesCe;
   }
+  return imagesOriginal;
+});
 
-  function pageSetLanguageEn() {
-    lan.value =  setLanguageEn();
-    document.title=titleEn;
-    currentTab.value = "ce";
-    if (allDatesLoaded.value) {
-      updateLastUpdate();
-    }
+const tabs = computed(() => {
+  if (lan.value === "zh") {
+    return [
+      { id: "original", label: "原版 Mario Forever" },
+      { id: "remake", label: "Mario Forever Remake" },
+      { id: "ce", label: "Mario Forever: Community Edition" }
+    ];
+  } else {
+    return [
+      { id: "ce", label: "Mario Forever: Community Edition" },
+      { id: "remake", label: "Mario Forever Remake" },
+      { id: "original", label: "Original Mario Forever" }
+    ];
   }
+});
+
+function pageSetLanguageZh() {
+  lan.value =  setLanguageZh();
+  document.title=titleZh;
+  currentTab.value = "original";
+  if (allDatesLoaded.value) {
+    updateLastUpdate();
+  }
+}
+
+function pageSetLanguageEn() {
+  lan.value =  setLanguageEn();
+  document.title=titleEn;
+  currentTab.value = "ce";
+  if (allDatesLoaded.value) {
+    updateLastUpdate();
+  }
+}
 </script>
 
 <template>
-  <DownloadHeader :pageId="pageId" :lan-var="lan" @change-lan-zh="pageSetLanguageZh();" @change-lan-en="pageSetLanguageEn();"/>
+  <DownloadHeader
+    :pageId="pageId"
+    :lan-var="lan"
+    @change-lan-zh="pageSetLanguageZh();"
+    @change-lan-en="pageSetLanguageEn();"
+  />
 
   <div class="md-container">
     <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
@@ -191,8 +196,8 @@
     <indexEn v-if="lan === 'en'" :lastUpdateEn="lastUpdateEn" />
     <h2>{{ lan == "zh" ? "截图预览" : "Screenshots" }}</h2>
     <div class="radio-inputs">
-      <a 
-        v-for="tab in tabs" 
+      <a
+        v-for="tab in tabs"
         :key="tab.id"
         class="radio"
         :class="{ 'checked': currentTab === tab.id }"
@@ -213,7 +218,7 @@
       </template>
     </Carousel>
   </div>
-  
+
   <ButtonBackToTop />
   <ButtonDarkMode />
 
@@ -276,7 +281,7 @@
     max-width: 100vw;
     white-space: nowrap;
   }
-  
+
   .table-container {
     overflow-x: auto;
     width: 100%;
@@ -300,7 +305,7 @@
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;  
+    vertical-align: baseline;
     line-height: 1.5em;
   }
 
@@ -320,11 +325,11 @@
   table tr {
     border-top: solid 1px #eee;
   }
-  
+
   table td {
     padding: 0.5em 1em 0.5em 1em;
   }
-  
+
   table th {
     padding: 0.5em 1em 0.5em 1em;
   }

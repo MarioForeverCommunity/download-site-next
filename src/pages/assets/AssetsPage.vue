@@ -1,278 +1,278 @@
 <script setup>
-  import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
-  import axios from 'axios';
-  import DownloadHeader from '../../components/HeaderNav.vue';
-  import {getLanguage, setLanguageZh, setLanguageEn} from "../../util/Language.js";
-  import SiteFooter from '../../components/SiteFooter.vue';
-  import AssetCard from '../../components/AssetCard.vue';
-  import {getName, getDownloadEntries} from "../../util/GemeUtil.js";
-  import { FilterIcon } from "../../components/icons/Icons.js";
-  import {filterList, getStrFromList} from "../../util/GemeUtil.js"
-  import ClipboardButton from '../../components/ButtonClipboard.vue';
-  import Tooltip from '../../components/ToolTip.vue';
-  import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
-  import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
-  import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
-  import {readList} from "../../util/ReadList.js";
-  import {parseVer} from "../../util/Misc.js";
-  import introContent from '../../markdown/assets.md';
-  import { navTop } from "../../config.js";
-  import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
-  const originalLan = ref(getLanguage());
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
+import axios from 'axios';
+import DownloadHeader from '../../components/HeaderNav.vue';
+import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
+import SiteFooter from '../../components/SiteFooter.vue';
+import AssetCard from '../../components/AssetCard.vue';
+import { getName, getDownloadEntries } from "../../util/GemeUtil.js";
+import { FilterIcon } from "../../components/icons/Icons.js";
+import { filterList, getStrFromList } from "../../util/GemeUtil.js"
+import ClipboardButton from '../../components/ButtonClipboard.vue';
+import Tooltip from '../../components/ToolTip.vue';
+import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
+import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
+import { readList } from "../../util/ReadList.js";
+import { parseVer } from "../../util/Misc.js";
+import introContent from '../../markdown/assets.md';
+import { navTop } from "../../config.js";
+import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+const originalLan = ref(getLanguage());
 
-  const lan = ref("zh");
+const lan = ref("zh");
 
-  const pageId = "assets"
+const pageId = "assets"
 
-  const titleZh = navTop.find(item => item.id === pageId).title;
+const titleZh = navTop.find(item => item.id === pageId).title;
 
-  const assets = ref([]);
+const assets = ref([]);
 
-  readList("list-assets.yaml").then((list) => {
-    for (var entry of list) {
-      if (entry.variants) {
-        entry.variants = entry.variants.map(variant => {
-          const variantKey = Object.keys(variant)[0];
-          const variantData = variant[variantKey];
-          return {
-            [variantKey]: {
-              ...variantData,
-              download_url: entry.download_url,
-              download_url_alt: entry.download_url_alt,
-              code: entry.code,
-              code_alt: entry.code_alt,
-              source_url: entry.source_url,
-              source_url_alt: entry.source_url_alt
-            }
-          };
-        });
-        entry.currentVer = parseVer(entry.variants[0]);
-        entry.currentVerStr = Object.keys(entry.variants[0])[0];
-        entry.ver = entry.variants;
-      } else {
-        entry.currentVer = {
-          ver: entry.ver,
-          date: entry.date ? new Date(entry.date) : null,
-          file_name: entry.file_name,
-          download_url: entry.download_url,
-          download_url_alt: entry.download_url_alt,
-          code: entry.code,
-          code_alt: entry.code_alt,
-          source_url: entry.source_url,
-          source_url_alt: entry.source_url_alt
-        };
-        entry.currentVerStr = entry.ver;
-        entry.ver = entry.ver ? [{[entry.ver]: entry.currentVer}] : [];
-      }
-      assets.value.push(entry);
-    }
-  });
-
-  const selectedDownload = ref(null);
-  const tiebaDialog = ref(null);
-
-  const lastUpdate = ref(null);
-
-  const yamlUpdateDate = ref(null);
-  const mdUpdateDate = ref(null);
-
-  const formatDate = (date) => {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
-  };
-
-  const getLatestDate = () => {
-    const dates = [];
-    if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-    if (mdUpdateDate.value) dates.push(new Date(mdUpdateDate.value));
-    if (dates.length === 0) return null;
-    const maxDate = new Date(Math.max(...dates));
-    return formatDate(maxDate);
-  };
-
-  const updateLastUpdate = () => {
-    lastUpdate.value = getLatestDate();
-  };
-
-  const fetchYamlUpdate = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-assets.yaml&page=1&per_page=1").then((response) => {
-      yamlUpdateDate.value = response.data[0].commit.committer.date;
-    });
-  };
-
-  const fetchMdUpdate = () => {
-    return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fassets.md&page=1&per_page=1").then((response) => {
-      mdUpdateDate.value = response.data[0].commit.committer.date;
-    });
-  };
-
-  Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
-    updateLastUpdate();
-  });
-
-  const filter_option = ref({
-    active : false,
-    name : "",
-    type_engine: true,
-    type_addon: true,
-    type_effect: true,
-    type_sprite: true,
-  });
-
-  function clearName() {
-    filter_option.value.name = "";
-  }
-  function clearFilter() {
-    filter_option.value.name = "";
-    filter_option.value.type_engine = true;
-    filter_option.value.type_addon = true;
-    filter_option.value.type_effect = true;
-    filter_option.value.type_sprite = true;
-  }
-
-  const filteredAssets = computed(() => {
-    const expanded = assets.value.flatMap((entry) => {
-      if (!entry.ver || entry.ver.length === 0) {
-        const nameMatch = (
-          (entry.name && (filter_option.value.name.trim() == "" || entry.name.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (entry.name_alt && (filter_option.value.name.trim() == "" || entry.name_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || filterList(filter_option.value.name.trim(), entry.alias)
-        );
-        const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
-          || (filter_option.value.type_addon && entry.type == "addon")
-          || (filter_option.value.type_effect && entry.type == "effect")
-          || (filter_option.value.type_sprite && entry.type == "sprite");
-        if (!nameMatch || !typeMatch) return [];
-        return [entry];
-      }
-      const hasMultipleVariants = entry.ver.length > 1;
-      return entry.ver.map((verRaw) => {
-        const verKey = Object.keys(verRaw)[0];
-        const verObj = verRaw[verKey];
-        const nameMatch = (
-          (entry.name && (filter_option.value.name.trim() == "" || entry.name.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (entry.name_alt && (filter_option.value.name.trim() == "" || entry.name_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || filterList(filter_option.value.name.trim(), entry.alias)
-        );
-        const fileNameMatch = verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
-        if (!nameMatch && !fileNameMatch) return null;
-        const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
-          || (filter_option.value.type_addon && entry.type == "addon")
-          || (filter_option.value.type_effect && entry.type == "effect")
-          || (filter_option.value.type_sprite && entry.type == "sprite");
-        if (!typeMatch) return null;
+readList("list-assets.yaml").then((list) => {
+  for (const entry of list) {
+    if (entry.variants) {
+      entry.variants = entry.variants.map(variant => {
+        const variantKey = Object.keys(variant)[0];
+        const variantData = variant[variantKey];
         return {
-          ...entry,
-          currentVer: parseVer(verRaw),
-          currentVerStr: verKey,
-          _variantName: hasMultipleVariants ? verKey : null
+          [variantKey]: {
+            ...variantData,
+            download_url: entry.download_url,
+            download_url_alt: entry.download_url_alt,
+            code: entry.code,
+            code_alt: entry.code_alt,
+            source_url: entry.source_url,
+            source_url_alt: entry.source_url_alt
+          }
         };
-      }).filter(item => item !== null);
-    });
-    expanded.sort((a, b) => {
-      const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date) : null;
-      const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date) : null;
-      if (dateA === null && dateB === null) return 0;
-      if (dateA === null) return 1;
-      if (dateB === null) return -1;
-      return dateB - dateA;
-    });
-    return expanded;
-  });
-
-  const wideScreen = ref(window.innerWidth > 800);
-
-  function updateWideScreen() {
-    wideScreen.value = window.innerWidth > 800;
-  }
-
-  onMounted(() => {
-    window.addEventListener('resize', updateWideScreen);
-  });
-
-  onBeforeUnmount(() => {
-    window.removeEventListener('resize', updateWideScreen);
-  });
-
-  watch([selectedDownload, tiebaDialog], ([newDownload, newTieba]) => {
-    if (newDownload || newTieba) {
-      document.documentElement.classList.add('modal-open');
-      document.body.classList.add('modal-open');
-      disableScroll();
+      });
+      entry.currentVer = parseVer(entry.variants[0]);
+      entry.currentVerStr = Object.keys(entry.variants[0])[0];
+      entry.ver = entry.variants;
     } else {
-      document.documentElement.classList.remove('modal-open');
-      document.body.classList.remove('modal-open');
-      enableScroll();
-    }
-  });
-
-  function getAssetImage(asset) {
-    if (asset.image) {
-      return `/data/assets/${asset.image}`;
-    }
-    return null;
-  }
-
-  function getAssetResourceURLs(asset) {
-    if (!asset.currentVer || !asset.currentVer.file_name) {
-      return [];
-    }
-    const fileNames = Array.isArray(asset.currentVer.file_name) 
-      ? asset.currentVer.file_name.filter(fn => fn != null)
-      : [asset.currentVer.file_name];
-    
-    return fileNames.map(fileName => {
-      const encodedFileName = encodeURIComponent(fileName);
-      let url;
-      if (asset.type === 'effect') {
-        url = `https://file.marioforever.net/Mario Forever/引擎/CTF 特效/${encodedFileName}`;
-      } else if (asset.type === 'addon') {
-        url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
-      } else if (asset.type === 'engine') {
-        const path = asset.path || '';
-        const encodedPath = path ? encodeURIComponent(path) + '/' : '';
-        url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
-      } else if (asset.type === 'sprite') {
-        url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
-      }
-      
-      let displayFileName = fileName.split('/').pop();
-      displayFileName = displayFileName.replace(/\.[^.]*$/, "");
-      try {
-        displayFileName = decodeURIComponent(displayFileName);
-      } catch(e) {
-        // Ignore decodeURIComponent errors
-      }
-      
-      return {
-        name: fileNames.length > 1 ? `社区资源站（${displayFileName}）` : '社区资源站',
-        url: url
+      entry.currentVer = {
+        ver: entry.ver,
+        date: entry.date ? new Date(entry.date) : null,
+        file_name: entry.file_name,
+        download_url: entry.download_url,
+        download_url_alt: entry.download_url_alt,
+        code: entry.code,
+        code_alt: entry.code_alt,
+        source_url: entry.source_url,
+        source_url_alt: entry.source_url_alt
       };
-    });
-  }
-
-  // Optimized tooltip.
-
-  function tooltipMouseEnter(obj) {
-    if (obj[0] != reference.value) {
-      reference.value = obj[0];
-      floatingText.value = obj[1];
+      entry.currentVerStr = entry.ver;
+      entry.ver = entry.ver ? [{ [entry.ver]: entry.currentVer }] : [];
     }
+    assets.value.push(entry);
   }
+});
 
-  function tooltipMouseLeave(obj) {
-    if (obj == reference.value) {
-      reference.value = null;
-      floatingText.value = null;
+const selectedDownload = ref(null);
+const tiebaDialog = ref(null);
+
+const lastUpdate = ref(null);
+
+const yamlUpdateDate = ref(null);
+const mdUpdateDate = ref(null);
+
+const formatDate = (date) => {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return date.toLocaleDateString('zh-CN', options).replace(/\//g, '-');
+};
+
+const getLatestDate = () => {
+  const dates = [];
+  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
+  if (mdUpdateDate.value) dates.push(new Date(mdUpdateDate.value));
+  if (dates.length === 0) return null;
+  const maxDate = new Date(Math.max(...dates));
+  return formatDate(maxDate);
+};
+
+const updateLastUpdate = () => {
+  lastUpdate.value = getLatestDate();
+};
+
+const fetchYamlUpdate = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=public%2Fdata%2Flist-assets.yaml&page=1&per_page=1").then((response) => {
+    yamlUpdateDate.value = response.data[0].commit.committer.date;
+  });
+};
+
+const fetchMdUpdate = () => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fassets.md&page=1&per_page=1").then((response) => {
+    mdUpdateDate.value = response.data[0].commit.committer.date;
+  });
+};
+
+Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
+  updateLastUpdate();
+});
+
+const filter_option = ref({
+  active : false,
+  name : "",
+  type_engine: true,
+  type_addon: true,
+  type_effect: true,
+  type_sprite: true,
+});
+
+function clearName() {
+  filter_option.value.name = "";
+}
+function clearFilter() {
+  filter_option.value.name = "";
+  filter_option.value.type_engine = true;
+  filter_option.value.type_addon = true;
+  filter_option.value.type_effect = true;
+  filter_option.value.type_sprite = true;
+}
+
+const filteredAssets = computed(() => {
+  const expanded = assets.value.flatMap((entry) => {
+    if (!entry.ver || entry.ver.length === 0) {
+      const nameMatch = (
+        (entry.name && (filter_option.value.name.trim() == "" || entry.name.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (entry.name_alt && (filter_option.value.name.trim() == "" || entry.name_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || filterList(filter_option.value.name.trim(), entry.alias)
+      );
+      const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
+          || (filter_option.value.type_addon && entry.type == "addon")
+          || (filter_option.value.type_effect && entry.type == "effect")
+          || (filter_option.value.type_sprite && entry.type == "sprite");
+      if (!nameMatch || !typeMatch) return [];
+      return [entry];
     }
+    const hasMultipleVariants = entry.ver.length > 1;
+    return entry.ver.map((verRaw) => {
+      const verKey = Object.keys(verRaw)[0];
+      const verObj = verRaw[verKey];
+      const nameMatch = (
+        (entry.name && (filter_option.value.name.trim() == "" || entry.name.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (entry.name_alt && (filter_option.value.name.trim() == "" || entry.name_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
+          || filterList(filter_option.value.name.trim(), entry.alias)
+      );
+      const fileNameMatch = verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
+      if (!nameMatch && !fileNameMatch) return null;
+      const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
+          || (filter_option.value.type_addon && entry.type == "addon")
+          || (filter_option.value.type_effect && entry.type == "effect")
+          || (filter_option.value.type_sprite && entry.type == "sprite");
+      if (!typeMatch) return null;
+      return {
+        ...entry,
+        currentVer: parseVer(verRaw),
+        currentVerStr: verKey,
+        _variantName: hasMultipleVariants ? verKey : null
+      };
+    }).filter(item => item !== null);
+  });
+  expanded.sort((a, b) => {
+    const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date) : null;
+    const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date) : null;
+    if (dateA === null && dateB === null) return 0;
+    if (dateA === null) return 1;
+    if (dateB === null) return -1;
+    return dateB - dateA;
+  });
+  return expanded;
+});
+
+const wideScreen = ref(window.innerWidth > 800);
+
+function updateWideScreen() {
+  wideScreen.value = window.innerWidth > 800;
+}
+
+onMounted(() => {
+  window.addEventListener('resize', updateWideScreen);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateWideScreen);
+});
+
+watch([selectedDownload, tiebaDialog], ([newDownload, newTieba]) => {
+  if (newDownload || newTieba) {
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    disableScroll();
+  } else {
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+    enableScroll();
   }
-  
-  const reference = ref(null);
-  const floating = ref(null);
-  const floatingText = ref(null);
-  const { floatingStyles} = useFloating(reference, floating, 
+});
+
+function getAssetImage(asset) {
+  if (asset.image) {
+    return `/data/assets/${asset.image}`;
+  }
+  return null;
+}
+
+function getAssetResourceURLs(asset) {
+  if (!asset.currentVer || !asset.currentVer.file_name) {
+    return [];
+  }
+  const fileNames = Array.isArray(asset.currentVer.file_name)
+    ? asset.currentVer.file_name.filter(fn => fn != null)
+    : [asset.currentVer.file_name];
+
+  return fileNames.map(fileName => {
+    const encodedFileName = encodeURIComponent(fileName);
+    let url;
+    if (asset.type === 'effect') {
+      url = `https://file.marioforever.net/Mario Forever/引擎/CTF 特效/${encodedFileName}`;
+    } else if (asset.type === 'addon') {
+      url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
+    } else if (asset.type === 'engine') {
+      const path = asset.path || '';
+      const encodedPath = path ? encodeURIComponent(path) + '/' : '';
+      url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
+    } else if (asset.type === 'sprite') {
+      url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
+    }
+
+    let displayFileName = fileName.split('/').pop();
+    displayFileName = displayFileName.replace(/\.[^.]*$/, "");
+    try {
+      displayFileName = decodeURIComponent(displayFileName);
+    } catch (error) {
+      console.error('Failed to decode URI component:', displayFileName, error);
+    }
+
+    return {
+      name: fileNames.length > 1 ? `社区资源站（${displayFileName}）` : '社区资源站',
+      url: url
+    };
+  });
+}
+
+// Optimized tooltip.
+
+function tooltipMouseEnter(obj) {
+  if (obj[0] != reference.value) {
+    reference.value = obj[0];
+    floatingText.value = obj[1];
+  }
+}
+
+function tooltipMouseLeave(obj) {
+  if (obj == reference.value) {
+    reference.value = null;
+    floatingText.value = null;
+  }
+}
+
+const reference = ref(null);
+const floating = ref(null);
+const floatingText = ref(null);
+const { floatingStyles } = useFloating(reference, floating,
   {
     middleware: [flip(), shift(), offset(10)],
     whileElementsMounted: autoUpdate,
@@ -280,7 +280,12 @@
 </script>
 
 <template>
-  <DownloadHeader pageId="assets" :lan-var="originalLan" @change-lan-zh="originalLan = setLanguageZh(); " @change-lan-en="originalLan = setLanguageEn(); "/>
+  <DownloadHeader
+    pageId="assets"
+    :lan-var="originalLan"
+    @change-lan-zh="originalLan = setLanguageZh(); "
+    @change-lan-en="originalLan = setLanguageEn(); "
+  />
 
   <div class="container md-container">
     <h1>{{ titleZh }}</h1>
@@ -294,7 +299,12 @@
         筛选
         <div class="inline-block search-box">
           <input v-model="filter_option.name" class="input">
-          <span v-if="filter_option.name" class="clear-btn" @click="clearName" title="清除">✕</span>
+          <span
+            v-if="filter_option.name"
+            class="clear-btn"
+            @click="clearName"
+            title="清除"
+          >✕</span>
         </div>&nbsp;
         <div class="inline-block">
           <input v-model="filter_option.type_engine" type="checkbox" id="filterEngine">
@@ -325,7 +335,14 @@
 
   <div class="card-container">
     <div v-for="(asset, idx) in filteredAssets" :key="asset.name + '|' + getStrFromList(asset.author) + '|' + idx">
-      <AssetCard :asset="asset" :get-asset-image="getAssetImage" @select-download="(entry) => {selectedDownload = entry;}" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)" @show-tieba-dialog="(data) => {tiebaDialog = data;}"/>
+      <AssetCard
+        :asset="asset"
+        :get-asset-image="getAssetImage"
+        @select-download="(entry) => {selectedDownload = entry;}"
+        @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
+        @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
+        @show-tieba-dialog="(data) => {tiebaDialog = data;}"
+      />
     </div>
   </div>
 
@@ -337,7 +354,13 @@
         </div>
         <div class="button-line">
           <span v-if="getAssetResourceURLs(selectedDownload).length > 0">
-            <a class="download" v-for="url in getAssetResourceURLs(selectedDownload)" :key="url.url" :href="url.url" target="_blank">{{url.name}}</a>
+            <a
+              class="download"
+              v-for="url in getAssetResourceURLs(selectedDownload)"
+              :key="url.url"
+              :href="url.url"
+              target="_blank"
+            >{{ url.name }}</a>
           </span>
           <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
@@ -359,10 +382,20 @@
           选择要访问的链接
         </div>
         <div class="button-line">
-          <a class="download" :href="tiebaDialog.originalUrl" target="_blank" @click="tiebaDialog = null;">
+          <a
+            class="download"
+            :href="tiebaDialog.originalUrl"
+            target="_blank"
+            @click="tiebaDialog = null;"
+          >
             百度贴吧源站
           </a>
-          <a class="download" :href="tiebaDialog.archiveUrl" target="_blank" @click="tiebaDialog = null;">
+          <a
+            class="download"
+            :href="tiebaDialog.archiveUrl"
+            target="_blank"
+            @click="tiebaDialog = null;"
+          >
             社区备份站
           </a>
         </div>
@@ -370,9 +403,15 @@
     </div>
   </Transition>
 
-  <div ref="floating" class="floating-obj" v-if="floatingText" :style="floatingStyles" v-html="floatingText">
+  <div
+    ref="floating"
+    class="floating-obj"
+    v-if="floatingText"
+    :style="floatingStyles"
+    v-html="floatingText"
+  >
   </div>
-  
+
   <ButtonBackToTop />
   <ButtonDarkMode />
 
@@ -647,7 +686,7 @@
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;  
+    vertical-align: baseline;
     line-height: 1.5em;
   }
 
@@ -669,11 +708,11 @@
   table tr {
     border-top: solid 1px #eee;
   }
-  
+
   table td {
     padding: 0.5em 1em 0.5em 1em;
   }
-  
+
   table th {
     padding: 0.5em 1em 0.5em 1em;
   }

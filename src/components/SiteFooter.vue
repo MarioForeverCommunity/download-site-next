@@ -1,34 +1,34 @@
 <script setup>
-  import { siteVersion } from '../config.js'
-  import { getLanguage } from '../util/Language.js'
-  import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { siteVersion } from '../config.js'
+import { getLanguage } from '../util/Language.js'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-  const lan = ref(getLanguage())
-  
+const lan = ref(getLanguage())
+
+// 监听语言切换事件
+const handleLanguageChange = () => {
+  lan.value = getLanguage()
+}
+
+// 监听自定义语言切换事件
+const handleCustomLanguageChange = (event) => {
+  lan.value = event.detail.language
+}
+
+onMounted(() => {
   // 监听语言切换事件
-  const handleLanguageChange = () => {
-    lan.value = getLanguage()
-  }
-  
-  // 监听自定义语言切换事件
-  const handleCustomLanguageChange = (event) => {
-    lan.value = event.detail.language
-  }
-  
-  onMounted(() => {
-    // 监听语言切换事件
-    window.addEventListener('language-changed', handleLanguageChange)
-    window.addEventListener('custom-language-changed', handleCustomLanguageChange)
-    
-    // 监听 storage 事件，用于检测 cookie 变化
-    window.addEventListener('storage', handleLanguageChange)
-  })
-  
-  onBeforeUnmount(() => {
-    window.removeEventListener('language-changed', handleLanguageChange)
-    window.removeEventListener('custom-language-changed', handleCustomLanguageChange)
-    window.removeEventListener('storage', handleLanguageChange)
-  })
+  window.addEventListener('language-changed', handleLanguageChange)
+  window.addEventListener('custom-language-changed', handleCustomLanguageChange)
+
+  // 监听 storage 事件，用于检测 cookie 变化
+  window.addEventListener('storage', handleLanguageChange)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('language-changed', handleLanguageChange)
+  window.removeEventListener('custom-language-changed', handleCustomLanguageChange)
+  window.removeEventListener('storage', handleLanguageChange)
+})
 </script>
 
 <template>
