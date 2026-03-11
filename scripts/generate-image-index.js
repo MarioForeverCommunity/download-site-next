@@ -26,9 +26,9 @@ function getImageFiles(dir) {
   if (!existsSync(dir)) {
     return [];
   }
-  
+
   const entries = readdirSync(dir);
-  
+
   return entries
     .filter(entry => {
       const fullPath = join(dir, entry);
@@ -42,14 +42,14 @@ function getSubdirectoriesWithImages(baseDir) {
   if (!existsSync(baseDir)) {
     return {};
   }
-  
+
   const entries = readdirSync(baseDir);
   const result = {};
-  
+
   for (const entry of entries) {
     const fullPath = join(baseDir, entry);
     const stat = statSync(fullPath);
-    
+
     if (stat.isDirectory()) {
       const images = getImageFiles(fullPath);
       if (images.length > 0) {
@@ -57,7 +57,7 @@ function getSubdirectoriesWithImages(baseDir) {
       }
     }
   }
-  
+
   return result;
 }
 
@@ -66,7 +66,7 @@ function loadYamlList(filename) {
   if (!existsSync(filePath)) {
     return [];
   }
-  
+
   const content = readFileSync(filePath, 'utf8');
   return yaml.load(content) || [];
 }
@@ -74,26 +74,26 @@ function loadYamlList(filename) {
 function buildGameImageMapping(list, subdirs) {
   const nameCount = {};
   const mapping = {};
-  
+
   for (const entry of list) {
     const gameName = entry.game;
     const sanitizedName = sanitizeName(gameName);
-    
+
     if (nameCount[sanitizedName] === undefined) {
       nameCount[sanitizedName] = 0;
     } else {
       nameCount[sanitizedName]++;
     }
-    
+
     const occurrenceIndex = nameCount[sanitizedName];
     let dirName = sanitizedName;
-    
+
     if (occurrenceIndex > 0) {
       dirName = `${sanitizedName}_${occurrenceIndex + 1}`;
     }
-    
+
     const images = subdirs[dirName];
-    
+
     if (images && images.length > 0) {
       mapping[gameName] = {
         dirName,
@@ -102,39 +102,39 @@ function buildGameImageMapping(list, subdirs) {
       };
     }
   }
-  
+
   return mapping;
 }
 
 function generateImageIndex() {
   const mfList = loadYamlList('list-mf.yaml');
   const mwList = loadYamlList('list-mw.yaml');
-  
+
   const mfGamesDir = join(imagesDir, 'mf-games');
   const mfSubdirs = getSubdirectoriesWithImages(mfGamesDir);
-  
+
   const mwLevelsDir = join(imagesDir, 'mw-levels');
   const mwSubdirs = getSubdirectoriesWithImages(mwLevelsDir);
-  
+
   const mfMapping = buildGameImageMapping(mfList, mfSubdirs);
   const mwMapping = buildGameImageMapping(mwList, mwSubdirs);
-  
+
   const index = {
     'mf-games': mfMapping,
     'mw-levels': mwMapping
   };
-  
+
   if (!existsSync(outputDir)) {
     mkdirSync(outputDir, { recursive: true });
   }
-  
+
   writeFileSync(outputFile, JSON.stringify(index, null, 2));
   console.log(`Image index generated: ${outputFile}`);
   console.log(`mf-games subdirs: ${Object.keys(mfSubdirs).length}`);
   console.log(`mw-levels subdirs: ${Object.keys(mwSubdirs).length}`);
   console.log(`mf-games mapped games: ${Object.keys(mfMapping).length}`);
   console.log(`mw-levels mapped games: ${Object.keys(mwMapping).length}`);
-  
+
   const mfUsedDirs = new Set();
   for (const info of Object.values(mfMapping)) {
     mfUsedDirs.add(info.dirName);
@@ -144,7 +144,7 @@ function generateImageIndex() {
     console.log(`\nmf-games unmapped folders (${mfUnusedDirs.length}):`);
     mfUnusedDirs.forEach(d => console.log(`  - ${d}`));
   }
-  
+
   const mwUsedDirs = new Set();
   for (const info of Object.values(mwMapping)) {
     mwUsedDirs.add(info.dirName);
