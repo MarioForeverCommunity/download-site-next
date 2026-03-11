@@ -240,12 +240,8 @@ export const downloadName = [
     "desc_en" : "Discord"
   },
   {
-    "domain" : "nx.wtf",
-    "desc_en" : "Nextcloud"
-  },
-  {
-    "domain" : "rnx.su",
-    "desc_en" : "Nextcloud"
+    "domain" : /(nx\.wtf|rnx\.su)/,
+    "desc_en" : "Nextcloud (Meteo Dream)"
   },
   {
     "domain" : "drive.google.com",
