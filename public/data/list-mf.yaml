@@ -200,12 +200,14 @@
   wiki_en_url:
   video_zh:
   - 通关视频（社区官方）: https://www.bilibili.com/video/BV1qqzjBzEx5/
+  video_en:
+  - Showcase Video: https://www.youtube.com/watch?v=mLU4ZnSkl-8
   description_zh: 这是作者在PK!MF联赛2025~2026年度第3赛区参赛关卡的英文版；中文版可前往PK!MF7比赛主页获取。
   description_en: Contest level in PK!MF duel Sector 3. The contest's theme is "Emotions".
   ver:
   date: 2026-01-20
-  source_url: https://www.youtube.com/watch?v=mLU4ZnSkl-8
-  source_url_alt: https://marioforever.space/topic/62/single-level-fear-the-eye
+  source_url: https://marioforever.space/topic/62/single-level-fear-the-eye
+  source_url_alt:
   download_url: https://www.mediafire.com/file/4osj51gkozpkalo/Fear_The_Eye.zip/file
   code:
   download_url_alt: https://en.wsw233.com/files/view?f=gct9p5
@@ -354,7 +356,7 @@
       source_url: https://www.marioforever.net/thread-3766-1-1.html
       source_url_alt:
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
-      code: 
+      code:
       download_url_alt:
       file_name: Mario Forever - The New Year 2026/v1.0/MFNY2026-windows-x86_64.zip
       file_url:
@@ -365,7 +367,7 @@
       source_url: https://www.marioforever.net/thread-3766-1-1.html
       source_url_alt:
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
-      code: 
+      code:
       download_url_alt:
       file_name: Mario Forever - The New Year 2026/v1.0/MFNY2026-linux-x86_64.tar
       file_url:
@@ -375,7 +377,7 @@
       source_url: https://www.marioforever.net/thread-3766-1-1.html
       source_url_alt:
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
-      code: 
+      code:
       download_url_alt:
       file_name: Mario Forever - The New Year 2026/v0.5/MFNY2026-windows-x86.zip
       file_url:
@@ -385,7 +387,7 @@
       source_url: https://www.marioforever.net/thread-3766-1-1.html
       source_url_alt:
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
-      code: 
+      code:
       download_url_alt:
       file_name: Mario Forever - The New Year 2026/v0.5/MFNY2026-linux-x86_64.tar
       file_url:
@@ -551,7 +553,7 @@
       download_url_alt:
       file_name: Mario Forever The Wanderlust v1.0.zip
       file_url:
-- game: Mario Forever v1.16.1 Mod 
+- game: Mario Forever v1.16.1 Mod
   game_alt:
   author: JUE13
   author_alt:
@@ -788,7 +790,7 @@
 - game: Mario Forever - World of Haste DX
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: 
+  author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -1709,7 +1711,7 @@
       file_name: Mario Forever.EXE/v1.0.5/mario-forever.zip
       file_url:
 - game: Narrow Highway
-  game_alt: 
+  game_alt:
   author: JJ带我飞
   author_alt: JJ
   type: chinese
@@ -1790,7 +1792,7 @@
   wiki_en_url:
   description_zh: 日期为文件修改日期。
   description_en: The date is the game executable's modification date.
-  ver: 
+  ver:
   - "20241203":
       ver_alt:
       date: 2024-12-03
@@ -2223,7 +2225,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: 
+  ver:
   - v1.0.1:
       ver_alt:
       date: 2024-11-01
@@ -2421,7 +2423,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: 
+  ver:
   ver_alt:
   date: 2024-10-07
   source_url: https://www.youtube.com/watch?v=QR5LZzLxKTg
@@ -3047,223 +3049,223 @@
       file_name: Mario Forever M-Series v2.0 Beta Build 8.rar
       file_url:
   - v2.0 Beta Build 7 Fix1:
-      ver_alt: 
+      ver_alt:
       date: 2024-05-24
       source_url: https://www.youtube.com/watch?v=Dmfb77aPYUw
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/c5jqmytyc81tzfg/Mario_Forever_M-Series_v2.0_Beta_Build_7_Fix1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta Build 7 Fix1.rar
       file_url:
   - v2.0 Beta Build 7:
-      ver_alt: 
+      ver_alt:
       date: 2024-04-30
       source_url: https://www.youtube.com/watch?v=Dmfb77aPYUw
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/ee1rbsv2c8dv69s/Mario_Forever_M-Series_v2.0_Beta_Build_7.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta Build 7.rar
       file_url:
   - v2.0 Beta Build 6:
-      ver_alt: 
+      ver_alt:
       date: 2024-04-20
       source_url: https://www.youtube.com/watch?v=Dmfb77aPYUw
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/f7ozo2becrjg6rt/Mario_Forever_M-Series_v2.0_Beta_Build_6.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta Build 6.rar
       file_url:
   - v2.0 Beta Build 5-2:
-      ver_alt: 
+      ver_alt:
       date: 2024-04-06
       source_url: https://www.youtube.com/watch?v=A4SOPvR8GDQ
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/evsj3d6nim99ix8/Mario_Forever_M-Series_v2.0_Beta_Build_5-2.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta Build 5-2.rar
       file_url:
   - v2.0 Beta Build 5:
-      ver_alt: 
+      ver_alt:
       date: 2024-04-04
       source_url: https://www.youtube.com/watch?v=A4SOPvR8GDQ
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/r8x03gvk7cyobfr/Mario_Forever_M-Series_v2.0_Beta_Build_5.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta Build 5.rar
       file_url:
   - v2.0 Beta Build 4:
-      ver_alt: 
+      ver_alt:
       date: 2024-02-25
       source_url: https://www.youtube.com/watch?v=FpClG6xP8mQ
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/fzufob4am1wpq2p/Mario_Forever_M-Series_v2.0_Beta_Build_4.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta Build 4.rar
       file_url:
   - "v2.0 Beta #3 Fix1":
-      ver_alt: 
+      ver_alt:
       date: 2024-01-26
       source_url: https://www.youtube.com/watch?v=khPdF0LXbUY
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/gtog9ncg4fdabjo/Mario_Forever_M-Series_v2.0_Beta_%25233_Fix1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta %233 Fix1.rar
       file_url:
   - "v2.0 Beta #3":
-      ver_alt: 
+      ver_alt:
       date: 2024-01-25
       source_url: https://www.youtube.com/watch?v=khPdF0LXbUY
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/1w54x7bcmoyl1ls/Mario_Forever_M-Series_v2.0_Beta_%25233.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta %233.rar
       file_url:
   - "v2.0 Beta #2":
-      ver_alt: 
+      ver_alt:
       date: 2024-01-21
       source_url: https://www.youtube.com/watch?v=a-cxy7Yys_0
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/zg7y81aw8m0wvpo/Mario_Forever_M-Series_v2.0_Beta_%25232.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta %232.rar
       file_url:
   - "v2.0 Beta #1 Fix1":
-      ver_alt: 
+      ver_alt:
       date: 2023-12-20
       source_url: https://www.youtube.com/watch?v=nddwF2qCoks
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/wwl0q6iglgx716j/Mario_Forever_M-Series_v2.0_Beta_%25231_fix1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta %231 fix1.rar
       file_url:
   - "v2.0 Beta #1":
-      ver_alt: 
+      ver_alt:
       date: 2023-12-17
       source_url: https://www.youtube.com/watch?v=nddwF2qCoks
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/k9olfkwots1f6e1/Mario_Forever_M-Series_v2.0_Beta_%25231.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v2.0 Beta %231.rar
       file_url:
   - v1.5.2:
-      ver_alt: 
+      ver_alt:
       date: 2023-05-07
       source_url: https://www.youtube.com/watch?v=vud2A2SBbyE
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/jyqoiqfpqnoywc0/Mario_Forever_M-Series_v1.5.2.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v1.5.2.rar
       file_url:
   - v1.5.1:
-      ver_alt: 
+      ver_alt:
       date: 2023-05-05
       source_url: https://www.youtube.com/watch?v=vud2A2SBbyE
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/xe1pxsja7d7hhgw/Mario_Forever_M-Series_v1.5.1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v1.5.1.rar
       file_url:
   - v1.5:
-      ver_alt: 
+      ver_alt:
       date: 2023-05-05
       source_url: https://www.youtube.com/watch?v=vud2A2SBbyE
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/7p3iccfvim93ve7/Mario_Forever_M-Series_v1.5.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v1.5.rar
       file_url:
   - v1.4:
-      ver_alt: 
+      ver_alt:
       date: 2023-04-15
       source_url: https://www.youtube.com/watch?v=P8fUvTHm5nw
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/4m9kapdj6weh3a5/Mario_Forever_M-Series_v1.4.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v1.4.rar
       file_url:
   - v1.3:
-      ver_alt: 
+      ver_alt:
       date: 2023-03-21
       source_url: https://www.youtube.com/watch?v=Oq18KO5zeus
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/pivkwx75udc78ei/Mario_Forever_M-Series_v1.3.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series v1.3.rar
       file_url:
   - v1.2:
-      ver_alt: 
+      ver_alt:
       date: 2023-03-06
       source_url: https://www.youtube.com/watch?v=0WH31AT0pN8
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/okr33oi9idinrbx/Mario_Forever_M-Series1.2.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series1.2.rar
       file_url:
   - v1.1.1:
-      ver_alt: 
+      ver_alt:
       date: 2023-01-03
       source_url: https://www.youtube.com/watch?v=wLCp4d7cmts
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/i9pz8ejfpr809f6/Mario_Forever_M-Series1.1.1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series1.1.1.rar
       file_url:
   - v1.1:
-      ver_alt: 
+      ver_alt:
       date: 2023-01-02
       source_url: https://www.youtube.com/watch?v=wLCp4d7cmts
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/kpiunjs94ook6kv/Mario_Forever_M-Series1.1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series1.1.rar
       file_url:
   - v1.0.2:
-      ver_alt: 
+      ver_alt:
       date: 2022-11-20
       source_url: https://www.youtube.com/watch?v=K37lL0bKI5Y
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/zngu4y972tukll2/Mario_Forever_M-Series1.0.2.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series1.0.2.rar
       file_url:
   - v1.0.1:
-      ver_alt: 
+      ver_alt:
       date: 2022-11-17
       source_url: https://www.youtube.com/watch?v=K37lL0bKI5Y
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/bp87i569guqvuai/Mario_Forever_M-Series1.0.1.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series1.0.1.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2022-11-17
       source_url: https://www.youtube.com/watch?v=K37lL0bKI5Y
-      source_url_alt: 
+      source_url_alt:
       download_url: https://www.mediafire.com/file/30uarrmab5ir9y1/Mario_Forever_M-Series1.0.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever M-Series1.0.rar
       file_url:
 - game: 'Mario Forever: Mushroom Island 英文版'
@@ -5055,103 +5057,103 @@
       file_name: Mario Forever Slashed Letter Worlds Series v2.0.1.rar
       file_url:
   - v2.0:
-      ver_alt: 
+      ver_alt:
       date: 2023-10-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Slashed Letter Worlds Series v2.0.rar
       file_url:
   - v1.5 Beta:
-      ver_alt: 
+      ver_alt:
       date: 2023-09-28
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Slashed Letter Worlds Series v1.5 Beta.rar
       file_url:
   - v1.2 Beta:
-      ver_alt: 
+      ver_alt:
       date: 2023-09-26
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Slashed Letter Worlds Series v1.2 Beta.rar
       file_url:
   - v1.0 Beta:
-      ver_alt: 
+      ver_alt:
       date: 2023-09-19
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Slashed Letter Worlds Series v1.0 Beta.rar
       file_url:
   - v1.8 (Old):
-      ver_alt: 
+      ver_alt:
       date: 2021-11-27
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Slashed Letter World Series v1.8.rar
       file_url:
   - v1.6 (Old):
-      ver_alt: 
+      ver_alt:
       date: 2021-11-22
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Slashed Letter World Series v1.6.rar
       file_url:
   - v1.0 (Old):
-      ver_alt: 
+      ver_alt:
       date: 2021-11-06
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Slashed Letter World Series v1.0.rar
       file_url:
   - v0.8 (Old):
-      ver_alt: 
+      ver_alt:
       date: 2021-10-25
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Slashed Letter World Series v0.8.rar
       file_url:
   - v0.5 (Old):
-      ver_alt: 
+      ver_alt:
       date: 2021-10-23
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Slashed Letter World Series v0.5.rar
       file_url:
   - v0.1 (Old):
-      ver_alt: 
+      ver_alt:
       date: 2021-10-17
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Slashed Letter World Series v0.1.rar
       file_url:
 - game: MF Discord Contest 3 Results
@@ -5258,103 +5260,103 @@
       file_name: Mario Forever 2024 v3.0.zip
       file_url:
   - v2.6:
-      ver_alt: 
+      ver_alt:
       date: 2023-10-15
       source_url: https://www.youtube.com/watch?v=TDlp6CTJNhM
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/file/ccoxhtw4mixsaxx/Mario_Forever_2024_v2.6.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v2.6.rar
       file_url:
   - v2.3:
-      ver_alt: 
+      ver_alt:
       date: 2023-09-10
       source_url: https://www.youtube.com/watch?v=Rg7sqGZjvOQ
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/file/0vk46gm2jwy1jtk/Mario_Forever_2024_v2.3.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v2.3.rar
       file_url:
   - v2.0:
-      ver_alt: 
+      ver_alt:
       date: 2023-08-06
       source_url: https://www.youtube.com/watch?v=DkZDb63odsc
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/file/s85yz6hwe30ldui/Mario_Forever_2024_v2.0.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v2.0.rar
       file_url:
   - v1.6:
-      ver_alt: 
+      ver_alt:
       date: 2023-06-23
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v1.6.zip
       file_url:
   - v1.3:
-      ver_alt: 
+      ver_alt:
       date: 2023-05-27
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 V1.3.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2023-05-02
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v1.0.zip
       file_url:
   - v0.7:
-      ver_alt: 
+      ver_alt:
       date: 2023-04-27
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v0.7.zip
       file_url:
   - v0.5:
-      ver_alt: 
+      ver_alt:
       date: 2023-04-16
       source_url: https://www.youtube.com/watch?v=gaRzw-MFcjU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 v0.5.rar
       file_url:
   - v0.3:
-      ver_alt: 
+      ver_alt:
       date: 2023-04-10
       source_url: https://www.youtube.com/watch?v=L2JpyMO9aS8
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024 V0.3.rar
       file_url:
   - v0.1:
-      ver_alt: 
+      ver_alt:
       date: 2023-04-02
       source_url: https://www.youtube.com/watch?v=vm_XWPROza4
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever 2024.zip
       file_url:
 - game: Mario Forever - World of Clusterfuck
@@ -6916,53 +6918,53 @@
       file_name: Mario Forever Weird Letter Worlds Series v0.5.rar
       file_url:
   - v0.4:
-      ver_alt: 
+      ver_alt:
       date: 2023-04-01
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Weird Letter Worlds Series v0.4.rar
       file_url:
   - v0.3:
-      ver_alt: 
+      ver_alt:
       date: 2023-03-22
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Weird Letter Worlds Series v0.3.rar
       file_url:
   - v0.2:
-      ver_alt: 
+      ver_alt:
       date: 2023-03-12
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Weird Letter Worlds Series v0.2.rar
       file_url:
   - v0.1:
-      ver_alt: 
+      ver_alt:
       date: 2023-02-24
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Weird Letter Worlds Series v0.1.rar
       file_url:
   - Demo Version:
-      ver_alt: 
+      ver_alt:
       date: 2023-02-19
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Weird Letter Worlds Series Demo Version.rar
       file_url:
 - game: Mario Forever 2077
@@ -7645,93 +7647,93 @@
       file_name: Mario Forever Reverse Number Worlds Series v3.2.rar
       file_url:
   - v3.0:
-      ver_alt: 
+      ver_alt:
       date: 2023-02-04
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v3.0.rar
       file_url:
   - v2.5:
-      ver_alt: 
+      ver_alt:
       date: 2023-01-22
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v2.5.rar
       file_url:
   - v2.0:
-      ver_alt: 
+      ver_alt:
       date: 2023-01-10
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v2.0.rar
       file_url:
   - v1.5:
-      ver_alt: 
+      ver_alt:
       date: 2022-12-25
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v1.5.rar
       file_url:
   - v1.2:
-      ver_alt: 
+      ver_alt:
       date: 2022-12-22
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v1.2.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2022-12-17
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v1.0.rar
       file_url:
   - v0.8:
-      ver_alt: 
+      ver_alt:
       date: 2022-12-04
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v0.8.rar
       file_url:
   - v0.5:
-      ver_alt: 
+      ver_alt:
       date: 2022-11-25
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v0.5.rar
       file_url:
   - v0.1:
-      ver_alt: 
+      ver_alt:
       date: 2022-11-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Reverse Number Worlds Series v0.1.rar
       file_url:
 - game: 'Mario Forever: Throwback Voyage'
@@ -8357,93 +8359,93 @@
       file_name: Mario Forever Weird Worlds v3.5.rar
       file_url:
   - v2.7:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS v2.7.rar
       file_url:
   - v2.6:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS v2.6.rar
       file_url:
   - v2.5:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS v2.5.rar
       file_url:
   - v2.0:
-      ver_alt: 
+      ver_alt:
       date: 2021-09-29
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS v2.0.rar
       file_url:
   - World 5:
-      ver_alt: 
+      ver_alt:
       date: 2021-08-28
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS - WORLD 5.rar
       file_url:
   - World 4:
-      ver_alt: 
+      ver_alt:
       date: 2021-07-20
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS - WORLD 4.rar
       file_url:
   - World 3:
-      ver_alt: 
+      ver_alt:
       date: 2021-07-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS - WORLD 3.rar
       file_url:
   - World 2:
-      ver_alt: 
+      ver_alt:
       date: 2021-07-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS - WORLD 2.rar
       file_url:
   - World 1:
-      ver_alt: 
+      ver_alt:
       date: 2021-07-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever WEIRD WORLDS - WORLD 1.rar
       file_url:
 - game: Mario Forever TB Worlds
@@ -8465,48 +8467,48 @@
       file_name: Mario Forever TB Worlds 2.0.rar
       file_url:
   - v1.5:
-      ver_alt: 
+      ver_alt:
       date: 2022-07-27
       source_url: https://www.youtube.com/watch?v=gQQndfu20bA
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever TB Worlds 1.5.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2022-07-14
-      source_url: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever TB Worlds Version 1.0.rar
       file_url:
   - v0.5:
-      ver_alt: 
+      ver_alt:
       date: 2022-06-22
       source_url: https://www.youtube.com/watch?v=e23S1NP5nPg
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever TB Worlds v0.5.rar
       file_url:
   - v0.2:
-      ver_alt: 
+      ver_alt:
       date: 2022-06-12
       source_url: https://www.youtube.com/watch?v=s0MkauYzKmY
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever TB Worlds Version 0.2.rar
       file_url:
   - v0.1:
-      ver_alt: 
+      ver_alt:
       date: 2022-06-08
       source_url: https://www.youtube.com/watch?v=_t7YrsccgRI
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever TB Worlds Version 0.1.rar
       file_url:
 - game: 'Mario Forever: Community Summer Project 2022'
@@ -8651,39 +8653,39 @@
       file_name: Mario_Forever_-_Party_Worlds_1.4.rar
       file_url:
   - v1.3:
-      ver_alt: 
+      ver_alt:
       date: 2021-04-12
-      source_url: 
+      source_url:
       download_url: ~https://mega.nz/file/DLQyhRqD#hTiny0aD8yKkfeZ0LJee4dks71SYKIi6FZfYXtFDR4w
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever - Party Worlds 1.3.zip
       file_url:
   - v1.2:
-      ver_alt: 
+      ver_alt:
       date: 2021-04-11
-      source_url: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Party Worlds 1.2.zip
       file_url:
   - v1.1:
-      ver_alt: 
+      ver_alt:
       date: 2021-01-31
-      source_url: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Party Worlds 1.1.zip
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2021-01-25
-      source_url: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - Party Worlds.7z
       file_url:
 - game: Runner
@@ -9409,173 +9411,173 @@
       file_name: MF - PROXY WORLDS V1.0 (FULL FIXED).rar
       file_url:
   - v1.0 (Fixed):
-      ver_alt: 
+      ver_alt:
       date: 2022-05-03
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS V1.0 (FIXED VERSION).rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2022-05-03
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS V1.0.rar
       file_url:
   - v0.8:
-      ver_alt: 
+      ver_alt:
       date: 2022-04-21
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS V0.8 (BETA).rar
       file_url:
   - v0.6:
-      ver_alt: 
+      ver_alt:
       date: 2022-04-02
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - V0.6 (BETA).rar
       file_url:
   - v0.4:
-      ver_alt: 
+      ver_alt:
       date: 2022-03-06
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS V0.4 (BETA) (FIXED).rar
       file_url:
   - v0.2:
-      ver_alt: 
+      ver_alt:
       date: 2022-02-26
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS V0.2 (BETA).rar
       file_url:
   - World 8:
-      ver_alt: 
+      ver_alt:
       date: 2021-12-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - WORLD 8.rar
       file_url:
   - World 7:
-      ver_alt: 
+      ver_alt:
       date: 2021-06-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - Proxy Worlds - World 7.rar
       file_url:
   - World 6:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-16
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - Proxy Worlds - World 6.rar
       file_url:
   - World 5:
-      ver_alt: 
+      ver_alt:
       date: 2021-04-26
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - Proxy Worlds - World 5.rar
       file_url:
   - World 4:
-      ver_alt: 
+      ver_alt:
       date: 2021-11-19
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - WORLD 4.rar
       file_url:
   - World 4 (old):
-      ver_alt: 
+      ver_alt:
       date: 2021-03-03
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - Proxy Worlds Series - World 4.rar
       file_url:
   - World 3:
-      ver_alt: 
+      ver_alt:
       date: 2021-11-01
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - WORLD 3.rar
       file_url:
   - World 2:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-18
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - WORLD 2.rar
       file_url:
   - World 1 (Fixed):
-      ver_alt: 
+      ver_alt:
       date: 2021-10-02
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - WORLD 1 (FIXED).rar
       file_url:
   - World 1:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-02
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF - PROXY WORLDS - WORLD 1.rar
       file_url:
   - World 1 (old):
-      ver_alt: 
+      ver_alt:
       date: 2020-12-27
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Proxy Worlds Series - World 1 (By EMK8700).rar
       file_url:
 - game: Mario Forever Domino II
@@ -9616,138 +9618,138 @@
       file_name: Mario Forever Newer Adventure v4.0.rar
       file_url:
   - v3.6:
-      ver_alt: 
+      ver_alt:
       date: 2022-01-17
       source_url: https://www.youtube.com/watch?v=TGjOXhe-YZA
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v3.6.zip
       file_url:
   - v3.3:
-      ver_alt: 
+      ver_alt:
       date: 2021-12-23
       source_url: https://www.youtube.com/watch?v=8BBBfmqgIT4
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v3.3.zip
       file_url:
   - v3.0:
-      ver_alt: 
+      ver_alt:
       date: 2021-11-14
       source_url: https://www.youtube.com/watch?v=oqGh-mkCks0
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v3.0.zip
       file_url:
   - v2.7:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-22
       source_url: https://www.youtube.com/watch?v=TRS4a5rPChw
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v2.7.zip
       file_url:
   - v2.4:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-10
-      source_url: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v2.4.zip
       file_url:
   - v2.2:
-      ver_alt: 
+      ver_alt:
       date: 2021-10-06
       source_url: https://www.youtube.com/watch?v=yPnHV8c_XbE
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v2.2.zip
       file_url:
   - v2.1:
-      ver_alt: 
+      ver_alt:
       date: 2021-09-27
       source_url: https://www.youtube.com/watch?v=7UMJM9H3GJ8
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v2.1.zip
       file_url:
   - v2.0:
-      ver_alt: 
+      ver_alt:
       date: 2021-09-23
       source_url: https://www.youtube.com/watch?v=7UMJM9H3GJ8
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure v2.0.zip
       file_url:
   - World 7:
-      ver_alt: 
+      ver_alt:
       date: 2021-09-21
       source_url: https://www.youtube.com/watch?v=ItYj3506GMw
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 7.zip
       file_url:
   - World 6:
-      ver_alt: 
+      ver_alt:
       date: 2021-08-26
       source_url: https://www.youtube.com/watch?v=pKP1ZK3eiPU
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 6.zip
       file_url:
   - World 5:
-      ver_alt: 
+      ver_alt:
       date: 2021-07-24
       source_url: https://www.youtube.com/watch?v=fHihnGFk1Mw
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 5.zip
       file_url:
   - World 4:
-      ver_alt: 
+      ver_alt:
       date: 2021-07-14
       source_url: https://www.youtube.com/watch?v=l6D3zDjvX5U
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 4.zip
       file_url:
   - World 3:
-      ver_alt: 
+      ver_alt:
       date: 2021-06-22
       source_url: https://www.youtube.com/watch?v=Hx6WMU-eUdE
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 3.zip
       file_url:
   - World 2:
-      ver_alt: 
+      ver_alt:
       date: 2021-06-19
       source_url: https://www.youtube.com/watch?v=o-HfgOfsOwg
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 2.zip
       file_url:
   - World 1:
-      ver_alt: 
+      ver_alt:
       date: 2021-06-13
       source_url: https://www.youtube.com/watch?v=WdfvKMmfs6E
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Newer Adventure World 1.zip
       file_url:
 - game: Super Mario Revived
@@ -10290,7 +10292,7 @@
       date: 2021-08-04
       source_url: https://www.marioforever.net/thread-1359-1-1.html
       source_url_alt:
-      download_url: https://pan.baidu.com/s/1vVcTnVNNsQvHjfG7i4fTVw 
+      download_url: https://pan.baidu.com/s/1vVcTnVNNsQvHjfG7i4fTVw
       code: Te15
       download_url_alt:
       file_name: Mario Forever Tense 15 v1.2.rar
@@ -10487,9 +10489,9 @@
   - Beta:
       ver_alt:
       date: 2017-08-16
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
+      download_url:
       code:
       download_url_alt:
       file_name: Not Epic Adventure Beta (World1).rar
@@ -10974,151 +10976,151 @@
   - v2.5:
       ver_alt:
       date: 2021-08-13
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 2.5.zip
       file_url:
   - v2.1:
       ver_alt:
       date: 2021-03-28
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 2.1.zip
       file_url:
   - v2.0:
       ver_alt:
       date: 2021-02-25
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 2.0.zip
       file_url:
   - v1.4.3:
       ver_alt:
       date: 2021-01-02
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.4.3.zip
       file_url:
   - v1.4.2:
       ver_alt:
       date: 2020-12-13
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.4.2.zip
       file_url:
   - v1.4.1:
       ver_alt:
       date: 2020-10-30
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.4.1.zip
       file_url:
   - v1.4:
       ver_alt:
       date: 2020-09-22
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.4.zip
       file_url:
   - v1.3:
       ver_alt:
       date: 2020-08-02
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.3.zip
       file_url:
   - v1.2:
       ver_alt:
       date: 2020-07-04
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.2.zip
       file_url:
   - v1.1:
       ver_alt:
       date: 2020-06-25
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW 1.1.zip
       file_url:
   - v1.0:
       ver_alt:
       date: 2020-06-19
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW.zip
       file_url:
   - Lost World 3:
       ver_alt:
       date: 2020-06-19
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: MFTLW.zip
       file_url:
   - Lost World 3:
       ver_alt:
       date: 2018-07-30
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Lost world_3_final.exe
       file_url:
   - Lost World 2:
       ver_alt:
       date: 2018-04-17
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Lost World_2.zip
       file_url:
   - Lost World 1:
       ver_alt:
       date: 2018-04-16
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Lost world_.exe
       file_url:
 - game: Mario Forever Violet Romance
@@ -11230,53 +11232,53 @@
       file_name: Mario Forever Wondrous Journey v0.5.rar
       file_url:
   - v0.4:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-26
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Wondrous Journey v0.4.rar
       file_url:
   - v0.3:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-18
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Wondrous Journey v0.3.rar
       file_url:
   - v0.2:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-07
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Wondrous Journey v0.2.rar
       file_url:
   - v0.1:
-      ver_alt: 
+      ver_alt:
       date: 2021-04-22
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Wondrous Journey v0.1.rar
       file_url:
   - World 2 Beta:
-      ver_alt: 
+      ver_alt:
       date: 2021-04-17
-      source_url: 
+      source_url:
       source_url_alt:
-      download_url: 
-      code: 
-      download_url_alt: 
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Wondrous Journey World 2 BETA.rar
       file_url:
 - game: Mario Forever Westside Island
@@ -11298,183 +11300,183 @@
       file_name: Mario Forever Westside Island v3.03.rar
       file_url:
   - v3.02a:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-15
       source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Westside Island v3.02a.rar
       file_url:
   - v3.01:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-12
       source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Westside Island v3.01.rar
       file_url:
   - v3.0:
-      ver_alt: 
+      ver_alt:
       date: 2021-05-07
       source_url: https://www.youtube.com/watch?v=mjpMqAtBGs8
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Westside Island v3.0.rar
       file_url:
   - v2.5.7:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-19
       source_url: https://www.youtube.com/watch?v=GlXaJkAi8pc
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v2.5.7.zip
       file_url:
   - v2.5.1:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-06
       source_url: https://www.youtube.com/watch?v=GlXaJkAi8pc
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v2.5.1.rar
       file_url:
   - v2.5:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-04
       source_url: https://www.youtube.com/watch?v=GlXaJkAi8pc
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v2.5.rar
       file_url:
   - v2.3:
-      ver_alt: 
+      ver_alt:
       date: 2020-03-21
       source_url: https://www.youtube.com/watch?v=hkSWL6qz2DQ
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v2.3.rar
       file_url:
   - v2.1:
-      ver_alt: 
+      ver_alt:
       date: 2020-03-02
       source_url: https://www.youtube.com/watch?v=Xllx6NE0Xw4
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v2.1.rar
       file_url:
   - v2.0:
-      ver_alt: 
+      ver_alt:
       date: 2019-10-29
       source_url: https://www.youtube.com/watch?v=FEHTYwrp8M0
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v2.0.rar
       file_url:
   - v1.7:
-      ver_alt: 
+      ver_alt:
       date: 2019-10-03
       source_url: https://www.youtube.com/watch?v=roEWIrkUc8M
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v1.7.rar
       file_url:
   - v1.5:
-      ver_alt: 
+      ver_alt:
       date: 2019-09-02
       source_url: https://www.youtube.com/watch?v=70VsqMNbLUQ
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v1.5.rar
       file_url:
   - v1.2:
-      ver_alt: 
+      ver_alt:
       date: 2019-07-18
       source_url: https://www.youtube.com/watch?v=X0vZOecAAOs
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v1.2.exe
       file_url:
   - v1.0.1:
-      ver_alt: 
+      ver_alt:
       date: 2019-06-18
       source_url: https://www.youtube.com/watch?v=l8KyhMzblRI
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v1.0.1.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2019-06-15
       source_url: https://www.youtube.com/watch?v=l8KyhMzblRI
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v1.0.rar
       file_url:
   - v0.7:
-      ver_alt: 
+      ver_alt:
       date: 2019-04-20
       source_url: https://www.youtube.com/watch?v=-HerJn30Q24
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v0.7.rar
       file_url:
   - v0.6:
-      ver_alt: 
+      ver_alt:
       date: 2019-03-24
       source_url: https://www.youtube.com/watch?v=DreMpO46hTc
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v0.6.rar
       file_url:
   - v0.5:
-      ver_alt: 
+      ver_alt:
       date: 2019-03-03
       source_url: https://www.youtube.com/watch?v=rAk7nFz44iA
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v0.5.exe
       file_url:
   - v0.3:
-      ver_alt: 
+      ver_alt:
       date: 2019-02-19
       source_url: https://www.youtube.com/watch?v=rog3NH95pvs
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: MF Westside Island v0.3.rar
       file_url:
 - game: Autumn Travel
@@ -11774,7 +11776,7 @@
   - 发布视频: https://www.bilibili.com/video/BV1sK4y1m7wY
   ver:
   date: 2021-04-01
-  source_url: 
+  source_url:
   source_url_alt: https://www.youtube.com/watch?v=PjKY7Ft6XjQ
   download_url: https://zh.wsw233.com/files/view?f=32oal3
   code:
@@ -11808,265 +11810,265 @@
       file_name: Mario Worker - Letter Worlds Series v1.51.rar
       file_url:
   - v1.501:
-      ver_alt: 
+      ver_alt:
       date: 2020-12-08
       source_url: https://www.youtube.com/watch?v=BrVFVwOy4po
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.501.rar
       file_url:
   - v1.5:
-      ver_alt: 
+      ver_alt:
       date: 2020-12-08
       source_url: https://www.youtube.com/watch?v=BrVFVwOy4po
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.5.rar
       file_url:
   - v1.07:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-17
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.07.rar
       file_url:
   - v1.061:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-15
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.061.rar
       file_url:
   - v1.06:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-13
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.06.rar
       file_url:
   - v1.05:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-07
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.05.rar
       file_url:
   - v1.02:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-04
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.02.rar
       file_url:
   - v1.01:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-02
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.01.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-02
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.0.rar
       file_url:
   - v1.0 (D3D9):
-      ver_alt: 
+      ver_alt:
       date: 2020-10-02
       source_url: https://www.youtube.com/watch?v=sbR4A4dUJxU
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - Letter Worlds Series v1.0 (direct3D9).rar
       file_url:
   - World Z:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-16
       source_url: https://www.youtube.com/watch?v=nDrWJsdfgfU
       download_url: https://www.mediafire.com/file/67ne900uzabmg1s/Mario_Worker_-_World_Z.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World Z.rar
       file_url:
   - World Y:
-      ver_alt: 
+      ver_alt:
       date: 2019-10-25
       source_url: https://www.youtube.com/watch?v=umV6pdwkNBg
       download_url: https://www.mediafire.com/file/5883ho0eerba7t0/Mario_Worker_-_World_Y.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World Y.rar
       file_url:
   - World X:
-      ver_alt: 
+      ver_alt:
       date: 2018-07-27
       source_url: https://www.youtube.com/watch?v=1ISrAfwj1nk
       download_url: https://www.mediafire.com/file/63u618m3kuiqnx9/Mario_Worker_-_World_X.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World X.rar
       file_url:
   - World W:
-      ver_alt: 
+      ver_alt:
       date: 2017-10-02
       source_url: https://www.youtube.com/watch?v=5N7lD4SfsaE
       download_url: https://www.mediafire.com/file/zd0ja6v32ismp2r/Mario_Worker_-_World_W.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World W.rar
       file_url:
   - World V:
-      ver_alt: 
+      ver_alt:
       date: 2017-04-08
       source_url: https://www.youtube.com/watch?v=WorgIf4BSGE
       download_url: https://www.mediafire.com/file/w88swy48jz85io3/Mario_Worker_-_World_V.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World V.rar
       file_url:
   - World U:
-      ver_alt: 
+      ver_alt:
       date: 2017-03-01
       source_url: https://www.youtube.com/watch?v=o1x2_s8JJ60
       download_url: https://www.mediafire.com/file/x21l8ias3quyeyb/Mario_Worker_-_World_U.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World U.rar
       file_url:
   - World T:
-      ver_alt: 
+      ver_alt:
       date: 2016-09-01
       source_url: https://www.youtube.com/watch?v=44BKIisd7NY
       download_url: https://www.mediafire.com/file/544v8uxou2kg97b/Mario_Worker_-_World_T.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World T.rar
       file_url:
   - World S:
-      ver_alt: 
+      ver_alt:
       date: 2016-02-25
       source_url: https://www.youtube.com/watch?v=N2B1lLAqAto
       download_url: https://www.mediafire.com/file/68mq01ehwnwfbf1/Mario_Worker_-_World_S.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World S.zip
       file_url:
   - World R:
-      ver_alt: 
+      ver_alt:
       date: 2015-08-29
       source_url: https://www.youtube.com/watch?v=zY2Jf8w4ChY
       download_url: https://www.mediafire.com/file/8lhlcrc5k9gnto1/Mario_Worker_-_World_R.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World R.zip
       file_url:
   - World Q:
-      ver_alt: 
+      ver_alt:
       date: 2015-04-07
       source_url: https://www.youtube.com/watch?v=91R40ujniGM
       download_url: https://www.mediafire.com/file/48id708qi83r8l4/Mario_Worker_-_World_Q.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World Q.zip
       file_url:
   - World P:
-      ver_alt: 
+      ver_alt:
       date: 2015-02-07
       source_url: https://www.youtube.com/watch?v=rXb8HYb4kyY
       download_url: https://www.mediafire.com/file/63iu5tlowf1tv0w/Mario_Worker_-_World_P.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World P.zip
       file_url:
   - World O:
-      ver_alt: 
+      ver_alt:
       date: 2014-10-05
       source_url: https://www.youtube.com/watch?v=N3L9xFD6-Yg
       download_url: https://www.mediafire.com/file/wln27ablv8cwcc7/Mario_Worker_-_World_O.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World O.zip
       file_url:
   - World N:
-      ver_alt: 
+      ver_alt:
       date: 2014-07-17
       source_url: https://www.youtube.com/watch?v=E3eWTp4uCII
       download_url: https://www.mediafire.com/file/iopgkbpwqdvnv8o/Mario_Worker_-_World_N.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World N.zip
       file_url:
   - World M:
-      ver_alt: 
+      ver_alt:
       date: 2014-05-17
       source_url: https://www.youtube.com/watch?v=6QL-4aOtegE
       download_url: https://www.mediafire.com/file/csv2mbfrcqy2mdf/Mario_Worker_-_World_M.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World M.zip
       file_url:
   - World L:
-      ver_alt: 
+      ver_alt:
       date: 2014-01-14
       source_url: https://www.youtube.com/watch?v=D9SJRf-2dp0
       download_url: https://www.mediafire.com/file/f1z4v8p83tokgsu/Mario_Worker_-_World_L.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World L.zip
       file_url:
   - World K:
-      ver_alt: 
+      ver_alt:
       date: 2013-10-20
       source_url: https://www.youtube.com/watch?v=j5jWGuu1sI4
       download_url: https://www.mediafire.com/file/mbdf3tx6kffszzv/Mario_Worker_-_World_K.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World K.zip
       file_url:
   - World J:
-      ver_alt: 
+      ver_alt:
       date: 2013-09-17
       source_url: https://www.youtube.com/watch?v=nlWu1F5MMDI
       download_url: https://www.mediafire.com/file/8y9nbx8zirr5xfw/Mario_Worker_-_World_J.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World J.zip
       file_url:
   - World I:
-      ver_alt: 
+      ver_alt:
       date: 2013-08-15
       source_url: https://www.youtube.com/watch?v=5bxMosgONxU
       download_url: https://www.mediafire.com/file/y4432pufpvc5ewa/Mario_Worker_-_World_I.zip/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - World I.zip
       file_url:
   - World F (recompiled):
@@ -12189,7 +12191,7 @@
       date: 2021-02-19
       source_url: https://www.marioforever.net/thread-962-1-1.html
       source_url_alt:
-      download_url: https://pan.baidu.com/s/1K9A6CRjQNJJgi6r7G6PzMw 
+      download_url: https://pan.baidu.com/s/1K9A6CRjQNJJgi6r7G6PzMw
       code: xym7
       download_url_alt:
       file_name: Mario Forever Colourful Trip v1.0.zip
@@ -12650,53 +12652,53 @@
       file_name: Mario Worker - The New Levels Series v1.1.rar
       file_url:
   - v1.07:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-14
       source_url: https://www.youtube.com/watch?v=-ZYSM9OUiSE
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - The New Levels Series v1.07.rar
       file_url:
   - v1.06:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-12
       source_url: https://www.youtube.com/watch?v=-ZYSM9OUiSE
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - The New Levels Series v1.06.rar
       file_url:
   - v1.05:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-10
       source_url: https://www.youtube.com/watch?v=-ZYSM9OUiSE
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - The New Levels Series v1.05.rar
       file_url:
   - v1.01:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-08
       source_url: https://www.youtube.com/watch?v=-ZYSM9OUiSE
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Worker - The New Levels Series v1.01.rar
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2020-10-07
       source_url: https://www.youtube.com/watch?v=-ZYSM9OUiSE
-      source_url_alt: 
+      source_url_alt:
       download_url: http://www.mediafire.com/file/at1m33x5synqf0q/Mario_Worker_-_The_New_Levels_Series_v1.0.rar/file
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Worker - The New Levels Series v1.0.rar
       file_url:
 - game: 'Mario Forever: Bowser''s Glacial Castle'
@@ -12731,7 +12733,7 @@
       date: 2021-01-08
       source_url:
       source_url_alt:
-      download_url: 
+      download_url:
       code:
       download_url_alt:
       file_name: Mario Forever Remake v1.6 But is a Lakitu Invasion.rar
@@ -13017,211 +13019,211 @@
       file_name: Mario Forever - The Lost Map 1.5 Final.zip
       file_url:
   - v1.4.4 Final:
-      ver_alt: 
+      ver_alt:
       date: 2020-08-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.4.4 Final.zip
       file_url:
   - v1.4.3:
-      ver_alt: 
+      ver_alt:
       date: 2020-06-26
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.4.3.zip
       file_url:
   - v1.4.2:
-      ver_alt: 
+      ver_alt:
       date: 2020-06-24
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.4.2.zip
       file_url:
   - v1.4.1:
-      ver_alt: 
+      ver_alt:
       date: 2020-06-11
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.4.1.zip
       file_url:
   - v1.4:
-      ver_alt: 
+      ver_alt:
       date: 2020-06-10
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.4.zip
       file_url:
   - v1.2:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-07
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.2.zip
       file_url:
   - v1.1.1:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map 1.1.1.zip
       file_url:
   - v1.0:
-      ver_alt: 
+      ver_alt:
       date: 2020-05-03
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map.zip
       file_url:
   - Demo 1.10:
-      ver_alt: 
+      ver_alt:
       date: 2020-03-14
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.10.zip
       file_url:
   - Demo 1.9.4:
-      ver_alt: 
+      ver_alt:
       date: 2020-03-03
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.9.4.zip
       file_url:
   - Demo 1.9.3:
-      ver_alt: 
+      ver_alt:
       date: 2020-02-28
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.9.3.zip
       file_url:
   - Demo 1.9.2:
-      ver_alt: 
+      ver_alt:
       date: 2019-08-24
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.9.2.zip
       file_url:
   - Demo 1.9.1:
-      ver_alt: 
+      ver_alt:
       date: 2019-08-15
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.9.1.zip
       file_url:
   - Demo 1.8.2:
-      ver_alt: 
+      ver_alt:
       date: 2019-08-01
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.8.2.zip
       file_url:
   - Demo 1.8.1:
-      ver_alt: 
+      ver_alt:
       date: 2019-07-30
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.8.1.zip
       file_url:
   - Demo 1.8:
-      ver_alt: 
+      ver_alt:
       date: 2019-07-26
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO v1.8.zip
       file_url:
   - Demo 1.7.2:
-      ver_alt: 
+      ver_alt:
       date: 2019-03-24
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO 1.7.2.zip
       file_url:
   - Demo 1.7.1:
-      ver_alt: 
+      ver_alt:
       date: 2019-03-24
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO v1.7.1.zip
       file_url:
   - Demo 1.7:
-      ver_alt: 
+      ver_alt:
       date: 2019-03-23
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO v1.7.zip
       file_url:
   - Demo 1.4:
-      ver_alt: 
+      ver_alt:
       date: 2018-12-01
       repacker: JUE13
       repacker_alt:
-      source_url: 
-      source_url_alt: 
+      source_url:
+      source_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO v1.4.zip
       file_url:
   - Demo 1.0:
-      ver_alt: 
+      ver_alt:
       date: 2018-10-21
       repacker: JUE13
       repacker_alt:
-      source_url: 
-      source_url_alt: 
+      source_url:
+      source_url_alt:
       file_name: Mario Forever - The Lost Map - DEMO.zip
       file_url:
 - game: Area Block - Card Dash!
@@ -13322,7 +13324,7 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: 
+  ver:
   - 三关预览版:
       ver_alt: 3 levels preview
       date: 2020-08-06
@@ -13450,7 +13452,7 @@
       date: 2020-06-28
       source_url: https://www.youtube.com/watch?v=5hcVZclS1XI
       source_url_alt:
-      download_url: 
+      download_url:
       code:
       download_url_alt:
       file_name: MFRW3.5.rar
@@ -13486,233 +13488,233 @@
       file_name: MFRW3.3.rar
       file_url:
   - v3.2.10:
-      ver_alt: 
+      ver_alt:
       date: 2017-08-26
-      source_url: 
-      source_url_alt: 
+      source_url:
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?dwn4gf9idx6i333
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.10.rar
       file_url:
   - v3.2.9:
-      ver_alt: 
+      ver_alt:
       date: 2017-08-13
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.9.rar
       file_url:
   - v3.2.8:
-      ver_alt: 
+      ver_alt:
       date: 2017-07-05
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.8.rar
       file_url:
   - v3.2.6:
-      ver_alt: 
+      ver_alt:
       date: 2017-07-04
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.6.rar
       file_url:
   - v3.2.5:
-      ver_alt: 
+      ver_alt:
       date: 2017-06-30
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.5.rar
       file_url:
   - v3.2.4:
-      ver_alt: 
+      ver_alt:
       date: 2017-06-13
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.4.rar
       file_url:
   - v3.2.0:
-      ver_alt: 
+      ver_alt:
       date: 2017-06-11
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.2.rar
       file_url:
   - v3.1:
-      ver_alt: 
+      ver_alt:
       date: 2017-06-04
       source_url: https://www.youtube.com/watch?v=QX9joYbKbJc
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.1.rar
       file_url:
   - v3.0.6:
-      ver_alt: 
+      ver_alt:
       date: 2016-12-19
       source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.0.6.rar
       file_url:
   - v3.0.3:
-      ver_alt: 
+      ver_alt:
       date: 2016-12-04
       source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.0.3.rar
       file_url:
   - v3.0.2:
-      ver_alt: 
+      ver_alt:
       date: 2016-11-27
       source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.0.2.rar
       file_url:
   - v3.0:
-      ver_alt: 
+      ver_alt:
       date: 2016-11-23
       source_url: https://www.youtube.com/watch?v=gn8kqWAHIHY
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds3.0.rar
       file_url:
   - v2.2.4:
-      ver_alt: 
+      ver_alt:
       date: 2016-06-30
       source_url: https://www.youtube.com/watch?v=4nkvTY3E8SE
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?74duuf1z6o9ovzt
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds2.2.4.rar
       file_url:
   - v2.2:
-      ver_alt: 
+      ver_alt:
       date: 2016-06-25
       source_url: https://www.youtube.com/watch?v=4nkvTY3E8SE
-      source_url_alt: 
+      source_url_alt:
       download_url: ~http://www.mediafire.com/?0qy03555zrr09pw
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds2.2.rar
       file_url:
   - v2.1.1:
-      ver_alt: 
+      ver_alt:
       date: 2016-03-08
       source_url: https://www.youtube.com/watch?v=odha9J179dk
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?hcyi76qi995uy6a
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds2.1.1.rar
       file_url:
   - v2.1:
-      ver_alt: 
+      ver_alt:
       date: 2016-03-06
       source_url: https://www.youtube.com/watch?v=odha9J179dk
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?ikeg4mxx3pmug11
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds2.1.rar
       file_url:
   - v2.0.6:
-      ver_alt: 
+      ver_alt:
       date: 2016-02-13
       source_url: https://www.youtube.com/watch?v=OfXE4iM2UZY
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?e46abcv8ti40mo6
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds2.0.6.rar
       file_url:
   - v2.0.2:
-      ver_alt: 
+      ver_alt:
       date: 2016-02-10
       source_url: https://www.youtube.com/watch?v=OfXE4iM2UZY
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds2.0.2.rar
       file_url:
   - v1.9:
-      ver_alt: 
+      ver_alt:
       date: 2015-12-24
       source_url: https://www.youtube.com/watch?v=Yl_O0RMilcs
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?1wfb2i33ixr96s7
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds1.9.rar
       file_url:
   - v1.8:
-      ver_alt: 
+      ver_alt:
       date: 2015-12-06
       source_url: https://www.youtube.com/watch?v=Vk8wObBwJjk
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?c3z9ceyg9y235y2
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds1.8.rar
       file_url:
   - v1.7:
-      ver_alt: 
+      ver_alt:
       date: 2015-11-20
       source_url: https://www.youtube.com/watch?v=itEWZHsz0iY
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?kycimbv2hr8bfg0
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds1.7.rar
       file_url:
   - v1.6:
-      ver_alt: 
+      ver_alt:
       date: 2015-11-04
       source_url: https://www.youtube.com/watch?v=oNdLAjbb7KA
-      source_url_alt: 
+      source_url_alt:
       download_url: ~https://www.mediafire.com/?2y868ibc36abt2y
-      code: 
-      download_url_alt: 
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds1.6.rar
       file_url:
   - v1.3:
-      ver_alt: 
+      ver_alt:
       date: 2015-10-04
-      source_url: 
-      source_url_alt: 
-      download_url: 
-      code: 
-      download_url_alt: 
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
       file_name: Mario Forever Roman Worlds1.3.rar
       file_url:
 - game: World11++
@@ -14295,7 +14297,7 @@
   - v1.7 Snapshot 1:
       ver_alt:
       date: 2018-12-15
-      source_url: 
+      source_url:
       source_url_alt:
       download_url:
       code:
@@ -14305,7 +14307,7 @@
   - v1.6.3:
       ver_alt:
       date: 2018-08-14
-      source_url: 
+      source_url:
       source_url_alt:
       download_url:
       code:
@@ -14315,7 +14317,7 @@
   - v1.6.2:
       ver_alt:
       date: 2018-08-08
-      source_url: 
+      source_url:
       source_url_alt:
       download_url:
       code:
@@ -14325,7 +14327,7 @@
   - v1.6.1:
       ver_alt:
       date: 2018-08-03
-      source_url: 
+      source_url:
       source_url_alt:
       download_url:
       code:
@@ -14335,7 +14337,7 @@
   - v1.6:
       ver_alt:
       date: 2018-07-31
-      source_url: 
+      source_url:
       source_url_alt:
       download_url:
       code:
@@ -14570,7 +14572,7 @@
       date: 2020-02-06
       source_url: https://www.marioforever.net/thread-319-1-1.html
       source_url_alt:
-      download_url: https://pan.baidu.com/s/1IRL0_zOu8HbCKfg-mOh-bA 
+      download_url: https://pan.baidu.com/s/1IRL0_zOu8HbCKfg-mOh-bA
       code: 751e
       download_url_alt:
       file_name: Mario Forever Rainbow Land 2.0(2).exe
@@ -14665,7 +14667,7 @@
 - game: Project Monochrome
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: 
+  author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -14989,7 +14991,7 @@
 - game: 'Mario Forever: World of Haste'
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: 
+  author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -15045,7 +15047,7 @@
 - game: Yo Angelo
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: 
+  author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -15119,7 +15121,7 @@
 - game: Lootbox Mushroom Test
   game_alt:
   author: 幽霊鬼yuureiki
-  author_alt: 
+  author_alt:
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -15377,7 +15379,7 @@
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Legend_World_Remake
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=47035
-  ver: 
+  ver:
   - v2.0.6.1:
       ver_alt:
       date: 2026-01-28
@@ -15605,7 +15607,7 @@
   author: '1168438795'
   author_alt:
   type: chinese
-  wiki_zh_url: 
+  wiki_zh_url:
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV19t411C7xD/
@@ -16029,7 +16031,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Magic_Land
   wiki_en_url:
-  video_zh: 
+  video_zh:
   - WSW 版聊解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48399
   ver:
   - v3.6:
@@ -17641,7 +17643,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mysterious_Island_2_-_Great_Journey
   wiki_en_url:
-  video_zh: 
+  video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=48385
   ver:
   - v1.5:
@@ -18113,7 +18115,7 @@
       current: true
       source_url: https://archive.marioforever.net/post/4692956236.html
       source_url_alt:
-      download_url: http://pan.baidu.com/s/1slvh5Dz 
+      download_url: http://pan.baidu.com/s/1slvh5Dz
       code:
       download_url_alt:
       file_name: MFZXProject Remake - World1Beta(Classical).exe
@@ -18861,7 +18863,7 @@
   file_name: Mario Forever World 16 by MarioX7.exe
   file_url:
 - game: 随机的空间2
-  game_alt: Random Spaces 2 
+  game_alt: Random Spaces 2
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -18897,7 +18899,7 @@
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E9%9A%8F%E6%9C%BA%E7%9A%84%E7%A9%BA%E9%97%B4
   wiki_en_url:
-  ver: 
+  ver:
   - 英文版:
       ver_alt: English ver.
       date: 2015-06-28
@@ -19780,7 +19782,7 @@
   wiki_en_url:
   ver:
   - 整合版:
-      ver_alt: 3 worlds version 
+      ver_alt: 3 worlds version
       date: 2014-06-26
       source_url:
       source_url_alt:
@@ -20279,7 +20281,7 @@
   file_url:
 - game: Mario Forever The Next Levels
   game_alt:
-  alias: 
+  alias:
   - MFTNL
   author: Youras
   author_alt:

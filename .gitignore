@@ -10,3 +10,4 @@ dist
 .trae/*
 AGENTS.md
 public/data/image-index.json
+.idea/*
