@@ -80,6 +80,13 @@ export default defineConfig({
     reportCompressedSize: true,
     sourcemap: false
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   optimizeDeps: {
     include: [
       'vue',

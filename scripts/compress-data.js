@@ -61,8 +61,10 @@ async function compressDataFiles() {
     console.log(`Compressing ${file} (${stats.size} bytes)...`)
 
     try {
-      await compressFile(filePath, `${filePath}.gz`, 'gzip')
-      await compressFile(filePath, `${filePath}.br`, 'brotli')
+      await Promise.all([
+        compressFile(filePath, `${filePath}.gz`, 'gzip'),
+        compressFile(filePath, `${filePath}.br`, 'brotli')
+      ])
       console.log(`✓ Compressed ${file}`)
     } catch (error) {
       console.error(`✗ Failed to compress ${file}:`, error.message)
