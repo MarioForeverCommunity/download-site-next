@@ -7,11 +7,11 @@ If you find a game missing and know its information, or find dead links, please 
 Due to the goal of this catalog, we don't set any quality bar on games that appear on the list. A removal of certain game only occurs when:
 
 - The creator requests to remove their game from the list.
-- The game violates other creators' rights, e.g., the game is made based on a decompiled version of other games.
+- The game violates other creators' rights, e.g., the game is made based on a decompiled version of other fangames.
 - The game contains virus and may harm others' devices.
 - The game contains topics that are not appropriate to be published on open Internet.
 
-Some old versions of fangames are available on [file.marioforever.net](https://file.marioforever.net/mario-forever/games/). If the game's author wishes to remove them, please send a request.
+Some old versions of fangames are available on [file.marioforever.net](https://file.marioforever.net/mario-forever/games/). If a game's author would like their archived older version(s) removed, please send a request.
 
 <a href="#" id="open-credits">We sincerely thank these people for their contributions.</a>
 
