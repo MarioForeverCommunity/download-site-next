@@ -1,4 +1,149 @@
 ---
+- game: Klawiatura
+  game_alt:
+  author:
+  - toggins
+  - nonk123
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  repo: https://github.com/toggins/Klawiatura
+  ver:
+  - v1.3.0 (Win64):
+      current: true
+      ver_alt:
+      date: 2026-03-10
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.3.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.3.0-Win64.zip
+      file_url:
+  - v1.3.0 (WinXP):
+      current: true
+      ver_alt:
+      date: 2026-03-10
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.3.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.3.0-WinXP.zip
+      file_url:
+  - v1.3.0 (Linux):
+      current: true
+      ver_alt:
+      date: 2026-03-10
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.3.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.3.0-Linux.zip
+      file_url:
+  - v1.1.0 (Win64):
+      ver_alt:
+      date: 2026-02-28
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.1.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.1.0-Win64.zip
+      file_url:
+  - v1.1.0 (WinXP):
+      ver_alt:
+      date: 2026-02-28
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.1.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.1.0-WinXP.zip
+      file_url:
+  - v1.1.0 (Linux):
+      ver_alt:
+      date: 2026-02-28
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.1.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.1.0-Linux.zip
+      file_url:
+  - v1.0.1 (Win64):
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.0.1
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.0.1-Win64.zip
+      file_url:
+  - v1.0.1 (WinXP):
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.0.1
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.0.1-WinXP.zip
+      file_url:
+  - v1.0.1 (Linux):
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.0.1
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.0.1-Linux.zip
+      file_url:
+  - v1.0.0 (Win64):
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.0.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.0.0-Win64.zip
+      file_url:
+  - v1.0.0 (WinXP):
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.0.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.0.0-WinXP.zip
+      file_url:
+  - v1.0.0 (Linux):
+      ver_alt:
+      date: 2026-02-22
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/Klawiatura/releases/tag/v1.0.0
+      code:
+      download_url_alt:
+      file_name: Klawiatura-v1.0.0-Linux.zip
+      file_url:
+  - KlaEditor:
+      current: true
+      ver_alt:
+      date: 2025-11-26
+      source_url: https://marioforever.space/topic/20/
+      source_url_alt:
+      download_url: https://github.com/toggins/KlaEditor/releases/tag/0.3
+      code:
+      download_url_alt:
+      file_name: KlaEditor.zip
+      file_url:
 - game: Mario Forever Wonderful Worlds
   game_alt:
   alias:

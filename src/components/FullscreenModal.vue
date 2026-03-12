@@ -140,7 +140,7 @@ const sourceUrls = computed(() => {
         version = baseVersion.trim();
       }
     }
-    version = version.replace(/\s*\(?\s*(Windows|Linux|D3D9)\s*\)?\s*/gi, '').trim();
+    version = version.replace(/\s*\(?\s*(Windows|Linux|D3D9|WinXP|Win64)\s*\)?\s*/gi, '').trim();
     return version;
   };
 
@@ -260,8 +260,8 @@ const latestUpdate = computed(() => {
 
   const processUpdateVersion = (version) => {
     if (!version) return '';
-    version = version.replace(/\s*\(?\s*(Windows|Linux|D3D9)\s*\)?\s*/gi, '').trim();
-    const match = version.match(/^(.+?)\s*\((Windows|Linux|D3D9)\s*\)$/i);
+    version = version.replace(/\s*\(?\s*(Windows|Linux|D3D9|WinXP|Win64)\s*\)?\s*/gi, '').trim();
+    const match = version.match(/^(.+?)\s*\((Windows|Linux|D3D9|WinXP|Win64)\s*\)$/i);
     if (match) {
       version = match[1].trim();
     }
