@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { resolve } from 'path'
+import viteCompression from 'vite-plugin-compression'
+import { constants } from 'zlib'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,15 +14,32 @@ export default defineConfig({
   },
   plugins: [
     vue({
-      include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown and yaml files
+      include: [/\.vue$/, /\.md$/]
     }),
     Markdown({ markdownItOptions: { breaks: true } }),
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 5120,
+      deleteOriginFile: false,
+      compressionOptions: {
+        level: 9
+      }
+    }),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 5120,
+      deleteOriginFile: false,
+      compressionOptions: {
+        params: {
+          [constants.BROTLI_PARAM_QUALITY]: 11
+        }
+      }
+    }),
   ],
-  server: {
-    hmr: true,
-    host: '0.0.0.0'
-  },
   build: {
+    target: 'es2022',
     rollupOptions: {
       input: {
         index: resolve(".", "index.html"),
@@ -30,16 +49,52 @@ export default defineConfig({
       },
       output: {
         chunkFileNames: "js/[name]-[hash].js",
-        assetFileNames: "[ext]/[name]-[hash].[ext]"
+        assetFileNames: "[ext]/[name]-[hash].[ext]",
+        manualChunks: {
+          'vue-vendor': ['vue', 'vue-router'],
+          'http-vendor': ['axios'],
+          'ui-vendor': [
+            '@floating-ui/vue',
+            'vue3-carousel',
+            'overlayscrollbars',
+            'overlayscrollbars-vue'
+          ],
+          'utils-vendor': [
+            'js-yaml',
+            'js-cookie'
+          ]
+        }
       }
-    }
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler',
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
       },
     },
+    chunkSizeWarningLimit: 500,
+    cssCodeSplit: true,
+    assetsInlineLimit: 8192,
+    reportCompressedSize: true,
+    sourcemap: false
   },
-  base: '',
+  optimizeDeps: {
+    include: [
+      'vue',
+      'vue-router',
+      'axios',
+      'js-yaml',
+      'js-cookie',
+      '@floating-ui/vue',
+      'vue3-carousel',
+      'overlayscrollbars',
+      'overlayscrollbars-vue',
+      'markdown-it'
+    ]
+  },
+  server: {
+    hmr: true,
+    host: '0.0.0.0'
+  }
 })

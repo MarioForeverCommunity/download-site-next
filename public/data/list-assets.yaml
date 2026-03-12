@@ -58,7 +58,7 @@
 - name: Tilesets（适用于 UE Autotile）
   author: dasasdhba
   type: sprite
-  description: 
+  description:
   image: Tileset.webp
   source_url: https://www.marioforever.net/thread-3783-1-1.html
   download_url:
@@ -160,7 +160,7 @@
   code:
   ver:
   date: 2025-03-03
-  file_name: 
+  file_name:
 - name: 绿糖的自制或高仿品种拓展包
   author: 绿色的糖果
   type: addon
@@ -288,7 +288,7 @@
   code:
   ver:
   date: 2023-09-13
-  file_name: 
+  file_name:
 - name: 地鼠素材（没有白边版）
   author: 克洛伊Prime
   type: sprite
@@ -299,7 +299,7 @@
   code:
   ver:
   date: 2023-09-12
-  file_name: 
+  file_name:
 - name: Mario Forever Mole Editor
   alias:
   - 地鼠引擎
@@ -463,9 +463,9 @@
   source_url: https://www.marioforever.net/thread-1750-1-1.html
   download_url:
   code:
-  ver: 
+  ver:
   date: 2021-11-14
-  file_name: 
+  file_name:
 - name: New Styled Mario Forever Logo
   author: 马里奥X7
   type: sprite
@@ -474,9 +474,9 @@
   source_url: https://www.marioforever.net/thread-1743-1-1.html
   download_url:
   code:
-  ver: 
+  ver:
   date: 2021-11-11
-  file_name: 
+  file_name:
 - name: MFIT背景包
   author: "1168438795"
   type: addon
@@ -485,7 +485,7 @@
   source_url: https://www.marioforever.net/thread-1509-1-1.html
   download_url: http://modunlocker.ysepan.com/
   code:
-  ver: 
+  ver:
   date: 2021-09-02
   file_name: MFIT背景包.mfa
 - name: Rainbow Engine素材优化包

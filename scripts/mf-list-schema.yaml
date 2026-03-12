@@ -212,7 +212,7 @@ definitions:
     allOf:
     - "$ref": "#/definitions/VerObj"
     - properties:
-        ver: 
+        ver:
           oneOf:
           - type: 'null'
           - type: string
