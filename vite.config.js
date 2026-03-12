@@ -7,6 +7,9 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    BUILD_TIME: JSON.stringify(new Date())
+  },
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown and yaml files
