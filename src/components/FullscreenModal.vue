@@ -938,7 +938,8 @@ const nextImage = () => {
   .date-list,
   .video-list,
   .wiki-list,
-  .homepage-list {
+  .homepage-list,
+  .repo-list {
     list-style: disc;
     padding-left: 1.5em;
     margin: 0;
@@ -961,7 +962,8 @@ const nextImage = () => {
   .download-list li,
   .video-list li,
   .wiki-list li,
-  .homepage-list li {
+  .homepage-list li,
+  .repo-list li {
     padding: 0.2em 0;
     line-height: 1.3;
   }
