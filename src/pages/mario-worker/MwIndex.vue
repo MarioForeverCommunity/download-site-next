@@ -56,7 +56,7 @@ fetchMdUpdate().then(() => {
   updateLastUpdate();
 });
 
-const currentTab = ref("smwp");
+const currentTab = ref("remake");
 
 const imagesRemake = [
   "/data/mw-index/MWR1.webp",
