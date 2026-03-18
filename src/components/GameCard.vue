@@ -163,14 +163,7 @@ const getDisplayAuthorList = () => {
       <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
     </div>
     <div class="last-line-padding">
-      <span v-if="typeof getDisplayAuthorList() == 'string'">
-        &nbsp;
-      </span>
-      <template v-if="typeof getDisplayAuthorList() != 'string'">
-        <span v-for="(author, authorindex) in getDisplayAuthorList()" :key="author + authorindex">
-          <br v-if="authorindex != 0">&nbsp;
-        </span>
-      </template>
+      <span>&nbsp;</span>
     </div>
     <div class="last-line">
       <div class="game-author">
@@ -489,6 +482,7 @@ const getDisplayAuthorList = () => {
     vertical-align: top;
     cursor: pointer;
   }
+
   .author-ellipsis {
     white-space: nowrap;
     overflow: hidden;
