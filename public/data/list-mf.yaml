@@ -667,12 +667,22 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.2:
+      ver_alt:
+      date: 2026-03-17
+      source_url: https://www.youtube.com/watch?v=Zuy7eJrwgOQ
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/6iz3fwyy0yvzs0v/Mario_Forever_Sensitive_Journey_v2.2.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sensitive Journey v2.2.zip
+      file_url:
   - v1.8:
       ver_alt:
       date: 2026-02-22
       source_url: https://www.youtube.com/watch?v=5krGrYjCQAQ
       source_url_alt:
-      download_url: https://www.mediafire.com/file/9glz7depvnlqswb/Mario_Forever_Sensitive_Journey_v1.8.zip/file
+      download_url: ~https://www.mediafire.com/file/9glz7depvnlqswb/Mario_Forever_Sensitive_Journey_v1.8.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v1.8.zip
@@ -682,7 +692,7 @@
       date: 2026-02-01
       source_url: https://www.youtube.com/watch?v=EPqmeMm3iIY
       source_url_alt:
-      download_url: https://www.mediafire.com/file/uor5qmz9i9htrvh/Mario+Forever+Sensitive+Journey+v1.5.rar/file
+      download_url: ~https://www.mediafire.com/file/uor5qmz9i9htrvh/Mario+Forever+Sensitive+Journey+v1.5.rar/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v1.5.rar
@@ -692,7 +702,7 @@
       date: 2026-01-16
       source_url: https://www.youtube.com/watch?v=Ij4hbS0WWMY
       source_url_alt:
-      download_url: https://www.mediafire.com/file/arvzu3g4t8u0zx7/Mario_Forever_Sensitive_Journey_v1.3.rar/file
+      download_url: ~https://www.mediafire.com/file/arvzu3g4t8u0zx7/Mario_Forever_Sensitive_Journey_v1.3.rar/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v1.3.rar
@@ -702,7 +712,7 @@
       date: 2026-01-03
       source_url: https://www.youtube.com/watch?v=qzLQcmUl3Gg
       source_url_alt:
-      download_url: https://www.mediafire.com/file/3srsysw8u2mqtk5/Mario_Forever_Sensitive_Journey_v1.0.zip/file
+      download_url: ~https://www.mediafire.com/file/3srsysw8u2mqtk5/Mario_Forever_Sensitive_Journey_v1.0.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v1.0.zip
@@ -712,7 +722,7 @@
       date: 2025-12-26
       source_url: https://www.youtube.com/watch?v=BufgfH1y0X4
       source_url_alt:
-      download_url: https://www.mediafire.com/file/vbgp7h4kle56sro/Mario_Forever_Sensitive_Journey_v0.7.zip/file
+      download_url: ~https://www.mediafire.com/file/vbgp7h4kle56sro/Mario_Forever_Sensitive_Journey_v0.7.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v0.7.zip
@@ -722,7 +732,7 @@
       date: 2025-12-20
       source_url: https://www.youtube.com/watch?v=T7yzHb7ondA
       source_url_alt:
-      download_url: https://www.mediafire.com/file/n4ghcb4msbq7944/Mario+Forever+Sensitive+Journey+v0.5.zip/file
+      download_url: ~https://www.mediafire.com/file/n4ghcb4msbq7944/Mario+Forever+Sensitive+Journey+v0.5.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v0.5.zip
@@ -732,7 +742,7 @@
       date: 2025-12-15
       source_url: https://www.youtube.com/watch?v=XZ41nJMy2lc
       source_url_alt:
-      download_url: https://www.mediafire.com/file/1ejs0xm6wwe0og0/Mario_Forever_Sensitive_Journey_v0.3.zip/file
+      download_url: ~https://www.mediafire.com/file/1ejs0xm6wwe0og0/Mario_Forever_Sensitive_Journey_v0.3.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v0.3.zip
