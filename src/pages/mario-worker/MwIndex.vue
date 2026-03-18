@@ -141,6 +141,10 @@ const tabs = [
   <SiteFooter />
 </template>
 
+<style scoped>
+  @import "../../assets/general.css";
+</style>
+
 <style>
   .md-container {
     width: 100vw;
