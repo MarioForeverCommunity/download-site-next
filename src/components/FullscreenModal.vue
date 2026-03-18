@@ -1071,6 +1071,11 @@ const nextImage = () => {
     text-decoration: underline;
   }
 
+  .description-content :deep(a) {
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
   .description-content :deep(code) {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 0.2em 0.4em;
