@@ -108,8 +108,7 @@ const tabs = [
 
   <div class="md-container">
     <h1>{{ titleEn }}</h1>
-    <p v-if="lastUpdate" class="last-update">Last updated: {{ lastUpdate }}</p>
-    <introEn />
+    <introEn :lastUpdate="lastUpdate" />
     <h2>Screenshots</h2>
     <div class="radio-inputs">
       <a
@@ -140,10 +139,6 @@ const tabs = [
 
   <SiteFooter />
 </template>
-
-<style scoped>
-  @import "../../assets/general.css";
-</style>
 
 <style>
   .md-container {

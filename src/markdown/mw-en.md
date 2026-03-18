@@ -1,4 +1,12 @@
+<script setup>
+    defineProps({
+        lastUpdate: String
+    });
+</script>
+
 There are several official and unofficial Mario Forever editors, commonly referred to as Mario Worker.
+
+<p v-if="lastUpdate" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdate }}</p>
 
 ## Download Classic Mario Worker
 The classic Mario Worker developed by Buziol Games (Softendo) has two different variants: 1.0 and 1.1.
