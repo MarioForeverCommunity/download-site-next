@@ -124,6 +124,14 @@ export const navTop = [
     "title" : "Mario Forever 创作资源汇总",
     "show_en" : false
   },
+  {
+    "id" : "mario-worker",
+    "link" : "./mario-worker.html",
+    "option_alt" : "Mario Worker Downloads",
+    "title_alt" : "Mario Worker Downloads",
+    "show_zh" : false,
+    "show_en" : true
+  },
   // {
   //   "id" : "smwp-download",
   //   "link" : "https://smwp.marioforever.net/downloads/",

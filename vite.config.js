@@ -46,6 +46,7 @@ export default defineConfig({
         "mf-games": resolve(".", "mf-games.html"),
         "mw-games": resolve(".", "mw-levels.html"),
         "assets": resolve(".", "assets.html"),
+        "mario-worker": resolve(".", "mario-worker.html"),
       },
       output: {
         chunkFileNames: "js/[name]-[hash].js",

@@ -23,6 +23,9 @@ function displayLan() {
   if (pageEntry.show_en == false && props.lanVar == "en") {
     return "zh";
   }
+  if (pageEntry.show_zh == false && props.lanVar == "zh") {
+    return "en";
+  }
   return props.lanVar;
 }
 
@@ -70,6 +73,9 @@ onBeforeUnmount(() => {
 <template>
   <div class="warning" ref="warningRef" v-if="props.lanVar == 'en' && pageEntry.show_en == false">
     <strong>Warning: </strong>You are currently viewing a page that is only available in Chinese. If you have inadvertently accessed this page, please click <a href="./">here</a> to return to the index.
+  </div>
+  <div class="warning warning-zh" ref="warningRef" v-if="props.lanVar == 'zh' && pageEntry.show_zh == false">
+    <strong>提示：</strong>您正在浏览仅提供英文版的页面。如果您无意中访问了此页面，请点击<a href="./">这里</a>返回首页。
   </div>
   <div class="topbar" ref="topbarRef">
     <div class="topbar-inner">
@@ -127,7 +133,7 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Right: language switch (unchanged) -->
-      <div style="float: right; display: inline;" v-if="pageEntry.show_en == true">
+      <div style="float: right; display: inline;" v-if="pageEntry.show_en == true && pageEntry.show_zh !== false">
         <a class="lan-item" :class="displayLan() == 'zh' ? 'active' : ''" @click="$emit('changeLanZh')">中文</a> |
         <a class="lan-item" :class="displayLan() == 'en' ? 'active' : ''" @click="$emit('changeLanEn')">English</a>
       </div>
@@ -144,7 +150,7 @@ onBeforeUnmount(() => {
         <div class="nav desktop-only">
           <div class="radio-inputs">
             <a
-              v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)"
+              v-for="nav in navTop.filter(item => (displayLan() == 'zh' && item.show_zh !== false) || (displayLan() == 'en' && item.show_en))"
               :key="nav.id"
               class="radio"
               :class="nav.id == props.pageId ? 'checked' : ''"
@@ -187,7 +193,7 @@ onBeforeUnmount(() => {
           </button>
           <div class="nav-dropdown" v-if="isNavOpen">
             <a
-              v-for="nav in navTop.filter(item => displayLan() == 'zh' || item.show_en == true)"
+              v-for="nav in navTop.filter(item => (displayLan() == 'zh' && item.show_zh !== false) || (displayLan() == 'en' && item.show_en))"
               :key="nav.id"
               class="nav-dropdown-item"
               :class="nav.id == props.pageId ? 'active' : ''"

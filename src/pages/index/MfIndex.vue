@@ -87,16 +87,16 @@ document.title = lan.value == "zh" ? titleZh : titleEn;
 const currentTab = ref(lan.value === "zh" ? "original" : "ce");
 
 const imagesOriginal = [
-  "/images/index/title.webp",
-  "/images/index/3-2.webp",
-  "/images/index/3-4.webp",
-  "/images/index/4-1.webp",
-  "/images/index/6-3.webp",
-  "/images/index/8-3.webp",
-  "/images/index/8-4.webp",
-  "/images/index/HC2-3.webp",
-  "/images/index/HL-1.webp",
-  "/images/index/LM-4.webp",
+  "/data/mf-index/title.webp",
+  "/data/mf-index/3-2.webp",
+  "/data/mf-index/3-4.webp",
+  "/data/mf-index/4-1.webp",
+  "/data/mf-index/6-3.webp",
+  "/data/mf-index/8-3.webp",
+  "/data/mf-index/8-4.webp",
+  "/data/mf-index/HC2-3.webp",
+  "/data/mf-index/HL-1.webp",
+  "/data/mf-index/LM-4.webp",
 ];
 
 const imagesRemakeZh = [
