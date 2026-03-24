@@ -1,4 +1,21 @@
 ---
+- game: "Mario Forever: PowerStar Crisis - World 9-4"
+  game_alt:
+  author: LiseraForever
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-03-23
+  source_url: https://www.marioforever.net/thread-3819-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1dVIJGi_osRHLg24mfkJ4GA?pw=2k4k
+  code: 2k4k
+  download_url_alt:
+  file_name: World 9-4 fix3.exe
+  file_url:
 - game: Mario Forever World 9 for Android
   game_alt:
   author: Sanyario
