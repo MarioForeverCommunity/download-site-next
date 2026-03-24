@@ -206,11 +206,15 @@
   rating: ★★★★☆
   installer: Mario Forever Advance v4.41.exe
   portable: Mario Forever Advance v4.41.7z
-- ver: KIDS v7.02
+- ver: KIDS v7.02_30
+  date: 2017-11-06
+  rating: ★
+  portable: Mario Forever KIDS 7.02_30.zip
+- ver: KIDS v7.02_31
   date: 2017-11-13
   rating: ★
   installer: Mario Forever KIDS 7.02.exe
-  portable: Mario Forever KIDS 7.02.7z
+  portable: Mario Forever KIDS 7.02_31.7z
 - ver: The Lost Map
   date: 2009-07-08
   rating: ★★★★☆
