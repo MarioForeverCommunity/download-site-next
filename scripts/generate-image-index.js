@@ -71,6 +71,13 @@ function loadYamlList(filename) {
   return yaml.load(content) || [];
 }
 
+function getAuthorKey(entry) {
+  const authors = entry.author;
+  if (!authors) return '';
+  const authorArray = Array.isArray(authors) ? authors : [authors];
+  return authorArray.sort().join(',');
+}
+
 function buildGameImageMapping(list, subdirs) {
   const nameCount = {};
   const mapping = {};
@@ -78,16 +85,16 @@ function buildGameImageMapping(list, subdirs) {
   for (const entry of list) {
     const gameName = entry.game;
     const sanitizedName = sanitizeName(gameName);
+    const authorKey = getAuthorKey(entry);
 
     if (nameCount[sanitizedName] === undefined) {
-      nameCount[sanitizedName] = 0;
-    } else {
-      nameCount[sanitizedName]++;
+      nameCount[sanitizedName] = [];
     }
 
-    const occurrenceIndex = nameCount[sanitizedName];
-    let dirName = sanitizedName;
+    const occurrenceIndex = nameCount[sanitizedName].length;
+    nameCount[sanitizedName].push(authorKey);
 
+    let dirName = sanitizedName;
     if (occurrenceIndex > 0) {
       dirName = `${sanitizedName}_${occurrenceIndex + 1}`;
     }
@@ -95,11 +102,13 @@ function buildGameImageMapping(list, subdirs) {
     const images = subdirs[dirName];
 
     if (images && images.length > 0) {
-      mapping[gameName] = {
+      mapping[gameName] = mapping[gameName] || [];
+      mapping[gameName].push({
         dirName,
         occurrenceIndex,
+        authorKey,
         images
-      };
+      });
     }
   }
 
@@ -136,8 +145,10 @@ function generateImageIndex() {
   console.log(`mw-levels mapped games: ${Object.keys(mwMapping).length}`);
 
   const mfUsedDirs = new Set();
-  for (const info of Object.values(mfMapping)) {
-    mfUsedDirs.add(info.dirName);
+  for (const infoArray of Object.values(mfMapping)) {
+    for (const info of infoArray) {
+      mfUsedDirs.add(info.dirName);
+    }
   }
   const mfUnusedDirs = Object.keys(mfSubdirs).filter(d => !mfUsedDirs.has(d));
   if (mfUnusedDirs.length > 0) {
@@ -146,8 +157,10 @@ function generateImageIndex() {
   }
 
   const mwUsedDirs = new Set();
-  for (const info of Object.values(mwMapping)) {
-    mwUsedDirs.add(info.dirName);
+  for (const infoArray of Object.values(mwMapping)) {
+    for (const info of infoArray) {
+      mwUsedDirs.add(info.dirName);
+    }
   }
   const mwUnusedDirs = Object.keys(mwSubdirs).filter(d => !mwUsedDirs.has(d));
   if (mwUnusedDirs.length > 0) {

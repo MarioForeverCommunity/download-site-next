@@ -11,6 +11,13 @@ function sanitizeName(name) {
   return sanitized;
 }
 
+function getAuthorKey(entry) {
+  const authors = entry.author;
+  if (!authors) return '';
+  const authorArray = Array.isArray(authors) ? authors : [authors];
+  return authorArray.sort().join(',');
+}
+
 async function loadYamlList(category) {
   if (listCache[category]) return listCache[category];
 
@@ -40,21 +47,25 @@ async function buildDirNameMapping(category) {
   for (const entry of list) {
     const gameName = entry.game;
     const sanitizedName = sanitizeName(gameName);
+    const authorKey = getAuthorKey(entry);
 
     if (nameCount[sanitizedName] === undefined) {
-      nameCount[sanitizedName] = 0;
-    } else {
-      nameCount[sanitizedName]++;
+      nameCount[sanitizedName] = [];
     }
 
-    const occurrenceIndex = nameCount[sanitizedName];
-    let dirName = sanitizedName;
+    const occurrenceIndex = nameCount[sanitizedName].length;
+    nameCount[sanitizedName].push(authorKey);
 
+    let dirName = sanitizedName;
     if (occurrenceIndex > 0) {
       dirName = `${sanitizedName}_${occurrenceIndex + 1}`;
     }
 
-    mapping[gameName] = dirName;
+    mapping[gameName] = mapping[gameName] || [];
+    mapping[gameName].push({
+      dirName,
+      authorKey
+    });
   }
 
   dirNameMappingCache[category] = mapping;
@@ -63,7 +74,18 @@ async function buildDirNameMapping(category) {
 
 async function getGameDirName(game, category) {
   const mapping = await buildDirNameMapping(category);
-  return mapping[game.game] || sanitizeName(game.game);
+  const gameName = game.game;
+
+  const dirInfoOrArray = mapping[gameName];
+  if (!dirInfoOrArray) return null;
+
+  if (Array.isArray(dirInfoOrArray)) {
+    const authorKey = getAuthorKey(game);
+    const matched = dirInfoOrArray.find(info => info.authorKey === authorKey);
+    return matched ? matched.dirName : null;
+  }
+
+  return dirInfoOrArray.dirName;
 }
 
 async function tryLoadFile(filePath) {

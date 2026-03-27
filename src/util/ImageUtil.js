@@ -15,6 +15,13 @@ const REGEX = {
   showcase: /^showcase_.+\.[^.]+$/i
 };
 
+function getAuthorKey(game) {
+  const authors = game.author;
+  if (!authors) return '';
+  const authorArray = Array.isArray(authors) ? authors : [authors];
+  return authorArray.sort().join(',');
+}
+
 async function loadImageIndex() {
   if (imageIndex) {
     return imageIndex;
@@ -80,12 +87,30 @@ function getFirstImageByAlpha(images) {
   return images[0];
 }
 
-function getCacheKey(gameName, category, currentVerStr) {
-  return `${category}:${gameName}:${currentVerStr || ''}`;
+function getCacheKey(gameName, authorKey, category, currentVerStr) {
+  return `${category}:${gameName}:${authorKey}:${currentVerStr || ''}`;
 }
 
-function getShowcaseCacheKey(gameName, category) {
-  return `${category}:${gameName}`;
+function getShowcaseCacheKey(gameName, authorKey, category) {
+  return `${category}:${gameName}:${authorKey}`;
+}
+
+function findGameInfo(game, category) {
+  const gameName = game.game;
+  if (!gameName) return null;
+
+  const gameMapping = imageIndex?.[category];
+  if (!gameMapping) return null;
+
+  const gameInfoOrArray = gameMapping[gameName];
+  if (!gameInfoOrArray) return null;
+
+  if (Array.isArray(gameInfoOrArray)) {
+    const authorKey = getAuthorKey(game);
+    return gameInfoOrArray.find(info => info.authorKey === authorKey) || null;
+  }
+
+  return gameInfoOrArray;
 }
 
 function naturalSort(a, b) {
@@ -117,15 +142,13 @@ function getShowcaseImagesInternal(game, category) {
   const gameName = game.game;
   if (!gameName) return [];
 
-  const cacheKey = getShowcaseCacheKey(gameName, category);
+  const authorKey = getAuthorKey(game);
+  const cacheKey = getShowcaseCacheKey(gameName, authorKey, category);
   if (showcaseCache.has(cacheKey)) {
     return showcaseCache.get(cacheKey);
   }
 
-  const gameMapping = imageIndex?.[category];
-  if (!gameMapping) return [];
-
-  const gameInfo = gameMapping[gameName];
+  const gameInfo = findGameInfo(game, category);
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return [];
 
   const images = gameInfo.images;
@@ -155,17 +178,15 @@ function getGameImagePath(game, category) {
   const gameName = game.game;
   if (!gameName) return null;
 
+  const authorKey = getAuthorKey(game);
   const currentVerStr = game.currentVerStr;
-  const cacheKey = getCacheKey(gameName, category, currentVerStr);
+  const cacheKey = getCacheKey(gameName, authorKey, category, currentVerStr);
 
   if (pathCache.has(cacheKey)) {
     return pathCache.get(cacheKey);
   }
 
-  const gameMapping = imageIndex?.[category];
-  if (!gameMapping) return null;
-
-  const gameInfo = gameMapping[gameName];
+  const gameInfo = findGameInfo(game, category);
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
 
   const images = gameInfo.images;
@@ -218,13 +239,7 @@ export function getShowcaseImagesSync(game, category = 'mf-games') {
 function getModalImagePath(game, category) {
   if (!game) return null;
 
-  const gameName = game.game;
-  if (!gameName) return null;
-
-  const gameMapping = imageIndex?.[category];
-  if (!gameMapping) return null;
-
-  const gameInfo = gameMapping[gameName];
+  const gameInfo = findGameInfo(game, category);
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
 
   const images = gameInfo.images;
@@ -255,13 +270,7 @@ export function getModalImageSync(game, category = 'mf-games') {
 function getTitleImagePath(game, category) {
   if (!game) return null;
 
-  const gameName = game.game;
-  if (!gameName) return null;
-
-  const gameMapping = imageIndex?.[category];
-  if (!gameMapping) return null;
-
-  const gameInfo = gameMapping[gameName];
+  const gameInfo = findGameInfo(game, category);
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
 
   const images = gameInfo.images;
@@ -283,13 +292,7 @@ export function getTitleImageSync(game, category = 'mf-games') {
 function hasLogoImage(game, category) {
   if (!game) return false;
 
-  const gameName = game.game;
-  if (!gameName) return false;
-
-  const gameMapping = imageIndex?.[category];
-  if (!gameMapping) return false;
-
-  const gameInfo = gameMapping[gameName];
+  const gameInfo = findGameInfo(game, category);
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return false;
 
   const images = gameInfo.images;
