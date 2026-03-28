@@ -682,16 +682,27 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.8 Demo
-  ver_alt:
-  date: 2025-12-27
-  source_url: https://marioforever.space/topic/58
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/ft9dnqicjfkb9jf/Mario+Forever+Advanced+Mario+Bros.+v0.8+Demo.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever Advanced Mario Bros. v0.8 Demo.zip
-  file_url:
+  ver:
+  - v1.0:
+      ver_alt:
+      date: 2026-03-28
+      source_url: https://marioforever.space/topic/71
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ckuuc91slhhhf3b/Mario_Forever_Advanced_Mario_Bros._v1.0.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Advanced Mario Bros. v1.0.zip
+      file_url:
+  - v0.8 Demo:
+      ver_alt:
+      date: 2025-12-26
+      source_url: ~https://marioforever.space/topic/58
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/ft9dnqicjfkb9jf/Mario+Forever+Advanced+Mario+Bros.+v0.8+Demo.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Advanced Mario Bros. v0.8 Demo.zip
+      file_url:
 - game: Mario Forever Sensitive Journey
   game_alt:
   alias:
