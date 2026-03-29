@@ -26,15 +26,24 @@
 -   **Freestyle:** You can select any level you'd like to play, even if you haven't completed Story Mode. Stuck in a level for too long? You have the option to skip that level. "Single Level Mode" allows you to play only a specific level without having to go through the rest of the world.
 -   **Buffed Powerups:** Beetroots are far more convenient here in comparison to the original game. You can shoot up to four beetroots (compared to the usual two), and they can kill some indestructible enemies. Boomerangs are present, and you can shoot up to four of them as well. They can kill nearly all indestructible enemies.
 
-# [Download Link](https://www.mediafire.com/file/ckuuc91slhhhf3b/Mario_Forever_Advanced_Mario_Bros._v1.0.zip/file)
+# [Download Link (v1.0.1)](https://www.mediafire.com/file/blbzf5jnd2wojai/Mario+Forever+Advanced+Mario+Bros.+v1.0.1.zip/file)
 
 _If you encounter any bugs or have any suggestions, feel free to let me know so that they can be considered as soon as possible._
 
 # **Changelog**
 
-## **v1.0 (Latest)**
+## **v1.0.1 (Latest)**
+
+Released on March 29, 2026.
+
+### Patches
+
+-   Fixed a bug where proceeding to World 6 right after World 5-A lands you directly to the last level.
+
+## **v1.0**
 
 Released on March 28, 2026.
+[**Download**](https://www.mediafire.com/file/ckuuc91slhhhf3b/Mario_Forever_Advanced_Mario_Bros._v1.0.zip/file)
 
 ### Changes
 
@@ -73,7 +82,7 @@ Released on March 28, 2026.
 ## **v0.8 Demo**
 
 Released on December 26, 2025.
-**[Download](https://file.marioforever.net/mario-forever/games/international-fangames/AppliconReal/Mario%20Forever%20Advanced%20Mario%20Bros.%200.8%20Demo.zip)**
+**[Download](https://file.marioforever.net/mario-forever/games/international-fangames/AppliconReal/old-versions/Mario%20Forever%20Advanced%20Mario%20Bros.%20v0.8%20Demo.zip)**
 
 ### Changes
 
