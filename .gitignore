@@ -7,7 +7,5 @@ node_modules
 dist
 /.vscode
 .editorconfig
-.trae/*
-AGENTS.md
 public/data/image-index.json
 .idea/*
