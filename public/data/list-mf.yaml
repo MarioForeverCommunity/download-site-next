@@ -1,4 +1,22 @@
 ---
+- game: Supra Mayro Foreba 2025
+  game_alt:
+  author: Yoshi50Windows
+  author_alt:
+  type: international
+  description_en: A.k.a "Mario Forever Remake 2 (BETA)"
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-04-01
+  source_url:
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/eg2tmp2hc3p6rx3/Mfremk2betafinal.zip/file
+  code:
+  download_url_alt:
+  file_name: Mfremk2betafinal.zip
+  file_url:
 - game: "Mario Forever: PowerStar Crisis - World 9-4"
   game_alt:
   author: LiseraForever
