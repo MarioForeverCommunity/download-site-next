@@ -1,4 +1,38 @@
 ---
+- game: "Mario Forever: Community Edition - Old Times"
+  game_alt:
+  alias:
+  - MFCE
+  - MF:CE
+  - oldtimes
+  author: Meteo Dream
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - Windows:
+      ver_alt:
+      date: 2026-04-01
+      current: true
+      source_url: https://marioforever.space/topic/72/mario-forever-community-edition-old-times-release
+      source_url_alt: https://www.youtube.com/watch?v=r50TuwmmArg
+      download_url: https://rnx.su/index.php/s/FtMwTE9as2a8CGb
+      code:
+      download_url_alt: https://www.mediafire.com/file/731bi7mkxtoo7py/Mario_Forever_Community_Edition_Old_Times_Windows.zip/file
+      file_name: Mario Forever Community Edition Old Times Windows.zip
+      file_url:
+  - Linux:
+      ver_alt:
+      date: 2026-04-01
+      current: true
+      source_url: https://marioforever.space/topic/72/mario-forever-community-edition-old-times-release
+      source_url_alt: https://www.youtube.com/watch?v=r50TuwmmArg
+      download_url: https://rnx.su/index.php/s/BBbFQJ6aCHb6TsA
+      code:
+      download_url_alt: https://www.mediafire.com/file/waptw0bfz1dyuah/Mario_Forever_Community_Edition_Old_Times_Linux.zip/file
+      file_name: Mario Forever Community Edition Old Times Linux.zip
+      file_url:
 - game: Supra Mayro Foreba 2025
   game_alt:
   author: Yoshi50Windows
