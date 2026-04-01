@@ -6,8 +6,8 @@ A Mario Forever Community Edition update which drastically changes the gameplay.
 
 ## Download:
 
--   #### **[Windows](https://rnx.su/index.php/s/FtMwTE9as2a8CGb)** ([Mirror](https://www.mediafire.com/file/731bi7mkxtoo7py/Mario_Forever_Community_Edition_Old_Times_Windows.zip/file))
--   #### **[Linux](https://rnx.su/index.php/s/BBbFQJ6aCHb6TsA)** ([Mirror](https://www.mediafire.com/file/waptw0bfz1dyuah/Mario_Forever_Community_Edition_Old_Times_Linux.zip/file))
+- **[Windows](https://rnx.su/index.php/s/FtMwTE9as2a8CGb)** ([Mirror](https://www.mediafire.com/file/731bi7mkxtoo7py/Mario_Forever_Community_Edition_Old_Times_Windows.zip/file))
+- **[Linux](https://rnx.su/index.php/s/BBbFQJ6aCHb6TsA)** ([Mirror](https://www.mediafire.com/file/waptw0bfz1dyuah/Mario_Forever_Community_Edition_Old_Times_Linux.zip/file))
 
 # Introducing:
 
