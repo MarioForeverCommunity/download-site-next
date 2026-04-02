@@ -159,9 +159,11 @@ const getDisplayAuthorList = () => {
       <p v-if="lan == 'zh' && game.category == 'mf' && game.description_zh">{{ game.description_zh }}</p>
       <p v-if="lan == 'en' && game.category == 'mf' && game.description_en">{{ game.description_en }}</p>
     </div>
-    <div class="game-image" v-if="getGameImage()">
-      <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
-    </div>
+    <slot name="gallery">
+      <div class="game-image" v-if="getGameImage()">
+        <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
+      </div>
+    </slot>
     <div class="last-line-padding">
       <span>&nbsp;</span>
     </div>

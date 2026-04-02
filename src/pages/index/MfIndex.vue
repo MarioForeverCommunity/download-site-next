@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, getCurrentInstance, onMounted, onBeforeUnmount } from 'vue';
 import axios from 'axios';
 import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
@@ -11,6 +11,14 @@ import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
 import SiteFooter from '../../components/SiteFooter.vue';
 import 'vue3-carousel/dist/carousel.css'
+import MfGamesEntry from '../../components/MfGamesEntry.vue';
+import AssetsEntry from '../../components/AssetsEntry.vue';
+
+const instance = getCurrentInstance();
+if (instance) {
+  instance.appContext.components.MfGamesEntry = MfGamesEntry;
+  instance.appContext.components.AssetsEntry = AssetsEntry;
+}
 
 const lan = ref(getLanguage());
 const lastUpdateZh = ref(null);
@@ -168,6 +176,23 @@ const tabs = computed(() => {
   }
 });
 
+const isMobile = ref(false)
+
+function updateIsMobile() {
+  isMobile.value = window.innerWidth <= 800
+}
+
+const itemsToShow = computed(() => isMobile.value ? 1 : 2)
+
+onMounted(() => {
+  window.addEventListener("resize", updateIsMobile)
+  updateIsMobile()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateIsMobile)
+})
+
 function pageSetLanguageZh() {
   lan.value =  setLanguageZh();
   document.title=titleZh;
@@ -213,8 +238,8 @@ function pageSetLanguageEn() {
         </span>
       </a>
     </div>
-    <Carousel :autoplay="3000" :wrap-around="true" :items-to-show="2">
-      <Slide v-for="image in currentImages" :key="image" style="width: 50%; aspect-ratio: 4/3;">
+    <Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
+      <Slide v-for="image in currentImages" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
         <img :src="image" style="width: 100%; height: 100%;">
       </Slide>
       <template #addons>
