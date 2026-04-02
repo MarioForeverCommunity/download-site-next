@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
+import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vue"
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { readList } from "../util/ReadList.js"
@@ -12,8 +12,9 @@ import ClipboardButton from "./ButtonClipboard.vue"
 import Tooltip from "./ToolTip.vue"
 import { QuestionIcon } from "./icons/Icons.js"
 import GameCard from "./GameCard.vue"
-import FullscreenModal from "./FullscreenModal.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+
+const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 
 const props = defineProps({
   name: {
@@ -28,11 +29,26 @@ const props = defineProps({
 
 let mfListPromise = null
 let imageIndexPromise = null
+let mfListCache = null
+let mfNameIndex = null
 
 const ensureMfList = async () => {
   if (mfListPromise) return mfListPromise
   mfListPromise = readList("list-mf.yaml").then((list) => {
-    return list.map((entry) => normalizeMfEntry(entry))
+    mfListCache = list.map((entry) => normalizeMfEntry(entry))
+    mfNameIndex = new Map()
+    for (const entry of mfListCache) {
+      for (const n of getCandidateNames(entry)) {
+        const key = normalizeKey(n)
+        if (!key) continue
+        if (!mfNameIndex.has(key)) {
+          mfNameIndex.set(key, [entry])
+        } else {
+          mfNameIndex.get(key).push(entry)
+        }
+      }
+    }
+    return mfListCache
   })
   return mfListPromise
 }
@@ -342,12 +358,9 @@ const loadGame = async () => {
   isLoading.value = true
   notFound.value = false
   await Promise.all([ensureMfList(), ensureImageIndex()])
-  const list = await ensureMfList()
 
   const target = normalizeKey(props.name)
-  const candidates = list.filter((entry) => {
-    return getCandidateNames(entry).some((n) => normalizeKey(n) === target)
-  })
+  const candidates = mfNameIndex?.get(target) || []
 
   if (candidates.length === 0) {
     game.value = null
@@ -402,6 +415,9 @@ onBeforeUnmount(() => {
 })
 
 watch(() => props.name, () => {
+  game.value = null
+  notFound.value = false
+  isLoading.value = true
   loadGame()
 })
 

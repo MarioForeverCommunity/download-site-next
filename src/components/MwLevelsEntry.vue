@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
+import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vue"
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { readList } from "../util/ReadList.js"
@@ -9,9 +9,9 @@ import { Carousel, Slide, Navigation } from "vue3-carousel"
 import "vue3-carousel/dist/carousel.css"
 import ClipboardButton from "./ButtonClipboard.vue"
 import GameCard from "./GameCard.vue"
-import FullscreenModal from "./FullscreenModal.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
 
+const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 const props = defineProps({
   name: {
     type: String,
@@ -21,11 +21,26 @@ const props = defineProps({
 
 let mwListPromise = null
 let imageIndexPromise = null
+let mwListCache = null
+let mwNameIndex = null
 
 const ensureMwList = async () => {
   if (mwListPromise) return mwListPromise
   mwListPromise = readList("list-mw.yaml").then((list) => {
-    return list.map((entry) => normalizeMwEntry(entry))
+    mwListCache = list.map((entry) => normalizeMwEntry(entry))
+    mwNameIndex = new Map()
+    for (const entry of mwListCache) {
+      for (const n of getCandidateNames(entry)) {
+        const key = normalizeKey(n)
+        if (!key) continue
+        if (!mwNameIndex.has(key)) {
+          mwNameIndex.set(key, [entry])
+        } else {
+          mwNameIndex.get(key).push(entry)
+        }
+      }
+    }
+    return mwListCache
   })
   return mwListPromise
 }
@@ -241,12 +256,9 @@ const loadLevel = async () => {
   isLoading.value = true
   notFound.value = false
   await Promise.all([ensureMwList(), ensureImageIndex()])
-  const list = await ensureMwList()
 
   const target = normalizeKey(props.name)
-  const candidates = list.filter((entry) => {
-    return getCandidateNames(entry).some((n) => normalizeKey(n) === target)
-  })
+  const candidates = mwNameIndex?.get(target) || []
 
   if (candidates.length === 0) {
     level.value = null
@@ -287,6 +299,9 @@ onBeforeUnmount(() => {
 })
 
 watch(() => props.name, () => {
+  level.value = null
+  notFound.value = false
+  isLoading.value = true
   loadLevel()
 })
 

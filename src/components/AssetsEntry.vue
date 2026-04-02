@@ -25,11 +25,26 @@ const props = defineProps({
 })
 
 let assetsListPromise = null
+let assetsListCache = null
+let assetsNameIndex = null
 
 const ensureAssetsList = async () => {
   if (assetsListPromise) return assetsListPromise
   assetsListPromise = readList("list-assets.yaml").then((list) => {
-    return list.map((entry) => normalizeAssetEntry(entry))
+    assetsListCache = list.map((entry) => normalizeAssetEntry(entry))
+    assetsNameIndex = new Map()
+    for (const entry of assetsListCache) {
+      for (const n of getCandidateNames(entry)) {
+        const key = normalizeKey(n)
+        if (!key) continue
+        if (!assetsNameIndex.has(key)) {
+          assetsNameIndex.set(key, [entry])
+        } else {
+          assetsNameIndex.get(key).push(entry)
+        }
+      }
+    }
+    return assetsListCache
   })
   return assetsListPromise
 }
@@ -241,12 +256,10 @@ const selectBestCandidate = (candidates) => {
 const loadAsset = async () => {
   isLoading.value = true
   notFound.value = false
-  const list = await ensureAssetsList()
+  await ensureAssetsList()
 
   const target = normalizeKey(props.name)
-  const candidates = list.filter((entry) => {
-    return getCandidateNames(entry).some((n) => normalizeKey(n) === target)
-  })
+  const candidates = assetsNameIndex?.get(target) || []
 
   if (candidates.length === 0) {
     asset.value = null
