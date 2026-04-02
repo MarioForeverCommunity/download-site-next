@@ -13,6 +13,14 @@ const props = defineProps({
   name: {
     type: String,
     required: true
+  },
+  variant: {
+    type: String,
+    default: null
+  },
+  ver: {
+    type: String,
+    default: null
   }
 })
 
@@ -143,13 +151,87 @@ watch([selectedDownload, tiebaDialog], ([newDownload, newTieba]) => {
   }
 })
 
+const resolveVariantRaw = (entry, desiredVariant, desiredVer) => {
+  if (!entry?.ver || entry.ver.length === 0) return null
+  const desiredVariantKey = desiredVariant ? normalizeKey(desiredVariant) : null
+  const desiredVerKey = desiredVer ? normalizeKey(desiredVer) : null
+
+  const candidates = entry.ver.filter((verRaw) => {
+    const variantKey = Object.keys(verRaw)[0]
+    const variantOk = desiredVariantKey ? normalizeKey(variantKey) === desiredVariantKey : true
+    if (!variantOk) return false
+    if (!desiredVerKey) return true
+    const verObj = parseVer(verRaw)
+    return normalizeKey(verObj?.ver) === desiredVerKey
+  })
+
+  if (candidates.length === 0) return null
+  if (candidates.length === 1) return candidates[0]
+
+  candidates.sort((a, b) => {
+    const aObj = parseVer(a)
+    const bObj = parseVer(b)
+    const aTime = aObj?.date instanceof Date ? aObj.date.getTime() : -1
+    const bTime = bObj?.date instanceof Date ? bObj.date.getTime() : -1
+    return bTime - aTime
+  })
+  return candidates[0]
+}
+
+const applyVariant = (entry, desiredVariant, desiredVer) => {
+  const exact = resolveVariantRaw(entry, desiredVariant, desiredVer)
+  if (exact) {
+    const key = Object.keys(exact)[0]
+    return {
+      ...entry,
+      currentVer: parseVer(exact),
+      currentVerStr: key,
+      _variantName: key
+    }
+  }
+
+  if (desiredVariant) {
+    const byVariant = resolveVariantRaw(entry, desiredVariant, null)
+    if (byVariant) {
+      const key = Object.keys(byVariant)[0]
+      return {
+        ...entry,
+        currentVer: parseVer(byVariant),
+        currentVerStr: key,
+        _variantName: key
+      }
+    }
+  }
+
+  if (desiredVer) {
+    const byVer = resolveVariantRaw(entry, null, desiredVer)
+    if (byVer) {
+      const key = Object.keys(byVer)[0]
+      return {
+        ...entry,
+        currentVer: parseVer(byVer),
+        currentVerStr: key,
+        _variantName: key
+      }
+    }
+  }
+
+  return entry
+}
+
 const selectBestCandidate = (candidates) => {
   const scored = candidates.map((entry) => {
     const date = entry?.currentVer?.date instanceof Date ? entry.currentVer.date.getTime() : -1
     const variantCount = Array.isArray(entry.ver) ? entry.ver.length : 0
-    return { entry, date, variantCount }
+    const hasExact = !!resolveVariantRaw(entry, props.variant, props.ver)
+    const hasVariant = props.variant ? !!resolveVariantRaw(entry, props.variant, null) : false
+    const hasVer = props.ver ? !!resolveVariantRaw(entry, null, props.ver) : false
+    return { entry, date, variantCount, hasExact, hasVariant, hasVer }
   })
   scored.sort((a, b) => {
+    if (a.hasExact !== b.hasExact) return a.hasExact ? -1 : 1
+    if (a.hasVariant !== b.hasVariant) return a.hasVariant ? -1 : 1
+    if (a.hasVer !== b.hasVer) return a.hasVer ? -1 : 1
     if (a.variantCount !== b.variantCount) return b.variantCount - a.variantCount
     return b.date - a.date
   })
@@ -173,7 +255,8 @@ const loadAsset = async () => {
     return
   }
 
-  asset.value = candidates.length === 1 ? { ...candidates[0] } : { ...selectBestCandidate(candidates) }
+  const selected = candidates.length === 1 ? { ...candidates[0] } : { ...selectBestCandidate(candidates) }
+  asset.value = applyVariant(selected, props.variant, props.ver)
   isLoading.value = false
 }
 
@@ -186,9 +269,15 @@ onBeforeUnmount(() => {
   window.removeEventListener("custom-language-changed", handleLanguageChanged)
 })
 
-watch(() => props.name, () => {
+watch([() => props.name, () => props.variant, () => props.ver], () => {
   loadAsset()
 })
+
+function getAssetImage(assetEntry) {
+  const img = assetEntry?.currentVer?.image || assetEntry?.image
+  if (!img) return null
+  return `/data/assets/${img}`
+}
 
 function getAssetResourceURLs(assetEntry) {
   if (!assetEntry?.currentVer || !assetEntry.currentVer.file_name) {
@@ -240,7 +329,7 @@ function getAssetResourceURLs(assetEntry) {
     <template v-else>
       <AssetCard
         :asset="asset"
-        :get-asset-image="() => null"
+        :get-asset-image="getAssetImage"
         @select-download="(entry) => { selectedDownload = entry }"
         @show-tooltip="(obj) => tooltipMouseEnter(obj)"
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
@@ -307,6 +396,56 @@ function getAssetResourceURLs(assetEntry) {
 </style>
 
 <style scoped>
+.assets-entry {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .assets-entry:has(+ .assets-entry),
+  .assets-entry + .assets-entry {
+    width: calc((100% - 0.5em) / 2);
+  }
+
+  .assets-entry:has(+ .assets-entry) {
+    margin-right: 0.5em;
+  }
+
+  .assets-entry + .assets-entry {
+    margin-right: 0;
+  }
+
+  .assets-entry + .assets-entry + .assets-entry:not(:has(+ .assets-entry)) {
+    margin-top: 0.5em;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .assets-entry:has(+ .assets-entry + .assets-entry),
+  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry,
+  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry + .assets-entry {
+    width: calc((100% - 1em) / 3);
+  }
+
+  .assets-entry:has(+ .assets-entry + .assets-entry),
+  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry {
+    margin-right: 0.5em;
+  }
+
+  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry + .assets-entry {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .assets-entry + .assets-entry {
+    margin-top: 0.5em;
+  }
+}
+
 .placeholder {
   padding: 0.5em 0;
   color: #666;
@@ -322,5 +461,10 @@ function getAssetResourceURLs(assetEntry) {
   padding: .25em .75em;
   z-index: 1002;
   font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+}
+
+.assets-entry :deep(.asset-image img) {
+  max-height: 400px;
+  object-fit: contain;
 }
 </style>

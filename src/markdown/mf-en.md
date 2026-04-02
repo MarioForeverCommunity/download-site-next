@@ -1,10 +1,90 @@
 <script setup>
-    import DownloadButton from "../components/ButtonDownload.vue";
-    import OriginalMfTable from '../components/OriginalMfTable.vue'
-    
-    defineProps({
-        lastUpdateEn: String
-    });
+  import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+  import DownloadButton from "../components/ButtonDownload.vue"
+  import OriginalMfTable from '../components/OriginalMfTable.vue'
+  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+  import 'vue3-carousel/dist/carousel.css'
+
+  defineProps({
+      lastUpdateEn: String
+  })
+
+  const currentTab = ref("ce")
+
+  const imagesOriginal = [
+    "/data/mf-index/title.webp",
+    "/data/mf-index/3-2.webp",
+    "/data/mf-index/3-4.webp",
+    "/data/mf-index/4-1.webp",
+    "/data/mf-index/6-3.webp",
+    "/data/mf-index/8-3.webp",
+    "/data/mf-index/8-4.webp",
+    "/data/mf-index/HC2-3.webp",
+    "/data/mf-index/HL-1.webp",
+    "/data/mf-index/LM-4.webp",
+  ]
+
+  const imagesRemake = [
+    "/data/mf-games/Mario Forever Remake (PAL)/title.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_1.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_2.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_3.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_4.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_5.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_6.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_7.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_8.webp",
+    "/data/mf-games/Mario Forever Remake (PAL)/showcase_9.webp",
+  ]
+
+  const imagesCe = [
+    "/data/mf-games/Mario Forever - Community Edition/title.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_1.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_2.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_3.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_4.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_5.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_6.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_7.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_8.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_9.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_10.webp",
+    "/data/mf-games/Mario Forever - Community Edition/showcase_11.webp",
+  ]
+
+  const currentImages = computed(() => {
+    if (currentTab.value === "original") {
+      return imagesOriginal
+    } else if (currentTab.value === "remake") {
+      return imagesRemake
+    } else if (currentTab.value === "ce") {
+      return imagesCe
+    }
+    return imagesOriginal
+  })
+
+  const tabs = [
+    { id: "ce", label: "Mario Forever: Community Edition" },
+    { id: "remake", label: "Mario Forever Remake" },
+    { id: "original", label: "Original Mario Forever" }
+  ]
+
+  const isMobile = ref(false)
+
+  function updateIsMobile() {
+    isMobile.value = window.innerWidth <= 800
+  }
+
+  const itemsToShow = computed(() => isMobile.value ? 1 : 2)
+
+  onMounted(() => {
+    window.addEventListener("resize", updateIsMobile)
+    updateIsMobile()
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("resize", updateIsMobile)
+  })
 </script>
 
 <p v-if="lastUpdateEn" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdateEn }}</p>
@@ -50,3 +130,94 @@ That said, there is a legitimate security concern raised by researchers. Accordi
 **Important note:** None of the versions offered on this site contains any of those malicious payloads identified by Cyble. All hosted installers have been reviewed and are considered safe. Some versions' installers do bundle the "Mario Forever Toolbar," but you can opt not to install it during setup.  
 Additionally, some versions of Mario Forever contain links to `mariocoins.com` and `broshome.com`. These domains are no longer owned by their original owners and have been taken over by unrelated parties. They may redirect to untrusted or potentially unsafe content. In certain versions, these links can be accessed via in-game options (such as "Get Secrets" or "Get Coins") or through URL shortcuts created by the installer. **It is strongly recommended not to open these links.**   
 To ease any remaining concerns, we provide a portable version of the game. This version has no bundled toolbar and has removed URL shortcuts and other irrelevant content. You may alternatively choose to play one of the fan-made recreated versions, such as Mario Forever Remake or Mario Forever: Community Edition, which are also malware-free. 
+
+## Screenshots
+<div class="radio-inputs">
+  <a
+    v-for="tab in tabs"
+    :key="tab.id"
+    class="radio"
+    :class="{ 'checked': currentTab === tab.id }"
+    @click="currentTab = tab.id"
+  >
+    <span class="radio-text">
+      {{ tab.label }}
+    </span>
+  </a>
+</div>
+<Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
+  <Slide v-for="image in currentImages" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
+    <img :src="image" style="width: 100%; height: 100%;">
+  </Slide>
+  <template #addons>
+    <Navigation />
+    <Pagination />
+  </template>
+</Carousel>
+
+<style scoped>
+  .radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    line-height: 1.2em;
+  }
+
+  .radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+    border-radius: 0.35rem;
+    margin: 0.2rem;
+  }
+
+  .radio-inputs .radio-text {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: .5rem;
+    color: rgba(51, 65, 85, 1);
+    display: inline-block;
+  }
+
+  @media (min-width: 864px) {
+    .radio-inputs .radio {
+      flex: 1 1 0;
+    }
+  }
+
+  .radio-inputs .radio.checked {
+    background-color: #fff;
+    font-weight: 600;
+  }
+
+  .radio-inputs .radio:hover {
+    background-color: #f7f7f7;
+  }
+
+  body.dark .radio-inputs {
+    background-color: #3a3a3a;
+    border-color: #444;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  body.dark .radio-inputs .radio-text {
+    color: rgba(220, 220, 220, 1);
+  }
+
+  body.dark .radio-inputs .radio.checked {
+    background-color: #4a4a4a;
+  }
+
+  body.dark .radio-inputs .radio:hover {
+    background-color: #555;
+  }
+</style>

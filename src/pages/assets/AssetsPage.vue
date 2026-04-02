@@ -687,12 +687,19 @@ const { floatingStyles } = useFloating(reference, floating,
     margin-top: 12px;
   }
 
-  p, ol, ul, h4, h5, h6, table, button {
+  p, ol, ul, h5, h6, table, button {
     border: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
     line-height: 1.5em;
+  }
+
+  h4 {
+    font-size: 17px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
   }
 
   table {

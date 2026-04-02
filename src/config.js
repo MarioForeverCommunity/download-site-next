@@ -94,9 +94,9 @@ export const navTop = [
   {
     "id" : "index",
     "link" : "./",
-    "option" : "原版 MF 下载",
+    "option" : "MF 资源导航",
     "option_alt" : "Original MF Downloads",
-    "title" : "Mario Forever 全版本汇总",
+    "title" : "Mario Forever 资源导航",
     "title_alt" : "Original Mario Forever & MF Remakes Downloads",
     "show_en" : true
   },
@@ -110,6 +110,16 @@ export const navTop = [
     "show_en" : true
   },
   {
+    "id" : "mario-worker",
+    "link" : "./mario-worker.html",
+    "option" : "MW 资源导航",
+    "option_alt" : "Mario Worker Downloads",
+    "title" : "Mario Worker 资源导航",
+    "title_alt" : "Mario Worker Downloads",
+    "show_zh" : false,
+    "show_en" : true
+  },
+  {
     "id" : "mw-levels",
     "link" : "./mw-levels.html",
     "option" : "SMWP 作品汇总",
@@ -120,25 +130,10 @@ export const navTop = [
   {
     "id" : "assets",
     "link" : "./assets.html",
-    "option" : "创作资源",
+    "option" : "创作资源汇总",
     "title" : "Mario Forever 创作资源汇总",
     "show_en" : false
   },
-  {
-    "id" : "mario-worker",
-    "link" : "./mario-worker.html",
-    "option_alt" : "Mario Worker Downloads",
-    "title_alt" : "Mario Worker Downloads",
-    "show_zh" : false,
-    "show_en" : true
-  },
-  // {
-  //   "id" : "smwp-download",
-  //   "link" : "https://smwp.marioforever.net/downloads/",
-  //   "option" : "SMWP 本体下载",
-  //   "option_alt" : "SMWP Downloads",
-  //   "show_en" : false
-  // }
 ];
 
 // sourceName - Website name parser of the source button.

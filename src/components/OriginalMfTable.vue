@@ -55,6 +55,11 @@ const getDownloadUrl = (version, type) => {
   }
   return null;
 };
+
+// 判断是否是五星级版本
+const isFiveStar = (rating) => {
+  return rating === '★★★★★';
+};
 </script>
 
 <template>
@@ -71,7 +76,10 @@ const getDownloadUrl = (version, type) => {
       </thead>
       <tbody>
         <tr v-for="(version, index) in versions" :key="index">
-          <td>{{ version.ver }}</td>
+          <td>
+            <strong v-if="lan === 'zh' && isFiveStar(version.rating) && !version.toolbar">{{ version.ver }}</strong>
+            <span v-else>{{ version.ver }}</span>
+          </td>
           <td>{{ formatDate(version.date) }}</td>
           <td>
             <span class="rating">{{ version.rating }}</span>

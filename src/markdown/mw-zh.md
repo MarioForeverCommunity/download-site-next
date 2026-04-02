@@ -4,23 +4,8 @@
   import 'vue3-carousel/dist/carousel.css'
 
   defineProps({
-      lastUpdate: String
+    lastUpdate: String
   })
-
-  const currentTab = ref("remake")
-
-  const imagesRemake = [
-    "/data/mw-index/MWR1.webp",
-    "/data/mw-index/MWR2.webp",
-    "/data/mw-index/MWR3.webp",
-    "/data/mw-index/MWR4.webp",
-    "/data/mw-index/MWR5.webp",
-    "/data/mw-index/MWR6.webp",
-    "/data/mw-index/MWR7.webp",
-    "/data/mw-index/MWR8.webp",
-    "/data/mw-index/MWR9.webp",
-    "/data/mw-index/MWR10.webp",
-  ]
 
   const imagesSmwp = [
     "/data/mw-index/smwp-title.webp",
@@ -32,20 +17,6 @@
     "/data/mw-index/smwp-nightsand.webp",
     "/data/mw-index/smwp-classicepic.webp",
     "/data/mw-index/smwp-muitfaceted.webp",
-  ]
-
-  const currentImages = computed(() => {
-    if (currentTab.value === "remake") {
-      return imagesRemake
-    } else if (currentTab.value === "smwp") {
-      return imagesSmwp
-    }
-    return imagesRemake
-  })
-
-  const tabs = [
-    { id: "remake", label: "Mario Worker Remake" },
-    { id: "smwp", label: "Super Mario Worker Project" }
   ]
 
   const isMobile = ref(false)
@@ -127,21 +98,8 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
 **A:** Different variants of Mario Worker are generally not compatible with one another, even if some are based on the original MW. The only notable exception is Super Mario Worker Project, which is backward compatible with MW 1.1. As a general rule, it is recommended to play levels using the same version they were created with.
 
 ## Screenshots
-<div class="radio-inputs">
-  <a
-    v-for="tab in tabs"
-    :key="tab.id"
-    class="radio"
-    :class="{ 'checked': currentTab === tab.id }"
-    @click="currentTab = tab.id"
-  >
-    <span class="radio-text">
-      {{ tab.label }}
-    </span>
-  </a>
-</div>
 <Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
-  <Slide v-for="image in currentImages" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
+  <Slide v-for="image in imagesSmwp" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
     <img :src="image" style="width: 100%; height: 100%;">
   </Slide>
   <template #addons>
@@ -149,70 +107,3 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
     <Pagination />
   </template>
 </Carousel>
-
-<style scoped>
-  .radio-inputs {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 0.5rem;
-    background-color: #EEE;
-    box-sizing: border-box;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    font-size: 14px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    line-height: 1.2em;
-  }
-
-  .radio-inputs .radio {
-    flex: 1 1 auto;
-    text-align: center;
-    border-radius: 0.35rem;
-    margin: 0.2rem;
-  }
-
-  .radio-inputs .radio-text {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    padding: .5rem;
-    color: rgba(51, 65, 85, 1);
-    display: inline-block;
-  }
-
-  @media (min-width: 864px) {
-    .radio-inputs .radio {
-      flex: 1 1 0;
-    }
-  }
-
-  .radio-inputs .radio.checked {
-    background-color: #fff;
-    font-weight: 600;
-  }
-
-  .radio-inputs .radio:hover {
-    background-color: #f7f7f7;
-  }
-
-  body.dark .radio-inputs {
-    background-color: #3a3a3a;
-    border-color: #444;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  body.dark .radio-inputs .radio-text {
-    color: rgba(220, 220, 220, 1);
-  }
-
-  body.dark .radio-inputs .radio.checked {
-    background-color: #4a4a4a;
-  }
-
-  body.dark .radio-inputs .radio:hover {
-    background-color: #555;
-  }
-</style>

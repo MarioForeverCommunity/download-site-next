@@ -168,12 +168,16 @@ const selectedVideo = ref(null)
 const tiebaDialog = ref(null)
 const selectedGameDetail = ref(null)
 const isMobile = ref(false)
+const entryRef = ref(null)
+const entryWidth = ref(0)
 
 function updateIsMobile() {
   isMobile.value = window.innerWidth <= 800
 }
 
-const itemsToShow = computed(() => isMobile.value ? 1 : 2)
+const itemsToShow = computed(() => entryWidth.value > 0 && entryWidth.value < 600 ? 1 : 2)
+
+const shouldUseCompactSlide = computed(() => entryWidth.value > 0 && entryWidth.value < 600)
 
 const reference = ref(null)
 const floating = ref(null)
@@ -255,16 +259,31 @@ const loadLevel = async () => {
   isLoading.value = false
 }
 
+let resizeObserver = null
+
 onMounted(() => {
   window.addEventListener("custom-language-changed", handleLanguageChanged)
   window.addEventListener("resize", updateIsMobile)
   updateIsMobile()
   loadLevel()
+
+  if (entryRef.value) {
+    resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        entryWidth.value = entry.contentRect.width
+      }
+    })
+    resizeObserver.observe(entryRef.value)
+  }
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener("custom-language-changed", handleLanguageChanged)
   window.removeEventListener("resize", updateIsMobile)
+  if (resizeObserver) {
+    resizeObserver.disconnect()
+    resizeObserver = null
+  }
 })
 
 watch(() => props.name, () => {
@@ -312,7 +331,7 @@ const getGameImage = () => {
 </script>
 
 <template>
-  <div class="mw-entry">
+  <div ref="entryRef" class="mw-entry">
     <div v-if="isLoading" class="placeholder">
       {{ lan === "zh" ? "加载中…" : "Loading…" }}
     </div>
@@ -332,10 +351,20 @@ const getGameImage = () => {
         @show-tieba-dialog="(data) => { tiebaDialog = data }"
         @show-game-detail="(entry) => { selectedGameDetail = entry }"
       >
-        <template v-if="gallery.length > 0" #gallery>
+        <template v-if="gallery.length === 1" #gallery>
+          <div class="entry-gallery single-image">
+            <img :src="gallery[0]" :alt="getName(level, lan)" class="entry-image" />
+          </div>
+        </template>
+        <template v-else-if="gallery.length > 1" #gallery>
           <div class="entry-gallery">
-            <Carousel v-model="currentImageIndex" :items-to-show="itemsToShow" :wrap-around="true">
-              <Slide v-for="img in gallery" :key="img" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
+            <Carousel
+              :autoplay="3000"
+              v-model="currentImageIndex"
+              :items-to-show="itemsToShow"
+              :wrap-around="true"
+            >
+              <Slide v-for="img in gallery" :key="img" :style="shouldUseCompactSlide ? '' : 'width: 50%; aspect-ratio: 4/3;'">
                 <img :src="img" :alt="getName(level, lan)" class="entry-image" />
               </Slide>
               <template #addons>
@@ -456,6 +485,56 @@ const getGameImage = () => {
 </style>
 
 <style scoped>
+.mw-entry {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .mw-entry:has(+ .mw-entry),
+  .mw-entry + .mw-entry {
+    width: calc((100% - 0.5em) / 2);
+  }
+
+  .mw-entry:has(+ .mw-entry) {
+    margin-right: 0.5em;
+  }
+
+  .mw-entry + .mw-entry {
+    margin-right: 0;
+  }
+
+  .mw-entry + .mw-entry + .mw-entry:not(:has(+ .mw-entry)) {
+    margin-top: 0.5em;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mw-entry:has(+ .mw-entry + .mw-entry),
+  .mw-entry:has(+ .mw-entry + .mw-entry) + .mw-entry,
+  .mw-entry:has(+ .mw-entry + .mw-entry) + .mw-entry + .mw-entry {
+    width: calc((100% - 1em) / 3);
+  }
+
+  .mw-entry:has(+ .mw-entry + .mw-entry),
+  .mw-entry:has(+ .mw-entry + .mw-entry) + .mw-entry {
+    margin-right: 0.5em;
+  }
+
+  .mw-entry:has(+ .mw-entry + .mw-entry) + .mw-entry + .mw-entry {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .mw-entry + .mw-entry {
+    margin-top: 0.5em;
+  }
+}
+
 .placeholder {
   padding: 0.5em 0;
   color: #666;
@@ -466,6 +545,16 @@ const getGameImage = () => {
   background-color: #f5f5f5;
   border-radius: 6px;
   overflow: hidden;
+}
+
+.entry-gallery.single-image {
+  max-height: 400px;
+}
+
+.entry-gallery.single-image .entry-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
 }
 
 body.dark .entry-gallery {
