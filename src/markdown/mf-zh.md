@@ -53,7 +53,7 @@
 
 ## 原版 Mario Forever
 
-Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥游戏，关卡创作风格类似于初代马里奥（《Super Mario Bros.》，1985），在国内和国际均有一定的知名度。
+Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游戏，关卡创作风格类似于马里奥初代（《Super Mario Bros.》，1985），在国内和国际均有一定的知名度。
 
 ### Mario Forever 发展史介绍
 
