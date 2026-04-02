@@ -1,4 +1,23 @@
 ---
+- game: "Mario Forever: Maltigi Scream"
+  game_alt:
+  author: NayaneMarinho
+  author_alt:
+  type: international
+  description_zh: 可能包含恐怖元素。
+  description_en: May include scare elements.
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v1.0.0
+  ver_alt:
+  date: 2026-04-01
+  source_url: https://gamejolt.com/games/maltigiscream/1060794
+  source_url_alt:
+  download_url: https://gamejolt.com/games/maltigiscream/1060794
+  code:
+  download_url_alt:
+  file_name: maltigi-scream.exe
+  file_url:
 - game: "Mario Forever: Community Edition - Old Times"
   game_alt:
   alias:
