@@ -158,7 +158,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 ### Mario Forever World 9 / World 10 及其 Advance 版本
 - **难度**：中（World 10），中偏难（World 9），难（World 9 adv、World 10 adv）
-- **推荐理由**：百度永远的玛丽吧原吧主亲笔之作，开创了 Mario Forever 自制关卡的先河；经典 Mario Forever 风格，原创敌人和设计，制作精良；推荐在最新版 Mario Forever Remake 或者 Mario Forever Advance Remake 中游玩普通版和加难版。
+- **推荐理由**：百度永远的玛丽吧原吧主亲笔之作，开创了 Mario Forever 自制关卡的先河；经典 Mario Forever 风格，原创敌人和设计，制作精良；**推荐在最新版 Mario Forever Remake 或者 Mario Forever Advance Remake 中游玩普通版和加难版**。
 
 <MfGamesEntry name="Mario Forever World 9" /><MfGamesEntry name="Mario Forever World 10" />
 
@@ -172,7 +172,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 - **难度**：中偏易
 - **推荐理由**：百度永远的玛丽吧首个原创大型作品，第一个使用 Rainbow Engine 创作的正式作品，仿原版 Mario Forever 风格作品的代表之作，难度适中；推荐游玩 Deluxe 版。
 
-<MfGamesEntry name="Super Mario Forever 2014 Deluxe" /><MfGamesEntry name="Super Mario Forever 2014" />
+<MfGamesEntry name="Super Mario Forever 2014 Deluxe" />
 
 ### Mysterious Island 系列
 - **难度**：中偏难（MRI、MRI2 v1.5），难（MRI2）

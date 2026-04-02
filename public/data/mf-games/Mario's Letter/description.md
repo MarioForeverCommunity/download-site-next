@@ -1,0 +1,1 @@
+One day, in the Mushroom Kingdom, Mario received a letter from his beloved: it was a kind invitation to visit her castle. Mario was so happy to meet her that he also wrote a letter for the princess. Soon, Mario was able to meet her and have her read his letter.
