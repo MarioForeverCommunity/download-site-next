@@ -31,6 +31,7 @@ let mfListPromise = null
 let imageIndexPromise = null
 let mfListCache = null
 let mfNameIndex = null
+const imageIndexLoaded = ref(false)
 
 const ensureMfList = async () => {
   if (mfListPromise) return mfListPromise
@@ -55,7 +56,10 @@ const ensureMfList = async () => {
 
 const ensureImageIndex = async () => {
   if (imageIndexPromise) return imageIndexPromise
-  imageIndexPromise = loadImageIndex()
+  imageIndexPromise = loadImageIndex().then((index) => {
+    imageIndexLoaded.value = true
+    return index
+  })
   return imageIndexPromise
 }
 
@@ -357,7 +361,7 @@ const markLatestVersion = (entry) => {
 const loadGame = async () => {
   isLoading.value = true
   notFound.value = false
-  await Promise.all([ensureMfList(), ensureImageIndex()])
+  await ensureMfList()
 
   const target = normalizeKey(props.name)
   const candidates = mfNameIndex?.get(target) || []
@@ -367,6 +371,12 @@ const loadGame = async () => {
     notFound.value = true
     isLoading.value = false
     return
+  }
+
+  const imageIndexTask = ensureImageIndex()
+  const shouldAwaitImageIndex = candidates.length > 1
+  if (shouldAwaitImageIndex) {
+    await imageIndexTask
   }
 
   const selected = candidates.length === 1
@@ -422,6 +432,7 @@ watch(() => props.name, () => {
 })
 
 const gallery = computed(() => {
+  imageIndexLoaded.value
   if (!game.value) return []
   const images = []
   const title = getGameImageSync(game.value, "mf-games")
@@ -520,7 +531,13 @@ function hasDataDownload(download) {
       >
         <template v-if="gallery.length === 1" #gallery>
           <div class="entry-gallery single-image">
-            <img :src="gallery[0]" :alt="getName(game, lan)" class="entry-image" />
+            <img
+              :src="gallery[0]"
+              :alt="getName(game, lan)"
+              class="entry-image"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </template>
         <template v-else-if="gallery.length > 1" #gallery>
@@ -532,7 +549,13 @@ function hasDataDownload(download) {
               :wrap-around="true"
             >
               <Slide v-for="img in gallery" :key="img" :style="shouldUseCompactSlide ? '' : 'width: 50%; aspect-ratio: 4/3;'">
-                <img :src="img" :alt="getName(game, lan)" class="entry-image" />
+                <img
+                  :src="img"
+                  :alt="getName(game, lan)"
+                  class="entry-image"
+                  loading="lazy"
+                  decoding="async"
+                />
               </Slide>
               <template #addons>
                 <Navigation />

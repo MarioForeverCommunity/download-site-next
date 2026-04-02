@@ -23,6 +23,7 @@ let mwListPromise = null
 let imageIndexPromise = null
 let mwListCache = null
 let mwNameIndex = null
+const imageIndexLoaded = ref(false)
 
 const ensureMwList = async () => {
   if (mwListPromise) return mwListPromise
@@ -47,7 +48,10 @@ const ensureMwList = async () => {
 
 const ensureImageIndex = async () => {
   if (imageIndexPromise) return imageIndexPromise
-  imageIndexPromise = loadImageIndex()
+  imageIndexPromise = loadImageIndex().then((index) => {
+    imageIndexLoaded.value = true
+    return index
+  })
   return imageIndexPromise
 }
 
@@ -255,7 +259,7 @@ const selectBestCandidate = (candidates) => {
 const loadLevel = async () => {
   isLoading.value = true
   notFound.value = false
-  await Promise.all([ensureMwList(), ensureImageIndex()])
+  await ensureMwList()
 
   const target = normalizeKey(props.name)
   const candidates = mwNameIndex?.get(target) || []
@@ -265,6 +269,12 @@ const loadLevel = async () => {
     notFound.value = true
     isLoading.value = false
     return
+  }
+
+  const imageIndexTask = ensureImageIndex()
+  const shouldAwaitImageIndex = candidates.length > 1
+  if (shouldAwaitImageIndex) {
+    await imageIndexTask
   }
 
   level.value = candidates.length === 1 ? { ...candidates[0] } : { ...selectBestCandidate(candidates) }
@@ -306,6 +316,7 @@ watch(() => props.name, () => {
 })
 
 const gallery = computed(() => {
+  imageIndexLoaded.value
   if (!level.value) return []
   const images = []
   const title = getGameImageSync(level.value, "mw-levels")
@@ -368,7 +379,13 @@ const getGameImage = () => {
       >
         <template v-if="gallery.length === 1" #gallery>
           <div class="entry-gallery single-image">
-            <img :src="gallery[0]" :alt="getName(level, lan)" class="entry-image" />
+            <img
+              :src="gallery[0]"
+              :alt="getName(level, lan)"
+              class="entry-image"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </template>
         <template v-else-if="gallery.length > 1" #gallery>
@@ -380,7 +397,13 @@ const getGameImage = () => {
               :wrap-around="true"
             >
               <Slide v-for="img in gallery" :key="img" :style="shouldUseCompactSlide ? '' : 'width: 50%; aspect-ratio: 4/3;'">
-                <img :src="img" :alt="getName(level, lan)" class="entry-image" />
+                <img
+                  :src="img"
+                  :alt="getName(level, lan)"
+                  class="entry-image"
+                  loading="lazy"
+                  decoding="async"
+                />
               </Slide>
               <template #addons>
                 <Navigation />
