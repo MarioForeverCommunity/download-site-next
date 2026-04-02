@@ -429,7 +429,9 @@ function getAssetResourceURLs(assetEntry) {
   .assets-entry + .assets-entry {
     margin-right: 0;
   }
+}
 
+@media (min-width: 900px) and (max-width: 1199px) {
   .assets-entry + .assets-entry + .assets-entry:not(:has(+ .assets-entry)) {
     margin-top: 0.5em;
     width: 100%;

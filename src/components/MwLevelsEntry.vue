@@ -541,7 +541,9 @@ const getGameImage = () => {
   .mw-entry + .mw-entry {
     margin-right: 0;
   }
+}
 
+@media (min-width: 900px) and (max-width: 1199px) {
   .mw-entry + .mw-entry + .mw-entry:not(:has(+ .mw-entry)) {
     margin-top: 0.5em;
     width: 100%;

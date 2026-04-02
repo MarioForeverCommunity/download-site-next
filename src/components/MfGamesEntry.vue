@@ -766,7 +766,9 @@ function hasDataDownload(download) {
   .mf-entry + .mf-entry {
     margin-right: 0;
   }
+}
 
+@media (min-width: 900px) and (max-width: 1199px) {
   .mf-entry + .mf-entry + .mf-entry:not(:has(+ .mf-entry)) {
     margin-top: 0.5em;
     width: 100%;
