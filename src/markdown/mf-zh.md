@@ -129,7 +129,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 **Q: 我应该下载哪个版本？**
 **A:** 原作者制作的版本中，4.4 版最受欢迎，通常推荐下载这个版本；2.16、4.0 等也可以尝试。但 5.0 之后的版本就不推荐下载了。重制版本推荐下载 Mario Forever Remake v3.5，也可以试试最新的 Mario Forever: Community Edition。
 
-**Q: 刚才说 Mario Forever Remake v3.5 是最新版本，那网上 v3.7 v4.0 这些是怎么来的？**
+**Q: 刚才说 Mario Forever Remake v3.5 是最新版本，那网络上 v3.7 v4.0 这些是怎么来的？**
 **A:** Mario Forever Remake v1.0 发布后，Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。一般称中国团队制作的 MFR 为中国版本（俗称 a 版），欧洲团队的版本为欧洲版本（俗称 b 版）。v3.5 是中国团队制作的最新版本，而 v3.7、v4.0 等都是欧洲版本。
 
 **Q: 中国版本与欧洲版本的 Mario Forever Remake 有什么区别？**
@@ -158,19 +158,19 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 ### Mario Forever World 9 / World 10 及其 Advance 版本
 - **难度**：中（World 10），中偏难（World 9），难（World 9 adv、World 10 adv）
-- **推荐理由**：永远的玛丽吧原吧主亲笔之作，开创了 Mario Forever 自制关卡的先河；经典 Mario Forever 风格，原创敌人和设计，制作精良；推荐在最新版 Mario Forever Remake 或者 Mario Forever Advance Remake 中游玩普通版和加难版。
+- **推荐理由**：百度永远的玛丽吧原吧主亲笔之作，开创了 Mario Forever 自制关卡的先河；经典 Mario Forever 风格，原创敌人和设计，制作精良；推荐在最新版 Mario Forever Remake 或者 Mario Forever Advance Remake 中游玩普通版和加难版。
 
 <MfGamesEntry name="Mario Forever World 9" /><MfGamesEntry name="Mario Forever World 10" />
 
 ### Underground World
 - **难度**：中偏难
-- **推荐理由**：永远的玛丽吧最早的将 Mario Worker 关卡复刻至 Multimedia Fusion 平台的作品；可选三种难度，适合不同水平的玩家。
+- **推荐理由**：最早将 Mario Worker 关卡复刻至 Multimedia Fusion 平台的作品；可选三种难度，适合不同水平的玩家。
 
 <MfGamesEntry name="Mario Forever World U" />
 
 ### Super Mario Forever 2014
 - **难度**：中偏易
-- **推荐理由**：永远的玛丽吧首个原创大型作品，第一个使用 Rainbow Engine 创作的正式作品，仿原版 Mario Forever 风格作品的代表之作，难度适中；推荐游玩 Deluxe 版。
+- **推荐理由**：百度永远的玛丽吧首个原创大型作品，第一个使用 Rainbow Engine 创作的正式作品，仿原版 Mario Forever 风格作品的代表之作，难度适中；推荐游玩 Deluxe 版。
 
 <MfGamesEntry name="Super Mario Forever 2014 Deluxe" /><MfGamesEntry name="Super Mario Forever 2014" />
 
@@ -188,7 +188,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 ### Legend World Remake
 - **难度**：中偏难（通关）、难（全收集）
-- **推荐理由**：首个复刻 Mario Worker 全作的 Mario Forever 作品；率先采用一世界多关卡制；诸多设计创新，既保留了原作的地形风格，又针对性地进行适合 Mario Forever 的修改；引入了丰富多样的附加挑战；难度覆盖面广，适合从新手到硬核玩家的不同水平玩家游玩。
+- **作品简介**：首个复刻 Mario Worker 全作的 Mario Forever 作品；率先采用一世界多关卡制；诸多设计创新，既保留了原作的地形风格，又针对性地进行适合 Mario Forever 的修改；引入了丰富多样的附加挑战；难度覆盖面广，适合从新手到硬核玩家的不同水平玩家游玩。
 
 <MfGamesEntry name="Legend World Remake" />
 
@@ -242,7 +242,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
  
 ### Mario Forever Save Zqh
 - **难度**：难
-- **推荐理由**：单关存档，等级制，自由选关，不同于传统作品的机制，有挑战性。
+- **作品简介**：Mario Forever Save Zqh 剧情上续接了 Mario Forever Dream Escape，引入了等级机制，采用自由选择的地图形式，单关存档。
 
 <MfGamesEntry name="Mario Forever Save Zqh" />
 
@@ -260,13 +260,13 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 ### Mario Forever: An Unprecedented Expedition
 - **难度**：中偏易（通关）~ 中（全收集）
-- **推荐理由**：Super Mario World 式大地图，星币收集，单关计分。
+- **作品简介**：Mario Forever: An Unprecedented Expedition（简称 MF: AUE 或 AUE）是 无视我233 制作的一个 Mario Forever 改版。作品预计制作 8 个世界，目前完成并发布了前 4 世界。作品采用了 Super Mario World 式的大地图选关，有星币收集系统和不同于常规的分数机制。
 
 <MfGamesEntry name="Mario Forever: An Unprecedented Expedition" />
 
 ### Mario Forever Adventure Island
 - **难度**：中（通关 8-4）~ 难（通关 10-16）
-- **推荐理由**：Super Mario World 式大地图，主线流程难度适中。
+- **作品简介**：Mario Forever Adventure Island 是 数字1528君 主导制作的一个大型 Mario Forever 作品。作品主线通关（8-4）较为简单，但通关隐藏世界（World 9）与附加世界（World 10）较为困难。本作也采用了 Super Mario World 式地图选关。
 
 <MfGamesEntry name="Mario Forever Adventure Island" />
 
