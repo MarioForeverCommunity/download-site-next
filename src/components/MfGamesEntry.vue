@@ -535,7 +535,6 @@ function hasDataDownload(download) {
               :src="gallery[0]"
               :alt="getName(game, lan)"
               class="entry-image"
-              loading="lazy"
               decoding="async"
             />
           </div>
@@ -553,7 +552,6 @@ function hasDataDownload(download) {
                   :src="img"
                   :alt="getName(game, lan)"
                   class="entry-image"
-                  loading="lazy"
                   decoding="async"
                 />
               </Slide>
