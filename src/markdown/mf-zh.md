@@ -41,7 +41,7 @@
   })
 </script>
 
-本页面汇总了 Mario Forever 原版、重制版和精选同人作品的资源链接。如有链接失效，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。
+本页面汇总了 Mario Forever 原版、重制版、优秀原创作品和关卡创作资源的链接。如有链接失效，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。
 
 <a class="md-button" href="#mario-forever-全版本下载">原版 Mario Forever</a><a class="md-button" href="#mario-forever-remake">Mario Forever Remake</a><a class="md-button" href="#mario-forever-community-edition">Mario Forever: Community Edition</a><a class="md-button" href="#mario-forever-fangames">Mario Forever 优秀原创作品</a><a class="md-button" href="#mario-forever-assets">Mario Forever 关卡创作资源</a>
 
