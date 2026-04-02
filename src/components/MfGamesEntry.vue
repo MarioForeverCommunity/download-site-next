@@ -344,20 +344,6 @@ const applyVersion = (entry, verRaw) => {
   }
 }
 
-const markLatestVersion = (entry) => {
-  if (!entry?.ver || entry.ver.length === 0) return entry
-  const maxDate = Math.max(...entry.ver.map((verRaw) => {
-    const verObj = parseVer(verRaw)
-    const date = verObj?.date instanceof Date ? verObj.date.getTime() : -1
-    return date
-  }))
-  const currentDate = entry.currentVer?.date instanceof Date ? entry.currentVer.date.getTime() : -1
-  return {
-    ...entry,
-    _isLatestVersion: currentDate === maxDate
-  }
-}
-
 const loadGame = async () => {
   isLoading.value = true
   notFound.value = false
@@ -392,7 +378,6 @@ const loadGame = async () => {
       ver: [verRaw]
     }
   }
-  next = markLatestVersion(next)
   game.value = next
   isLoading.value = false
 }
@@ -472,8 +457,7 @@ const getGameImage = () => {
 }
 
 const handleSelectVersion = (entry) => {
-  const next = markLatestVersion(entry)
-  game.value = next
+  game.value = entry
 }
 
 function getTooltipType(download) {
