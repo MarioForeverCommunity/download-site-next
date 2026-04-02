@@ -196,7 +196,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 - **难度**：中偏难
 - **推荐理由**：国外知名大型作品，大量新敌人和新设计，视觉效果精美。
 
-<MfGamesEntry name="Mario Forever: Minus Worlds" />
+<MfGamesEntry name="Mario Forever: Minus Worlds" ver="v1.8 bugfix" />
 
 ### Mario Forever Magic Land
 - **难度**：中偏难
