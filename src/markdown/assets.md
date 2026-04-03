@@ -8,4 +8,4 @@
 
 <a class="md-button" target="_blank" href="https://www.123684.com/s/U3vrVv-9vef">备用下载地址 (提取码: MFYQ)</a><ClipboardButton lan="zh" code="MFYQ" />
 
-本页面涉及 Clickteam Fusion 的 Extension 资源暂不提供社区资源站下载链接；素材类配图仅为示意图，经压缩处理，请前往发布页或下载地址获取原始素材。
+本页面涉及 Clickteam Fusion 的 Extension 资源暂不列出社区资源站下载链接；素材类配图仅为示意图，经压缩处理，请前往发布页或下载地址获取原始素材。
