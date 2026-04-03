@@ -1,4 +1,32 @@
 ---
+- game: "Mario Forever: Maker Party"
+  game_alt:
+  author: 绿色的糖果
+  author_alt: Green Sweet
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - Windows:
+      ver_alt:
+      date: 2026-04-03
+      source_url: https://www.marioforever.net/thread-3825-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp
+      code: mfmp
+      download_url_alt:
+      file_name: mfmp_20260403.rar
+      file_url:
+  - Android:
+      ver_alt:
+      date: 2026-04-03
+      source_url: https://www.marioforever.net/thread-3825-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp
+      code: mfmp
+      download_url_alt:
+      file_name: mfmp_20260403.apk
+      file_url:
 - game: Mario's Letter
   game_alt:
   author: Mario Tube
