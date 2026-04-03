@@ -272,12 +272,6 @@ function pageSetLanguageEn() {
   }
 
   :target {
-    scroll-margin-top: 120px;
-  }
-
-  @media (min-width: 800px) {
-    :target {
-      scroll-margin-top: 100px;
-    }
+    scroll-margin-top: 100px;
   }
 </style>
