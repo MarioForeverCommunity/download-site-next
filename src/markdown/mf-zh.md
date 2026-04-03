@@ -43,7 +43,7 @@
 
 本页面汇集了 Mario Forever 原版、重制版、优秀原创作品和关卡创作资源的链接。如有链接失效，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。
 
-<a class="md-button" href="#mario-forever-全版本下载">原版 Mario Forever</a><a class="md-button" href="#mario-forever-remake">Mario Forever Remake</a><a class="md-button" href="#mario-forever-community-edition">Mario Forever: Community Edition</a><a class="md-button" href="#mario-forever-fangames">Mario Forever 优秀原创作品</a><a class="md-button" href="#mario-forever-assets">Mario Forever 关卡创作资源</a>
+<a class="md-button" href="#mario-forever-全版本下载">原版 Mario Forever</a><a class="md-button" href="#mario-forever-remake">Mario Forever Remake</a><a class="md-button" href="#mario-forever-community-edition">Mario Forever: Community Edition</a><a class="md-button" href="#mario-forever-android">手机版</a><a class="md-button" href="#mario-forever-fangames">Mario Forever 优秀原创作品</a><a class="md-button" href="#mario-forever-assets">Mario Forever 关卡创作资源</a>
 
 本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
 
@@ -119,6 +119,17 @@ Mario Forever Remake 和 Mario Forever Advance Remake 是分别基于 Mario Fore
 Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario Forever 的全复刻作品。MF:CE 摒弃了原版的制作软件 Clickteam Fusion，而采用更加现代的 Godot 游戏引擎。MF:CE 不仅复刻了原版游戏的绝大部分内容，还增添了一些自定义功能与新的挑战，以及一些面向玩家的特性，并对游戏的美术表现进行了略微调整。MF:CE 还允许路易吉成为可玩角色。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
 
 <MfGamesEntry name="Mario Forever - Community Edition" />
+
+## Mario Forever 手机版<a id="mario-forever-android"></a>
+
+目前，可供手机等移动设备游玩的 Mario Forever 游戏数量仍然较少。已知存在两个不同的原版 Mario Forever 的 Android 移植版：
+
+- **Super Mario Forever Android**：由 Alexandro Games 制作，不仅包含新旧两种不同画面风格（4.4 版之前 / 4.4 版之后），还移植了部分玩家创作的同人关卡内容。
+- **Mario Forever for Android**：由 Sanyario 移植的版本，基本保持原版内容，没有“夹带私货”，更适合希望体验原汁原味 Mario Forever 的玩家。
+
+<MfGamesEntry name="Super Mario Forever Android" /><MfGamesEntry name="Mario Forever for Android" />
+
+绝大多数 Mario Forever 同人作品目前仍仅提供电脑版本。尽管如今已经出现了一些 Android 端的 Windows 模拟器（如 Winlator、盖世游戏），但由于许多作品基于 Clickteam Fusion 开发，部分作品可能出现画面显示故障，甚至无法运行。即使游戏能够顺利启动，其中的绝大多数也并未原生支持游戏手柄，玩家往往需要手动配置屏幕虚拟按键，操作过程较为繁琐。
 
 ## 常见问题
 **Q: Mario Forever 是任天堂官方作品吗？**
