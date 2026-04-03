@@ -274,4 +274,12 @@ function pageSetLanguageEn() {
   :target {
     scroll-margin-top: 100px;
   }
+
+  .md-container p:has(> img:only-child) {
+    text-align: center;
+  }
+
+  .md-container p > img:only-child {
+    max-width: 100%;
+  }
 </style>
