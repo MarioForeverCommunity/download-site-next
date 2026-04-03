@@ -102,30 +102,6 @@ Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4
 
 <a class="md-button" target="_blank" href="https://rnx.su/s/MarioWorkerCommunityEdition">Download Mario Worker: Community Edition</a><a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-worker-ce">Download Mario Worker: Community Edition (Mirror)</a><a class="md-button" target="_blank" href="https://github.com/meteo-dream/mario-worker-ce">MW: CE source repository</a>
 
-## Other Mario Worker variants
-### Mario Worker 2
-Mario Worker 2 is an MW 1.1-like level editor developed by Rubis et Cie, built using GameMaker Studio 1. It's incompatible with MW 1.1 or any other MW variants.
-
-<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/other-mw-programs/Mario%20Worker%202.2.exe">Download Mario Worker 2.2</a>
-
-### Mario Constructor Master
-Mario Constructor Master is the successor of Mario Worker 2, developed by Rubis et Cie and TheMarioVariable. It's open-source and developed in C++.
-
-<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-constructor-master/Mario.Constructor.Master.2.3.zip">Download Mario Constructor Master 2.3</a><a class="md-button" target="_blank" href="https://github.com/RubisetCie/mario-constructor-master">Mario Constructor Master source repository</a>
-
-### Mario Worker Android
-Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, developed by Alexandro Games. It's incompatible with other MW 1.0-based editors.
-
-<a class="md-button" target="_blank" href="https://www.mediafire.com/file/peppr8pao5sxfxd/Mario_Worker_Android_v1.3.1.apk/file">Download Mario Worker Android v1.3.1</a><a class="md-button" target="_blank" href="https://alexandrogames.altervista.org/mario-worker-android/">Mario Worker Android website</a>
-
-## Frequently Asked Questions
-
-**Q: How can I download levels for Mario Worker?**
-**A:** We currently don't host levels for variants such as Mario Worker Remake. There is a [Mario Worker Database](https://marioworkerdatabase.altervista.org/) with a large number of MWR levels, but that site has since been archived. This site does provide a [levels catalog](https://download.marioforever.net/mw-levels.html) for Super Mario Worker Project, although it is currently only available in Chinese. You can also search for levels on the Internet, such as YouTube, Discord servers, and MF forums.
-
-**Q: Is Mario Worker Remake backward compatible with MW 1.0 levels?**
-**A:** Different variants of Mario Worker are generally not compatible with one another, even if some are based on the original MW. The only notable exception is Super Mario Worker Project, which is backward compatible with MW 1.1. As a general rule, it is recommended to play levels using the same version they were created with.
-
 ## Screenshots
 <div class="radio-inputs">
   <a
@@ -149,6 +125,30 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
     <Pagination />
   </template>
 </Carousel>
+
+## Other Mario Worker variants
+### Mario Worker 2
+Mario Worker 2 is an MW 1.1-like level editor developed by Rubis et Cie, built using GameMaker Studio 1. It's incompatible with MW 1.1 or any other MW variants.
+
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/other-mw-programs/Mario%20Worker%202.2.exe">Download Mario Worker 2.2</a>
+
+### Mario Constructor Master
+Mario Constructor Master is the successor of Mario Worker 2, developed by Rubis et Cie and TheMarioVariable. It's open-source and developed in C++.
+
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-constructor-master/Mario.Constructor.Master.2.3.zip">Download Mario Constructor Master 2.3</a><a class="md-button" target="_blank" href="https://github.com/RubisetCie/mario-constructor-master">Mario Constructor Master source repository</a>
+
+### Mario Worker Android
+Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, developed by Alexandro Games. It's incompatible with other MW 1.0-based editors.
+
+<a class="md-button" target="_blank" href="https://www.mediafire.com/file/peppr8pao5sxfxd/Mario_Worker_Android_v1.3.1.apk/file">Download Mario Worker Android v1.3.1</a><a class="md-button" target="_blank" href="https://alexandrogames.altervista.org/mario-worker-android/">Mario Worker Android website</a>
+
+## Frequently Asked Questions
+
+**Q: How can I download levels for Mario Worker?**
+**A:** We currently don't host levels for variants such as Mario Worker Remake. There is a [Mario Worker Database](https://marioworkerdatabase.altervista.org/) with a large number of MWR levels, but that site has since been archived. This site does provide a [levels catalog](https://download.marioforever.net/mw-levels.html) for Super Mario Worker Project, although it is currently only available in Chinese. You can also search for levels on the Internet, such as YouTube, Discord servers, and MF forums.
+
+**Q: Is Mario Worker Remake backward compatible with MW 1.0 levels?**
+**A:** Different variants of Mario Worker are generally not compatible with one another, even if some are based on the original MW. The only notable exception is Super Mario Worker Project, which is backward compatible with MW 1.1. As a general rule, it is recommended to play levels using the same version they were created with.
 
 <style scoped>
   .radio-inputs {

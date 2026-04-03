@@ -123,14 +123,6 @@ There are several known mods based on the original Mario Forever.
 
 <a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/JUE13/Mario%20Forever%201.16.1-mod.zip">Download Mario Forever v1.16.1 Mod by JUE13</a><a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/international-fangames/JUE13/MF%204.4%20Fixed%20Speedrun%20Edition.zip">Download Mario Forever v4.4 Fixed Speedrun Edition by JUE13</a>
 
-## Frequently Asked Questions
-**Q: Is Mario Forever safe? I've heard it contains a virus.**  
-**A:** Many people still believe that Mario Forever is some kind of "malware-infested game," but the truth is more nuanced: the game itself does **not** include any traditional virus. In certain versions, the installer comes with an Internet Explorer advertising add-on called "Mario Forever Toolbar." This add-on is unpopular and intrusive, but it is classified as adware rather than a virus.  
-That said, there is a legitimate security concern raised by researchers. According to [Cyble](https://cyble.com/blog/trojanized-super-mario-game-installer-spreads-supremebot-malware/), a particular installer for *super-mario-forever-v702e* was trojanized, bundling malicious components: an XMR miner, a SupremeBot mining client, and an open-source Umbral stealer. This is likely one of the origins of the widespread "MF contains a virus" rumor.  
-**Important note:** None of the versions offered on this site contains any of those malicious payloads identified by Cyble. All hosted installers have been reviewed and are considered safe. Some versions' installers do bundle the "Mario Forever Toolbar," but you can opt not to install it during setup.  
-Additionally, some versions of Mario Forever contain links to `mariocoins.com` and `broshome.com`. These domains are no longer owned by their original owners and have been taken over by unrelated parties. They may redirect to untrusted or potentially unsafe content. In certain versions, these links can be accessed via in-game options (such as "Get Secrets" or "Get Coins") or through URL shortcuts created by the installer. **It is strongly recommended not to open these links.**   
-To ease any remaining concerns, we provide a portable version of the game. This version has no bundled toolbar and has removed URL shortcuts and other irrelevant content. You may alternatively choose to play one of the fan-made recreated versions, such as Mario Forever Remake or Mario Forever: Community Edition, which are also malware-free. 
-
 ## Screenshots
 <div class="radio-inputs">
   <a
@@ -154,6 +146,14 @@ To ease any remaining concerns, we provide a portable version of the game. This 
     <Pagination />
   </template>
 </Carousel>
+
+## Frequently Asked Questions
+**Q: Is Mario Forever safe? I've heard it contains a virus.**  
+**A:** Many people still believe that Mario Forever is some kind of "malware-infested game," but the truth is more nuanced: the game itself does **not** include any traditional virus. In certain versions, the installer comes with an Internet Explorer advertising add-on called "Mario Forever Toolbar." This add-on is unpopular and intrusive, but it is classified as adware rather than a virus.  
+That said, there is a legitimate security concern raised by researchers. According to [Cyble](https://cyble.com/blog/trojanized-super-mario-game-installer-spreads-supremebot-malware/), a particular installer for *super-mario-forever-v702e* was trojanized, bundling malicious components: an XMR miner, a SupremeBot mining client, and an open-source Umbral stealer. This is likely one of the origins of the widespread "MF contains a virus" rumor.  
+**Important note:** None of the versions offered on this site contains any of those malicious payloads identified by Cyble. All hosted installers have been reviewed and are considered safe. Some versions' installers do bundle the "Mario Forever Toolbar," but you can opt not to install it during setup.  
+Additionally, some versions of Mario Forever contain links to `mariocoins.com` and `broshome.com`. These domains are no longer owned by their original owners and have been taken over by unrelated parties. They may redirect to untrusted or potentially unsafe content. In certain versions, these links can be accessed via in-game options (such as "Get Secrets" or "Get Coins") or through URL shortcuts created by the installer. **It is strongly recommended not to open these links.**   
+To ease any remaining concerns, we provide a portable version of the game. This version has no bundled toolbar and has removed URL shortcuts and other irrelevant content. You may alternatively choose to play one of the fan-made recreated versions, such as Mario Forever Remake or Mario Forever: Community Edition, which are also malware-free. 
 
 <style scoped>
   .radio-inputs {
