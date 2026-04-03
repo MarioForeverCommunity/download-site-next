@@ -201,7 +201,7 @@ const applyVariant = (entry, desiredVariant, desiredVer) => {
       ...entry,
       currentVer: parseVer(exact),
       currentVerStr: key,
-      _variantName: key
+      _variantName: desiredVariant ? key : null
     }
   }
 
@@ -226,7 +226,7 @@ const applyVariant = (entry, desiredVariant, desiredVer) => {
         ...entry,
         currentVer: parseVer(byVer),
         currentVerStr: key,
-        _variantName: key
+        _variantName: null
       }
     }
   }
@@ -269,7 +269,8 @@ const loadAsset = async () => {
   }
 
   const selected = candidates.length === 1 ? { ...candidates[0] } : { ...selectBestCandidate(candidates) }
-  asset.value = applyVariant(selected, props.variant, props.ver)
+  const resolved = applyVariant(selected, props.variant, props.ver)
+  asset.value = props.variant ? resolved : { ...resolved, _variantName: null }
   isLoading.value = false
 }
 
