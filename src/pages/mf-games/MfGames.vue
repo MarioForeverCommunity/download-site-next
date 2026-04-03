@@ -97,7 +97,8 @@ Promise.all([readList("list-mf.yaml"), imageResolver.init()]).then(([list]) => {
           source_url : entry.source_url,
           source_url_alt : entry.source_url_alt,
           ver_alt : entry.ver_alt,
-          data_download_url : entry.data_download_url
+          data_download_url : entry.data_download_url,
+          repo : entry.repo
         }
       }];
     } else {

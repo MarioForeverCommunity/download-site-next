@@ -79,6 +79,13 @@ const getDisplayAuthorList = () => {
   return authorList;
 };
 
+const getRepoUrl = () => {
+  if (props.game.currentVer && props.game.currentVer.repo) {
+    return props.game.currentVer.repo;
+  }
+  return props.game.repo;
+};
+
 </script>
 
 <template>
@@ -252,8 +259,8 @@ const getDisplayAuthorList = () => {
             </span>
           </template>
         </Tooltip>
-        <Tooltip v-if="game.repo">
-          <a :href="game.repo" target="_blank">
+        <Tooltip v-if="getRepoUrl()">
+          <a :href="getRepoUrl()" target="_blank">
             <GithubIcon class="icon button"></GithubIcon>
           </a>
           <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>

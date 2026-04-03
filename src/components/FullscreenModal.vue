@@ -165,8 +165,11 @@ const sourceUrls = computed(() => {
 });
 
 const repoUrl = computed(() => {
-  if (!props.game || !props.game.repo) return null;
-  return props.game.repo;
+  if (!props.game) return null;
+  if (props.game.currentVer && props.game.currentVer.repo) {
+    return props.game.currentVer.repo;
+  }
+  return props.game.repo || null;
 });
 
 const authorHomepage = computed(() => {

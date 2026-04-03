@@ -296,6 +296,7 @@
       download_url_alt:
       file_name: KlaEditor.zip
       file_url:
+      repo: https://github.com/toggins/KlaEditor
 - game: "Mario Forever: Enemy Castle"
   game_alt:
   author: NayaneMarinho

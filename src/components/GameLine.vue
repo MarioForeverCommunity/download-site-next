@@ -75,6 +75,13 @@ const getDisplayAuthorList = () => {
   return authorList;
 };
 
+const getRepoUrl = () => {
+  if (props.game.currentVer && props.game.currentVer.repo) {
+    return props.game.currentVer.repo;
+  }
+  return props.game.repo;
+};
+
 </script>
 
 <template>
@@ -231,8 +238,8 @@ const getDisplayAuthorList = () => {
             {{ lan == "en" ? "YouTube" : "发布视频" }}
           </template>
         </Tooltip>
-        <Tooltip v-if="game.repo">
-          <a :href="game.repo" target="_blank" class="inline-block">
+        <Tooltip v-if="getRepoUrl()">
+          <a :href="getRepoUrl()" target="_blank" class="inline-block">
             <GithubIcon class="icon button"></GithubIcon>
           </a>
           <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
