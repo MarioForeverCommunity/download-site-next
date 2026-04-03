@@ -133,7 +133,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 ## 常见问题
 **Q: Mario Forever 是任天堂官方作品吗？**
-**A:** 不是。Mario Forever 是一款马里奥同人游戏，是非官方的二次创作产物。其作者的工作室 Softendo 除了名字模仿任天堂（Nintendo）外，与任天堂没有其他任何关联。
+**A:** 不是。Mario Forever 是一款马里奥同人游戏，是非官方的二次创作产物。其作者除了名字 Softendo 模仿任天堂（Nintendo）外，与任天堂没有其他任何关联。
 
 **Q: Mario Forever Remake 是原作者 Softendo 的官方更新吗？**
 **A:** 不是。Mario Forever Remake 是由 Mario Forever Remake Group 制作的以还原原版 Mario Forever 为目的的非官方重制作品。
@@ -182,7 +182,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 ### Super Mario Forever 2014
 - **难度**：中偏易
-- **推荐理由**：百度永远的玛丽吧首个原创大型作品，第一个使用 Rainbow Engine 创作的正式作品，仿原版 Mario Forever 风格作品的代表之作，难度适中；推荐游玩 Deluxe 版。
+- **推荐理由**：百度永远的玛丽吧首个原创大型作品，其初版是第一个使用 Rainbow Engine 创作的正式作品，仿原版 Mario Forever 风格作品的代表之作，难度适中；推荐游玩 Deluxe 版。
 
 <MfGamesEntry name="Super Mario Forever 2014 Deluxe" />
 
