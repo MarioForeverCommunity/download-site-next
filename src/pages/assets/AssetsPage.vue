@@ -29,7 +29,9 @@ const titleZh = navTop.find(item => item.id === pageId).title;
 const assets = ref([]);
 
 readList("list-assets.yaml").then((list) => {
-  for (const entry of list) {
+  for (let i = 0; i < list.length; i++) {
+    const entry = list[i];
+    entry._originalIndex = i;
     if (entry.variants) {
       entry.variants = entry.variants.map(variant => {
         const variantKey = Object.keys(variant)[0];
@@ -37,12 +39,12 @@ readList("list-assets.yaml").then((list) => {
         return {
           [variantKey]: {
             ...variantData,
-            download_url: entry.download_url,
-            download_url_alt: entry.download_url_alt,
-            code: entry.code,
-            code_alt: entry.code_alt,
-            source_url: entry.source_url,
-            source_url_alt: entry.source_url_alt
+            download_url: variantData.download_url ?? entry.download_url,
+            download_url_alt: variantData.download_url_alt ?? entry.download_url_alt,
+            code: variantData.code ?? entry.code,
+            code_alt: variantData.code_alt ?? entry.code_alt,
+            source_url: variantData.source_url ?? entry.source_url,
+            source_url_alt: variantData.source_url_alt ?? entry.source_url_alt
           }
         };
       });
@@ -136,6 +138,7 @@ function clearFilter() {
 }
 
 const filteredAssets = computed(() => {
+  let expandedIndex = 0;
   const expanded = assets.value.flatMap((entry) => {
     if (!entry.ver || entry.ver.length === 0) {
       const nameMatch = (
@@ -149,7 +152,7 @@ const filteredAssets = computed(() => {
           || (filter_option.value.type_effect && entry.type == "effect")
           || (filter_option.value.type_sprite && entry.type == "sprite");
       if (!nameMatch || !typeMatch) return [];
-      return [entry];
+      return [{ ...entry, _expandedIndex: expandedIndex++ }];
     }
     const hasMultipleVariants = entry.ver.length > 1;
     return entry.ver.map((verRaw) => {
@@ -172,17 +175,47 @@ const filteredAssets = computed(() => {
         ...entry,
         currentVer: parseVer(verRaw),
         currentVerStr: verKey,
-        _variantName: hasMultipleVariants ? verKey : null
+        _variantName: hasMultipleVariants ? verKey : null,
+        _expandedIndex: expandedIndex++
       };
     }).filter(item => item !== null);
   });
+  const datedItems = expanded
+    .filter(e => e.currentVer && e.currentVer.date)
+    .map(e => ({
+      originalIdx: e._originalIndex ?? 0,
+      expandedIdx: e._expandedIndex,
+      date: new Date(e.currentVer.date).getTime()
+    }));
+  const getRefDate = (item) => {
+    const origIdx = item._originalIndex ?? 0;
+    const expIdx = item._expandedIndex;
+    const sameEntryDated = datedItems.filter(d => d.originalIdx === origIdx);
+    if (sameEntryDated.length > 0) {
+      const maxDate = Math.max(...sameEntryDated.map(d => d.date));
+      return maxDate + (100000 - expIdx);
+    }
+    const prev = datedItems.filter(d => d.originalIdx < origIdx)
+      .sort((a, b) => b.originalIdx - a.originalIdx)[0];
+    const next = datedItems.filter(d => d.originalIdx > origIdx)
+      .sort((a, b) => a.originalIdx - b.originalIdx)[0];
+    if (next) {
+      return next.date + (100000 - expIdx);
+    }
+    if (prev) {
+      return prev.date - (100000 - expIdx);
+    }
+    return expIdx;
+  };
   expanded.sort((a, b) => {
-    const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date) : null;
-    const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date) : null;
-    if (dateA === null && dateB === null) return 0;
-    if (dateA === null) return 1;
-    if (dateB === null) return -1;
-    return dateB - dateA;
+    const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date).getTime() : null;
+    const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date).getTime() : null;
+    if (dateA !== null && dateB !== null) {
+      return dateB - dateA;
+    }
+    const refA = dateA !== null ? dateA : getRefDate(a);
+    const refB = dateB !== null ? dateB : getRefDate(b);
+    return refB - refA;
   });
   return expanded;
 });
