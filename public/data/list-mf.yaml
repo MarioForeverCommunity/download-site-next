@@ -811,12 +811,22 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.5:
+      ver_alt:
+      date: 2026-04-01
+      source_url: https://www.youtube.com/watch?v=Nd7qenLWq_k
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/e4skp08e4t34ii0/Mario_Forever_Sensitive_Journey_v2.5.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sensitive Journey v2.5.zip
+      file_url:
   - v2.2:
       ver_alt:
       date: 2026-03-17
       source_url: https://www.youtube.com/watch?v=Zuy7eJrwgOQ
       source_url_alt:
-      download_url: https://www.mediafire.com/file/6iz3fwyy0yvzs0v/Mario_Forever_Sensitive_Journey_v2.2.zip/file
+      download_url: ~https://www.mediafire.com/file/6iz3fwyy0yvzs0v/Mario_Forever_Sensitive_Journey_v2.2.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v2.2.zip
