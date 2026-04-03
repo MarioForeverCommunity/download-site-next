@@ -581,7 +581,6 @@ const getGameImage = () => {
 .entry-gallery {
   margin-top: 0.6em;
   background-color: #f5f5f5;
-  border-radius: 6px;
   overflow: hidden;
 }
 
