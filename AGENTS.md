@@ -8,19 +8,24 @@ Vue 3 static website built with Vite and JavaScript. Bilingual (Chinese/English)
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start Vite dev server with HMR |
-| `npm run build` | Build for production (outputs to dist/) |
+| `npm run build` | Build for production (outputs to dist/) - runs image index generation, vite build, and data compression |
 | `npm run preview` | Preview production build locally |
 | `npm run lint` | Run ESLint with auto-fix on all .vue, .js files |
 | `npm run lint -- <file>` | Lint a specific file |
 | `npm run generate-images` | Generate `image-index.json` |
 | `npm run deploy` | Execute deployment script (deploy.sh) |
 
-**Note**: No test framework configured.
+## Testing
+**No test framework is configured.** Manual testing required:
+- Test all features in both Chinese and English
+- Verify across all entry points: index, mf-games, mw-levels, assets, mario-worker
+- Test responsive design on mobile, tablet, and desktop
+- Validate external API calls and YAML data loading
 
 ## Code Style Guidelines
 
 ### ESLint Configuration
-Project uses `eslint-plugin-vue` (flat config), `@eslint/js`, and globals. Configuration in `eslint.config.js`.
+Uses `eslint-plugin-vue` (flat config), `@eslint/js`, and globals. Config in `eslint.config.js`.
 
 Key enforced rules:
 - **2-space indentation** (JS, Vue templates)
@@ -31,6 +36,10 @@ Key enforced rules:
 - **Curly braces**: required for multi-line blocks
 - **No unused vars**: warn (prefix with `_` to ignore)
 - **No empty blocks**: allowed for catch only
+- `quotes`, `semi`, `comma-dangle`: off (flexible)
+- `eqeqeq`: off
+- `no-console`: off
+- `linebreak-style`: off
 
 Vue-specific rules:
 - `vue/multi-word-component-names`: off
@@ -40,6 +49,13 @@ Vue-specific rules:
 - `vue/max-attributes-per-line`: 3 singleline, 1 multiline
 - `vue/require-default-prop`: warn
 - `vue/require-prop-types`: warn
+
+### EditorConfig
+Defined in `.editorconfig`:
+- UTF-8 charset
+- 2-space indentation for .js, .vue, .css, .scss, .html, .json, .md, .yaml, .yml
+- Final newline required
+- Trailing whitespace trimmed (except .md files)
 
 ### Import Ordering
 1. Vue imports (`ref`, `reactive`, etc.)
@@ -94,7 +110,7 @@ const handleClick = () => {
 
 ### Variables & Strings
 - Prefer `const` over `let`
-- Use double quotes for strings (`"zh"`, `"game name"`)
+- Use double quotes for strings
 - Use template literals for interpolation
 - Arrow functions for callbacks and inline functions
 
@@ -164,8 +180,12 @@ const title = lan.value === 'zh' ? titleZh : titleEn
 
 ## Development Notes
 - All features must work in Chinese and English
-- Test on multiple pages: index, mf-games, mw-levels, assets, mario-worker
 - Image assets: `public/data/` (all pages)
 - External API calls use axios
 - Always run `npm run lint` before committing
 - Build includes gzip/brotli compression for assets >5KB
+- Global `BUILD_TIME` variable available (readonly)
+- scripts/ directory uses Node.js globals, not browser globals
+- Keep component props minimal and well-typed
+- Use composables for reusable logic
+- Follow Vue 3 reactivity principles
