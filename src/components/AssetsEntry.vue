@@ -482,4 +482,67 @@ function getAssetResourceURLs(assetEntry) {
   max-height: 400px;
   object-fit: contain;
 }
+
+.modal-bg {
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 80vw;
+  max-height: 80vh;
+  padding: 1em;
+  border-radius: 0.5em;
+  overflow-y: auto;
+  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+}
+
+.button-line {
+  margin-top: 0.5em;
+}
+
+.download {
+  color: white;
+  cursor: pointer;
+  background-color: #008cff;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  margin: 0.25em;
+  display: inline-block;
+  line-height: 1.5em;
+  text-decoration: none;
+}
+
+.download:hover,
+.download:focus {
+  background-color: #30acff;
+  text-decoration: none;
+}
+
+.download:active {
+  background-color: #007cdf;
+}
 </style>
