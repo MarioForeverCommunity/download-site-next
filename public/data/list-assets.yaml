@@ -66,6 +66,20 @@
       ver: "231011.1"
       date: 2023-10-11
       file_name: UER Dialog 231011.1ver.7z
+- name: OpenFusionExamples
+  alias:
+  - Fini
+  author: defisym
+  type: addon
+  description: 开源 Clickteam 扩展、Shader、特效、示例资源
+  image:
+  source_url:
+  download_url:
+  code:
+  repo: https://github.com/defisym/OpenFusionExamples
+  ver:
+  date:
+  file_name:
 - name: Tilesets（适用于 UE Autotile）
   author: dasasdhba
   type: sprite
@@ -383,6 +397,17 @@
   file_name:
   - GBstyle.zip
   - SZJGlitch.zip
+- name: Effekseer Extension
+  author: ugken
+  type: addon
+  description:
+  image:
+  source_url: https://ugken.com/ext/Effekseer/index.html
+  download_url: https://ugken.com/ext/Effekseer/Effekseer_20221119.zip
+  code:
+  ver:
+  date: 2022-11-19
+  file_name:
 - name: CTF 描边特效
   alias:
   - Smooth_Outline
