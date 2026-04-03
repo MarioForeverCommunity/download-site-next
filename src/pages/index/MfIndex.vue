@@ -270,4 +270,14 @@ function pageSetLanguageEn() {
   .foot-note ol {
     padding-left: 30px;
   }
+
+  :target {
+    scroll-margin-top: 120px;
+  }
+
+  @media (min-width: 800px) {
+    :target {
+      scroll-margin-top: 100px;
+    }
+  }
 </style>
