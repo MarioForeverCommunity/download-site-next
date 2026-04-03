@@ -1,4 +1,15 @@
 ---
+- name: 全图工具
+  author: 数字1528君
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-3828-1-1.html
+  download_url:
+  code:
+  ver:
+  date: 2026-04-04
+  file_name: 截图Active(2026.4.4).mfa
 - name: Super Mario Ultra Edition
   alias:
   - UE
