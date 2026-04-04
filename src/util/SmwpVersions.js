@@ -5,6 +5,7 @@ export const SmwpVersions = {
   "v1.3.0": "SuperMarioWorkerProject_v1.3.0.zip",
   "v1.3.1": "SuperMarioWorkerProject_v1.3.1_Fix2.zip",
   "v1.4.1": "SuperMarioWorkerProject_v1.4.1.zip",
+  "v1.4.4": "SuperMarioWorkerProject_v1.4.4.zip",
   "v1.4.5": "SuperMarioWorkerProject_v1.4.5.zip",
   "v1.5.0": "SuperMarioWorkerProject_v1.5.0.7z",
   "v1.5.2": "SuperMarioWorkerProject_v1.5.2_Fix2.7z",
