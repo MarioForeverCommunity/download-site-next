@@ -265,7 +265,7 @@ function getAssetResourceURLs(asset) {
     const encodedFileName = encodeURIComponent(fileName);
     let url;
     if (asset.type === 'effect') {
-      url = `https://file.marioforever.net/Mario Forever/引擎/CTF 特效/${encodedFileName}`;
+      url = `https://file.marioforever.net/Mario Forever/引擎/CTF特效/${encodedFileName}`;
     } else if (asset.type === 'addon') {
       url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
     } else if (asset.type === 'engine') {
