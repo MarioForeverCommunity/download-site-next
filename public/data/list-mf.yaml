@@ -11079,16 +11079,37 @@
   description_en: Has a game made in Super Mario Worker Project with the same name. Playing the final level requires to complete both MF and SMWP versions.
   video_zh:
   - WSW 直播回放: https://www.bilibili.com/video/BV1ma4y1f7FW/
-  ver: Fix2
-  ver_alt:
-  date: 2021-11-06
-  source_url: https://www.marioforever.net/thread-1729-1-1.html
-  source_url_alt:
-  download_url: http://modunlocker.ysepan.com/
-  code:
-  download_url_alt:
-  file_name: Nhelv-MF.7z
-  file_url:
+  ver:
+  - Fix2:
+      ver_alt:
+      date: 2021-11-06
+      source_url: https://www.marioforever.net/thread-1729-1-1.html
+      source_url_alt:
+      download_url: http://modunlocker.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Nhelv-MF_Fix2.7z
+      file_url:
+  - Fix1:
+      ver_alt:
+      date: 2021-11-06
+      source_url: https://www.marioforever.net/thread-1729-1-1.html
+      source_url_alt:
+      download_url: http://modunlocker.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Nhelv-MF_Fix1.7z
+      file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2021-11-03
+      source_url: https://www.marioforever.net/thread-1729-1-1.html
+      source_url_alt:
+      download_url: http://modunlocker.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Nhelv-MF.7z
+      file_url:
 - game: Mario Forever World Alternative
   game_alt:
   author: Alexandro Games
