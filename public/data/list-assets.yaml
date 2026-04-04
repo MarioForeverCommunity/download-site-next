@@ -476,7 +476,7 @@
   description:
   image:
   source_url: https://www.marioforever.net/thread-2125-1-1.html
-  download_url: http://modunlocker.ysepan.com/
+  download_url:
   code:
   ver:
   date: 2022-06-27
@@ -622,7 +622,7 @@
   description: 日期为初始上传日期
   image:
   source_url:
-  download_url:
+  download_url: https://dasasdhba.ysepan.com/
   code:
   ver: v0.2.0
   date: 2021-06-12
