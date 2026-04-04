@@ -10,9 +10,20 @@
   ver:
   date: 2026-04-04
   file_name: 截图Active(2026.4.4).mfa
+- name: MW文本提取器
+  author: 绿色的糖果
+  type: mwtool
+  description: 可以从smwl / smws提取不带#不带多余空格的信息砖文本
+  image:
+  source_url:
+  download_url:
+  code:
+  ver:
+  date: 2026-03-10
+  file_name: MW文本提取器.py
 - name: Super Mario Ultra Edition
   alias:
-  - UE
+  - SMUE
   - UEL
   - UER
   author: dasasdhba
@@ -135,6 +146,18 @@
   ver: v1
   date: 2025-06-21
   file_name: Star-coin System by Green_^_sweeT_v1.mfa
+- name: Mario Forever 社区活动抽签程序
+  author: newlife2017
+  type: tool
+  description: Mario Forever 社区活动抽签程序，具有满足 MF 社区抽签需求的功能。
+  image:
+  source_url:
+  download_url: https://github.com/MarioForeverCommunity/MF-Contest-Draw/archive/refs/heads/main.zip
+  code:
+  repo: https://github.com/MarioForeverCommunity/MF-Contest-Draw
+  ver:
+  date: 2025-05-19
+  file_name:
 - name: UE Mar Mario
   alias:
   - 红果状态
@@ -339,6 +362,18 @@
   repo: https://github.com/ChloePrime/MarioForeverMoleEditor
   ver:
   date: 2023-08-16
+- name: ImageResizer (das ver)
+  author: dasasdhba
+  type: tool
+  description:
+  image: imageresizer.webp
+  source_url: https://www.marioforever.net/thread-2740-1-1.html
+  download_url: http://dasasdhba.ysepan.com
+  code:
+  repo: https://github.com/dasasdhba/image-resizer
+  ver:
+  date: 2023-06-27
+  file_name: ImageResizer(das ver).7z
 - name: Cloud Engine
   alias:
   - CE
@@ -435,6 +470,19 @@
   repo: https://github.com/dasasdhba/Mario_Forever_Berry_Editor
   ver:
   date: 2022-07-25
+- name: MW吧12周年机器大礼包
+  author: "1168438795"
+  type: mwtool
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-2125-1-1.html
+  download_url: http://modunlocker.ysepan.com/
+  code:
+  ver:
+  date: 2022-06-27
+  file_name:
+  - 116的机器集.7z
+  - 08-信息砖机器.rar
 - name: DX9下的HSV特效修复
   author: 数字1528君
   type: effect
@@ -513,6 +561,17 @@
   ver:
   date: 2021-11-11
   file_name:
+- name: MW全图机器
+  author: 无视我233
+  type: mwtool
+  description:
+  image:
+  source_url: https://zh.wsw233.com/tools/mw_gen_map
+  download_url:
+  code:
+  ver:
+  date: 2021-10-10
+  file_name:
 - name: MFIT背景包
   author: "1168438795"
   type: addon
@@ -557,6 +616,17 @@
   ver:
   date: 2021-07-20
   file_name: 库巴手感动画运动优化控件包 by 绿色的糖果.mfa
+- name: 图片拆分器
+  author: 卣啁工作室
+  type: tool
+  description: 日期为初始上传日期
+  image:
+  source_url:
+  download_url:
+  code:
+  ver: v0.2.0
+  date: 2021-06-12
+  file_name: 图片拆分器.exe
 - name: CTF2.5 Effects 包整合
   author: dasasdhba
   type: effect
@@ -768,6 +838,17 @@
       ver: 0.9.9
       date: 2015-08-07
       file_name: RainbowEngine_0.9.9_150807单关版.7z
+- name: 真强悍的智能实心机器
+  author: zqh——123
+  type: mwtool
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/5829543052
+  download_url: https://zqh--123.ysepan.com/
+  code:
+  ver:
+  date: 2018-11-11
+  file_name: 真强悍的智能实心机器.rar
 - name: Cauldron Engine
   alias:
   - MFEEB
@@ -840,3 +921,58 @@
   ver: v2.3
   date: 2013-08-23
   file_name: Dunami Mario Forever Engine v2.3.zip
+- name: 纳秘版高岩浆器
+  author: nmnmoooh
+  type: mwtool
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/2166982083
+  download_url: https://nmnmoooh888.ysepan.com/
+  code:
+  ver: v2.0
+  date: 2013-02-16
+  file_name: 纳秘版高岩浆器V2.0版之常规.exe
+- name: 封顶器
+  author: nmnmoooh
+  type: mwtool
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/2131849490
+  download_url: https://nmnmoooh888.ysepan.com/
+  code:
+  ver:
+  date: 2013-01-31
+  file_name: 封顶器.exe
+- name: 批处理版mfs分割工具
+  author: Anti_Tencent
+  type: mwtool
+  description: 只支持MW4.4输出的mfs，不支持解压缩后的mfs文件
+  image:
+  source_url: https://tieba.baidu.com/p/733146321
+  download_url: ~https://siriusvega.ysepan.com/
+  code:
+  ver:
+  date: 2010-03-21
+  file_name: bat-mfs.7z
+- name: MW自定义BGM工具
+  author: amiboss
+  type: mwtool
+  description: 供MW4.4使用
+  image:
+  source_url: https://tieba.baidu.com/p/719346539
+  download_url: ~http://assassination.ysepan.com
+  code:
+  ver:
+  date: 2010-02-25
+  file_name: MW自定义BGM工具.exe
+- name: MW自定义按键工具
+  author: Anti_Tencent
+  type: mwtool
+  description: 供MW4.4使用
+  image:
+  source_url: https://tieba.baidu.com/p/671990544
+  download_url: ~https://siriusvega.ysepan.com/
+  code:
+  ver:
+  date: 2009-11-22
+  file_name: MWKey.exe
