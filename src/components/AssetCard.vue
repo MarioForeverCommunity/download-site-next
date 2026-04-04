@@ -70,7 +70,9 @@ const getTypeLabel = (type) => {
     engine: '引擎',
     addon: '拓展',
     effect: '特效',
-    sprite: '素材'
+    sprite: '素材',
+    tool: '工具',
+    mwtool: 'MW工具'
   };
   return types[type] || type;
 };
@@ -80,7 +82,9 @@ const getTypeClass = (type) => {
     engine: 'engine-dot',
     addon: 'addon-dot',
     effect: 'effect-dot',
-    sprite: 'sprite-dot'
+    sprite: 'sprite-dot',
+    tool: 'tool-dot',
+    mwtool: 'mwtool-dot'
   };
   return classes[type] || '';
 };
@@ -90,7 +94,9 @@ const getTypeTooltip = (type) => {
     engine: '制作模板 (引擎)',
     addon: '拓展资源',
     effect: '特效',
-    sprite: '素材'
+    sprite: '素材',
+    tool: '工具程序',
+    mwtool: '工具 (Mario Worker)'
   };
   return tooltips[type] || type;
 };
@@ -398,8 +404,8 @@ const getVariantName = () => {
   }
 
   .dot.effect-dot {
-    background: #ff9800;
-    border: 1.5px solid #e65100;
+    background: #00bcd4;
+    border: 1.5px solid #0097a7;
   }
 
   .dot.sprite-dot {
@@ -407,10 +413,23 @@ const getVariantName = () => {
     border: 1.5px solid #388e3c;
   }
 
+  .dot.tool-dot {
+    background: #607d8b;
+    border: 1.5px solid #455a64;
+  }
+
+  .dot.mwtool-dot {
+    background: #ff9800;
+    border: 1.5px solid #e65100;
+    width: 3.5em;
+  }
+
   body.dark .dot.engine-dot,
   body.dark .dot.addon-dot,
   body.dark .dot.effect-dot,
-  body.dark .dot.sprite-dot {
+  body.dark .dot.sprite-dot,
+  body.dark .dot.tool-dot,
+  body.dark .dot.mwtool-dot {
     background: #bbb;
     border: 0px;
   }
@@ -424,11 +443,19 @@ const getVariantName = () => {
   }
 
   body.dark .dot.effect-dot .dot-text {
-    color: #f87400;
+    color: #00bcd4;
   }
 
   body.dark .dot.sprite-dot .dot-text {
     color: #4caf50;
+  }
+
+  body.dark .dot.tool-dot .dot-text {
+    color: #607d8b;
+  }
+
+  body.dark .dot.mwtool-dot .dot-text {
+    color: #f87400;
   }
 
   body.dark .asset-image {

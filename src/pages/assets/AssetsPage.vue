@@ -124,6 +124,8 @@ const filter_option = ref({
   type_addon: true,
   type_effect: true,
   type_sprite: true,
+  type_tool: true,
+  type_mwtool: true,
 });
 
 function clearName() {
@@ -135,6 +137,8 @@ function clearFilter() {
   filter_option.value.type_addon = true;
   filter_option.value.type_effect = true;
   filter_option.value.type_sprite = true;
+  filter_option.value.type_tool = true;
+  filter_option.value.type_mwtool = true;
 }
 
 const filteredAssets = computed(() => {
@@ -150,7 +154,9 @@ const filteredAssets = computed(() => {
       const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")
           || (filter_option.value.type_effect && entry.type == "effect")
-          || (filter_option.value.type_sprite && entry.type == "sprite");
+          || (filter_option.value.type_sprite && entry.type == "sprite")
+          || (filter_option.value.type_tool && entry.type == "tool")
+          || (filter_option.value.type_mwtool && entry.type == "mwtool");
       if (!nameMatch || !typeMatch) return [];
       return [{ ...entry, _expandedIndex: expandedIndex++ }];
     }
@@ -169,7 +175,9 @@ const filteredAssets = computed(() => {
       const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")
           || (filter_option.value.type_effect && entry.type == "effect")
-          || (filter_option.value.type_sprite && entry.type == "sprite");
+          || (filter_option.value.type_sprite && entry.type == "sprite")
+          || (filter_option.value.type_tool && entry.type == "tool")
+          || (filter_option.value.type_mwtool && entry.type == "mwtool");
       if (!typeMatch) return null;
       return {
         ...entry,
@@ -274,6 +282,10 @@ function getAssetResourceURLs(asset) {
       url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
     } else if (asset.type === 'sprite') {
       url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
+    } else if (asset.type === 'tool') {
+      url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`;
+    } else if (asset.type === 'mwtool') {
+      url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`;
     }
 
     let displayFileName = fileName.split('/').pop();
@@ -359,6 +371,14 @@ const { floatingStyles } = useFloating(reference, floating,
         <div class="inline-block">
           <input v-model="filter_option.type_effect" type="checkbox" id="filterEffect">
           <label for="filterEffect">特效</label>
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.type_tool" type="checkbox" id="filterTool">
+          <label for="filterTool">工具程序</label>
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.type_mwtool" type="checkbox" id="filterMwtool">
+          <label for="filterMwtool">MW 工具</label>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />

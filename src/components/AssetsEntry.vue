@@ -314,6 +314,10 @@ function getAssetResourceURLs(assetEntry) {
       url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`
     } else if (assetEntry.type === "sprite") {
       url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`
+    } else if (assetEntry.type === "tool") {
+      url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`
+    } else if (assetEntry.type === "mwtool") {
+      url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`
     }
 
     let displayFileName = fileName.split("/").pop()
