@@ -6,7 +6,7 @@
 
     const mwCollDate    = "20240504"
     const mwCupCollDate = "20260302"
-    const smwpCollDate  = "20251201"
+    const smwpCollDate  = "20260404"
 </script>
 
 如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）等问题，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。贴吧链接均为旧贴，请勿挖坟。
@@ -17,7 +17,7 @@
 
 为方便玩家，特别整理提供 Mario Worker 作品合集，合集内包含大部分不附带 Mario Worker 本体的作品。
 
-<a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/SMWP%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${smwpCollDate}.7z`">SMWP 作品合集（截止至 {{smwpCollDate.slice(0, 4)}}-{{smwpCollDate.slice(4, 6)}}-{{smwpCollDate.slice(6, 8)}}）</a><a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW4.4%E4%BD%9C%E5%93%81%E6%B1%87%E6%80%BB${mwCollDate}.7z`">MW4.4 作品合集（截止至 {{mwCollDate.slice(0, 4)}}-{{mwCollDate.slice(4, 6)}}-{{mwCollDate.slice(6, 8)}}）</a><a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW%E6%9D%AF%E7%9B%B8%E5%85%B3%E6%B1%87%E6%80%BB${mwCupCollDate}.7z`">MW 杯相关合集（截止至 {{mwCupCollDate.slice(0, 4)}}-{{mwCupCollDate.slice(4, 6)}}-{{mwCupCollDate.slice(6, 8)}}）</a>
+<a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/SMWP%E4%BD%9C%E5%93%81%E5%90%88%E9%9B%86${smwpCollDate}Final.7z`">SMWP 作品合集（截止至 {{smwpCollDate.slice(0, 4)}}-{{smwpCollDate.slice(4, 6)}}-{{smwpCollDate.slice(6, 8)}}，已停更）</a><a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW4.4%E4%BD%9C%E5%93%81%E5%90%88%E9%9B%86${mwCollDate}.7z`">MW4.4 作品合集（截止至 {{mwCollDate.slice(0, 4)}}-{{mwCollDate.slice(4, 6)}}-{{mwCollDate.slice(6, 8)}}）</a><a class="md-button" target="_blank" :href="`https://file.marioforever.net/Mario%20Worker/MW%E6%9D%AF%E7%9B%B8%E5%85%B3%E6%B1%87%E6%80%BB${mwCupCollDate}.7z`">MW 杯相关合集（截止至 {{mwCupCollDate.slice(0, 4)}}-{{mwCupCollDate.slice(4, 6)}}-{{mwCupCollDate.slice(6, 8)}}）</a>
 
 你也可以到 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载 Mario Worker 相关资源，同时本页面提供 Mario Worker 资源备用地址以备不时之需（**备用地址下载需登录 123 云盘账号**）。
 
