@@ -46,6 +46,12 @@ const isAssets = computed(() => {
   return props.category === 'assets';
 });
 
+const isSingleVersion = computed(() => {
+  if (!props.game) return true;
+  if (!props.game.ver || props.game.ver.length <= 1) return true;
+  return false;
+});
+
 const assetTypeLabel = computed(() => {
   if (!isAssets.value || !props.game || !props.game.type) return null;
   const types = {
@@ -311,7 +317,7 @@ const latestUpdate = computed(() => {
     return version;
   };
 
-  const processedVer = processUpdateVersion(latestVer);
+  const processedVer = isAssets.value ? '' : processUpdateVersion(latestVer);
 
   if (props.lan === 'zh') {
     const year = latestDate.getFullYear();
@@ -785,7 +791,7 @@ const nextImage = () => {
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无作者信息' : 'No author information' }}</p>
           </div>
 
-          <div class="content-section">
+          <div v-if="!isAssets || isSingleVersion" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '发布时间' : 'Release date' }}</h3>
             <ul v-if="releaseDate" class="date-list">
               <li>{{ releaseDate }}</li>
@@ -793,7 +799,7 @@ const nextImage = () => {
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无发布时间' : 'No release date' }}</p>
           </div>
 
-          <div v-if="latestUpdate && !isAssets" class="content-section">
+          <div v-if="latestUpdate" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '更新时间' : 'Latest update' }}</h3>
             <ul class="date-list">
               <li>{{ latestUpdate }}</li>
