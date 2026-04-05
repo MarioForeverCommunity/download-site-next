@@ -7010,9 +7010,9 @@
   date: 2023-06-18
   source_url:
   source_url_alt:
-  download_url: https://cdn.discordapp.com/attachments/895275289062547457/1119664471724531792/Reverof_Oiram.7z
+  download_url: https://nx.wtf/index.php/s/MeteoDream?dir=/Games/Mario%20Forever%2C%20But%20It%27s%20Reversed
   code:
-  download_url_alt:
+  download_url_alt: https://cdn.discordapp.com/attachments/895275289062547457/1119664471724531792/Reverof_Oiram.7z
   file_name: Reverof_Oiram.7z
   file_url:
 - game: Mario Forever - World KP
@@ -8913,6 +8913,23 @@
   code:
   download_url_alt:
   file_name: setup-mario2011.exe
+  file_url:
+- game: MF Banesoft Parody
+  game_alt:
+  author: JUE13
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2022-09-10
+  source_url:
+  source_url_alt:
+  download_url: https://rnx.su/s/Q6GbLgJZ9ixJXpD
+  code:
+  download_url_alt:
+  file_name: themultiverse2rev2.zip
   file_url:
 - game: Mario Forever TB Worlds
   game_alt:
