@@ -451,7 +451,7 @@ Mario Forever Block Party 是一个以马里奥元素为主的类似于“推箱
 
 ### Mario Forever Flash
 
-Mario Forever Flash 是一款质量较高的的 Flash 马里奥同人游戏。
+Mario Forever Flash 是一款质量较高的 Flash 马里奥同人游戏。
 
 <a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/Mario%20Forever%20Flash">下载 Mario Forever Flash 及相关游戏</a>
 

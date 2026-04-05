@@ -24,13 +24,13 @@
 
 ### 和 [资源站](https://file.marioforever.net/) 的区别？
 
-资源站虽然也对作品资源进行了归档并提供了下载链接，但受限于 [OpenList](github.com/OpenListTeam/OpenList) 的机制，只能够检索文件名而非游戏名称，且没办法对作品进行便捷的的筛选、排序、查找历史版本；此外本仓库也收录了一些作品的相关信息，例如发布链接、Wiki 链接和相关视频等等。
+资源站虽然也对作品资源进行了归档并提供了下载链接，但受限于 [OpenList](github.com/OpenListTeam/OpenList) 的机制，只能够检索文件名而非游戏名称，且没办法对作品进行便捷地筛选、排序、查找历史版本；此外本仓库也收录了一些作品的相关信息，例如发布链接、Wiki 链接和相关视频等等。
 
 此外，资源站中的游戏由 [newlife2017](https://github.com/KHwang9883) 上传维护；而本仓库中，你可以通过 pull request 的方式来帮助完善资源列表，并且以此帮助资源站的完善！
 
 ### 为什么没有 Mario Worker Remake 相关内容？
 
-Mario Worker Remake 作品已经有官方、完善的 [数据库](https://marioworkerdatabase.altervista.org/) 进行维护，玩家已经可以较为便捷的搜索和下载游戏；而 Mario Forever 和 Super Mario Worker Project 作品由于发布方式多样、零散，因此我们尝试通过建立作品列表方式便于玩家了解、检索和下载。
+Mario Worker Remake 作品已经有官方、完善的 [数据库](https://marioworkerdatabase.altervista.org/) 进行维护，玩家已经可以较为便捷地搜索和下载游戏；而 Mario Forever 和 Super Mario Worker Project 作品由于发布方式多样、零散，因此我们尝试通过建立作品列表方式便于玩家了解、检索和下载。
 
 ## 帮助我们完善列表！
 
