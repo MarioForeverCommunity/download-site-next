@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from "vue"
+import { ref, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vue"
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { readList } from "../util/ReadList.js"
@@ -7,8 +7,9 @@ import { parseVer } from "../util/Misc.js"
 import { getName, getDownloadEntries } from "../util/GemeUtil.js"
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"
-import FullscreenModal from "./FullscreenModal.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+
+const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 
 const props = defineProps({
   name: {
