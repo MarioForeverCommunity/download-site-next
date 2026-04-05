@@ -892,6 +892,28 @@
   ver: v0.8
   date: 2016-08-08
   file_name: RainbowEnginePro.rar
+- name: 真强悍机器终极大BOSS
+  author: zqh——123
+  type: mwtool
+  description: 包含添加实心机器和砖块制作机器
+  image:
+  source_url: https://tieba.baidu.com/p/3935990027
+  download_url: https://zqh--123.ysepan.com/
+  code:
+  ver:
+  date: 2015-08-01
+  file_name: 真强悍机器终极大BOSS！！.rar
+- name: 真强悍的MW代码机器集
+  author: zqh——123
+  type: mwtool
+  description:
+  image:
+  source_url:
+  download_url: https://zqh--123.ysepan.com/
+  code:
+  ver:
+  date: 2015-02-17
+  file_name: 真强悍的MW代码机器集.rar
 - name: Mario Forever World 10 Engine
   alias:
   - MFW10E
@@ -932,6 +954,39 @@
   ver: v2.0
   date: 2013-02-16
   file_name: 纳秘版高岩浆器V2.0版之常规.exe
+- name: 喷火食人花代码制作机器
+  author: 蓝太阳
+  type: mwtool
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/2179213704
+  download_url: ~https://bluesun0505.ysepan.com/
+  code:
+  ver: v2.0
+  date: 2013-02-24
+  file_name: 喷火扎地食人花代码制作器v2.0.zip
+- name: 完美火球代码制作器
+  author: 蓝太阳
+  type: mwtool
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/2179213704
+  download_url: ~https://bluesun0505.ysepan.com/
+  code:
+  ver: v2.0
+  date: 2013-02-24
+  file_name: 完美火球代码制作器v2.0.zip
+- name: 静止探照灯批量处理器
+  author: nmnmoooh
+  type: mwtool
+  description:
+  image:
+  source_url:
+  download_url:
+  code:
+  ver:
+  date:
+  file_name: 静止探照灯批量处理器.exe
 - name: 封顶器
   author: nmnmoooh
   type: mwtool
@@ -943,6 +998,17 @@
   ver:
   date: 2013-01-31
   file_name: 封顶器.exe
+- name: 探照灯辅助设计器
+  author: nmnmoooh
+  type: mwtool
+  description:
+  image:
+  source_url: https://tieba.baidu.com/p/2117440691
+  download_url: https://nmnmoooh888.ysepan.com/
+  code:
+  ver: 第一版
+  date: 2013-01-31
+  file_name: 探照灯辅助设计器第一版.exe
 - name: 批处理版mfs分割工具
   author: Anti_Tencent
   type: mwtool
