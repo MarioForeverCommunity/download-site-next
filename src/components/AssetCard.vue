@@ -16,7 +16,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['selectDownload', 'showTooltip', 'hideTooltip', 'showTiebaDialog']);
+const emit = defineEmits(['selectDownload', 'showTooltip', 'hideTooltip', 'showTiebaDialog', 'openModal']);
 
 const handleImageError = (event) => {
   event.target.parentElement.style.display = 'none';
@@ -127,7 +127,7 @@ const getVariantName = () => {
 <template>
   <div class="container card">
     <div class="first-line">
-      <div class="asset-name">
+      <div class="asset-name" @click="$emit('openModal', asset)">
         {{ getName(asset, 'zh') }}<span v-if="getVariantName()" class="asset-variant"> ({{ getVariantName() }})</span>
       </div>
       <div class="asset-version" v-if="getVersionString()">
@@ -271,6 +271,11 @@ const getVariantName = () => {
     flex: 1;
     min-width: 0;
     overflow: hidden;
+    cursor: pointer;
+  }
+
+  .asset-name:hover {
+    text-decoration: underline;
   }
 
   .asset-version {

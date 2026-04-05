@@ -42,6 +42,23 @@ const isMwLevel = computed(() => {
   return props.category === 'mw-levels';
 });
 
+const isAssets = computed(() => {
+  return props.category === 'assets';
+});
+
+const assetTypeLabel = computed(() => {
+  if (!isAssets.value || !props.game || !props.game.type) return null;
+  const types = {
+    engine: '引擎',
+    addon: '拓展',
+    effect: '特效',
+    sprite: '素材',
+    tool: '工具',
+    mwtool: 'MW工具'
+  };
+  return types[props.game.type] || props.game.type;
+});
+
 const gameName = computed(() => {
   if (!props.game) return '';
   return getName(props.game, props.lan);
@@ -59,11 +76,18 @@ const smwpUrl = computed(() => {
 
 const titleImage = computed(() => {
   if (!props.game) return null;
+  if (isAssets.value) {
+    if (props.game.image) {
+      return `/data/assets/${props.game.image}`;
+    }
+    return null;
+  }
   return getModalImageSync(props.game, props.category);
 });
 
 const showcaseImages = computed(() => {
   if (!props.game) return [];
+  if (isAssets.value) return [];
 
   const showcases = getShowcaseImagesSync(props.game, props.category);
   const titleImage = getTitleImageSync(props.game, props.category);
@@ -88,6 +112,17 @@ const sourceUrls = computed(() => {
         url: props.game.currentVer.source_url,
         versionDisplay: '',
         invalid: props.game.currentVer.source_url_invalid || false
+      }];
+    }
+    return [];
+  }
+
+  if (isAssets.value) {
+    if (props.game.source_url) {
+      return [{
+        url: props.game.source_url,
+        versionDisplay: '',
+        invalid: props.game.source_url_invalid || false
       }];
     }
     return [];
@@ -205,9 +240,14 @@ const authors = computed(() => {
 const releaseDate = computed(() => {
   if (!props.game) return null;
 
-  if (isMwLevel.value) {
-    if (!props.game.date) return null;
-    const date = props.game.date;
+  if (isMwLevel.value || isAssets.value) {
+    let date = null;
+    if (props.game.date) {
+      date = props.game.date;
+    } else if (props.game.currentVer && props.game.currentVer.date) {
+      date = props.game.currentVer.date;
+    }
+    if (!date) return null;
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -322,6 +362,98 @@ const downloadEntries = computed(() => {
       });
     }
     return [];
+  }
+
+  if (isAssets.value) {
+    const entries = [];
+
+    if (props.game.ver && props.game.ver.length > 0) {
+      for (const verRaw of props.game.ver) {
+        const verKey = Object.keys(verRaw)[0];
+        const ver = verRaw[verKey];
+
+        if (ver.file_name) {
+          const fileNames = Array.isArray(ver.file_name)
+            ? ver.file_name.filter(fn => fn != null)
+            : [ver.file_name];
+
+          for (const fileName of fileNames) {
+            const encodedFileName = encodeURIComponent(fileName);
+            let url;
+            if (props.game.type === 'effect') {
+              url = `https://file.marioforever.net/Mario Forever/引擎/CTF特效/${encodedFileName}`;
+            } else if (props.game.type === 'addon') {
+              url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
+            } else if (props.game.type === 'engine') {
+              const path = props.game.path || '';
+              const encodedPath = path ? encodeURIComponent(path) + '/' : '';
+              url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
+            } else if (props.game.type === 'sprite') {
+              url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
+            } else if (props.game.type === 'tool') {
+              url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`;
+            } else if (props.game.type === 'mwtool') {
+              url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`;
+            }
+
+            if (url) {
+              let versionText = '下载';
+              if (verKey && ver.ver && verKey !== ver.ver) {
+                versionText = `${verKey} ${ver.ver}`;
+              } else if (verKey) {
+                versionText = verKey;
+              } else if (ver.ver) {
+                versionText = ver.ver;
+              }
+              entries.push({
+                version: versionText,
+                url: url,
+                isRepackaged: false,
+                repacker: null,
+                isData: false
+              });
+            }
+          }
+        }
+      }
+    } else if (props.game.currentVer && props.game.currentVer.file_name) {
+      const fileNames = Array.isArray(props.game.currentVer.file_name)
+        ? props.game.currentVer.file_name.filter(fn => fn != null)
+        : [props.game.currentVer.file_name];
+
+      for (const fileName of fileNames) {
+        const encodedFileName = encodeURIComponent(fileName);
+        let url;
+        if (props.game.type === 'effect') {
+          url = `https://file.marioforever.net/Mario Forever/引擎/CTF特效/${encodedFileName}`;
+        } else if (props.game.type === 'addon') {
+          url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
+        } else if (props.game.type === 'engine') {
+          const path = props.game.path || '';
+          const encodedPath = path ? encodeURIComponent(path) + '/' : '';
+          url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
+        } else if (props.game.type === 'sprite') {
+          url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
+        } else if (props.game.type === 'tool') {
+          url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`;
+        } else if (props.game.type === 'mwtool') {
+          url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`;
+        }
+
+        if (url) {
+          const versionText = props.game.currentVer?.ver || '下载';
+          entries.push({
+            version: versionText,
+            url: url,
+            isRepackaged: false,
+            repacker: null,
+            isData: false
+          });
+        }
+      }
+    }
+
+    return entries;
   }
 
   if (!props.game.ver) return [];
@@ -504,13 +636,15 @@ const updateUrl = () => {
   const slug = getGameSlug();
   if (!slug) return;
   const url = new URL(window.location.href);
-  url.searchParams.set('game', slug);
+  const paramKey = isAssets.value ? 'asset' : 'game';
+  url.searchParams.set(paramKey, slug);
   window.history.replaceState({}, '', url.toString());
 };
 
 const clearUrl = () => {
   const url = new URL(window.location.href);
   url.searchParams.delete('game');
+  url.searchParams.delete('asset');
   window.history.replaceState({}, '', url.toString());
 };
 
@@ -582,7 +716,10 @@ const nextImage = () => {
           </svg>
         </button>
         <div class="modal-body">
-          <h1 class="game-title">{{ gameName }}</h1>
+          <h1 class="game-title">
+            <span v-if="assetTypeLabel" class="asset-type-label">[{{ assetTypeLabel }}]</span>
+            {{ gameName }}
+          </h1>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
             <span class="smwp-label">{{ 'SMWP 版本' }}:</span>
@@ -656,7 +793,7 @@ const nextImage = () => {
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无发布时间' : 'No release date' }}</p>
           </div>
 
-          <div v-if="latestUpdate" class="content-section">
+          <div v-if="latestUpdate && !isAssets" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '更新时间' : 'Latest update' }}</h3>
             <ul class="date-list">
               <li>{{ latestUpdate }}</li>
@@ -672,7 +809,7 @@ const nextImage = () => {
             </ul>
           </div>
 
-          <div class="content-section">
+          <div v-if="!isAssets" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '图集' : 'Showcases' }}</h3>
             <div v-if="showcaseImages.length > 0" class="showcase-grid">
               <img

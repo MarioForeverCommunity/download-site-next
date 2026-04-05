@@ -18,6 +18,7 @@ import { parseVer } from "../../util/Misc.js";
 import introContent from '../../markdown/assets.md';
 import { navTop } from "../../config.js";
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+import FullscreenModal from '../../components/FullscreenModal.vue';
 const originalLan = ref(getLanguage());
 
 const lan = ref("zh");
@@ -72,6 +73,7 @@ readList("list-assets.yaml").then((list) => {
 
 const selectedDownload = ref(null);
 const tiebaDialog = ref(null);
+const selectedAssetDetail = ref(null);
 
 const lastUpdate = ref(null);
 
@@ -242,8 +244,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWideScreen);
 });
 
-watch([selectedDownload, tiebaDialog], ([newDownload, newTieba]) => {
-  if (newDownload || newTieba) {
+watch([selectedDownload, tiebaDialog, selectedAssetDetail], ([newDownload, newTieba, newAssetDetail]) => {
+  if (newDownload || newTieba || newAssetDetail) {
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
     disableScroll();
@@ -400,6 +402,7 @@ const { floatingStyles } = useFloating(reference, floating,
         @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => {tiebaDialog = data;}"
+        @open-modal="(entry) => {selectedAssetDetail = entry;}"
       />
     </div>
   </div>
@@ -460,6 +463,14 @@ const { floatingStyles } = useFloating(reference, floating,
       </div>
     </div>
   </Transition>
+
+  <FullscreenModal
+    :show="selectedAssetDetail != null"
+    :game="selectedAssetDetail"
+    :lan="lan"
+    category="assets"
+    @close="selectedAssetDetail = null"
+  />
 
   <div
     ref="floating"

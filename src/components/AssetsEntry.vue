@@ -7,6 +7,7 @@ import { parseVer } from "../util/Misc.js"
 import { getName, getDownloadEntries } from "../util/GemeUtil.js"
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"
+import FullscreenModal from "./FullscreenModal.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
 
 const props = defineProps({
@@ -130,6 +131,7 @@ const isLoading = ref(true)
 const notFound = ref(false)
 const selectedDownload = ref(null)
 const tiebaDialog = ref(null)
+const selectedAssetDetail = ref(null)
 
 const reference = ref(null)
 const floating = ref(null)
@@ -154,8 +156,8 @@ function tooltipMouseLeave(obj) {
   }
 }
 
-watch([selectedDownload, tiebaDialog], ([newDownload, newTieba]) => {
-  if (newDownload || newTieba) {
+watch([selectedDownload, tiebaDialog, selectedAssetDetail], ([newDownload, newTieba, newAssetDetail]) => {
+  if (newDownload || newTieba || newAssetDetail) {
     document.documentElement.classList.add("modal-open")
     document.body.classList.add("modal-open")
     disableScroll()
@@ -352,6 +354,7 @@ function getAssetResourceURLs(assetEntry) {
         @show-tooltip="(obj) => tooltipMouseEnter(obj)"
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => { tiebaDialog = data }"
+        @open-modal="(entry) => { selectedAssetDetail = entry }"
       />
     </template>
 
@@ -397,6 +400,14 @@ function getAssetResourceURLs(assetEntry) {
         </div>
       </div>
     </Transition>
+
+    <FullscreenModal
+      :show="selectedAssetDetail != null"
+      :game="selectedAssetDetail"
+      :lan="lan"
+      category="assets"
+      @close="selectedAssetDetail = null"
+    />
 
     <div
       ref="floating"
