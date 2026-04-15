@@ -1823,7 +1823,7 @@
   source_url_alt:
   download_url: https://pan.baidu.com/s/1qdIUUbRmknLDQHJMYjPDQw?pwd=MFWM
   code: MFWM
-  download_url_alt:
+  download_url_alt: http://double-j.ysupan.com/
   file_name: Mario Forever Winter Memories.exe
   file_url:
 - game: 4-Don't recruit yourself anymore
@@ -2142,6 +2142,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - Patch 02:
+      ver_alt:
+      date: 2026-04-15
+      source_url: https://www.marioforever.net/thread-3475-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1Z0iwMukbgbaWI-c1gKXsMA?pwd=49mt
+      code: 49mt
+      download_url_alt: http://double-j.ysupan.com/
+      file_name: Narrow Highway (Patch 02).exe
+      file_url:
   - Patch 01:
       ver_alt:
       date: 2025-01-02
@@ -2149,7 +2159,7 @@
       source_url_alt:
       download_url: https://pan.baidu.com/s/1kq68jW5_7LGJVl2myV73nA?pwd=mfnh
       code: mfnh
-      download_url_alt:
+      download_url_alt: http://double-j.ysupan.com/
       file_name: Narrow Highway (Patch 01).exe
       file_url:
   - 首发版:
@@ -2159,7 +2169,7 @@
       source_url_alt:
       download_url: https://pan.baidu.com/s/1brmjcOwvYdr6XUCnKMeqbA?pwd=mfnh
       code: mfnh
-      download_url_alt:
+      download_url_alt: http://double-j.ysupan.com/
       file_name: Narrow Highway.exe
       file_url:
 - game: Mario Forever - Grand Adventure Season 7 Remake
@@ -11321,7 +11331,7 @@
       source_url_alt:
       download_url: https://pan.baidu.com/s/1j_6SnDtwv1ghsuKvpZ361w
       code: mfea
-      download_url_alt:
+      download_url_alt: http://double-j.ysupan.com/
       file_name: Mario Forever Easy Adventure 2 Release 0831.exe
       file_url:
   - R0830:
@@ -14518,7 +14528,7 @@
   source_url_alt:
   download_url: https://pan.baidu.com/s/1RuyZsbvbJYJfAt8sp9iTBg
   code: pzh9
-  download_url_alt:
+  download_url_alt: http://double-j.ysupan.com/
   file_name: Mario Forever Nightmare.exe
   file_url:
 - game: Mario Forever The Unexplored Continents
@@ -15650,7 +15660,7 @@
       source_url_alt:
       download_url: https://pan.baidu.com/s/1462lnXKSEMKU3-BT9KQZ2Q
       code: vses
-      download_url_alt:
+      download_url_alt: http://double-j.ysupan.com/
       file_name: Mario Forever Easy Adventure V1.1 fixed.zip
       file_url:
   - v1.1:

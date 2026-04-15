@@ -216,7 +216,7 @@ export const downloadName = [
     "show_code" : true
   },
   {
-    "domain" : /(ysepan|ys168)\.com/,
+    "domain" : /(ysepan|ys168|ysupan)\.com/,
     "desc_zh" : "永硕 E 盘",
     "desc_en" : "YSEpan"
   },
