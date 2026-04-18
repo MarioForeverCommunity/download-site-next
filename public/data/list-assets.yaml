@@ -33,8 +33,6 @@
   source_url: https://www.marioforever.net/thread-705-1-1.html
   download_url: https://wwi.lanzoui.com/b02bgtrub
   code:
-  download_url_alt: http://dasasdhba.ysepan.com/
-  code_alt:
   path: Super Mario Ultra Edition
   variants:
   - Full:
@@ -97,7 +95,7 @@
   description:
   image: Tileset.webp
   source_url: https://www.marioforever.net/thread-3783-1-1.html
-  download_url:
+  download_url: https://wwbtb.lanzout.com/iuje23nkk3uf
   code:
   ver:
   date: 2026-01-20
@@ -220,6 +218,18 @@
   ver: v0.9.31
   date: 2025-01-30
   file_name: 绿糖的自制或高仿品种拓展包 v0.9.31.7z
+- name: ImageResizer (das ver)
+  author: dasasdhba
+  type: tool
+  description:
+  image: imageresizer.webp
+  source_url: https://www.marioforever.net/thread-2740-1-1.html
+  download_url: https://github.com/dasasdhba/image-resizer/releases/download/v1/ImageResizer.das.ver.7z
+  code:
+  repo: https://github.com/dasasdhba/image-resizer
+  ver:
+  date: 2024-12-20
+  file_name: ImageResizer(das ver).7z
 - name: MFHorizon 原创素材
   alias:
   - 地平线
@@ -228,7 +238,7 @@
   description:
   image: MFHorizon-NPCs.webp
   source_url: https://www.marioforever.net/thread-3282-1-1.html
-  download_url: http://dasasdhba.ysepan.com
+  download_url: https://wwbtb.lanzout.com/iT3Gd3nklbxc
   code:
   ver:
   date: 2024-07-22
@@ -286,8 +296,8 @@
   description: 与原帖的 RE 碰撞检测增强包不兼容。
   image:
   source_url: https://www.marioforever.net/thread-650-1-1.html
-  download_url: http://dasasdhba.ysepan.com/
-  code:
+  download_url: https://wwbtb.lanzout.com/b0w9p5p4b
+  code: 8vf6
   ver:
   date: 2024-02-11
   file_name: UE Patch For RainbowEngine.7z
@@ -362,18 +372,6 @@
   repo: https://github.com/ChloePrime/MarioForeverMoleEditor
   ver:
   date: 2023-08-16
-- name: ImageResizer (das ver)
-  author: dasasdhba
-  type: tool
-  description:
-  image: imageresizer.webp
-  source_url: https://www.marioforever.net/thread-2740-1-1.html
-  download_url: http://dasasdhba.ysepan.com
-  code:
-  repo: https://github.com/dasasdhba/image-resizer
-  ver:
-  date: 2023-06-27
-  file_name: ImageResizer(das ver).7z
 - name: Cloud Engine
   alias:
   - CE
@@ -622,7 +620,7 @@
   description: 日期为初始上传日期
   image:
   source_url:
-  download_url: https://dasasdhba.ysepan.com/
+  download_url: ~https://dasasdhba.ysepan.com/
   code:
   ver: v0.2.0
   date: 2021-06-12
@@ -655,8 +653,8 @@
   description:
   image:
   source_url: https://www.marioforever.net/thread-650-1-1.html
-  download_url: http://dasasdhba.ysepan.com/
-  code:
+  download_url: https://wwbtb.lanzout.com/b0w9p5p4b
+  code: 8vf6
   ver:
   date: 2020-08-13
   file_name: RE 碰撞检测增强包.mfa
@@ -708,8 +706,9 @@
   description:
   image:
   source_url: https://www.marioforever.net/thread-425-1-1.html
-  download_url: http://dasasdhba.ysepan.com/
+  download_url:
   code:
+  repo: https://github.com/dasasdhba/ctf-effect
   ver:
   date: 2020-03-20
   file_name: 自制 & DX11 修复特效合集/
@@ -753,8 +752,8 @@
   description:
   image: NeverlandE.webp
   source_url: https://tieba.baidu.com/p/5052963558
-  download_url: http://dasasdhba.ysepan.com/
-  code:
+  download_url: https://wwbtb.lanzout.com/b0w9p5p4b
+  code: 8vf6
   path: RE系引擎及其二次开发
   variants:
   - All:
@@ -794,7 +793,7 @@
   description:
   image: rainbow.webp
   source_url: https://tieba.baidu.com/p/5067765973
-  download_url: http://mfresources.ysepan.com/
+  download_url:
   code:
   path: RE系引擎及其二次开发
   variants:
@@ -872,7 +871,7 @@
   description:
   image:
   source_url:
-  download_url: http://mfresources.ysepan.com/
+  download_url:
   code:
   path: 原版系引擎
   ver:
