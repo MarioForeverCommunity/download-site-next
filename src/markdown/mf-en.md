@@ -48,7 +48,7 @@
 <MfGamesEntry name="Mario Forever - Community Edition" />
 
 ## Download Mario Forever Remake
-Suitable for the vast majority of Windows PCs. Runs better on some modern computers, compared to the original Mario Forever. It also adds several fan-made worlds.
+Suitable for the vast majority of Windows PCs. Runs better on some modern computers, compared to the original Mario Forever. It also adds several fan-made worlds. The game has two different iterations: European version (PAL) and Chinese version.
 
 <MfGamesEntry name="Mario Forever Remake (PAL)" /><MfGamesEntry name="Mario Forever Remake" /><MfGamesEntry name="Mario Forever Advance Remake" />
 
