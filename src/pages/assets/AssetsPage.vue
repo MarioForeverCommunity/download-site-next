@@ -346,7 +346,7 @@ const { floatingStyles } = useFloating(reference, floating,
   </div>
 
   <div class="hidden-container">
-    <div class="container icon-container expand">
+    <div class="container filter-container expand">
       <div class="icon-container">
         筛选
         <div class="inline-block search-box">
@@ -504,8 +504,18 @@ const { floatingStyles } = useFloating(reference, floating,
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
   }
 
+  .filter-container {
+    padding: .25em 20px;
+  }
+
+  @media (max-width: 800px) {
+    .filter-container {
+      padding: .25em 1em;
+    }
+  }
+
   .icon-container {
-    padding: .25em 10px;
+    padding: .25em 0;
   }
 
   .md-container {
@@ -527,6 +537,12 @@ const { floatingStyles } = useFloating(reference, floating,
     font-variant-numeric: normal;
     font-variant-position: normal;
     font-variation-settings: normal;
+  }
+
+  @media (max-width: 800px) {
+    .md-container {
+      padding: 10px 1em;
+    }
   }
 
   @media (max-width: 1333px) and (min-width: 800px) {

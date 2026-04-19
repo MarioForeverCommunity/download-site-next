@@ -485,7 +485,7 @@ const { floatingStyles } = useFloating(reference, floating,
   </div>
 
   <div class="hidden-container">
-    <div class="container icon-container" :class="sort_option.active ? 'expand' : '' ">
+    <div class="container filter-container" :class="sort_option.active ? 'expand' : '' ">
       <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
       <div class="icon-container">
         {{ lan == "en" ? "Filter" : "筛选" }}
@@ -756,8 +756,18 @@ const { floatingStyles } = useFloating(reference, floating,
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
   }
 
+  .filter-container {
+    padding: .25em 20px;
+  }
+
+  @media (max-width: 800px) {
+    .filter-container {
+      padding: .25em 1em;
+    }
+  }
+
   .icon-container {
-    padding: .25em 10px;
+    padding: .25em 0;
   }
 
   .md-container {
@@ -779,6 +789,12 @@ const { floatingStyles } = useFloating(reference, floating,
     font-variant-numeric: normal;
     font-variant-position: normal;
     font-variation-settings: normal;
+  }
+
+  @media (max-width: 800px) {
+    .md-container {
+      padding: 10px 1em;
+    }
   }
 
   @media (max-width: 1333px) and (min-width: 800px) {

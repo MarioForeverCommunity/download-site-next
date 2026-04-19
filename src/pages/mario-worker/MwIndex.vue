@@ -106,6 +106,12 @@ fetchMdUpdate().then(() => {
     margin-bottom: 0;
   }
 
+  @media (max-width: 800px) {
+    .md-container {
+      padding: 10px 1em;
+    }
+  }
+
   @media (max-width: 1333px) and (min-width: 800px) {
     .md-container {
       width: 90vw;
