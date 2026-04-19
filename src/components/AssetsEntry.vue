@@ -258,6 +258,7 @@ function getAssetResourceURLs(assetEntry) {
               <ClipboardButton
                 v-if="entry.code"
                 :code="entry.code"
+                :link="entry.url"
                 :lan="lan"
               ></ClipboardButton>
             </template>

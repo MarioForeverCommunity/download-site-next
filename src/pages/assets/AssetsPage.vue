@@ -428,6 +428,7 @@ const { floatingStyles } = useFloating(reference, floating,
             <ClipboardButton
               v-if="entry.code"
               :code="entry.code"
+              :link="entry.url"
               :lan="lan"
             ></ClipboardButton>
           </template>

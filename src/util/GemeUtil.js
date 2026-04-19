@@ -79,6 +79,17 @@ function getDownloadInvalidFlag(item, link) {
   return false;
 }
 
+function getYsepanNoCodeFlag(item, link) {
+  if (!item || !item.currentVer || !link) {
+    return false;
+  }
+  const current = item.currentVer;
+  if (link === current.download_url && current.download_url_ysepan_no_code) {
+    return true;
+  }
+  return false;
+}
+
 function getDownloadCodeForLink(item, link) {
   if (!item || !item.currentVer || !link) {
     return null;
@@ -98,14 +109,19 @@ export function getDownloadInfo(item, link, lan) {
     return null;
   }
   const invalid = item ? getDownloadInvalidFlag(item, link) : false;
+  const ysepanNoCode = item ? getYsepanNoCodeFlag(item, link) : false;
   const code = item ? getDownloadCodeForLink(item, link) : null;
+  const ysepanPattern = /(ysepan|ys168|ysupan)\.com/;
   for (const entry of downloadName) {
     if (link.match(entry.domain)) {
       let desc = lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
       if (entry.show_code == true && code) {
-        desc += ` (${lan == "zh" ? "提取码: " : "Code: "}${code})`;
+        const isYsepan = ysepanPattern.test(link);
+        desc += ` (${lan == "zh" ? (isYsepan ? "密码: " : "提取码: ") : "Code: "}${code})`;
       }
-      if (invalid) {
+      if (ysepanNoCode) {
+        desc += ` (${lan == "zh" ? "暂无法访问" : "Temporarily Unavailable"})`;
+      } else if (invalid) {
         desc += ` (${lan == "zh" ? "已失效" : "Invalid"})`;
       }
       const result = {
@@ -384,4 +400,10 @@ function removeExtensions(fileName) {
 function getBaseNameWithoutVolume(displayName) {
   const volumePattern = /\s*\(分卷 \d+\)$/;
   return displayName.replace(volumePattern, '');
+}
+
+export function getCodeLabel(link, lan) {
+  const ysepanPattern = /(ysepan|ys168|ysupan)\.com/;
+  const isYsepan = link && ysepanPattern.test(link);
+  return lan == "zh" ? (isYsepan ? "密码" : "提取码") : "Code";
 }

@@ -13,7 +13,7 @@ import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo } from "../../util/GemeUtil.js"
+import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GemeUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
 import Tooltip from '../../components/ToolTip.vue';
@@ -913,6 +913,7 @@ function hasDataDownload(game) {
             <ClipboardButton
               v-if="entry.code"
               :code="entry.code"
+              :link="entry.url"
               :lan="lan"
             ></ClipboardButton>
           </template>
@@ -931,12 +932,13 @@ function hasDataDownload(game) {
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
               <template v-if="selectedDownload.currentVer.data_code">
-                ({{ lan == 'en' ? `Code: ${selectedDownload.currentVer.data_code}` : `提取码: ${selectedDownload.currentVer.data_code}` }})
+                ({{ getCodeLabel(selectedDownload.currentVer.data_download_url, lan) }}: {{ selectedDownload.currentVer.data_code }})
               </template>
             </a>
             <ClipboardButton
               v-if="selectedDownload.currentVer.data_code"
               :code="selectedDownload.currentVer.data_code"
+              :link="selectedDownload.currentVer.data_download_url"
               :lan="lan"
               style="margin-left:2px;"
             />

@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import ClipboardIcon from './icons/IconClipboard.vue';
+import { getCodeLabel } from '../util/GemeUtil.js';
 
 const props = defineProps({
   code: {
@@ -11,6 +12,10 @@ const props = defineProps({
   lan: {
     type: String,
     required: true
+  },
+  link: {
+    type: String,
+    default: null
   }
 });
 
@@ -29,7 +34,8 @@ const clipboardCopyText = computed(() => {
   if (displayCopied.value) {
     return isEn ? "Copied!" : "已复制！";
   } else {
-    return isEn ? "Copy code to Clipboard" : "复制提取码到剪贴板";
+    const codeLabel = getCodeLabel(props.link, props.lan);
+    return isEn ? `Copy code to Clipboard` : `复制${codeLabel}到剪贴板`;
   }
 });
 

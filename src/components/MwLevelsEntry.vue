@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vue"
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
-import { getDownloadCode, getDownloadDesc, getDownloadInfo, getDownloadLink, getName, getVideoDesc } from "../util/GemeUtil.js"
+import { getDownloadCode, getDownloadDesc, getDownloadInfo, getDownloadLink, getName, getVideoDesc, getCodeLabel } from "../util/GemeUtil.js"
 import { getGameImageSync, getShowcaseImagesSync, loadImageIndex } from "../util/ImageUtil.js"
 import { ensureMwList, findMwByName } from "../util/useMwList.js"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
@@ -292,7 +292,12 @@ const getGameImage = () => {
               :href="getDownloadLink(selectedDownload, lan)"
               target="_blank"
             >{{ getDownloadDesc(selectedDownload, lan) }}</a>
-            <ClipboardButton v-if="getDownloadCode(selectedDownload, lan)" :code="getDownloadCode(selectedDownload, lan)" :lan="lan"></ClipboardButton>
+            <ClipboardButton
+              v-if="getDownloadCode(selectedDownload, lan)"
+              :code="getDownloadCode(selectedDownload, lan)"
+              :link="getDownloadLink(selectedDownload, lan)"
+              :lan="lan"
+            ></ClipboardButton>
           </div>
           <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
             <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} Data` : `下载 ${getName(selectedDownload, lan)} 数据包` }}</span>
@@ -311,12 +316,13 @@ const getGameImage = () => {
               <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
                 {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
                 <template v-if="selectedDownload.currentVer.data_code">
-                  ({{ lan == 'en' ? `Code: ${selectedDownload.currentVer.data_code}` : `提取码: ${selectedDownload.currentVer.data_code}` }})
+                  ({{ getCodeLabel(selectedDownload.currentVer.data_download_url, lan) }}: {{ selectedDownload.currentVer.data_code }})
                 </template>
               </a>
               <ClipboardButton
                 v-if="selectedDownload.currentVer.data_code"
                 :code="selectedDownload.currentVer.data_code"
+                :link="selectedDownload.currentVer.data_download_url"
                 :lan="lan"
                 style="margin-left:2px;"
               />

@@ -10,7 +10,7 @@ import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-games-zh.md';
-import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo } from "../../util/GemeUtil.js"
+import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel } from "../../util/GemeUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
@@ -142,6 +142,15 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       entry.currentVer.download_url_invalid = true
     } else {
       entry.currentVer.download_url_invalid = false
+    }
+
+    // 检查永硕E盘链接是否无提取码（暂无法访问）
+    if (!entry.currentVer.download_url_invalid && entry.currentVer.download_url) {
+      const ysepanPattern = /(ysepan|ys168|ysupan)\.com/;
+      if (ysepanPattern.test(entry.currentVer.download_url) && !entry.code) {
+        entry.currentVer.download_url_invalid = true;
+        entry.currentVer.download_url_ysepan_no_code = true;
+      }
     }
 
     games.value.push(entry);
@@ -465,7 +474,7 @@ const { floatingStyles } = useFloating(reference, floating,
           {{ lan == "en" ? "Year" : "年份" }}
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-            <option v-for="year in Array.from({length: new Date().getFullYear()-2010+1}, (_, i) => i + 2010).reverse()" :key="year">{{ year }}</option>
+            <option v-for="year in Array.from({length: new Date().getFullYear()-2006+1}, (_, i) => i + 2006).reverse()" :key="year">{{ year }}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
@@ -602,7 +611,12 @@ const { floatingStyles } = useFloating(reference, floating,
             :href="getDownloadLink(selectedDownload, 'zh')"
             target="_blank"
           >{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
-          <ClipboardButton v-if="getDownloadCode(selectedDownload, 'zh')" :code="getDownloadCode(selectedDownload, 'zh')" lan="zh"></ClipboardButton>
+          <ClipboardButton
+            v-if="getDownloadCode(selectedDownload, 'zh')"
+            :code="getDownloadCode(selectedDownload, 'zh')"
+            :link="getDownloadLink(selectedDownload, 'zh')"
+            lan="zh"
+          ></ClipboardButton>
         </div>
         <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
           <span>下载 {{ selectedDownload.game }} 数据包</span>
@@ -621,12 +635,13 @@ const { floatingStyles } = useFloating(reference, floating,
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, 'zh').desc }}
               <template v-if="selectedDownload.currentVer.data_code">
-                (提取码: {{ selectedDownload.currentVer.data_code }})
+                ({{ getCodeLabel(selectedDownload.currentVer.data_download_url, 'zh') }}: {{ selectedDownload.currentVer.data_code }})
               </template>
             </a>
             <ClipboardButton
               v-if="selectedDownload.currentVer.data_code"
               :code="selectedDownload.currentVer.data_code"
+              :link="selectedDownload.currentVer.data_download_url"
               lan="zh"
               style="margin-left:2px;"
             />
