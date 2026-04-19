@@ -1,4 +1,21 @@
 ---
+- game: "Mario Forever - PHANTOM'SMAGORIA: Battle of the Twins"
+  game_alt:
+  author: Phantom Sapphire
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-04-19
+  source_url: https://www.youtube.com/watch?v=6e2iib5e4MA
+  source_url_alt:
+  download_url: https://drive.google.com/file/d/1RBHABY7pRrHo5IIoIqppA0zuXlqlndAM/
+  code:
+  download_url_alt:
+  file_name: MF - PHANTOM'SMAGORIA.rar
+  file_url:
 - game: Mario Forever 2022 XTGZ
   game_alt:
   author: 清华哥
