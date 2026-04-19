@@ -313,6 +313,7 @@ body.dark .nav-dropdown-item.active {
   display: block;
   padding: 8px 12px;
   color: rgb(85, 85, 85);
+  white-space: nowrap;
 }
 .mobile-menu-item:hover {
   background: #f3f4f6;
@@ -362,6 +363,7 @@ body.dark .nav-dropdown-item.active {
   display: block;
   padding: 10px 16px;
   color: rgb(85, 85, 85);
+  white-space: nowrap;
 }
 .nav-dropdown-item:last-child {
   border-bottom: none;
