@@ -11,9 +11,11 @@
 
 如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）等问题，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。贴吧链接均为旧贴，请勿挖坟。
 
-游玩作品前需要先下载 Super Mario Worker Project。SMWP 下载页包含所有可用的版本，建议下载作品对应的版本；作品列表中的 MW 版本号旁也有对应版本的下载按钮。不要忘记下载并解压音乐包！
+游玩作品前需要先下载 Mario Worker，建议游玩时下载作品对应的版本。作品列表中的 MW 版本号旁有对应版本的下载按钮；Super Mario Worker Project 下载页包含所有可用的 SMWP 版本。对于 SMWP v1.4+ 以及有替换音乐的作品，不要忘记下载并正确放置/替换音乐包！
 
 <a class="md-button" target="_blank" href="https://smwp.marioforever.net/downloads/">Super Mario Worker Project 下载页</a><a class="md-button" target="_blank" href="https://file.marioforever.net/smwp/Data.7z">最新版 Super Mario Worker Project 音乐包</a>
+
+本页面现已收录一部分较为知名的 Mario Worker 4.4 (1.1) 作品，更多本页面暂未收录的 Mario Worker 4.4 作品请到 [社区资源站](https://file.marioforever.net/Mario%20Worker/Mario%20Worker%204.4%20%E4%BD%9C%E5%93%81) 下载，或下载下面的作品合集。
 
 为方便玩家，特别整理提供 Mario Worker 作品合集，合集内包含大部分不附带 Mario Worker 本体的作品。
 
