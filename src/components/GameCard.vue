@@ -1,6 +1,6 @@
 <script setup>
 import { parseVer } from "../util/Misc.js";
-import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon } from "./icons/Icons.js";
+import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon, HomeIcon } from "./icons/Icons.js";
 import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL, hasDownloadableContent } from "../util/GameUtil.js";
 import Tooltip from "./ToolTip.vue";
 
@@ -84,6 +84,19 @@ const getRepoUrl = () => {
     return props.game.currentVer.repo;
   }
   return props.game.repo;
+};
+
+const getHomepageUrl = () => {
+  if (props.game.category === 'mw') {
+    return props.game.homepage || null;
+  }
+  if (props.game.category === 'mf') {
+    if (props.lan === 'zh') {
+      return props.game.homepage_zh || props.game.homepage_en || null;
+    }
+    return props.game.homepage_en || props.game.homepage_zh || null;
+  }
+  return null;
 };
 
 </script>
@@ -240,13 +253,11 @@ const getRepoUrl = () => {
           <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>相关视频</template>
         </Tooltip>
-        <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
-          <a :href="getSourceLink(game, lan)" target="_blank">
-            <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+        <Tooltip v-if="getHomepageUrl()">
+          <a :href="getHomepageUrl()" target="_blank">
+            <HomeIcon class="icon button"></HomeIcon>
           </a>
-          <template #popper>
-            {{ lan == "en" ? "YouTube" : "发布视频" }}
-          </template>
+          <template #popper>{{ lan == 'en' ? 'Homepage' : '主页' }}</template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
           <a :href="getSourceLink(game, lan)" target="_blank" @click="handleSourceClick">
@@ -257,6 +268,14 @@ const getRepoUrl = () => {
               {{ lan == "en" ? "Source" : "发布页" }}
               <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
             </span>
+          </template>
+        </Tooltip>
+        <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
+          <a :href="getSourceLink(game, lan)" target="_blank">
+            <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+          </a>
+          <template #popper>
+            {{ lan == "en" ? "YouTube" : "发布视频" }}
           </template>
         </Tooltip>
         <Tooltip v-if="getRepoUrl()">

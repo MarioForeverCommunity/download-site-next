@@ -1,6 +1,6 @@
 <script setup>
 import { parseVer } from "../util/Misc.js";
-import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon, GithubIcon } from "./icons/Icons.js";
+import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon, GithubIcon, HomeIcon } from "./icons/Icons.js";
 import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent } from "../util/GameUtil.js";
 import Tooltip from "./ToolTip.vue";
 
@@ -80,6 +80,19 @@ const getRepoUrl = () => {
     return props.game.currentVer.repo;
   }
   return props.game.repo;
+};
+
+const getHomepageUrl = () => {
+  if (props.game.category === 'mw') {
+    return props.game.homepage || null;
+  }
+  if (props.game.category === 'mf') {
+    if (props.lan === 'zh') {
+      return props.game.homepage_zh || props.game.homepage_en || null;
+    }
+    return props.game.homepage_en || props.game.homepage_zh || null;
+  }
+  return null;
 };
 
 </script>
@@ -213,6 +226,12 @@ const getRepoUrl = () => {
           <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
           <template #popper>相关视频</template>
         </Tooltip>
+        <Tooltip v-if="getHomepageUrl()">
+          <a :href="getHomepageUrl()" target="_blank" class="inline-block">
+            <HomeIcon class="icon button"></HomeIcon>
+          </a>
+          <template #popper>{{ lan == 'en' ? 'Homepage' : '主页' }}</template>
+        </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
           <a
             :href="getSourceLink(game, lan)"
@@ -262,6 +281,7 @@ const getRepoUrl = () => {
 <style scoped>
   .game-buttons div {
     float: right;
+    text-align: right;
   }
 
   .icon {
