@@ -107,7 +107,7 @@
   image: Random.webp
   source_url: https://www.marioforever.net/thread-3773-1-1.html
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v1
   date: 2026-01-05
   file_name: Random Level Part Template_v1.zip
@@ -129,7 +129,7 @@
   image:
   source_url: https://www.marioforever.net/thread-3614-1-1.html
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v1
   date: 2025-07-03
   file_name: Level-pass Sav Sys by Green_^_sweeT_v1.mfa
@@ -140,7 +140,7 @@
   image: starcoin.webp
   source_url: https://www.marioforever.net/thread-3608-1-1.html
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v1
   date: 2025-06-21
   file_name: Star-coin System by Green_^_sweeT_v1.mfa
@@ -165,7 +165,7 @@
   image:
   source_url: https://www.marioforever.net/thread-3008-1-1.html
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v3
   date: 2025-05-08
   file_name: UE Mar Mario_v3.mfa
@@ -178,6 +178,7 @@
   download_url: https://wwyc.lanzouq.com/b00uyd6gef
   code: cm3l
   download_url_alt: http://greensweet.ysepan.com/
+  code_alt: GT233
   ver: v20250413
   date: 2025-04-13
   file_name: "[GT+]MFGG Collections_v20250413.rar"
@@ -214,7 +215,7 @@
   image: enemies.webp
   source_url: https://www.marioforever.net/thread-1911-1-1.html
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v0.9.31
   date: 2025-01-30
   file_name: 绿糖的自制或高仿品种拓展包 v0.9.31.7z
@@ -308,7 +309,7 @@
   image: CharginChuck.webp
   source_url: https://www.marioforever.net/thread-3074-1-1.html
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v1
   date: 2024-01-30
   file_name: SMW运动员 for RE_v1.mfa
@@ -319,7 +320,7 @@
   image:
   source_url:
   download_url: http://greensweet.ysepan.com/
-  code:
+  code: GT233
   ver: v3
   date: 2024-01-25
   file_name: Ninji Run Race Mod_v3（需要Fini和QuickHash object）.mfa
@@ -793,8 +794,8 @@
   description:
   image: rainbow.webp
   source_url: https://tieba.baidu.com/p/5067765973
-  download_url:
-  code:
+  download_url: http://mfresources.ysepan.com/
+  code: marioforever
   path: RE系引擎及其二次开发
   variants:
   - 含开始页:
@@ -871,8 +872,8 @@
   description:
   image:
   source_url:
-  download_url:
-  code:
+  download_url: http://mfresources.ysepan.com/
+  code: marioforever
   path: 原版系引擎
   ver:
   date: 2017-04-02

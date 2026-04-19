@@ -139,7 +139,7 @@
   date: 2025-09-14
   source_url: https://www.marioforever.net/thread-3705-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   has_bundled_smwp: true
   file_name: NW Demo Levels.zip
   file_url:
@@ -1565,7 +1565,7 @@
   date: 2022-03-06
   source_url: https://www.marioforever.net/thread-1942-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   file_name: "%5bNmnmoooh Works%5d NsRoad V0_98FixFix.rar"
   file_url:
 - game: 拖延症
@@ -2340,7 +2340,7 @@
   date: 2021-01-14
   source_url: https://www.marioforever.net/thread-801-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   has_bundled_smwp: true
   file_name: Nmnmoooh World Chapter 1（试玩版）.rar
   file_url:
@@ -2942,7 +2942,7 @@
   date: 2020-01-20
   source_url: https://www.marioforever.net/thread-297-1-1.html
   download_url: http://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   file_name: "%5bNmnmoooh Works%5d Unfolding Album.rar"
   file_url:
 - game: MW大冲关III
@@ -3177,7 +3177,7 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Brand-new_Experience_Maps
   source_url: https://tieba.baidu.com/p/5859039784
   download_url: http://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   file_name: Brand New Experience V2.5.rar
   file_url:
 - game: The Road of Mario's
@@ -3393,4 +3393,17 @@
   download_url: http://marioworker.ysepan.com/
   code:
   file_name: "%5bBluesun0505 Works%5dTimes Album.rar"
+  file_url:
+- game: Legend World V1.1
+  alias:
+  - LG
+  - 传说世界
+  author: nmnmoooh
+  smwp_ver: MW 4.4
+  date: 2013-08-21
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Legend_World
+  source_url: https://tieba.baidu.com/p/2545132093
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: "%5bNmnmoooh Works%5d Legend World V1.1.zip"
   file_url:

@@ -14,7 +14,7 @@ body:
       description: "请选择该作品应收录的列表 / Choose which list this submission belongs to."
       options:
         - "Mario Forever (public/data/list-mf.yaml)"
-        - "Super Mario Worker Project (public/data/list-mw.yaml)"
+        - "Mario Worker (public/data/list-mw.yaml)"
     validations:
       required: true
   - type: input

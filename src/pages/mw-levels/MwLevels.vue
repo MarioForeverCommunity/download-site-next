@@ -33,7 +33,10 @@ const games = ref([]);
 
 function generateResourceUrl(entry, fname) {
   const author = Array.isArray(entry.author) ? "合作作品" : entry.author;
-  return `https://file.marioforever.net/Mario Worker/${author == "合作作品" ? "合作作品" : `吧友作品/${author}`}/${fname}`
+  if (entry.smwp_ver === "MW 4.4") {
+    return `https://file.marioforever.net/Mario Worker/Mario Worker 4.4 作品/${author}/${fname}`;
+  }
+  return `https://file.marioforever.net/Mario Worker/${author == "合作作品" ? "合作作品" : `吧友作品/${author}`}/${fname}`;
 }
 
 // Fetch game list.
@@ -77,6 +80,8 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
     if (entry.smwp_ver && !entry.has_bundled_smwp) {
       if (SmwpVersions[entry.smwp_ver]) {
         entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
+      } else if (entry.smwp_ver === "MW 4.4") {
+        entry.smwp_url = "https://file.marioforever.net/Mario%20Worker/%E5%8E%9F%E7%89%88%20Mario%20Worker%20%E4%B8%8B%E8%BD%BD";
       }
     }
 
@@ -282,13 +287,15 @@ const smwpVersionOptions = computed(() => {
     // 该主版本下所有完整版本，倒序
     const subVers = allVers.filter(v => v.startsWith(main+".")).sort(semverDesc);
     if (subVers.length > 1) {
-      options.push({ label: main+".x", value: main });
-      options.push(...subVers.map(v => ({ label: v, value: v })));
+      options.push({ label: `SMWP v${main}.x`, value: main, bold: true });
+      options.push(...subVers.map(v => ({ label: `SMWP v${v}`, value: v })));
     } else if (subVers.length === 1) {
       // 只有一个次版本时，该次版本加粗
-      options.push({ label: subVers[0], value: subVers[0], bold: true });
+      options.push({ label: `SMWP v${subVers[0]}`, value: subVers[0], bold: true });
     }
   }
+  // 添加 MW 4.4 选项（加粗），置于最后
+  options.push({ label: "MW 4.4", value: "MW 4.4", bold: true });
   return options;
 });
 const selectedSmwpVer = ref("");
@@ -314,6 +321,10 @@ const filteredGames = computed(() => {
       if (selectedSmwpVer.value === "unspecified") {
         // 选中"未指定"时，筛出没有指定SMWP版本的作品
         return !a.smwp_ver;
+      }
+      if (selectedSmwpVer.value === "MW 4.4") {
+        // MW 4.4 特殊处理
+        return a.smwp_ver === "MW 4.4";
       }
       if (!a.smwp_ver) return false;
       const ver = a.smwp_ver.replace(/^v/, "");
@@ -458,14 +469,14 @@ const { floatingStyles } = useFloating(reference, floating,
           </select>&nbsp;
         </div>
         <div class="inline-block">
-          SMWP 版本
+          MW 版本
           <select v-model="selectedSmwpVer">
             <option value="" style="font-weight:bold">全部</option>
             <option
               v-for="opt in smwpVersionOptions"
               :key="opt.value"
               :value="opt.value"
-              :style="(opt.label.endsWith('.x') || opt.bold) ? 'font-weight:bold' : ''"
+              :style="opt.bold ? 'font-weight:bold' : ''"
             >{{ opt.label }}</option>
             <option value="unspecified" style="font-weight:bold">未指定</option>
           </select>&nbsp;

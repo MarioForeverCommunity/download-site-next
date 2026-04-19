@@ -181,13 +181,12 @@ const getRepoUrl = () => {
       </div>
     </div>
     <div class="game-version" v-if="game.category == 'mw'">
-      {{ game.smwp_ver }}
-      <Tooltip v-if="game.smwp_url && !game.has_bundled_smwp">
+      {{ game.smwp_ver }}<Tooltip v-if="game.smwp_url && !game.has_bundled_smwp">
         <a :href="game.smwp_url" target="_blank">
           <DownloadIcon class="icon button"></DownloadIcon>
         </a>
         <template #popper>
-          下载 SMWP {{ game.smwp_ver }}
+          下载 {{ game.smwp_ver === 'MW 4.4' ? 'MW 4.4' : `SMWP ${game.smwp_ver}` }}
         </template>
       </Tooltip>
     </div>

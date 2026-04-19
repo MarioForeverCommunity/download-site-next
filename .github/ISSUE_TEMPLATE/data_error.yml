@@ -13,7 +13,7 @@ body:
       label: "涉及的列表 / Target list"
       options:
         - "Mario Forever (public/data/list-mf.yaml)"
-        - "Super Mario Worker Project (public/data/list-mw.yaml)"
+        - "Mario Worker (public/data/list-mw.yaml)"
     validations:
       required: true
   - type: input

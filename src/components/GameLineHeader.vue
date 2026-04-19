@@ -52,7 +52,7 @@ function getSortOption() {
       {{ lan == "en" ? "Version" : "版本" }}
     </div>
     <div class="game-version header" v-if="category == 'mw'">
-      SMWP 版本
+      MW 版本
     </div>
     <div class="game-date header">
       {{ lan == "en" ? "Date" : "发布日期" }}

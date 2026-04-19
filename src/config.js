@@ -122,9 +122,9 @@ export const navTop = [
   {
     "id" : "mw-levels",
     "link" : "./mw-levels.html",
-    "option" : "SMWP 作品汇总",
-    "option_alt" : "SMWP Level Downloads",
-    "title" : "Super Mario Worker Project 关卡作品汇总",
+    "option" : "MW 作品汇总",
+    "option_alt" : "MW Level Downloads",
+    "title" : "Mario Worker 关卡作品汇总",
     "show_en" : false
   },
   {
@@ -218,7 +218,8 @@ export const downloadName = [
   {
     "domain" : /(ysepan|ys168|ysupan)\.com/,
     "desc_zh" : "永硕 E 盘",
-    "desc_en" : "YSEpan"
+    "desc_en" : "YSEpan",
+    "show_code" : true
   },
   {
     "domain" : "pan.quark.cn",
@@ -266,7 +267,8 @@ export const downloadName = [
   {
     "domain" : "wsw233.com",
     "desc_zh" : "秘帆文件站",
-    "desc_en" : "WSW Zone"
+    "desc_en" : "WSW Zone",
+    "show_code" : true
   },
   {
     "domain" : "easypaste.org",

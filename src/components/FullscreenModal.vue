@@ -728,11 +728,11 @@ const nextImage = () => {
           </h1>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
-            <span class="smwp-label">{{ 'SMWP 版本' }}:</span>
+            <span class="smwp-label">MW 版本:</span>
             <span v-if="smwpUrl" class="smwp-value">
-              <a :href="smwpUrl" target="_blank">{{ smwpVersion }}</a>
+              <a :href="smwpUrl" target="_blank">{{ smwpVersion === 'MW 4.4' ? 'MW 4.4' : `SMWP ${smwpVersion}` }}</a>
             </span>
-            <span v-else class="smwp-value">{{ smwpVersion }} (作品自带)</span>
+            <span v-else class="smwp-value">{{ smwpVersion === 'MW 4.4' ? 'MW 4.4' : `SMWP ${smwpVersion}` }} (作品自带)</span>
           </div>
 
           <div v-if="!isMwLevel" class="title-image-container">
