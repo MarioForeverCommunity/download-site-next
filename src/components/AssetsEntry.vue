@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vu
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { parseVer } from "../util/Misc.js"
-import { getName, getDownloadEntries } from "../util/GemeUtil.js"
+import { getName, getDownloadEntries } from "../util/GameUtil.js"
 import { ensureAssetsList, findAssetsByName, resolveVariantRaw } from "../util/useAssetsList.js"
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"

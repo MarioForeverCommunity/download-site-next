@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import ClipboardIcon from './icons/IconClipboard.vue';
-import { getCodeLabel } from '../util/GemeUtil.js';
+import { getCodeLabel } from '../util/GameUtil.js';
 
 const props = defineProps({
   code: {

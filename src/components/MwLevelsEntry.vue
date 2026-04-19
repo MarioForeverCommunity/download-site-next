@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vue"
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
-import { getDownloadCode, getDownloadDesc, getDownloadInfo, getDownloadLink, getName, getVideoDesc, getCodeLabel } from "../util/GemeUtil.js"
+import { getDownloadCode, getDownloadDesc, getDownloadInfo, getDownloadLink, getName, getVideoDesc, getCodeLabel } from "../util/GameUtil.js"
 import { getGameImageSync, getShowcaseImagesSync, loadImageIndex } from "../util/ImageUtil.js"
 import { ensureMwList, findMwByName } from "../util/useMwList.js"
 import { Carousel, Slide, Navigation } from "vue3-carousel"

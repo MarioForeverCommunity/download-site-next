@@ -1,7 +1,7 @@
 <script setup>
 import { parseVer } from "../util/Misc.js";
 import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, InfoIcon, ImageIcon, GithubIcon } from "./icons/Icons.js";
-import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent } from "../util/GemeUtil.js";
+import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent } from "../util/GameUtil.js";
 import Tooltip from "./ToolTip.vue";
 
 const props = defineProps({

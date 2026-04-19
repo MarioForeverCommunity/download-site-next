@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
-import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/GemeUtil.js';
+import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/GameUtil.js';
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync } from '../util/ImageUtil.js';
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';

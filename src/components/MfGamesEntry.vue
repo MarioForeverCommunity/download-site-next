@@ -3,7 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent 
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { parseVer } from "../util/Misc.js"
-import { getDataResourceURL, getDownloadEntries, getDownloadInfo, getName, getResourceURL, getVideoDesc, getCodeLabel } from "../util/GemeUtil.js"
+import { getDataResourceURL, getDownloadEntries, getDownloadInfo, getName, getResourceURL, getVideoDesc, getCodeLabel } from "../util/GameUtil.js"
 import { getGameImageSync, getShowcaseImagesSync, loadImageIndex } from "../util/ImageUtil.js"
 import { ensureMfList, findMfByName, resolveVerRaw } from "../util/useMfList.js"
 import { Carousel, Slide, Navigation } from "vue3-carousel"

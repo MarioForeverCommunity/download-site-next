@@ -1,6 +1,6 @@
 <script setup>
 import { LinkIcon, DownloadIcon, UserIcon, GithubIcon } from "./icons/Icons.js";
-import { getName, getAuthorList, hasDownloadableContent } from "../util/GemeUtil.js";
+import { getName, getAuthorList, hasDownloadableContent } from "../util/GameUtil.js";
 import { sourceName } from "../config.js";
 import Tooltip from "./ToolTip.vue";
 

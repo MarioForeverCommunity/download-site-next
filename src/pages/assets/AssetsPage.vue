@@ -5,9 +5,9 @@ import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
 import SiteFooter from '../../components/SiteFooter.vue';
 import AssetCard from '../../components/AssetCard.vue';
-import { getName, getDownloadEntries } from "../../util/GemeUtil.js";
+import { getName, getDownloadEntries } from "../../util/GameUtil.js";
 import { FilterIcon } from "../../components/icons/Icons.js";
-import { filterList, getStrFromList } from "../../util/GemeUtil.js"
+import { filterList, getStrFromList } from "../../util/GameUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';

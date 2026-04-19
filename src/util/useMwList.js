@@ -1,5 +1,5 @@
 import { readList } from "./ReadList.js"
-import { processFileNamesWithVolumes } from "./GemeUtil.js"
+import { processFileNamesWithVolumes } from "./GameUtil.js"
 
 let mwListPromise = null
 let mwListCache = null
