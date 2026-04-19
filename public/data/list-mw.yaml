@@ -1244,7 +1244,9 @@
   code:
   file_name: 是男人就下20层.7z
   file_url:
-- game: New the Four Seasons World V3
+- game: New the Four Seasons World V3.2
+  alias:
+  - 新四季世界
   author: '123568024'
   smwp_ver: v1.7.9
   date: 2022-10-11
@@ -1321,7 +1323,7 @@
   date: 2022-06-26
   source_url: https://www.marioforever.net/thread-2121-1-1.html
   download_url: http://fahlee5.ysepan.com/
-  code:
+  code: hxsj
   file_name: Fahlee-Fantastic World 2：Golden Journey(v1.1).zip
   file_url:
 - game: 最终告别
@@ -1874,7 +1876,7 @@
   date: 2021-10-24
   source_url: https://www.marioforever.net/thread-1708-1-1.html
   download_url: http://fahlee5.ysepan.com/
-  code:
+  code: hxsj
   file_name: Fahlee-Super Detective Bros(beta2).smwp
   file_url:
 - game: Mario Worker Outbreak
@@ -1959,7 +1961,7 @@
   date: 2021-08-28
   source_url: https://www.marioforever.net/thread-1492-1-1.html
   download_url: http://mlaalm.ysepan.com/
-  code:
+  code: mlaalm
   file_name: "%5bMlaalm%5dFantastic Journey v1.41.zip"
   file_url:
 - game: 创意关卡小合集
@@ -2003,13 +2005,14 @@
   code:
   file_name: Find The Rainbow/
   file_url:
-- game: Fahlee Album 6
+- game: Fahlee-Album6修复版
   author: Fahlee
+  description: 2021 修复版
   smwp_ver: v1.7.7
   date: 2021-06-27
   source_url: https://www.marioforever.net/thread-1242-1-1.html
   download_url: http://fahlee5.ysepan.com/
-  code:
+  code: hxsj
   file_name: Fahlee-Album6(20210627fix).zip
   file_url:
 - game: Terraria
@@ -2829,6 +2832,8 @@
   file_name: xfx的小型作品（2020及之后）/Artistic Conception.smwp
   file_url:
 - game: New The Four Seasons World V2.0 Beta
+  alias:
+  - 新四季世界
   author: '123568024'
   smwp_ver: v1.6.5
   date: 2020-02-19
@@ -3168,9 +3173,13 @@
   code:
   file_name: xfx的小型作品（2019及之前）/顶特率：成为马里奥.smwp
   file_url:
-- game: Brand New Experience Maps 全集
+- game: Brand New Experience V2.5
   alias:
   - BNEM
+  - GM
+  - General Maps
+  - EM
+  - Extra Maps
   author: nmnmoooh
   smwp_ver: v1.5.2
   date: 2018-08-28
@@ -3231,8 +3240,8 @@
   smwp_ver: v1.4.1
   date: 2018-06-15
   source_url: https://tieba.baidu.com/p/5747880576
-  download_url: https://fahlee5.ysepan.com/
-  code:
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
   file_name: Fahlee-Dream of Lunatic Seasons(Beta).zip
   file_url:
 - game: 空中逃亡
@@ -3265,6 +3274,16 @@
   has_bgm: true
   file_name: Welcome back to Marioworker Bar.rar
   file_url:
+- game: Red Crystal Prelude
+  author: 我懂你不懂的lz
+  description:
+  smwp_ver: MW 4.4
+  date: 2018-05-01
+  source_url: https://tieba.baidu.com/p/5677491053
+  download_url: http://ds--mario.ysepan.com/
+  code:
+  file_name: "[lz Works]Red Crystal Prelude.rar"
+  file_url:
 - game: 雪地一日+沙漠中心
   author: s小s飞s侠s
   smwp_ver: v1.4.1
@@ -3289,6 +3308,56 @@
   file_name:
   - First Awakening Of Love V2.0十二世界全.rar
   - First Awakening Of Love V2.0存档全.rar
+  file_url:
+- game: Fahlee-Album5
+  author: Fahlee
+  description: 2018 重置版
+  smwp_ver: MW 4.4
+  date: 2018-02-09
+  source_url:
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
+  file_name: Fahlee-Album5.rar
+  file_url:
+- game: Fahlee-Album4
+  author: Fahlee
+  description: 2018 重置版
+  smwp_ver: MW 4.4
+  date: 2018-02-05
+  source_url:
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
+  file_name: Fahlee-Album4.rar
+  file_url:
+- game: Fahlee-Album3
+  author: Fahlee
+  description: 2018 重置版
+  smwp_ver: MW 4.4
+  date: 2018-02-01
+  source_url:
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
+  file_name: Fahlee-Album3.rar
+  file_url:
+- game: Fahlee-Album2
+  author: Fahlee
+  description: 2018 重置版
+  smwp_ver: MW 4.4
+  date: 2018-01-29
+  source_url:
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
+  file_name: Fahlee-Album2.rar
+  file_url:
+- game: Fahlee-Album1
+  author: Fahlee
+  description: 2018 重置版
+  smwp_ver: MW 4.4
+  date: 2018-01-26
+  source_url:
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
+  file_name: Fahlee-Album1.rar
   file_url:
 - game: 冰与火
   author: s小s飞s侠s
@@ -3317,7 +3386,7 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Wonderland_Secret_Worlds
   source_url: https://tieba.baidu.com/p/5258983737
   download_url: http://bluesun0505.ysepan.com/
-  code: r0wn
+  code:
   file_name: "%5bBluesun0505 Works%5d Wonderland Secret Worlds 半集.rar"
   file_url:
 - game: Wonderful World
@@ -3337,6 +3406,19 @@
   download_url: https://pan.baidu.com/s/1kVwtUg3
   code:
   file_name: "%5bMldsdt Works%5dMldsdt Map 经典版.rar"
+  file_url:
+- game: General Maps V2.0
+  alias:
+  - GM
+  - BNEM
+  author: nmnmoooh
+  smwp_ver: MW 4.4
+  date: 2017-08-01
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Brand-new_Experience_Maps
+  source_url:
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: "%5bNmnmoooh Works%5d General Maps V2.0.rar"
   file_url:
 - game: First Awakening of Love 八世界体验版
   alias:
@@ -3376,6 +3458,16 @@
   code:
   file_name: 关卡接力/
   file_url:
+- game: Solitary Moon Chapter
+  author: 我懂你不懂的lz
+  description:
+  smwp_ver: MW 4.4
+  date: 2017-02-08
+  source_url: https://tieba.baidu.com/p/4971521582
+  download_url: http://ds--mario.ysepan.com/
+  code:
+  file_name: "[lz Works]Solitary Moon Chapter.rar"
+  file_url:
 - game: The Desolate Ruin
   author: 无视我233
   smwp_ver: v0.2.4
@@ -3394,6 +3486,136 @@
   code:
   file_name: "%5bBluesun0505 Works%5dTimes Album.rar"
   file_url:
+- game: The Adventures on the Islands V3.3
+  alias:
+  - TAOI
+  author: '123568024'
+  smwp_ver: MW 4.4
+  date: 2016-07-08
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/The_Adventure_On_The_Islands
+  source_url: https://tieba.baidu.com/p/4358100922
+  download_url: http://123568023.ysepan.com/
+  code:
+  file_name: The Adventures on the Islands V3.3.rar
+  file_url:
+- game: Fahlee-Album6-Don't be regretful
+  author: Fahlee
+  description: 初版
+  smwp_ver: MW 4.4
+  date: 2016-06-16
+  source_url: https://tieba.baidu.com/p/4613426208
+  download_url:
+  code:
+  file_name: Fahlee-Album6-Don t be regretful.rar
+  file_url:
+- game: Fahlee-Worlds Album5
+  author: Fahlee
+  description: 2016 更新版，非初版
+  smwp_ver: MW 4.4
+  date: 2016-02-04
+  source_url: https://tieba.baidu.com/p/4339452758
+  download_url:
+  code:
+  file_name: Fahlee-Worlds Album5.rar
+  file_url:
+- game: Bowser's Empire
+  alias:
+  - BE
+  author: 大幽灵王
+  smwp_ver: MW 4.4
+  date: 2015-07-13
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Bowser%27s_Empire
+  source_url: https://tieba.baidu.com/p/3891761364
+  download_url: https://pan.baidu.com/s/1hq4dJQO
+  code:
+  file_name: "[AI]Bowser s Empire.zip"
+  file_url:
+- game: Last Flag
+  author: Fahlee
+  description: 旧作品整合发布，包含原版Fahlee-Album 5的作品和2014.8.14后发布的一些单关作品
+  smwp_ver: MW 4.4
+  date: 2015-06-22
+  source_url: https://tieba.baidu.com/p/3842330082
+  download_url:
+  code:
+  file_name: Fahlee-Last Flag.rar
+  file_url:
+- game: New The Four Seasons World V1.0
+  alias:
+  - 新四季世界
+  author: '123568024'
+  smwp_ver: MW 4.4
+  date: 2015-01-03
+  source_url: https://tieba.baidu.com/p/3505880300
+  download_url: http://123568023.ysepan.com/
+  code:
+  file_name: "[123568024 works]New The Four Seasons World V1.0.rar"
+  file_url:
+- game: Wonderland
+  alias:
+  - WL
+  - 仙境
+  author: 蓝太阳
+  smwp_ver: MW 4.4
+  date: 2014-09-05
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Wonderland
+  source_url: https://tieba.baidu.com/p/3277271294
+  download_url: http://bluesun0505.ysepan.com/
+  code:
+  file_name: "[Bluesun0505 Works] Wonderland.zip"
+  file_url:
+- game: General Maps V1.0
+  alias:
+  - GM
+  - BNEM
+  author: nmnmoooh
+  smwp_ver: MW 4.4
+  date: 2014-08-12
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Brand-new_Experience_Maps
+  source_url: https://tieba.baidu.com/p/3226561304
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: "%5bNmnmoooh Works%5d General Maps V1.0.rar"
+  file_url:
+- game: Mario Forever 复刻V1.0
+  author: 马里奥奥里马
+  smwp_ver: MW 4.4
+  date: 2014-06-27
+  source_url: https://tieba.baidu.com/p/3131188150
+  download_url: http://mlaalm.ysepan.com/
+  code: mlaalm
+  file_name: Mario Forever复刻 V1.0.rar
+  file_url:
+- game: My Soul - The End
+  author: Fahlee
+  smwp_ver: MW 4.4
+  date: 2014-03-09
+  source_url: https://tieba.baidu.com/p/2909755009
+  download_url:
+  code:
+  file_name: Fahlee-My Soul-The End.rar
+  file_url:
+- game: Fantastic Journey 残卷
+  author: 马里奥奥里马
+  smwp_ver: MW 4.4
+  date: 2014-03-08
+  source_url: https://tieba.baidu.com/p/2908586736
+  download_url: http://mlaalm.ysepan.com/
+  code: mlaalm
+  file_name:
+  - Fantastic Journey残卷.zip
+  - Fantastic journey.zip
+  file_url:
+- game: Old World
+  author: Fahlee
+  description: 旧作品整合发布，包含旧版Fahlee World 5.5中的关卡和Fahlee旧作Perfect World
+  smwp_ver: MW 4.4
+  date: 2014-02-01
+  source_url: https://tieba.baidu.com/p/2843448906
+  download_url: http://fahlee5.ysepan.com/
+  code: hxsj
+  file_name: Fahlee-Old World.rar
+  file_url:
 - game: Legend World V1.1
   alias:
   - LG
@@ -3406,4 +3628,164 @@
   download_url: http://nmnmoooh888.ysepan.com/
   code: namimw
   file_name: "%5bNmnmoooh Works%5d Legend World V1.1.zip"
+  file_url:
+- game: Black Cloud Album 1 第二弹
+  author: '123568024'
+  smwp_ver: MW 4.4
+  date: 2013-04-20
+  source_url: https://tieba.baidu.com/p/2281046000
+  download_url: http://123568023.ysepan.com/
+  code:
+  file_name: Black Cloud Album 1 第二弹.rar
+  file_url:
+- game: Bluesun's world
+  author: 蓝太阳
+  smwp_ver: MW 4.4
+  date: 2013-01-25
+  source_url: https://tieba.baidu.com/p/2120155715
+  download_url: http://bluesun0505.ysepan.com/
+  code:
+  file_name: Bluesuns world.zip
+  file_url:
+- game: 123568024 World V1.5
+  author: '123568024'
+  smwp_ver: MW 4.4
+  date: 2012-10-20
+  source_url: https://tieba.baidu.com/p/1932688418
+  download_url: http://123568023.ysepan.com/
+  code:
+  file_name: 123568024 World V1.5.rar
+  file_url:
+- game: Black Cloud Album 1 第一弹
+  author: '123568024'
+  smwp_ver: MW 4.4
+  date: 2012-10-02
+  source_url: https://tieba.baidu.com/p/1896113825
+  download_url: http://123568023.ysepan.com/
+  code:
+  file_name: Black Cloud Album 1 第一弹.rar
+  file_url:
+- game: Mysterious Land World V1.1
+  author: '123568024'
+  smwp_ver: MW 4.4
+  date: 2012-09-19
+  source_url: https://tieba.baidu.com/p/1862458690
+  download_url: http://123568023.ysepan.com/
+  code:
+  file_name: Mysterious Land World V1.1.rar
+  file_url:
+- game: Dream Worlds
+  alias:
+  - DW
+  - 梦想世界
+  author: nmnmoooh
+  smwp_ver: MW 4.4
+  date: 2012-08-31
+  source_url: https://tieba.baidu.com/p/1832237165
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: "%5bNMNMOOOH%5dDream Worlds V1.1.rar"
+  file_url:
+- game: Nmnmoooh Album 2 第二弹
+  author: nmnmoooh
+  description:
+  smwp_ver: MW 4.4
+  date: 2012-07-25
+  source_url: https://tieba.baidu.com/p/1749581442
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: Nmnmoooh Album2 第二弹（修正版）.rar
+  file_url:
+- game: Nmnmoooh Album 2 第一弹
+  author: nmnmoooh
+  description:
+  smwp_ver: MW 4.4
+  date: 2012-07-15
+  source_url: https://tieba.baidu.com/p/1727482387
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: Nmnmoooh Album 2 第一弹.rar
+  file_url:
+- game: Fahlee-Worlds Album4
+  author: Fahlee
+  description: 2012 更新版，非初版
+  smwp_ver: MW 4.4
+  date: 2012-04-02
+  source_url: https://tieba.baidu.com/p/1489998481
+  download_url:
+  code:
+  file_name: Fahlee-Worlds Album4.rar
+  file_url:
+- game: Fahlee-Worlds Album3
+  author: Fahlee
+  description: 2012 更新版，非初版
+  smwp_ver: MW 4.4
+  date: 2012-03-25
+  source_url: https://tieba.baidu.com/p/1475603557
+  download_url:
+  code:
+  file_name: Fahlee-Worlds Album3.rar
+  file_url:
+- game: Fahlee-Worlds Album2
+  author: Fahlee
+  description: 2012 更新版，非初版
+  smwp_ver: MW 4.4
+  date: 2012-03-18
+  source_url: https://tieba.baidu.com/p/1462582044
+  download_url:
+  code:
+  file_name: Fahlee-Worlds Album2.rar
+  file_url:
+- game: Fahlee-Worlds Album1
+  author: Fahlee
+  description: 2012 更新版，非初版
+  smwp_ver: MW 4.4
+  date: 2012-03-11
+  source_url: https://tieba.baidu.com/p/1451267521
+  download_url:
+  code:
+  file_name: Fahlee-Worlds Album1.rar
+  file_url:
+- game: N's Land
+  alias:
+  - 纳秘之陆
+  - NL
+  author: nmnmoooh
+  description: 日期为最初发布时间；此版本为 2013-02-16 更新版
+  smwp_ver: MW 4.4
+  date: 2012-02-07
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/N%27s_Land
+  source_url: https://tieba.baidu.com/p/1403970054
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: "%5bNmnmoooh Works%5d N Land.rar"
+  file_url:
+- game: Fahlee World
+  author: Fahlee
+  description: 2012 更新版，非初版
+  smwp_ver: MW 4.4
+  date: 2012-01-23
+  source_url: https://tieba.baidu.com/p/1385967789
+  download_url:
+  code:
+  file_name: Fahlee-Fahlee World.rar
+  file_url:
+- game: Nmnmoooh Difficult Album
+  author: nmnmoooh
+  description:
+  smwp_ver: MW 4.4
+  date: 2011-09-10
+  source_url: https://tieba.baidu.com/p/1206325299
+  download_url: http://nmnmoooh888.ysepan.com/
+  code: namimw
+  file_name: nmnmoooh difficult album.rar
+  file_url:
+- game: Nmnmoooh Dream 2010 beta
+  author: nmnmoooh
+  smwp_ver: MW 4.4
+  date: 2011-02-05
+  source_url: https://tieba.baidu.com/p/993192895
+  download_url_alt:
+  code:
+  file_name: Nmnmoooh Dream 2010 beta.rar
   file_url:
