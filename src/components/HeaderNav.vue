@@ -330,7 +330,7 @@ body.dark .nav-dropdown-item.active {
   border: none;
   color: #24292e;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 6px 0;
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -488,10 +488,9 @@ body.dark .nav-dropdown-item.active {
     vertical-align: middle;
   }
 
-  @media (max-width: 799px) {
+  @media (max-width: 800px) {
     .logo {
       margin: 0;
-      margin-left: 12px;
       display: inline-block;
       vertical-align: middle;
       height: 60px;
@@ -500,7 +499,7 @@ body.dark .nav-dropdown-item.active {
       height: 64px;
     }
     .header-container {
-      padding: 0px 12px;
+      padding: 0 1em;
     }
     .nav-row {
       display: flex;
@@ -511,7 +510,9 @@ body.dark .nav-dropdown-item.active {
 
     .topbar-inner {
       margin: 0 auto;
-      width: 90%;
+      width: 100%;
+      padding: 0 1em;
+      box-sizing: border-box;
     }
   }
 
