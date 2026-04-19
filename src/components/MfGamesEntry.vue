@@ -542,6 +542,14 @@ function hasDataDownload(download) {
   box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+  .mf-entry {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+}
+
 @media (min-width: 900px) {
   .mf-entry:has(+ .mf-entry),
   .mf-entry + .mf-entry {

@@ -392,6 +392,14 @@ const getGameImage = () => {
   box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+  .mw-entry {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+}
+
 @media (min-width: 900px) {
   .mw-entry:has(+ .mw-entry),
   .mw-entry + .mw-entry {

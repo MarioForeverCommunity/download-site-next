@@ -312,6 +312,14 @@ function getAssetResourceURLs(assetEntry) {
   box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+  .assets-entry {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+}
+
 @media (min-width: 900px) {
   .assets-entry:has(+ .assets-entry),
   .assets-entry + .assets-entry {
