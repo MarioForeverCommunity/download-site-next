@@ -3432,6 +3432,16 @@
   code:
   file_name: First awakening of love体验版 170801.rar
   file_url:
+- game: SAVE ZQH全集修正版V1.2
+  author: zqh——123
+  description: World 8使用SMWP v0.2版本
+  smwp_ver: MW 4.4
+  date: 2017-07-05
+  source_url: https://tieba.baidu.com/p/5186590287
+  download_url: http://zqh--123.ysepan.com/
+  code:
+  file_name: SAVE ZQH全集修正版V1.2.rar
+  file_url:
 - game: Mario Worker Journey World A~G
   author: 878yfy
   smwp_ver: v0.2.4
@@ -3540,6 +3550,15 @@
   code:
   file_name: Fahlee-Last Flag.rar
   file_url:
+- game: Bzshzpm Album 1
+  author: bzshzpm
+  smwp_ver: MW 4.4
+  date: 2015-05-01
+  source_url: https://tieba.baidu.com/p/3735466369
+  download_url: https://bzshzpm.ysepan.com/
+  code:
+  file_name: Bzshzpm Album 1.rar
+  file_url:
 - game: New The Four Seasons World V1.0
   alias:
   - 新四季世界
@@ -3564,6 +3583,15 @@
   code:
   file_name: "[Bluesun0505 Works] Wonderland.zip"
   file_url:
+- game: The Seasons 3
+  author: zqh——123
+  smwp_ver: MW 4.4
+  date: 2014-08-19
+  source_url: https://tieba.baidu.com/p/3242033248
+  download_url: http://zqh--123.ysepan.com/
+  code:
+  file_name: The Seasons 3.rar
+  file_url:
 - game: General Maps V1.0
   alias:
   - GM
@@ -3576,6 +3604,15 @@
   download_url: http://nmnmoooh888.ysepan.com/
   code: namimw
   file_name: "%5bNmnmoooh Works%5d General Maps V1.0.rar"
+  file_url:
+- game: Night Mare 全集
+  author: 玛丽的死对头
+  smwp_ver: MW 4.4
+  date: 2014-08-04
+  source_url: https://tieba.baidu.com/p/3207815182
+  download_url: http://mldsdt.ysepan.com/
+  code:
+  file_name: "[mldsdt world]Night Mare 全集.rar"
   file_url:
 - game: Mario Forever 复刻V1.0
   author: 马里奥奥里马
@@ -3616,6 +3653,15 @@
   code: hxsj
   file_name: Fahlee-Old World.rar
   file_url:
+- game: The Seasons 2
+  author: zqh——123
+  smwp_ver: MW 4.4
+  date: 2013-08-24
+  source_url: https://tieba.baidu.com/p/2552292603
+  download_url: http://zqh--123.ysepan.com/
+  code:
+  file_name: The Seasons 2.rar
+  file_url:
 - game: Legend World V1.1
   alias:
   - LG
@@ -3628,6 +3674,35 @@
   download_url: http://nmnmoooh888.ysepan.com/
   code: namimw
   file_name: "%5bNmnmoooh Works%5d Legend World V1.1.zip"
+  file_url:
+- game: Pitfall World
+  author: zqh——123
+  smwp_ver: MW 4.4
+  date: 2013-08-13
+  source_url: https://tieba.baidu.com/p/2529221207
+  download_url: http://zqh--123.ysepan.com/
+  code:
+  file_name: Zqh Pitfall World.rar
+  file_url:
+- game: The ghost track fans World 全集 V1.0
+  author: 玛丽的死对头
+  smwp_ver: MW 4.4
+  date: 2013-07-08
+  source_url: https://tieba.baidu.com/p/2443879657
+  download_url: http://mldsdt.ysepan.com/
+  code:
+  file_name: The ghost track fans World 全集 V1.0.rar
+  file_url:
+- game: The Seasons
+  author: zqh——123
+  smwp_ver: MW 4.4
+  date: 2013-04-21
+  source_url: https://tieba.baidu.com/p/2283061288
+  download_url: http://zqh--123.ysepan.com/
+  code:
+  file_name:
+  - The Seasons.rar
+  - 四季各月份.rar
   file_url:
 - game: Black Cloud Album 1 第二弹
   author: '123568024'
@@ -3674,6 +3749,15 @@
   code:
   file_name: Mysterious Land World V1.1.rar
   file_url:
+- game: Old World
+  author: 毒蘑菇vn
+  smwp_ver: MW 4.4
+  date: 2012-09-08
+  source_url: https://tieba.baidu.com/p/1848883465
+  download_url: http://dmgvn.ysepan.com/
+  code:
+  file_name: old world.rar
+  file_url:
 - game: Dream Worlds
   alias:
   - DW
@@ -3685,6 +3769,17 @@
   download_url: http://nmnmoooh888.ysepan.com/
   code: namimw
   file_name: "%5bNMNMOOOH%5dDream Worlds V1.1.rar"
+  file_url:
+- game: Wonder Story Worlds
+  alias:
+  - 奇幻的故事
+  author: lahztc1
+  smwp_ver: MW 4.4
+  date: 2012-08-10
+  source_url: https://tieba.baidu.com/p/1782765494
+  download_url: ~http://lahztc1.ysepan.com/
+  code:
+  file_name: Wonder Story Worlds.rar
   file_url:
 - game: Nmnmoooh Album 2 第二弹
   author: nmnmoooh
@@ -3705,6 +3800,24 @@
   download_url: http://nmnmoooh888.ysepan.com/
   code: namimw
   file_name: Nmnmoooh Album 2 第一弹.rar
+  file_url:
+- game: New Adventure Worlds
+  author: lahztc1
+  smwp_ver: MW 4.4
+  date: 2012-05-09
+  source_url: https://tieba.baidu.com/p/1579624182
+  download_url: ~http://lahztc1.ysepan.com/
+  code:
+  file_name: New Adventure Worlds.rar
+  file_url:
+- game: A new journey
+  author: 玛丽的死对头
+  smwp_ver: MW 4.4
+  date: 2012-05-06
+  source_url: https://tieba.baidu.com/p/1574546779
+  download_url: http://mldsdt.ysepan.com/
+  code:
+  file_name: A new journey.rar
   file_url:
 - game: Fahlee-Worlds Album4
   author: Fahlee
@@ -3746,6 +3859,33 @@
   code:
   file_name: Fahlee-Worlds Album1.rar
   file_url:
+- game: Mario Forever 3
+  author: 毒蘑菇vn
+  smwp_ver: MW 4.4
+  date: 2012-03-09
+  source_url: https://tieba.baidu.com/p/1448243221
+  download_url: http://dmgvn.ysepan.com/
+  code:
+  file_name: mario forever 3 by vn.rar
+  file_url:
+- game: shasdo Child World
+  author: shasdo
+  smwp_ver: MW 4.4
+  date: 2012-03-01
+  source_url: https://tieba.baidu.com/p/1434401396
+  download_url: ~http://mariohard.ysepan.com/
+  code:
+  file_name: shasdo Child World.rar
+  file_url:
+- game: Shasdo Creative Album
+  author: shasdo
+  smwp_ver: MW 4.4
+  date: 2012-02-26
+  source_url: https://tieba.baidu.com/p/1429766393
+  download_url: ~http://mariohard.ysepan.com/
+  code:
+  file_name: shasdo Creative Album 2.rar
+  file_url:
 - game: N's Land
   alias:
   - 纳秘之陆
@@ -3770,6 +3910,33 @@
   code:
   file_name: Fahlee-Fahlee World.rar
   file_url:
+- game: Normal Worlds
+  author: lahztc1
+  smwp_ver: MW 4.4
+  date: 2012-01-21
+  source_url: https://tieba.baidu.com/p/1382897105
+  download_url: ~http://lahztc1.ysepan.com/
+  code:
+  file_name: Normal Worlds(1~8).zip
+  file_url:
+- game: Shasdo Creative Album
+  author: shasdo
+  smwp_ver: MW 4.4
+  date: 2011-11-09
+  source_url: https://tieba.baidu.com/p/1276974560
+  download_url: ~http://mariohard.ysepan.com/
+  code:
+  file_name: Shasdo Creative Album.rar
+  file_url:
+- game: Bostoncake Crazy Album
+  author: 祝贺高考成功
+  smwp_ver: MW 4.4
+  date: 2011-10-28
+  source_url: https://tieba.baidu.com/p/1261366722
+  download_url: http://xiongyusheng.ysepan.com/
+  code:
+  file_name: Bostoncake-Crazy Album.rar
+  file_url:
 - game: Nmnmoooh Difficult Album
   author: nmnmoooh
   description:
@@ -3785,7 +3952,91 @@
   smwp_ver: MW 4.4
   date: 2011-02-05
   source_url: https://tieba.baidu.com/p/993192895
-  download_url_alt:
+  download_url:
   code:
   file_name: Nmnmoooh Dream 2010 beta.rar
+  file_url:
+- game: New The terrorist Ziyou
+  author: duanKUBOxie
+  smwp_ver: MW 4.4
+  date: 2010-05-16
+  source_url: https://archive.marioforever.net/post/772426008.html
+  download_url: ~http://duankuboxie.ysepan.com/
+  code:
+  file_name: New The terrorist Ziyou.rar
+  file_url:
+- game: 打败邓子悠（测验风波）
+  author: duanKUBOxie
+  smwp_ver: MW 4.4
+  date: 2010-03-26
+  source_url: https://tieba.baidu.com/p/736174620
+  download_url:
+  code:
+  file_name: 打败邓子悠（测验风波）.rar
+  file_url:
+- game: dd World
+  author: dd16168
+  smwp_ver: MW 4.4
+  date: 2009-10-04
+  source_url: https://archive.marioforever.net/post/651053614.html
+  download_url: ~http://dd16168.ysepan.com/
+  code:
+  file_name: World!.zip
+  file_url:
+- game: 5DWorld 3.0
+  author: '551969070'
+  smwp_ver: MW 4.4
+  date: 2009-05-31
+  source_url: https://archive.marioforever.net/post/586560014.html
+  download_url: https://551969070.ysepan.com/
+  code:
+  file_name: 5DWorld3.0.rar
+  file_url:
+- game: 5DWorld 2.5普通关全集
+  author: '551969070'
+  smwp_ver: MW 4.4
+  date: 2009-05-15
+  source_url: https://archive.marioforever.net/post/578963942.html
+  download_url: https://551969070.ysepan.com/
+  code:
+  file_name: 5DWorld2.5普通关全集.rar
+  file_url:
+- game: syzx World
+  author: syzxchulun
+  smwp_ver: MW 4.4
+  date: 2008-02-01
+  source_url: https://tieba.baidu.com/p/318013454
+  download_url:
+  code:
+  file_name: syzx World.rar
+  file_url:
+- game: iridi levels
+  description: 发布链接为转载贴；日期为最后修改时间
+  author: iridi
+  smwp_ver: MW 4.4
+  date: 2006-12-17
+  source_url: https://tieba.baidu.com/p/619079553
+  download_url: ~http://www.softendo.com/forum/download/file.php?id=2
+  code:
+  file_name: iridi levels.rar
+  file_url:
+- game: HLCrazyWorld
+  description: 日期为最初发布时间
+  author: HappyLee
+  smwp_ver: MW 4.4
+  date: 2006-12-04
+  source_url: https://tieba.baidu.com/p/152592328
+  download_url:
+  code:
+  file_name: HLCrazyWorld.rar
+  file_url:
+- game: yule526自编关卡
+  description: 日期为最初发布时间
+  author: yule526
+  smwp_ver: MW 4.4
+  date: 2006-10-24
+  source_url: https://tieba.baidu.com/p/142585074
+  download_url:
+  code:
+  file_name: yule526 Levels.zip
   file_url:
