@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn, getDisplayMode, setDisplayModeLine, setDisplayModeCard } from "../../util/Language.js";
 import SiteFooter from '../../components/SiteFooter.vue';
@@ -187,12 +187,40 @@ const selectedVideo = ref(null); // For download modal.
 const tiebaDialog = ref(null); // For tieba dialog.
 const selectedGameDetail = ref(null); // For game detail modal.
 
+// Data placement modal state and click delegation on markdown content
+const showDataPlacement = ref(false);
+const dataPlacementHtml = ref("");
+const mdContainer = ref(null);
+const mdClickHandler = (e) => {
+  const opener = e.target.closest && e.target.closest('#open-data-placement');
+  if (opener) {
+    e.preventDefault();
+    const contentEl = mdContainer.value?.querySelector?.('#smwp-data-placement');
+    if (contentEl) {
+      dataPlacementHtml.value = contentEl.innerHTML;
+      showDataPlacement.value = true;
+    }
+  }
+};
+
+onMounted(() => {
+  if (mdContainer.value) {
+    mdContainer.value.addEventListener('click', mdClickHandler);
+  }
+});
+
+onBeforeUnmount(() => {
+  if (mdContainer.value) {
+    mdContainer.value.removeEventListener('click', mdClickHandler);
+  }
+});
+
 const getGameImage = (game) => {
   return imageResolver.resolve(game);
 };
 
-watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newDownload, newVideo, newTieba, newGameDetail]) => {
-  if (newDownload || newVideo || newTieba || newGameDetail) {
+watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail, showDataPlacement], ([newDownload, newVideo, newTieba, newGameDetail, newShowDataPlacement]) => {
+  if (newDownload || newVideo || newTieba || newGameDetail || newShowDataPlacement) {
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
     disableScroll();
@@ -450,7 +478,7 @@ const { floatingStyles } = useFloating(reference, floating,
     @change-lan-en="originalLan = setLanguageEn(); "
   />
 
-  <div class="container md-container">
+  <div class="container md-container" ref="mdContainer">
     <h1>{{ titleZh }}</h1>
     <introZh />
     <p v-if="lastUpdate" class="last-update">最后更新：{{ lastUpdate }}</p>
@@ -687,6 +715,14 @@ const { floatingStyles } = useFloating(reference, floating,
     category="mw-levels"
     @close="selectedGameDetail = null"
   />
+
+  <Transition name="modal">
+    <div v-if="showDataPlacement" class="modal-bg" @click="showDataPlacement = false;">
+      <div class="modal-content" @click.stop="">
+        <div v-html="dataPlacementHtml"></div>
+      </div>
+    </div>
+  </Transition>
 
   <div
     ref="floating"
