@@ -44,7 +44,7 @@ export default defineConfig({
       input: {
         index: resolve(".", "index.html"),
         "mf-games": resolve(".", "mf-games.html"),
-        "mw-games": resolve(".", "mw-levels.html"),
+        "mw-levels": resolve(".", "mw-levels.html"),
         "assets": resolve(".", "assets.html"),
         "mario-worker": resolve(".", "mario-worker.html"),
       },

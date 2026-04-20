@@ -9,7 +9,7 @@ import GameLine from "../../components/GameLine.vue";
 import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
-import introZh from '../../markdown/mw-games-zh.md';
+import introZh from '../../markdown/mw-levels-zh.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -416,7 +416,7 @@ const fetchYamlUpdate = () => {
 };
 
 const fetchMdUpdate = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmw-games-zh.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmw-levels-zh.md&page=1&per_page=1").then((response) => {
     mdUpdateDate.value = response.data[0].commit.committer.date;
   });
 };
