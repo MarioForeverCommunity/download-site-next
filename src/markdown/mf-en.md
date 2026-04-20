@@ -87,6 +87,15 @@ There are several known mods based on the original Mario Forever.
 
 <MfGamesEntry name="Mario Forever v1.16.1 Mod" /><MfGamesEntry name="Mario Forever v4.4 Fixed Speedrun Edition" />
 
+## Download New Super Mario Forever
+New Super Mario Forever (commonly named as New Super Mario Forever 2012) is a Mario fangame developed by Softendo. It serves as the official sequel to Mario Forever and was released in 2012. The game features graphics completely different from the original Mario Forever, along with new enemies, power-ups, and worlds. The recommended version of the game is the **2012-12-29** release.
+
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/games/softendo/portable">Download New Super Mario Forever</a>
+
+There is a mod of the game available, which removes some of the frustrating elements and introduces several tweaks.
+
+<MfGamesEntry name="New Super Mario Forever 2012: Slightly-Fixed Edition" />
+
 ## Frequently Asked Questions
 **Q: Is Mario Forever safe? I've heard it contains a virus.**  
 **A:** Many people still believe that Mario Forever is some kind of "malware-infested game," but the truth is more nuanced: the game itself does **not** include any traditional virus. In certain versions, the installer comes with an Internet Explorer advertising add-on called "Mario Forever Toolbar." This add-on is unpopular and intrusive, but it is classified as adware rather than a virus.  
