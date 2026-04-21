@@ -4,7 +4,7 @@
 
 如遇到链接失效/错误、缺少想要的作品/作品信息（如作品介绍、Wiki 链接、视频链接、简写/别称）、作品资源被篡改等问题，请到 [社区反馈专帖](https://www.marioforever.net/thread-1635-1-1.html) 进行反馈。贴吧链接均为旧贴，请勿挖坟。
 
-某些国外作品的链接可能需要通过技术手段访问，本页面提供 [社区资源站](https://file.marioforever.net/Mario%20Forever/) 上的作品资源直链以方便玩家下载，且同时提供备用地址以备不时之需（**备用地址下载需登录 123 云盘账号**）。
+某些国外作品的链接可能需要通过技术手段访问，本页面提供 [社区资源站](https://file.marioforever.net/Mario%20Forever/) 上的作品资源直链以方便玩家下载，且同时提供第三方网盘备用地址以备不时之需（**备用地址下载需登录 123 云盘账号**）。
 
 <span class="inline-block"><a class="md-button" href="https://www.123684.com/s/U3vrVv-6D0f">国内作品备用下载地址 (提取码: Wj3a)</a><ClipboardButton lan="zh" code="Wj3a" /></span><span class="inline-block"><a class="md-button" href="https://www.123684.com/s/U3vrVv-yD0f">国外作品备用下载地址 (提取码: Lo5l)</a><ClipboardButton lan="zh" code="Lo5l" /></span>
 
