@@ -129,7 +129,7 @@ Mario Forever: Community Edition（简称 MF:CE）是最新的基于原版 Mario
 
 <MfGamesEntry name="Super Mario Forever Android" /><MfGamesEntry name="Mario Forever for Android" />
 
-绝大多数 Mario Forever 同人作品目前仍仅提供电脑版本。尽管如今已经出现了一些 Android 端的 Windows 模拟器（如 Winlator、盖世游戏），但由于许多作品基于 Clickteam Fusion 开发，部分作品在模拟器上可能出现画面显示故障，甚至无法运行。即使游戏能够顺利启动，其中的绝大多数也并未原生支持游戏手柄，玩家往往需要手动配置屏幕虚拟按键，操作过程较为繁琐。
+绝大多数 Mario Forever 同人作品目前仍仅提供电脑版本。尽管如今已经出现了一些 Android 端的 Windows 模拟器（如 Winlator、盖世游戏），但由于许多作品基于 Clickteam Fusion 开发，部分作品在模拟器中可能出现画面显示故障，甚至无法运行。即使游戏能够顺利启动，其中的绝大多数也并未原生支持游戏手柄，玩家往往需要手动配置屏幕虚拟按键，操作过程较为繁琐。相对而言，Mario Forever: Community Edition 在模拟器中的运行效果良好，且支持手柄，有兴趣的玩家可以自行尝试。
 
 ## 常见问题
 **Q: Mario Forever 是任天堂官方作品吗？**

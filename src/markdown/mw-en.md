@@ -100,7 +100,7 @@ SMWP saves levels in the .smwl format by default and is backward compatible with
 ## Download Mario Worker: Community Edition
 Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4's Thunder Engine, developed by Meteo Dream. It's currently in prototype stage.
 
-<a class="md-button" target="_blank" href="https://rnx.su/s/MarioWorkerCommunityEdition">Download Mario Worker: Community Edition</a><a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-worker-ce">Download Mario Worker: Community Edition (Mirror)</a><a class="md-button" target="_blank" href="https://github.com/meteo-dream/mario-worker-ce">MW: CE source repository</a>
+<a class="md-button" target="_blank" href="https://rnx.su/s/MarioWorkerCommunityEdition">Download Mario Worker: Community Edition</a><a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-worker-ce">Download Mario Worker: Community Edition (Mirror)</a><a class="md-button" target="_blank" href="https://github.com/meteo-dream/mario-worker-ce">MW:CE source repository</a>
 
 ## Screenshots
 <div class="radio-inputs">
