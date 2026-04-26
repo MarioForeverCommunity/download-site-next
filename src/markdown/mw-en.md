@@ -150,6 +150,26 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
 **Q: Is Mario Worker Remake backward compatible with MW 1.0 levels?**
 **A:** Different variants of Mario Worker are generally not compatible with one another, even if some are based on the original MW. The only notable exception is Super Mario Worker Project, which is backward compatible with MW 1.1. As a general rule, it is recommended to play levels using the same version they were created with.
 
+## Mario Worker level format index
+
+- `mfs` - Mario Worker 1.0, Mario Worker 1.1 (Scenario), Super Mario Worker Project v0.x (Scenario), Mario Worker Remake v1.2~v2.1.0.5
+- `mfl` - Mario Worker 1.1 (Level), Super Mario Worker Project v0.x (Level)
+- `mfes` - Mario Worker Remake v2.5
+- `mfel` - Mario Worker Remake v3.0
+- `mfsc` - Mario Worker Remake (Scenario)
+- `mfem` - Mario Worker Remake (Map) 
+- `smwl` - Super Mario Worker Project v1.x (Level)
+- `smws` - Super Mario Worker Project v1.x (Scenario)
+- `smwp` - Super Mario Worker Project v1.4+ (Protected Scenario)
+- `scn` / `tscn` - Mario Worker: Community Edition (Level)
+- `mwl` - Mario Worker 2 (Level)
+- `mws` - Mario Worker 2 (Scenario)
+- `mlws` - Mario Worker Android (Level)
+- `mwws` - Mario Worker Android (Scenario)
+- `cml` - Mario Constructor Master (Level)
+- `cms` - Mario Constructor Master (Scenario/Suite)
+- `cmw` - Mario Constructor Master (Map/World)
+
 <style scoped>
   .radio-inputs {
     position: relative;
