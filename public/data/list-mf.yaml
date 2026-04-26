@@ -1,4 +1,22 @@
 ---
+- game: "Mario Forever: Eternal Worlds"
+  game_alt:
+  author: MutantZR
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v1.0:
+      ver_alt:
+      date: 2026-04-26
+      source_url: https://www.youtube.com/watch?v=BUz_cYzikNk
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/c10mu9w0dcx9j8e
+      code:
+      download_url_alt:
+      file_name: Mario Forever Eternal Worlds v1.0.rar
+      file_url:
 - game: "Mario Forever - PHANTOM'SMAGORIA: Battle of the Twins"
   game_alt:
   author: Phantom Sapphire
