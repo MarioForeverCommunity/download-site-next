@@ -15165,6 +15165,24 @@
   download_url_alt:
   file_name: MF World F Remake.rar
   file_url:
+- game: Mario Forever Speedrun
+  game_alt:
+  author: TheMarioVariable
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  homepage_en: https://www.themariovariable.org/mario-forever/mario-forever-speedrun/
+  ver: v1.1
+  ver_alt:
+  date: 2019-10-06
+  source_url: https://www.youtube.com/watch?v=3M1kQmJhOp0
+  source_url_alt:
+  download_url: https://www.themariovariable.org/mario-forever/mario-forever-speedrun/
+  code:
+  download_url_alt:
+  file_name: Mario-Forever-Speedrun.rar
+  file_url:
 - game: Yo Angelo
   game_alt:
   author: 幽霊鬼yuureiki
