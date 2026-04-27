@@ -62,23 +62,23 @@
   ver:
   - Windows:
       ver_alt:
-      date: 2026-04-13
+      date: 2026-04-27
       source_url: https://www.marioforever.net/thread-3825-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp
       code: mfmp
       download_url_alt: https://www.mediafire.com/folder/hgtsobi2ofnn2/mfmp
-      file_name: mfmp_20260413.rar
+      file_name: mfmp_20260426_2.rar
       file_url:
   - Android:
       ver_alt:
-      date: 2026-04-13
+      date: 2026-04-27
       source_url: https://www.marioforever.net/thread-3825-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp
       code: mfmp
       download_url_alt: https://www.mediafire.com/folder/hgtsobi2ofnn2/mfmp
-      file_name: mfmp_20260413.apk
+      file_name: mfmp_20260426_2.apk
       file_url:
 - game: Mario's Letter
   game_alt:
