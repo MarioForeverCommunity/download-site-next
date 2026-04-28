@@ -66,7 +66,7 @@
   })
 </script>
 
-There are several official and unofficial Mario Forever editors, commonly referred to as Mario Worker.
+There are several official and unofficial Mario Forever level editors, commonly referred to as Mario Worker.
 
 <p v-if="lastUpdate" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdate }}</p>
 
