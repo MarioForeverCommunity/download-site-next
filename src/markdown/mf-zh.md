@@ -453,7 +453,7 @@ Mario Forever Block Party 是一个以马里奥元素为主的类似于“推箱
 
 Mario Forever Flash 是一款质量较高的 Flash 马里奥同人游戏。
 
-<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/Mario%20Forever%20Flash">下载 Mario Forever Flash 及相关游戏</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/swf/Mario%20Forever%20Flash">下载 Mario Forever Flash 及相关游戏</a>
 
 游戏共 4 世界 17 关，规模约为 Mario Forever 的一半。游戏手感有异于 Mario Forever，且后期难度奇高，挑战性很强，通关并非一件易事。此外还有简化版的 Mario Forever Flash Easier。
 
@@ -461,6 +461,6 @@ Mario Forever Flash 的实际作者是 Maurycy Zarzycki。除 Mario Forever Flas
 
 Mario Forever Flash 已被复刻进 <a href="#mario-forever-community-edition">Mario Forever Community Edition</a>。
 
-游玩本作需使用 <a target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/Adobe%20Flash%20Player">Adobe Flash Player</a> 或 <a target="_blank" href="https://ruffle.rs/">Ruffle</a>。
+游玩本作需使用 <a target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/swf/Adobe%20Flash%20Player">Adobe Flash Player</a> 或 <a target="_blank" href="https://ruffle.rs/">Ruffle</a>。
 
 ![Mario Forever Flash Title](/data/mf-index/Marioforeverflashtitle.webp) 
