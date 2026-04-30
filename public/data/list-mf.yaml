@@ -133,6 +133,7 @@
   - MFCE
   - MF:CE
   - oldtimes
+  - April Fools
   author: Meteo Dream
   author_alt:
   type: international
@@ -163,6 +164,8 @@
       file_url:
 - game: Supra Mayro Foreba 2025
   game_alt:
+  alias:
+  - April Fools
   author: Yoshi50Windows
   author_alt:
   type: international
@@ -1942,6 +1945,7 @@
   game_alt:
   alias:
   - NSMF2042
+  - April Fools
   author: Meteo Dream
   author_alt:
   type: international
@@ -4514,6 +4518,7 @@
   game_alt:
   alias:
   - MF2077
+  - April Fools
   author: JUE13
   author_alt:
   type: international
@@ -7046,6 +7051,7 @@
   game_alt:
   alias:
   - MF2077
+  - April Fools
   author: JUE13
   author_alt:
   type: international
@@ -10508,6 +10514,7 @@
   game_alt:
   alias:
   - MFBNS
+  - 新年
   author: Ultra Team
   author_alt:
   type: chinese
@@ -11865,6 +11872,7 @@
   game_alt:
   alias:
   - Mario Forever Cloud World
+  - April Fools
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -12684,6 +12692,8 @@
       file_url:
 - game: 'Mario Forever: Santa is missing!'
   game_alt:
+  alias:
+  - Christmas
   author: Forever Team
   author_alt:
   type: international
@@ -15864,6 +15874,8 @@
   file_url:
 - game: Mario Forever Winter
   game_alt:
+  alias:
+  - Christmas
   author: 水银龟
   author_alt: Mercury Koopa
   type: chinese
@@ -17668,6 +17680,8 @@
   file_url:
 - game: Mario Forever XMAS Edition
   game_alt:
+  alias:
+  - Christmas
   author:
   - Xykijun
   - crist1919

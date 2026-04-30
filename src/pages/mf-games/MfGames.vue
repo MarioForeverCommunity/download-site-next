@@ -361,7 +361,62 @@ const filter_option = ref({
   chinese : true,
   international : true,
   platform : "",
+  event : "",
 });
+
+const eventKeywords = {
+  "New Year": ["new year", "新年", "lunar new year", "lny"],
+  "April Fools": ["april fool", "愚人节", "fooling"],
+  "Halloween": ["halloween", "万圣节"],
+  "Christmas": ["christmas", "圣诞"]
+};
+
+function detectEventFromTexts(texts) {
+  const combinedText = texts.filter(Boolean).join(" ").toLowerCase();
+  for (const [event, keywords] of Object.entries(eventKeywords)) {
+    if (keywords.some(kw => combinedText.includes(kw))) {
+      return event;
+    }
+  }
+  return null;
+}
+
+function detectEvent(entry) {
+  const texts = [entry.game, entry.game_alt];
+  if (entry.alias) {
+    if (Array.isArray(entry.alias)) {
+      texts.push(...entry.alias);
+    } else {
+      texts.push(entry.alias);
+    }
+  }
+  return detectEventFromTexts(texts);
+}
+
+function detectEventForVersion(entry, verKey) {
+  const texts = [entry.game, entry.game_alt, verKey];
+  if (entry.alias) {
+    if (Array.isArray(entry.alias)) {
+      texts.push(...entry.alias);
+    } else {
+      texts.push(entry.alias);
+    }
+  }
+  return detectEventFromTexts(texts);
+}
+
+function detectEventIncludingVersions(entry) {
+  const baseEvent = detectEvent(entry);
+  if (baseEvent) return baseEvent;
+  if (Array.isArray(entry.ver)) {
+    for (const verRaw of entry.ver) {
+      const verKey = Object.keys(verRaw)[0];
+      const verEvent = detectEventForVersion(entry, verKey);
+      if (verEvent) return verEvent;
+    }
+  }
+  return null;
+}
 
 function detectPlatform(verKey, fileName) {
   const verLower = (verKey || "").toLowerCase();
@@ -390,6 +445,7 @@ function clearFilter() {
   filter_option.value.chinese = true;
   filter_option.value.international = true;
   filter_option.value.platform = "";
+  filter_option.value.event = "";
 }
 
 const expandAllVersions = ref(false);
@@ -417,6 +473,7 @@ const filteredGames = computed(() => {
       && ((filter_option.value.chinese && a.type == "chinese")
       || (filter_option.value.international && a.type == "international")
       || filter_option.value.force)
+      && (filter_option.value.event === "" || detectEventIncludingVersions(a) === filter_option.value.event)
   );
   if (!expandAllVersions.value) {
     return list;
@@ -470,6 +527,8 @@ const filteredGames = computed(() => {
             || filter_option.value.force;
         const platformVal = detectPlatform(verKey, verObj.file_name);
         const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
+        const eventVal = detectEventForVersion(entry, verKey);
+        const eventMatch = filter_option.value.event === "" || eventVal === filter_option.value.event;
         // 国际作品旧版file_name前缀处理
         let patchedVerRaw = { ...verRaw };
         if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
@@ -479,7 +538,7 @@ const filteredGames = computed(() => {
             patchedVerRaw = { [verKey]: newVerObj };
           }
         }
-        if (yearMatch && typeMatch && platformMatch) {
+        if (yearMatch && typeMatch && platformMatch && eventMatch) {
           return {
             ...entry,
             ver: [patchedVerRaw],
@@ -747,6 +806,16 @@ function hasDataDownload(game) {
             <option value="Linux">Linux</option>
             <option value="macOS">macOS</option>
             <option value="Android">Android</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Event" : "主题" }}
+          <select v-model="filter_option.event">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option value="New Year">{{ lan == "en" ? "New Year" : "新年" }}</option>
+            <option value="April Fools">{{ lan == "en" ? "April Fools" : "愚人节" }}</option>
+            <option value="Halloween">{{ lan == "en" ? "Halloween" : "万圣节" }}</option>
+            <option value="Christmas">{{ lan == "en" ? "Christmas" : "圣诞节" }}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
