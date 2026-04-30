@@ -1,4 +1,16 @@
 ---
+- game: 听声辨位
+  author: zqh——123
+  smwp_ver: v1.7.10
+  date: 2026-05-01
+  source_url: https://www.marioforever.net/thread-3841-1-1.html
+  download_url:
+  code:
+  has_bgm: true
+  file_name: 听声辨位.smwp
+  file_url:
+  data_file_name: 20260501-zqh-听声辨位.7z
+  data_file_url:
 - game: 20260411即兴关卡
   author: 蓝太阳
   description: 作品发布在30楼
