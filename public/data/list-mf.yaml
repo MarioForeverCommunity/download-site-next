@@ -814,7 +814,7 @@
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
       code:
       download_url_alt:
-      file_name: Mario Forever - The New Year 2026/v1.0/MFNY2026-windows-x86_64.zip
+      file_name: MFNY2026-v1.0-windows-x86_64.zip
       file_url:
   - v1.0 Linux:
       current: true
@@ -825,7 +825,7 @@
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
       code:
       download_url_alt:
-      file_name: Mario Forever - The New Year 2026/v1.0/MFNY2026-linux-x86_64.tar
+      file_name: MFNY2026-v1.0-linux-x86_64.tar
       file_url:
   - v0.5 Windows:
       ver_alt:
@@ -835,7 +835,7 @@
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
       code:
       download_url_alt:
-      file_name: Mario Forever - The New Year 2026/v0.5/MFNY2026-windows-x86.zip
+      file_name: MFNY2026-v0.5-windows-x86.zip
       file_url:
   - v0.5 Linux:
       ver_alt:
@@ -845,7 +845,7 @@
       download_url: https://1drv.ms/f/c/d100bbc430894770/IgC1ay5p0-TMSJ3Sjkvzw2aHAYXA0ma4KD5VYSB1axtifgk?e=uh4Vp6
       code:
       download_url_alt:
-      file_name: Mario Forever - The New Year 2026/v0.5/MFNY2026-linux-x86_64.tar
+      file_name: MFNY2026-v0.5-linux-x86_64.tar
       file_url:
 - game: Mario Forever Lost Map X
   game_alt:
