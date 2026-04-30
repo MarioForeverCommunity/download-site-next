@@ -360,7 +360,26 @@ const filter_option = ref({
   year : "",
   chinese : true,
   international : true,
+  platform : "",
 });
+
+function detectPlatform(verKey, fileName) {
+  const verLower = (verKey || "").toLowerCase();
+  const fileLower = (fileName || "").toLowerCase();
+  if (verLower.includes("linux") || fileLower.includes("linux") ||
+      fileLower.endsWith(".tar.xz") || fileLower.endsWith(".tar.gz") || fileLower.endsWith(".tgz")) {
+    return "Linux";
+  }
+  if (verLower.includes("macos") || fileLower.includes("macos") ||
+      fileLower.endsWith(".dmg")) {
+    return "macOS";
+  }
+  if (verLower.includes("android") || fileLower.includes("android") ||
+      fileLower.endsWith(".apk")) {
+    return "Android";
+  }
+  return "Windows";
+}
 
 function clearName() {
   filter_option.value.name = "";
@@ -370,10 +389,16 @@ function clearFilter() {
   filter_option.value.year = "";
   filter_option.value.chinese = true;
   filter_option.value.international = true;
-  // expandAllVersions.value = false;
+  filter_option.value.platform = "";
 }
 
 const expandAllVersions = ref(false);
+
+watch(expandAllVersions, (newVal) => {
+  if (!newVal) {
+    filter_option.value.platform = "";
+  }
+});
 
 const filteredGames = computed(() => {
   const list = games.value.filter((a) =>
@@ -443,7 +468,9 @@ const filteredGames = computed(() => {
         const typeMatch = (filter_option.value.chinese && typeVal == "chinese")
             || (filter_option.value.international && typeVal == "international")
             || filter_option.value.force;
-          // 国际作品旧版file_name前缀处理
+        const platformVal = detectPlatform(verKey, verObj.file_name);
+        const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
+        // 国际作品旧版file_name前缀处理
         let patchedVerRaw = { ...verRaw };
         if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
           if (!verObj.file_name.startsWith("old-versions/") && !verObj.file_name.toLowerCase().endsWith('.apk')) {
@@ -452,7 +479,7 @@ const filteredGames = computed(() => {
             patchedVerRaw = { [verKey]: newVerObj };
           }
         }
-        if (yearMatch && typeMatch) {
+        if (yearMatch && typeMatch && platformMatch) {
           return {
             ...entry,
             ver: [patchedVerRaw],
@@ -710,6 +737,16 @@ function hasDataDownload(game) {
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
             <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()" :key="year">{{ year }}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block" v-if="expandAllVersions">
+          {{ lan == "en" ? "Platform" : "平台" }}
+          <select v-model="filter_option.platform">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option value="Windows">Windows</option>
+            <option value="Linux">Linux</option>
+            <option value="macOS">macOS</option>
+            <option value="Android">Android</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
