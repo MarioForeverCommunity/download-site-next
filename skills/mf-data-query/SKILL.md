@@ -1,0 +1,431 @@
+---
+name: "mf-data-query"
+description: "Query Mario Forever YAML data files for game/level info (author, download links, wiki, resource site). Invoke when user asks about MF games, MW levels, assets, or original MF versions."
+---
+
+# Mario Forever / Mario Worker Data Query Skill
+
+This skill enables AI agents to read and interpret the YAML data files in `public/data/` to answer user queries about Mario Forever games, Mario Worker levels, assets, and original MF versions.
+
+## When to Invoke
+
+Invoke this skill when the user asks about:
+- A specific Mario Forever game or fangame (e.g., "Mario Forever Eternal Worlds 的下载链接是什么？")
+- A Mario Worker level (e.g., "zqh——123 有哪些作品？")
+- Author information (e.g., "谁是 ƒresh★LAKE？他做了什么？")
+- Download links, source links, wiki links, or resource site links
+- Asset/engine information (e.g., "有哪些 MF 引擎？")
+- Original Mario Forever version history
+- A work abbreviation or alias (e.g., "BW 是什么作品？", "奇美拉5 对应哪个关卡？")
+- Any query that requires looking up data from the YAML files
+
+## Data Files
+
+All data files are located at `public/data/`:
+
+| File | Content | Page |
+|------|---------|------|
+| `list-mf.yaml` | Mario Forever fangames (Chinese & international) | MF 作品汇总 |
+| `list-mw.yaml` | Mario Worker level works | MW 作品汇总 |
+| `list-original-mf.yaml` | Original Mario Forever versions | MF 资源导航 |
+| `list-assets.yaml` | Mario Forever creation assets & engines | 创作资源汇总 |
+
+## YAML Data Structures
+
+### list-mf.yaml (MF Fangames)
+
+Each entry represents one fangame:
+
+```yaml
+- game: "游戏名称"                    # Chinese name (required)
+  game_alt: "English Name"            # English name (optional)
+  alias:                              # Alternative names for search (optional)
+  - 别名1
+  - 别名2
+  author: 作者名                       # Can be string or array for collabs
+  author_alt: English Author          # English author name (optional)
+  author_alias: AuthorFolderName      # Folder name on resource site (optional, for international)
+  type: chinese | international       # Game origin (required)
+  wiki_zh_url: https://...            # Chinese wiki link (optional)
+  wiki_en_url: https://...            # English wiki link (optional)
+  video_zh:                           # Chinese video links (optional)
+  - "演示视频": https://www.bilibili.com/video/...
+  video_en:                           # English video links (optional)
+  - "Trailer": https://www.youtube.com/watch?v=...
+  repo: https://github.com/...        # Source repository (optional)
+
+  # === Single version format ===
+  ver: v1.0                           # Version string
+  ver_alt: Version 1.0                # English version string (optional)
+  date: 2026-01-01                    # Release date (YYYY-MM-DD)
+  source_url: https://...             # Source/publish post URL
+  source_url_alt: https://...         # English source URL (optional)
+  download_url: https://...           # Primary download URL
+  download_url_alt: https://...       # Alternative (English) download URL (optional)
+  code: abc123                        # Extraction code (optional)
+  code_alt: xyz789                    # Alt extraction code (optional)
+  file_name: game.zip                 # File name on resource site (optional)
+  file_url: https://...               # Direct resource site URL (optional)
+  data_download_url: https://...      # Data pack download URL (optional)
+  data_file_name: data.zip            # Data pack file name (optional)
+  data_code: def456                   # Data pack extraction code (optional)
+
+  # === Multi-version format ===
+  ver:                                # Array of version objects
+  - "版本名":
+      ver_alt: Version Name
+      date: 2026-01-01
+      source_url: https://...
+      download_url: https://...
+      code: abc
+      file_name: game_v1.zip
+      current: true                   # Mark as current version (optional)
+      repacker: 重打包者名             # Repack author (optional)
+  - "另一版本":
+      ver_alt: Another Version
+      date: 2025-06-01
+      source_url: https://...
+      download_url: https://...
+      file_name: game_v2.zip
+```
+
+**Key rules for list-mf.yaml:**
+- If `ver` is a string (or null), the entry uses the single-version flat format
+- If `ver` is an array, each element is a one-key object mapping version name to version data
+- The first version in the array is treated as the current version
+- International games with `file_name` get auto-generated resource site URLs
+- Chinese games use date-based resource site paths; international games use author-based paths
+- Prefix `~` before a URL marks it as invalid (e.g., `~https://dead-link.com`)
+
+### list-mw.yaml (MW Levels)
+
+Each entry represents one Mario Worker level:
+
+```yaml
+- game: "关卡名称"                    # Level name (required)
+  alias:                              # Alternative names (optional)
+  - 别名
+  author: 作者名                       # Can be string or array for collabs
+  author_alias: AuthorFolderName      # Folder name alias (optional)
+  description: 描述信息               # Description (optional)
+  smwp_ver: v1.7.12                   # Required SMWP version (required)
+  date: 2026-01-01                    # Release date (required)
+  source_url: https://...             # Publish post URL (optional)
+  download_url: https://...           # External download URL (optional)
+  code: abc123                        # Extraction code (optional)
+  has_bgm: true                       # Whether level has BGM (optional)
+  has_bundled_smwp: true              # Whether SMWP is bundled (optional)
+  file_name: level.smwl               # File name on resource site (optional)
+  file_url: https://...               # Direct resource site URL (optional)
+  data_download_url: https://...      # Data pack download URL (optional)
+  data_code: def456                   # Data pack extraction code (optional)
+  data_file_name: data.zip            # Data pack file name (optional)
+  data_file_url: https://...          # Data pack direct URL (optional)
+```
+
+**Key rules for list-mw.yaml:**
+- `file_name` can be a string or array (for multi-file levels)
+- Resource site URLs are auto-generated from `file_name` using author and SMWP version
+- `smwp_ver` determines which SMWP version the level requires
+
+### list-original-mf.yaml (Original MF Versions)
+
+Each entry represents one original Mario Forever version:
+
+```yaml
+- ver: v4.4                           # Version string
+  date: 2009-07-08                    # Release date
+  rating: ★★★★★                       # Quality rating
+  installer: Mario Forever 4.4.exe    # Installer file name (optional)
+  portable: Mario Forever 4.4.7z      # Portable file name (optional)
+  toolbar: true                       # Whether toolbar is bundled (optional)
+  nsmf: true                          # Is New Super Mario Forever (optional)
+```
+
+Resource site URLs are generated based on file type and language, see the "Resource Site URL Generation Rules" section below.
+
+### list-assets.yaml (Assets & Engines)
+
+Each entry represents one asset or engine:
+
+```yaml
+- name: "资源名称"                    # Asset name (required)
+  alias:                              # Alternative names (optional)
+  - 别名
+  author: 作者名                       # Author (optional)
+  type: addon | mwtool | engine | ... # Asset type (required)
+  description: 描述                   # Description (optional)
+  image: image.webp                   # Image file name (optional)
+  source_url: https://...             # Source URL (optional)
+  download_url: https://...           # Download URL (optional)
+  code: abc                           # Extraction code (optional)
+  ver:                                # Version string or variants array
+  date: 2026-01-01                    # Release date
+  file_name: asset.zip                # File name (optional)
+  path: Folder/Name                   # Resource site path (optional)
+  variants:                           # Multiple variants (optional)
+  - "Variant Name":
+      ver: "1.0"
+      date: 2026-01-01
+      file_name: variant.zip
+```
+
+## Resource Site URL Generation Rules
+
+The resource site is at `https://file.marioforever.net/`. URLs are auto-generated from `file_name`:
+
+### MF Fangames (list-mf.yaml)
+
+| Condition | Chinese URL | English URL |
+|-----------|-------------|-------------|
+| APK file | `…/Mario Forever/安卓游戏/{author}/{file_name}` | `…/mobile-fangames/{author}/{file_name}` |
+| Repacked | `…/Mario Forever/重打包作品/{file_name}` | `…/repackaged-fangames/{file_name}` |
+| Chinese game | `…/Mario Forever/国内作品/{year}/{file_name}` | `…/chinese-fangames/{year}/{file_name}` |
+| International game | `…/Mario Forever/国外作品/{author}/{file_name}` | `…/international-fangames/{author}/{file_name}` |
+
+- `{author}`: Use `author_alias` if present and type is international; otherwise use first author
+- `{year}`: Extracted from the version's `date` field
+
+### MW Levels (list-mw.yaml)
+
+| Condition | URL |
+|-----------|-----|
+| MW 4.4 level | `…/Mario Worker/Mario Worker 4.4 作品/{author}/{file_name}` |
+| Collab (array author) | `…/Mario Worker/合作作品/{file_name}` |
+| Normal level | `…/Mario Worker/吧友作品/{author}/{file_name}` |
+
+- `file_name` can be an array; each element generates a separate URL
+- Array file names with volume patterns (`.7z.001`, `.rar.002`, etc.) are split-volume archives
+
+### Original MF (list-original-mf.yaml)
+
+URLs differ by language and file type. If the entry has `nsmf: true`, use the NSMF installer path instead.
+
+| Type | Chinese URL | English URL |
+|------|-------------|-------------|
+| Installer (normal) | `https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/{installer}` | `https://file.marioforever.net/mario-forever/games/original-mf/installer/{installer}` |
+| Installer (NSMF) | `https://file.marioforever.net/Mario%20Forever/New%20Super%20Mario%20Forever%20%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/{installer}` | `https://file.marioforever.net/mario-forever/games/softendo/installer/{installer}` |
+| Portable | `https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/{portable}` | `https://file.marioforever.net/mario-forever/games/original-mf/portable/{portable}` |
+
+Additionally, a backup download address is available for all original MF versions:
+- 备用地址: https://www.123684.com/s/U3vrVv-VD0f (提取码: MAat)
+
+### Assets (list-assets.yaml)
+
+URLs are generated based on the `type` field. For `engine` type, the `path` field provides a subfolder.
+
+| Type | URL |
+|------|-----|
+| `effect` | `https://file.marioforever.net/Mario Forever/引擎/CTF特效/{file_name}` |
+| `addon` | `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/{file_name}` |
+| `engine` (with `path`) | `https://file.marioforever.net/Mario Forever/引擎/{path}/{file_name}` |
+| `engine` (without `path`) | `https://file.marioforever.net/Mario Forever/引擎/{file_name}` |
+| `sprite` | `https://file.marioforever.net/Mario Forever/游戏素材/{file_name}` |
+| `tool` | `https://file.marioforever.net/Mario Forever/游戏工具/{file_name}` |
+| `mwtool` | `https://file.marioforever.net/Mario Worker/辅助工具/{file_name}` |
+
+- `file_name` should be URL-encoded when constructing the URL
+- `file_name` can be an array; each element generates a separate resource site link
+
+## Download Link Description Rules
+
+When presenting download links, identify the hosting platform:
+
+| Domain Pattern | Chinese Name | English Name | Shows Code |
+|----------------|-------------|--------------|------------|
+| `file.marioforever.net` | 社区资源站 | file.marioforever.net | No |
+| `pan.baidu.com` / `yun.baidu.com` | 百度网盘 | Baidu Netdisk | Yes |
+| `lanzou*.com` | 蓝奏云 | Lanzou | Yes |
+| `ysepan.com` / `ys168.com` / `ysupan.com` | 永硕 E 盘 | YSEpan | Yes |
+| `pan.quark.cn` | 夸克网盘 | Quark | Yes |
+| `mediafire.com` | - | MediaFire | No |
+| `mega.nz` | - | MEGA | No |
+| `drive.google.com` | - | Google Drive | No |
+| `github.com` | - | GitHub | No |
+| `123pan.com` / `123*.com` | 123 云盘 | 123Pan | Yes |
+| `1drv.ms` | - | OneDrive | No |
+| `wsw233.com` | 秘帆文件站 | WSW Zone | Yes |
+
+When a link has an extraction code (`code`), always display it alongside the link.
+For 永硕 E 盘 links without a code, mark them as "暂无法访问" (Temporarily Unavailable).
+Links prefixed with `~` are invalid/dead — mark them as "已失效" (Invalid).
+
+## Source Link Description Rules
+
+| Domain Pattern | Chinese Name | English Name |
+|----------------|-------------|--------------|
+| `tieba.baidu.com` | 百度贴吧 | Baidu Tieba |
+| `archive.marioforever.net` | 贴吧备份 | Tieba Archive |
+| `marioforever.net` | MF 社区 | marioforever.net |
+| `marioforever.space` | 英文 MF 论坛 (新) | Mario Forever Space |
+| `youtube.com` | - | YouTube |
+| `github.com` | - | GitHub |
+| `x.com` / `twitter.com` | X / Twitter | X / Twitter |
+
+## SMWP Version Mapping
+
+When a MW level specifies a `smwp_ver`, the corresponding SMWP download can be found at:
+
+`https://file.marioforever.net/smwp/{SmwpVersions[smwp_ver]}`
+
+The version-to-filename mapping is defined in `src/util/SmwpVersions.js`. Key versions include:
+
+| SMWP Version | File Name |
+|-------------|-----------|
+| v1.7.12 | smwp-1.7.12-beta5.7z |
+| v1.7.11 | smwp-1.7.11.7z |
+| v1.7.10 | smwp-1.7.10.7z |
+| v1.7.5 | smwp-1.7.5.7z |
+| v1.5.0 | SuperMarioWorkerProject_v1.5.0.7z |
+| v0.2.4 | SuperMarioWorkerProject_v0.2.4_Fix.rar |
+
+For MW 4.4 levels: `https://file.marioforever.net/Mario Worker/原版 Mario Worker 下载`
+
+## Query Workflow
+
+When a user asks about a game, level, or asset, follow these steps:
+
+### Step 1: Identify the relevant data file
+
+- MF fangame → `public/data/list-mf.yaml`
+- MW level → `public/data/list-mw.yaml`
+- Original MF → `public/data/list-original-mf.yaml`
+- Asset/engine → `public/data/list-assets.yaml`
+
+If unsure, search multiple files.
+
+### Step 2: Read the YAML file
+
+Use the Read tool to read the relevant YAML file(s). The files can be large, so use offset/limit if needed.
+
+### Step 3: Search for the entry
+
+Search by:
+- `game` / `name` — exact or partial match
+- `alias` — alternative names, abbreviations, or short names
+- `author` — works by a specific author
+- `type` — filter by category (chinese, international, engine, etc.)
+
+**Alias lookup**: When the user provides a short name or abbreviation (e.g., "BW", "奇美拉5", "SMUE"), search the `alias` arrays across all YAML files. Many entries have common abbreviations stored in their `alias` field. For example:
+- `alias: [BW]` maps to `game: "For yjs - Boundless World"`
+- `alias: [奇美拉5]` maps to `game: "Mario Worker Chimera V"`
+- `alias: [SMUE, UEL, UER]` maps to `name: "Super Mario Ultra Edition"`
+
+If no match is found in `alias`, also check `game`/`name` and `game_alt` for partial matches before concluding the entry does not exist.
+
+### Step 4: Construct and present the information
+
+**IMPORTANT: Only present the fields the user asked about.** Do not dump all available information. Match the response scope to the user's query:
+
+- If the user asks "谁做的" / "作者是谁" → only provide the author
+- If the user asks "下载链接" / "在哪下载" → only provide download links and extraction codes
+- If the user asks "发布日期" / "什么时候发布的" → only provide the date
+- If the user asks "资源站链接" / "资源站地址" → only provide the resource site URL
+- If the user asks "Wiki 链接" / "Wiki 词条" → only provide the wiki URL
+- If the user asks "XX 是什么作品" / "XX 对应哪个作品" (alias lookup) → only provide the full game/level name and optionally the author
+- If the user asks broadly about a game/level ("介绍一下某某作品") → provide a comprehensive summary
+
+When responding, always include the game/level name as context so the user knows which entry the information refers to.
+
+**Available fields reference** (use only what the user needs):
+
+| Field | YAML Key | Description |
+|-------|----------|-------------|
+| 名称 | `game` / `name` + `game_alt` | Chinese name (and English if available) |
+| 作者 | `author` + `author_alt` | Author(s), join arrays with "、" |
+| 类型 | `type` | chinese / international / engine / addon / mwtool etc. |
+| 版本 | `ver` | Version string or multi-version array |
+| 发布日期 | `date` | YYYY-MM-DD format |
+| 发布帖/来源 | `source_url` / `source_url_alt` | Identify platform per source link rules |
+| 下载链接 | `download_url` / `download_url_alt` | Identify platform per download link rules; include `code` |
+| 资源站链接 | `file_name` | Auto-generated per URL generation rules |
+| Wiki 词条 | `wiki_zh_url` / `wiki_en_url` | Direct wiki page URLs |
+| 视频 | `video_zh` / `video_en` | Video demonstration links |
+| 仓库 | `repo` | Source code repository |
+| 数据包 | `data_download_url` / `data_file_name` + `data_code` | Additional data pack downloads |
+| SMWP 版本 | `smwp_ver` | Required SMWP version (MW levels only) |
+| BGM | `has_bgm` | Whether level has BGM (MW levels only) |
+| 推荐度 | `rating` | Star rating (original MF only) |
+| 安装版 | `installer` | Installer file name (original MF only) |
+| 绿色版 | `portable` | Portable file name (original MF only) |
+| 捆绑工具栏 | `toolbar` | Whether toolbar is bundled (original MF only) |
+
+### Step 5: Handle special cases
+
+- **Multi-version games**: List all versions with their respective dates and download links
+- **Invalid links**: Links starting with `~` are dead — note them as "已失效"
+- **永硕 E 盘 without code**: Mark as "暂无法访问"
+- **Array authors**: Join with "、" for display
+- **Array file_names**: Generate multiple resource site links
+- **Aliases**: Also search aliases when the user's query doesn't match `game`/`name` directly
+
+## Example Queries and Responses
+
+### Example 1: Query by game name
+
+**User**: "Mario Forever Eternal Worlds 的下载链接是什么？"
+
+**Agent**: Read `list-mf.yaml`, find the entry with `game: "Mario Forever: Eternal Worlds"`, then respond:
+
+> **Mario Forever: Eternal Worlds**
+> - 作者：MutantZR
+> - 类型：国际作品 (international)
+> - 版本：v1.0
+> - 发布日期：2026-04-26
+> - 发布帖：YouTube (https://www.youtube.com/watch?v=BUz_cYzikNk)
+> - 下载链接：MediaFire (https://www.mediafire.com/file/c10mu9w0dcx9j8e)
+> - 资源站：https://file.marioforever.net/Mario Forever/国外作品/MutantZR/Mario Forever Eternal Worlds v1.0.rar
+
+### Example 2: Query by author
+
+**User**: "zqh——123 有哪些 MW 作品？"
+
+**Agent**: Read `list-mw.yaml`, filter entries where `author` contains "zqh——123", then list all matching levels with their key info.
+
+### Example 3: Query original MF version
+
+**User**: "Mario Forever 4.4 在哪里下载？"
+
+**Agent**: Read `list-original-mf.yaml`, find `ver: v4.4`, then respond with installer/portable resource site links.
+
+### Example 4: Query with extraction code
+
+**User**: "Mario Forever 2022 XTGZ 的百度网盘提取码是什么？"
+
+**Agent**: Read `list-mf.yaml`, find the entry, respond with only the download URL and code:
+
+> **Mario Forever 2022 XTGZ**
+> - 下载链接：百度网盘 (https://pan.baidu.com/s/1ZY-wdSYYtwL6Ck0LyP22zg)
+> - 提取码：7b86
+
+### Example 5: Query only the author (targeted response)
+
+**User**: "Mario Forever: Maker Party 是谁做的？"
+
+**Agent**: Read `list-mf.yaml`, find the entry, respond with only the author:
+
+> **Mario Forever: Maker Party** 的作者是 绿色的糖果 (Green Sweet)。
+
+### Example 6: Query only the resource site link (targeted response)
+
+**User**: "深潜的资源站下载地址是什么？"
+
+**Agent**: Read `list-mw.yaml`, find the entry, generate the resource site URL, respond with only that:
+
+> **深潜** 的资源站下载地址：https://file.marioforever.net/Mario Worker/吧友作品/有名氏/dive.smwl
+
+### Example 7: Alias lookup (abbreviation to full name)
+
+**User**: "BW 是什么作品？"
+
+**Agent**: Read `list-mw.yaml`, search `alias` arrays for "BW", find the entry with `alias: [BW]`, respond with the full name:
+
+> **BW** 是 **For yjs - Boundless World** 的缩写，作者是 马里奥奥里马。
+
+### Example 8: Alias lookup across multiple files
+
+**User**: "SMUE 是什么？"
+
+**Agent**: Read `list-assets.yaml`, search `alias` arrays for "SMUE", find the entry with `alias: [SMUE, UEL, UER]`, respond:
+
+> **SMUE** 是 **Super Mario Ultra Edition** 的缩写，作者是 dasasdhba，类型为引擎 (engine)。
