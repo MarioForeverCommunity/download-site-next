@@ -30,6 +30,31 @@ All data files are located at `public/data/`:
 | `list-original-mf.yaml` | Original Mario Forever versions | MF 资源导航 |
 | `list-assets.yaml` | Mario Forever creation assets & engines | 创作资源汇总 |
 
+Additionally, some games/levels have detailed Markdown descriptions stored in separate files:
+
+| Directory | Content |
+|-----------|---------|
+| `public/data/mf-games/{gameDirName}/description.md` | MF fangame descriptions |
+| `public/data/mf-games/{gameDirName}/description_zh.md` | MF fangame descriptions (Chinese) |
+| `public/data/mf-games/{gameDirName}/description_en.md` | MF fangame descriptions (English) |
+| `public/data/mw-levels/{gameDirName}/description.md` | MW level descriptions |
+| `public/data/mw-levels/{gameDirName}/description_zh.md` | MW level descriptions (Chinese) |
+| `public/data/mw-levels/{gameDirName}/description_en.md` | MW level descriptions (English) |
+
+**`{gameDirName}` generation rules** (same as `DescriptionUtil.js`):
+1. Take the `game` field value
+2. Remove characters `:`, `/`, `\`
+3. Remove trailing dots
+4. If multiple entries share the same sanitized name (after step 3), append `_2`, `_3`, etc. to distinguish them (the first occurrence has no suffix)
+5. When disambiguation is needed, match by author: sort all authors alphabetically and join with `,`, then compare
+
+**Description file loading priority** (try in order):
+1. `description.md` (language-neutral, always tried first)
+2. `description_zh.md` (Chinese, tried when user language is zh)
+3. `description_en.md` (English, tried when user language is en)
+
+Not all games/levels have description files. If none of the files exist, the entry has no detailed description.
+
 ## YAML Data Structures
 
 ### list-mf.yaml (MF Fangames)
@@ -53,6 +78,8 @@ Each entry represents one fangame:
   video_en:                           # English video links (optional)
   - "Trailer": https://www.youtube.com/watch?v=...
   repo: https://github.com/...        # Source repository (optional)
+  description_zh: 中文简短介绍         # Short description in Chinese (optional)
+  description_en: English short desc  # Short description in English (optional)
 
   # === Single version format ===
   ver: v1.0                           # Version string
@@ -313,17 +340,43 @@ Search by:
 
 If no match is found in `alias`, also check `game`/`name` and `game_alt` for partial matches before concluding the entry does not exist.
 
+### Step 3.5: Load description (if needed)
+
+If the user asks about the description, details, or a comprehensive overview of a game/level, load both the short description and the markdown description:
+
+**Short description** (from YAML entry):
+- For MF fangames: read `description_zh` (Chinese) or `description_en` (English) from the YAML entry. If the localized field is absent, fall back to `description`.
+- For MW levels and assets: read `description` from the YAML entry.
+
+**Markdown description** (from file):
+1. Compute `{gameDirName}` from the `game` field using the rules in the "Data Files" section above
+2. Determine the category directory: `mf-games` for MF fangames, `mw-levels` for MW levels
+3. Try reading the files in this priority order:
+   - `public/data/{category}/{gameDirName}/description.md`
+   - `public/data/{category}/{gameDirName}/description_zh.md` (if user language is Chinese)
+   - `public/data/{category}/{gameDirName}/description_en.md` (if user language is English)
+4. Use the content of the first file that exists. If none exist, the entry has no markdown description.
+
+**When both exist**: Present the markdown description as the main content, and include the short description as a supplementary note (e.g., prefixed with "备注：" or "Note:"). The short description often contains important contextual information not found in the markdown file (e.g., "作品发布在31楼", "可能包含恐怖元素").
+
+**When only the short description exists**: Present it directly as the description.
+
+**When only the markdown description exists**: Present the markdown content directly.
+
+**When neither exists**: The entry has no description.
+
 ### Step 4: Construct and present the information
 
 **IMPORTANT: Only present the fields the user asked about.** Do not dump all available information. Match the response scope to the user's query:
 
 - If the user asks "谁做的" / "作者是谁" → only provide the author
-- If the user asks "下载链接" / "在哪下载" → only provide download links and extraction codes
+- If the user asks "下载链接" / "在哪下载" → provide both download links (and its extraction codes), and the resource site URL
 - If the user asks "发布日期" / "什么时候发布的" → only provide the date
 - If the user asks "资源站链接" / "资源站地址" → only provide the resource site URL
 - If the user asks "Wiki 链接" / "Wiki 词条" → only provide the wiki URL
 - If the user asks "XX 是什么作品" / "XX 对应哪个作品" (alias lookup) → only provide the full game/level name and optionally the author
-- If the user asks broadly about a game/level ("介绍一下某某作品") → provide a comprehensive summary
+- If the user asks "XX 有什么说明" / "XX 的详细介绍" / "XX 怎么安装" → load and present the description.md content
+- If the user asks broadly about a game/level ("介绍一下某某作品") → provide a comprehensive summary including the description if available
 
 When responding, always include the game/level name as context so the user knows which entry the information refers to.
 
@@ -343,6 +396,8 @@ When responding, always include the game/level name as context so the user knows
 | 视频 | `video_zh` / `video_en` | Video demonstration links |
 | 仓库 | `repo` | Source code repository |
 | 数据包 | `data_download_url` / `data_file_name` + `data_code` | Additional data pack downloads |
+| 详细说明 | `description.md` file | Markdown description file (see description file rules above) |
+| 简短介绍 | `description` / `description_zh` / `description_en` | Short text note in YAML; used as a supplementary note alongside the detailed description |
 | SMWP 版本 | `smwp_ver` | Required SMWP version (MW levels only) |
 | BGM | `has_bgm` | Whether level has BGM (MW levels only) |
 | 推荐度 | `rating` | Star rating (original MF only) |
@@ -429,3 +484,28 @@ When responding, always include the game/level name as context so the user knows
 **Agent**: Read `list-assets.yaml`, search `alias` arrays for "SMUE", find the entry with `alias: [SMUE, UEL, UER]`, respond:
 
 > **SMUE** 是 **Super Mario Ultra Edition** 的缩写，作者是 dasasdhba，类型为引擎 (engine)。
+
+### Example 9: Query description with both short desc and markdown file
+
+**User**: "Mario Forever: Community Edition 怎么安装？"
+
+**Agent**: Read `list-mf.yaml`, find the entry with `game: "Mario Forever - Community Edition"`. Check YAML short description fields (`description_zh`/`description_en`) — none present. Compute `gameDirName` as `Mario Forever - Community Edition` (sanitize: remove `:` → `Mario Forever - Community Edition`), then read `public/data/mf-games/Mario Forever - Community Edition/description.md`. Present the installation instructions from the markdown content.
+
+### Example 10: Short description as supplementary note
+
+**User**: "介绍一下 Fear the Eye"
+
+**Agent**: Read `list-mf.yaml`, find the entry. The YAML has `description_zh: "可能包含恐怖元素。"` and `description_en: "May include scare elements."`. Also load `public/data/mf-games/Fear the Eye/description.md` which contains detailed game info. Present the markdown description as main content, with the short description as a note:
+
+> **Fear the Eye**
+> [markdown description content...]
+>
+> 备注：可能包含恐怖元素。
+
+### Example 11: Short description only (no markdown file)
+
+**User**: "听声辨位 这个关卡有什么说明吗？"
+
+**Agent**: Read `list-mw.yaml`, find the entry. The YAML has no `description` field, and no `description.md` file exists. Respond:
+
+> **听声辨位** 暂无详细说明。
