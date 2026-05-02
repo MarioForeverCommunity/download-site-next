@@ -1,6 +1,18 @@
 ---
 name: "mf-data-query"
+version: "1.0.0"
+skill_id: "mf-data-query"
 description: "Query Mario Forever YAML data files for game/level info (author, download links, wiki, resource site). Invoke when user asks about MF games, MW levels, assets, or original MF versions."
+tags:
+  - mario-forever
+  - mario-worker
+  - yaml
+  - data-query
+  - download-links
+  - fangames
+  - smwp
+user_invocable: true
+disable_model_invocation: false
 ---
 
 # Mario Forever / Mario Worker Data Query Skill
