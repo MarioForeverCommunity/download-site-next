@@ -421,7 +421,6 @@ When responding, always include the game/level name as context so the user knows
 
 - **Multi-version games**: List all versions with their respective dates and download links
 - **Invalid links**: Links starting with `~` are dead — note them as "已失效"
-- **永硕 E 盘 without code**: Mark as "暂无法访问"
 - **Array authors**: Join with "、" for display
 - **Array file_names**: Generate multiple resource site links
 - **Aliases**: Also search aliases when the user's query doesn't match `game`/`name` directly
