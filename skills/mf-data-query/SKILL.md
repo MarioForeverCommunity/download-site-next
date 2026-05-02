@@ -19,11 +19,24 @@ metadata:
       env: []
       bins: []
     homepage: https://download.marioforever.net/
+    repository: https://github.com/MarioForeverCommunity/download-site-next
+    data_source: https://download.marioforever.net/data/
 ---
 
 # Mario Forever / Mario Worker Data Query Skill
 
-This skill enables AI agents to read and interpret the YAML data files in `public/data/` to answer user queries about Mario Forever games, Mario Worker levels, assets, and original MF versions.
+This skill enables AI agents to read and interpret the YAML data files hosted at [download.marioforever.net](https://download.marioforever.net/) to answer user queries about Mario Forever games, Mario Worker levels, assets, and original MF versions. The data source is the deployed site of the [MarioForeverCommunity/download-site-next](https://github.com/MarioForeverCommunity/download-site-next) repository.
+
+**Data Source**: All data files are served via the deployed site. Use HTTP GET to fetch files. The base URL is:
+
+```
+https://download.marioforever.net/data/{filename}
+```
+
+**Important**: The base URL already includes `/data/`. Append the filename directly — do NOT add another `/data/`. For example:
+- ✅ `https://download.marioforever.net/data/list-mf.yaml`
+- ✅ `https://download.marioforever.net/data/mf-games/Fear the Eye/description.md`
+- ❌ `https://download.marioforever.net/data/data/list-mf.yaml`
 
 ## When to Invoke
 
@@ -39,10 +52,10 @@ Invoke this skill when the user asks about:
 
 ## Data Files
 
-All data files are located at `public/data/`:
+All data files are accessible via `https://download.marioforever.net/data/` + filename:
 
-| File | Content | Page |
-|------|---------|------|
+| Filename (append to base URL) | Content | Page |
+|-------------------------------|---------|------|
 | `list-mf.yaml` | Mario Forever fangames (Chinese & international) | MF 作品汇总 |
 | `list-mw.yaml` | Mario Worker level works | MW 作品汇总 |
 | `list-original-mf.yaml` | Original Mario Forever versions | MF 资源导航 |
@@ -50,16 +63,16 @@ All data files are located at `public/data/`:
 
 Additionally, some games/levels have detailed Markdown descriptions stored in separate files:
 
-| Directory | Content |
-|-----------|---------|
-| `public/data/mf-games/{gameDirName}/description.md` | MF fangame descriptions |
-| `public/data/mf-games/{gameDirName}/description_zh.md` | MF fangame descriptions (Chinese) |
-| `public/data/mf-games/{gameDirName}/description_en.md` | MF fangame descriptions (English) |
-| `public/data/mw-levels/{gameDirName}/description.md` | MW level descriptions |
-| `public/data/mw-levels/{gameDirName}/description_zh.md` | MW level descriptions (Chinese) |
-| `public/data/mw-levels/{gameDirName}/description_en.md` | MW level descriptions (English) |
+| Filename (append to base URL) | Content |
+|-------------------------------|---------|
+| `mf-games/{gameDirName}/description.md` | MF fangame descriptions |
+| `mf-games/{gameDirName}/description_zh.md` | MF fangame descriptions (Chinese) |
+| `mf-games/{gameDirName}/description_en.md` | MF fangame descriptions (English) |
+| `mw-levels/{gameDirName}/description.md` | MW level descriptions |
+| `mw-levels/{gameDirName}/description_zh.md` | MW level descriptions (Chinese) |
+| `mw-levels/{gameDirName}/description_en.md` | MW level descriptions (English) |
 
-**`{gameDirName}` generation rules** (same as `DescriptionUtil.js`):
+**`{gameDirName}` generation rules**:
 1. Take the `game` field value
 2. Remove characters `:`, `/`, `\`
 3. Remove trailing dots
@@ -292,7 +305,6 @@ When presenting download links, identify the hosting platform:
 | `wsw233.com` | 秘帆文件站 | WSW Zone | Yes |
 
 When a link has an extraction code (`code`), always display it alongside the link.
-For 永硕 E 盘 links without a code, mark them as "暂无法访问" (Temporarily Unavailable).
 Links prefixed with `~` are invalid/dead — mark them as "已失效" (Invalid).
 
 ## Source Link Description Rules
@@ -313,7 +325,7 @@ When a MW level specifies a `smwp_ver`, the corresponding SMWP download can be f
 
 `https://file.marioforever.net/smwp/{SmwpVersions[smwp_ver]}`
 
-The version-to-filename mapping is defined in `src/util/SmwpVersions.js`. Key versions include:
+The version-to-filename mapping is defined in `src/util/SmwpVersions.js` in the [source repository](https://github.com/MarioForeverCommunity/download-site-next/raw/refs/heads/main/src/util/SmwpVersions.js). Key versions include:
 
 | SMWP Version | File Name |
 |-------------|-----------|
@@ -332,16 +344,21 @@ When a user asks about a game, level, or asset, follow these steps:
 
 ### Step 1: Identify the relevant data file
 
-- MF fangame → `public/data/list-mf.yaml`
-- MW level → `public/data/list-mw.yaml`
-- Original MF → `public/data/list-original-mf.yaml`
-- Asset/engine → `public/data/list-assets.yaml`
+- MF fangame → `list-mf.yaml`
+- MW level → `list-mw.yaml`
+- Original MF → `list-original-mf.yaml`
+- Asset/engine → `list-assets.yaml`
 
-If unsure, search multiple files.
+To fetch a file, construct the full URL by appending the filename to the base URL:
+```
+https://download.marioforever.net/data/{filename}
+```
 
-### Step 2: Read the YAML file
+If unsure which file to use, search multiple files.
 
-Use the Read tool to read the relevant YAML file(s). The files can be large, so use offset/limit if needed.
+### Step 2: Fetch the YAML file
+
+Use HTTP GET to fetch the relevant YAML file(s) from `https://download.marioforever.net/data/`. The files can be large, so if using a tool with pagination, use offset/limit as needed.
 
 ### Step 3: Search for the entry
 
@@ -369,10 +386,10 @@ If the user asks about the description, details, or a comprehensive overview of 
 **Markdown description** (from file):
 1. Compute `{gameDirName}` from the `game` field using the rules in the "Data Files" section above
 2. Determine the category directory: `mf-games` for MF fangames, `mw-levels` for MW levels
-3. Try reading the files in this priority order:
-   - `public/data/{category}/{gameDirName}/description.md`
-   - `public/data/{category}/{gameDirName}/description_zh.md` (if user language is Chinese)
-   - `public/data/{category}/{gameDirName}/description_en.md` (if user language is English)
+3. Try fetching the files in this priority order (append to base URL `https://download.marioforever.net/data/`):
+   - `mf-games/{gameDirName}/description.md`
+   - `mf-games/{gameDirName}/description_zh.md` (if user language is Chinese)
+   - `mf-games/{gameDirName}/description_en.md` (if user language is English)
 4. Use the content of the first file that exists. If none exist, the entry has no markdown description.
 
 **When both exist**: Present the markdown description as the main content, and include the short description as a supplementary note (e.g., prefixed with "备注：" or "Note:"). The short description often contains important contextual information not found in the markdown file (e.g., "作品发布在31楼", "可能包含恐怖元素").
@@ -437,7 +454,7 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "Mario Forever Eternal Worlds 的下载链接是什么？"
 
-**Agent**: Read `list-mf.yaml`, find the entry with `game: "Mario Forever: Eternal Worlds"`, then respond:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mf.yaml`, find the entry with `game: "Mario Forever: Eternal Worlds"`, then respond:
 
 > **Mario Forever: Eternal Worlds**
 > - 作者：MutantZR
@@ -452,19 +469,19 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "zqh——123 有哪些 MW 作品？"
 
-**Agent**: Read `list-mw.yaml`, filter entries where `author` contains "zqh——123", then list all matching levels with their key info.
+**Agent**: Fetch `https://download.marioforever.net/data/list-mw.yaml`, filter entries where `author` contains "zqh——123", then list all matching levels with their key info.
 
 ### Example 3: Query original MF version
 
 **User**: "Mario Forever 4.4 在哪里下载？"
 
-**Agent**: Read `list-original-mf.yaml`, find `ver: v4.4`, then respond with installer/portable resource site links.
+**Agent**: Fetch `https://download.marioforever.net/data/list-original-mf.yaml`, find `ver: v4.4`, then respond with installer/portable resource site links.
 
 ### Example 4: Query with extraction code
 
 **User**: "Mario Forever 2022 XTGZ 的百度网盘提取码是什么？"
 
-**Agent**: Read `list-mf.yaml`, find the entry, respond with only the download URL and code:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mf.yaml`, find the entry, respond with only the download URL and code:
 
 > **Mario Forever 2022 XTGZ**
 > - 下载链接：百度网盘 (https://pan.baidu.com/s/1ZY-wdSYYtwL6Ck0LyP22zg)
@@ -474,7 +491,7 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "Mario Forever: Maker Party 是谁做的？"
 
-**Agent**: Read `list-mf.yaml`, find the entry, respond with only the author:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mf.yaml`, find the entry, respond with only the author:
 
 > **Mario Forever: Maker Party** 的作者是 绿色的糖果 (Green Sweet)。
 
@@ -482,7 +499,7 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "深潜的资源站下载地址是什么？"
 
-**Agent**: Read `list-mw.yaml`, find the entry, generate the resource site URL, respond with only that:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mw.yaml`, find the entry, generate the resource site URL, respond with only that:
 
 > **深潜** 的资源站下载地址：https://file.marioforever.net/Mario Worker/吧友作品/有名氏/dive.smwl
 
@@ -490,7 +507,7 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "BW 是什么作品？"
 
-**Agent**: Read `list-mw.yaml`, search `alias` arrays for "BW", find the entry with `alias: [BW]`, respond with the full name:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mw.yaml`, search `alias` arrays for "BW", find the entry with `alias: [BW]`, respond with the full name:
 
 > **BW** 是 **For yjs - Boundless World** 的缩写，作者是 马里奥奥里马。
 
@@ -498,7 +515,7 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "SMUE 是什么？"
 
-**Agent**: Read `list-assets.yaml`, search `alias` arrays for "SMUE", find the entry with `alias: [SMUE, UEL, UER]`, respond:
+**Agent**: Fetch `https://download.marioforever.net/data/list-assets.yaml`, search `alias` arrays for "SMUE", find the entry with `alias: [SMUE, UEL, UER]`, respond:
 
 > **SMUE** 是 **Super Mario Ultra Edition** 的缩写，作者是 dasasdhba，类型为引擎 (engine)。
 
@@ -506,13 +523,13 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "Mario Forever: Community Edition 怎么安装？"
 
-**Agent**: Read `list-mf.yaml`, find the entry with `game: "Mario Forever - Community Edition"`. Check YAML short description fields (`description_zh`/`description_en`) — none present. Compute `gameDirName` as `Mario Forever - Community Edition` (sanitize: remove `:` → `Mario Forever - Community Edition`), then read `public/data/mf-games/Mario Forever - Community Edition/description.md`. Present the installation instructions from the markdown content.
+**Agent**: Fetch `https://download.marioforever.net/data/list-mf.yaml`, find the entry with `game: "Mario Forever - Community Edition"`. Check YAML short description fields (`description_zh`/`description_en`) — none present. Compute `gameDirName` as `Mario Forever - Community Edition` (sanitize: remove `:` → `Mario Forever - Community Edition`), then fetch `https://download.marioforever.net/data/mf-games/Mario Forever - Community Edition/description.md`. Present the installation instructions from the markdown content.
 
 ### Example 10: Short description as supplementary note
 
 **User**: "介绍一下 Fear the Eye"
 
-**Agent**: Read `list-mf.yaml`, find the entry. The YAML has `description_zh: "可能包含恐怖元素。"` and `description_en: "May include scare elements."`. Also load `public/data/mf-games/Fear the Eye/description.md` which contains detailed game info. Present the markdown description as main content, with the short description as a note:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mf.yaml`, find the entry. The YAML has `description_zh: "可能包含恐怖元素。"` and `description_en: "May include scare elements."`. Also fetch `https://download.marioforever.net/data/mf-games/Fear the Eye/description.md` which contains detailed game info. Present the markdown description as main content, with the short description as a note:
 
 > **Fear the Eye**
 > [markdown description content...]
@@ -523,6 +540,6 @@ When responding, always include the game/level name as context so the user knows
 
 **User**: "听声辨位 这个关卡有什么说明吗？"
 
-**Agent**: Read `list-mw.yaml`, find the entry. The YAML has no `description` field, and no `description.md` file exists. Respond:
+**Agent**: Fetch `https://download.marioforever.net/data/list-mw.yaml`, find the entry. The YAML has no `description` field, and no `description.md` file exists. Respond:
 
 > **听声辨位** 暂无详细说明。
