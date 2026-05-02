@@ -13,6 +13,12 @@ tags:
   - smwp
 user_invocable: true
 disable_model_invocation: false
+metadata:
+  openclaw:
+    requires:
+      env: []
+      bins: []
+    homepage: https://download.marioforever.net/
 ---
 
 # Mario Forever / Mario Worker Data Query Skill
