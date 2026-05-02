@@ -435,7 +435,7 @@ When responding, always include the game/level name as context so the user knows
 
 > **Mario Forever: Eternal Worlds**
 > - 作者：MutantZR
-> - 类型：国际作品 (international)
+> - 类型：国外作品 (international)
 > - 版本：v1.0
 > - 发布日期：2026-04-26
 > - 发布帖：YouTube (https://www.youtube.com/watch?v=BUz_cYzikNk)
