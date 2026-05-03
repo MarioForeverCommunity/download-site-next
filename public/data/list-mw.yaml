@@ -24,7 +24,9 @@
   download_url:
   code:
   has_bgm: true
-  file_name: Mario Worker Chimera V without lake museum fix2.smws
+  file_name:
+  - Mario Worker Chimera V.smws
+  - Mario Worker Chimera V without lake museum.smws
   file_url:
   data_download_url: https://wwazi.lanzoue.com/iAc8h3ogrtej
   data_code:
