@@ -621,7 +621,7 @@
   description: 日期为初始上传日期
   image:
   source_url:
-  download_url: ~https://dasasdhba.ysepan.com/
+  download_url: https://dasasdhba.ysepan.com/
   code:
   ver: v0.2.0
   date: 2021-06-12
@@ -845,7 +845,7 @@
   image:
   source_url: https://tieba.baidu.com/p/5829543052
   download_url: https://zqh--123.ysepan.com/
-  code:
+  code: "114514"
   ver:
   date: 2018-11-11
   file_name: 真强悍的智能实心机器.rar
@@ -899,7 +899,7 @@
   image:
   source_url: https://tieba.baidu.com/p/3935990027
   download_url: https://zqh--123.ysepan.com/
-  code:
+  code: "114514"
   ver:
   date: 2015-08-01
   file_name: 真强悍机器终极大BOSS！！.rar
@@ -910,7 +910,7 @@
   image:
   source_url:
   download_url: https://zqh--123.ysepan.com/
-  code:
+  code: "114514"
   ver:
   date: 2015-02-17
   file_name: 真强悍的MW代码机器集.rar
@@ -950,7 +950,7 @@
   image:
   source_url: https://tieba.baidu.com/p/2166982083
   download_url: https://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   ver: v2.0
   date: 2013-02-16
   file_name: 纳秘版高岩浆器V2.0版之常规.exe
@@ -994,7 +994,7 @@
   image:
   source_url: https://tieba.baidu.com/p/2131849490
   download_url: https://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   ver:
   date: 2013-01-31
   file_name: 封顶器.exe
@@ -1005,7 +1005,7 @@
   image:
   source_url: https://tieba.baidu.com/p/2117440691
   download_url: https://nmnmoooh888.ysepan.com/
-  code:
+  code: namimw
   ver: 第一版
   date: 2013-01-31
   file_name: 探照灯辅助设计器第一版.exe
