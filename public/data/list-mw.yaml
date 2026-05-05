@@ -3369,7 +3369,7 @@
   date: 2018-06-08
   source_url: https://tieba.baidu.com/p/5737130610
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   has_bgm: true
   file_name: Welcome back to Marioworker Bar.rar
   file_url:
@@ -3538,7 +3538,7 @@
   date: 2017-07-05
   source_url: https://tieba.baidu.com/p/5186590287
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: SAVE ZQH全集修正版V1.2.rar
   file_url:
 - game: Mario Worker Journey World A~G
@@ -3605,7 +3605,7 @@
   date: 2016-08-15
   source_url: https://tieba.baidu.com/p/4732275649
   download_url: http://marioworker.ysepan.com/
-  code:
+  code: marioworker
   file_name: "%5bBluesun0505 Works%5dTimes Album.rar"
   file_url:
 - game: The Adventures on the Islands V3.3
@@ -3636,7 +3636,7 @@
   date: 2016-02-14
   source_url: https://tieba.baidu.com/p/4352247051
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: Randomize.rar
   file_url:
 - game: Fahlee-Worlds Album5
@@ -3706,7 +3706,7 @@
   date: 2014-10-05
   source_url: https://tieba.baidu.com/p/3332445770
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: Rolling in the deep.rar
   file_url:
 - game: Wonderland
@@ -3728,7 +3728,7 @@
   date: 2014-08-19
   source_url: https://tieba.baidu.com/p/3242033248
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: The Seasons 3.rar
   file_url:
 - game: General Maps V1.0
@@ -3798,7 +3798,7 @@
   date: 2013-08-24
   source_url: https://tieba.baidu.com/p/2552292603
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: The Seasons 2.rar
   file_url:
 - game: Legend World V1.1
@@ -3820,7 +3820,7 @@
   date: 2013-08-13
   source_url: https://tieba.baidu.com/p/2529221207
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: Zqh Pitfall World.rar
   file_url:
 - game: The ghost track fans World 全集 V1.0
@@ -3838,7 +3838,7 @@
   date: 2013-04-21
   source_url: https://tieba.baidu.com/p/2283061288
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name:
   - The Seasons.rar
   - 四季各月份.rar
@@ -3868,7 +3868,7 @@
   date: 2012-11-06
   source_url: https://tieba.baidu.com/p/1968074351
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: Great Adventure全集.rar
   file_url:
 - game: 123568024 World V1.5
@@ -3888,7 +3888,7 @@
   date: 2012-10-08
   source_url: https://tieba.baidu.com/p/1909200453
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: Zen Garden全集.zip
   file_url:
 - game: Black Cloud Album 1 第一弹
@@ -3936,7 +3936,7 @@
   date: 2012-08-11
   source_url: https://tieba.baidu.com/p/1786116035
   download_url: http://zqh--123.ysepan.com/
-  code: 114514
+  code: "114514"
   file_name: zqh world全集.zip
   file_url:
 - game: Wonder Story Worlds
