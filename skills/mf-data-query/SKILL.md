@@ -140,7 +140,7 @@ Each entry represents one fangame:
       code: abc
       file_name: game_v1.zip
       current: true                   # Mark as current version (optional)
-      repacker: 重打包者名             # Repack author (optional)
+      repacker: 重打包者名             # Repackage author (optional)
   - "另一版本":
       ver_alt: Another Version
       date: 2025-06-01
@@ -156,7 +156,7 @@ Each entry represents one fangame:
 - A version with `current: true` is explicitly marked as the current version
 - **When the user does not specify a version**: Only present the current (latest) version
 - **When the user specifies a version name**: Only present that specific version
-- International games with `file_name` get auto-generated resource site URLs
+- Games with `file_name` get auto-generated resource site URLs
 - Chinese games use date-based resource site paths; international games use author-based paths
 - Prefix `~` before a URL marks it as invalid (e.g., `~https://dead-link.com`)
 
@@ -189,7 +189,7 @@ Each entry represents one Mario Worker level:
 **Key rules for list-mw.yaml:**
 - `file_name` can be a string or array (for multi-file levels)
 - Resource site URLs are auto-generated from `file_name` using author and SMWP version
-- `smwp_ver` determines which SMWP version the level requires
+- `smwp_ver` determines which SMWP version the level was made with
 
 ### list-original-mf.yaml (Original MF Versions)
 
@@ -242,7 +242,7 @@ The resource site is at `https://file.marioforever.net/`. URLs are auto-generate
 | Condition | Chinese URL | English URL |
 |-----------|-------------|-------------|
 | APK file | `…/Mario Forever/安卓游戏/{author}/{file_name}` | `…/mobile-fangames/{author}/{file_name}` |
-| Repacked | `…/Mario Forever/重打包作品/{file_name}` | `…/repackaged-fangames/{file_name}` |
+| Repacked/Repackaged | `…/Mario Forever/重打包作品/{file_name}` | `…/repackaged-fangames/{file_name}` |
 | Chinese game | `…/Mario Forever/国内作品/{year}/{file_name}` | `…/chinese-fangames/{year}/{file_name}` |
 | International game | `…/Mario Forever/国外作品/{author}/{file_name}` | `…/international-fangames/{author}/{file_name}` |
 
@@ -270,7 +270,7 @@ URLs differ by language and file type. If the entry has `nsmf: true`, use the NS
 | Installer (NSMF) | `https://file.marioforever.net/Mario%20Forever/New%20Super%20Mario%20Forever%20%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/{installer}` | `https://file.marioforever.net/mario-forever/games/softendo/installer/{installer}` |
 | Portable | `https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/{portable}` | `https://file.marioforever.net/mario-forever/games/original-mf/portable/{portable}` |
 
-Additionally, a backup download address is available for all original MF versions:
+Additionally, a backup download link is available for all original MF versions:
 - 备用地址: https://www.123684.com/s/U3vrVv-VD0f (提取码: MAat)
 
 ### Assets (list-assets.yaml)
@@ -414,6 +414,7 @@ If the user asks about the description, details, or a comprehensive overview of 
 - If the user asks "发布日期" / "什么时候发布的" → only provide the date
 - If the user asks "资源站链接" / "资源站地址" → only provide the resource site URL
 - If the user asks "Wiki 链接" / "Wiki 词条" → only provide the wiki URL
+- If the user asks "XX 作品有哪些版本" → provide all available versions for the game, but only the actual version names.
 - If the user asks "XX 是什么作品" / "XX 对应哪个作品" (alias lookup) → only provide the full game/level name and optionally the author
 - If the user asks "XX 有什么说明" / "XX 的详细介绍" / "XX 怎么安装" → load and present the description.md content
 - If the user asks broadly about a game/level ("介绍一下某某作品") → provide a comprehensive summary including the description if available
