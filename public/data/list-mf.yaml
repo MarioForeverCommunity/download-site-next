@@ -58,6 +58,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.0:
+      ver_alt:
+      date: 2026-05-08
+      source_url: https://www.youtube.com/watch?v=hEvx5wG8HvY
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/h17oj43438piror
+      code:
+      download_url_alt:
+      file_name: Mario Forever Eternal Worlds v2.0.rar
+      file_url:
   - v1.5:
       ver_alt:
       date: 2026-05-05
@@ -988,12 +998,22 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v3.4:
+      ver_alt:
+      date: 2026-05-08
+      source_url: https://www.youtube.com/watch?v=iyOZI6OCmho
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/mbzg5q4vjoqk7mh/Mario+Forever+Sensitive+Journey+v3.4.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sensitive Journey v3.4.zip
+      file_url:
   - v3.0:
       ver_alt:
       date: 2026-04-22
       source_url: https://www.youtube.com/watch?v=ZQUoY8J_HMw
       source_url_alt:
-      download_url: https://www.mediafire.com/file/409jzjm535mcat5/Mario_Forever_Sensitive_Journey_v3.0.zip/file
+      download_url: ~https://www.mediafire.com/file/409jzjm535mcat5/Mario_Forever_Sensitive_Journey_v3.0.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v3.0.zip
