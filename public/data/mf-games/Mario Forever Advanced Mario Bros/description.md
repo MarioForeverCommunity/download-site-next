@@ -26,21 +26,67 @@
 -   **Freestyle:** You can select any level you'd like to play, even if you haven't completed Story Mode. Stuck in a level for too long? You have the option to skip that level. "Single Level Mode" allows you to play only a specific level without having to go through the rest of the world.
 -   **Buffed Powerups:** Beetroots are far more convenient here in comparison to the original game. You can shoot up to four beetroots (compared to the usual two), and they can kill some indestructible enemies. Boomerangs are present, and you can shoot up to four of them as well. They can kill nearly all indestructible enemies.
 
-# [Download Link (v1.0.1)](https://www.mediafire.com/file/blbzf5jnd2wojai/Mario+Forever+Advanced+Mario+Bros.+v1.0.1.zip/file)
+# Feedbacks
 
-_If you encounter any bugs or have any suggestions, feel free to let me know so that they can be considered as soon as possible._
+Contact me to report any bug encountered while playing the game. Suggestions as well as criticism regarding certain unfair elements are welcome, but any complaint concerning the sheer difficulty of the game will be ignored.
+
+# [Download Link (v1.2)](https://www.mediafire.com/file/toinwhavro2le4s/Mario+Forever+Advanced+Mario+Bros.+v1.2.zip/file)
 
 # **Changelog**
 
-## **v1.0.1 (Latest)**
+## **v1.2 (Latest)**
 
-Released on March 29, 2026.
+Released on May 14, 2026.
+
+### Changes
+
+-   Reduced the difficulty of World 5-A (as if it's not easy enough already ¯\\\_(ツ)\_/¯).
+-   Added cutscenes before and after the series' final Bowser battle.
+-   Added more cloud platforms to the cloud sections in AMB 6's boss fight.
+-   Tweaked the mechanics of the final boss fight. All hazards (including insta-kill projectiles) only kill you after your "Green Lui Counter" has run out, whose initial value is 2. Since this would make the boss fight too much easier, Bowser has also been made far more aggressive with firing Poison Flames, but Hammer Attacks are a lot easier to avoid.
+-   Added more people to the ending credits.
+-   Hints are now given to the correct route in AMB 5's castle level (this is just to not frustrate speedrunners, as the correct corridor is completely randomized).
+-   Further reduced the difficulty of certain parts of AMB 2's finale.
+-   Made an invisible 1-UP block in AMB 2's finale obvious. To counter this, Bowser's movement has returned to its speed in the game's Demo version.
+-   Better sound adjustment to AMB 3's boss fight.
+-   Boomerangs can now eliminate Roto Discs and Stone Spinys.
+-   Regular Lakitu can no longer regenerate after collision with a boomerang, just like its two other variants.
+-   Minor graphical changes to 5-A and 6-1.
+-   Improved the quality of visual signs.
+-   Added the \[top\] secret opportunity for a 111-UP to a certain level in World 5.
+-   Unwarned falling platforms in World 4-2 have been made easier to tell with the help of coins.
+-   Made a route in World 5-2 a bit more obvious.
+-   Further intentional graphical inconsistencies towards the end of AMB 4's penultimate.
+-   Slightly reduced the number of Spiky Cheep Cheeps towards the end of World 1-3.
+-   Replaced the coin block near the checkpoint in World 2-2 with a Powerup block.
+-   Reduced the spawn rate of Cheep Cheeps in 6-2 and 6-A.
+-   Reduced the number of Blue and Purple Paratroopas towards the end of 3-2.
 
 ### Patches
 
--   Fixed a bug where proceeding to World 6 right after World 5-A lands you directly to the last level.
+-   Fixed a bug where the character does not go pass the edge of the frame in 6-A after level completion.
+-   Fixed minor graphical bugs in the maps of AMB 1 & 5.
+-   The starry sky BG now moves in 2-3 like it does in 2-1.
+-   Fixed a bug where you could not proceed to some levels using the level selector.
+-   Fixed a bug with smooth scrolling where the boss fight is triggered earlier than it should be in AMB 4's finale.
+-   Fixed a visual eyesore with 5-3 concerning the transition from the Overworld to Underground section when smooth scrolling is enabled.
+-   Bowser's health bar now disappears upon his defeat in World 5 as it does with the other worlds.
+-   Fixed an inconsistency in 6-4 — Consuming a Fire Flower should immediately power you up to Fire Mario/Luigi even if you're Small Mario/Luigi, which previously did not apply to this level.
+-   Fixed an issue where the Lives Counter HUD bugs out beyond 100 lives only in certain levels/sections.
+-   Fixed a bug where the defeated shells of Orange Koopa Paratroopas may appear green instead of orange in most of the levels they appear.
+-   Fixed a bug where the frame rate changes to 60 FPS after completion of 6-3 given that the player has died in that level at least once, even if the frame rate is set to 50 FPS. (Note: The occurence of this in the final level's second section is intentional)
+-   The "Your Frame Rate has temporarily been changed!" warning no longer appears in 6-3 if your frame rate is already set to 50 FPS.
 
-## **v1.0**
+## **v1.0.1**
+
+Released on March 29, 2026.
+[**Download**](https://www.mediafire.com/file/blbzf5jnd2wojai/Mario_Forever_Advanced_Mario_Bros._v1.0.1.zip/file)
+
+### Patches
+
+-   Fixed a bug where proceeding to World 6 in Story Mode always lands you directly to the last level.
+
+## **v1.0 `*`**
 
 Released on March 28, 2026.
 [**Download**](https://www.mediafire.com/file/ckuuc91slhhhf3b/Mario_Forever_Advanced_Mario_Bros._v1.0.zip/file)
@@ -76,13 +122,13 @@ Released on March 28, 2026.
 -   Green Bullet Bill Launchers cannot shoot to the right. This has been fixed by correcting the animation's hot spots, which was what forced us to disable a few lines of events.
 -   Fixed a bug where overlapping the platform towards the end of 1-2 causes it to fall even if you haven't landed on it.
 -   Fixed a bug where smooth scrolling occasionally bugs out the bossfight in AMB 3.
--   Fixed a bug where falling Koopa Shells are gold in levels where Gold Paratroopas are present, even if the base Koopa Troopa isn't gold.
+-   Fixed a bug where falling Koopa Shells are orange in levels where Orange Paratroopas are present, even if the base Koopa Troopa isn't orange.
 -   Fixed a rare bug where the camera may slightly shake upon going left during a boss fight.
 
 ## **v0.8 Demo**
 
 Released on December 26, 2025.
-**[Download](https://file.marioforever.net/mario-forever/games/international-fangames/AppliconReal/old-versions/Mario%20Forever%20Advanced%20Mario%20Bros.%20v0.8%20Demo.zip)**
+[**Download**](https://file.marioforever.net/mario-forever/games/international-fangames/AppliconReal/old-versions/Mario%20Forever%20Advanced%20Mario%20Bros.%20v0.8%20Demo.zip)
 
 ### Changes
 
@@ -90,4 +136,6 @@ Released on December 26, 2025.
 -   **Added**: Functionality to toggle between the original soundtracks and covers.
 -   **Added**: Freestyle mode.
 
-###### Release dates are based on **UTC+0:00**.
+`Release dates are based on` **`UTC+0:00`**`.`
+
+###### `*` An emergency patch was announced shortly after the release of this version. It is recommended that you instead download the succeeding version for optimal experience.
