@@ -1,4 +1,21 @@
 ---
+- game: "Mario Forever: Tower Defense"
+  game_alt:
+  author: MutantZR
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-05-29
+  source_url: https://www.youtube.com/watch?v=A-_Upx6v5ns
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/hpp3qozk75912uz
+  code:
+  download_url_alt:
+  file_name: Mario Forever Tower Defense Game.rar
+  file_url:
 - game: Mario Forever - Happy Mario World Reforged
   game_alt:
   alias:
@@ -9,6 +26,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v0.2.0:
+      ver_alt:
+      date: 2026-05-28
+      source_url: https://www.marioforever.net/thread-3853-1-1.html
+      source_url_alt:
+      download_url: https://wwanm.lanzouq.com/i16lw3qjf4ve
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Happy Mario World Reforged V0.2.0.zip
+      file_url:
   - v0.1.0:
       ver_alt:
       date: 2026-05-23
@@ -153,23 +180,23 @@
   ver:
   - Windows:
       ver_alt:
-      date: 2026-05-01
+      date: 2026-05-31
       source_url: https://www.marioforever.net/thread-3825-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp
       code: mfmp
       download_url_alt: https://www.mediafire.com/folder/hgtsobi2ofnn2/mfmp
-      file_name: mfmp_20260501_1.rar
+      file_name: mfmp_20260531.rar
       file_url:
   - Android:
       ver_alt:
-      date: 2026-05-01
+      date: 2026-05-31
       source_url: https://www.marioforever.net/thread-3825-1-1.html
       source_url_alt:
       download_url: https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp
       code: mfmp
       download_url_alt: https://www.mediafire.com/folder/hgtsobi2ofnn2/mfmp
-      file_name: mfmp_20260501_1.apk
+      file_name: mfmp_20260531.apk
       file_url:
 - game: Mario's Letter
   game_alt:
