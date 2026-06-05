@@ -633,14 +633,24 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.1.0:
+      ver_alt:
+      date: 2026-06-04
+      source_url: https://www.youtube.com/watch?v=s1_K6Mh5o38
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/vy4pukybt1s68wp/Mario_Forever_-_One_Day_Trip_v.2.1.zip/file
+      code:
+      download_url_alt: https://drive.google.com/file/d/1xzm9gOGNqRage7tl6m8gGLeeCAiUa8JQ/view
+      file_name: Mario Forever - One Day Trip v.2.1.0.zip
+      file_url:
   - v2.1:
       ver_alt:
       date: 2026-06-02
       source_url: https://www.youtube.com/watch?v=s1_K6Mh5o38
       source_url_alt:
-      download_url: https://www.mediafire.com/file/0xzme84552uhent/Mario_Forever_-_One_Day_Trip_v.2.1.zip/file
+      download_url: ~https://www.mediafire.com/file/0xzme84552uhent/Mario_Forever_-_One_Day_Trip_v.2.1.zip/file
       code:
-      download_url_alt: https://drive.google.com/file/d/1bNHrwarng_TWtUZnuQggsbTLr8899N36/view
+      download_url_alt: ~https://drive.google.com/file/d/1bNHrwarng_TWtUZnuQggsbTLr8899N36/view
       file_name: Mario Forever - One Day Trip v.2.1.zip
       file_url:
   - v2.0.2:
