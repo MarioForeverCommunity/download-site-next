@@ -2711,16 +2711,27 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v1.5
-  ver_alt:
-  date: 2024-11-16
-  source_url: https://www.youtube.com/watch?v=8J7rf04rraQ
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/zvfefkmybj7h629
-  code:
-  download_url_alt:
-  file_name: INSTALL MARIO FOREVER.exe
-  file_url:
+  ver:
+  - v3.0:
+      ver_alt:
+      date: 2026-06-07
+      source_url: https://www.youtube.com/watch?v=-uIM0tHJE_4
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/gy2s70wdyphf61j/MARIO+FOREVER+-+PLUS+WORLDS+REMAKE+V3.0.zip/file
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER - PLUS WORLDS REMAKE V3.0.zip
+      file_url:
+  - v1.5:
+      ver_alt:
+      date: 2024-11-16
+      source_url: https://www.youtube.com/watch?v=8J7rf04rraQ
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/zvfefkmybj7h629
+      code:
+      download_url_alt:
+      file_name: INSTALL MARIO FOREVER.exe
+      file_url:
 - game: Summer Day
   game_alt:
   author: Dr.Chaos Kirby
