@@ -82,7 +82,7 @@ Mario Worker 1.1 represents a separate redevelopment of the editor. The first bu
 ## Download Mario Worker Remake
 Mario Worker Remake is a complete revamp of the Mario Worker 1.0 level editor, developed by TheMarioVariable.
 
-<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-worker-remake/MWRemake%20v3.03.rar">Download Mario Worker Remake v3.03</a><a class="md-button" target="_blank" href="https://www.themariovariable.org/mario-forever/mario-worker-remake/">Mario Worker Remake website</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/mario-worker-remake/MWRemake%20v3.03.rar">Download Mario Worker Remake v3.03</a><a class="md-button" target="_blank" href="https://www.themariovariable.org/mario-forever/mario-worker-remake/">Mario Worker Remake website</a><a class="md-button" target="_blank" href="https://marioworkerdatabase.altervista.org/">Mario Worker Remake Database</a>
 
 Mario Worker Remake contains a bunch of new features compared to MW 1.0, such as objects, enemies, backgrounds, music, and preferences like autoscroll and editable background gradient color.
 
@@ -145,7 +145,7 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
 ## Frequently Asked Questions
 
 **Q: How can I download levels for Mario Worker?**
-**A:** We currently don't host levels for variants such as Mario Worker Remake. There is a **[Mario Worker Database](https://marioworkerdatabase.altervista.org/)** with a large number of MWR levels. This site does provide a [levels catalog](https://download.marioforever.net/mw-levels.html) for Mario Worker 1.1 and Super Mario Worker Project, although it is currently only available in Chinese. You can also search for levels on the Internet, such as YouTube, Discord servers, and MF forums.
+**A:** We currently don't host levels for variants such as Mario Worker Remake, while there's a **[Mario Worker Database](https://marioworkerdatabase.altervista.org/)** with a large number of MWR levels. This site does provide a **[levels catalog](https://download.marioforever.net/mw-levels.html)** for Mario Worker 1.1 and Super Mario Worker Project, although it is currently only available in Chinese. You can also search for levels on the Internet, such as YouTube, Discord servers, and MF forums.
 
 **Q: Is Mario Worker Remake backward compatible with MW 1.0 levels?**
 **A:** Different variants of Mario Worker are generally not compatible with one another, even if some are based on the original MW. The only notable exception is Super Mario Worker Project, which is backward compatible with MW 1.1. As a general rule, it is recommended to play levels using the same version they were created with.
