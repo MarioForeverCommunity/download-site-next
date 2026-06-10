@@ -155,7 +155,11 @@ export function getDownloadEntries(item, lan) {
     return [];
   }
   const links = [];
-  if (lan == "en") {
+  // 英文版 + chinese 作品：交换顺序（先 alt 后 main）
+  // 英文版 + international 作品：不交换顺序（先 main 后 alt）
+  // 中文版：不交换顺序（先 main 后 alt）
+  const shouldSwap = lan == "en" && item.type == "chinese";
+  if (shouldSwap) {
     if (item.currentVer.download_url_alt) {
       links.push(item.currentVer.download_url_alt);
     }
