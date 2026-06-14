@@ -1346,10 +1346,20 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v0.43:
+      ver_alt:
+      date: 2026-06-09
+      source_url: https://www.youtube.com/watch?v=27ia8M5uOgU
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/3bl4oukgd3k9dtj/Mario_Forever_Idirfertat_World_0.43.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Idirfertat World 0.43.rar
+      file_url:
   - v0.41:
       ver_alt:
       date: 2026-06-09
-      source_url: https://www.youtube.com/watch?v=NCObO3z2CNA
+      source_url: https://www.youtube.com/watch?v=NrUX9SQymdg
       source_url_alt:
       download_url: https://www.mediafire.com/file/s56pbwr7xjtyn03/Mario_Forever_Idirfertat_World_0.41.rar/file
       code:
@@ -1365,6 +1375,26 @@
       code:
       download_url_alt:
       file_name: Mario Forever Idirfertat World 0.3.rar
+      file_url:
+  - v0.29:
+      ver_alt:
+      date: 2026-06-07
+      source_url: https://www.youtube.com/watch?v=x7psRMJrm08
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/vg3zan0t4qwwrbl/Mario_Forever_Idirfertat_World_0.29.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Idirfertat World 0.29.rar
+      file_url:
+  - v0.25:
+      ver_alt:
+      date: 2026-05-20
+      source_url: https://www.youtube.com/watch?v=x7psRMJrm08
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/3sab0j3zhj3506d/Mario_Forever_Idirfertat_World_0.25.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Idirfertat World 0.25.rar
       file_url:
   - v0.2:
       ver_alt:
@@ -2782,6 +2812,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v3.7:
+      ver_alt:
+      date: 2026-06-13
+      source_url: https://www.youtube.com/watch?v=tom8m9Cq5AM
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/zizl4zm1fck37r3/MARIO_FOREVER_-_PLUS_WORLDS_REMAKE_V3.7.zip/file
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER - PLUS WORLDS REMAKE V3.7.zip
+      file_url:
   - v3.2:
       ver_alt:
       date: 2026-06-08
