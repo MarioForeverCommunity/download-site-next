@@ -1,4 +1,22 @@
 ---
+- game: Mario Minix for Android
+  game_alt:
+  author: Sanyario
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v2.1:
+      ver_alt:
+      date: 2026-06-14
+      source_url: https://www.youtube.com/watch?v=kUcIuBs5xiw
+      source_url_alt:
+      download_url: https://mega.nz/file/IrZRETID#ue6aj5OdrJfUf4Jo-4lSlWeM1u1lXc3dobwp7G1iwxE
+      code:
+      download_url_alt:
+      file_name: Mario Minix.apk
+      file_url:
 - game: Mario Forever - Icy Termes
   game_alt:
   author: LuigiTron17
