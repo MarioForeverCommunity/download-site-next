@@ -235,4 +235,21 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
   body.dark .radio-inputs .radio:hover {
     background-color: #555;
   }
+
+  :deep(.carousel__pagination) {
+    position: relative;
+    margin-top: 24px;
+  }
+
+  :deep(.carousel__pagination-button) {
+    width: 12px;
+  }
+
+  :deep(.carousel__prev) {
+    margin-left: 8px;
+  }
+
+  :deep(.carousel__next) {
+    margin-right: 8px;
+  }
 </style>

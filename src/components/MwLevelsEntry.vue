@@ -392,6 +392,14 @@ const getGameImage = () => {
   box-sizing: border-box;
 }
 
+:deep(.carousel__prev) {
+  margin-left: 8px;
+}
+
+:deep(.carousel__next) {
+  margin-right: 8px;
+}
+
 @media (max-width: 600px) {
   .mw-entry {
     width: 100vw;

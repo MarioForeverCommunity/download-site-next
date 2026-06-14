@@ -463,4 +463,23 @@ Mario Forever Flash 已被复刻进 <a href="#mario-forever-community-edition">M
 
 游玩本作需使用 <a target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/swf/Adobe%20Flash%20Player">Adobe Flash Player</a> 或 <a target="_blank" href="https://ruffle.rs/">Ruffle</a>。
 
-![Mario Forever Flash Title](/data/mf-index/Marioforeverflashtitle.webp) 
+![Mario Forever Flash Title](/data/mf-index/Marioforeverflashtitle.webp)
+
+<style scoped>
+:deep(.carousel__pagination) {
+  position: relative;
+  margin-top: 24px;
+}
+
+:deep(.carousel__pagination-button) {
+  width: 12px;
+}
+
+:deep(.carousel__prev) {
+  margin-left: 8px;
+}
+
+:deep(.carousel__next) {
+  margin-right: 8px;
+}
+</style>
