@@ -52,19 +52,19 @@ export default defineConfig({
         chunkFileNames: "js/[name]-[hash].js",
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: "[ext]/[name]-[hash].[ext]",
-        manualChunks: {
-          'vue-vendor': ['vue', 'vue-router'],
-          'http-vendor': ['axios'],
-          'ui-vendor': [
-            '@floating-ui/vue',
-            'vue3-carousel',
-            'overlayscrollbars',
-            'overlayscrollbars-vue'
-          ],
-          'utils-vendor': [
-            'js-yaml',
-            'js-cookie'
-          ]
+        manualChunks(id) {
+          if (id.includes('node_modules/vue/') || id.includes('node_modules/vue-router/')) {
+            return 'vue-vendor'
+          }
+          if (id.includes('node_modules/axios/')) {
+            return 'http-vendor'
+          }
+          if (id.includes('node_modules/@floating-ui/') || id.includes('node_modules/vue3-carousel/') || id.includes('node_modules/overlayscrollbars/')) {
+            return 'ui-vendor'
+          }
+          if (id.includes('node_modules/js-yaml/') || id.includes('node_modules/js-cookie/')) {
+            return 'utils-vendor'
+          }
         }
       }
     },
