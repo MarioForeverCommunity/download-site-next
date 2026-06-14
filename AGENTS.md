@@ -3,17 +3,25 @@
 ## Project Overview
 Vue 3 static website built with Vite and JavaScript. Bilingual (Chinese/English) catalog for Mario Forever games, fangames, and SMWP levels. Uses YAML data files and supports multiple entry points (index.html, mf-games.html, mw-levels.html, assets.html, mario-worker.html).
 
+## Technology Stack
+- **Package Manager**: bun (**Do NOT use npm/yarn/pnpm**)
+- **Vue 3**: Composition API with `<script setup>`
+- **JavaScript**: ES modules (no TypeScript)
+- **Build Tool**: Vite 8.x (target: ES2022)
+- **Styling**: CSS with SCSS support
+- **Libraries**: axios, js-cookie, js-yaml, vue-router, markdown-it, @floating-ui/vue, vue3-carousel, overlayscrollbars
+
 ## Build Commands
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start Vite dev server with HMR |
-| `npm run build` | Build for production (outputs to dist/) - runs image index generation, vite build, and data compression |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint with auto-fix on all .vue, .js files |
-| `npm run lint -- <file>` | Lint a specific file |
-| `npm run generate-images` | Generate `image-index.json` |
-| `npm run deploy` | Execute deployment script (deploy.sh) |
+| `bun run dev` | Start Vite dev server with HMR |
+| `bun run build` | Build for production (outputs to dist/) - runs image index generation, vite build, and data compression |
+| `bun run preview` | Preview production build locally |
+| `bun run lint` | Run ESLint with auto-fix on all .vue, .js files |
+| `bun run lint -- <file>` | Lint a specific file |
+| `bun run generate-images` | Generate `image-index.json` |
+| `bun run deploy` | Execute deployment script (deploy.sh) |
 
 ## Testing
 **No test framework is configured.** Manual testing required:
@@ -170,19 +178,11 @@ const lan = ref(getLanguage())
 const title = lan.value === 'zh' ? titleZh : titleEn
 ```
 
-## Technology Stack
-- **Node.js**: 20.x
-- **Vue 3**: Composition API with `<script setup>`
-- **JavaScript**: ES modules (no TypeScript)
-- **Build Tool**: Vite 6.x (target: ES2022)
-- **Styling**: CSS with SCSS support
-- **Libraries**: axios, js-cookie, js-yaml, vue-router, markdown-it, @floating-ui/vue, vue3-carousel, overlayscrollbars
-
 ## Development Notes
 - All features must work in Chinese and English
 - Image assets: `public/data/` (all pages)
 - External API calls use axios
-- Always run `npm run lint` before committing
+- Always run `bun run lint` before committing
 - Build includes gzip/brotli compression for assets >5KB
 - Global `BUILD_TIME` variable available (readonly)
 - scripts/ directory uses Node.js globals, not browser globals

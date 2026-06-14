@@ -14,8 +14,8 @@ cd $WORK_DIR || exit
 git pull origin $BRANCH
 
 # 安装依赖和构建
-npm install
-npm run build
+bun install
+bun run build
 
 # 将构建结果复制到目标路径
 echo "**************************** 本地部署 *************************"
