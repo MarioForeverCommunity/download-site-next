@@ -6,7 +6,7 @@
       "name": "download-marioforever-net",
       "dependencies": {
         "@floating-ui/vue": "^2.0.0",
-        "axios": "^1.17.0",
+        "axios": "^1.18.0",
         "js-cookie": "^3.0.8",
         "js-yaml": "^4.2.0",
         "markdown-it": "^14.2.0",
