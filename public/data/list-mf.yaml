@@ -151,10 +151,31 @@
   video_zh:
   - 演示视频: https://www.bilibili.com/video/BV1qNRMBWEdM/
   ver:
+  - v4:
+      ver_alt:
+      date: 2026-06-18
+      current: true
+      source_url: https://www.marioforever.net/thread-3842-1-1.html
+      source_url_alt:
+      download_url: https://wwazi.lanzoue.com/iWfd73sb672d
+      code: MFPC
+      download_url_alt:
+      file_name: MF大冲关第四季v4.exe
+      file_url:
+  - MW模式v4:
+      ver_alt: MW mode v4
+      date: 2026-06-18
+      current: true
+      source_url: https://www.marioforever.net/thread-3844-1-1.html
+      source_url_alt:
+      download_url: https://wwazi.lanzoue.com/i9B9e3sb66je
+      code: MFPC
+      download_url_alt:
+      file_name: MF大冲关第四季MW模式v4.exe
+      file_url:
   - v3:
       ver_alt:
       date: 2026-06-16
-      current: true
       source_url: https://www.marioforever.net/thread-3842-1-1.html
       source_url_alt:
       download_url: https://wwazi.lanzoue.com/idkTy3s0gswd
@@ -165,7 +186,6 @@
   - MW模式v3:
       ver_alt: MW mode v3
       date: 2026-06-16
-      current: true
       source_url: https://www.marioforever.net/thread-3844-1-1.html
       source_url_alt:
       download_url: https://wwazi.lanzoue.com/iyG883s0gule
