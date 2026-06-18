@@ -53,7 +53,7 @@ export default defineConfig({
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: "[ext]/[name]-[hash].[ext]",
         manualChunks(id) {
-          if (id.includes('node_modules/vue/') || id.includes('node_modules/vue-router/')) {
+          if (id.includes('node_modules/vue/')) {
             return 'vue-vendor'
           }
           if (id.includes('node_modules/axios/')) {
@@ -81,24 +81,15 @@ export default defineConfig({
     reportCompressedSize: true,
     sourcemap: false
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler',
-      },
-    },
-  },
   optimizeDeps: {
     include: [
       'vue',
-      'vue-router',
       'axios',
       'js-yaml',
       'js-cookie',
       '@floating-ui/vue',
       'vue3-carousel',
       'overlayscrollbars',
-      'overlayscrollbars-vue',
       'markdown-it'
     ]
   },
