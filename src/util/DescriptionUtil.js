@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as yaml from 'js-yaml';
+import { load } from 'js-yaml';
 
 const listCache = {};
 const dirNameMappingCache = {};
@@ -26,7 +26,7 @@ async function loadYamlList(category) {
   try {
     const response = await axios.get(`/data/${listFile}`);
     if (response.status === 200) {
-      const list = yaml.load(response.data) || [];
+      const list = load(response.data) || [];
       listCache[category] = list;
       return list;
     }
