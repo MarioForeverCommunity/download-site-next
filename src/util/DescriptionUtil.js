@@ -1,5 +1,5 @@
 import axios from 'axios';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 const listCache = {};
 const dirNameMappingCache = {};

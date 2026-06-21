@@ -2,7 +2,7 @@ import { readdirSync, statSync, writeFileSync, existsSync, mkdirSync, readFileSy
 import { join, extname } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
