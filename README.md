@@ -55,6 +55,7 @@ The Mario Forever game list is written in yaml (a data format that is easy for h
   author: gurcd
   author_alt: CD
   type: chinese
+  software: mmf
   wiki_zh_url:
   wiki_en_url:
   ver: v3.0
@@ -126,6 +127,7 @@ Below are the meanings of each field. Since the site includes both Chinese and E
 | `description_zh` | No | String | The description of the game on the Chinese page (if there is content that needs to be explained on the list page). |
 | `description_en` | No | String | The description of the game on the English page (if there is content that needs to be explained on the list page). |
 | `type` | **Yes** | String | Supports three fields for filtering function retrieval: <br>`chinese`: Games made by Chinese players. <br>`international`: Games made by international Mario Forever players. |
+| `software` | No | String | The software used to create the game. Defaults to `mmf` if not specified. Supported values: <br>`mmf`: Multimedia Fusion / Clickteam Fusion <br>`godot`: Godot Engine <br>`gamemaker`: GameMaker <br>`other`: Other software |
 | `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
 | `wiki_en_url` | No | String | The link of the game in the English Mario Forever Wiki. |
 | `video_zh` | No | Dictionary List | Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |

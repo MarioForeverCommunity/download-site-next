@@ -583,6 +583,18 @@ const renderedDescription = computed(() => {
   return md.render(markdownContent.value);
 });
 
+const softwareLabel = computed(() => {
+  if (!props.game) return null;
+  const software = props.game.software || 'mmf';
+  const labels = {
+    mmf: { zh: 'Multimedia Fusion / Clickteam Fusion', en: 'Multimedia Fusion / Clickteam Fusion' },
+    godot: { zh: 'Godot Engine', en: 'Godot Engine' },
+    gamemaker: { zh: 'GameMaker', en: 'GameMaker' },
+    other: { zh: '其他', en: 'Other' }
+  };
+  return labels[software] ? labels[software][props.lan] : software;
+});
+
 const shortDesc = computed(() => {
   if (!props.game) return null;
 
@@ -726,6 +738,11 @@ const nextImage = () => {
             <span v-if="assetTypeLabel" class="asset-type-label">[{{ assetTypeLabel }}]</span>
             {{ gameName }}
           </h1>
+
+          <div v-if="!isMwLevel && !isAssets" class="software-info">
+            <span class="software-label">{{ lan === 'zh' ? '制作软件' : 'Made with' }}: </span>
+            <span class="software-value">{{ softwareLabel }}</span>
+          </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
             <span class="smwp-label">MW 版本:</span>
@@ -1042,6 +1059,19 @@ const nextImage = () => {
 
   .smwp-value a:hover {
     text-decoration: underline;
+  }
+
+  .software-info {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .software-label {
+    color: #666;
+  }
+
+  .software-value {
+    color: #666;
   }
 
   .title-image-container {
@@ -1392,6 +1422,14 @@ const nextImage = () => {
 
   body.dark .smwp-value {
     color: #aaa;
+  }
+
+  body.dark .software-label {
+    color: #aaa;
+  }
+
+  body.dark .software-value {
+    color: #ccc;
   }
 
   body.dark .section-title {

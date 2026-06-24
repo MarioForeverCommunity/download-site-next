@@ -362,6 +362,7 @@ const filter_option = ref({
   international : true,
   platform : "",
   event : "",
+  software : "",
 });
 
 const eventKeywords = {
@@ -446,6 +447,7 @@ function clearFilter() {
   filter_option.value.international = true;
   filter_option.value.platform = "";
   filter_option.value.event = "";
+  filter_option.value.software = "";
 }
 
 const expandAllVersions = ref(false);
@@ -474,6 +476,7 @@ const filteredGames = computed(() => {
       || (filter_option.value.international && a.type == "international")
       || filter_option.value.force)
       && (filter_option.value.event === "" || detectEventIncludingVersions(a) === filter_option.value.event)
+      && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
   );
   if (!expandAllVersions.value) {
     return list;
@@ -529,6 +532,8 @@ const filteredGames = computed(() => {
         const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
         const eventVal = detectEventForVersion(entry, verKey);
         const eventMatch = filter_option.value.event === "" || eventVal === filter_option.value.event;
+        const softwareVal = entry.software || "mmf";
+        const softwareMatch = filter_option.value.software === "" || softwareVal === filter_option.value.software;
         // 国际作品旧版file_name前缀处理
         let patchedVerRaw = { ...verRaw };
         if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
@@ -538,7 +543,7 @@ const filteredGames = computed(() => {
             patchedVerRaw = { [verKey]: newVerObj };
           }
         }
-        if (yearMatch && typeMatch && platformMatch && eventMatch) {
+        if (yearMatch && typeMatch && platformMatch && eventMatch && softwareMatch) {
           return {
             ...entry,
             ver: [patchedVerRaw],
@@ -806,6 +811,16 @@ function hasDataDownload(game) {
             <option value="Linux">Linux</option>
             <option value="macOS">macOS</option>
             <option value="Android">Android</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Software" : "制作软件" }}
+          <select v-model="filter_option.software">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option value="mmf">Clickteam Fusion</option>
+            <option value="godot">Godot Engine</option>
+            <option value="gamemaker">GameMaker</option>
+            <option value="other">{{ lan == "en" ? "Other" : "其他" }}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">

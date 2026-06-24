@@ -77,6 +77,7 @@
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -300,6 +301,7 @@
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   repo: https://github.com/TeamMFPKD/mario-forever-party--king-designer
@@ -383,6 +385,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -500,6 +503,7 @@
   - nonk123
   author_alt:
   type: international
+  software: other
   wiki_zh_url:
   wiki_en_url:
   repo: https://github.com/toggins/Klawiatura
@@ -963,6 +967,7 @@
   author: CST1229
   author_alt:
   type: international
+  software: gamemaker
   wiki_zh_url:
   wiki_en_url:
   repo: https://github.com/CST1229/NSMF2012SlightlyFixed
@@ -1121,6 +1126,7 @@
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
+  software: godot
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_The_New_Year_2026
   wiki_en_url:
   ver:
@@ -1605,6 +1611,7 @@
   author: Laki
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -1728,6 +1735,7 @@
   author: 幽霊鬼yuureiki
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   repo: https://github.com/furret78/world-of-haste-dx-public
@@ -2628,6 +2636,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   homepage_en: https://mfce.rnx.su/
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
@@ -3201,6 +3210,7 @@
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
+  software: godot
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_Decasamsara_Worlds_2
   wiki_en_url:
   ver:
@@ -3387,6 +3397,7 @@
   author: dasasdhba
   author_alt:
   type: chinese
+  software: godot
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Horizon
   wiki_en_url:
   video_zh:
@@ -3951,6 +3962,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   repo: https://github.com/meteo-dream/party-worlds-reimagined
@@ -4056,6 +4068,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -4562,6 +4575,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_-_Winter_Franchise
   wiki_en_url:
   ver:
@@ -8051,6 +8065,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -9319,6 +9334,7 @@
   author: Meteo Dream
   author_alt:
   type: international
+  software: godot
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -10482,6 +10498,7 @@
   author: Ultra Team
   author_alt:
   type: chinese
+  software: gamemaker
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -13635,6 +13652,7 @@
   author: Can't Sleep
   author_alt:
   type: international
+  software: gamemaker
   wiki_zh_url:
   wiki_en_url:
   video_zh:

@@ -67,6 +67,13 @@ definitions:
           enum:
             - chinese
             - international
+        software:
+          type: string
+          enum:
+            - mmf
+            - godot
+            - gamemaker
+            - other
       required:
       - game
       - author
