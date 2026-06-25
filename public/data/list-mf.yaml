@@ -8069,13 +8069,34 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  - v1.2.2 Windows:
+  - v1.3 Windows:
       ver_alt:
-      date: 2023-02-13
+      date: 2026-06-25
       current: true
       source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
       source_url_alt:
       download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20The%20Multiverse%202
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.3 Windows.zip
+      file_url:
+  - v1.3 Linux:
+      ver_alt:
+      date: 2026-06-25
+      current: true
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20The%20Multiverse%202
+      code:
+      download_url_alt:
+      file_name: Mario Forever The Multiverse 2 v1.3 Linux.zip
+      file_url:
+  - v1.2.2 Windows:
+      ver_alt:
+      date: 2023-02-13
+      source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
+      source_url_alt:
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520The%2520Multiverse%25202
       code:
       download_url_alt:
       file_name: Mario Forever The Multiverse 2 v1.2.2 Windows.zip
@@ -8083,10 +8104,9 @@
   - v1.2.2 Linux:
       ver_alt:
       date: 2023-02-13
-      current: true
       source_url: https://www.youtube.com/watch?v=D1zDkGucbqE
       source_url_alt:
-      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20The%20Multiverse%202
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520The%2520Multiverse%25202
       code:
       download_url_alt:
       file_name: Mario Forever The Multiverse 2 v1.2.2 Linux.zip
