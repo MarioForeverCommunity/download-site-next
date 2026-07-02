@@ -38,7 +38,7 @@ const previewImageUrl = ref('');
 const previewImageIndex = ref(0);
 const markdownContent = ref('');
 const originalTitle = ref(document.title);
-const fileSizeMap = ref(new Map());
+const fileSizeMap = ref({});
 const fileSizeLoading = ref(false);
 
 const isMwLevel = computed(() => {
@@ -881,8 +881,8 @@ const nextImage = () => {
               <li v-for="(entry, index) in downloadEntries" :key="index" class="download-item">
                 <span class="floppy-icon">{{ entry.isData ? '🗂️' : (entry.isRepackaged ? '📦' : '📥') }}</span>
                 <a :href="entry.url" target="_blank" class="download-link">{{ entry.version }}</a>
-                <span v-if="fileSizeMap.get(entry.url)" class="file-size-label">
-                  ({{ fileSizeMap.get(entry.url) }})
+                <span v-if="fileSizeMap[entry.url]" class="file-size-label">
+                  ({{ fileSizeMap[entry.url] }})
                 </span>
                 <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
                   ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
@@ -901,8 +901,8 @@ const nextImage = () => {
                 <a :href="entry.url" target="_blank" class="download-link">
                   {{ entry.name }}
                 </a>
-                <span v-if="fileSizeMap.get(entry.url)" class="file-size-label">
-                  ({{ fileSizeMap.get(entry.url) }})
+                <span v-if="fileSizeMap[entry.url]" class="file-size-label">
+                  ({{ fileSizeMap[entry.url] }})
                 </span>
                 <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
                   ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
