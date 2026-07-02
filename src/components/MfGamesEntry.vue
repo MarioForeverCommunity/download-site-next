@@ -13,6 +13,7 @@ import Tooltip from "./ToolTip.vue"
 import { QuestionIcon } from "./icons/Icons.js"
 import GameCard from "./GameCard.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+import { getFormattedFileSize } from "../util/OpenListApi.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 
@@ -50,6 +51,9 @@ const game = ref(null)
 const isLoading = ref(true)
 const notFound = ref(false)
 const selectedDownload = ref(null)
+const selectedFileSize = ref(null)
+const selectedDataFileSize = ref(null)
+const fileSizeLoading = ref(false)
 const selectedVideo = ref(null)
 const tiebaDialog = ref(null)
 const selectedGameDetail = ref(null)
@@ -99,6 +103,42 @@ watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newD
     enableScroll()
   }
 })
+
+watch(selectedDownload, (newDownload) => {
+  if (newDownload) {
+    fetchFileSize(newDownload)
+  } else {
+    selectedFileSize.value = null
+    selectedDataFileSize.value = null
+    fileSizeLoading.value = false
+  }
+})
+
+async function fetchFileSize(download) {
+  if (!download) {
+    selectedFileSize.value = null
+    selectedDataFileSize.value = null
+    return
+  }
+
+  fileSizeLoading.value = true
+  selectedFileSize.value = null
+  selectedDataFileSize.value = null
+
+  const resourceUrl = getResourceURL(download, lan.value)
+  if (resourceUrl) {
+    const size = await getFormattedFileSize(resourceUrl)
+    selectedFileSize.value = size
+  }
+
+  const dataResourceUrl = getDataResourceURL(download, lan.value)
+  if (dataResourceUrl) {
+    const dataSize = await getFormattedFileSize(dataResourceUrl)
+    selectedDataFileSize.value = dataSize
+  }
+
+  fileSizeLoading.value = false
+}
 
 const selectBestCandidate = (candidates, desiredVerStr) => {
   const scored = candidates.map((entry) => {
@@ -416,6 +456,10 @@ function hasDataDownload(download) {
               </template>
             </Tooltip>
           </div>
+          <div v-if="fileSizeLoading || selectedFileSize" class="file-size-info">
+            <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching file size...' : '获取游戏大小中...' }}</span>
+            <span v-else-if="selectedFileSize" class="file-size-text">{{ lan == 'en' ? 'File size' : '游戏大小' }}: {{ selectedFileSize }}</span>
+          </div>
           <div class="button-line">
             <a
               class="download"
@@ -435,6 +479,10 @@ function hasDataDownload(download) {
           </div>
           <div v-if="hasDataDownload(selectedDownload)" class="button-line" style="margin-top: 8px;">
             <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
+          </div>
+          <div v-if="hasDataDownload(selectedDownload) && (fileSizeLoading || selectedDataFileSize)" class="file-size-info">
+            <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching data file size...' : '获取数据包大小中...' }}</span>
+            <span v-else-if="selectedDataFileSize" class="file-size-text">{{ lan == 'en' ? 'Data file size' : '数据包大小' }}: {{ selectedDataFileSize }}</span>
           </div>
           <div v-if="hasDataDownload(selectedDownload)" class="button-line">
             <template v-if="selectedDownload.currentVer.data_download_url">
@@ -710,6 +758,24 @@ body.dark .entry-gallery {
 
 .italic {
   font-style: italic;
+}
+
+.file-size-info {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.file-size-loading {
+  color: #888;
+}
+
+.file-size-text {
+  color: #666;
+}
+
+body.dark .file-size-loading,
+body.dark .file-size-text {
+  color: #aaa;
 }
 
 .button-shift {

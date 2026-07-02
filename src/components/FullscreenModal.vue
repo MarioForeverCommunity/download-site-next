@@ -4,6 +4,7 @@ import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/Gam
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync } from '../util/ImageUtil.js';
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
+import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -37,6 +38,8 @@ const previewImageUrl = ref('');
 const previewImageIndex = ref(0);
 const markdownContent = ref('');
 const originalTitle = ref(document.title);
+const fileSizeMap = ref(new Map());
+const fileSizeLoading = ref(false);
 
 const isMwLevel = computed(() => {
   return props.category === 'mw-levels';
@@ -618,10 +621,21 @@ const loadMarkdownDescription = async () => {
   markdownContent.value = content || '';
 };
 
+const fetchFileSizes = async () => {
+  const urls = downloadEntries.value.map(entry => entry.url);
+  const dataUrls = dataDownloadEntries.value.map(entry => entry.url);
+  const allUrls = [...urls, ...dataUrls];
+  fileSizeLoading.value = true;
+  const sizes = await batchFetchFileSizes(allUrls);
+  fileSizeMap.value = sizes;
+  fileSizeLoading.value = false;
+};
+
 watch(() => [props.game, props.lan], () => {
   loadMarkdownDescription();
   if (props.show) {
     updateTitle();
+    fetchFileSizes();
   }
 }, { immediate: true });
 
@@ -632,6 +646,7 @@ watch(() => props.show, (newVal) => {
     disableScroll();
     updateUrl();
     updateTitle();
+    fetchFileSizes();
   } else {
     document.documentElement.classList.remove('modal-open');
     document.body.classList.remove('modal-open');
@@ -859,10 +874,19 @@ const nextImage = () => {
 
           <div class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '下载' : 'Downloads' }}</h3>
+            <div v-if="fileSizeLoading" class="file-size-loading-info">
+              {{ lan === 'zh' ? '获取文件大小中...' : 'Fetching file size...' }}
+            </div>
             <ul v-if="downloadEntries.length > 0" class="download-list">
               <li v-for="(entry, index) in downloadEntries" :key="index" class="download-item">
                 <span class="floppy-icon">{{ entry.isData ? '🗂️' : (entry.isRepackaged ? '📦' : '📥') }}</span>
                 <a :href="entry.url" target="_blank" class="download-link">{{ entry.version }}</a>
+                <span v-if="fileSizeMap.get(entry.url)" class="file-size-label">
+                  ({{ fileSizeMap.get(entry.url) }})
+                </span>
+                <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
+                  ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
+                </span>
                 <span v-if="entry.isRepackaged" class="repackaged-label">
                   <template v-if="entry.repacker">
                     {{ lan === 'zh' ? `(由 ${entry.repacker} 重打包)` : `(Repackaged by ${entry.repacker})` }}
@@ -877,6 +901,12 @@ const nextImage = () => {
                 <a :href="entry.url" target="_blank" class="download-link">
                   {{ entry.name }}
                 </a>
+                <span v-if="fileSizeMap.get(entry.url)" class="file-size-label">
+                  ({{ fileSizeMap.get(entry.url) }})
+                </span>
+                <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
+                  ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
+                </span>
               </li>
             </ul>
             <p v-else class="no-data">{{ lan === 'zh' ? '暂无下载链接' : 'No download links' }}</p>
@@ -1203,6 +1233,24 @@ const nextImage = () => {
     font-size: 0.9em;
   }
 
+  .file-size-label {
+    color: #888;
+    font-size: 0.85em;
+    margin-left: 0.25em;
+  }
+
+  .file-size-loading-label {
+    color: #aaa;
+    font-size: 0.85em;
+    margin-left: 0.25em;
+  }
+
+  .file-size-loading-info {
+    color: #888;
+    font-size: 0.85em;
+    margin-bottom: 0.5em;
+  }
+
   .short-desc {
     padding: 0.2em 0 0.2em 0.6em;
     line-height: 1.3;
@@ -1457,6 +1505,18 @@ const nextImage = () => {
   }
 
   body.dark .repackaged-label {
+    color: #aaa;
+  }
+
+  body.dark .file-size-label {
+    color: #999;
+  }
+
+  body.dark .file-size-loading-label {
+    color: #888;
+  }
+
+  body.dark .file-size-loading-info {
     color: #aaa;
   }
 

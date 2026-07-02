@@ -23,6 +23,7 @@ import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+import { getFormattedFileSize } from '../../util/OpenListApi.js';
 
 const lan = ref(getLanguage());
 
@@ -287,6 +288,9 @@ const checkUrlGameParam = () => {
 };
 
 const selectedDownload = ref(null); // For download modal.
+const selectedFileSize = ref(null); // File size for download modal.
+const selectedDataFileSize = ref(null); // Data file size for download modal.
+const fileSizeLoading = ref(false); // Loading state for file size.
 const selectedVideo = ref(null); // For download modal.
 const tiebaDialog = ref(null); // For tieba dialog.
 const selectedGameDetail = ref(null); // For game detail modal.
@@ -300,6 +304,16 @@ watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail, showCre
     document.documentElement.classList.remove('modal-open');
     document.body.classList.remove('modal-open');
     enableScroll();
+  }
+});
+
+watch(selectedDownload, (newDownload) => {
+  if (newDownload) {
+    fetchFileSize(newDownload);
+  } else {
+    selectedFileSize.value = null;
+    selectedDataFileSize.value = null;
+    fileSizeLoading.value = false;
   }
 });
 
@@ -746,6 +760,34 @@ function getDownloadEntriesForView(game) {
   return getDownloadEntries(game, lan.value);
 }
 
+async function fetchFileSize(game) {
+  if (!game) {
+    selectedFileSize.value = null;
+    selectedDataFileSize.value = null;
+    return;
+  }
+
+  fileSizeLoading.value = true;
+  selectedFileSize.value = null;
+  selectedDataFileSize.value = null;
+
+  // Get the resource URL (file.marioforever.net)
+  const resourceUrl = getResourceURL(game, lan.value);
+  if (resourceUrl) {
+    const size = await getFormattedFileSize(resourceUrl);
+    selectedFileSize.value = size;
+  }
+
+  // Get data file size if available
+  const dataResourceUrl = getDataResourceURL(game, lan.value);
+  if (dataResourceUrl) {
+    const dataSize = await getFormattedFileSize(dataResourceUrl);
+    selectedDataFileSize.value = dataSize;
+  }
+
+  fileSizeLoading.value = false;
+}
+
 function shouldShowResourceLink(game) {
   if (!game) {
     return false;
@@ -1022,6 +1064,10 @@ function hasDataDownload(game) {
             </template>
           </Tooltip>
         </div>
+        <div v-if="fileSizeLoading || selectedFileSize" class="file-size-info">
+          <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching file size...' : '获取游戏大小中...' }}</span>
+          <span v-else-if="selectedFileSize" class="file-size-text">{{ lan == 'en' ? 'File size' : '游戏大小' }}: {{ selectedFileSize }}</span>
+        </div>
         <div class="button-line">
           <a
             class="download"
@@ -1041,6 +1087,10 @@ function hasDataDownload(game) {
         </div>
         <div v-if="hasDataDownload(selectedDownload)" class="button-line" style="margin-top: 8px;">
           <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
+        </div>
+        <div v-if="hasDataDownload(selectedDownload) && (fileSizeLoading || selectedDataFileSize)" class="file-size-info">
+          <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching data file size...' : '获取数据包大小中...' }}</span>
+          <span v-else-if="selectedDataFileSize" class="file-size-text">{{ lan == 'en' ? 'Data file size' : '数据包大小' }}: {{ selectedDataFileSize }}</span>
         </div>
         <div v-if="hasDataDownload(selectedDownload)" class="button-line">
           <template v-if="selectedDownload.currentVer.data_download_url">
@@ -1404,6 +1454,24 @@ function hasDataDownload(game) {
 
   .italic {
     font-style: italic;
+  }
+
+  .file-size-info {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+
+  .file-size-loading {
+    color: #888;
+  }
+
+  .file-size-text {
+    color: #666;
+  }
+
+  body.dark .file-size-loading,
+  body.dark .file-size-text {
+    color: #aaa;
   }
 
   .button-shift {
