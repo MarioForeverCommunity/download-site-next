@@ -61,6 +61,72 @@ const normalizeMfEntry = (raw) => {
     }
   }
 
+  // 国际作品 old-versions/ 处理
+  if (entry.type === "international" && Array.isArray(entry.ver) && entry.ver.length > 0) {
+    // 找到所有current: true的索引
+    const currentIndexes = entry.ver.map((verRaw, idx) => {
+      const verObj = verRaw[Object.keys(verRaw)[0]]
+      return verObj.current === true ? idx : -1
+    }).filter(idx => idx !== -1)
+    // 找到日期最新的最大时间戳
+    const maxDate = Math.max(...entry.ver.map(verRaw => {
+      const verObj = verRaw[Object.keys(verRaw)[0]]
+      return verObj.date instanceof Date ? verObj.date.getTime() : new Date(verObj.date).getTime()
+    }))
+    // 找到所有日期为maxDate的索引
+    const allLatestIdxs = entry.ver.map((verRaw, idx) => {
+      const verObj = verRaw[Object.keys(verRaw)[0]]
+      const verTime = verObj.date instanceof Date ? verObj.date.getTime() : new Date(verObj.date).getTime()
+      return verTime === maxDate ? idx : -1
+    }).filter(idx => idx !== -1)
+    // 只保留第一个为真正最新
+    const trueLatestIdx = allLatestIdxs.length > 0 ? allLatestIdxs[0] : -1
+
+    entry.ver.forEach((verRaw, idx) => {
+      const verObj = verRaw[Object.keys(verRaw)[0]]
+      // file_name 归档
+      if (verObj.file_name) {
+        const verTime = verObj.date instanceof Date ? verObj.date.getTime() : new Date(verObj.date).getTime()
+        if (
+          !verObj.repacker &&
+            (
+              verObj.current === false ||
+              (
+                !currentIndexes.includes(idx) &&
+                (
+                  (verTime !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+                )
+              )
+            ) &&
+            !verObj.file_name.startsWith("old-versions/") &&
+            !verObj.file_name.toLowerCase().endsWith('.apk')
+        ) {
+          verObj.file_name = "old-versions/" + verObj.file_name
+        }
+      }
+      // data_file_name 归档
+      if (verObj.data_file_name) {
+        const verTime = verObj.date instanceof Date ? verObj.date.getTime() : new Date(verObj.date).getTime()
+        if (
+          !verObj.repacker &&
+            (
+              verObj.current === false ||
+              (
+                !currentIndexes.includes(idx) &&
+                (
+                  (verTime !== maxDate) || (allLatestIdxs.includes(idx) && idx !== trueLatestIdx)
+                )
+              )
+            ) &&
+            !verObj.data_file_name.startsWith("old-versions/") &&
+            !verObj.data_file_name.toLowerCase().endsWith('.apk')
+        ) {
+          verObj.data_file_name = "old-versions/" + verObj.data_file_name
+        }
+      }
+    })
+  }
+
   for (const verRaw of entry.ver) {
     const verKey = Object.keys(verRaw)[0]
     const verObj = verRaw[verKey]
