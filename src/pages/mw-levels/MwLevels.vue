@@ -21,6 +21,7 @@ import Tooltip from '../../components/ToolTip.vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 const originalLan = ref(getLanguage());
 
 const lan = "zh"
@@ -183,6 +184,8 @@ const checkUrlGameParam = () => {
 };
 
 const selectedDownload = ref(null); // For download modal.
+const fileSizeMap = ref({}); // File sizes for download modal.
+const fileSizeLoading = ref(false); // Loading state for file sizes.
 const selectedVideo = ref(null); // For download modal.
 const tiebaDialog = ref(null); // For tieba dialog.
 const selectedGameDetail = ref(null); // For game detail modal.
@@ -230,6 +233,64 @@ watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail, showDat
     enableScroll();
   }
 });
+
+watch(selectedDownload, (newDownload) => {
+  if (newDownload) {
+    fetchFileSizes(newDownload);
+  } else {
+    fileSizeMap.value = {};
+    fileSizeLoading.value = false;
+  }
+});
+
+async function fetchFileSizes(download) {
+  if (!download) {
+    fileSizeMap.value = {};
+    return;
+  }
+
+  fileSizeLoading.value = true;
+  fileSizeMap.value = {};
+
+  const urls = [];
+
+  // Collect all URLs from file_urls array
+  if (download.file_urls) {
+    urls.push(...download.file_urls.map(u => u.url));
+  }
+
+  // Collect download link
+  const downloadLink = getDownloadLink(download, lan);
+  if (downloadLink) {
+    urls.push(downloadLink);
+  }
+
+  // Collect data file URLs
+  if (download.currentVer?.data_file_urls) {
+    urls.push(...download.currentVer.data_file_urls.map(u => u.url));
+  }
+
+  // Collect data download URL
+  if (download.currentVer?.data_download_url) {
+    urls.push(download.currentVer.data_download_url);
+  }
+
+  const sizes = await batchFetchFileSizes(urls);
+  fileSizeMap.value = sizes;
+  fileSizeLoading.value = false;
+}
+
+function getSingleFileSize(download) {
+  if (!download.file_urls || download.file_urls.length === 0) return null;
+  const url = download.file_urls[0].url;
+  return fileSizeMap.value[url] || null;
+}
+
+function getSingleDataFileSize(download) {
+  if (!download.currentVer?.data_file_urls || download.currentVer.data_file_urls.length === 0) return null;
+  const url = download.currentVer.data_file_urls[0].url;
+  return fileSizeMap.value[url] || null;
+}
 
 // Sort operations.
 
@@ -623,22 +684,45 @@ const { floatingStyles } = useFloating(reference, floating,
         <div>
           下载 {{ selectedDownload.game }}
         </div>
+        <!-- Single file: show file size above buttons -->
+        <div v-if="!selectedDownload.file_urls || selectedDownload.file_urls.length <= 1" class="file-size-info">
+          <span v-if="fileSizeLoading" class="file-size-loading">获取文件大小中...</span>
+          <span v-else-if="getSingleFileSize(selectedDownload)" class="file-size-text">文件大小: {{ getSingleFileSize(selectedDownload) }}</span>
+        </div>
+        <!-- Multiple files: show loading indicator -->
+        <div v-if="selectedDownload.file_urls && selectedDownload.file_urls.length > 1 && fileSizeLoading" class="file-size-loading">
+          获取文件大小中...
+        </div>
         <div class="button-line">
           <span v-if="selectedDownload.file_urls">
+            <!-- Single file: normal button -->
+            <template v-if="selectedDownload.file_urls.length <= 1">
+              <a
+                class="download"
+                v-for="url in selectedDownload.file_urls"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}</a>
+            </template>
+            <!-- Multiple files: show size in button -->
+            <template v-else>
+              <a
+                class="download"
+                v-for="url in selectedDownload.file_urls"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+            </template>
+          </span>
+          <template v-if="getDownloadLink(selectedDownload, 'zh')">
             <a
               class="download"
-              v-for="url in selectedDownload.file_urls"
-              :key="url.url"
-              :href="url.url"
+              :href="getDownloadLink(selectedDownload, 'zh')"
               target="_blank"
-            >{{ url.name }}</a>
-          </span>
-          <a
-            class="download"
-            v-if="getDownloadLink(selectedDownload, 'zh')"
-            :href="getDownloadLink(selectedDownload, 'zh')"
-            target="_blank"
-          >{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
+            >{{ getDownloadDesc(selectedDownload, 'zh') }}</a>
+          </template>
           <ClipboardButton
             v-if="getDownloadCode(selectedDownload, 'zh')"
             :code="getDownloadCode(selectedDownload, 'zh')"
@@ -649,15 +733,37 @@ const { floatingStyles } = useFloating(reference, floating,
         <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
           <span>下载 {{ selectedDownload.game }} 数据包</span>
         </div>
+        <!-- Single data file: show file size above buttons -->
+        <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length <= 1 && (fileSizeLoading || getSingleDataFileSize(selectedDownload))" class="file-size-info">
+          <span v-if="fileSizeLoading" class="file-size-loading">获取数据包大小中...</span>
+          <span v-else-if="getSingleDataFileSize(selectedDownload)" class="file-size-text">数据包大小: {{ getSingleDataFileSize(selectedDownload) }}</span>
+        </div>
+        <!-- Multiple data files: show loading indicator -->
+        <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 1 && fileSizeLoading" class="file-size-loading">
+          获取数据包大小中...
+        </div>
         <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line">
           <span v-if="selectedDownload.currentVer.data_file_urls">
-            <a
-              class="download"
-              v-for="url in selectedDownload.currentVer.data_file_urls"
-              :key="url.url"
-              :href="url.url"
-              target="_blank"
-            >{{ url.name }}</a>
+            <!-- Single data file: normal button -->
+            <template v-if="selectedDownload.currentVer.data_file_urls.length <= 1">
+              <a
+                class="download"
+                v-for="url in selectedDownload.currentVer.data_file_urls"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}</a>
+            </template>
+            <!-- Multiple data files: show size in button -->
+            <template v-else>
+              <a
+                class="download"
+                v-for="url in selectedDownload.currentVer.data_file_urls"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+            </template>
           </span>
           <template v-if="selectedDownload.currentVer.data_download_url">
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
@@ -953,6 +1059,24 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .download:active {
     background-color: #007cdf;
+  }
+
+  .file-size-info {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+
+  .file-size-loading {
+    color: #888;
+  }
+
+  .file-size-text {
+    color: #666;
+  }
+
+  body.dark .file-size-loading,
+  body.dark .file-size-text {
+    color: #aaa;
   }
 
   .button-line {

@@ -10,6 +10,7 @@ import "vue3-carousel/dist/carousel.css"
 import ClipboardButton from "./ButtonClipboard.vue"
 import GameCard from "./GameCard.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+import { batchFetchFileSizes } from "../util/OpenListApi.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 const props = defineProps({
@@ -42,6 +43,8 @@ const level = ref(null)
 const isLoading = ref(true)
 const notFound = ref(false)
 const selectedDownload = ref(null)
+const fileSizeMap = ref({})
+const fileSizeLoading = ref(false)
 const selectedVideo = ref(null)
 const tiebaDialog = ref(null)
 const selectedGameDetail = ref(null)
@@ -91,6 +94,64 @@ watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newD
     enableScroll()
   }
 })
+
+watch(selectedDownload, (newDownload) => {
+  if (newDownload) {
+    fetchFileSizes(newDownload)
+  } else {
+    fileSizeMap.value = {}
+    fileSizeLoading.value = false
+  }
+})
+
+async function fetchFileSizes(download) {
+  if (!download) {
+    fileSizeMap.value = {}
+    return
+  }
+
+  fileSizeLoading.value = true
+  fileSizeMap.value = {}
+
+  const urls = []
+
+  // Collect all URLs from file_urls array
+  if (download.file_urls) {
+    urls.push(...download.file_urls.map(u => u.url))
+  }
+
+  // Collect download link
+  const downloadLink = getDownloadLink(download, lan.value)
+  if (downloadLink) {
+    urls.push(downloadLink)
+  }
+
+  // Collect data file URLs
+  if (download.currentVer?.data_file_urls) {
+    urls.push(...download.currentVer.data_file_urls.map(u => u.url))
+  }
+
+  // Collect data download URL
+  if (download.currentVer?.data_download_url) {
+    urls.push(download.currentVer.data_download_url)
+  }
+
+  const sizes = await batchFetchFileSizes(urls)
+  fileSizeMap.value = sizes
+  fileSizeLoading.value = false
+}
+
+function getSingleFileSize(download) {
+  if (!download.file_urls || download.file_urls.length === 0) return null
+  const url = download.file_urls[0].url
+  return fileSizeMap.value[url] || null
+}
+
+function getSingleDataFileSize(download) {
+  if (!download.currentVer?.data_file_urls || download.currentVer.data_file_urls.length === 0) return null
+  const url = download.currentVer.data_file_urls[0].url
+  return fileSizeMap.value[url] || null
+}
 
 const selectBestCandidate = (candidates) => {
   const scored = candidates.map((entry) => {
@@ -276,22 +337,45 @@ const getGameImage = () => {
           <div>
             {{ lan == 'en' ? 'Download' : '下载' }} {{ getName(selectedDownload, lan) }}
           </div>
+          <!-- Single file: show file size above buttons -->
+          <div v-if="!selectedDownload.file_urls || selectedDownload.file_urls.length <= 1" class="file-size-info">
+            <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching file size...' : '获取文件大小中...' }}</span>
+            <span v-else-if="getSingleFileSize(selectedDownload)" class="file-size-text">{{ lan == 'en' ? 'File size' : '文件大小' }}: {{ getSingleFileSize(selectedDownload) }}</span>
+          </div>
+          <!-- Multiple files: show loading indicator -->
+          <div v-if="selectedDownload.file_urls && selectedDownload.file_urls.length > 1 && fileSizeLoading" class="file-size-loading">
+            {{ lan == 'en' ? 'Fetching file sizes...' : '获取文件大小中...' }}
+          </div>
           <div class="button-line">
             <span v-if="selectedDownload.file_urls">
+              <!-- Single file: normal button -->
+              <template v-if="selectedDownload.file_urls.length <= 1">
+                <a
+                  class="download"
+                  v-for="url in selectedDownload.file_urls"
+                  :key="url.url"
+                  :href="url.url"
+                  target="_blank"
+                >{{ url.name }}</a>
+              </template>
+              <!-- Multiple files: show size in button -->
+              <template v-else>
+                <a
+                  class="download"
+                  v-for="url in selectedDownload.file_urls"
+                  :key="url.url"
+                  :href="url.url"
+                  target="_blank"
+                >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+              </template>
+            </span>
+            <template v-if="getDownloadLink(selectedDownload, lan)">
               <a
                 class="download"
-                v-for="url in selectedDownload.file_urls"
-                :key="url.url"
-                :href="url.url"
+                :href="getDownloadLink(selectedDownload, lan)"
                 target="_blank"
-              >{{ url.name }}</a>
-            </span>
-            <a
-              class="download"
-              v-if="getDownloadLink(selectedDownload, lan)"
-              :href="getDownloadLink(selectedDownload, lan)"
-              target="_blank"
-            >{{ getDownloadDesc(selectedDownload, lan) }}</a>
+              >{{ getDownloadDesc(selectedDownload, lan) }}</a>
+            </template>
             <ClipboardButton
               v-if="getDownloadCode(selectedDownload, lan)"
               :code="getDownloadCode(selectedDownload, lan)"
@@ -302,15 +386,37 @@ const getGameImage = () => {
           <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
             <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} Data` : `下载 ${getName(selectedDownload, lan)} 数据包` }}</span>
           </div>
+          <!-- Single data file: show file size above buttons -->
+          <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length <= 1 && (fileSizeLoading || getSingleDataFileSize(selectedDownload))" class="file-size-info">
+            <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching data file size...' : '获取数据包大小中...' }}</span>
+            <span v-else-if="getSingleDataFileSize(selectedDownload)" class="file-size-text">{{ lan == 'en' ? 'Data file size' : '数据包大小' }}: {{ getSingleDataFileSize(selectedDownload) }}</span>
+          </div>
+          <!-- Multiple data files: show loading indicator -->
+          <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 1 && fileSizeLoading" class="file-size-loading">
+            {{ lan == 'en' ? 'Fetching data file sizes...' : '获取数据包大小中...' }}
+          </div>
           <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line">
             <span v-if="selectedDownload.currentVer.data_file_urls">
-              <a
-                class="download"
-                v-for="url in selectedDownload.currentVer.data_file_urls"
-                :key="url.url"
-                :href="url.url"
-                target="_blank"
-              >{{ url.name }}</a>
+              <!-- Single data file: normal button -->
+              <template v-if="selectedDownload.currentVer.data_file_urls.length <= 1">
+                <a
+                  class="download"
+                  v-for="url in selectedDownload.currentVer.data_file_urls"
+                  :key="url.url"
+                  :href="url.url"
+                  target="_blank"
+                >{{ url.name }}</a>
+              </template>
+              <!-- Multiple data files: show size in button -->
+              <template v-else>
+                <a
+                  class="download"
+                  v-for="url in selectedDownload.currentVer.data_file_urls"
+                  :key="url.url"
+                  :href="url.url"
+                  target="_blank"
+                >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+              </template>
             </span>
             <template v-if="selectedDownload.currentVer.data_download_url">
               <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
@@ -552,6 +658,24 @@ body.dark .entry-gallery {
 
 .download:active {
   background-color: #007cdf;
+}
+
+.file-size-info {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.file-size-loading {
+  color: #888;
+}
+
+.file-size-text {
+  color: #666;
+}
+
+body.dark .file-size-loading,
+body.dark .file-size-text {
+  color: #aaa;
 }
 
 .button-line {

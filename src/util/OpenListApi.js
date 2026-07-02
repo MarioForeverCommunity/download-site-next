@@ -134,7 +134,7 @@ export async function getFormattedFileSize(url) {
  * @returns {Promise<Map<string, string>>} - Map of URL to formatted size
  */
 export async function batchFetchFileSizes(urls) {
-  const result = new Map();
+  const result = {};
 
   if (!urls || urls.length === 0) return result;
 
@@ -148,7 +148,7 @@ export async function batchFetchFileSizes(urls) {
     const promises = batch.map(async (url) => {
       const size = await getFormattedFileSize(url);
       if (size) {
-        result.set(url, size);
+        result[url] = size;
       }
     });
     await Promise.all(promises);

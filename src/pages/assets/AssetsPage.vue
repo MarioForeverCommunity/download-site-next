@@ -19,6 +19,7 @@ import introContent from '../../markdown/assets.md';
 import { navTop } from "../../config.js";
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
 import FullscreenModal from '../../components/FullscreenModal.vue';
+import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 const originalLan = ref(getLanguage());
 
 const lan = ref("zh");
@@ -72,6 +73,8 @@ readList("list-assets.yaml").then((list) => {
 });
 
 const selectedDownload = ref(null);
+const fileSizeMap = ref({});
+const fileSizeLoading = ref(false);
 const tiebaDialog = ref(null);
 const selectedAssetDetail = ref(null);
 
@@ -256,6 +259,48 @@ watch([selectedDownload, tiebaDialog, selectedAssetDetail], ([newDownload, newTi
   }
 });
 
+watch(selectedDownload, (newDownload) => {
+  if (newDownload) {
+    fetchFileSizes(newDownload);
+  } else {
+    fileSizeMap.value = {};
+    fileSizeLoading.value = false;
+  }
+});
+
+async function fetchFileSizes(download) {
+  if (!download) {
+    fileSizeMap.value = {};
+    return;
+  }
+
+  fileSizeLoading.value = true;
+  fileSizeMap.value = {};
+
+  const urls = [];
+
+  // Collect resource URLs
+  const resourceUrls = getAssetResourceURLs(download);
+  if (resourceUrls.length > 0) {
+    urls.push(...resourceUrls.map(u => u.url));
+  }
+
+  // Collect download entries URLs
+  const entries = getDownloadEntries(download, lan.value);
+  urls.push(...entries.map(e => e.url));
+
+  const sizes = await batchFetchFileSizes(urls);
+  fileSizeMap.value = sizes;
+  fileSizeLoading.value = false;
+}
+
+function getSingleFileSize(download) {
+  const urls = getAssetResourceURLs(download);
+  if (urls.length === 0) return null;
+  const url = urls[0].url;
+  return fileSizeMap.value[url] || null;
+}
+
 function getAssetImage(asset) {
   if (asset.image) {
     return `/data/assets/${asset.image}`;
@@ -299,7 +344,7 @@ function getAssetResourceURLs(asset) {
     }
 
     return {
-      name: fileNames.length > 1 ? `社区资源站（${displayFileName}）` : '社区资源站',
+      name: fileNames.length > 1 ? `社区资源站 (${displayFileName})` : '社区资源站',
       url: url
     };
   });
@@ -413,15 +458,37 @@ const { floatingStyles } = useFloating(reference, floating,
         <div>
           下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
         </div>
+        <!-- Single file: show file size above buttons -->
+        <div v-if="getAssetResourceURLs(selectedDownload).length <= 1" class="file-size-info">
+          <span v-if="fileSizeLoading" class="file-size-loading">获取文件大小中...</span>
+          <span v-else-if="getSingleFileSize(selectedDownload)" class="file-size-text">文件大小: {{ getSingleFileSize(selectedDownload) }}</span>
+        </div>
+        <!-- Multiple files: show loading indicator -->
+        <div v-if="getAssetResourceURLs(selectedDownload).length > 1 && fileSizeLoading" class="file-size-loading">
+          获取文件大小中...
+        </div>
         <div class="button-line">
           <span v-if="getAssetResourceURLs(selectedDownload).length > 0">
-            <a
-              class="download"
-              v-for="url in getAssetResourceURLs(selectedDownload)"
-              :key="url.url"
-              :href="url.url"
-              target="_blank"
-            >{{ url.name }}</a>
+            <!-- Single file: normal button -->
+            <template v-if="getAssetResourceURLs(selectedDownload).length <= 1">
+              <a
+                class="download"
+                v-for="url in getAssetResourceURLs(selectedDownload)"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}</a>
+            </template>
+            <!-- Multiple files: show size in button -->
+            <template v-else>
+              <a
+                class="download"
+                v-for="url in getAssetResourceURLs(selectedDownload)"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+            </template>
           </span>
           <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
@@ -661,6 +728,24 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .download:active {
     background-color: #007cdf;
+  }
+
+  .file-size-info {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+  }
+
+  .file-size-loading {
+    color: #888;
+  }
+
+  .file-size-text {
+    color: #666;
+  }
+
+  body.dark .file-size-loading,
+  body.dark .file-size-text {
+    color: #aaa;
   }
 
   .button-line {
