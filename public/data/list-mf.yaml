@@ -1,4 +1,23 @@
 ---
+- game: "Mario Forever 2026: Adventure of 4 Worlds"
+  game_alt:
+  author:
+  - QuasarYT09
+  - ElectroDragon777
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-07-05
+  source_url: https://www.youtube.com/watch?v=XL1ihtAmLhs
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/3l70a1ldewsmq0t/MF2026+-+ADVENTURE+OF+4+WORLDS.rar/file
+  code:
+  download_url_alt:
+  file_name: MF2026 - ADVENTURE OF 4 WORLDS.rar
+  file_url:
 - game: Mario Forever The Lost Map for Android
   game_alt:
   author: Sanyario
