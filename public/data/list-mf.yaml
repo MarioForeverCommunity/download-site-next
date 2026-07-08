@@ -1,4 +1,24 @@
 ---
+- game: Mario Forever The Epic Voyage 2
+  game_alt:
+  alias:
+  - MFTEV2
+  author: Turbo 42
+  author_alt:
+  type: international
+  homepage_en: https://sites.google.com/view/turbo42/games/mftev2-info
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v1.0.0
+  ver_alt:
+  date: 2026-07-08
+  source_url: https://www.youtube.com/watch?v=wIR1sUH9gQE
+  source_url_alt:
+  download_url: https://drive.google.com/file/d/1G4dDujDLlbKe5fw1KUd2V44Hq9aHdzUX/view?usp=sharing
+  code:
+  download_url_alt:
+  file_name: Mario Forever The Epic Voyage 2 v1.0.zip
+  file_url:
 - game: "Mario Forever 2026: Adventure of 4 Worlds"
   game_alt:
   author:
@@ -1440,7 +1460,7 @@
   author: Turbo 42
   author_alt:
   type: international
-  homepage_en: https://sites.google.com/view/turbo42/games
+  homepage_en: https://sites.google.com/view/turbo42/games/mfwa-info
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -2441,7 +2461,7 @@
   author: Turbo 42
   author_alt:
   type: international
-  homepage_en: https://sites.google.com/view/turbo42/games
+  homepage_en: https://sites.google.com/view/turbo42/games/mftev-info
   wiki_zh_url:
   wiki_en_url:
   ver: v1.0.1
@@ -3181,7 +3201,7 @@
   author: Turbo 42
   author_alt:
   type: international
-  homepage_en: https://sites.google.com/view/turbo42/games
+  homepage_en: https://sites.google.com/view/turbo42/games/mftw-info
   wiki_zh_url:
   wiki_en_url:
   ver:
@@ -12467,13 +12487,23 @@
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Worker:_Letter_Worlds_Series
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Worker:_Letter_Worlds_Series
+  homepage_en: https://www.themariovariable.org/mario-forever/mario-worker-letter-worlds-series/
   video_zh:
   - WSW 解说: https://space.bilibili.com/11239472/channel/collectiondetail?sid=1762606
   ver:
+  - v2.0:
+      ver_alt:
+      date: 2026-07-07
+      source_url: https://www.youtube.com/watch?v=h6jDlLwZPqM
+      source_url_alt:
+      download_url: https://www.themariovariable.org/mario-forever/mario-worker-letter-worlds-series/
+      code:
+      download_url_alt:
+      file_name: Mario Worker - Letter Worlds Series v2.0.rar
+      file_url:
   - v1.51:
       ver_alt:
       date: 2021-03-19
-      current: true # 如果之后发了字母世界新版，这里的 current: true 必须去掉
       source_url: https://www.youtube.com/watch?v=BrVFVwOy4po
       source_url_alt:
       download_url: https://www.mediafire.com/file/vf2xjow94pn493t/Mario_Worker_-_Letter_Worlds_Series_v1.51.rar/file
