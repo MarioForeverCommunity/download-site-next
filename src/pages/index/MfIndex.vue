@@ -1,5 +1,5 @@
 <script setup>
-import { ref, getCurrentInstance } from 'vue'
+import { ref, getCurrentInstance, onMounted, onBeforeUnmount, watch } from 'vue'
 import axios from 'axios'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
@@ -11,6 +11,7 @@ import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import SiteFooter from '../../components/SiteFooter.vue'
 import MfGamesEntry from '../../components/MfGamesEntry.vue'
 import AssetsEntry from '../../components/AssetsEntry.vue'
+import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js'
 
 const instance = getCurrentInstance()
 if (instance) {
@@ -105,6 +106,46 @@ function pageSetLanguageEn() {
     updateLastUpdate()
   }
 }
+
+// History modal
+const showHistory = ref(false)
+const historyHtml = ref("")
+const mdContainer = ref(null)
+const mdClickHandler = (e) => {
+  const opener = e.target.closest && e.target.closest('#open-history')
+  if (opener) {
+    e.preventDefault()
+    const contentEl = mdContainer.value?.querySelector?.('#history-content')
+    if (contentEl) {
+      historyHtml.value = contentEl.innerHTML
+      showHistory.value = true
+    }
+  }
+}
+
+onMounted(() => {
+  if (mdContainer.value) {
+    mdContainer.value.addEventListener('click', mdClickHandler)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (mdContainer.value) {
+    mdContainer.value.removeEventListener('click', mdClickHandler)
+  }
+})
+
+watch(showHistory, (newVal) => {
+  if (newVal) {
+    document.documentElement.classList.add('modal-open')
+    document.body.classList.add('modal-open')
+    disableScroll()
+  } else {
+    document.documentElement.classList.remove('modal-open')
+    document.body.classList.remove('modal-open')
+    enableScroll()
+  }
+})
 </script>
 
 <template>
@@ -115,11 +156,19 @@ function pageSetLanguageEn() {
     @change-lan-en="pageSetLanguageEn()"
   />
 
-  <div class="md-container">
+  <div class="md-container" ref="mdContainer">
     <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
     <indexZh v-if="lan === 'zh'" :lastUpdateZh="lastUpdateZh" />
     <indexEn v-if="lan === 'en'" :lastUpdateEn="lastUpdateEn" />
   </div>
+
+  <Transition name="modal">
+    <div v-if="showHistory" class="modal-bg" @click="showHistory = false;">
+      <div class="modal-content" @click.stop="">
+        <div v-html="historyHtml"></div>
+      </div>
+    </div>
+  </Transition>
 
   <ButtonBackToTop />
   <ButtonDarkMode />
@@ -287,5 +336,45 @@ function pageSetLanguageEn() {
 
   .md-container p > img:only-child {
     max-width: 100%;
+  }
+
+  .modal-bg {
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-enter-active, .modal-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .modal-enter-from, .modal-leave-to {
+    opacity: 0;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 80vw;
+    max-height: 80vh;
+    padding: 1em;
+    border-radius: .5em;
+    overflow-y: auto;
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  }
+
+  .modal-content p {
+    margin: 0.5em 0;
+    line-height: 1.6;
   }
 </style>

@@ -51,31 +51,23 @@
 
 <p v-if="lastUpdateZh" class="last-update" style="font-weight: bold;">最后更新：{{ lastUpdateZh }}</p>
 
-## 原版 Mario Forever
+## <a id="mario-forever-全版本下载"></a>原版 Mario Forever
 
-Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游戏，关卡创作风格类似于马里奥初代（《Super Mario Bros.》，1985），在国内和国际均有一定的知名度。
+Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游戏，关卡创作风格类似于马里奥初代（《Super Mario Bros.》，1985），在国内和国际均有一定的知名度。<a href="#" id="open-history">点击查看 Mario Forever 发展史介绍。</a>
 
-### Mario Forever 发展史介绍
+<div id="history-content" style="display:none">
+<h2>Mario Forever 发展史介绍</h2>
+<p>最早版本的 Mario Forever 在 2004 年发布，至今已有二十余年的历史。在这段或许有点漫长的时间里，Mario Forever 也经历着翻天覆地的变化。</p>
+<p>Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 30 多个版本。从游戏内容和游戏质量来看，Mario Forever 的发展过程大致可分为以下阶段：</p>
+<p>①<span style="color:red">（Mario Forever 1.16.1～3.0，2003～2005）</span>作者最初制作的游戏版本，所有普通关都已大致定型，同时开始引入附加关（或隐藏关，如 Human Laboratory）；但由于技术经验不足，故游戏内容较少，且存在部分问题。</p>
+<p>②<span style="color:red">（Mario Forever 3.5～4.1，2006～2008）</span>作者设计游戏的技术逐渐成熟后，开始着手将一些新关卡（如 Hardcore、Lost Map 等）加入到游戏中。这一阶段游戏质量较高。根据 CNET 的下载数据，该时段的 Mario Forever 人气值曾一度达到 PC 游戏的顶峰。</p>
+<p>③<span style="color:red">（Mario Forever 4.15～4.4 &amp; Mario Forever Advance，2009～2010）</span>2008 年左右，其他游戏制作人员因种种原因而离开作者，作者本人也因资金不足等原因而关闭了游戏官方网站，Mario Forever 也因此长期未更新。2009 年，作者将官方网站 Buziol Games 更名为 Softendo，发布了 Mario Forever 4.15、4.4 和 Mario Forever Advance Edition（简称 MFAE）等。其中，MFAE 是 Mario Forever 4.4 的加难版，难度较 Mario Forever 4.4 有所提高。Mario Forever 4.4 和 MFAE 也是多数人所认为的 Mario Forever 巅峰之作。</p>
+<p>④<span style="color:red">（Mario Forever 5.0～7.x，2011～2017）</span>4.4 之后，作者开发游戏的方向逐渐从可玩性转为所谓的"视觉特效"和"手感、流畅度"等方向。因为游戏制作平台从 Multimedia Fusion 1.5 迁移至 Multimedia Fusion 2，许多 Bug 莫名其妙地开始出现，但作者不再像以前对待游戏的更新那样用心，原版 Mario Forever 正一步一步地毁在作者的手上。</p>
+<p>⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。</p>
+<p>⑥<span style="color:red">（Mario Forever: Community Edition，2024～）</span>2023 年，Godot Engine 开始在国内外 Mario Forever 社区流行，国内外社群已经制作出 Godot 上的 Mario Forever 游戏引擎。2024 年，国外 Meteo Dream 制作组发布了 Mario Forever: Community Edition（简称 MF:CE），这是基于 Godot 4 的 Thunder Engine 制作的全新的 Mario Forever 复刻版本。由于 Godot 的 Mario Forever 完全从零开始，MF:CE 实现了在 Multimedia Fusion 平台不可能实现的诸多特性，包括但不限于可以将关卡设定为 2.16/4.4/6.0 等不同版本风格、自定义玩家皮肤、高帧率等。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。</p>
+<p>各个版本的详细更新日志，请参见 <a href="https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5" target="_blank">Wiki 页面</a>。</p>
+</div>
 
-最早版本的 Mario Forever 在 2004 年发布，至今已有二十余年的历史。在这段或许有点漫长的时间里，Mario Forever 也经历着翻天覆地的变化。
-
-Mario Forever 从最初可考版本（1.16.1）到现在（7.02）共计 30 多个版本。从游戏内容和游戏质量来看，Mario Forever 的发展过程大致可分为以下阶段：
-
-①<span style="color:red">（Mario Forever 1.16.1～3.0，2003～2005）</span>作者最初制作的游戏版本，所有普通关都已大致定型，同时开始引入附加关（或隐藏关，如 Human Laboratory）；但由于技术经验不足，故游戏内容较少，且存在部分问题。
-
-②<span style="color:red">（Mario Forever 3.5～4.1，2006～2008）</span>作者设计游戏的技术逐渐成熟后，开始着手将一些新关卡（如 Hardcore、Lost Map 等）加入到游戏中。这一阶段游戏质量较高。根据 CNET 的下载数据，该时段的 Mario Forever 人气值曾一度达到 PC 游戏的顶峰。
-
-③<span style="color:red">（Mario Forever 4.15～4.4 & Mario Forever Advance，2009～2010）</span>2008 年左右，其他游戏制作人员因种种原因而离开作者，作者本人也因资金不足等原因而关闭了游戏官方网站，Mario Forever 也因此长期未更新。2009 年，作者将官方网站 Buziol Games 更名为 Softendo，发布了 Mario Forever 4.15、4.4 和 Mario Forever Advance Edition（简称 MFAE）等。其中，MFAE 是 Mario Forever 4.4 的加难版，难度较 Mario Forever 4.4 有所提高。Mario Forever 4.4 和 MFAE 也是多数人所认为的 Mario Forever 巅峰之作。
-
-④<span style="color:red">（Mario Forever 5.0～7.x，2011～2017）</span>4.4 之后，作者开发游戏的方向逐渐从可玩性转为所谓的“视觉特效”和“手感、流畅度”等方向。因为游戏制作平台从 Multimedia Fusion 1.5 迁移至 Multimedia Fusion 2，许多 Bug 莫名其妙地开始出现，但作者不再像以前对待游戏的更新那样用心，原版 Mario Forever 正一步一步地毁在作者的手上。
-
-⑤<span style="color:red">（Mario Forever Remake，2014～）</span>在原创关卡技术日臻成熟后，国内以 syzxchulun 为代表，国外以 TheMarioVariable 为代表的一些人成立了 Mario Forever Remake Group 并发布了 Mario Forever Remake v1.0。后来 Mario Forever Remake Group 逐渐分为了以 syzxchulun 为组长的中国团队和以 TheMarioVariable 为首的欧洲团队。中国版本的 Mario Forever Remake 将重心放在更加完美地复现原版，在内容上更忠实于原作，关卡内容处理也更精细；欧洲版本则在复刻和新增关卡内容处理上很随意，倾向于收集、整合其他关卡。此外，中国团队也承担了 MFAE 的复刻工程，即 Mario Forever Advance Remake。
-
-⑥<span style="color:red">（Mario Forever: Community Edition，2024～）</span>2023 年，Godot Engine 开始在国内外 Mario Forever 社区流行，国内外社群已经制作出 Godot 上的 Mario Forever 游戏引擎。2024 年，国外 Meteo Dream 制作组发布了 Mario Forever: Community Edition（简称 MF:CE），这是基于 Godot 4 的 Thunder Engine 制作的全新的 Mario Forever 复刻版本。由于 Godot 的 Mario Forever 完全从零开始，MF:CE 实现了在 Multimedia Fusion 平台不可能实现的诸多特性，包括但不限于可以将关卡设定为 2.16/4.4/6.0 等不同版本风格、自定义玩家皮肤、高帧率等。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
-
-各个版本的详细更新日志，请参见 [Wiki 页面](https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5)。
-
-### <a id="mario-forever-全版本下载"></a>Mario Forever 全版本下载
 为方便玩家下载，特提供第三方网盘备用地址（**备用地址下载需登录 123 云盘账号**）。
 
 <a class="md-button" target="_blank" href="https://www.123684.com/s/U3vrVv-VD0f">原版 Mario Forever 备用下载地址 (提取码: MAat)</a><ClipboardButton lan="zh" code="MAat" />
