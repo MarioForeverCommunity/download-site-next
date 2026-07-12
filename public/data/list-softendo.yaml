@@ -167,7 +167,7 @@
         swf: Mario Forever Flash Easier.swf
 - game: Mario DS
   type: mff
-  year: 2009
+  year: 2010
   portable:
     exe: Mario DS.exe
     swf: Mario DS.swf
@@ -185,12 +185,12 @@
     swf: Mario Super.swf
 - game: New Mario Flash
   type: mff
-  year: unknown
+  year: 2010
   portable:
     swf: New Mario Flash.swf
 - game: New Mario Bros 2
   type: mff
-  year: unknown
+  year: 2011
   portable:
     swf: New Mario Bros 2.swf
 - game: Squario
@@ -497,6 +497,7 @@
 - name: Madlocnoid
   type: non-mario
   software: mmf
+  initial_year: 2001
   ver:
   - v1.5:
       year: 2006

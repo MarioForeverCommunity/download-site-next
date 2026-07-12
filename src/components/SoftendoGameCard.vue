@@ -86,7 +86,7 @@ const getGameImageSrc = () => {
           </span>
           <template #popper>{{ getTypeLabel(game.type) }}</template>
         </Tooltip>
-        {{ game.currentVer && game.currentVer.year !== "unknown" ? game.currentVer.year : "?" }}
+        {{ game.currentVer?.year || "?" }}
       </div>
     </div>
     <slot name="gallery">

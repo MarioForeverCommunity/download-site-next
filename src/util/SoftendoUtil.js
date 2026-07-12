@@ -173,7 +173,7 @@ export function normalizeSoftendoList(list, lan = "en") {
     game.category = "softendo";
 
     // Handle software field with default for mmf/flash types
-    game.software = entry.software || getSoftwareDefault(entry.type) || "unknown";
+    game.software = entry.software || getSoftwareDefault(entry.type) || "";
 
     // Check if this is an NSMF game
     const isNsmf = entry.nsmf === true;
@@ -187,7 +187,7 @@ export function normalizeSoftendoList(list, lan = "en") {
         return {
           [verKey]: {
             ...verObj,
-            year: verObj.year || "unknown",
+            year: verObj.year,
             installer_url: getInstallerUrl(entry.type, verObj.installer, lan, isNsmf),
             portable_urls: getPortableUrls(entry.type, verObj.portable, lan, isNsmf)
           }
@@ -200,7 +200,7 @@ export function normalizeSoftendoList(list, lan = "en") {
       game.currentVer = firstVerObj;
     } else {
       // Single version entry (no ver field in original YAML)
-      const year = entry.year || "unknown";
+      const year = entry.year;
       const verObj = {
         year,
         installer: entry.installer,

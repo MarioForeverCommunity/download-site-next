@@ -260,14 +260,18 @@ const authors = computed(() => {
 const releaseDate = computed(() => {
   if (!props.game) return null;
 
-  // Softendo: 只显示最旧的年份
+  // Softendo: 只显示最旧的年份（优先使用 initial_year）
   if (isSoftendo.value) {
+    // 优先使用 initial_year
+    if (props.game.initial_year) {
+      return props.lan === 'zh' ? `${props.game.initial_year} 年` : String(props.game.initial_year);
+    }
     if (!props.game.ver) return null;
     let oldestYear = null;
     for (const verRaw of props.game.ver) {
       const verKey = Object.keys(verRaw)[0];
       const ver = verRaw[verKey];
-      if (ver.year && ver.year !== 'unknown') {
+      if (ver.year) {
         if (oldestYear === null || ver.year < oldestYear) {
           oldestYear = ver.year;
         }

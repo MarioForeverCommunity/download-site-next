@@ -116,8 +116,8 @@ const sort_option = ref({
 
 function defaultSort() {
   games.value.sort((a, b) => {
-    const yearA = a.currentVer && a.currentVer.year !== "unknown" ? a.currentVer.year : 0;
-    const yearB = b.currentVer && b.currentVer.year !== "unknown" ? b.currentVer.year : 0;
+    const yearA = a.currentVer?.year || 0;
+    const yearB = b.currentVer?.year || 0;
     return yearB - yearA;
   });
   sort_option.value.field = null;
@@ -165,8 +165,8 @@ function sortByYear() {
     sort_option.value.asc = !sort_option.value.asc;
   }
   games.value = games.value.sort((a, b) => {
-    const yearA = a.currentVer && a.currentVer.year !== "unknown" ? a.currentVer.year : 0;
-    const yearB = b.currentVer && b.currentVer.year !== "unknown" ? b.currentVer.year : 0;
+    const yearA = a.currentVer?.year || 0;
+    const yearB = b.currentVer?.year || 0;
     return sort_option.value.asc ? yearA - yearB : yearB - yearA;
   });
 }
@@ -283,8 +283,8 @@ const filteredGames = computed(() => {
     );
   } else if (sort_option.value.field === "year") {
     expanded.sort((a, b) => {
-      const yearA = a.currentVer && a.currentVer.year !== "unknown" ? a.currentVer.year : 0;
-      const yearB = b.currentVer && b.currentVer.year !== "unknown" ? b.currentVer.year : 0;
+      const yearA = a.currentVer?.year || 0;
+      const yearB = b.currentVer?.year || 0;
       return sort_option.value.asc ? yearA - yearB : yearB - yearA;
     });
   } else if (sort_option.value.field === "software") {
@@ -295,8 +295,8 @@ const filteredGames = computed(() => {
     );
   } else {
     expanded.sort((a, b) => {
-      const yearA = a.currentVer && a.currentVer.year !== "unknown" ? a.currentVer.year : 0;
-      const yearB = b.currentVer && b.currentVer.year !== "unknown" ? b.currentVer.year : 0;
+      const yearA = a.currentVer?.year || 0;
+      const yearB = b.currentVer?.year || 0;
       return yearB - yearA;
     });
   }
@@ -387,13 +387,13 @@ const { floatingStyles } = useFloating(reference, floating, {
 const availableYears = computed(() => {
   const years = new Set();
   for (const game of games.value) {
-    if (game.currentVer && game.currentVer.year !== "unknown") {
+    if (game.currentVer?.year) {
       years.add(game.currentVer.year);
     }
     if (Array.isArray(game.ver)) {
       for (const verRaw of game.ver) {
         const verObj = verRaw[Object.keys(verRaw)[0]];
-        if (verObj.year && verObj.year !== "unknown") {
+        if (verObj.year) {
           years.add(verObj.year);
         }
       }

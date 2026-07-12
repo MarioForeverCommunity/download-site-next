@@ -84,7 +84,7 @@ const getImageUrl = () => {
         </div>
       </template>
     </div>
-    <div class="game-year">{{ game.currentVer && game.currentVer.year !== "unknown" ? game.currentVer.year : "?" }}</div>
+    <div class="game-year">{{ game.currentVer?.year || "?" }}</div>
     <div class="game-software">{{ getSoftwareLabel(game.software) }}</div>
     <div class="game-buttons">
       <Tooltip v-if="game.currentVer && (game.currentVer.installer_url || (game.currentVer.portable_urls && game.currentVer.portable_urls.length > 0))">
