@@ -705,7 +705,7 @@ const handleInstallerClick = (event, installerUrl) => {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: .3em 0;
+    gap: .5em 0;
   }
 
   .filter-label {
