@@ -104,7 +104,7 @@ export const navTop = [
     "id" : "mf-games",
     "link" : "./mf-games.html",
     "option" : "MF 作品汇总",
-    "option_alt" : "MF Fangame Downloads",
+    "option_alt" : "MF Fangame Catalog",
     "title" : "Mario Forever 同人作品汇总",
     "title_alt" : "Mario Forever Fangames Catalog",
     "show_en" : true
