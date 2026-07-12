@@ -116,7 +116,7 @@ Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4
     </span>
   </a>
 </div>
-<Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
+<Carousel :key="currentTab" :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
   <Slide v-for="image in currentImages" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
     <img :src="image" style="width: 100%; height: 100%;">
   </Slide>

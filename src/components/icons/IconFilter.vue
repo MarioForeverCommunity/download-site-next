@@ -8,6 +8,6 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    style="vertical-align:middle; fill:none !important;;"
+    style="vertical-align:middle; fill:none !important;"
   ><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
 </template>
