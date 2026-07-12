@@ -913,7 +913,7 @@ const nextImage = () => {
           </div>
 
           <div v-if="!isAssets || isSingleVersion" class="content-section">
-            <h3 class="section-title">{{ lan === 'zh' ? '发布时间' : 'Release date' }}</h3>
+            <h3 class="section-title">{{ isSoftendo ? (lan === 'zh' ? '首次发布于' : 'First released in') : (lan === 'zh' ? '发布时间' : 'Release date') }}</h3>
             <ul v-if="releaseDate" class="date-list">
               <li>{{ releaseDate }}</li>
             </ul>
