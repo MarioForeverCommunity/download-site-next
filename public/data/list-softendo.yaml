@@ -71,8 +71,8 @@
   ver:
   - "2017 re-release":
       year: 2017
-      installer: Mario Online, 2017 re-release.exe
-      portable: Mario Online, 2017 re-release.zip
+      installer: Mario Online (2017 re-release).exe
+      portable: Mario Online (2017 re-release).zip
   - "Original":
       year: 2009
       installer: Mario Online.exe
@@ -513,8 +513,8 @@
   ver:
   - v2.5, 2017 re-release:
       year: 2017
-      installer: Myster Muszel v2.5, 2017 re-release.exe
-      portable: Myster Muszel v2.5, 2017 re-release.zip
+      installer: Myster Muszel v2.5 (2017 re-release).exe
+      portable: Myster Muszel v2.5 (2017 re-release).zip
   - v2.5:
       year: 2006
       installer: Myster Muszel v2.5.exe
