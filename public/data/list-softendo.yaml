@@ -147,18 +147,6 @@
   - 800x600:
       year: 2003
       portable: Polski Marian/Polski Marian 800x600.exe
-- name: Super Mario Shooten (MMF)
-  type: mario
-  software: mmf
-  ver:
-  - "2003 ver, 2017 re-release":
-      year: 2017
-      installer: Super Mario Shooten (2003 version, 2017 re-release) (English).exe
-      portable: Super Mario Shooten (2003 version, 2017 re-release) (English).zip
-  - "2003":
-      year: 2003
-      installer: Super Mario Shooten (2003) (Polish).exe
-      portable: Super Mario Shooten (2003) (Polish).zip
 - game: Mario Forever Flash
   type: mff
   ver:
@@ -337,7 +325,7 @@
   portable:
     swf: Super Mario Ice Tower.swf
     zip: Super Mario Ice Tower.zip
-- name: Super Mario Peach Party 3 (CONTENT WARNING)
+- name: Super Mario Peach Party (CONTENT WARNING)
   type: flash
   year: 2011
   installer: Super Mario Peach Party (CONTENT WARNING) (with toolbar).exe
@@ -365,12 +353,24 @@
   portable:
     swf: Super Mario Playgrounds 2.swf
     zip: Super Mario Playgrounds 2.zip
-- name: Super Mario Shooten (Flash)
+- name: Super Mario Shooten
   type: flash
-  year: 2011
-  installer: Super Mario Shooten (with toolbar).exe
-  portable:
-    exe: Super Mario Shooten (2011).exe
+  software: mmf
+  ver:
+  - "2003 ver, 2017 re-release":
+      year: 2017
+      installer: Super Mario Shooten (2003 version, 2017 re-release) (English).exe
+      portable:
+        zip: Super Mario Shooten (2003 version, 2017 re-release) (English).zip
+  - "2011":
+      year: 2011
+      installer: Super Mario Shooten (with toolbar).exe
+      portable: Super Mario Shooten (2011).exe
+  - "2003":
+      year: 2003
+      installer: Super Mario Shooten (2003) (Polish).exe
+      portable:
+        zip: Super Mario Shooten (2003) (Polish).zip
 - name: Super Mario Starshine
   type: flash
   year: 2011
@@ -399,6 +399,7 @@
         swf: Super Mario The Curibo Shoe.swf
 - name: Super Mario The Tag Play
   type: flash
+  software: mmf
   ver:
   - "2017":
       year: 2017
@@ -440,11 +441,15 @@
   type: non-mario
   software: mmf
   ver:
+  - Plus Pack:
+      year: 2017
+      installer: Bod Blob Plus Pack (2017).exe
+      portable: Bod Blob Plus Pack (2017).zip
   - v1.1:
       year: 2004
       installer: Bod Blob v1.1 (2004).exe
       portable: Bod Blob v1.1 (2004).zip
-  - "2003":
+  - v1.01:
       year: 2003
       installer: Bod Blob (2003).exe
       portable: Bod Blob (2003).zip
@@ -454,12 +459,6 @@
   year: 2017
   installer: Bod Blob 2 (Unfinished) (2017).exe
   portable: Bod Blob 2 (Unfinished) (2017).zip
-- name: Bod Blob Plus Pack
-  type: non-mario
-  software: mmf
-  year: 2017
-  installer: Bod Blob Plus Pack (2017).exe
-  portable: Bod Blob Plus Pack (2017).zip
 - name: Diamentowa Przygoda
   type: non-mario
   software: other
