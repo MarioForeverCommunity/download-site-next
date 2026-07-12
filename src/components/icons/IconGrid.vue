@@ -7,7 +7,7 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    style="vertical-align:middle; fill:none !important; transform: translateY(-1px);"
+    style="vertical-align:middle; fill:none !important;"
   >
     <rect
       x="3"

@@ -464,7 +464,7 @@ const handleInstallerClick = (event, installerUrl) => {
   <div class="hidden-container">
     <div class="container filter-container" :class="sort_option.active ? 'expand' : '' ">
       <div class="icon-container">
-        {{ lan == "en" ? "Filter" : "筛选" }}
+        <span class="filter-label">{{ lan == "en" ? "Filter" : "筛选" }}</span>
         <div class="inline-block search-box">
           <input v-model="filter_option.name" class="input">
           <span
@@ -521,52 +521,49 @@ const handleInstallerClick = (event, installerUrl) => {
             <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
           </Tooltip>
         </div>
-        <div class="inline-block item-count">
-          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
-        </div>
-      </div>
-      <div class="icon-container" v-if="!wideScreen || (wideScreen && displayMode === 'card')">
-        {{ lan == "en" ? "Sort by " : "排序选项 " }}
-        <div class="visible-button" @click="sortByName();">
-          {{ lan == "en" ? "Name" : "名称" }}
-          <span v-if="sort_option.field == 'game'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'game'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByType();">
-          {{ lan == "en" ? "Type" : "类别" }}
-          <span v-if="sort_option.field == 'type'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'type'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByYear();">
-          {{ lan == "en" ? "Year" : "年份" }}
-          <span v-if="sort_option.field == 'year'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'year'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortBySoftware();">
-          {{ lan == "en" ? "Software" : "制作软件" }}
-          <span v-if="sort_option.field == 'software'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'software'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
+        <template v-if="!wideScreen || (wideScreen && displayMode === 'card')">
+          <div class="visible-button" @click="sortByName();">
+            {{ lan == "en" ? "Name" : "名称" }}
+            <span v-if="sort_option.field == 'game'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'game'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByType();">
+            {{ lan == "en" ? "Type" : "类别" }}
+            <span v-if="sort_option.field == 'type'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'type'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByYear();">
+            {{ lan == "en" ? "Year" : "年份" }}
+            <span v-if="sort_option.field == 'year'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'year'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortBySoftware();">
+            {{ lan == "en" ? "Engine" : "制作软件" }}
+            <span v-if="sort_option.field == 'software'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'software'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
+        </template>
       </div>
     </div>
   </div>
@@ -575,6 +572,7 @@ const handleInstallerClick = (event, installerUrl) => {
     v-if="wideScreen && displayMode === 'line'"
     :lan="lan"
     :sort_option="sort_option"
+    :item-count="filteredGames.length"
     @sort-by-name="sortByName();"
     @sort-by-year="sortByYear();"
     @sort-by-software="sortBySoftware();"
@@ -704,6 +702,14 @@ const handleInstallerClick = (event, installerUrl) => {
 
   .icon-container {
     padding: .25em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .3em 0;
+  }
+
+  .filter-label {
+    margin-right: .25em;
   }
 
   .md-container {
@@ -785,12 +791,16 @@ const handleInstallerClick = (event, installerUrl) => {
   .visible-button {
     border: 1px solid rgba(0, 0, 0, 0.15);
     padding: 2px .5em;
-    margin-right: .5em;
+    margin-right: .3em;
     border-radius: .25em;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     user-select: none;
+    line-height: 1.5em;
   }
 
   .visible-button:hover, .visible-button:focus {
@@ -808,6 +818,10 @@ const handleInstallerClick = (event, installerUrl) => {
     background-color: #444 !important;
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;
     color: #bbb !important;
+  }
+
+  .item-count-badge {
+    cursor: default;
   }
 
   .modal-bg {
@@ -945,7 +959,7 @@ const handleInstallerClick = (event, installerUrl) => {
     border: 1px solid #cfd4db;
     border-radius: 5px;
     outline: none;
-    padding: .2em .6em;
+    padding: .2em .3em;
   }
 
   select:hover, select:focus {

@@ -6,7 +6,7 @@ import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.j
 import SiteFooter from '../../components/SiteFooter.vue';
 import AssetCard from '../../components/AssetCard.vue';
 import { getName, getDownloadEntries } from "../../util/GameUtil.js";
-import { FilterIcon } from "../../components/icons/Icons.js";
+import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import { filterList, getStrFromList } from "../../util/GameUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import Tooltip from '../../components/ToolTip.vue';
@@ -146,6 +146,39 @@ function clearFilter() {
   filter_option.value.type_mwtool = true;
 }
 
+// Sort operations.
+
+const sort_option = ref({
+  active : false,
+  field : null,
+  asc : true
+});
+
+function defaultSort() {
+  sort_option.value.field = null;
+}
+
+function sortByName() {
+  if (sort_option.value.field != "name") {
+    sort_option.value.field = "name";
+    sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
+  } else {
+    defaultSort();
+    return;
+  }
+}
+
+function sortByDate() {
+  if (sort_option.value.field != "date") {
+    sort_option.value.field = "date";
+    sort_option.value.asc = true;
+  } else {
+    sort_option.value.asc = !sort_option.value.asc;
+  }
+}
+
 const filteredAssets = computed(() => {
   let expandedIndex = 0;
   const expanded = assets.value.flatMap((entry) => {
@@ -220,16 +253,28 @@ const filteredAssets = computed(() => {
     }
     return expIdx;
   };
-  expanded.sort((a, b) => {
-    const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date).getTime() : null;
-    const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date).getTime() : null;
-    if (dateA !== null && dateB !== null) {
-      return dateB - dateA;
-    }
-    const refA = dateA !== null ? dateA : getRefDate(a);
-    const refB = dateB !== null ? dateB : getRefDate(b);
-    return refB - refA;
-  });
+  if (sort_option.value.field === "name") {
+    expanded.sort((a, b) => {
+      const nameA = getName(a, lan.value);
+      const nameB = getName(b, lan.value);
+      return sort_option.value.asc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+    });
+  } else {
+    expanded.sort((a, b) => {
+      const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date).getTime() : null;
+      const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date).getTime() : null;
+      if (dateA !== null && dateB !== null) {
+        return sort_option.value.field === "date"
+          ? (sort_option.value.asc ? dateA - dateB : dateB - dateA)
+          : dateB - dateA;
+      }
+      const refA = dateA !== null ? dateA : getRefDate(a);
+      const refB = dateB !== null ? dateB : getRefDate(b);
+      return sort_option.value.field === "date"
+        ? (sort_option.value.asc ? refA - refB : refB - refA)
+        : refB - refA;
+    });
+  }
   return expanded;
 });
 
@@ -393,7 +438,7 @@ const { floatingStyles } = useFloating(reference, floating,
   <div class="hidden-container">
     <div class="container filter-container expand">
       <div class="icon-container">
-        筛选
+        <span class="filter-label">筛选</span>
         <div class="inline-block search-box">
           <input v-model="filter_option.name" class="input">
           <span
@@ -431,9 +476,27 @@ const { floatingStyles } = useFloating(reference, floating,
           <FilterIcon class="icon button" @click="clearFilter()" />
           <template #popper>重置筛选</template>
         </Tooltip>
-        <div class="inline-block item-count">
-          {{ lan == "en" ? `${filteredAssets.length} items` : `${filteredAssets.length} 个条目` }}
+        <div class="visible-button" @click="sortByName();">
+          {{ lan == "en" ? "Name" : "名称" }}
+          <span v-if="sort_option.field == 'name'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'name'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
+        <div class="visible-button" @click="sortByDate();">
+          {{ lan == "en" ? "Date" : "日期" }}
+          <span v-if="sort_option.field == 'date'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'date'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+        <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredAssets.length} items` : `${filteredAssets.length} 个条目` }}</span>
       </div>
     </div>
   </div>
@@ -587,6 +650,14 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .icon-container {
     padding: .25em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .3em 0;
+  }
+
+  .filter-label {
+    margin-right: .3em;
   }
 
   .md-container {
@@ -806,12 +877,52 @@ const { floatingStyles } = useFloating(reference, floating,
     border: 1px solid #cfd4db;
     border-radius: 5px;
     outline: none;
-    padding: .2em .6em;
+    padding: .2em .3em;
   }
 
   select:hover, select:focus {
     cursor: pointer;
     border-color: #008cff
+  }
+
+  .button-shift {
+    transform: translateY(-1px);
+  }
+
+  .visible-button {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 2px .5em;
+    margin-right: .3em;
+    border-radius: .25em;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 1.5em;
+  }
+
+  .visible-button:hover, .visible-button:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px;
+  }
+
+  .visible-button:active {
+    background-color: #F0F0F1;
+    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
+
+  body.dark .visible-button:active {
+    background-color: #444 !important;
+    box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;
+    color: #bbb !important;
+  }
+
+  .item-count-badge {
+    cursor: default;
   }
 
   .italic {

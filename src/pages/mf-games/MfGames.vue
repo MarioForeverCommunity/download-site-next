@@ -372,8 +372,7 @@ const filter_option = ref({
   active : false,
   name : "",
   year : "",
-  chinese : true,
-  international : true,
+  type : "",
   platform : "",
   event : "",
   software : "",
@@ -457,8 +456,7 @@ function clearName() {
 function clearFilter() {
   filter_option.value.name = "";
   filter_option.value.year = "";
-  filter_option.value.chinese = true;
-  filter_option.value.international = true;
+  filter_option.value.type = "";
   filter_option.value.platform = "";
   filter_option.value.event = "";
   filter_option.value.software = "";
@@ -480,9 +478,7 @@ const filteredGames = computed(() => {
         }))
     )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
-      && ((filter_option.value.chinese && a.type == "chinese")
-      || (filter_option.value.international && a.type == "international")
-      || filter_option.value.force)
+      && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
       && (filter_option.value.event === "" || detectEventIncludingVersions(a) === filter_option.value.event)
       && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
   );
@@ -579,9 +575,7 @@ const filteredGames = computed(() => {
         const yearMatch = isNaN(parseInt(filter_option.value.year)) || (parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year));
         // 类型判断
         const typeVal = verObj.type || entry.type;
-        const typeMatch = (filter_option.value.chinese && typeVal == "chinese")
-            || (filter_option.value.international && typeVal == "international")
-            || filter_option.value.force;
+        const typeMatch = filter_option.value.type === "" || typeVal == filter_option.value.type || filter_option.value.force;
         const platformVal = detectPlatform(verKey, verObj.file_name);
         const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
         const eventVal = detectEventForVersion(entry, verKey);
@@ -868,7 +862,7 @@ function hasDataDownload(game) {
     <div class="container filter-container" :class="sort_option.active ? 'expand' : '' ">
       <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
       <div class="icon-container">
-        {{ lan == "en" ? "Filter" : "筛选" }}
+        <span class="filter-label">{{ lan == "en" ? "Filter" : "筛选" }}</span>
         <div class="inline-block search-box">
           <input v-model="filter_option.name" class="input" @input="onSearchInput">
           <span
@@ -883,6 +877,14 @@ function hasDataDownload(game) {
           <select v-model="filter_option.year">
             <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
             <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()" :key="year">{{ year }}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Region" : "地区" }}
+          <select v-model="filter_option.type">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option value="chinese">{{ lan == "en" ? "Chinese" : "国内" }}</option>
+            <option value="international">{{ lan == "en" ? "International" : "国外" }}</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
@@ -916,14 +918,6 @@ function hasDataDownload(game) {
           </select>&nbsp;
         </div>
         <div class="inline-block">
-          <input v-model="filter_option.chinese" type="checkbox" id="filterChinese">
-          <label for="filterChinese">{{ lan == "en" ? "Chinese" : "国内作品" }}</label>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.international" type="checkbox" id="filterInternational">
-          <label for="filterInternational">{{ lan == "en" ? "International" : "国外作品" }}</label>
-        </div>
-        <div class="inline-block">
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
           <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
@@ -949,42 +943,39 @@ function hasDataDownload(game) {
             <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
           </Tooltip>
         </div>
-        <div class="inline-block item-count">
-          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
-        </div>
-      </div>
-      <div class="icon-container" v-if="!wideScreen || (wideScreen && displayMode === 'card')">
-        {{ lan == "en" ? "Sort by " : "排序选项 " }}
-        <div class="visible-button" @click="sortByName();">
-          {{ lan == "en" ? "Name" : "名称" }}
-          <span v-if="sort_option.field == 'game'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'game'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByAuthor();">
-          {{ lan == "en" ? "Author" : "作者" }}
-          <span v-if="sort_option.field == 'author'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'author'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByDate();">
-          {{ lan == "en" ? "Date" : "日期" }}
-          <span v-if="sort_option.field == 'date'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'date'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
+        <template v-if="!wideScreen || (wideScreen && displayMode === 'card')">
+          <div class="visible-button" @click="sortByName();">
+            {{ lan == "en" ? "Name" : "名称" }}
+            <span v-if="sort_option.field == 'game'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'game'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByAuthor();">
+            {{ lan == "en" ? "Author" : "作者" }}
+            <span v-if="sort_option.field == 'author'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'author'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByDate();">
+            {{ lan == "en" ? "Date" : "日期" }}
+            <span v-if="sort_option.field == 'date'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'date'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
+        </template>
       </div>
     </div>
   </div>
@@ -994,6 +985,7 @@ function hasDataDownload(game) {
     :lan="lan"
     category="mf"
     :sort_option="sort_option"
+    :item-count="filteredGames.length"
     @sort-by-name="sortByName();"
     @sort-by-author="sortByAuthor();"
     @sort-by-date="sortByDate();"
@@ -1258,6 +1250,14 @@ function hasDataDownload(game) {
 
   .icon-container {
     padding: .25em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .3em 0;
+  }
+
+  .filter-label {
+    margin-right: .25em;
   }
 
   .md-container {
@@ -1352,14 +1352,16 @@ function hasDataDownload(game) {
   .visible-button {
     border: 1px solid rgba(0, 0, 0, 0.15);
     padding: 2px .5em;
-    margin-right: .5em;
+    margin-right: .3em;
     border-radius: .25em;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    line-height: 1.5em;
   }
 
   .visible-button:hover, .visible-button:focus {
@@ -1377,6 +1379,10 @@ function hasDataDownload(game) {
     background-color: #444 !important;
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;
     color: #bbb !important;
+  }
+
+  .item-count-badge {
+    cursor: default;
   }
 
   .modal-bg {
@@ -1484,7 +1490,7 @@ function hasDataDownload(game) {
     border: 1px solid #cfd4db;
     border-radius: 5px;
     outline: none;
-    padding: .2em .6em;
+    padding: .2em .3em;
   }
 
   select:hover, select:focus {

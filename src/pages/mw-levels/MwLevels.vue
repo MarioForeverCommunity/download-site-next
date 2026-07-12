@@ -549,7 +549,7 @@ const { floatingStyles } = useFloating(reference, floating,
     <div class="container filter-container" :class="sort_option.active ? 'expand' : '' ">
       <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
       <div class="icon-container">
-        {{ lan == "en" ? "Filter" : "筛选" }}
+        <span class="filter-label">{{ lan == "en" ? "Filter" : "筛选" }}</span>
         <div class="inline-block search-box">
           <input v-model="filter_option.name" class="input" @input="onSearchInput">
           <span
@@ -596,42 +596,39 @@ const { floatingStyles } = useFloating(reference, floating,
             <template #popper>{{ displayMode === 'line' ? '切换到卡片' : '切换到列表' }}</template>
           </Tooltip>
         </div>
-        <div class="inline-block item-count">
-          {{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}
-        </div>
-      </div>
-      <div class="icon-container" v-if="!wideScreen || (wideScreen && displayMode === 'card')">
-        排序选项
-        <div class="visible-button" @click="sortByName();">
-          名称
-          <span v-if="sort_option.field == 'game'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'game'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByAuthor();">
-          作者
-          <span v-if="sort_option.field == 'author'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'author'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByDate();">
-          日期
-          <span v-if="sort_option.field == 'date'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'date'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
+        <template v-if="!wideScreen || (wideScreen && displayMode === 'card')">
+          <div class="visible-button" @click="sortByName();">
+            名称
+            <span v-if="sort_option.field == 'game'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'game'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByAuthor();">
+            作者
+            <span v-if="sort_option.field == 'author'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'author'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByDate();">
+            日期
+            <span v-if="sort_option.field == 'date'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'date'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
+        </template>
       </div>
     </div>
   </div>
@@ -641,6 +638,7 @@ const { floatingStyles } = useFloating(reference, floating,
     lan="zh"
     category="mw"
     :sort_option="sort_option"
+    :item-count="filteredGames.length"
     @sort-by-name="sortByName();"
     @sort-by-author="sortByAuthor();"
     @sort-by-date="sortByDate();"
@@ -882,6 +880,14 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .icon-container {
     padding: .25em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .3em 0;
+  }
+
+  .filter-label {
+    margin-right: .25em;
   }
 
   .md-container {
@@ -984,14 +990,16 @@ const { floatingStyles } = useFloating(reference, floating,
   .visible-button {
     border: 1px solid rgba(0, 0, 0, 0.15);
     padding: 2px .5em;
-    margin-right: .5em;
+    margin-right: .3em;
     border-radius: .25em;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    line-height: 1.5em;
   }
 
   .visible-button:hover, .visible-button:focus {
@@ -1009,6 +1017,10 @@ const { floatingStyles } = useFloating(reference, floating,
     background-color: #444 !important;
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;
     color: #bbb !important;
+  }
+
+  .item-count-badge {
+    cursor: default;
   }
 
   .modal-bg {
@@ -1146,7 +1158,7 @@ const { floatingStyles } = useFloating(reference, floating,
     border: 1px solid #cfd4db;
     border-radius: 5px;
     outline: none;
-    padding: .2em .6em;
+    padding: .2em .3em;
   }
 
   select:hover, select:focus {

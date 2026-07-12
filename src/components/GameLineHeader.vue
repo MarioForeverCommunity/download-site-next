@@ -13,6 +13,11 @@ const props = defineProps({
   sort_option: {
     type: Object,
     required: true
+  },
+  itemCount: {
+    type: Number,
+    required: false,
+    default: -1
   }
 });
 
@@ -66,7 +71,9 @@ function getSortOption() {
         </span>
       </div>
     </div>
-    <div class="game-buttons header"></div>
+    <div class="game-buttons header">
+      <span v-if="itemCount >= 0" class="item-count">{{ lan == 'en' ? `${itemCount} items` : `${itemCount} 个条目` }}</span>
+    </div>
   </div>
 </template>
 
@@ -114,5 +121,9 @@ function getSortOption() {
     display: inline-block;
     vertical-align: middle;
     margin: 2px;
+  }
+
+  .item-count {
+    float: right;
   }
 </style>
