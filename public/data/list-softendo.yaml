@@ -331,6 +331,10 @@
   installer: Super Mario Peach Party (CONTENT WARNING) (with toolbar).exe
   portable:
     exe: Super Mario Peach Party (CONTENT WARNING).exe
+- name: Super Mario Peach Party 3 (CONTENT WARNING)
+  type: flash
+  year: 2011
+  portable:
     swf: Super Mario Peach Party 3 (CONTENT WARNING).swf
 - name: Super Mario Play
   type: flash
