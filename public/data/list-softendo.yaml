@@ -540,14 +540,14 @@
 - name: Ninja Jonder Deluxe
   type: non-mario
   software: mmf
-  year: 2004
-  installer: Ninja Jonder Deluxe (2004).exe
-  portable: Ninja Jonder Deluxe (2004).zip
-- name: Ninja with the Real Balls
-  type: non-mario
-  software: mmf
-  year: 2006
-  portable: Ninja with the Real Balls (2006).zip
+  ver:
+  - "2006":
+      year: 2006
+      portable: Ninja with the Real Balls (2006).zip
+  - "2004":
+      year: 2004
+      installer: Ninja Jonder Deluxe (2004).exe
+      portable: Ninja Jonder Deluxe (2004).zip
 - name: Obliterator
   type: non-mario
   software: gamemaker
