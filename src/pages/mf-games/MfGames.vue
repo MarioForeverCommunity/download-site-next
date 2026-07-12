@@ -466,12 +466,6 @@ function clearFilter() {
 
 const expandAllVersions = ref(false);
 
-watch(expandAllVersions, (newVal) => {
-  if (!newVal) {
-    filter_option.value.platform = "";
-  }
-});
-
 const filteredGames = computed(() => {
   const list = games.value.filter((a) =>
     (
@@ -493,7 +487,53 @@ const filteredGames = computed(() => {
       && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
   );
   if (!expandAllVersions.value) {
-    return list;
+    if (filter_option.value.platform === "") {
+      return list;
+    }
+    const platform = filter_option.value.platform;
+    return list
+      .filter((entry) => {
+        if (!Array.isArray(entry.ver)) return false;
+        return entry.ver.some((verRaw) => {
+          const verKey = Object.keys(verRaw)[0];
+          const verObj = verRaw[verKey];
+          return detectPlatform(verKey, verObj.file_name) === platform;
+        });
+      })
+      .map((entry) => {
+        const matchingVers = entry.ver.filter((verRaw) => {
+          const verKey = Object.keys(verRaw)[0];
+          const verObj = verRaw[verKey];
+          return detectPlatform(verKey, verObj.file_name) === platform;
+        });
+        // 所有版本都匹配时返回原始对象，保留 Object.assign 版本切换的持久性
+        if (matchingVers.length === entry.ver.length) {
+          return entry;
+        }
+        // 检查当前版本是否匹配所选平台
+        const currentPlatform = entry.currentVer
+          ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name)
+          : null;
+        // 当前版本匹配则保持，否则切换到第一个匹配版本
+        let activeVerStr, activeVerStrAlt, activeCurrentVer;
+        if (currentPlatform === platform) {
+          activeVerStr = entry.currentVerStr;
+          activeVerStrAlt = entry.currentVerStrAlt;
+          activeCurrentVer = entry.currentVer;
+        } else {
+          const firstMatchingVer = matchingVers[0];
+          activeVerStr = Object.keys(firstMatchingVer)[0];
+          activeCurrentVer = parseVer(firstMatchingVer);
+          activeVerStrAlt = activeCurrentVer.ver_alt;
+        }
+        return {
+          ...entry,
+          ver: matchingVers,
+          currentVer: activeCurrentVer,
+          currentVerStr: activeVerStr,
+          currentVerStrAlt: activeVerStrAlt,
+        };
+      });
   } else {
     // flatMap 优化：每个版本单独一条，所有筛选条件都在 verRaw 层判断
     const expanded = games.value.flatMap((entry) => {
@@ -845,7 +885,7 @@ function hasDataDownload(game) {
             <option v-for="year in Array.from({length: new Date().getFullYear()-2013+1}, (_, i) => i + 2013).reverse()" :key="year">{{ year }}</option>
           </select>&nbsp;
         </div>
-        <div class="inline-block" v-if="expandAllVersions">
+        <div class="inline-block">
           {{ lan == "en" ? "Platform" : "平台" }}
           <select v-model="filter_option.platform">
             <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
