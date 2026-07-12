@@ -9,10 +9,12 @@ import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import SiteFooter from '../../components/SiteFooter.vue'
 import MwLevelsEntry from '../../components/MwLevelsEntry.vue'
+import SoftendoEntry from '../../components/SoftendoEntry.vue'
 
 const instance = getCurrentInstance()
 if (instance) {
   instance.appContext.components.MwLevelsEntry = MwLevelsEntry
+  instance.appContext.components.SoftendoEntry = SoftendoEntry
 }
 
 const originalLan = ref(getLanguage())

@@ -25,6 +25,10 @@ const props = defineProps({
   ver: {
     type: String,
     default: null
+  },
+  defaultVer: {
+    type: String,
+    default: null
   }
 })
 
@@ -208,19 +212,27 @@ const loadGame = async () => {
     await imageIndexTask
   }
 
+  // Determine which version string to use for initial selection
+  const desiredVer = props.ver || props.defaultVer
+
   const selected = candidates.length === 1
-    ? { entry: candidates[0], verRaw: resolveVerRaw(candidates[0], props.ver) }
-    : selectBestCandidate(candidates, props.ver)
+    ? { entry: candidates[0], verRaw: resolveVerRaw(candidates[0], desiredVer) }
+    : selectBestCandidate(candidates, desiredVer)
 
   const base = selected?.entry || candidates[0]
-  const verRaw = selected?.verRaw || resolveVerRaw(base, props.ver)
+  const verRaw = selected?.verRaw || resolveVerRaw(base, desiredVer)
   let next = verRaw ? applyVersion(base, verRaw) : { ...base }
+
+  // If ver prop is set, lock to that version only (cannot switch)
   if (props.ver && verRaw) {
     next = {
       ...next,
       ver: [verRaw]
     }
   }
+  // If defaultVer is set (without ver), version can still be switched
+  // (currentVer/currentVerStr are already set by applyVersion)
+
   game.value = next
   isLoading.value = false
 }
@@ -336,7 +348,7 @@ function hasDataDownload(download) {
 </script>
 
 <template>
-  <div ref="entryRef" class="mf-entry">
+  <div ref="entryRef" class="mf-entry entry-card">
     <div v-if="isLoading" class="placeholder">
       {{ lan === "zh" ? "加载中…" : "Loading…" }}
     </div>
@@ -583,13 +595,6 @@ function hasDataDownload(download) {
 </style>
 
 <style scoped>
-.mf-entry {
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-  box-sizing: border-box;
-}
-
 :deep(.carousel__prev) {
   margin-left: 8px;
 }
@@ -598,66 +603,13 @@ function hasDataDownload(download) {
   margin-right: 8px;
 }
 
-@media (max-width: 600px) {
-  .mf-entry {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-  }
-}
-
-@media (min-width: 900px) {
-  .mf-entry:has(+ .mf-entry),
-  .mf-entry + .mf-entry {
-    width: calc((100% - 0.5em) / 2);
-  }
-
-  .mf-entry:has(+ .mf-entry) {
-    margin-right: 0.5em;
-  }
-
-  .mf-entry + .mf-entry {
-    margin-right: 0;
-  }
-}
-
-@media (min-width: 900px) and (max-width: 1199px) {
-  .mf-entry + .mf-entry + .mf-entry:not(:has(+ .mf-entry)) {
-    margin-top: 0.5em;
-    width: 100%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .mf-entry:has(+ .mf-entry + .mf-entry),
-  .mf-entry:has(+ .mf-entry + .mf-entry) + .mf-entry,
-  .mf-entry:has(+ .mf-entry + .mf-entry) + .mf-entry + .mf-entry {
-    width: calc((100% - 1em) / 3);
-  }
-
-  .mf-entry:has(+ .mf-entry + .mf-entry),
-  .mf-entry:has(+ .mf-entry + .mf-entry) + .mf-entry {
-    margin-right: 0.5em;
-  }
-
-  .mf-entry:has(+ .mf-entry + .mf-entry) + .mf-entry + .mf-entry {
-    margin-right: 0;
-  }
-}
-
-@media (max-width: 899px) {
-  .mf-entry + .mf-entry {
-    margin-top: 0.5em;
-  }
-}
-
 .placeholder {
   padding: 0.5em 0;
   color: #666;
 }
 
 .entry-gallery {
-  margin-top: 0.6em;
+  margin-top: 0.4em;
   background-color: #f5f5f5;
   overflow: hidden;
 }

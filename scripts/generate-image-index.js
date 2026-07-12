@@ -115,9 +115,37 @@ function buildGameImageMapping(list, subdirs) {
   return mapping;
 }
 
+function buildSoftendoImageMapping(list, subdirs, directImages) {
+  const mapping = {};
+
+  for (const entry of list) {
+    const gameName = entry.game || entry.name;
+    const sanitizedName = sanitizeName(gameName);
+
+    // Check for direct image files (gameName.webp, etc.)
+    const images = [];
+    for (const ext of imageExtensions) {
+      const expectedFile = `${sanitizedName}${ext}`;
+      if (directImages.includes(expectedFile)) {
+        images.push(expectedFile);
+      }
+    }
+
+    if (images.length > 0) {
+      mapping[gameName] = {
+        dirName: '',
+        images
+      };
+    }
+  }
+
+  return mapping;
+}
+
 function generateImageIndex() {
   const mfList = loadYamlList('list-mf.yaml');
   const mwList = loadYamlList('list-mw.yaml');
+  const softendoList = loadYamlList('list-softendo.yaml');
 
   const mfGamesDir = join(imagesDir, 'mf-games');
   const mfSubdirs = getSubdirectoriesWithImages(mfGamesDir);
@@ -125,12 +153,18 @@ function generateImageIndex() {
   const mwLevelsDir = join(imagesDir, 'mw-levels');
   const mwSubdirs = getSubdirectoriesWithImages(mwLevelsDir);
 
+  const softendoDir = join(imagesDir, 'softendo');
+  // Softendo uses direct image files, not subdirectories
+  const softendoImages = getImageFiles(softendoDir);
+
   const mfMapping = buildGameImageMapping(mfList, mfSubdirs);
   const mwMapping = buildGameImageMapping(mwList, mwSubdirs);
+  const softendoMapping = buildSoftendoImageMapping(softendoList, {}, softendoImages);
 
   const index = {
     'mf-games': mfMapping,
-    'mw-levels': mwMapping
+    'mw-levels': mwMapping,
+    'softendo': softendoMapping
   };
 
   if (!existsSync(outputDir)) {
@@ -141,8 +175,10 @@ function generateImageIndex() {
   console.log(`Image index generated: ${outputFile}`);
   console.log(`mf-games subdirs: ${Object.keys(mfSubdirs).length}`);
   console.log(`mw-levels subdirs: ${Object.keys(mwSubdirs).length}`);
+  console.log(`softendo images: ${softendoImages.length}`);
   console.log(`mf-games mapped games: ${Object.keys(mfMapping).length}`);
   console.log(`mw-levels mapped games: ${Object.keys(mwMapping).length}`);
+  console.log(`softendo mapped games: ${Object.keys(softendoMapping).length}`);
 
   const mfUsedDirs = new Set();
   for (const infoArray of Object.values(mfMapping)) {
@@ -166,6 +202,18 @@ function generateImageIndex() {
   if (mwUnusedDirs.length > 0) {
     console.log(`\nmw-levels unmapped folders (${mwUnusedDirs.length}):`);
     mwUnusedDirs.forEach(d => console.log(`  - ${d}`));
+  }
+
+  const softendoUsedImages = new Set();
+  for (const info of Object.values(softendoMapping)) {
+    for (const img of info.images) {
+      softendoUsedImages.add(img);
+    }
+  }
+  const softendoUnusedImages = softendoImages.filter(img => !softendoUsedImages.has(img));
+  if (softendoUnusedImages.length > 0) {
+    console.log(`\nsoftendo unmapped images (${softendoUnusedImages.length}):`);
+    softendoUnusedImages.forEach(img => console.log(`  - ${img}`));
   }
 }
 

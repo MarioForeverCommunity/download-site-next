@@ -64,6 +64,10 @@ body.dark .card .game-date {
   color: #888 !important;
 }
 
+body.dark .card .game-meta {
+  color: #888 !important;
+}
+
 body.dark .card .last-line {
   border-top: 1px solid #555 !important;
 }

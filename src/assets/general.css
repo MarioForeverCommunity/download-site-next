@@ -151,3 +151,64 @@
     width: 1200px;
   }
 }
+
+/* Entry card layout - supports different Entry components side by side */
+.entry-card {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .entry-card {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+}
+
+@media (min-width: 900px) {
+  .entry-card:has(+ .entry-card),
+  .entry-card + .entry-card {
+    width: calc((100% - 0.5em) / 2);
+  }
+
+  .entry-card:has(+ .entry-card) {
+    margin-right: 0.5em;
+  }
+
+  .entry-card + .entry-card {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .entry-card + .entry-card + .entry-card:not(:has(+ .entry-card)) {
+    margin-top: 0.5em;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .entry-card:has(+ .entry-card + .entry-card),
+  .entry-card:has(+ .entry-card + .entry-card) + .entry-card,
+  .entry-card:has(+ .entry-card + .entry-card) + .entry-card + .entry-card {
+    width: calc((100% - 1em) / 3);
+  }
+
+  .entry-card:has(+ .entry-card + .entry-card),
+  .entry-card:has(+ .entry-card + .entry-card) + .entry-card {
+    margin-right: 0.5em;
+  }
+
+  .entry-card:has(+ .entry-card + .entry-card) + .entry-card + .entry-card {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .entry-card + .entry-card {
+    margin-top: 0.5em;
+  }
+}

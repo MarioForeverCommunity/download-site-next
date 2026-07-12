@@ -11,12 +11,14 @@ import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import SiteFooter from '../../components/SiteFooter.vue'
 import MfGamesEntry from '../../components/MfGamesEntry.vue'
 import AssetsEntry from '../../components/AssetsEntry.vue'
+import SoftendoEntry from '../../components/SoftendoEntry.vue'
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js'
 
 const instance = getCurrentInstance()
 if (instance) {
   instance.appContext.components.MfGamesEntry = MfGamesEntry
   instance.appContext.components.AssetsEntry = AssetsEntry
+  instance.appContext.components.SoftendoEntry = SoftendoEntry
 }
 
 const lan = ref(getLanguage())

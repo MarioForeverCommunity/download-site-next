@@ -713,7 +713,11 @@ const { floatingStyles } = useFloating(reference, floating,
                 :key="url.url"
                 :href="url.url"
                 target="_blank"
-              >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+              >{{ url.name }}
+                <span v-if="fileSizeMap[url.url]" class="btn-file-size">
+                  ({{ fileSizeMap[url.url] }})
+                </span>
+              </a>
             </template>
           </span>
           <template v-if="getDownloadLink(selectedDownload, 'zh')">
@@ -762,7 +766,11 @@ const { floatingStyles } = useFloating(reference, floating,
                 :key="url.url"
                 :href="url.url"
                 target="_blank"
-              >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+              >{{ url.name }}
+                <span v-if="fileSizeMap[url.url]" class="btn-file-size">
+                  ({{ fileSizeMap[url.url] }})
+                </span>
+              </a>
             </template>
           </span>
           <template v-if="selectedDownload.currentVer.data_download_url">
@@ -1061,6 +1069,11 @@ const { floatingStyles } = useFloating(reference, floating,
     background-color: #007cdf;
   }
 
+  .btn-file-size {
+    font-size: 0.85em;
+    opacity: 0.85;
+  }
+
   .file-size-info {
     margin-bottom: 8px;
     font-size: 0.9em;
@@ -1072,6 +1085,11 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .file-size-text {
     color: #666;
+  }
+
+  .btn-file-size {
+    font-size: 0.85em;
+    opacity: 0.85;
   }
 
   body.dark .file-size-loading,

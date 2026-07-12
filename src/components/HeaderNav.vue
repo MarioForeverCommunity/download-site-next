@@ -565,7 +565,7 @@ body.dark .nav-dropdown-item.active {
     align-items: center;
     justify-content: center;
     border: none;
-    padding: .5rem;
+    padding: 0.5em;
     color: rgb(105, 105, 105);
     display: inline-block;
   }

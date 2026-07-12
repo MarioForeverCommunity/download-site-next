@@ -104,7 +104,7 @@ export const navTop = [
     "id" : "mf-games",
     "link" : "./mf-games.html",
     "option" : "MF 作品汇总",
-    "option_alt" : "Fangame Downloads",
+    "option_alt" : "MF Fangame Downloads",
     "title" : "Mario Forever 同人作品汇总",
     "title_alt" : "Mario Forever Fangames Catalog",
     "show_en" : true
@@ -133,6 +133,15 @@ export const navTop = [
     "option" : "创作资源汇总",
     "title" : "Mario Forever 创作资源汇总",
     "show_en" : false
+  },
+  {
+    "id" : "softendo",
+    "link" : "./softendo.html",
+    "option" : "Softendo 游戏汇总",
+    "option_alt" : "Softendo Games",
+    "title" : "Softendo / Buziol 游戏汇总",
+    "title_alt" : "Softendo / Buziol Games Catalog",
+    "show_en" : true
   },
 ];
 

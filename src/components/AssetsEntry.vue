@@ -263,7 +263,7 @@ function getAssetResourceURLs(assetEntry) {
 </script>
 
 <template>
-  <div class="assets-entry">
+  <div class="assets-entry entry-card">
     <div v-if="isLoading" class="placeholder">
       {{ lan === "zh" ? "加载中…" : "Loading…" }}
     </div>
@@ -317,7 +317,11 @@ function getAssetResourceURLs(assetEntry) {
                   :key="url.url"
                   :href="url.url"
                   target="_blank"
-                >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+                >{{ url.name }}
+                  <span v-if="fileSizeMap[url.url]" class="btn-file-size">
+                    ({{ fileSizeMap[url.url] }})
+                  </span>
+                </a>
               </template>
             </span>
             <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
@@ -372,66 +376,6 @@ function getAssetResourceURLs(assetEntry) {
 </style>
 
 <style scoped>
-.assets-entry {
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-  box-sizing: border-box;
-}
-
-@media (max-width: 600px) {
-  .assets-entry {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-  }
-}
-
-@media (min-width: 900px) {
-  .assets-entry:has(+ .assets-entry),
-  .assets-entry + .assets-entry {
-    width: calc((100% - 0.5em) / 2);
-  }
-
-  .assets-entry:has(+ .assets-entry) {
-    margin-right: 0.5em;
-  }
-
-  .assets-entry + .assets-entry {
-    margin-right: 0;
-  }
-}
-
-@media (min-width: 900px) and (max-width: 1199px) {
-  .assets-entry + .assets-entry + .assets-entry:not(:has(+ .assets-entry)) {
-    margin-top: 0.5em;
-    width: 100%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .assets-entry:has(+ .assets-entry + .assets-entry),
-  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry,
-  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry + .assets-entry {
-    width: calc((100% - 1em) / 3);
-  }
-
-  .assets-entry:has(+ .assets-entry + .assets-entry),
-  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry {
-    margin-right: 0.5em;
-  }
-
-  .assets-entry:has(+ .assets-entry + .assets-entry) + .assets-entry + .assets-entry {
-    margin-right: 0;
-  }
-}
-
-@media (max-width: 899px) {
-  .assets-entry + .assets-entry {
-    margin-top: 0.5em;
-  }
-}
-
 .placeholder {
   padding: 0.5em 0;
   color: #666;
@@ -515,6 +459,11 @@ function getAssetResourceURLs(assetEntry) {
 
 .download:active {
   background-color: #007cdf;
+}
+
+.btn-file-size {
+  font-size: 0.85em;
+  opacity: 0.85;
 }
 
 .file-size-info {

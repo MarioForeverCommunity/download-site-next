@@ -105,6 +105,11 @@ function findGameInfo(game, category) {
   const gameInfoOrArray = gameMapping[gameName];
   if (!gameInfoOrArray) return null;
 
+  // Handle softendo's simple mapping structure (object with dirName and images)
+  if (category === 'softendo' && !Array.isArray(gameInfoOrArray)) {
+    return gameInfoOrArray;
+  }
+
   if (Array.isArray(gameInfoOrArray)) {
     const authorKey = getAuthorKey(game);
     return gameInfoOrArray.find(info => info.authorKey === authorKey) || null;
@@ -206,7 +211,10 @@ function getGameImagePath(game, category) {
 
   if (!imagePath) return null;
 
-  const result = `/data/${category}/${dirName}/${imagePath}`;
+  // For softendo, dirName is empty string, so path is /data/softendo/imagePath
+  const result = dirName
+    ? `/data/${category}/${dirName}/${imagePath}`
+    : `/data/${category}/${imagePath}`;
 
   pathCache.set(cacheKey, result);
   return result;

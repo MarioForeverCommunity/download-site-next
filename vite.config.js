@@ -47,6 +47,7 @@ export default defineConfig({
         "mw-levels": resolve(".", "mw-levels.html"),
         "assets": resolve(".", "assets.html"),
         "mario-worker": resolve(".", "mario-worker.html"),
+        softendo: resolve(".", "softendo.html"),
       },
       output: {
         chunkFileNames: "js/[name]-[hash].js",

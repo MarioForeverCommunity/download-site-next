@@ -1,0 +1,126 @@
+<script setup>
+import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "./icons/Icons.js";
+
+const props = defineProps({
+  lan: {
+    type: String,
+    required: true
+  },
+  sort_option: {
+    type: Object,
+    required: true
+  }
+});
+
+function getSortOption() {
+  return props.sort_option;
+}
+</script>
+
+<template>
+  <div class="container game-container header">
+    <div class="game-name header">
+      {{ lan == "en" ? "Game" : "作品名" }}
+      <div class="button button-shift" @click="$emit('sortByName')">
+        <span v-if="getSortOption().field == 'game'">
+          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
+          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+        </span>
+        <span v-if="getSortOption().field != 'game'">
+          <SortUpDownIcon class="icon"></SortUpDownIcon>
+        </span>
+      </div>
+    </div>
+    <div class="game-version header">
+      {{ lan == "en" ? "Version" : "版本" }}
+    </div>
+    <div class="game-year header">
+      {{ lan == "en" ? "Year" : "年份" }}
+      <div class="button button-shift" @click="$emit('sortByYear')">
+        <span v-if="getSortOption().field == 'year'">
+          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
+          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+        </span>
+        <span v-if="getSortOption().field != 'year'">
+          <SortUpDownIcon class="icon"></SortUpDownIcon>
+        </span>
+      </div>
+    </div>
+    <div class="game-software header">
+      {{ lan == "en" ? "Engine" : "制作软件" }}
+      <div class="button button-shift" @click="$emit('sortBySoftware')">
+        <span v-if="getSortOption().field == 'software'">
+          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
+          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+        </span>
+        <span v-if="getSortOption().field != 'software'">
+          <SortUpDownIcon class="icon"></SortUpDownIcon>
+        </span>
+      </div>
+    </div>
+    <div class="game-buttons header"></div>
+  </div>
+</template>
+
+<style scoped>
+  @import "../assets/download-style-table.css";
+</style>
+
+<style scoped>
+  /* Softendo-specific column widths (with software column) */
+  .game-name.header {
+    width: 40%;
+  }
+
+  .game-version.header {
+    width: 20%;
+  }
+
+  .game-year.header {
+    width: 10%;
+  }
+
+  .game-software.header {
+    width: 20%;
+  }
+
+  .game-buttons.header {
+    width: 10%;
+  }
+
+  .game-container.header {
+    padding: 10px 10px;
+    margin-top: .5em;
+    font-weight: bold;
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  }
+
+  .button {
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    width: 1em;
+    transition: transform 0.25s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-shift {
+    transform: translateY(-1px);
+  }
+
+  body.dark .button:hover {
+    background-color: transparent !important;
+  }
+
+  .icon {
+    color: #000;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px;
+  }
+</style>

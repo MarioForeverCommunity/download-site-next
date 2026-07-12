@@ -1,10 +1,11 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/GameUtil.js';
-import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync } from '../util/ImageUtil.js';
+import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync } from '../util/ImageUtil.js';
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
+import { getSoftendoGameName, getSoftwareLabel } from '../util/SoftendoUtil.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -49,6 +50,10 @@ const isAssets = computed(() => {
   return props.category === 'assets';
 });
 
+const isSoftendo = computed(() => {
+  return props.category === 'softendo';
+});
+
 const isSingleVersion = computed(() => {
   if (!props.game) return true;
   if (!props.game.ver || props.game.ver.length <= 1) return true;
@@ -70,6 +75,9 @@ const assetTypeLabel = computed(() => {
 
 const gameName = computed(() => {
   if (!props.game) return '';
+  if (isSoftendo.value) {
+    return getSoftendoGameName(props.game);
+  }
   return getName(props.game, props.lan);
 });
 
@@ -91,12 +99,15 @@ const titleImage = computed(() => {
     }
     return null;
   }
+  if (isSoftendo.value) {
+    return getGameImageSync(props.game, 'softendo');
+  }
   return getModalImageSync(props.game, props.category);
 });
 
 const showcaseImages = computed(() => {
   if (!props.game) return [];
-  if (isAssets.value) return [];
+  if (isAssets.value || isSoftendo.value) return [];
 
   const showcases = getShowcaseImagesSync(props.game, props.category);
   const titleImage = getTitleImageSync(props.game, props.category);
@@ -249,6 +260,23 @@ const authors = computed(() => {
 const releaseDate = computed(() => {
   if (!props.game) return null;
 
+  // Softendo: 只显示最旧的年份
+  if (isSoftendo.value) {
+    if (!props.game.ver) return null;
+    let oldestYear = null;
+    for (const verRaw of props.game.ver) {
+      const verKey = Object.keys(verRaw)[0];
+      const ver = verRaw[verKey];
+      if (ver.year && ver.year !== 'unknown') {
+        if (oldestYear === null || ver.year < oldestYear) {
+          oldestYear = ver.year;
+        }
+      }
+    }
+    if (oldestYear === null) return null;
+    return props.lan === 'zh' ? `${oldestYear} 年` : String(oldestYear);
+  }
+
   if (isMwLevel.value || isAssets.value) {
     let date = null;
     if (props.game.date) {
@@ -343,6 +371,54 @@ const latestUpdate = computed(() => {
 
 const downloadEntries = computed(() => {
   if (!props.game) return [];
+
+  // Softendo: 显示所有版本的 installer 和 portable
+  if (isSoftendo.value) {
+    const entries = [];
+    if (!props.game.ver) return entries;
+
+    for (const verRaw of props.game.ver) {
+      const verKey = Object.keys(verRaw)[0];
+      const ver = verRaw[verKey];
+
+      // Installer (安装版)
+      if (ver.installer_url) {
+        entries.push({
+          version: props.lan === 'zh' ? `安装版 (${verKey})` : `Installer (${verKey})`,
+          url: ver.installer_url,
+          isRepackaged: false,
+          repacker: null,
+          isData: false,
+          isSoftendoInstaller: true
+        });
+      }
+
+      // Portable (绿色版)
+      if (ver.portable_urls && ver.portable_urls.length > 0) {
+        for (const p of ver.portable_urls) {
+          // flash/mff 类型显示格式标签 (如 "绿色版 EXE")
+          let portableName;
+          if (props.game.type === 'flash' || props.game.type === 'mff') {
+            portableName = props.lan === 'zh'
+              ? `绿色版 (${p.label || 'Portable'})`
+              : `Portable (${p.label || 'Portable'})`;
+          } else {
+            portableName = props.lan === 'zh' ? '绿色版' : 'Portable';
+          }
+          entries.push({
+            version: props.lan === 'zh' ? `${portableName} (${verKey})` : `${portableName} (${verKey})`,
+            url: p.url,
+            isRepackaged: false,
+            repacker: null,
+            isData: false,
+            isSoftendoPortable: true
+          });
+        }
+      }
+    }
+
+    return entries;
+  }
 
   if (isMwLevel.value) {
     if (props.game.file_urls && props.game.file_urls.length > 0) {
@@ -658,6 +734,14 @@ watch(() => props.show, (newVal) => {
 
 const getGameSlug = () => {
   if (!props.game) return null;
+
+  // Softendo 作品不包含作者信息
+  if (isSoftendo.value) {
+    const name = getSoftendoGameName(props.game);
+    const slug = `${name}`.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-').replace(/^-+|-+$/g, '');
+    return slug;
+  }
+
   const name = getName(props.game, props.lan);
   const author = getAuthorList(props.game);
   const authorStr = Array.isArray(author) ? author.join('-') : author;
@@ -754,9 +838,14 @@ const nextImage = () => {
             {{ gameName }}
           </h1>
 
-          <div v-if="!isMwLevel && !isAssets" class="software-info">
+          <div v-if="!isMwLevel && !isAssets && !isSoftendo" class="software-info">
             <span class="software-label">{{ lan === 'zh' ? '制作软件' : 'Made with' }}: </span>
             <span class="software-value">{{ softwareLabel }}</span>
+          </div>
+
+          <div v-if="isSoftendo" class="software-info">
+            <span class="software-label">{{ lan === 'zh' ? '制作软件' : 'Made with' }}: </span>
+            <span class="software-value">{{ getSoftwareLabel(game.software) }}</span>
           </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
@@ -779,7 +868,7 @@ const nextImage = () => {
 
           <hr class="section-divider" />
 
-          <div class="content-section">
+          <div v-if="!isSoftendo" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '发布链接' : 'Original source' }}</h3>
             <ul v-if="sourceUrls.length > 0" class="source-list">
               <li v-for="(source, index) in sourceUrls" :key="index">
@@ -815,7 +904,7 @@ const nextImage = () => {
             </ul>
           </div>
 
-          <div class="content-section">
+          <div v-if="!isSoftendo" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? `作者` : `Author${authors.length > 1 ? 's' : ''}` }}</h3>
             <ul v-if="authors.length > 0" class="author-list">
               <li v-for="(author, index) in authors" :key="index">{{ author }}</li>
@@ -847,7 +936,7 @@ const nextImage = () => {
             </ul>
           </div>
 
-          <div v-if="!isAssets" class="content-section">
+          <div v-if="!isAssets && !isSoftendo" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '图集' : 'Showcases' }}</h3>
             <div v-if="showcaseImages.length > 0" class="showcase-grid">
               <img

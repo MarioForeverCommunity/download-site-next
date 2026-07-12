@@ -10,3 +10,4 @@ dist
 .editorconfig
 public/data/image-index.json
 .idea/*
+.trae/*

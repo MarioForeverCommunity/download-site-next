@@ -487,7 +487,11 @@ const { floatingStyles } = useFloating(reference, floating,
                 :key="url.url"
                 :href="url.url"
                 target="_blank"
-              >{{ url.name }}{{ fileSizeMap[url.url] ? ` (${fileSizeMap[url.url]})` : '' }}</a>
+              >{{ url.name }}
+                <span v-if="fileSizeMap[url.url]" class="btn-file-size">
+                  ({{ fileSizeMap[url.url] }})
+                </span>
+              </a>
             </template>
           </span>
           <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
@@ -728,6 +732,11 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .download:active {
     background-color: #007cdf;
+  }
+
+  .btn-file-size {
+    font-size: 0.85em;
+    opacity: 0.85;
   }
 
   .file-size-info {
