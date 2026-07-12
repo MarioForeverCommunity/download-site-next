@@ -151,14 +151,14 @@
   type: mario
   software: mmf
   ver:
-  - "2017":
+  - "2003 ver, 2017 re-release":
       year: 2017
-      installer: Super Mario Shooten (2017).exe
-      portable: Super Mario Shooten (2017).zip
+      installer: Super Mario Shooten (2003 version, 2017 re-release) (English).exe
+      portable: Super Mario Shooten (2003 version, 2017 re-release) (English).zip
   - "2003":
       year: 2003
-      installer: Super Mario Shooten (2003).exe
-      portable: Super Mario Shooten (2003).zip
+      installer: Super Mario Shooten (2003) (Polish).exe
+      portable: Super Mario Shooten (2003) (Polish).zip
 - game: Mario Forever Flash
   type: mff
   ver:
