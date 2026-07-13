@@ -191,6 +191,13 @@ function getGameImagePath(game, category) {
     return pathCache.get(cacheKey);
   }
 
+  // Check if currentVer has a specific image field (for version-level images)
+  if (game.currentVer && game.currentVer.image) {
+    const result = `/data/${category}/${game.currentVer.image}`;
+    pathCache.set(cacheKey, result);
+    return result;
+  }
+
   const gameInfo = findGameInfo(game, category);
   if (!gameInfo || !gameInfo.images || gameInfo.images.length === 0) return null;
 

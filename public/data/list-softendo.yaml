@@ -88,10 +88,12 @@
       year: 2016
       installer: Super Mario Forever Pack (2016-08-12).exe
       portable: Super Mario Forever Pack (2016-08-12).zip
+      image: Super Mario Forever Pack.webp
   - "2016-02-11 Pack":
       year: 2016
       installer: Super Mario Forever Pack (2016-02-11).exe
       portable: Super Mario Forever Pack (2016-02-11).zip
+      image: Super Mario Forever Pack.webp
   - "2015-03-03":
       year: 2015
       installer: New Super Mario Forever (2015-03-03).exe
