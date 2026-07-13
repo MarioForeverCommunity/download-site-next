@@ -84,6 +84,14 @@
   nsmf: true
   software: gamemaker
   ver:
+  - "2016-08-12 Pack":
+      year: 2016
+      installer: Super Mario Forever Pack (2016-08-12).exe
+      portable: Super Mario Forever Pack (2016-08-12).zip
+  - "2016-02-11 Pack":
+      year: 2016
+      installer: Super Mario Forever Pack (2016-02-11).exe
+      portable: Super Mario Forever Pack (2016-02-11).zip
   - "2015-03-03":
       year: 2015
       installer: New Super Mario Forever (2015-03-03).exe
@@ -115,21 +123,6 @@
       year: 2013
       installer: New Super Mario Forever (2012 Lite Version).exe
       portable: New Super Mario Forever (2012 Lite Version).zip
-- game: Super Mario Forever Pack
-  alias:
-  - NSMF
-  type: mario
-  nsmf: true
-  software: gamemaker
-  ver:
-  - "2016-08-12":
-      year: 2016
-      installer: Super Mario Forever Pack (2016-08-12).exe
-      portable: Super Mario Forever Pack (2016-08-12).zip
-  - "2016-02-11":
-      year: 2016
-      installer: Super Mario Forever Pack (2016-02-11).exe
-      portable: Super Mario Forever Pack (2016-02-11).zip
 - game: Mario Forever World Maker
   type: mario
   nsmf: true
@@ -147,6 +140,13 @@
   - 800x600:
       year: 2003
       portable: Polski Marian/Polski Marian 800x600.exe
+- name: Super Mario
+  type: mario
+  software: gamemaker
+  year: 2009
+  installer: Super Mario.exe
+  portable:
+    zip: Super Mario.zip
 - game: Mario Forever Flash
   type: mff
   ver:
@@ -181,7 +181,9 @@
   type: mff
   year: 2009
   portable:
-    exe: Mario Super.exe
+    exe:
+    - Mario Super.exe
+    - Mario Super (2).exe
     swf: Mario Super.swf
 - game: New Mario Flash
   type: mff
@@ -196,8 +198,16 @@
 - game: Squario
   type: mff
   year: 2009
-  portable:
-    swf: Squario.swf
+  ver:
+  - "Original":
+      year: 2009
+      installer: Squario.exe
+      portable:
+        swf: Squario 1.swf
+  - "Easier":
+      year: 2009
+      portable:
+        swf: Squario无限生命版.swf
 - game: Squario 2
   type: mff
   year: 2009
@@ -209,53 +219,48 @@
   portable:
     exe: Super Furio.exe
     swf: Super Furio.swf
-- game: Super Furio Adventures
+- game: Super Furio Desert Adventures
   type: mff
   year: 2009
   portable:
     exe: Super Furio Adventures.exe
-    swf: Super Furio Adventures.swf
-- game: Super Furio and Monsters
+    swf:
+    - Super Furio Desert Adventures.swf
+    - Super Furio Desert Adventures (2).swf
+- game: Super Furio and Monsters Bros
   type: mff
   year: 2009
   portable:
     exe: Super Furio and Monsters.exe
     swf: Super Furio and Monsters.swf
-- game: Super Furio Desert
-  type: mff
-  year: 2009
-  portable:
-    swf: Super Furio Desert.swf
 - name: Super Buddy 2
   type: mff
   year: 2009
   portable:
     swf: Super Buddy 2.swf
-- name: Super Mario
-  type: flash
-  year: 2009
-  installer: Super Mario.exe
-  portable:
-    zip: Super Mario.zip
 - name: Super Mario Bombastic
   type: flash
   ver:
   - "2017":
       year: 2017
       installer: Super Mario Bombastic (2017).exe
+      portable:
+        zip: Super Mario Bombastic (2017).zip
   - "2011":
       year: 2011
       installer: Super Mario Bombastic (2011, with toolbar).exe
       portable:
         exe: Super Mario Bombastic.exe
-        swf: Super Mario Bombastic.swf
+        swf:
+        - Super Mario Bombastic.swf
+        - Super Mario Bombastic (2).swf
 - name: Super Mario Bros and Friends
   type: flash
   year: 2011
   installer: Super Mario Bros and Friends (with toolbar).exe
   portable:
     exe: Super Mario Bros and Friends.exe
-    swf: Super Mario Bros and Friends.swf
+    swf: Super Mario Bros And Friends.swf
 - name: Super Mario Castle
   type: flash
   year: 2017
@@ -304,10 +309,18 @@
       installer: Super Mario Dark Dungeon (2011, with toolbar).exe
       portable:
         exe: Super Mario Dark Dungeon (2011).exe
-        swf: Super Mario Dark Dungeon.swf
-- name: Super Mario Galaxy the Star Finder
+        swf:
+        - Super Mario Dark Dungeon.swf
+        - Super Mario Dark Dungeon (2).swf
+        - Super Mario Dark Dungeon (3).swf
+- name: Mario Galaxy the Star Finder
   type: flash
   ver:
+  - "2017 re-release":
+      year: 2017
+      installer: Super Mario Starshine Finder.exe
+      portable:
+        zip: Super Mario Starshine Finder.zip
   - "2011-07-22":
       year: 2011
       installer: Super Mario Galaxy the Star Finder (2) (with toolbar).exe
@@ -336,7 +349,7 @@
   year: 2011
   portable:
     swf: Super Mario Peach Party 3 (CONTENT WARNING).swf
-- name: Super Mario Play
+- name: Mario Play
   type: flash
   year: 2010
   installer: Super Mario Play (with toolbar).exe
@@ -348,7 +361,9 @@
   year: 2011
   installer: Super Mario Playgrounds (with toolbar).exe
   portable:
-    exe: Super Mario Playgrounds.exe
+    exe:
+    - Super Mario Playgrounds.exe
+    - Super Mario Playgrounds (2).exe
     swf: Super Mario Playgrounds.swf
 - name: Super Mario Playgrounds 2
   type: flash
@@ -381,12 +396,6 @@
   installer: Super Mario Starshine (with toolbar).exe
   portable:
     exe: Super Mario Starshine.exe
-- name: Super Mario Starshine Finder
-  type: flash
-  year: 2017
-  installer: Super Mario Starshine Finder.exe
-  portable:
-    zip: Super Mario Starshine Finder.zip
 - name: Super Mario The Curibo Shoe
   type: flash
   ver:
@@ -457,6 +466,9 @@
       year: 2003
       installer: Bod Blob (2003).exe
       portable: Bod Blob (2003).zip
+  - Kliktopia repackage:
+      year: 2020
+      portable: Bod Blob.zip
 - name: Bod Blob 2 (Unfinished)
   type: non-mario
   software: gamemaker
@@ -490,14 +502,25 @@
 - name: Kulkis
   type: non-mario
   software: mmf
-  year: 2003
-  installer: Kulkis.exe
-  portable: Kulkis.zip
-- name: Madloc Future
+  ver:
+  - Original:
+      year: 2003
+      installer: Kulkis.exe
+      portable: Kulkis.zip
+  - Kliktopia repackage:
+      year: 2021
+      portable: Kulkis.zip
+- name: Madloc Future Saga
   type: non-mario
   software: mmf
   year: 2006
-  portable: Madloc Future.rar
+  ver:
+  - Original:
+      year: 2006
+      portable: Madloc Future.rar
+  - Kliktopia repackage:
+      year: 2021
+      portable: Madloc Future.zip
 - name: Madlocnoid
   type: non-mario
   software: mmf
@@ -511,6 +534,9 @@
       year: 2003
       installer: Madlocnoid v1.x (2003).exe
       portable: Madlocnoid v1.x (2003).zip
+  - Kliktopia repackage:
+      year: 2024
+      portable: Madlocnoid.zip
 - name: Myster Muszel
   type: non-mario
   software: mmf
@@ -531,12 +557,20 @@
       year: 2002
       installer: Myster Muszel v1.x.exe
       portable: Myster Muszel v1.x.zip
+  - Kliktopia repackage:
+      year: 2021
+      portable: Myster Muszel.zip
 - name: Myster Muszel 2
   type: non-mario
   software: mmf
-  year: 2003
-  installer: Myster Muszel 2.exe
-  portable: Myster Muszel 2.zip
+  ver:
+  - Original:
+      year: 2003
+      installer: Myster Muszel 2.exe
+      portable: Myster Muszel 2.zip
+  - Kliktopia repackage:
+      year: 2021
+      portable: Myster Muszel 2.zip
 - name: Ninja Jonder Deluxe
   type: non-mario
   software: mmf
@@ -580,6 +614,9 @@
       year: 2003
       installer: Stargrade (2003).exe
       portable: Stargrade (2003).zip
+  - Kliktopia repackage:
+      year: 2021
+      portable: Stargrade.zip
 - name: Stargrade 2
   type: non-mario
   software: gamemaker
@@ -589,9 +626,14 @@
 - name: Urbagility
   type: non-mario
   software: mmf
-  year: 2003
-  installer: Urbagility.exe
-  portable: Urbagility.zip
+  ver:
+  - Original:
+      year: 2003
+      installer: Urbagility.exe
+      portable: Urbagility.zip
+  - Kliktopia repackage:
+      year: 2021
+      portable: Urbagility.zip
 - name: Urbagility 2
   type: non-mario
   software: mmf
@@ -607,6 +649,9 @@
       year: 2006
       installer: Urbagility 2 (2006).exe
       portable: Urbagility 2 (2006).zip
+  - Kliktopia repackage:
+      year: 2024
+      portable: Urbagility 2.zip
 - name: Zelda Forever
   type: non-mario
   software: gamemaker
@@ -651,10 +696,10 @@
   ver:
   - "2009":
       year: 2009
-      installer: Super Mario Castle Buster (2009).exe"
+      installer: Super Mario Castle Buster (2009).exe
   - "2008":
       year: 2008
-      installer: Super Mario Castle Buster (2008).exe"
+      installer: Super Mario Castle Buster (2008).exe
       portable: Super Mario Castle Buster.zip
 - name: Super Mario Crystals
   type: banesoft
@@ -707,7 +752,7 @@
   software: mmf
   year: 2009
   installer: Super Mario With Shotgun.exe
-  portable: Super Mario With Shotgun.zip
+  portable: Super Mario with Shotgun.zip
 - name: Super Sonic Mario
   type: banesoft
   software: mmf
