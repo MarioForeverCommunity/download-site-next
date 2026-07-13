@@ -474,15 +474,18 @@ function getTagColorIndex(tagName) {
 function openTagModal() {
   tempSelectedTags.value = [...filter_option.value.tags];
   showTagModal.value = true;
+  disableScroll();
 }
 
 function confirmTagModal() {
   filter_option.value.tags = [...tempSelectedTags.value];
   showTagModal.value = false;
+  enableScroll();
 }
 
 function cancelTagModal() {
   showTagModal.value = false;
+  enableScroll();
 }
 
 function toggleTempTag(tag) {
@@ -1264,41 +1267,19 @@ function hasDataDownload(game) {
   <SiteFooter />
 
   <!-- Tag Filter Modal -->
-  <div v-if="showTagModal" class="tag-modal-overlay" @click="cancelTagModal">
-    <div class="tag-modal" @click.stop>
-      <div class="tag-modal-header">
-        <h3>{{ lan === 'zh' ? '标签筛选' : 'Tag Filter' }}</h3>
-      </div>
-
-      <div v-if="tempSelectedTags.length > 0" class="tag-modal-selected">
-        <span class="tag-selected-label">{{ lan === 'zh' ? '已选：' : 'Selected: ' }}</span>
-        <span
-          v-for="tag in tempSelectedTags"
-          :key="tag"
-          class="tag-pill tag-pill-sm tag-pill-selected"
-          :style="{
-            '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
-            '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
-            '--tag-text': TAG_COLORS[getTagColorIndex(tag)].text,
-            '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].bg,
-            '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
-            '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
-          }"
-        >{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTempTag(tag)">&times;</span></span>
-        <button class="tag-clear-all" @click="deselectAllTags">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
-      </div>
-
-      <div class="tag-modal-body">
-        <div class="tag-modal-actions">
-          <button class="md-button" @click="selectAllTags">{{ lan === 'zh' ? '全选' : 'Select all' }}</button>
-          <button class="md-button" @click="deselectAllTags">{{ lan === 'zh' ? '取消全选' : 'Deselect all' }}</button>
+  <Transition name="modal">
+    <div v-if="showTagModal" class="tag-modal-overlay" @click="cancelTagModal">
+      <div class="tag-modal" @click.stop>
+        <div class="tag-modal-header">
+          <h3>{{ lan === 'zh' ? '标签筛选' : 'Tag Filter' }}</h3>
         </div>
-        <div class="tag-modal-grid">
+
+        <div v-if="tempSelectedTags.length > 0" class="tag-modal-selected">
+          <span class="tag-selected-label">{{ lan === 'zh' ? '已选：' : 'Selected: ' }}</span>
           <span
-            v-for="tag in availableTags"
+            v-for="tag in tempSelectedTags"
             :key="tag"
-            class="tag-pill"
-            :class="{ 'tag-pill-active': tempSelectedTags.includes(tag) }"
+            class="tag-pill tag-pill-sm tag-pill-selected"
             :style="{
               '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
               '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
@@ -1307,19 +1288,43 @@ function hasDataDownload(game) {
               '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
               '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
             }"
-            @click="toggleTempTag(tag)"
-          >
-            <span v-if="tempSelectedTags.includes(tag)" class="tag-check">&check;</span>{{ getTagLabel(tag, lan) }}<span class="tag-game-count">{{ tagGameCount[tag] || 0 }}</span>
-          </span>
+          >{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTempTag(tag)">&times;</span></span>
+          <button class="tag-clear-all" @click="deselectAllTags">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
+        </div>
+
+        <div class="tag-modal-body">
+          <div class="tag-modal-actions">
+            <button class="md-button" @click="selectAllTags">{{ lan === 'zh' ? '全选' : 'Select all' }}</button>
+            <button class="md-button" @click="deselectAllTags">{{ lan === 'zh' ? '取消全选' : 'Deselect all' }}</button>
+          </div>
+          <div class="tag-modal-grid">
+            <span
+              v-for="tag in availableTags"
+              :key="tag"
+              class="tag-pill"
+              :class="{ 'tag-pill-active': tempSelectedTags.includes(tag) }"
+              :style="{
+                '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
+                '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
+                '--tag-text': TAG_COLORS[getTagColorIndex(tag)].text,
+                '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].bg,
+                '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
+                '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
+              }"
+              @click="toggleTempTag(tag)"
+            >
+              <span v-if="tempSelectedTags.includes(tag)" class="tag-check">&check;</span>{{ getTagLabel(tag, lan) }}<span class="tag-game-count">{{ tagGameCount[tag] || 0 }}</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="tag-modal-footer">
+          <button class="md-button md-button-secondary" @click="cancelTagModal">{{ lan === 'zh' ? '取消' : 'Cancel' }}</button>
+          <button class="md-button" @click="confirmTagModal">{{ lan === 'zh' ? '确认' : 'Confirm' }}</button>
         </div>
       </div>
-
-      <div class="tag-modal-footer">
-        <button class="md-button md-button-secondary" @click="cancelTagModal">{{ lan === 'zh' ? '取消' : 'Cancel' }}</button>
-        <button class="md-button" @click="confirmTagModal">{{ lan === 'zh' ? '确认' : 'Confirm' }}</button>
-      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <style scoped>
@@ -1658,17 +1663,25 @@ function hasDataDownload(game) {
   }
 
   /* Tag Modal */
+  .modal-enter-active, .modal-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-enter-from, .modal-leave-to {
+    opacity: 0;
+  }
+
   .tag-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
+    z-index: 1001;
   }
 
   .tag-modal {
