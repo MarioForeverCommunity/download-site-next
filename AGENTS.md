@@ -1,7 +1,7 @@
 # Agent Guidelines for download.marioforever.net
 
 ## Project Overview
-Vue 3 static website built with Vite and JavaScript. Bilingual (Chinese/English) catalog for Mario Forever games, fangames, and SMWP levels. Uses YAML data files and supports multiple entry points (index.html, mf-games.html, mw-levels.html, assets.html, mario-worker.html).
+Vue 3 static website built with Vite and JavaScript. Bilingual (Chinese/English) catalog for Mario Forever games, fangames, SMWP levels, and Softendo games. Uses YAML data files and supports multiple entry points (index.html, mf-games.html, mw-levels.html, assets.html, mario-worker.html, softendo.html).
 
 ## Technology Stack
 - **Package Manager**: bun (**Do NOT use npm/yarn/pnpm**)
@@ -26,7 +26,7 @@ Vue 3 static website built with Vite and JavaScript. Bilingual (Chinese/English)
 ## Testing
 **No test framework is configured.** Manual testing required:
 - Test all features in both Chinese and English
-- Verify across all entry points: index, mf-games, mw-levels, assets, mario-worker
+- Verify across all entry points: index, mf-games, mw-levels, assets, mario-worker, softendo
 - Test responsive design on mobile, tablet, and desktop
 - Validate external API calls and YAML data loading
 
@@ -182,6 +182,7 @@ Data files in `public/data/`:
 - `list-mw.yaml` - SMWP levels
 - `list-original-mf.yaml` - Original MF versions
 - `list-assets.yaml` - Mario Forever Assets
+- `list-softendo.yaml` - Softendo / Buziol Games
 
 YAML: 2-space indentation, YYYY-MM-DD dates.
 

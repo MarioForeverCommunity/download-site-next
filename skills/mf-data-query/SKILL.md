@@ -236,6 +236,41 @@ Each entry represents one asset or engine:
       file_name: variant.zip
 ```
 
+### list-softendo.yaml (Softendo / Buziol Games)
+
+Each entry represents a game by Buziol Games (Softendo):
+
+```yaml
+- game: Mario Forever Block Party     # Game name (required)
+  alias:                              # Alternative names (optional)
+  - MFBP
+  type: mario                         # Game type (required): mario, mff, flash, non-mario, banesoft
+  software: gamemaker                 # Creation software (optional)
+  nsmf: true                          # Is New Super Mario Forever (optional)
+  initial_year: 2008                  # First release year (optional)
+  ver:                                # Version list (required)
+  - "2018":
+      year: 2018
+      installer: Mario Forever Block Party (2018).exe
+      portable: Mario Forever Block Party (2018).zip
+      image: MFBP.webp                # Version-specific image (optional)
+  - "2011":
+      year: 2011
+      installer: Mario Forever Block Party (2011, with toolbar).exe
+      portable: Mario Forever Block Party (2011).zip
+```
+
+**Key rules for list-softendo.yaml:**
+- `type` determines the URL generation rules and download structure
+- `software` defaults based on type and portable format:
+  - For `flash`/`mff` types: defaults to `"flash"` or `["flash", "mmf"]` if both exe and zip exist
+- `nsmf: true` uses special NSMF download paths
+- `portable` can be:
+  - A simple string filename (e.g., `game.zip`)
+  - An object with `exe`/`swf`/`zip` keys (e.g., `{exe: game.exe, swf: game.swf}`)
+  - An array of strings or objects for multiple files
+- `image` at version level specifies a version-specific image file
+
 ## Resource Site URL Generation Rules
 
 The resource site is at `https://file.marioforever.net/`. URLs are auto-generated from `file_name`:
@@ -292,6 +327,32 @@ URLs are generated based on the `type` field. For `engine` type, the `path` fiel
 
 - `file_name` should be URL-encoded when constructing the URL
 - `file_name` can be an array; each element generates a separate resource site link
+
+### Softendo Games (list-softendo.yaml)
+
+URLs are generated based on the `type` field. All URLs differ between Chinese and English versions.
+
+| Type | File | Chinese URL | English URL |
+|------|------|-------------|-------------|
+| `mario` | installer | `…/Softendo 其他游戏下载/安装版/{installer}` | `…/softendo/installer/{installer}` |
+| `mario` | portable | `…/Softendo 其他游戏下载/绿色版/{portable}` | `…/softendo/portable/{portable}` |
+| `mff` | installer | `…/Softendo 其他游戏下载/Flash/exe-installer/{installer}` | `…/softendo/Flash/exe-installer/{installer}` |
+| `mff` | portable (exe) | `…/Softendo 其他游戏下载/Flash/exe/{exe}` | `…/softendo/Flash/exe/{exe}` |
+| `mff` | portable (swf) | `…/Softendo 其他游戏下载/Flash/swf/Mario Forever Flash/{swf}` | `…/softendo/Flash/swf/Mario Forever Flash/{swf}` |
+| `flash` | installer | `…/Softendo 其他游戏下载/Flash/exe-installer/{installer}` | `…/softendo/Flash/exe-installer/{installer}` |
+| `flash` | portable (exe) | `…/Softendo 其他游戏下载/Flash/exe/{exe}` | `…/softendo/Flash/exe/{exe}` |
+| `flash` | portable (swf) | `…/Softendo 其他游戏下载/Flash/swf/Other/{swf}` | `…/softendo/Flash/swf/Other/{swf}` |
+| `flash` | portable (zip) | `…/Softendo 其他游戏下载/Flash/zip/{zip}` | `…/softendo/Flash/zip/{zip}` |
+| `non-mario` | installer | `…/Non-Mario games by Buziol (Softendo)/installer/{installer}` | `…/Non-Mario games by Buziol (Softendo)/installer/{installer}` |
+| `non-mario` | portable | `…/Non-Mario games by Buziol (Softendo)/portable/{portable}` | `…/Non-Mario games by Buziol (Softendo)/portable/{portable}` |
+| `non-mario` | kliktopia repackage | `…/Non-Mario games by Buziol (Softendo)/Kliktopia repackages/{file}` | `…/Non-Mario games by Buziol (Softendo)/Kliktopia repackages/{file}` |
+| `banesoft` | installer | `…/Banesoft 相关游戏下载/安装版/{installer}` | `…/banesoft/installer/{installer}` |
+| `banesoft` | portable | `…/Banesoft 相关游戏下载/绿色版/{portable}` | `…/banesoft/portable/{portable}` |
+
+**NSMF games (`nsmf: true`)** use special paths:
+- Chinese installer: `…/New Super Mario Forever 下载/安装版/{installer}`
+- Chinese portable: `…/New Super Mario Forever 下载/绿色版/{portable}`
+- English uses normal `mario` type paths
 
 ## Download Link Description Rules
 
@@ -356,6 +417,7 @@ When a user asks about a game, level, or asset, follow these steps:
 - MW level → `list-mw.yaml`
 - Original MF → `list-original-mf.yaml`
 - Asset/engine → `list-assets.yaml`
+- Softendo/Buziol game → `list-softendo.yaml`
 
 To fetch a file, construct the full URL by appending the filename to the base URL:
 ```
@@ -445,9 +507,12 @@ When responding, always include the game/level name as context so the user knows
 | SMWP 版本 | `smwp_ver` | Required SMWP version (MW levels only) |
 | BGM | `has_bgm` | Whether level has BGM (MW levels only) |
 | 推荐度 | `rating` | Star rating (original MF only) |
-| 安装版 | `installer` | Installer file name (original MF only) |
-| 绿色版 | `portable` | Portable file name (original MF only) |
+| 安装版 | `installer` | Installer file name (original MF / Softendo only) |
+| 绿色版 | `portable` | Portable file name (original MF / Softendo only) |
 | 捆绑工具栏 | `toolbar` | Whether toolbar is bundled (original MF only) |
+| 制作软件 | `software` | Creation software (MF fangames / Softendo only): mmf / flash / gamemaker / other |
+| 游戏类型 (Softendo) | `type` | Softendo game type: mario / mff / flash / non-mario / banesoft |
+| 首次发布年份 | `initial_year` | First release year (Softendo only) |
 
 ### Step 5: Handle special cases
 

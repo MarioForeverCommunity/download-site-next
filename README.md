@@ -191,6 +191,156 @@ Below are the meanings of each field.
 | `file_name` | No | String | The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 | `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
 
+### Assets List
+
+The Assets list is written in yaml and is located in `public/data/list-assets.yaml`. It contains various resources for Mario Forever development, including engines, addons, sprites, effects, and tools. Here is an example:
+
+```yaml
+- name: Super Mario Ultra Engine
+  alias:
+  - UE
+  author: dasasdhba
+  type: engine
+  description:
+  image: UE.webp
+  source_url: https://www.marioforever.net/thread-383-1-1.html
+  download_url: https://www.lanzoui.com/b0bd46ji
+  code:
+  path: 其他MMF引擎
+  variants:
+  - 本体:
+      ver: 200309v1
+      date: 2020-03-09
+      file_name: Super Mario Ultra Engine 200309v1.7z
+  - 特效包:
+      ver:
+      date: 2019-07-03
+      file_name: Ultra Engine 特效包.7z
+- name: Rainbow Engine 碰撞检测增强包
+  author: dasasdhba
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-650-1-1.html
+  download_url: https://wwbtb.lanzout.com/b0w9p5p4b
+  code: 8vf6
+  ver:
+  date: 2020-08-13
+  file_name: RE 碰撞检测增强包.mfa
+- name: MW全图机器
+  author: 无视我233
+  type: mwtool
+  description:
+  image:
+  source_url: https://zh.wsw233.com/tools/mw_gen_map
+  download_url:
+  code:
+  ver:
+  date: 2021-10-10
+  file_name:
+```
+
+Below are the meanings of each field:
+
+| Field Name | Required | Type | Field Description |
+| --- | --- | --- | --- |
+| `name` | **Yes** | String | The name of the asset. |
+| `alias` | No | String List | Abbreviations or aliases of the asset. |
+| `author` | **Yes** | String | The name of the author. Multiple authors are allowed. |
+| `type` | **Yes** | String | Asset type: <br>`engine`: Game engines/templates <br>`addon`: Extension packs/addons <br>`sprite`: Graphics/sprites <br>`effect`: Visual effects/shaders <br>`tool`: General tools <br>`mwtool`: Mario Worker tools |
+| `description` | No | String | Description of the asset. |
+| `image` | No | String | Image file name for the asset. |
+| `source_url` | No | String | The release link of the asset. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link. |
+| `download_url` | No | String | The download link of the asset. |
+| `download_url_alt` | No | String | Alternative download link. |
+| `code` | No | String | Extraction code for the download. |
+| `code_alt` | No | String | Alternative extraction code. |
+| `repo` | No | String | Source code repository URL. |
+| `ver` | No | String | Version number. |
+| `date` | **Yes** | Date | The release date. Please use the "YYYY-MM-DD" format. |
+| `file_name` | No | String | The file name in file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `path` | No | String | Subdirectory path under the engines folder (only for `type: engine`). |
+
+For assets with multiple variants (e.g., different versions or editions), use the `variants` field:
+
+```yaml
+variants:
+- Variant Name:
+    ver: version_number
+    date: YYYY-MM-DD
+    file_name: filename.ext
+```
+
+Each variant can have its own `ver`, `date`, and `file_name`. The `download_url`, `code`, and `source_url` from the parent entry are inherited if not specified in the variant.
+
+### Softendo / Buziol Games List
+
+The Softendo games list is written in yaml and is located in `public/data/list-softendo.yaml`. These are games created by Buziol Games (Softendo). Here is an example:
+
+```yaml
+- game: Mario Forever Block Party
+  alias:
+  - MFBP
+  type: mario
+  software: gamemaker
+  ver:
+  - "2018":
+      year: 2018
+      installer: Mario Forever Block Party (2018).exe
+      portable: Mario Forever Block Party (2018).zip
+  - "2011":
+      year: 2011
+      installer: Mario Forever Block Party (2011, with toolbar).exe
+      portable: Mario Forever Block Party (2011).zip
+- game: Mario Forever Flash
+  type: mff
+  ver:
+  - "2011":
+      year: 2011
+      installer: Mario Forever Flash (2011, with toolbar).exe
+      portable:
+        exe: Mario Forever Flash (2011).exe
+  - "2009":
+      year: 2009
+      installer: Mario Forever Flash (2009).exe
+      portable:
+        exe: Mario Forever Flash (2009).exe
+        swf: Mario Forever Flash.swf
+- game: New Super Mario Forever
+  alias:
+  - NSMF
+  type: mario
+  nsmf: true
+  software: gamemaker
+  ver:
+  - "2015-03-03":
+      year: 2015
+      installer: New Super Mario Forever (2015-03-03).exe
+      portable: New Super Mario Forever (2015-03-03).zip
+      image: New Super Mario Forever.webp
+```
+
+Below are the meanings of each field:
+
+| Field Name | Required | Type | Field Description |
+| --- | --- | --- | --- |
+| `game` | **Yes** | String | The name of the game. |
+| `alias` | No | String List | Abbreviations or aliases of the game. |
+| `type` | **Yes** | String | Game type: `mario` (Mario games), `mff` (Mario Forever Flash), `flash` (Other Flash games), `non-mario` (Non-Mario games), `banesoft` (Banesoft games). |
+| `software` | No | String | The software used to create the game. For `flash`/`mff` types, defaults to `flash` or `["flash", "mmf"]` if both exe and zip exist. |
+| `nsmf` | No | Boolean | Mark as New Super Mario Forever game (uses special download URLs). |
+| `initial_year` | No | Number | The year when the game was first released. |
+| `ver` | No | Version List | Version list. Each version is a dictionary with version name as key. |
+
+Version fields:
+
+| Field Name | Required | Type | Field Description |
+| --- | --- | --- | --- |
+| `year` | **Yes** | Number | Release year. |
+| `installer` | No | String | Installer file name. |
+| `portable` | No | String or Object | Portable version. Can be a simple string filename, or an object with `exe`/`swf`/`zip` keys. Supports arrays for multiple files. |
+| `image` | No | String | Image file name for this specific version. |
+
 ## Help Maintain and Further Development
 
 Programmers are welcomed to help in improving this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To ensure the stability of the online website, all changes except from list updates should be committed to the `next` branch of this project.

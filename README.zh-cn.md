@@ -191,6 +191,156 @@ Super Mario Worker Project 作品列表使用 yaml（这是一种人类便于阅
 | `file_name` | 否 | 字符串 | 作品在资源站中的文件名。通常由资源站管理者填写。 |
 | `file_url` | 否 | 字符串 | 作品在资源站中的完整链接。通常由资源站管理者填写。 |
 
+### 素材资源列表
+
+素材资源列表使用 yaml 编写，位于 `public/data/list-assets.yaml` 中。该列表包含各种用于 Mario Forever 开发的资源，包括引擎、拓展包、素材、特效和工具等。下面给出一个示例：
+
+```yaml
+- name: Super Mario Ultra Engine
+  alias:
+  - UE
+  author: dasasdhba
+  type: engine
+  description:
+  image: UE.webp
+  source_url: https://www.marioforever.net/thread-383-1-1.html
+  download_url: https://www.lanzoui.com/b0bd46ji
+  code:
+  path: 其他MMF引擎
+  variants:
+  - 本体:
+      ver: 200309v1
+      date: 2020-03-09
+      file_name: Super Mario Ultra Engine 200309v1.7z
+  - 特效包:
+      ver:
+      date: 2019-07-03
+      file_name: Ultra Engine 特效包.7z
+- name: Rainbow Engine 碰撞检测增强包
+  author: dasasdhba
+  type: addon
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-650-1-1.html
+  download_url: https://wwbtb.lanzout.com/b0w9p5p4b
+  code: 8vf6
+  ver:
+  date: 2020-08-13
+  file_name: RE 碰撞检测增强包.mfa
+- name: MW全图机器
+  author: 无视我233
+  type: mwtool
+  description:
+  image:
+  source_url: https://zh.wsw233.com/tools/mw_gen_map
+  download_url:
+  code:
+  ver:
+  date: 2021-10-10
+  file_name:
+```
+
+下面是各个字段的含义：
+
+| 字段名称 | 是否必需 | 类型 | 字段描述 |
+|---|---|---|---|
+| `name` | **是** | 字符串 | 资源名称。 |
+| `alias` | 否 | 字符串列表 | 资源的缩写或别名。 |
+| `author` | **是** | 字符串 | 作者名称。支持多作者。 |
+| `type` | **是** | 字符串 | 资源类型：<br>`engine`：制作模板（引擎）<br>`addon`：拓展资源包<br>`sprite`：素材<br>`effect`：特效<br>`tool`：工具程序<br>`mwtool`：MW 工具 |
+| `description` | 否 | 字符串 | 资源描述。 |
+| `image` | 否 | 字符串 | 资源图片文件名。 |
+| `source_url` | 否 | 字符串 | 资源的发布链接。<br>如果链接失效，可以在链接前加半角波浪号 `~` 进行标记。 |
+| `download_url` | 否 | 字符串 | 资源的下载链接。 |
+| `download_url_alt` | 否 | 字符串 | 备用下载链接。 |
+| `code` | 否 | 字符串 | 下载提取码。 |
+| `code_alt` | 否 | 字符串 | 备用下载链接的提取码。 |
+| `repo` | 否 | 字符串 | 源代码仓库链接。 |
+| `ver` | 否 | 字符串 | 版本号。 |
+| `date` | **是** | 日期 | 发布日期。请使用 `YYYY-MM-DD` 格式。 |
+| `file_name` | 否 | 字符串 | 资源站在资源站中的文件名。通常由资源站维护者填写。 |
+| `path` | 否 | 字符串 | 引擎文件夹下的子目录路径（仅 `type: engine` 时使用）。 |
+
+对于包含多个版本或变体的资源，可以使用 `variants` 字段：
+
+```yaml
+variants:
+- 变体名称:
+    ver: 版本号
+    date: YYYY-MM-DD
+    file_name: 文件名.ext
+```
+
+每个变体可以有自己的 `ver`、`date` 和 `file_name`。如果未在变体中指定，则继承父条目的 `download_url`、`code` 和 `source_url`。
+
+### Softendo / Buziol Games 作品列表
+
+Softendo 作品列表使用 yaml 编写，位于 `public/data/list-softendo.yaml` 中。这些是 Buziol Games（Softendo）制作的游戏。下面给出一个示例：
+
+```yaml
+- game: Mario Forever Block Party
+  alias:
+  - MFBP
+  type: mario
+  software: gamemaker
+  ver:
+  - "2018":
+      year: 2018
+      installer: Mario Forever Block Party (2018).exe
+      portable: Mario Forever Block Party (2018).zip
+  - "2011":
+      year: 2011
+      installer: Mario Forever Block Party (2011, with toolbar).exe
+      portable: Mario Forever Block Party (2011).zip
+- game: Mario Forever Flash
+  type: mff
+  ver:
+  - "2011":
+      year: 2011
+      installer: Mario Forever Flash (2011, with toolbar).exe
+      portable:
+        exe: Mario Forever Flash (2011).exe
+  - "2009":
+      year: 2009
+      installer: Mario Forever Flash (2009).exe
+      portable:
+        exe: Mario Forever Flash (2009).exe
+        swf: Mario Forever Flash.swf
+- game: New Super Mario Forever
+  alias:
+  - NSMF
+  type: mario
+  nsmf: true
+  software: gamemaker
+  ver:
+  - "2015-03-03":
+      year: 2015
+      installer: New Super Mario Forever (2015-03-03).exe
+      portable: New Super Mario Forever (2015-03-03).zip
+      image: New Super Mario Forever.webp
+```
+
+下面是各个字段的含义：
+
+| 字段名称 | 是否必需 | 类型 | 字段描述 |
+|---|---|---|---|
+| `game` | **是** | 字符串 | 游戏名称。 |
+| `alias` | 否 | 字符串列表 | 游戏的缩写或别名。 |
+| `type` | **是** | 字符串 | 游戏类型：`mario`（Mario 游戏）、`mff`（Mario Forever Flash）、`flash`（其他 Flash 游戏）、`non-mario`（非 Mario 游戏）、`banesoft`（Banesoft 游戏）。 |
+| `software` | 否 | 字符串 | 制作游戏的软件。对于 `flash`/`mff` 类型，默认为 `flash`，如果同时存在 exe 和 zip 则为 `["flash", "mmf"]`。 |
+| `nsmf` | 否 | 布尔值 | 标记为 New Super Mario Forever 游戏（使用特殊下载链接）。 |
+| `initial_year` | 否 | 数字 | 游戏首次发布的年份。 |
+| `ver` | 否 | 版本列表 | 版本列表。每个版本是一个字典，版本名为键。 |
+
+版本字段：
+
+| 字段名称 | 是否必需 | 类型 | 字段描述 |
+|---|---|---|---|
+| `year` | **是** | 数字 | 发布年份。 |
+| `installer` | 否 | 字符串 | 安装版文件名。 |
+| `portable` | 否 | 字符串或对象 | 绿色版。可以是简单的字符串文件名，或包含 `exe`/`swf`/`zip` 键的对象。支持数组格式以指定多个文件。 |
+| `image` | 否 | 字符串 | 该特定版本的图片文件名。 |
+
 ## 帮助维护、二次开发
 
 欢迎有能力的编程者通过 [pull request](https://github.com/MarioForeverCommunity/download-site-next/pulls) 方式协助完善本项目。为了保证上线网站的稳定性，所有列表更新之外的更改请提交至本项目的 `next` 分支。
