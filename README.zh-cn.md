@@ -1,4 +1,4 @@
-# Mario Forever 作品汇总
+# Mario Forever 作品汇总站
 
 [English](README.md) | **简体中文**
 

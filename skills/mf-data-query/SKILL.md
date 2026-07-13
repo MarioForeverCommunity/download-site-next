@@ -60,10 +60,11 @@ All data files are accessible via `https://download.marioforever.net/data/` + fi
 
 | Filename (append to base URL) | Content | Page |
 |-------------------------------|---------|------|
-| `list-mf.yaml` | Mario Forever fangames (Chinese & international) | MF 作品汇总 |
-| `list-mw.yaml` | Mario Worker level works | MW 作品汇总 |
+| `list-mf.yaml` | Mario Forever fangames (Chinese & international) | MF 作品目录 |
+| `list-mw.yaml` | Mario Worker level works | MW 作品目录 |
 | `list-original-mf.yaml` | Original Mario Forever versions | MF 资源导航 |
-| `list-assets.yaml` | Mario Forever creation assets & engines | 创作资源汇总 |
+| `list-assets.yaml` | Mario Forever creation assets & engines | 创作资源目录 |
+| `list-softendo.yaml` | Softendo / Buziol Games | Softendo 游戏目录 |
 
 Additionally, some games/levels have detailed Markdown descriptions stored in separate files:
 

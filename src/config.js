@@ -103,9 +103,9 @@ export const navTop = [
   {
     "id" : "mf-games",
     "link" : "./mf-games.html",
-    "option" : "MF 作品汇总",
+    "option" : "MF 作品目录",
     "option_alt" : "MF Fangames Catalog",
-    "title" : "Mario Forever 同人作品汇总",
+    "title" : "Mario Forever 同人作品目录",
     "title_alt" : "Mario Forever Fangames Catalog",
     "show_en" : true
   },
@@ -122,24 +122,24 @@ export const navTop = [
   {
     "id" : "mw-levels",
     "link" : "./mw-levels.html",
-    "option" : "MW 作品汇总",
+    "option" : "MW 作品目录",
     "option_alt" : "MW Level Downloads",
-    "title" : "Mario Worker 关卡作品汇总",
+    "title" : "Mario Worker 关卡作品目录",
     "show_en" : false
   },
   {
     "id" : "assets",
     "link" : "./assets.html",
-    "option" : "创作资源汇总",
-    "title" : "Mario Forever 创作资源汇总",
+    "option" : "创作资源目录",
+    "title" : "Mario Forever 创作资源目录",
     "show_en" : false
   },
   {
     "id" : "softendo",
     "link" : "./softendo.html",
-    "option" : "Softendo 游戏汇总",
+    "option" : "Softendo 游戏目录",
     "option_alt" : "Softendo Games",
-    "title" : "Softendo / Buziol 游戏汇总",
+    "title" : "Softendo / Buziol 游戏目录",
     "title_alt" : "Softendo / Buziol Games Catalog",
     "show_en" : true
   },
