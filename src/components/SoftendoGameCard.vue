@@ -100,7 +100,7 @@ const getGameImageSrc = () => {
     <div class="last-line">
       <div class="game-author">
         <span class="author-ellipsis">
-          <span class="author-text">{{ lan === "en" ? "Engine: " : "制作软件: " }}{{ getSoftwareLabel(game.software) }}</span>
+          <span class="author-text">{{ lan === "en" ? "Engine: " : "制作软件: " }}{{ Array.isArray(getSoftwareLabel(game.software)) ? getSoftwareLabel(game.software).join(", ") : getSoftwareLabel(game.software) }}</span>
         </span>
       </div>
       <div class="game-options">

@@ -181,18 +181,19 @@ function sortBySoftware() {
     defaultSort();
     return;
   }
-  games.value = games.value.sort((a, b) =>
-    sort_option.value.asc
-      ? (a.software || "").localeCompare(b.software || "")
-      : (b.software || "").localeCompare(a.software || "")
-  );
+  games.value = games.value.sort((a, b) => {
+    const sa = typeof a.software === "string" ? a.software : (Array.isArray(a.software) ? a.software.join(",") : "");
+    const sb = typeof b.software === "string" ? b.software : (Array.isArray(b.software) ? b.software.join(",") : "");
+    return sort_option.value.asc
+      ? sa.localeCompare(sb)
+      : sb.localeCompare(sa);
+  });
 }
 
 // Filter operations.
 const filter_option = ref({
   active: false,
   name: "",
-  year: "",
   type: "",
   software: ""
 });
@@ -203,7 +204,6 @@ function clearName() {
 
 function clearFilter() {
   filter_option.value.name = "";
-  filter_option.value.year = "";
   filter_option.value.type = "";
   filter_option.value.software = "";
 }
@@ -217,16 +217,13 @@ const filteredGames = computed(() => {
       filter_option.value.name.trim() == "" ||
       name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()) ||
       (a.alias && a.alias.some((al) => al.toUpperCase().includes(filter_option.value.name.trim().toUpperCase())));
-    const yearMatch =
-      filter_option.value.year == "" ||
-      (a.currentVer && String(a.currentVer.year) == filter_option.value.year);
     const typeMatch =
       filter_option.value.type == "" ||
       a.type == filter_option.value.type;
     const softwareMatch =
       filter_option.value.software == "" ||
-      a.software == filter_option.value.software;
-    return nameMatch && yearMatch && typeMatch && softwareMatch;
+      (Array.isArray(a.software) ? a.software.includes(filter_option.value.software) : a.software == filter_option.value.software);
+    return nameMatch && typeMatch && softwareMatch;
   });
 
   if (!expandAllVersions.value) {
@@ -246,16 +243,13 @@ const filteredGames = computed(() => {
     return entry.ver.map((verRaw) => {
       const verKey = Object.keys(verRaw)[0];
       const verObj = verRaw[verKey];
-      const yearMatch =
-        filter_option.value.year == "" ||
-        String(verObj.year) == filter_option.value.year;
       const typeMatch =
         filter_option.value.type == "" ||
         entry.type == filter_option.value.type;
       const softwareMatch =
         filter_option.value.software == "" ||
-        entry.software == filter_option.value.software;
-      if (yearMatch && typeMatch && softwareMatch) {
+        (Array.isArray(entry.software) ? entry.software.includes(filter_option.value.software) : entry.software == filter_option.value.software);
+      if (typeMatch && softwareMatch) {
         return {
           ...entry,
           ver: [verRaw],
@@ -288,11 +282,13 @@ const filteredGames = computed(() => {
       return sort_option.value.asc ? yearA - yearB : yearB - yearA;
     });
   } else if (sort_option.value.field === "software") {
-    expanded.sort((a, b) =>
-      sort_option.value.asc
-        ? (a.software || "").localeCompare(b.software || "")
-        : (b.software || "").localeCompare(a.software || "")
-    );
+    expanded.sort((a, b) => {
+      const sa = typeof a.software === "string" ? a.software : (Array.isArray(a.software) ? a.software.join(",") : "");
+      const sb = typeof b.software === "string" ? b.software : (Array.isArray(b.software) ? b.software.join(",") : "");
+      return sort_option.value.asc
+        ? sa.localeCompare(sb)
+        : sb.localeCompare(sa);
+    });
   } else {
     expanded.sort((a, b) => {
       const yearA = a.currentVer?.year || 0;
@@ -383,25 +379,6 @@ const { floatingStyles } = useFloating(reference, floating, {
   whileElementsMounted: autoUpdate
 });
 
-// Collect available years for filter dropdown.
-const availableYears = computed(() => {
-  const years = new Set();
-  for (const game of games.value) {
-    if (game.currentVer?.year) {
-      years.add(game.currentVer.year);
-    }
-    if (Array.isArray(game.ver)) {
-      for (const verRaw of game.ver) {
-        const verObj = verRaw[Object.keys(verRaw)[0]];
-        if (verObj.year) {
-          years.add(verObj.year);
-        }
-      }
-    }
-  }
-  return Array.from(years).sort((a, b) => b - a);
-});
-
 // Collect unique types for filter dropdown.
 const availableTypes = computed(() => {
   const types = new Set();
@@ -418,7 +395,15 @@ const availableTypes = computed(() => {
 const availableSoftwares = computed(() => {
   const softwares = new Set();
   for (const game of games.value) {
-    if (game.software) softwares.add(game.software);
+    if (game.software) {
+      if (Array.isArray(game.software)) {
+        for (const s of game.software) {
+          softwares.add(s);
+        }
+      } else {
+        softwares.add(game.software);
+      }
+    }
   }
   return Array.from(softwares).sort();
 });
@@ -474,13 +459,6 @@ const handleInstallerClick = (event, installerUrl) => {
             title="Clear"
           >✕</span>
         </div>&nbsp;
-        <div class="inline-block">
-          {{ lan == "en" ? "Year" : "年份" }}
-          <select v-model="filter_option.year">
-            <option value="">{{ lan == "en" ? "Select..." : "请选择.." }}</option>
-            <option v-for="year in availableYears" :key="year">{{ year }}</option>
-          </select>&nbsp;
-        </div>
         <div class="inline-block">
           {{ lan == "en" ? "Type" : "类别" }}
           <select v-model="filter_option.type">

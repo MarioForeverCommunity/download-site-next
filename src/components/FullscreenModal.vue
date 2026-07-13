@@ -5,7 +5,7 @@ import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoIma
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
-import { getSoftendoGameName, getSoftwareLabel } from '../util/SoftendoUtil.js';
+import { getSoftendoGameName, getSoftwareLabel, getTypeLabel } from '../util/SoftendoUtil.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -839,6 +839,7 @@ const nextImage = () => {
         <div class="modal-body">
           <h1 class="game-title">
             <span v-if="assetTypeLabel" class="asset-type-label">[{{ assetTypeLabel }}]</span>
+            <span v-if="isSoftendo && game.type" class="asset-type-label">[{{ getTypeLabel(game.type) }}]</span>
             {{ gameName }}
           </h1>
 
@@ -849,7 +850,7 @@ const nextImage = () => {
 
           <div v-if="isSoftendo" class="software-info">
             <span class="software-label">{{ lan === 'zh' ? '制作软件' : 'Made with' }}: </span>
-            <span class="software-value">{{ getSoftwareLabel(game.software) }}</span>
+            <span class="software-value">{{ Array.isArray(getSoftwareLabel(game.software)) ? getSoftwareLabel(game.software).join(", ") : getSoftwareLabel(game.software) }}</span>
           </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">

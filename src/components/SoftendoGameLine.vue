@@ -85,7 +85,12 @@ const getImageUrl = () => {
       </template>
     </div>
     <div class="game-year">{{ game.currentVer?.year || "?" }}</div>
-    <div class="game-software">{{ getSoftwareLabel(game.software) }}</div>
+    <div class="game-software">
+      <template v-if="Array.isArray(getSoftwareLabel(game.software))">
+        <div v-for="(label, index) in getSoftwareLabel(game.software)" :key="index">{{ label }}</div>
+      </template>
+      <template v-else>{{ getSoftwareLabel(game.software) }}</template>
+    </div>
     <div class="game-buttons">
       <Tooltip v-if="game.currentVer && (game.currentVer.installer_url || (game.currentVer.portable_urls && game.currentVer.portable_urls.length > 0))">
         <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
