@@ -19,6 +19,8 @@ import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/OverlayScrollbarsUtil.js";
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
+import softendoZh from '../../markdown/softendo-zh.md'
+import softendoEn from '../../markdown/softendo-en.md'
 
 const lan = ref(getLanguage());
 
@@ -443,6 +445,8 @@ const handleInstallerClick = (event, installerUrl) => {
 
   <div class="container md-container">
     <h1>{{ lan == "en" ? titleEn : titleZh }}</h1>
+    <softendoZh v-if="lan === 'zh'" />
+    <softendoEn v-if="lan === 'en'" />
     <p v-if="lastUpdate" class="last-update">{{ lan == "en" ? "Last updated: " : "最后更新：" }}{{ lastUpdate }}</p>
   </div>
 
@@ -1002,5 +1006,29 @@ const handleInstallerClick = (event, installerUrl) => {
     font: inherit;
     vertical-align: baseline;
     line-height: 1.5em;
+  }
+
+  .md-button {
+    color: white;
+    cursor: pointer;
+    background-color: #008cff;
+    padding: .5em;
+    border-radius: .5em;
+    margin-right: .5em;
+    margin: .25em;
+    display: inline-block;
+  }
+
+  .md-button:hover, .md-button:focus {
+    background-color: #30acff;
+    text-decoration: none;
+  }
+
+  .md-button:active {
+    background-color: #007cdf;
+  }
+
+  .md-button:hover {
+    color: white;
   }
 </style>
