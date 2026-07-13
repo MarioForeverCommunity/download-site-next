@@ -147,8 +147,7 @@
   software: gamemaker
   year: 2009
   installer: Super Mario.exe
-  portable:
-    zip: Super Mario.zip
+  portable: Super Mario.zip
 - game: Mario Forever Flash
   type: mff
   ver:
