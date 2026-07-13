@@ -6,6 +6,7 @@ import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
+import { getTagLabel } from '../util/TagUtil.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -990,7 +991,7 @@ const nextImage = () => {
                   '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].border,
                   '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].text,
                 }"
-              >{{ tagItem }}</span>
+              >{{ getTagLabel(tagItem, lan) }}</span>
             </div>
           </div>
 

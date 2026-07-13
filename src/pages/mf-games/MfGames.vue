@@ -14,6 +14,7 @@ import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
+import { getTagLabel } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
 import Tooltip from '../../components/ToolTip.vue';
@@ -374,77 +375,36 @@ const filter_option = ref({
   year : "",
   type : "",
   platform : "",
-  event : "",
   software : "",
+  tags : [],
 });
 
-const eventKeywords = {
-  "New Year": ["new year", "新年", "lunar new year", "lny"],
-  "April Fools": ["april fool", "愚人节", "fooling"],
-  "Halloween": ["halloween", "万圣节"],
-  "Christmas": ["christmas", "XMAS", "圣诞"]
-};
+const availableTags = computed(() => {
+  const tagSet = new Set();
+  for (const entry of games.value) {
+    if (entry.tag) {
+      if (Array.isArray(entry.tag)) {
+        entry.tag.forEach(t => tagSet.add(t));
+      } else {
+        tagSet.add(entry.tag);
+      }
+    }
+  }
+  return Array.from(tagSet).sort();
+});
 
-function detectEventFromTexts(texts) {
-  const combinedText = texts.filter(Boolean).join(" ").toLowerCase();
-  for (const [event, keywords] of Object.entries(eventKeywords)) {
-    if (keywords.some(kw => combinedText.includes(kw))) {
-      return event;
+const tagGameCount = computed(() => {
+  const countMap = {};
+  for (const entry of games.value) {
+    const tags = entry.tag
+      ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag])
+      : [];
+    for (const t of tags) {
+      countMap[t] = (countMap[t] || 0) + 1;
     }
   }
-  return null;
-}
-
-function detectEvent(entry) {
-  const texts = [entry.game, entry.game_alt];
-  if (entry.alias) {
-    if (Array.isArray(entry.alias)) {
-      texts.push(...entry.alias);
-    } else {
-      texts.push(entry.alias);
-    }
-  }
-  if (entry.tag) {
-    if (Array.isArray(entry.tag)) {
-      texts.push(...entry.tag);
-    } else {
-      texts.push(entry.tag);
-    }
-  }
-  return detectEventFromTexts(texts);
-}
-
-function detectEventForVersion(entry, verKey) {
-  const texts = [entry.game, entry.game_alt, verKey];
-  if (entry.alias) {
-    if (Array.isArray(entry.alias)) {
-      texts.push(...entry.alias);
-    } else {
-      texts.push(entry.alias);
-    }
-  }
-  if (entry.tag) {
-    if (Array.isArray(entry.tag)) {
-      texts.push(...entry.tag);
-    } else {
-      texts.push(entry.tag);
-    }
-  }
-  return detectEventFromTexts(texts);
-}
-
-function _detectEventIncludingVersions(entry) {
-  const baseEvent = detectEvent(entry);
-  if (baseEvent) return baseEvent;
-  if (Array.isArray(entry.ver)) {
-    for (const verRaw of entry.ver) {
-      const verKey = Object.keys(verRaw)[0];
-      const verEvent = detectEventForVersion(entry, verKey);
-      if (verEvent) return verEvent;
-    }
-  }
-  return null;
-}
+  return countMap;
+});
 
 function detectPlatform(verKey, fileName) {
   const verLower = (verKey || "").toLowerCase();
@@ -472,8 +432,81 @@ function clearFilter() {
   filter_option.value.year = "";
   filter_option.value.type = "";
   filter_option.value.platform = "";
-  filter_option.value.event = "";
   filter_option.value.software = "";
+  filter_option.value.tags = [];
+}
+
+const showTagModal = ref(false);
+const tempSelectedTags = ref([]);
+
+// Tag 颜色预设
+const TAG_COLORS = [
+  { bg: "#e8f5e9", border: "#4caf50", text: "#2e7d32" },
+  { bg: "#e3f2fd", border: "#2196f3", text: "#1565c0" },
+  { bg: "#fff3e0", border: "#ff9800", text: "#e65100" },
+  { bg: "#fce4ec", border: "#e91e63", text: "#c2185b" },
+  { bg: "#f3e5f5", border: "#9c27b0", text: "#6a1b9a" },
+  { bg: "#e0f7fa", border: "#00bcd4", text: "#0097a7" },
+  { bg: "#fff8e1", border: "#ffc107", text: "#f57f17" },
+  { bg: "#efebe9", border: "#795548", text: "#4e342e" },
+];
+
+const TAG_COLORS_DARK = [
+  { bg: "#1b3a1e", border: "#4caf50", text: "#81c784" },
+  { bg: "#1a2a3a", border: "#2196f3", text: "#64b5f6" },
+  { bg: "#3a2a1a", border: "#ff9800", text: "#ffb74d" },
+  { bg: "#3a1a2a", border: "#e91e63", text: "#f06292" },
+  { bg: "#2a1a3a", border: "#9c27b0", text: "#ba68c8" },
+  { bg: "#1a3a3a", border: "#00bcd4", text: "#4dd0e1" },
+  { bg: "#3a3a1a", border: "#ffc107", text: "#ffd54f" },
+  { bg: "#2a2220", border: "#795548", text: "#a1887f" },
+];
+
+function getTagColorIndex(tagName) {
+  let hash = 0;
+  for (let i = 0; i < tagName.length; i++) {
+    hash = ((hash << 5) - hash) + tagName.charCodeAt(i);
+    hash = hash & hash;
+  }
+  return Math.abs(hash) % TAG_COLORS.length;
+}
+
+function openTagModal() {
+  tempSelectedTags.value = [...filter_option.value.tags];
+  showTagModal.value = true;
+}
+
+function confirmTagModal() {
+  filter_option.value.tags = [...tempSelectedTags.value];
+  showTagModal.value = false;
+}
+
+function cancelTagModal() {
+  showTagModal.value = false;
+}
+
+function toggleTempTag(tag) {
+  const idx = tempSelectedTags.value.indexOf(tag);
+  if (idx === -1) {
+    tempSelectedTags.value.push(tag);
+  } else {
+    tempSelectedTags.value.splice(idx, 1);
+  }
+}
+
+function selectAllTags() {
+  tempSelectedTags.value = [...availableTags.value];
+}
+
+function deselectAllTags() {
+  tempSelectedTags.value = [];
+}
+
+function removeTempTag(tag) {
+  const idx = tempSelectedTags.value.indexOf(tag);
+  if (idx !== -1) {
+    tempSelectedTags.value.splice(idx, 1);
+  }
 }
 
 const expandAllVersions = ref(false);
@@ -494,11 +527,11 @@ const filteredGames = computed(() => {
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
       && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
+      && (filter_option.value.tags.length === 0 || (Array.isArray(a.tag) && a.tag.some(t => filter_option.value.tags.includes(t))) || (!Array.isArray(a.tag) && a.tag && filter_option.value.tags.includes(a.tag)))
   );
   if (!expandAllVersions.value) {
     const platform = filter_option.value.platform;
-    const event = filter_option.value.event;
-    if (platform === "" && event === "") {
+    if (platform === "") {
       return list;
     }
     return list
@@ -507,18 +540,14 @@ const filteredGames = computed(() => {
         return entry.ver.some((verRaw) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
-          if (platform !== "" && detectPlatform(verKey, verObj.file_name) !== platform) return false;
-          if (event !== "" && detectEventForVersion(entry, verKey) !== event) return false;
-          return true;
+          return detectPlatform(verKey, verObj.file_name) === platform;
         });
       })
       .map((entry) => {
         const matchingVers = entry.ver.filter((verRaw) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
-          if (platform !== "" && detectPlatform(verKey, verObj.file_name) !== platform) return false;
-          if (event !== "" && detectEventForVersion(entry, verKey) !== event) return false;
-          return true;
+          return detectPlatform(verKey, verObj.file_name) === platform;
         });
         // 所有版本都匹配时返回原始对象，保留 Object.assign 版本切换的持久性
         if (matchingVers.length === entry.ver.length) {
@@ -526,11 +555,7 @@ const filteredGames = computed(() => {
         }
         // 检查当前版本是否匹配
         const currentMatches = entry.currentVer
-          ? (() => {
-            if (platform !== "" && detectPlatform(entry.currentVerStr, entry.currentVer.file_name) !== platform) return false;
-            if (event !== "" && detectEventForVersion(entry, entry.currentVerStr) !== event) return false;
-            return true;
-          })()
+          ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name) === platform
           : false;
         // 当前版本匹配则保持，否则切换到第一个匹配版本
         let activeVerStr, activeVerStrAlt, activeCurrentVer;
@@ -600,10 +625,9 @@ const filteredGames = computed(() => {
         const typeMatch = filter_option.value.type === "" || typeVal == filter_option.value.type || filter_option.value.force;
         const platformVal = detectPlatform(verKey, verObj.file_name);
         const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
-        const eventVal = detectEventForVersion(entry, verKey);
-        const eventMatch = filter_option.value.event === "" || eventVal === filter_option.value.event;
         const softwareVal = entry.software || "mmf";
         const softwareMatch = filter_option.value.software === "" || softwareVal === filter_option.value.software;
+        const tagMatch = filter_option.value.tags.length === 0 || (Array.isArray(entry.tag) && entry.tag.some(t => filter_option.value.tags.includes(t))) || (!Array.isArray(entry.tag) && entry.tag && filter_option.value.tags.includes(entry.tag));
         // 国际作品旧版file_name前缀处理
         let patchedVerRaw = { ...verRaw };
         if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
@@ -613,7 +637,7 @@ const filteredGames = computed(() => {
             patchedVerRaw = { [verKey]: newVerObj };
           }
         }
-        if (yearMatch && typeMatch && platformMatch && eventMatch && softwareMatch) {
+        if (yearMatch && typeMatch && platformMatch && softwareMatch && tagMatch) {
           return {
             ...entry,
             ver: [patchedVerRaw],
@@ -929,15 +953,11 @@ function hasDataDownload(game) {
             <option value="other">{{ lan == "en" ? "Other" : "其他" }}</option>
           </select>&nbsp;
         </div>
-        <div class="inline-block">
-          {{ lan == "en" ? "Event" : "主题" }}
-          <select v-model="filter_option.event">
-            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
-            <option value="New Year">{{ lan == "en" ? "New Year" : "新年" }}</option>
-            <option value="April Fools">{{ lan == "en" ? "April Fools" : "愚人节" }}</option>
-            <option value="Halloween">{{ lan == "en" ? "Halloween" : "万圣节" }}</option>
-            <option value="Christmas">{{ lan == "en" ? "Christmas" : "圣诞节" }}</option>
-          </select>&nbsp;
+        <div class="inline-block" v-if="availableTags.length > 0">
+          <div class="visible-button" @click="openTagModal">
+            {{ lan == "en" ? "Tags" : "标签筛选" }}
+            <span v-if="filter_option.tags.length > 0" class="tag-count-badge">{{ filter_option.tags.length }}</span>
+          </div>&nbsp;
         </div>
         <div class="inline-block">
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
@@ -1242,6 +1262,64 @@ function hasDataDownload(game) {
   <ButtonDarkMode />
 
   <SiteFooter />
+
+  <!-- Tag Filter Modal -->
+  <div v-if="showTagModal" class="tag-modal-overlay" @click="cancelTagModal">
+    <div class="tag-modal" @click.stop>
+      <div class="tag-modal-header">
+        <h3>{{ lan === 'zh' ? '标签筛选' : 'Tag Filter' }}</h3>
+      </div>
+
+      <div v-if="tempSelectedTags.length > 0" class="tag-modal-selected">
+        <span class="tag-selected-label">{{ lan === 'zh' ? '已选：' : 'Selected: ' }}</span>
+        <span
+          v-for="tag in tempSelectedTags"
+          :key="tag"
+          class="tag-pill tag-pill-sm tag-pill-selected"
+          :style="{
+            '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
+            '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
+            '--tag-text': TAG_COLORS[getTagColorIndex(tag)].text,
+            '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].bg,
+            '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
+            '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
+          }"
+        >{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTempTag(tag)">&times;</span></span>
+        <button class="tag-clear-all" @click="deselectAllTags">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
+      </div>
+
+      <div class="tag-modal-body">
+        <div class="tag-modal-actions">
+          <button class="md-button" @click="selectAllTags">{{ lan === 'zh' ? '全选' : 'Select all' }}</button>
+          <button class="md-button" @click="deselectAllTags">{{ lan === 'zh' ? '取消全选' : 'Deselect all' }}</button>
+        </div>
+        <div class="tag-modal-grid">
+          <span
+            v-for="tag in availableTags"
+            :key="tag"
+            class="tag-pill"
+            :class="{ 'tag-pill-active': tempSelectedTags.includes(tag) }"
+            :style="{
+              '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
+              '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
+              '--tag-text': TAG_COLORS[getTagColorIndex(tag)].text,
+              '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].bg,
+              '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
+              '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
+            }"
+            @click="toggleTempTag(tag)"
+          >
+            <span v-if="tempSelectedTags.includes(tag)" class="tag-check">&check;</span>{{ getTagLabel(tag, lan) }}<span class="tag-game-count">{{ tagGameCount[tag] || 0 }}</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="tag-modal-footer">
+        <button class="md-button md-button-secondary" @click="cancelTagModal">{{ lan === 'zh' ? '取消' : 'Cancel' }}</button>
+        <button class="md-button" @click="confirmTagModal">{{ lan === 'zh' ? '确认' : 'Confirm' }}</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -1556,6 +1634,266 @@ function hasDataDownload(game) {
     padding: .25em .75em;
     z-index: 1002;
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  }
+
+  /* Tag Count Badge */
+  .tag-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.2em;
+    padding: 0 0.3em;
+    margin-left: 0.3em;
+    border-radius: 999px;
+    background: #008cff;
+    color: #fff;
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  body.dark .tag-count-badge {
+    background: #222222;
+    color: #bbbbbb;
+  }
+
+  /* Tag Modal */
+  .tag-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+
+  .tag-modal {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 90vw;
+    max-width: 520px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .tag-modal-header {
+    padding: 1em 1.2em 0.6em;
+    border-bottom: 1px solid #eee;
+  }
+
+  .tag-modal-header h3 {
+    margin: 0;
+    font-size: 1.15em;
+    color: #333;
+  }
+
+  .tag-modal-selected {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.6em 1.2em;
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+  }
+
+  .tag-selected-label {
+    font-size: 0.85em;
+    color: #666;
+    margin-right: 0.2em;
+  }
+
+  .tag-clear-all {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 0.2em 0.4em;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .tag-clear-all:hover {
+    color: #333;
+  }
+
+  .tag-modal-body {
+    padding: 1em 1.2em;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .tag-modal-actions {
+    display: flex;
+    margin-bottom: 0.8em;
+  }
+
+  .tag-modal-actions .md-button {
+    font-size: 0.85em;
+    padding: 0.3em 0.7em;
+  }
+
+  .tag-modal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  /* Tag Pills */
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3em 0.75em;
+    border-radius: 999px;
+    border: 1.5px solid var(--tag-border);
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+
+  .tag-pill:hover {
+    opacity: 0.85;
+  }
+
+  .tag-pill-active {
+    border-width: 2.5px;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+    border-color: var(--tag-border);
+    font-weight: 600;
+  }
+
+  .tag-check {
+    margin-right: 0.2em;
+  }
+
+  .tag-game-count {
+    margin-left: 0.3em;
+    font-size: 0.8em;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  .tag-pill-sm {
+    font-size: 0.8em;
+    padding: 0.15em 0.5em;
+  }
+
+  .tag-pill-selected {
+    cursor: default;
+  }
+
+  .tag-remove {
+    margin-left: 0.3em;
+    cursor: pointer;
+    opacity: 0.6;
+    font-weight: normal;
+    transition: opacity 0.2s;
+  }
+
+  .tag-remove:hover {
+    opacity: 1;
+  }
+
+  .tag-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.8em 1.2em;
+    border-top: 1px solid #eee;
+  }
+
+  .tag-modal-footer .md-button {
+    font-size: 0.9em;
+    padding: 0.4em 1em;
+  }
+
+  .md-button-secondary {
+    background-color: #eee;
+    color: #555;
+    border-color: #ccc;
+  }
+
+  .md-button-secondary:hover {
+    background-color: #ddd;
+    color: #555;
+  }
+
+  /* Dark mode for tag modal */
+  body.dark .tag-modal {
+    background: #2a2a2a;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  body.dark .tag-modal-header {
+    border-bottom-color: #444;
+  }
+
+  body.dark .tag-modal-header h3 {
+    color: #eee;
+  }
+
+  body.dark .tag-modal-selected {
+    border-bottom-color: #444;
+    background: #333;
+  }
+
+  body.dark .tag-selected-label {
+    color: #aaa;
+  }
+
+  body.dark .tag-clear-all {
+    color: #888;
+  }
+
+  body.dark .tag-clear-all:hover {
+    color: #ccc;
+  }
+
+  body.dark .tag-pill {
+    border-color: var(--tag-border-dark);
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+  }
+
+  body.dark .tag-pill-active {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border-dark);
+  }
+
+  body.dark .tag-pill-selected {
+    border-color: var(--tag-border-dark);
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+  }
+
+  body.dark .tag-modal-footer {
+    border-top-color: #444;
+  }
+
+  body.dark .md-button-secondary {
+    background-color: #3a3a3a !important;
+    color: #bbb !important;
+    border-color: #555 !important;
+  }
+
+  body.dark .md-button-secondary:hover {
+    background-color: #444 !important;
+    color: #bbb !important;
   }
 
 </style>
