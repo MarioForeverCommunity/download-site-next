@@ -960,7 +960,7 @@ function hasDataDownload(game) {
           <div class="visible-button" @click="openTagModal">
             {{ lan == "en" ? "Tags" : "标签筛选" }}
             <span v-if="filter_option.tags.length > 0" class="tag-count-badge">{{ filter_option.tags.length }}</span>
-          </div>&nbsp;
+          </div>
         </div>
         <div class="inline-block">
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
