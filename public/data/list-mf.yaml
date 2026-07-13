@@ -58,6 +58,8 @@
       file_url:
 - game: Mario Minix for Android
   game_alt:
+  tag:
+  - Minigame
   author: Sanyario
   author_alt:
   type: international
@@ -94,6 +96,8 @@
       file_url:
 - game: "Mario Forever: Tower Defense"
   game_alt:
+  tag:
+  - Other
   author: MutantZR
   author_alt:
   type: international
@@ -192,6 +196,9 @@
       file_url:
 - game: "Mario Forever: Playable Retromantra (Joke Mod)"
   game_alt:
+  tag:
+  - Single Level
+  - Joke
   author: NayaneMarinho
   author_alt:
   type: international
@@ -215,6 +222,7 @@
   - MF大冲关 第四季
   tag:
   - Speedrun
+  - Single Level
   author: ƒresh★LAKE
   author_alt:
   type: chinese
@@ -423,6 +431,8 @@
       file_url:
 - game: "Mario Forever: Maltigi Scream"
   game_alt:
+  tag:
+  - Horror
   author: NayaneMarinho
   author_alt:
   type: international
@@ -448,6 +458,7 @@
   - oldtimes
   tag:
   - April Fools
+  - Gun
   author: Meteo Dream
   author_alt:
   type: international
@@ -481,6 +492,7 @@
   game_alt:
   tag:
   - April Fools
+  - Joke
   author: Yoshi50Windows
   author_alt:
   type: international
@@ -499,6 +511,8 @@
   file_url:
 - game: "Mario Forever: PowerStar Crisis - World 9-4"
   game_alt:
+  tag:
+  - Single Level
   author: LiseraForever
   author_alt:
   type: chinese
@@ -516,6 +530,8 @@
   file_url:
 - game: Mario Forever World 9 for Android
   game_alt:
+  tag:
+  - Single Level
   author: Sanyario
   author_alt:
   type: international
@@ -713,6 +729,8 @@
       repo: https://github.com/toggins/KlaEditor
 - game: "Mario Forever: Enemy Castle"
   game_alt:
+  tag:
+  - Single Level
   author: NayaneMarinho
   author_alt:
   type: international
@@ -730,6 +748,8 @@
   file_url:
 - game: "Mario Forever: Boyfriend FNF (Funk Mix)"
   game_alt:
+  tag:
+  - Single Level
   author: NayaneMarinho
   author_alt:
   type: international
@@ -747,6 +767,8 @@
   file_url:
 - game: "Mario Forever: Small Fire Mario"
   game_alt:
+  tag:
+  - Single Level
   author: NayaneMarinho
   author_alt:
   type: international
@@ -895,6 +917,8 @@
       file_url:
 - game: "Mario Forever: The Koopalings"
   game_alt:
+  tag:
+  - Single Level
   author: NayaneMarinho
   author_alt:
   type: international
@@ -973,6 +997,8 @@
       file_url:
 - game: "Mario Forever: Bowser Turns into Fire Mario"
   game_alt:
+  tag:
+  - Single Level
   author: NayaneMarinho
   author_alt:
   type: international
@@ -993,6 +1019,7 @@
   tag:
   - PK!MF
   - Contest
+  - Single Level
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
@@ -1016,6 +1043,7 @@
   tag:
   - PK!MF
   - Contest
+  - Single Level
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -1039,7 +1067,7 @@
 - game: "New Super Mario Forever 2012: Slightly-Fixed Edition"
   game_alt:
   tag:
-  - Mods
+  - Mod
   author: CST1229
   author_alt:
   type: international
@@ -1469,6 +1497,8 @@
       file_url:
 - game: 城堡单关
   game_alt: Castle
+  tag:
+  - Single Level
   author: LiseraForever
   author_alt:
   type: chinese
@@ -1516,7 +1546,7 @@
 - game: Mario Forever v1.16.1 Mod
   game_alt:
   tag:
-  - Mods
+  - Mod
   author: JUE13
   author_alt:
   type: international
@@ -1659,6 +1689,8 @@
   file_url:
 - game: SEGASLAYER64's Fever Dream 2 Demo
   game_alt:
+  tag:
+  - Demo
   author: CasperTheMarioForeverFan
   author_alt:
   type: international
@@ -1698,6 +1730,8 @@
   alias:
   - MFTGS
   - MF:TGS
+  tag:
+  - Demo
   author: Laki
   author_alt:
   type: international
@@ -1753,6 +1787,7 @@
   - MF大冲关 第三季
   tag:
   - Speedrun
+  - Single Level
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -1922,6 +1957,8 @@
   alias:
   - JANMFF
   - JACNMFF
+  tag:
+  - Joke
   author: Yoshi50Windows
   author_alt:
   type: international
@@ -2356,6 +2393,8 @@
       file_url:
 - game: Cube IV
   game_alt:
+  tag:
+  - Single Level
   author: 八雲桐
   author_alt: Kiri Yakumo
   type: chinese
@@ -2373,6 +2412,8 @@
   file_url:
 - game: Mysterious Seabed
   game_alt:
+  tag:
+  - Single Level
   author: 八雲桐
   author_alt: Kiri Yakumo
   type: chinese
@@ -2390,6 +2431,8 @@
   file_url:
 - game: Pleasant Forest-八云桐 vs 绿糖.exe
   game_alt: Pleasant Forest
+  tag:
+  - Single Level
   author: 八雲桐
   author_alt: Kiri Yakumo
   type: chinese
@@ -2407,6 +2450,8 @@
   file_url:
 - game: Sweden
   game_alt:
+  tag:
+  - Single Level
   author: 八雲桐
   author_alt: Kiri Yakumo
   type: chinese
@@ -2445,6 +2490,7 @@
   game_alt:
   tag:
   - PK!MF
+  - Single Level
   author: AS-ChenFeng
   author_alt: Andrews123
   type: chinese
@@ -2478,6 +2524,7 @@
   - NSMF2042
   tag:
   - April Fools
+  - Joke
   author: Meteo Dream
   author_alt:
   type: international
@@ -2557,6 +2604,7 @@
   game_alt:
   tag:
   - Creepypasta
+  - Horror
   author: Rainbow_Star
   author_alt:
   type: international
@@ -2597,6 +2645,8 @@
       file_url:
 - game: Narrow Highway
   game_alt:
+  tag:
+  - Single Level
   author: JJ带我飞
   author_alt: Double J
   type: chinese
@@ -2665,6 +2715,8 @@
   game_alt: Warm Christmas Eve
   tag:
   - Christmas
+  - Single Level
+  - Festive
   author: 永恒守护
   author_alt:
   type: chinese
@@ -3097,6 +3149,7 @@
   game_alt:
   tag:
   - Contest
+  - Single Level
   author: Dr.Chaos Kirby
   author_alt:
   type: chinese
@@ -3230,6 +3283,8 @@
       file_url:
 - game: 迷森幻地
   game_alt:
+  tag:
+  - Single Level
   author: 找逃脱路径
   author_alt:
   type: chinese
@@ -3300,6 +3355,8 @@
   game_alt:
   alias:
   - 空牢
+  tag:
+  - Single Level
   author: 大爱Mario_
   author_alt: Meowario
   type: chinese
@@ -3387,6 +3444,8 @@
   file_url:
 - game: 不能截图的关卡
   game_alt: A level that can't be screenshotted
+  tag:
+  - Single Level
   author: zqh——123
   author_alt:
   type: chinese
@@ -3506,6 +3565,8 @@
   - MFH
   - 地平线
   - dpx
+  tag:
+  - Metroidvania
   author: dasasdhba
   author_alt:
   type: chinese
@@ -4146,6 +4207,8 @@
       file_url:
 - game: Super Mario Playgrounds 3
   game_alt:
+  tag:
+  - Single Level
   author: rAgnarok5
   author_alt:
   type: international
@@ -4180,6 +4243,8 @@
   file_url:
 - game: Mario Minix - Community Edition
   game_alt:
+  tag:
+  - Minigame
   author: Meteo Dream
   author_alt:
   type: international
@@ -4210,6 +4275,8 @@
       file_url:
 - game: Mario Minix Extreme Advance
   game_alt:
+  tag:
+  - Minigame
   author: rAgnarok5
   author_alt:
   type: international
@@ -4227,6 +4294,8 @@
   file_url:
 - game: Mario Minix Extreme
   game_alt:
+  tag:
+  - Minigame
   author: rAgnarok5
   author_alt:
   type: international
@@ -4288,6 +4357,7 @@
   - MF大冲关 第二季
   tag:
   - Speedrun
+  - Single Level
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -4458,6 +4528,8 @@
       file_url:
 - game: Mario Minix Rebirth
   game_alt:
+  tag:
+  - Minigame
   author: CasperTheMarioForeverFan
   author_alt:
   type: international
@@ -4475,6 +4547,8 @@
   file_url:
 - game: Mario Forever Multiplayer
   game_alt:
+  tag:
+  - Multiplayer
   author: Heaven Team
   author_alt:
   type: international
@@ -4889,6 +4963,9 @@
   file_url:
 - game: 红江浦
   game_alt: "♪Yu Ayasaki's Big Adventure!♪ (Red Ver.)"
+  tag:
+  - Single Level
+  - Hardcore
   author: ƒresh★LAKE
   author_alt:
   type: chinese
@@ -4906,6 +4983,8 @@
   file_url:
 - game: Mario Forever - Wet Plants
   game_alt:
+  tag:
+  - Single Level
   author: MrMikhy
   author_alt:
   type: international
@@ -4974,6 +5053,8 @@
   file_url:
 - game: UNNAMED LEVEL
   game_alt:
+  tag:
+  - Single Level
   author: Dr.Chaos Kirby
   author_alt:
   type: chinese
@@ -4991,6 +5072,8 @@
   file_url:
 - game: xfx's world 8-9原版
   game_alt: xfx's world 8-9
+  tag:
+  - Single Level
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
@@ -5128,6 +5211,7 @@
   - MF2077
   tag:
   - April Fools
+  - Joke
   author: JUE13
   author_alt:
   type: international
@@ -5168,6 +5252,8 @@
   - LNY22
   tag:
   - New Year
+  - Collab
+  - Festive
   author: Forever Team
   author_alt:
   type: international
@@ -5208,6 +5294,8 @@
       file_url:
 - game: Mario Forever - World 1-0 (Koopa Level)
   game_alt:
+  tag:
+  - Single Level
   author: rAgnarok5
   author_alt:
   type: international
@@ -5225,6 +5313,8 @@
   file_url:
 - game: 666 Subscribers Level
   game_alt:
+  tag:
+  - Single Level
   author: Tomek839839
   author_alt:
   type: international
@@ -5281,6 +5371,8 @@
       file_url:
 - game: Mario Forever Adventure Island 10-13 EX with UE patch
   game_alt:
+  tag:
+  - Single Level
   author: ƒresh★LAKE
   author_alt:
   type: chinese
@@ -5308,7 +5400,7 @@
   date: 2024-02-15
   source_url: https://www.youtube.com/watch?v=jEnoqcVe9ZI
   source_url_alt:
-  download_url: https://drive.google.com/file/d/17NmAbwsItI8IJWwss524U_emD0L3e5VY
+  download_url: ~https://drive.google.com/file/d/17NmAbwsItI8IJWwss524U_emD0L3e5VY
   code:
   download_url_alt:
   file_name: PZZ Forever (On PC).zip
@@ -5321,6 +5413,8 @@
   - CNY23
   tag:
   - New Year
+  - Collab
+  - Festive
   author: MF community
   author_alt:
   author_alias: Phantom Sapphire
@@ -5370,6 +5464,8 @@
       file_url:
 - game: Mega Mole vs Dr WSW
   game_alt:
+  tag:
+  - Single Level
   author: 克洛伊Prime
   author_alt: Koopa4
   type: chinese
@@ -5402,6 +5498,9 @@
   - MFSC
   - 节气合作
   - 季节合作
+  tag:
+  - Collab
+  - Festive
   author: Ultra Team
   author_alt:
   type: chinese
@@ -5859,6 +5958,8 @@
   alias:
   - MFAS2
   - MFAS 2
+  tag:
+  - Collab
   author: Forever Team
   author_alt:
   type: international
@@ -5909,6 +6010,8 @@
   game_alt:
   author: MarioT02
   author_alt:
+  tag:
+  - Kaizo
   type: international
   wiki_zh_url:
   wiki_en_url:
@@ -6128,6 +6231,7 @@
   - MF大冲关
   tag:
   - Speedrun
+  - Single Level
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -6204,6 +6308,7 @@
   game_alt:
   tag:
   - Christmas
+  - Festive
   author: Mario Tube
   author_alt:
   type: international
@@ -6424,7 +6529,7 @@
 - game: 'Mario Forever: Human Laboratory Edition'
   game_alt:
   tag:
-  - Mods
+  - Mod
   author: JUE13
   author_alt:
   type: international
@@ -6731,6 +6836,8 @@
   - MFPA
   - 无补给冒险
   - 无补给世界
+  tag:
+  - Hardcore
   author: crist1919
   author_alt:
   type: international
@@ -6769,6 +6876,8 @@
       file_url:
 - game: MF Double Festivals Celebration
   game_alt:
+  tag:
+  - Festive
   author: 八雲桐
   author_alt: Kiri Yakumo
   type: chinese
@@ -6848,6 +6957,8 @@
   file_url:
 - game: ChaseLevel
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
@@ -7005,6 +7116,8 @@
   file_url:
 - game: warrior storm
   game_alt:
+  tag:
+  - Single Level
   author:
   - 绿色的糖果
   - AS-ChenFeng
@@ -7028,6 +7141,8 @@
   file_url:
 - game: A Small Level
   game_alt:
+  tag:
+  - Single Level
   author: 数字1528君
   author_alt: Num1528
   type: chinese
@@ -7083,6 +7198,8 @@
       file_url:
 - game: K-irby Kungfu High (Full Version)
   game_alt:
+  tag:
+  - Single Level
   author: zqh——123
   author_alt:
   type: chinese
@@ -7100,6 +7217,8 @@
   file_url:
 - game: 映日荷花别样红
   game_alt: Lotus flowers in red
+  tag:
+  - Single Level
   author: 大爱Mario_
   author_alt: Meowario
   type: chinese
@@ -7135,7 +7254,7 @@
 - game: Mario Forever, but Floor is Lava
   game_alt:
   tag:
-  - Mods
+  - Mod
   author: JUE13
   author_alt:
   type: international
@@ -7180,6 +7299,8 @@
   file_url:
 - game: 'Mario Forever: Depression Worlds'
   game_alt:
+  tag:
+  - Demo
   author: Playeru
   author_alt:
   type: international
@@ -7263,7 +7384,7 @@
 - game: Reversed Mario Forever
   game_alt:
   tag:
-  - Mods
+  - Mod
   author: JUE13
   author_alt:
   type: international
@@ -7360,6 +7481,9 @@
   file_url:
 - game: 521特辑
   game_alt: May 21 Special
+  tag:
+  - Single Level
+  - Speedrun
   author: 八雲桐
   author_alt: Kiri Yakumo
   type: chinese
@@ -7463,7 +7587,7 @@
 - game: Mario Forever v4.4 Fixed Speedrun Edition
   game_alt:
   tag:
-  - Mods
+  - Mod
   - Speedrun
   author: JUE13
   author_alt:
@@ -7601,6 +7725,8 @@
   file_url:
 - game: Mario Forever World 8-3 But on Steroids
   game_alt:
+  tag:
+  - Single Level
   author: Tomek839839
   author_alt:
   type: international
@@ -7690,6 +7816,7 @@
   - MF2077
   tag:
   - April Fools
+  - Joke
   author: JUE13
   author_alt:
   type: international
@@ -7760,6 +7887,8 @@
   game_alt:
   alias:
   - MITF
+  tag:
+  - Gun
   author: DET Factory
   author_alt:
   type: chinese
@@ -8137,6 +8266,8 @@
       file_url:
 - game: RGB
   game_alt:
+  tag:
+  - Single Level
   author: Dr.Chaos Kirby
   author_alt:
   type: chinese
@@ -8154,6 +8285,8 @@
   file_url:
 - game: MFCT v2.0 Prologue——Kingdom Of Four Seasons
   game_alt:
+  tag:
+  - Single Level
   author: 6463喝喝了
   author_alt: 6463HHL
   type: chinese
@@ -8209,6 +8342,8 @@
       file_url:
 - game: Mario Forever The Multiverse 2
   game_alt:
+  tag:
+  - Collab
   author: Meteo Dream
   author_alt:
   type: international
@@ -8479,6 +8614,8 @@
   alias:
   - 兔迷宫
   - Rabbit Labyrinth
+  tag:
+  - Metroidvania
   author: DET Factory
   author_alt:
   type: chinese
@@ -8515,6 +8652,8 @@
   file_url:
 - game: New Ganyu Project
   game_alt:
+  tag:
+  - Single Level
   author: Drank529601
   author_alt:
   type: chinese
@@ -8750,6 +8889,7 @@
   tag:
   - New Year
   - Christmas
+  - Festive
   author: crist1919
   author_alt:
   type: international
@@ -8769,6 +8909,7 @@
   game_alt:
   tag:
   - Christmas
+  - Festive
   author: Hyper Somario
   author_alt:
   type: international
@@ -8786,6 +8927,8 @@
   file_url:
 - game: Mario Forever Kavex 20th Birthday
   game_alt:
+  tag:
+  - Single Level
   author: Kavex
   author_alt:
   type: international
@@ -8882,6 +9025,8 @@
   alias:
   - MFAS3
   - MFAS 3
+  tag:
+  - Collab
   author: Meteo Dream
   author_alt:
   type: international
@@ -9165,6 +9310,9 @@
       file_url:
 - game: Super Mario 2011
   game_alt:
+  tag:
+  - Gun
+  software: other
   author: Петър Петров
   author_alt:
   type: international
@@ -9182,6 +9330,8 @@
   file_url:
 - game: MF Banesoft Parody
   game_alt:
+  tag:
+  - Joke
   author: JUE13
   author_alt:
   type: international
@@ -9273,6 +9423,8 @@
       file_url:
 - game: 'Mario Forever: Community Summer Project 2022'
   game_alt:
+  tag:
+  - Collab
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
@@ -9450,6 +9602,8 @@
       file_url:
 - game: Runner
   game_alt:
+  tag:
+  - Single Level
   author: LooPeR231
   author_alt:
   type: international
@@ -9469,6 +9623,9 @@
   game_alt: The Frontiers
   alias:
   - TF
+  tag:
+  - Hardcore
+  software: gamemaker
   author: zqh——123
   author_alt:
   type: chinese
@@ -9554,6 +9711,8 @@
       file_url:
 - game: Planet of MF 关卡集
   game_alt: Planet of MF Collection
+  tag:
+  - Collab
   author: Mario Forever 社区
   author_alt: PoMF Authors
   type: chinese
@@ -9923,6 +10082,9 @@
   alias:
   - MFAO
   - 端午
+  tag:
+  - Collab
+  - Festive
   author: Ultra Team
   author_alt:
   type: chinese
@@ -9943,6 +10105,8 @@
   alias:
   - OBM
   - MFOBM
+  tag:
+  - STG
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -10555,6 +10719,9 @@
   alias:
   - MFEM
   - 清明
+  tag:
+  - Collab
+  - Festive
   author: Ultra Team
   author_alt:
   type: chinese
@@ -10576,6 +10743,8 @@
   game_alt:
   alias:
   - 汉字世界
+  tag:
+  - Demo
   author: Kavex
   author_alt:
   type: international
@@ -10808,6 +10977,8 @@
   file_url:
 - game: Alien's Lair
   game_alt:
+  tag:
+  - Single Level
   author: 初音炽
   author_alt: Hatsune Chi
   type: chinese
@@ -10825,6 +10996,8 @@
   file_url:
 - game: 'Mario Forever: Russian Letter Worlds Series'
   game_alt:
+  tag:
+  - Demo
   author: Hyper Somario
   author_alt:
   type: international
@@ -11083,6 +11256,8 @@
   game_alt: Snow Maker's Fortune Yard (STG)
   alias:
   - 永十五异变
+  tag:
+  - STG
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -11105,6 +11280,7 @@
   - New Year 2022
   tag:
   - New Year
+  - Festive
   author: crist1919
   author_alt:
   type: international
@@ -11178,6 +11354,8 @@
   - CNY22
   tag:
   - New Year
+  - Collab
+  - Festive
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
@@ -11203,6 +11381,8 @@
   - 新年
   tag:
   - New Year
+  - Collab
+  - Festive
   author: Ultra Team
   author_alt:
   type: chinese
@@ -11274,6 +11454,7 @@
   game_alt:
   tag:
   - Christmas
+  - Festive
   author: TheMarioGamer
   author_alt:
   type: international
@@ -11468,6 +11649,8 @@
   file_url:
 - game: 'Mario Forever: Hardcore Dystopia'
   game_alt:
+  tag:
+  - Hardcore
   author: TheMarioVariable
   author_alt:
   type: international
@@ -11489,6 +11672,9 @@
   alias:
   - MFLP
   - 中秋
+  tag:
+  - Collab
+  - Festive
   author: Ultra Team
   author_alt:
   type: chinese
@@ -11529,6 +11715,8 @@
   - LNY21
   tag:
   - New Year
+  - Collab
+  - Festive
   author: Forever Team
   author_alt:
   type: international
@@ -11552,6 +11740,7 @@
   - MF大冲关
   tag:
   - Speedrun
+  - Single Level
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -11569,6 +11758,8 @@
   file_url:
 - game: TUC Spring Avenue
   game_alt:
+  tag:
+  - Single Level
   author: HJM___147
   author_alt:
   type: chinese
@@ -11712,6 +11903,8 @@
   file_url:
 - game: Project XV
   game_alt:
+  tag:
+  - Single Level
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -11929,6 +12122,9 @@
   alias:
   - MFVR
   - 七夕
+  tag:
+  - Collab
+  - Festive
   author: Ultra Team
   author_alt:
   type: chinese
@@ -11999,6 +12195,10 @@
   file_url:
 - game: Onslaught Timecore Tank
   game_alt:
+  alias:
+  - 创人坦克
+  tag:
+  - Single Level
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
@@ -12464,6 +12664,9 @@
   game_alt:
   alias:
   - MFE
+  tag:
+  - Hardcore
+  - Collab
   author: Ultra Team
   author_alt:
   type: chinese
@@ -12568,6 +12771,7 @@
   - Mario Forever Cloud World
   tag:
   - April Fools
+  - Joke
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -12944,6 +13148,8 @@
   - CNY21
   tag:
   - New Year
+  - Collab
+  - Festive
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
@@ -13443,6 +13649,7 @@
   game_alt:
   tag:
   - Christmas
+  - Festive
   author: Forever Team
   author_alt:
   type: international
@@ -14167,6 +14374,8 @@
   file_url:
 - game: "Mario: Forever 1"
   game_alt:
+  tag:
+  - Demo
   author: Funtime Alex
   author_alt:
   type: international
@@ -14804,6 +15013,8 @@
   game_alt:
   alias:
   - MF THE
+  tag:
+  - Single Level
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -15541,6 +15752,8 @@
       file_url:
 - game: 两个MF小作
   game_alt: 2 Single Levels
+  tag:
+  - Single Level
   author: Craft_w-MC
   author_alt:
   type: chinese
@@ -15580,6 +15793,7 @@
   - LNY 2020
   tag:
   - New Year
+  - Festive
   author: JoséLPK.CF&MF
   author_alt:
   type: international
@@ -15654,6 +15868,8 @@
   game_alt:
   alias:
   - MFXD
+  tag:
+  - Hardcore
   author: gurcd
   author_alt:
   type: chinese
@@ -15697,6 +15913,7 @@
   - Mario Forever Stolen Christmas
   tag:
   - Christmas
+  - Festive
   author: crist1919
   author_alt:
   type: international
@@ -16055,6 +16272,8 @@
   file_url:
 - game: DEADLY LEVEL 2 DELUXE
   game_alt:
+  tag:
+  - Single Level
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -16179,6 +16398,8 @@
   file_url:
 - game: Mario Forever - Dark Castle
   game_alt:
+  tag:
+  - Single Level
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -16236,6 +16457,8 @@
   game_alt:
   alias:
   - TNBA
+  tag:
+  - Demo
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -16517,6 +16740,8 @@
   file_url:
 - game: Mario Forever Run
   game_alt:
+  tag:
+  - Single Level
   author: CS124
   author_alt:
   type: international
@@ -16690,6 +16915,8 @@
       file_url:
 - game: Mario Forever The Adventure Continues Demo
   game_alt:
+  tag:
+  - Demo
   author: Dicxon228RUS
   author_alt:
   type: international
@@ -16825,6 +17052,8 @@
   game_alt:
   alias:
   - MFIT
+  tag:
+  - Collab
   author: DET Factory
   author_alt:
   type: chinese
@@ -16873,6 +17102,8 @@
   file_url:
 - game: Boss Battle - Round 2
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
@@ -16907,6 +17138,8 @@
   file_url:
 - game: Infernal Stronghold - Boss Battle
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
@@ -16973,6 +17206,8 @@
       file_url:
 - game: Cherry Mountaintops
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
@@ -17073,6 +17308,8 @@
       file_url:
 - game: Infernal Stronghold
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
@@ -17090,6 +17327,8 @@
   file_url:
 - game: World 2-3
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
@@ -17227,6 +17466,8 @@
   file_url:
 - game: 'Submit a Level Project: Round 2 - Results'
   game_alt:
+  tag:
+  - Contest
   author: crist1919
   author_alt:
   type: international
@@ -17574,6 +17815,8 @@
   file_url:
 - game: Sunset Breeze
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17705,6 +17948,8 @@
   file_url:
 - game: 'Mario Forever: Another Level'
   game_alt:
+  tag:
+  - Single Level
   author: master171
   author_alt:
   type: international
@@ -17790,6 +18035,8 @@
       file_url:
 - game: Snowy Starland
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17807,6 +18054,8 @@
   file_url:
 - game: Gloomy Grassland
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17824,6 +18073,8 @@
   file_url:
 - game: P - Run
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17841,6 +18092,8 @@
   file_url:
 - game: Warm - Up Level
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17858,6 +18111,8 @@
   file_url:
 - game: Don't Touch Anything
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17875,6 +18130,8 @@
   file_url:
 - game: Lui, the Lost Powerup
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17951,6 +18208,8 @@
   file_url:
 - game: Speedy Timer
   game_alt:
+  tag:
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17970,6 +18229,7 @@
   game_alt:
   tag:
   - Christmas
+  - Single Level
   author: The Lemon Tree
   author_alt:
   type: international
@@ -18142,6 +18402,8 @@
   game_alt:
   alias:
   - 隐喻
+  tag:
+  - Single Level
   author: newlife2017
   author_alt:
   type: chinese
@@ -18461,6 +18723,7 @@
   game_alt:
   tag:
   - Christmas
+  - Festive
   author:
   - Xykijun
   - crist1919
@@ -18692,6 +18955,8 @@
   - MFCSB
   tag:
   - Christmas
+  - Festive
+  - Collab
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Christmas_Special
   wiki_en_url:
@@ -18930,6 +19195,8 @@
   file_url:
 - game: Mario Forever Z Deuce World of Season Demo
   game_alt:
+  tag:
+  - Demo
   author: R-Jizzle
   author_alt:
   type: international
@@ -19000,6 +19267,8 @@
   file_url:
 - game: Mario Eternity
   game_alt:
+  tag:
+  - Demo
   author: LuNiney
   author_alt:
   type: international
@@ -19094,6 +19363,8 @@
   file_url:
 - game: Level FP
   game_alt:
+  tag:
+  - Single Level
   author: '12345678904441'
   author_alt:
   type: international
@@ -19122,6 +19393,8 @@
       file_url:
 - game: The Cube 复刻
   game_alt: The Cube Remake
+  tag:
+  - Single Level
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -19167,6 +19440,8 @@
       file_url:
 - game: 伪·MW杯资格赛关卡
   game_alt: Fake MWCup Qualification Level
+  tag:
+  - Single Level
   author: 冥の归
   author_alt: '835743384'
   type: chinese
@@ -19289,6 +19564,8 @@
   file_url:
 - game: Crazy Castle
   game_alt:
+  tag:
+  - Single Level
   author: MrPrzemistrz
   author_alt:
   type: international
@@ -19374,6 +19651,8 @@
   alias:
   - 乌龟天堂
   - 乌龟的天堂
+  tag:
+  - Single Level
   author: 天碧苑
   author_alt: Tian-BY
   type: chinese
@@ -19393,6 +19672,8 @@
   game_alt:
   alias:
   - MFAS
+  tag:
+  - Collab
   author:
   - TheMarioVariable
   - crist1919
@@ -19464,6 +19745,8 @@
   file_url:
 - game: 关卡1
   game_alt: Level 1
+  tag:
+  - Single Level
   author: 超级玛丽迷01
   author_alt: SuperMarioFan01
   type: chinese
@@ -19481,6 +19764,8 @@
   file_url:
 - game: 单关飞碟
   game_alt: WL WORLD
+  tag:
+  - Single Level
   author: SDQDGD
   author_alt:
   type: chinese
@@ -19564,6 +19849,8 @@
       file_url:
 - game: Level FL
   game_alt:
+  tag:
+  - Single Level
   author: '12345678904441'
   author_alt:
   type: international
@@ -19581,6 +19868,8 @@
   file_url:
 - game: HHCW's insane levels series
   game_alt:
+  tag:
+  - Single Level
   author: 呵呵崔嵬
   author_alt: HHCW
   type: chinese
@@ -19745,6 +20034,8 @@
   alias:
   - 神话的内心世界
   - 神话内心世界
+  tag:
+  - Single Level
   author: 神话是我smile
   author_alt:
   type: chinese
@@ -19854,6 +20145,8 @@
       file_url:
 - game: 龟版跑酷
   game_alt: Running Turtle
+  tag:
+  - Single Level
   author: 神话是我smile
   author_alt:
   type: chinese
@@ -19905,6 +20198,9 @@
   file_url:
 - game: 马里奥VS马奥里
   game_alt: Mario VS Maori
+  tag:
+  - Single Level
+  - STG
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -19956,6 +20252,8 @@
   file_url:
 - game: 'Submit a Level Project: Round 1 - Results'
   game_alt:
+  tag:
+  - Contest
   author: crist1919
   author_alt:
   type: international
@@ -20241,6 +20539,8 @@
       file_url:
 - game: 鬼屋
   game_alt: Ghost House
+  tag:
+  - Single Level
   author: 水银龟
   author_alt: Mercury Koopa
   type: chinese
@@ -20329,6 +20629,7 @@
   game_alt:
   tag:
   - Christmas
+  - Single Level
   author: '12345678904441'
   author_alt:
   type: international
@@ -20346,6 +20647,8 @@
   file_url:
 - game: Hide Castle Treasury
   game_alt:
+  tag:
+  - Single Level
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -20535,6 +20838,8 @@
       file_url:
 - game: 飞鱼的复仇
   game_alt: Cheep Cheep's Revenge
+  tag:
+  - Single Level
   author: 水银龟
   author_alt: Mercury Koopa
   type: chinese
@@ -20569,6 +20874,8 @@
   file_url:
 - game: Mario Forever World 0-4
   game_alt:
+  tag:
+  - Single Level
   author: 水银龟
   author_alt: Mercury Koopa
   type: chinese
@@ -20607,6 +20914,8 @@
   game_alt: Bazhubayou Forever
   alias:
   - YYDBZBY
+  tag:
+  - Joke
   author: 虹原翼
   author_alt: Lyh
   type: chinese
@@ -20643,6 +20952,8 @@
   file_url:
 - game: 天桥走不完
   game_alt: The Endless Sky Bridge
+  tag:
+  - Single Level
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -20690,6 +21001,8 @@
       file_url:
 - game: Mario Forever 9-4 (2)
   game_alt:
+  tag:
+  - Single Level
   author: 烈火战神219
   author_alt: Fire_1220
   type: chinese
@@ -20778,6 +21091,8 @@
       file_url:
 - game: 7-4 Shadow
   game_alt:
+  tag:
+  - Single Level
   author: 虹原翼
   author_alt: Lyh
   type: chinese
@@ -20795,6 +21110,8 @@
   file_url:
 - game: Mario Forever World 0-3
   game_alt:
+  tag:
+  - Single Level
   author: 水银龟
   author_alt: Mercury Koopa
   type: chinese
@@ -20831,6 +21148,8 @@
   file_url:
 - game: Mario Forever World B-1
   game_alt:
+  tag:
+  - Single Level
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -20865,6 +21184,8 @@
   file_url:
 - game: No Place to Hide
   game_alt:
+  tag:
+  - Single Level
   author: 地狱中的妖魔
   author_alt:
   type: chinese
@@ -20899,6 +21220,8 @@
   file_url:
 - game: 疯狂坦克
   game_alt: Crazy Tanks
+  tag:
+  - Single Level
   author: b20020702d
   author_alt:
   type: chinese
@@ -20916,6 +21239,8 @@
   file_url:
 - game: 新人作品1-1
   game_alt: 1-1
+  tag:
+  - Single Level
   author: 快乐mario8
   author_alt: Happy Mario 8
   type: chinese
@@ -20989,6 +21314,8 @@
       file_url:
 - game: Mario Forever C-2
   game_alt:
+  tag:
+  - Single Level
   author: b20020702d
   author_alt:
   type: chinese
@@ -21006,6 +21333,8 @@
   file_url:
 - game: Mario Forever C-1
   game_alt:
+  tag:
+  - Single Level
   author: b20020702d
   author_alt:
   type: chinese
@@ -21137,6 +21466,8 @@
   file_url:
 - game: Crazy Tanks
   game_alt:
+  tag:
+  - Single Level
   author: similarFANA
   author_alt:
   type: chinese
@@ -21154,6 +21485,8 @@
   file_url:
 - game: HL Room 001
   game_alt:
+  tag:
+  - Single Level
   author: HappyLee
   author_alt:
   type: chinese
@@ -21171,6 +21504,8 @@
   file_url:
 - game: Hardcore World 2
   game_alt:
+  tag:
+  - Hardcore
   author: TheMarioVariable
   author_alt:
   type: international
