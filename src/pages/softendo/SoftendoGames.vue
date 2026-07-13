@@ -1,16 +1,14 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import DownloadHeader from "../../components/HeaderNav.vue";
-import { getLanguage, getDisplayMode, setDisplayModeLine, setDisplayModeCard, setLanguageZh, setLanguageEn } from "../../util/Language.js";
+import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
 import { navTop } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
-import SoftendoGameLine from "../../components/SoftendoGameLine.vue";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
-import SoftendoGameLineHeader from "../../components/SoftendoGameLineHeader.vue";
-import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel } from "../../util/SoftendoUtil.js";
+import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
+import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import axios from "axios";
 import Tooltip from "../../components/ToolTip.vue";
 import ButtonBackToTop from "../../components/ButtonBackToTop.vue";
@@ -18,7 +16,6 @@ import ButtonDarkMode from "../../components/ButtonDarkMode.vue";
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/OverlayScrollbarsUtil.js";
-import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import softendoZh from '../../markdown/softendo-zh.md'
 import softendoEn from '../../markdown/softendo-en.md'
 
@@ -55,13 +52,10 @@ Promise.all([readList("list-softendo.yaml"), imageResolver.init()]).then(([list]
   loadGamesList();
 });
 
-const selectedDownload = ref(null);
-const fileSizeMap = ref({});
-const fileSizeLoading = ref(false);
 const selectedGameDetail = ref(null);
 
-watch([selectedDownload, selectedGameDetail], ([newDownload, newDetail]) => {
-  if (newDownload || newDetail) {
+watch(selectedGameDetail, (newDetail) => {
+  if (newDetail) {
     document.documentElement.classList.add("modal-open");
     document.body.classList.add("modal-open");
     disableScroll();
@@ -72,43 +66,6 @@ watch([selectedDownload, selectedGameDetail], ([newDownload, newDetail]) => {
   }
 });
 
-watch(selectedDownload, (newDownload) => {
-  if (newDownload) {
-    fetchFileSizes(newDownload);
-  } else {
-    fileSizeMap.value = {};
-    fileSizeLoading.value = false;
-  }
-});
-
-async function fetchFileSizes(game) {
-  if (!game || !game.currentVer) {
-    fileSizeMap.value = {};
-    fileSizeLoading.value = false;
-    return;
-  }
-
-  fileSizeLoading.value = true;
-  fileSizeMap.value = {};
-
-  const urls = [];
-  if (game.currentVer.installer_url) {
-    urls.push(game.currentVer.installer_url);
-  }
-  if (game.currentVer.portable_urls) {
-    for (const p of game.currentVer.portable_urls) {
-      urls.push(p.url);
-    }
-  }
-
-  if (urls.length > 0) {
-    const sizes = await batchFetchFileSizes(urls);
-    fileSizeMap.value = sizes;
-  }
-
-  fileSizeLoading.value = false;
-}
-
 // Sort operations.
 const sort_option = ref({
   active: false,
@@ -118,8 +75,8 @@ const sort_option = ref({
 
 function defaultSort() {
   games.value.sort((a, b) => {
-    const yearA = a.currentVer?.year || 0;
-    const yearB = b.currentVer?.year || 0;
+    const yearA = getSoftendoYearRange(a).latestYear || 0;
+    const yearB = getSoftendoYearRange(b).latestYear || 0;
     return yearB - yearA;
   });
   sort_option.value.field = null;
@@ -167,8 +124,8 @@ function sortByYear() {
     sort_option.value.asc = !sort_option.value.asc;
   }
   games.value = games.value.sort((a, b) => {
-    const yearA = a.currentVer?.year || 0;
-    const yearB = b.currentVer?.year || 0;
+    const yearA = getSoftendoYearRange(a).latestYear || 0;
+    const yearB = getSoftendoYearRange(b).latestYear || 0;
     return sort_option.value.asc ? yearA - yearB : yearB - yearA;
   });
 }
@@ -210,10 +167,8 @@ function clearFilter() {
   filter_option.value.software = "";
 }
 
-const expandAllVersions = ref(false);
-
 const filteredGames = computed(() => {
-  const list = games.value.filter((a) => {
+  return games.value.filter((a) => {
     const name = getSoftendoGameName(a);
     const nameMatch =
       filter_option.value.name.trim() == "" ||
@@ -227,78 +182,6 @@ const filteredGames = computed(() => {
       (Array.isArray(a.software) ? a.software.includes(filter_option.value.software) : a.software == filter_option.value.software);
     return nameMatch && typeMatch && softwareMatch;
   });
-
-  if (!expandAllVersions.value) {
-    return list;
-  }
-
-  // Expand all versions
-  const expanded = games.value.flatMap((entry) => {
-    const name = getSoftendoGameName(entry);
-    const nameMatch =
-      filter_option.value.name.trim() == "" ||
-      name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()) ||
-      (entry.alias && entry.alias.some((al) => al.toUpperCase().includes(filter_option.value.name.trim().toUpperCase())));
-    if (!nameMatch) return [];
-    if (!Array.isArray(entry.ver)) return [];
-
-    return entry.ver.map((verRaw) => {
-      const verKey = Object.keys(verRaw)[0];
-      const verObj = verRaw[verKey];
-      const typeMatch =
-        filter_option.value.type == "" ||
-        entry.type == filter_option.value.type;
-      const softwareMatch =
-        filter_option.value.software == "" ||
-        (Array.isArray(entry.software) ? entry.software.includes(filter_option.value.software) : entry.software == filter_option.value.software);
-      if (typeMatch && softwareMatch) {
-        return {
-          ...entry,
-          ver: [verRaw],
-          currentVer: verObj,
-          currentVerStr: verKey,
-          _isVersionSplit: true
-        };
-      }
-      return null;
-    }).filter(Boolean);
-  });
-
-  // Sort expanded
-  if (sort_option.value.field === "game") {
-    expanded.sort((a, b) =>
-      sort_option.value.asc
-        ? getSoftendoGameName(a).localeCompare(getSoftendoGameName(b))
-        : getSoftendoGameName(b).localeCompare(getSoftendoGameName(a))
-    );
-  } else if (sort_option.value.field === "type") {
-    expanded.sort((a, b) =>
-      sort_option.value.asc
-        ? (a.type || "").localeCompare(b.type || "")
-        : (b.type || "").localeCompare(a.type || "")
-    );
-  } else if (sort_option.value.field === "year") {
-    expanded.sort((a, b) => {
-      const yearA = a.currentVer?.year || 0;
-      const yearB = b.currentVer?.year || 0;
-      return sort_option.value.asc ? yearA - yearB : yearB - yearA;
-    });
-  } else if (sort_option.value.field === "software") {
-    expanded.sort((a, b) => {
-      const sa = typeof a.software === "string" ? a.software : (Array.isArray(a.software) ? a.software.join(",") : "");
-      const sb = typeof b.software === "string" ? b.software : (Array.isArray(b.software) ? b.software.join(",") : "");
-      return sort_option.value.asc
-        ? sa.localeCompare(sb)
-        : sb.localeCompare(sa);
-    });
-  } else {
-    expanded.sort((a, b) => {
-      const yearA = a.currentVer?.year || 0;
-      const yearB = b.currentVer?.year || 0;
-      return yearB - yearA;
-    });
-  }
-  return expanded;
 });
 
 // Language changes.
@@ -338,25 +221,6 @@ const fetchYamlUpdate = () => {
 };
 
 fetchYamlUpdate();
-
-// Get window width.
-const wideScreen = ref(window.innerWidth >= 1100);
-const isMobile = ref(window.innerWidth <= 480);
-window.addEventListener("resize", () => {
-  wideScreen.value = window.innerWidth >= 1100;
-  isMobile.value = window.innerWidth <= 480;
-});
-
-// Display mode toggle (line/card).
-const displayMode = ref(getDisplayMode());
-
-function toggleDisplayMode() {
-  if (displayMode.value === "line") {
-    displayMode.value = setDisplayModeCard();
-  } else {
-    displayMode.value = setDisplayModeLine();
-  }
-}
 
 // Tooltip.
 function tooltipMouseEnter(obj) {
@@ -414,25 +278,6 @@ const availableSoftwares = computed(() => {
 const getGameImage = (game) => {
   return imageResolver.resolve(game);
 };
-
-// Toolbar detection for installer
-const hasToolbar = (installerUrl) => {
-  if (!installerUrl) return false;
-  const lowerUrl = installerUrl.toLowerCase();
-  return lowerUrl.includes('toolbar');
-};
-
-const handleInstallerClick = (event, installerUrl) => {
-  if (!hasToolbar(installerUrl)) return;
-
-  const messageZh = '该安装程序包含 Mario Forever Toolbar（广告插件），请在安装过程中取消勾选"Install the Mario Forever Toolbar"选项；建议优先下载绿色版。'
-  const messageEn = 'Warning: This installer includes the "Mario Forever Toolbar". Please make sure to uncheck the "Install the Mario Forever Toolbar" option to avoid installing it.'
-  const message = lan.value === "zh" ? messageZh : messageEn
-
-  if (!confirm(message)) {
-    event.preventDefault();
-  }
-};
 </script>
 
 <template>
@@ -477,161 +322,65 @@ const handleInstallerClick = (event, installerUrl) => {
             <option v-for="s in availableSoftwares" :key="s" :value="s">{{ getSoftwareLabel(s) }}</option>
           </select>&nbsp;
         </div>
-        <div class="inline-block">
-          <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
-          <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <InfoIcon class="icon button-shift" style="margin-left: 0.4em;"></InfoIcon>
-            <template #popper>
-              <span style="text-align: left; display: block;">
-                {{ lan == "en"
-                  ? "When checked, all games with multiple versions will be fully expanded in the list, with each version shown as a separate entry."
-                  : "勾选此项后，所有包含多个版本的作品将在列表中全部展开，每个版本单独显示。"
-                }}
-              </span>
-            </template>
-          </Tooltip>
-        </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
           <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
         </Tooltip>
-        <div class="inline-block display-mode-toggle" v-if="wideScreen">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <ListIcon class="icon button" v-if="displayMode === 'card'" @click="toggleDisplayMode()" />
-            <GridIcon class="icon button" v-if="displayMode === 'line'" @click="toggleDisplayMode()" />
-            <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
-          </Tooltip>
+        <div class="visible-button" @click="sortByName();">
+          {{ lan == "en" ? "Name" : "名称" }}
+          <span v-if="sort_option.field == 'game'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'game'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
         </div>
-        <template v-if="!wideScreen || (wideScreen && displayMode === 'card')">
-          <div class="visible-button" @click="sortByName();">
-            {{ lan == "en" ? "Name" : "名称" }}
-            <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortByType();">
-            {{ lan == "en" ? "Type" : "类别" }}
-            <span v-if="sort_option.field == 'type'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'type'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortByYear();">
-            {{ lan == "en" ? "Year" : "年份" }}
-            <span v-if="sort_option.field == 'year'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'year'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <div class="visible-button" @click="sortBySoftware();">
-            {{ lan == "en" ? "Engine" : "制作软件" }}
-            <span v-if="sort_option.field == 'software'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-            </span>
-            <span v-if="sort_option.field != 'software'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-            </span>
-          </div>
-          <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
-        </template>
+        <div class="visible-button" @click="sortByType();">
+          {{ lan == "en" ? "Type" : "类别" }}
+          <span v-if="sort_option.field == 'type'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'type'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+        <div class="visible-button" @click="sortByYear();">
+          {{ lan == "en" ? "Year" : "年份" }}
+          <span v-if="sort_option.field == 'year'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'year'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+        <div class="visible-button" @click="sortBySoftware();">
+          {{ lan == "en" ? "Engine" : "制作软件" }}
+          <span v-if="sort_option.field == 'software'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'software'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
+        <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
       </div>
     </div>
   </div>
 
-  <SoftendoGameLineHeader
-    v-if="wideScreen && displayMode === 'line'"
-    :lan="lan"
-    :sort_option="sort_option"
-    :item-count="filteredGames.length"
-    @sort-by-name="sortByName();"
-    @sort-by-year="sortByYear();"
-    @sort-by-software="sortBySoftware();"
-  />
-  <div v-if="wideScreen && displayMode === 'line'">
-    <div v-for="(game, idx) in filteredGames" :key="getSoftendoGameName(game) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + idx">
-      <SoftendoGameLine
-        :game="game"
-        :lan="lan"
-        :get-game-image="getGameImage"
-        :expand-all-versions="expandAllVersions"
-        @select-game="(entry) => {selectedDownload = entry;}"
-        @select-version="(entry) => {Object.assign(game, entry);}"
-        @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
-        @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
-        @show-game-detail="(entry) => {selectedGameDetail = entry;}"
-      />
-    </div>
-  </div>
-  <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
-    <div v-for="(game, idx) in filteredGames" :key="getSoftendoGameName(game) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + idx">
+  <div class="card-container">
+    <div v-for="(game, idx) in filteredGames" :key="getSoftendoGameName(game) + '|' + (game.type || '') + '|' + idx">
       <SoftendoGameCard
         :game="game"
         :lan="lan"
         :get-game-image="getGameImage"
-        :expand-all-versions="expandAllVersions"
-        @select-game="(entry) => {selectedDownload = entry;}"
-        @select-version="(entry) => {Object.assign(game, entry);}"
-        @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
-        @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-game-detail="(entry) => {selectedGameDetail = entry;}"
       />
     </div>
   </div>
-
-  <!-- Download modal -->
-  <Transition name="modal">
-    <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
-      <div class="modal-content" @click.stop="">
-        <div>
-          {{ lan == "en" ? "Download" : "下载" }} {{ getSoftendoGameName(selectedDownload) }}<template v-if="selectedDownload.currentVerStr"> ({{ selectedDownload.currentVerStr }})</template>
-        </div>
-        <div v-if="fileSizeLoading" class="file-size-info">
-          <span class="file-size-loading">{{ lan == "en" ? "Fetching file size..." : "获取文件大小中..." }}</span>
-        </div>
-        <!-- Download buttons -->
-        <div class="button-line" v-if="selectedDownload.currentVer && (selectedDownload.currentVer.installer_url || (selectedDownload.currentVer.portable_urls && selectedDownload.currentVer.portable_urls.length > 0))">
-          <a
-            v-if="selectedDownload.currentVer.installer_url"
-            class="download"
-            :class="{ 'has-toolbar': hasToolbar(selectedDownload.currentVer.installer_url) }"
-            :href="selectedDownload.currentVer.installer_url"
-            target="_blank"
-            @click="handleInstallerClick($event, selectedDownload.currentVer.installer_url)"
-          >
-            {{ lan == "en" ? "Download Installer" : "下载安装版" }}<template v-if="hasToolbar(selectedDownload.currentVer.installer_url)"> ({{ lan == "en" ? "with toolbar" : "含广告插件" }})</template>
-            <span v-if="fileSizeMap[selectedDownload.currentVer.installer_url]" class="btn-file-size">
-              ({{ fileSizeMap[selectedDownload.currentVer.installer_url] }})
-            </span>
-          </a>
-          <template v-for="p in selectedDownload.currentVer.portable_urls" :key="p.url">
-            <a
-              v-if="selectedDownload.currentVer.portable_urls && selectedDownload.currentVer.portable_urls.length > 0"
-              class="download"
-              :href="p.url"
-              target="_blank"
-            >
-              {{ lan == "en" ? "Download Portable" : "下载绿色版" }}<template v-if="selectedDownload.type === 'flash' || selectedDownload.type === 'mff'"> ({{ p.label }})</template>
-              <span v-if="fileSizeMap[p.url]" class="btn-file-size">
-                ({{ fileSizeMap[p.url] }})
-              </span>
-            </a>
-          </template>
-        </div>
-      </div>
-    </div>
-  </Transition>
 
   <FullscreenModal
     :show="selectedGameDetail != null"
@@ -806,96 +555,6 @@ const handleInstallerClick = (event, installerUrl) => {
     cursor: default;
   }
 
-  .modal-bg {
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-  }
-
-  .modal-enter-active, .modal-leave-active {
-    transition: opacity 0.5s ease;
-  }
-
-  .modal-enter-from, .modal-leave-to {
-    opacity: 0;
-  }
-
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 80vw;
-    max-height: 80vh;
-    padding: 1em;
-    border-radius: .5em;
-    overflow-y: auto;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
-  }
-
-  .download {
-    color: white;
-    cursor: pointer;
-    background-color: #008cff;
-    padding: .5em;
-    border-radius: .5em;
-    margin-right: .5em;
-    margin: .25em;
-    display: inline-block;
-    line-height: 1.5em;
-  }
-
-  .download:hover, .download:focus {
-    background-color: #30acff;
-    text-decoration: none;
-  }
-
-  .download:active {
-    background-color: #007cdf;
-  }
-
-  .download.has-toolbar {
-    background-color: #e67e22;
-  }
-
-  .download.has-toolbar:hover,
-  .download.has-toolbar:focus {
-    background-color: #f39c12 !important;
-  }
-
-  .download.has-toolbar:active {
-    background-color: #d35400 !important;
-  }
-
-  body.dark .download.has-toolbar:hover,
-  body.dark .download.has-toolbar:focus {
-    background-color: #d35400 !important;
-  }
-
-  body.dark .download.has-toolbar:active {
-    background-color: #c0392b !important;
-  }
-
-  .btn-file-size {
-    font-size: 0.85em;
-    opacity: 0.85;
-  }
-
-  .button-line {
-    margin-top: .5em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25em;
-  }
-
   .input {
     cursor: text;
     color: #4e6e8e;
@@ -947,19 +606,6 @@ const handleInstallerClick = (event, installerUrl) => {
   select:hover, select:focus {
     cursor: pointer;
     border-color: #008cff
-  }
-
-  .file-size-info {
-    margin-bottom: 8px;
-    font-size: 0.9em;
-  }
-
-  .file-size-loading {
-    color: #888;
-  }
-
-  body.dark .file-size-loading {
-    color: #aaa;
   }
 
   .button-shift {

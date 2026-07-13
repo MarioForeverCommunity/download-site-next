@@ -92,7 +92,7 @@ New Super Mario Forever (commonly named as New Super Mario Forever 2012) is a Ma
 
 There is a mod of the game available, which removes some of the frustrating elements and introduces several tweaks.
 
-<SoftendoEntry name="New Super Mario Forever" defaultVer="2013-03-04" /><MfGamesEntry name="New Super Mario Forever 2012: Slightly-Fixed Edition" />
+<SoftendoEntry name="New Super Mario Forever" /><MfGamesEntry name="New Super Mario Forever 2012: Slightly-Fixed Edition" />
 
 ## Frequently Asked Questions
 **Q: Is Mario Forever safe? I've heard it contains a virus.**  

@@ -5,7 +5,7 @@ import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoIma
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
-import { getSoftendoGameName, getSoftwareLabel, getTypeLabel } from '../util/SoftendoUtil.js';
+import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -260,25 +260,11 @@ const authors = computed(() => {
 const releaseDate = computed(() => {
   if (!props.game) return null;
 
-  // Softendo: 只显示最旧的年份（优先使用 initial_year）
+  // Softendo: 显示年份范围（排除 Kliktopia 版本）
   if (isSoftendo.value) {
-    // 优先使用 initial_year
-    if (props.game.initial_year) {
-      return props.lan === 'zh' ? `${props.game.initial_year} 年` : String(props.game.initial_year);
-    }
-    if (!props.game.ver) return null;
-    let oldestYear = null;
-    for (const verRaw of props.game.ver) {
-      const verKey = Object.keys(verRaw)[0];
-      const ver = verRaw[verKey];
-      if (ver.year) {
-        if (oldestYear === null || ver.year < oldestYear) {
-          oldestYear = ver.year;
-        }
-      }
-    }
-    if (oldestYear === null) return null;
-    return props.lan === 'zh' ? `${oldestYear} 年` : String(oldestYear);
+    const yearRange = getSoftendoYearRange(props.game);
+    if (yearRange.display === '?') return null;
+    return yearRange.display;
   }
 
   if (isMwLevel.value || isAssets.value) {
@@ -387,13 +373,19 @@ const downloadEntries = computed(() => {
 
       // Installer (安装版)
       if (ver.installer_url) {
+        const toolbarDetected = ver.installer_url.toLowerCase().includes('toolbar');
+        let installerLabel = props.lan === 'zh' ? `安装版 (${verKey})` : `Installer (${verKey})`;
+        if (toolbarDetected) {
+          installerLabel += props.lan === 'zh' ? ' (含广告插件)' : ' (with toolbar)';
+        }
         entries.push({
-          version: props.lan === 'zh' ? `安装版 (${verKey})` : `Installer (${verKey})`,
+          version: installerLabel,
           url: ver.installer_url,
           isRepackaged: false,
           repacker: null,
           isData: false,
-          isSoftendoInstaller: true
+          isSoftendoInstaller: true,
+          hasToolbar: toolbarDetected
         });
       }
 
@@ -785,6 +777,19 @@ const openImagePreview = (url, index) => {
   showImagePreview.value = true;
 };
 
+const handleSoftendoDownloadClick = (event, entry) => {
+  if (entry.isSoftendoInstaller && entry.url) {
+    const lowerUrl = entry.url.toLowerCase();
+    if (lowerUrl.includes('toolbar')) {
+      const messageZh = '该安装程序包含 Mario Forever Toolbar（广告插件），请在安装过程中取消勾选"Install the Mario Forever Toolbar"选项；建议优先下载绿色版。';
+      const messageEn = 'Warning: This installer includes the "Mario Forever Toolbar". Please make sure to uncheck the "Install the Mario Forever Toolbar" option to avoid installing it.';
+      if (!confirm(props.lan === 'zh' ? messageZh : messageEn)) {
+        event.preventDefault();
+      }
+    }
+  }
+};
+
 const closeImagePreview = () => {
   showImagePreview.value = false;
   previewImageUrl.value = '';
@@ -918,7 +923,7 @@ const nextImage = () => {
           </div>
 
           <div v-if="!isAssets || isSingleVersion" class="content-section">
-            <h3 class="section-title">{{ isSoftendo ? (lan === 'zh' ? '首次发布于' : 'First released in') : (lan === 'zh' ? '发布时间' : 'Release date') }}</h3>
+            <h3 class="section-title">{{ isSoftendo ? (lan === 'zh' ? '年份' : 'Release years') : (lan === 'zh' ? '发布时间' : 'Release date') }}</h3>
             <ul v-if="releaseDate" class="date-list">
               <li>{{ releaseDate }}</li>
             </ul>
@@ -974,7 +979,13 @@ const nextImage = () => {
             <ul v-if="downloadEntries.length > 0" class="download-list">
               <li v-for="(entry, index) in downloadEntries" :key="index" class="download-item">
                 <span class="floppy-icon">{{ entry.isData ? '🗂️' : (entry.isRepackaged ? '📦' : '📥') }}</span>
-                <a :href="entry.url" target="_blank" class="download-link">{{ entry.version }}</a>
+                <a
+                  :href="entry.url"
+                  target="_blank"
+                  class="download-link"
+                  :class="{ 'has-toolbar': entry.hasToolbar }"
+                  @click="handleSoftendoDownloadClick($event, entry)"
+                >{{ entry.version }}</a>
                 <span v-if="fileSizeMap[entry.url]" class="file-size-label">
                   ({{ fileSizeMap[entry.url] }})
                 </span>
@@ -1293,6 +1304,22 @@ const nextImage = () => {
   .homepage-link:hover,
   .repo-link:hover {
     text-decoration: underline;
+  }
+
+  .download-link.has-toolbar {
+    color: #e67e22;
+  }
+
+  .download-link.has-toolbar:hover {
+    color: #f39c12;
+  }
+
+  body.dark .download-link.has-toolbar {
+    color: #f39c12;
+  }
+
+  body.dark .download-link.has-toolbar:hover {
+    color: #e67e22;
   }
 
   .source-link.invalid {

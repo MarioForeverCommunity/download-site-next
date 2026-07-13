@@ -7,7 +7,6 @@ import { readList } from "../util/ReadList.js"
 import { getGameImageSync, loadImageIndex } from "../util/ImageUtil.js"
 import SoftendoGameCard from "./SoftendoGameCard.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
-import { batchFetchFileSizes } from "../util/OpenListApi.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 
@@ -37,9 +36,6 @@ const handleLanguageChanged = (event) => {
 const game = ref(null)
 const isLoading = ref(true)
 const notFound = ref(false)
-const selectedDownload = ref(null)
-const fileSizeMap = ref({})
-const fileSizeLoading = ref(false)
 const selectedGameDetail = ref(null)
 
 const reference = ref(null)
@@ -64,8 +60,8 @@ function tooltipMouseLeave(obj) {
   }
 }
 
-watch([selectedDownload, selectedGameDetail], ([newDownload, newDetail]) => {
-  if (newDownload || newDetail) {
+watch(selectedGameDetail, (newDetail) => {
+  if (newDetail) {
     document.documentElement.classList.add("modal-open")
     document.body.classList.add("modal-open")
     disableScroll()
@@ -75,43 +71,6 @@ watch([selectedDownload, selectedGameDetail], ([newDownload, newDetail]) => {
     enableScroll()
   }
 })
-
-watch(selectedDownload, (newDownload) => {
-  if (newDownload) {
-    fetchFileSizes(newDownload)
-  } else {
-    fileSizeMap.value = {}
-    fileSizeLoading.value = false
-  }
-})
-
-async function fetchFileSizes(download) {
-  if (!download || !download.currentVer) {
-    fileSizeMap.value = {}
-    fileSizeLoading.value = false
-    return
-  }
-
-  fileSizeLoading.value = true
-  fileSizeMap.value = {}
-
-  const urls = []
-  if (download.currentVer.installer_url) {
-    urls.push(download.currentVer.installer_url)
-  }
-  if (download.currentVer.portable_urls) {
-    for (const p of download.currentVer.portable_urls) {
-      urls.push(p.url)
-    }
-  }
-
-  if (urls.length > 0) {
-    const sizes = await batchFetchFileSizes(urls)
-    fileSizeMap.value = sizes
-  }
-
-  fileSizeLoading.value = false
-}
 
 let softendoRawListCache = null
 let softendoNormalizedCacheZh = null
@@ -209,10 +168,6 @@ watch(() => props.name, () => {
   loadGame()
 })
 
-const handleSelectVersion = (entry) => {
-  game.value = entry
-}
-
 const gallery = computed(() => {
   imageIndexLoaded.value
   if (!game.value) return []
@@ -233,25 +188,6 @@ const gallery = computed(() => {
 const getGameImage = () => {
   return null
 }
-
-// Toolbar detection for installer
-const hasToolbar = (installerUrl) => {
-  if (!installerUrl) return false
-  const lowerUrl = installerUrl.toLowerCase()
-  return lowerUrl.includes("toolbar")
-}
-
-const handleInstallerClick = (event, installerUrl) => {
-  if (!hasToolbar(installerUrl)) return
-
-  const messageZh = '该安装程序包含 Mario Forever Toolbar（广告插件），请在安装过程中取消勾选"Install the Mario Forever Toolbar"选项；建议优先下载绿色版。'
-  const messageEn = 'Warning: This installer includes the "Mario Forever Toolbar". Please make sure to uncheck the "Install the Mario Forever Toolbar" option to avoid installing it.'
-  const message = lan.value === "zh" ? messageZh : messageEn
-
-  if (!confirm(message)) {
-    event.preventDefault()
-  }
-}
 </script>
 
 <template>
@@ -268,8 +204,6 @@ const handleInstallerClick = (event, installerUrl) => {
         :lan="lan"
         :get-game-image="getGameImage"
         :hide-dot="true"
-        @select-game="(entry) => { selectedDownload = entry }"
-        @select-version="handleSelectVersion"
         @show-tooltip="(obj) => tooltipMouseEnter(obj)"
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-game-detail="(entry) => { selectedGameDetail = entry }"
@@ -286,49 +220,6 @@ const handleInstallerClick = (event, installerUrl) => {
         </template>
       </SoftendoGameCard>
     </template>
-
-    <!-- Download modal -->
-    <Transition name="modal">
-      <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
-        <div class="modal-content" @click.stop="">
-          <div>
-            {{ lan == "zh" ? "下载" : "Download" }} {{ getSoftendoGameName(selectedDownload) }}<template v-if="selectedDownload.currentVerStr"> ({{ selectedDownload.currentVerStr }})</template>
-          </div>
-          <div v-if="fileSizeLoading" class="file-size-info">
-            <span class="file-size-loading">{{ lan == "zh" ? "获取文件大小中..." : "Fetching file size..." }}</span>
-          </div>
-          <!-- Download buttons -->
-          <div class="button-line" v-if="selectedDownload.currentVer && (selectedDownload.currentVer.installer_url || (selectedDownload.currentVer.portable_urls && selectedDownload.currentVer.portable_urls.length > 0))">
-            <a
-              v-if="selectedDownload.currentVer.installer_url"
-              class="download"
-              :class="{ 'has-toolbar': hasToolbar(selectedDownload.currentVer.installer_url) }"
-              :href="selectedDownload.currentVer.installer_url"
-              target="_blank"
-              @click="handleInstallerClick($event, selectedDownload.currentVer.installer_url)"
-            >
-              {{ lan == "zh" ? "下载安装版" : "Download Installer" }}<template v-if="hasToolbar(selectedDownload.currentVer.installer_url)"> ({{ lan == "zh" ? "含广告插件" : "with toolbar" }})</template>
-              <span v-if="fileSizeMap[selectedDownload.currentVer.installer_url]" class="btn-file-size">
-                ({{ fileSizeMap[selectedDownload.currentVer.installer_url] }})
-              </span>
-            </a>
-            <template v-for="p in selectedDownload.currentVer.portable_urls" :key="p.url">
-              <a
-                v-if="selectedDownload.currentVer.portable_urls && selectedDownload.currentVer.portable_urls.length > 0"
-                class="download"
-                :href="p.url"
-                target="_blank"
-              >
-                {{ lan == "zh" ? "下载绿色版" : "Download Portable" }}<template v-if="selectedDownload.type === 'flash' || selectedDownload.type === 'mff'"> ({{ p.label }})</template>
-                <span v-if="fileSizeMap[p.url]" class="btn-file-size">
-                  ({{ fileSizeMap[p.url] }})
-                </span>
-              </a>
-            </template>
-          </div>
-        </div>
-      </div>
-    </Transition>
 
     <FullscreenModal
       :show="selectedGameDetail != null"
@@ -369,118 +260,6 @@ const handleInstallerClick = (event, installerUrl) => {
   padding: .25em .75em;
   z-index: 1002;
   font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
-}
-
-.modal-bg {
-  position: fixed;
-  z-index: 1001;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
-}
-
-.modal-enter-active, .modal-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.modal-enter-from, .modal-leave-to {
-  opacity: 0;
-}
-
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 80vw;
-  max-height: 80vh;
-  padding: 1em;
-  border-radius: .5em;
-  overflow-y: auto;
-  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
-}
-
-.download {
-  color: white;
-  cursor: pointer;
-  background-color: #008cff;
-  padding: .5em;
-  border-radius: .5em;
-  margin-right: .5em;
-  margin: .25em;
-  display: inline-block;
-  line-height: 1.5em;
-  text-decoration: none;
-}
-
-.download:hover, .download:focus {
-  background-color: #30acff;
-  text-decoration: none;
-}
-
-.download:active {
-  background-color: #007cdf;
-}
-
-.download.has-toolbar {
-  background-color: #e67e22;
-}
-
-.download.has-toolbar:hover,
-.download.has-toolbar:focus {
-  background-color: #f39c12 !important;
-}
-
-.download.has-toolbar:active {
-  background-color: #d35400 !important;
-}
-
-body.dark .download.has-toolbar:hover,
-body.dark .download.has-toolbar:focus {
-  background-color: #d35400 !important;
-}
-
-body.dark .download.has-toolbar:active {
-  background-color: #c0392b !important;
-}
-
-.btn-file-size {
-  font-size: 0.85em;
-  opacity: 0.85;
-}
-
-.button-line {
-  margin-top: .5em;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25em;
-}
-
-.file-size-info {
-  margin-bottom: 8px;
-  font-size: 0.9em;
-}
-
-.file-size-loading {
-  color: #888;
-}
-
-body.dark .file-size-loading {
-  color: #aaa;
-}
-
-.icon {
-  fill: #000;
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .entry-gallery {

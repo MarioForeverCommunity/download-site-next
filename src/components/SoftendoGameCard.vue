@@ -1,6 +1,7 @@
 <script setup>
-import { ArrowIcon, DownloadIcon } from "./icons/Icons.js";
-import { getTypeLabel, getTypeDotWidth, getSoftendoGameName, getSoftwareLabel } from "../util/SoftendoUtil.js";
+import { computed } from "vue";
+import { DownloadIcon } from "./icons/Icons.js";
+import { getTypeLabel, getTypeDotWidth, getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange } from "../util/SoftendoUtil.js";
 import Tooltip from "./ToolTip.vue";
 
 const props = defineProps({
@@ -17,35 +18,20 @@ const props = defineProps({
     required: false,
     default: () => null
   },
-  expandAllVersions: {
-    type: Boolean,
-    default: false
-  },
   hideDot: {
     type: Boolean,
     default: false
   }
 });
 
-const emit = defineEmits(["selectGame", "showGameDetail", "selectVersion"]);
-
-const selectVersion = (ver) => {
-  const verKey = Object.keys(ver)[0];
-  const verObj = ver[verKey];
-  emit("selectVersion", {
-    ...props.game,
-    currentVer: verObj,
-    currentVerStr: verKey
-  });
-};
+const emit = defineEmits(["showGameDetail"]);
 
 const handleGameNameClick = () => {
   emit("showGameDetail", props.game);
 };
 
 const typeDotWidth = () => getTypeDotWidth(props.game.type);
-const isMultiVersion = () => props.game.ver && props.game.ver.length > 1;
-const showVersion = () => !props.game._singleVersion;
+const yearRange = computed(() => getSoftendoYearRange(props.game));
 
 const handleImageError = (event) => {
   // 图片加载失败时隐藏图片容器
@@ -60,22 +46,8 @@ const getGameImageSrc = () => {
 <template>
   <div class="container card">
     <div class="first-line">
-      <div class="game-name" :class="showVersion() ? '' : 'no-version'">
+      <div class="game-name">
         <span class="game-name-link" @click="handleGameNameClick">{{ getSoftendoGameName(game) }}</span>
-      </div>
-      <div class="game-version" v-if="showVersion()">
-        <span style="display: inline-block;" :class="isMultiVersion() ? 'dropdown' : ''">{{ game.currentVerStr }}</span>
-        <div :class="isMultiVersion() ? 'dropdown' : ''">
-          <ArrowIcon v-if="isMultiVersion()" class="icon rotate-button"></ArrowIcon>
-          <div v-if="isMultiVersion()" class="dropdown-content">
-            <div
-              v-for="ver in game.ver"
-              :key="Object.keys(ver)[0]"
-              class="dropdown-item"
-              @click="selectVersion(ver)"
-            >{{ Object.keys(ver)[0] }}</div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="body-line">
@@ -86,7 +58,7 @@ const getGameImageSrc = () => {
           </span>
           <template #popper>{{ getTypeLabel(game.type) }}</template>
         </Tooltip>
-        {{ game.currentVer?.year || "?" }}
+        {{ yearRange.display }}
       </div>
     </div>
     <slot name="gallery">
@@ -105,7 +77,7 @@ const getGameImageSrc = () => {
       </div>
       <div class="game-options">
         <Tooltip v-if="game.currentVer && (game.currentVer.installer_url || (game.currentVer.portable_urls && game.currentVer.portable_urls.length > 0))">
-          <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
+          <DownloadIcon class="icon button" @click="$emit('showGameDetail', game)"></DownloadIcon>
           <template #popper>{{ lan === "en" ? "Download" : "下载链接" }}</template>
         </Tooltip>
       </div>
@@ -141,8 +113,7 @@ const getGameImageSrc = () => {
     display: inline-block;
     vertical-align: top;
     line-height: 1.25em;
-    flex: 1;
-    min-width: 0;
+    width: 100%;
     overflow: hidden;
     padding-right: 0.5em;
   }
@@ -159,29 +130,12 @@ const getGameImageSrc = () => {
     text-decoration: underline;
   }
 
-  .game-name.no-version {
-    width: 100%;
-    line-height: 1.25em;
-  }
-
-  .game-version {
-    display: inline-flex;
-    vertical-align: top;
-    line-height: 1.25em;
-    flex-shrink: 0;
-  }
-
   .first-line {
     width: 100%;
     vertical-align: top;
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.1em;
-  }
-
-  .dropdown-content {
-    right: 0;
-    transform: translateX(-15px);
   }
 
   .game-meta {
@@ -233,14 +187,6 @@ const getGameImageSrc = () => {
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
-  }
-
-  .rotate-button {
-    transition: transform 0.25s ease;
-  }
-
-  .rotate-button:hover, .rotate-button:focus {
-    transform: rotate(180deg);
   }
 
   .game-options {

@@ -68,7 +68,7 @@ function getBaseUrl(type, lan, nsmf) {
   return lan === "zh" ? BASE_URLS_ZH[type] : BASE_URLS_EN[type];
 }
 
-function isKliktopiaRepackage(verKey) {
+export function isKliktopiaRepackage(verKey) {
   return verKey && verKey.toLowerCase().includes("kliktopia repackage");
 }
 
@@ -100,7 +100,8 @@ export function getPortableUrls(type, portable, lan = "en", nsmf = false, verKey
 
   // portable is a simple string filename
   if (typeof portable === "string") {
-    const baseUrl = urls.portable || urls.portable_zip || urls.portable_exe;
+    const useKliktopia = type === "non-mario" && isKliktopiaRepackage(verKey);
+    const baseUrl = useKliktopia ? (urls.kliktopia || urls.portable) : (urls.portable || urls.portable_zip || urls.portable_exe);
     if (!baseUrl) return [];
     return [{ label: "portable", url: baseUrl + encodeURIComponent(portable) }];
   }
@@ -313,4 +314,42 @@ export function normalizeSoftendoList(list, lan = "en") {
 
 export function getSoftendoGameName(entry) {
   return entry.game || entry.name || "";
+}
+
+export function getSoftendoYearRange(entry) {
+  if (!entry.ver || !Array.isArray(entry.ver)) {
+    const year = entry.currentVer?.year || entry.year || null;
+    if (year === null) return { initialYear: null, latestYear: null, display: "?" };
+    return { initialYear: year, latestYear: year, display: String(year) };
+  }
+
+  let earliestYear = null;
+  let latestYear = null;
+
+  for (const verRaw of entry.ver) {
+    const verKey = Object.keys(verRaw)[0];
+    if (isKliktopiaRepackage(verKey)) continue;
+    const verObj = verRaw[verKey];
+    if (verObj.year) {
+      if (earliestYear === null || verObj.year < earliestYear) {
+        earliestYear = verObj.year;
+      }
+      if (latestYear === null || verObj.year > latestYear) {
+        latestYear = verObj.year;
+      }
+    }
+  }
+
+  const initialYear = entry.initial_year || earliestYear;
+
+  if (initialYear === null && latestYear === null) {
+    return { initialYear: null, latestYear: null, display: "?" };
+  }
+
+  if (initialYear !== null && latestYear !== null && initialYear !== latestYear) {
+    return { initialYear, latestYear, display: `${initialYear} - ${latestYear}` };
+  }
+
+  const year = initialYear !== null ? initialYear : latestYear;
+  return { initialYear: year, latestYear: year, display: String(year) };
 }
