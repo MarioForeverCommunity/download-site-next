@@ -515,6 +515,11 @@ function removeTempTag(tag) {
 const expandAllVersions = ref(false);
 
 const filteredGames = computed(() => {
+  const year = filter_option.value.year;
+  const platform = filter_option.value.platform;
+  const hasYearFilter = !isNaN(parseInt(year));
+  const hasPlatformFilter = platform !== "";
+
   const list = games.value.filter((a) =>
     (
       (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
@@ -527,38 +532,49 @@ const filteredGames = computed(() => {
           return verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
         }))
     )
-      && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
       && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
       && (filter_option.value.tags.length === 0 || (Array.isArray(a.tag) && a.tag.some(t => filter_option.value.tags.includes(t))) || (!Array.isArray(a.tag) && a.tag && filter_option.value.tags.includes(a.tag)))
+      // Pre-check: entry must have at least one version matching year
+      && (!hasYearFilter || (Array.isArray(a.ver) && a.ver.some((verRaw) => {
+        const verObj = verRaw[Object.keys(verRaw)[0]];
+        return parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(year);
+      })))
+      // Pre-check: entry must have at least one version matching platform
+      && (!hasPlatformFilter || (Array.isArray(a.ver) && a.ver.some((verRaw) => {
+        const verKey = Object.keys(verRaw)[0];
+        const verObj = verRaw[verKey];
+        return detectPlatform(verKey, verObj.file_name) === platform;
+      })))
   );
   if (!expandAllVersions.value) {
-    const platform = filter_option.value.platform;
-    if (platform === "") {
+    if (!hasYearFilter && !hasPlatformFilter) {
       return list;
     }
     return list
-      .filter((entry) => {
-        if (!Array.isArray(entry.ver)) return false;
-        return entry.ver.some((verRaw) => {
-          const verKey = Object.keys(verRaw)[0];
-          const verObj = verRaw[verKey];
-          return detectPlatform(verKey, verObj.file_name) === platform;
-        });
-      })
       .map((entry) => {
+        if (!Array.isArray(entry.ver)) return entry;
         const matchingVers = entry.ver.filter((verRaw) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
-          return detectPlatform(verKey, verObj.file_name) === platform;
+          let match = true;
+          if (hasYearFilter) {
+            match = match && parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(year);
+          }
+          if (hasPlatformFilter) {
+            match = match && detectPlatform(verKey, verObj.file_name) === platform;
+          }
+          return match;
         });
+        if (matchingVers.length === 0) return null;
         // 所有版本都匹配时返回原始对象，保留 Object.assign 版本切换的持久性
         if (matchingVers.length === entry.ver.length) {
           return entry;
         }
         // 检查当前版本是否匹配
         const currentMatches = entry.currentVer
-          ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name) === platform
+          ? (hasYearFilter ? parseInt(entry.currentVer.date.toISOString().split('-')[0]) == parseInt(year) : true) &&
+            (hasPlatformFilter ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name) === platform : true)
           : false;
         // 当前版本匹配则保持，否则切换到第一个匹配版本
         let activeVerStr, activeVerStrAlt, activeCurrentVer;
@@ -578,8 +594,10 @@ const filteredGames = computed(() => {
           currentVer: activeCurrentVer,
           currentVerStr: activeVerStr,
           currentVerStrAlt: activeVerStrAlt,
+          _original: entry,
         };
-      });
+      })
+      .filter(Boolean);
   } else {
     // flatMap 优化：每个版本单独一条，所有筛选条件都在 verRaw 层判断
     const expanded = games.value.flatMap((entry) => {
@@ -871,6 +889,11 @@ async function fetchFileSize(game) {
   fileSizeLoading.value = false;
 }
 
+function handleSelectVersion(filteredGame, newVersion) {
+  const original = filteredGame._original || filteredGame;
+  Object.assign(original, newVersion);
+}
+
 function shouldShowResourceLink(game) {
   if (!game) {
     return false;
@@ -1043,7 +1066,7 @@ function hasDataDownload(game) {
         :get-game-image="getGameImage"
         @select-game="(entry) => {selectedDownload = entry;}"
         @select-videos="(entry) => {selectedVideo = entry;}"
-        @select-version="(entry) => {Object.assign(game, entry);}"
+        @select-version="(entry) => {handleSelectVersion(game, entry);}"
         @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => {tiebaDialog = data;}"
@@ -1059,7 +1082,7 @@ function hasDataDownload(game) {
         :get-game-image="getGameImage"
         @select-game="(entry) => {selectedDownload = entry;}"
         @select-videos="(entry) => {selectedVideo = entry;}"
-        @select-version="(entry) => {Object.assign(game, entry);}"
+        @select-version="(entry) => {handleSelectVersion(game, entry);}"
         @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => {tiebaDialog = data;}"
