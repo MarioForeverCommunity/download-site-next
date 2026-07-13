@@ -22,6 +22,8 @@ definitions:
           "$ref": "#/definitions/AuthorAlias"
         alias:
           "$ref": "#/definitions/Alias"
+        tag:
+          "$ref": "#/definitions/Tag"
         video_zh:
           oneOf:
           - type: 'null'
@@ -198,6 +200,13 @@ definitions:
       items:
         type: string
     title: Alias
+  Tag:
+    oneOf:
+    - type: 'null'
+    - type: array
+      items:
+        type: string
+    title: Tag
   AuthorAlias:
     anyOf:
     - type: 'null'

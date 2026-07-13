@@ -359,6 +359,44 @@ const latestUpdate = computed(() => {
   }
 });
 
+// Tag 颜色预设
+const TAG_COLORS = [
+  { bg: "#e8f5e9", border: "#4caf50", text: "#2e7d32" },
+  { bg: "#e3f2fd", border: "#2196f3", text: "#1565c0" },
+  { bg: "#fff3e0", border: "#ff9800", text: "#e65100" },
+  { bg: "#fce4ec", border: "#e91e63", text: "#c2185b" },
+  { bg: "#f3e5f5", border: "#9c27b0", text: "#6a1b9a" },
+  { bg: "#e0f7fa", border: "#00bcd4", text: "#0097a7" },
+  { bg: "#fff8e1", border: "#ffc107", text: "#f57f17" },
+  { bg: "#efebe9", border: "#795548", text: "#4e342e" },
+];
+
+const TAG_COLORS_DARK = [
+  { bg: "#1b3a1e", border: "#4caf50", text: "#81c784" },
+  { bg: "#1a2a3a", border: "#2196f3", text: "#64b5f6" },
+  { bg: "#3a2a1a", border: "#ff9800", text: "#ffb74d" },
+  { bg: "#3a1a2a", border: "#e91e63", text: "#f06292" },
+  { bg: "#2a1a3a", border: "#9c27b0", text: "#ba68c8" },
+  { bg: "#1a3a3a", border: "#00bcd4", text: "#4dd0e1" },
+  { bg: "#3a3a1a", border: "#ffc107", text: "#ffd54f" },
+  { bg: "#2a2220", border: "#795548", text: "#a1887f" },
+];
+
+function getTagColorIndex(tagName) {
+  let hash = 0;
+  for (let i = 0; i < tagName.length; i++) {
+    hash = ((hash << 5) - hash) + tagName.charCodeAt(i);
+    hash = hash & hash;
+  }
+  return Math.abs(hash) % TAG_COLORS.length;
+}
+
+const gameTags = computed(() => {
+  if (!props.game || !props.game.tag) return [];
+  if (Array.isArray(props.game.tag)) return props.game.tag;
+  return [props.game.tag];
+});
+
 const downloadEntries = computed(() => {
   if (!props.game) return [];
 
@@ -937,6 +975,25 @@ const nextImage = () => {
             </ul>
           </div>
 
+          <div v-if="gameTags.length > 0" class="content-section">
+            <h3 class="section-title">{{ lan === 'zh' ? '标签' : 'Tags' }}</h3>
+            <div class="tag-list">
+              <span
+                v-for="(tagItem, index) in gameTags"
+                :key="index"
+                class="tag-pill"
+                :style="{
+                  '--tag-bg': TAG_COLORS[getTagColorIndex(tagItem)].bg,
+                  '--tag-border': TAG_COLORS[getTagColorIndex(tagItem)].border,
+                  '--tag-text': TAG_COLORS[getTagColorIndex(tagItem)].text,
+                  '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].bg,
+                  '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].border,
+                  '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].text,
+                }"
+              >{{ tagItem }}</span>
+            </div>
+          </div>
+
           <div v-if="wikiUrl" class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? 'Wiki 链接' : 'Wiki link' }}</h3>
             <ul class="wiki-list">
@@ -1265,6 +1322,26 @@ const nextImage = () => {
   .no-data {
     padding: 0.2em 0 0.2em 0.6em;
     line-height: 1.3;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding-left: 0.6em;
+  }
+
+  .tag-pill {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    border: 1.5px solid var(--tag-border);
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.85em;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
   }
 
   .source-list li,
@@ -1603,6 +1680,12 @@ const nextImage = () => {
 
   body.dark .section-title {
     color: #eee;
+  }
+
+  body.dark .tag-pill {
+    border-color: var(--tag-border-dark);
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
   }
 
   body.dark .section-divider {

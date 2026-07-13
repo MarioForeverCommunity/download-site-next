@@ -382,7 +382,7 @@ const eventKeywords = {
   "New Year": ["new year", "新年", "lunar new year", "lny"],
   "April Fools": ["april fool", "愚人节", "fooling"],
   "Halloween": ["halloween", "万圣节"],
-  "Christmas": ["christmas", "圣诞"]
+  "Christmas": ["christmas", "XMAS", "圣诞"]
 };
 
 function detectEventFromTexts(texts) {
@@ -404,6 +404,13 @@ function detectEvent(entry) {
       texts.push(entry.alias);
     }
   }
+  if (entry.tag) {
+    if (Array.isArray(entry.tag)) {
+      texts.push(...entry.tag);
+    } else {
+      texts.push(entry.tag);
+    }
+  }
   return detectEventFromTexts(texts);
 }
 
@@ -416,10 +423,17 @@ function detectEventForVersion(entry, verKey) {
       texts.push(entry.alias);
     }
   }
+  if (entry.tag) {
+    if (Array.isArray(entry.tag)) {
+      texts.push(...entry.tag);
+    } else {
+      texts.push(entry.tag);
+    }
+  }
   return detectEventFromTexts(texts);
 }
 
-function detectEventIncludingVersions(entry) {
+function _detectEventIncludingVersions(entry) {
   const baseEvent = detectEvent(entry);
   if (baseEvent) return baseEvent;
   if (Array.isArray(entry.ver)) {
@@ -479,40 +493,48 @@ const filteredGames = computed(() => {
     )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.currentVer.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
-      && (filter_option.value.event === "" || detectEventIncludingVersions(a) === filter_option.value.event)
       && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
   );
   if (!expandAllVersions.value) {
-    if (filter_option.value.platform === "") {
+    const platform = filter_option.value.platform;
+    const event = filter_option.value.event;
+    if (platform === "" && event === "") {
       return list;
     }
-    const platform = filter_option.value.platform;
     return list
       .filter((entry) => {
         if (!Array.isArray(entry.ver)) return false;
         return entry.ver.some((verRaw) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
-          return detectPlatform(verKey, verObj.file_name) === platform;
+          if (platform !== "" && detectPlatform(verKey, verObj.file_name) !== platform) return false;
+          if (event !== "" && detectEventForVersion(entry, verKey) !== event) return false;
+          return true;
         });
       })
       .map((entry) => {
         const matchingVers = entry.ver.filter((verRaw) => {
           const verKey = Object.keys(verRaw)[0];
           const verObj = verRaw[verKey];
-          return detectPlatform(verKey, verObj.file_name) === platform;
+          if (platform !== "" && detectPlatform(verKey, verObj.file_name) !== platform) return false;
+          if (event !== "" && detectEventForVersion(entry, verKey) !== event) return false;
+          return true;
         });
         // 所有版本都匹配时返回原始对象，保留 Object.assign 版本切换的持久性
         if (matchingVers.length === entry.ver.length) {
           return entry;
         }
-        // 检查当前版本是否匹配所选平台
-        const currentPlatform = entry.currentVer
-          ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name)
-          : null;
+        // 检查当前版本是否匹配
+        const currentMatches = entry.currentVer
+          ? (() => {
+            if (platform !== "" && detectPlatform(entry.currentVerStr, entry.currentVer.file_name) !== platform) return false;
+            if (event !== "" && detectEventForVersion(entry, entry.currentVerStr) !== event) return false;
+            return true;
+          })()
+          : false;
         // 当前版本匹配则保持，否则切换到第一个匹配版本
         let activeVerStr, activeVerStrAlt, activeCurrentVer;
-        if (currentPlatform === platform) {
+        if (currentMatches) {
           activeVerStr = entry.currentVerStr;
           activeVerStrAlt = entry.currentVerStrAlt;
           activeCurrentVer = entry.currentVer;

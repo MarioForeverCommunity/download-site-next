@@ -213,6 +213,8 @@
   - MF大冲关4
   - MF大冲关第四季
   - MF大冲关 第四季
+  tag:
+  - Speedrun
   author: ƒresh★LAKE
   author_alt:
   type: chinese
@@ -357,6 +359,10 @@
   file_url:
 - game: "Mario Forever: Maker Party"
   game_alt:
+  alias:
+  - MFMP
+  tag:
+  - Multiplayer
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -440,6 +446,7 @@
   - MFCE
   - MF:CE
   - oldtimes
+  tag:
   - April Fools
   author: Meteo Dream
   author_alt:
@@ -472,7 +479,7 @@
       file_url:
 - game: Supra Mayro Foreba 2025
   game_alt:
-  alias:
+  tag:
   - April Fools
   author: Yoshi50Windows
   author_alt:
@@ -557,6 +564,8 @@
       file_url:
 - game: Klawiatura
   game_alt:
+  tag:
+  - Multiplayer
   author:
   - toggins
   - nonk123
@@ -981,6 +990,9 @@
   file_url:
 - game: Division -/- Limbo
   game_alt:
+  tag:
+  - PK!MF
+  - Contest
   author: TNT与爬行者
   author_alt: CreepTNT
   type: chinese
@@ -1001,6 +1013,9 @@
   file_url:
 - game: Fear the Eye
   game_alt:
+  tag:
+  - PK!MF
+  - Contest
   author: 无视我233
   author_alt: WSW
   type: chinese
@@ -1023,6 +1038,8 @@
   file_url:
 - game: "New Super Mario Forever 2012: Slightly-Fixed Edition"
   game_alt:
+  tag:
+  - Mods
   author: CST1229
   author_alt:
   type: international
@@ -1182,6 +1199,8 @@
   alias:
   - MFNY2026
   - TNY2026
+  tag:
+  - New Year
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -1496,6 +1515,8 @@
       file_url:
 - game: Mario Forever v1.16.1 Mod
   game_alt:
+  tag:
+  - Mods
   author: JUE13
   author_alt:
   type: international
@@ -1730,6 +1751,8 @@
   - MF大冲关3
   - MF大冲关第三季
   - MF大冲关 第三季
+  tag:
+  - Speedrun
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -1784,6 +1807,9 @@
   - PKMF7竞技赛整合
   - PK!MF7竞技赛整合
   - PK!MF7竞技赛关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -2417,6 +2443,8 @@
   file_url:
 - game: 4-Don't recruit yourself anymore
   game_alt:
+  tag:
+  - PK!MF
   author: AS-ChenFeng
   author_alt: Andrews123
   type: chinese
@@ -2448,6 +2476,7 @@
   game_alt:
   alias:
   - NSMF2042
+  tag:
   - April Fools
   author: Meteo Dream
   author_alt:
@@ -2526,6 +2555,8 @@
       file_url:
 - game: Mario Forever.EXE
   game_alt:
+  tag:
+  - Creepypasta
   author: Rainbow_Star
   author_alt:
   type: international
@@ -2632,6 +2663,8 @@
       file_url:
 - game: 温馨圣诞夜
   game_alt: Warm Christmas Eve
+  tag:
+  - Christmas
   author: 永恒守护
   author_alt:
   type: chinese
@@ -2702,6 +2735,8 @@
   alias:
   - MFCE
   - MF:CE
+  tag:
+  - Remake
   author: Meteo Dream
   author_alt:
   type: international
@@ -3060,6 +3095,8 @@
       file_url:
 - game: Summer Day
   game_alt:
+  tag:
+  - Contest
   author: Dr.Chaos Kirby
   author_alt:
   type: chinese
@@ -3124,6 +3161,8 @@
       file_url:
 - game: Mario Forever Cursed Crown
   game_alt:
+  tag:
+  - Halloween
   author: Mario Tube
   author_alt:
   type: international
@@ -3141,6 +3180,8 @@
   file_url:
 - game: Another Mario Forever Remake
   game_alt:
+  tag:
+  - Remake
   author: Konnich
   author_alt:
   type: international
@@ -3327,6 +3368,8 @@
   - PKMF6娱乐赛整合
   - PK!MF6娱乐赛整合
   - PK!MF6娱乐赛关卡集
+  tag:
+  - PK!MF
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -3915,6 +3958,9 @@
   - PKMF6竞技赛整合
   - PK!MF6竞技赛整合
   - PK!MF6竞技赛关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -4240,6 +4286,8 @@
   - MF大冲关2
   - MF大冲关第二季
   - MF大冲关 第二季
+  tag:
+  - Speedrun
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -5078,6 +5126,7 @@
   game_alt:
   alias:
   - MF2077
+  tag:
   - April Fools
   author: JUE13
   author_alt:
@@ -5117,6 +5166,8 @@
   - LNY2022
   - LNY 2022
   - LNY22
+  tag:
+  - New Year
   author: Forever Team
   author_alt:
   type: international
@@ -5268,6 +5319,8 @@
   - CNY2023
   - CNY 2023
   - CNY23
+  tag:
+  - New Year
   author: MF community
   author_alt:
   author_alias: Phantom Sapphire
@@ -5784,6 +5837,8 @@
       file_url:
 - game: MF Discord Contest 3 Results
   game_alt:
+  tag:
+  - Contest
   author: crist1919
   author_alt:
   type: international
@@ -6071,6 +6126,8 @@
   game_alt: Mario Forever Platform Running
   alias:
   - MF大冲关
+  tag:
+  - Speedrun
   author: 大爷
   author_alt: Daye
   type: chinese
@@ -6145,6 +6202,8 @@
       file_url:
 - game: Mario Forever Christmas Way
   game_alt:
+  tag:
+  - Christmas
   author: Mario Tube
   author_alt:
   type: international
@@ -6364,6 +6423,8 @@
       file_url:
 - game: 'Mario Forever: Human Laboratory Edition'
   game_alt:
+  tag:
+  - Mods
   author: JUE13
   author_alt:
   type: international
@@ -6823,6 +6884,9 @@
   game_alt: PK!MF5 Unofficial Collection
   alias:
   - PKMF5民间整合
+  tag:
+  - PK!MF
+  - Contest
   author: 数字1528君
   author_alt: Num1528
   type: chinese
@@ -6921,6 +6985,9 @@
   - PKMF5整合
   - PK!MF5整合
   - PK!MF5关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -7067,6 +7134,8 @@
   file_url:
 - game: Mario Forever, but Floor is Lava
   game_alt:
+  tag:
+  - Mods
   author: JUE13
   author_alt:
   type: international
@@ -7089,6 +7158,9 @@
   - PKMF4整合
   - PK!MF4整合
   - PK!MF4关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -7190,6 +7262,8 @@
   file_url:
 - game: Reversed Mario Forever
   game_alt:
+  tag:
+  - Mods
   author: JUE13
   author_alt:
   type: international
@@ -7388,6 +7462,9 @@
       file_url:
 - game: Mario Forever v4.4 Fixed Speedrun Edition
   game_alt:
+  tag:
+  - Mods
+  - Speedrun
   author: JUE13
   author_alt:
   type: international
@@ -7611,6 +7688,7 @@
   game_alt:
   alias:
   - MF2077
+  tag:
   - April Fools
   author: JUE13
   author_alt:
@@ -8669,6 +8747,9 @@
   file_url:
 - game: 'Mario Forever - New Year 2023: Christmas Remix'
   game_alt:
+  tag:
+  - New Year
+  - Christmas
   author: crist1919
   author_alt:
   type: international
@@ -8686,6 +8767,8 @@
   file_url:
 - game: Mario Forever And The Christmas Adventure 2022
   game_alt:
+  tag:
+  - Christmas
   author: Hyper Somario
   author_alt:
   type: international
@@ -9781,6 +9864,9 @@
   - PKMF3整合
   - PK!MF3整合
   - PK!MF3关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -11017,6 +11103,8 @@
   alias:
   - NY2022
   - New Year 2022
+  tag:
+  - New Year
   author: crist1919
   author_alt:
   type: international
@@ -11034,6 +11122,8 @@
   file_url:
 - game: Mario Forever - 2022 New Year
   game_alt:
+  tag:
+  - New Year
   author: 马里奥X7
   author_alt: MarioX7
   type: chinese
@@ -11086,6 +11176,8 @@
   - CNY2022
   - CNY 2022
   - CNY22
+  tag:
+  - New Year
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
@@ -11109,6 +11201,8 @@
   alias:
   - MFBNS
   - 新年
+  tag:
+  - New Year
   author: Ultra Team
   author_alt:
   type: chinese
@@ -11178,6 +11272,8 @@
       file_url:
 - game: 'Mario Forever: Christmas Way'
   game_alt:
+  tag:
+  - Christmas
   author: TheMarioGamer
   author_alt:
   type: international
@@ -11431,6 +11527,8 @@
   - LNY2021
   - LNY 2021
   - LNY21
+  tag:
+  - New Year
   author: Forever Team
   author_alt:
   type: international
@@ -11452,6 +11550,8 @@
   game_alt: MF Speedrun
   alias:
   - MF大冲关
+  tag:
+  - Speedrun
   author: s小s飞s侠s
   author_alt: xfx
   type: chinese
@@ -12466,6 +12566,7 @@
   game_alt:
   alias:
   - Mario Forever Cloud World
+  tag:
   - April Fools
   author: 无视我233
   author_alt: WSW
@@ -12841,6 +12942,8 @@
   - CNY2021
   - CNY 2021
   - CNY21
+  tag:
+  - New Year
   author: MF community
   author_alt:
   author_alias: TheMarioVariable
@@ -13150,6 +13253,8 @@
   - MFRb
   - MFRemake
   - b版
+  tag:
+  - Remake
   author: TheMarioVariable
   author_alt:
   type: international
@@ -13336,7 +13441,7 @@
       file_url:
 - game: 'Mario Forever: Santa is missing!'
   game_alt:
-  alias:
+  tag:
   - Christmas
   author: Forever Team
   author_alt:
@@ -13493,6 +13598,8 @@
   file_url:
 - game: Mario Forever Remake But is a Lakitu Invasion
   game_alt:
+  tag:
+  - Remake
   author: SerafimGWS
   author_alt:
   type: international
@@ -13553,6 +13660,8 @@
   game_alt:
   alias:
   - MFHP
+  tag:
+  - Halloween
   author: Forever Team
   author_alt:
   type: international
@@ -13768,6 +13877,9 @@
   - PKMF2整合
   - PK!MF2整合
   - PK!MF2关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: PK!MF 组委会
   author_alt: PK!MF OC
   type: chinese
@@ -13788,6 +13900,8 @@
   alias:
   - "MF: TLM"
   - MFTLM
+  tag:
+  - Multiplayer
   author: Can't Sleep
   author_alt:
   type: international
@@ -14617,6 +14731,8 @@
   file_url:
 - game: 'Mario Forever Remake Community Contest #1 RESULTS'
   game_alt:
+  tag:
+  - Contest
   author: Forever Team
   author_alt:
   author_alias: crist1919
@@ -15462,6 +15578,8 @@
   alias:
   - LNY2020
   - LNY 2020
+  tag:
+  - New Year
   author: JoséLPK.CF&MF
   author_alt:
   type: international
@@ -15479,6 +15597,8 @@
   file_url:
 - game: MRI2新年测试关卡
   game_alt: MRI2 New Year Test Level
+  tag:
+  - New Year
   author: w1194600239
   author_alt:
   type: chinese
@@ -15575,6 +15695,8 @@
   alias:
   - Mario Forever ...and Stolen Christmas
   - Mario Forever Stolen Christmas
+  tag:
+  - Christmas
   author: crist1919
   author_alt:
   type: international
@@ -15822,6 +15944,8 @@
   file_url:
 - game: Mario Forever Speedrun
   game_alt:
+  tag:
+  - Speedrun
   author: TheMarioVariable
   author_alt:
   type: international
@@ -16680,6 +16804,8 @@
   file_url:
 - game: Mario Forever Discord Contest Results
   game_alt:
+  tag:
+  - Contest
   author: Phantom Sapphire
   author_alt:
   type: international
@@ -17169,6 +17295,8 @@
   file_url:
 - game: Mario Forever Fanmade
   game_alt:
+  tag:
+  - Contest
   author: TheMarioVariable
   author_alt:
   type: international
@@ -17840,6 +17968,8 @@
   file_url:
 - game: 2017 Christmas Special Level
   game_alt:
+  tag:
+  - Christmas
   author: The Lemon Tree
   author_alt:
   type: international
@@ -17874,6 +18004,8 @@
   file_url:
 - game: Mario Forever Remastered
   game_alt:
+  tag:
+  - Remake
   author: Xykijun
   author_alt:
   type: international
@@ -18246,6 +18378,8 @@
       file_url:
 - game: 'Mario Worker: The Contest IV'
   game_alt:
+  tag:
+  - Contest
   author: TheMarioVariable
   author_alt:
   type: international
@@ -18325,7 +18459,7 @@
   file_url:
 - game: Mario Forever XMAS Edition
   game_alt:
-  alias:
+  tag:
   - Christmas
   author:
   - Xykijun
@@ -18351,6 +18485,8 @@
   - MFRa
   - MFRemake
   - a版
+  tag:
+  - Remake
   author: Mario Forever Remake Group
   author_alt: MF Remake Group (China)
   type: chinese
@@ -18412,6 +18548,8 @@
   alias:
   - MFAR
   - MFAER
+  tag:
+  - Remake
   author: Mario Forever Remake Group
   author_alt: MF Remake Group (China)
   type: chinese
@@ -18552,6 +18690,8 @@
   alias:
   - MFCS
   - MFCSB
+  tag:
+  - Christmas
   type: international
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever_Christmas_Special
   wiki_en_url:
@@ -19130,6 +19270,8 @@
   file_url:
 - game: 'Mario Forever: The Forum Contest RESULTS'
   game_alt:
+  tag:
+  - Contest
   author: crist1919
   author_alt:
   type: international
@@ -19461,6 +19603,9 @@
   - PKMF1整合
   - PK!MF1整合
   - PK!MF1关卡集
+  tag:
+  - PK!MF
+  - Contest
   author: 虹原翼
   author_alt: Lyh
   type: chinese
@@ -19542,6 +19687,8 @@
   file_url:
 - game: 'Mario Worker: The Contest III'
   game_alt:
+  tag:
+  - Contest
   author: TheMarioVariable
   author_alt:
   type: international
@@ -19970,6 +20117,8 @@
   file_url:
 - game: 'Mario Worker: The contest II'
   game_alt:
+  tag:
+  - Contest
   author: TheMarioVariable
   author_alt:
   type: international
@@ -20178,6 +20327,8 @@
   file_url:
 - game: My Christmas Level
   game_alt:
+  tag:
+  - Christmas
   author: '12345678904441'
   author_alt:
   type: international
@@ -20473,6 +20624,8 @@
   file_url:
 - game: 'Mario Worker: The contest'
   game_alt:
+  tag:
+  - Contest
   author: TheMarioVariable
   author_alt:
   type: international
