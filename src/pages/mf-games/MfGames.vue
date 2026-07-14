@@ -571,29 +571,9 @@ const filteredGames = computed(() => {
         if (matchingVers.length === entry.ver.length) {
           return entry;
         }
-        // 检查当前版本是否匹配
-        const currentMatches = entry.currentVer
-          ? (hasYearFilter ? parseInt(entry.currentVer.date.toISOString().split('-')[0]) == parseInt(year) : true) &&
-            (hasPlatformFilter ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name) === platform : true)
-          : false;
-        // 当前版本匹配则保持，否则切换到第一个匹配版本
-        let activeVerStr, activeVerStrAlt, activeCurrentVer;
-        if (currentMatches) {
-          activeVerStr = entry.currentVerStr;
-          activeVerStrAlt = entry.currentVerStrAlt;
-          activeCurrentVer = entry.currentVer;
-        } else {
-          const firstMatchingVer = matchingVers[0];
-          activeVerStr = Object.keys(firstMatchingVer)[0];
-          activeCurrentVer = parseVer(firstMatchingVer);
-          activeVerStrAlt = activeCurrentVer.ver_alt;
-        }
         return {
           ...entry,
           ver: matchingVers,
-          currentVer: activeCurrentVer,
-          currentVerStr: activeVerStr,
-          currentVerStrAlt: activeVerStrAlt,
           _original: entry,
         };
       })
@@ -913,6 +893,56 @@ function hasDataDownload(game) {
   return !!(game.currentVer.data_download_url || getDataResourceURL(game, lan.value));
 }
 
+// 当年份或平台筛选变化时，更新不匹配的条目的 currentVer 并重新排序
+watch([() => filter_option.value.year, () => filter_option.value.platform], () => {
+  const year = filter_option.value.year;
+  const platform = filter_option.value.platform;
+  const hasYearFilter = !isNaN(parseInt(year));
+  const hasPlatformFilter = platform !== "";
+
+  if (hasYearFilter || hasPlatformFilter) {
+    for (const entry of games.value) {
+      if (!Array.isArray(entry.ver)) continue;
+      const currentMatches = entry.currentVer
+        ? (hasYearFilter ? parseInt(entry.currentVer.date.toISOString().split('-')[0]) == parseInt(year) : true) &&
+          (hasPlatformFilter ? detectPlatform(entry.currentVerStr, entry.currentVer.file_name) === platform : true)
+        : false;
+      if (!currentMatches) {
+        // 按日期倒序找到最新匹配版本
+        const sorted = [...entry.ver].sort((a, b) => {
+          const dateA = a[Object.keys(a)[0]].date;
+          const dateB = b[Object.keys(b)[0]].date;
+          return dateB - dateA;
+        });
+        const match = sorted.find((verRaw) => {
+          const verKey = Object.keys(verRaw)[0];
+          const verObj = verRaw[verKey];
+          let ok = true;
+          if (hasYearFilter) ok = ok && parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(year);
+          if (hasPlatformFilter) ok = ok && detectPlatform(verKey, verObj.file_name) === platform;
+          return ok;
+        });
+        if (match) {
+          const verKey = Object.keys(match)[0];
+          entry.currentVer = parseVer(match);
+          entry.currentVerStr = verKey;
+          entry.currentVerStrAlt = entry.currentVer.ver_alt;
+        }
+      }
+    }
+  }
+
+  // 重新排序
+  if (sort_option.value.field === "date") {
+    games.value.sort((a, b) => sort_option.value.asc ? a.currentVer.date - b.currentVer.date : b.currentVer.date - a.currentVer.date);
+  } else if (sort_option.value.field === "game") {
+    games.value.sort((a, b) => sort_option.value.asc ? getName(a, lan.value).localeCompare(getName(b, lan.value)) : getName(b, lan.value).localeCompare(getName(a, lan.value)));
+  } else if (sort_option.value.field === "author") {
+    games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value)) : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value)));
+  } else {
+    games.value.sort((a, b) => b.currentVer.date - a.currentVer.date);
+  }
+});
 </script>
 
 <template>
