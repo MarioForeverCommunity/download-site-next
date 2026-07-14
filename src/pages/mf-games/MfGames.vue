@@ -390,18 +390,31 @@ const availableTags = computed(() => {
       }
     }
   }
-  return Array.from(tagSet).sort();
+  const sorted = Array.from(tagSet).sort();
+  // Add "Untagged" for games without tags
+  const hasUntagged = games.value.some(entry => !entry.tag || (Array.isArray(entry.tag) && entry.tag.length === 0));
+  if (hasUntagged) {
+    sorted.push("Untagged");
+  }
+  return sorted;
 });
 
 const tagGameCount = computed(() => {
   const countMap = {};
+  let untaggedCount = 0;
   for (const entry of games.value) {
     const tags = entry.tag
       ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag])
       : [];
+    if (tags.length === 0) {
+      untaggedCount++;
+    }
     for (const t of tags) {
       countMap[t] = (countMap[t] || 0) + 1;
     }
+  }
+  if (untaggedCount > 0) {
+    countMap["Untagged"] = untaggedCount;
   }
   return countMap;
 });
@@ -534,7 +547,12 @@ const filteredGames = computed(() => {
     )
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
       && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
-      && (filter_option.value.tags.length === 0 || (Array.isArray(a.tag) && a.tag.some(t => filter_option.value.tags.includes(t))) || (!Array.isArray(a.tag) && a.tag && filter_option.value.tags.includes(a.tag)))
+      && (filter_option.value.tags.length === 0 || (() => {
+        const aTags = a.tag ? (Array.isArray(a.tag) ? a.tag : [a.tag]) : [];
+        const hasUntagged = filter_option.value.tags.includes("Untagged");
+        const tagFilters = filter_option.value.tags.filter(t => t !== "Untagged");
+        return (tagFilters.length > 0 && aTags.some(t => tagFilters.includes(t))) || (hasUntagged && aTags.length === 0);
+      })())
       // Pre-check: entry must have at least one version matching year
       && (!hasYearFilter || (Array.isArray(a.ver) && a.ver.some((verRaw) => {
         const verObj = verRaw[Object.keys(verRaw)[0]];
@@ -628,7 +646,12 @@ const filteredGames = computed(() => {
         const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
         const softwareVal = entry.software || "mmf";
         const softwareMatch = filter_option.value.software === "" || softwareVal === filter_option.value.software;
-        const tagMatch = filter_option.value.tags.length === 0 || (Array.isArray(entry.tag) && entry.tag.some(t => filter_option.value.tags.includes(t))) || (!Array.isArray(entry.tag) && entry.tag && filter_option.value.tags.includes(entry.tag));
+        const entryTags = entry.tag ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag]) : [];
+        const hasUntagged = filter_option.value.tags.includes("Untagged");
+        const tagFilters = filter_option.value.tags.filter(t => t !== "Untagged");
+        const tagMatch = filter_option.value.tags.length === 0
+          || (tagFilters.length > 0 && entryTags.some(t => tagFilters.includes(t)))
+          || (hasUntagged && entryTags.length === 0);
         // 国际作品旧版file_name前缀处理
         let patchedVerRaw = { ...verRaw };
         if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {

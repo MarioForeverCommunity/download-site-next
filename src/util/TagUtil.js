@@ -21,6 +21,7 @@ const TAG_ZH_MAP = {
   "Horror": "恐怖",
   "Festive": "节日",
   "Other": "其他",
+  "Untagged": "未标签",
 };
 
 export function getTagLabel(tag, lan) {

@@ -7312,6 +7312,7 @@
   game_alt:
   tag:
   - Mod
+  - Hardcore
   author: JUE13
   author_alt:
   type: international
@@ -18390,6 +18391,8 @@
   game_alt:
   alias:
   - MFRev
+  tag:
+  - Demo
   author: TheMarioVariable
   author_alt:
   type: international
