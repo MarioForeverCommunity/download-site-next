@@ -139,8 +139,8 @@ export const navTop = [
     "link" : "./softendo.html",
     "option" : "Softendo 游戏目录",
     "option_alt" : "Softendo Games",
-    "title" : "Softendo / Buziol 游戏目录",
-    "title_alt" : "Softendo / Buziol Games Catalog",
+    "title" : "Softendo (Buziol Games) 游戏目录",
+    "title_alt" : "Catalog of Games Associated with Softendo (Buziol Games)",
     "show_en" : true
   },
 ];
