@@ -17955,6 +17955,8 @@
   file_url:
 - game: MFWW2—Carnival Ride
   game_alt:
+  tag:
+  - Demo
   author: 冻结的双重射手
   author_alt: Icy shooter
   type: chinese
@@ -19373,6 +19375,8 @@
   file_url:
 - game: Mario Forever ZX Project Remake
   game_alt:
+  tag:
+  - Demo
   author: 初音炽
   author_alt: Hatsune Chi
   type: chinese
@@ -21373,6 +21377,8 @@
       file_url:
 - game: Mario Forever World 12
   game_alt:
+  tag:
+  - Demo
   author: 超级马里奥神
   author_alt: Super Mario God
   type: chinese
@@ -21682,6 +21688,9 @@
   file_url:
 - game: CGL Hard Time Beta
   game_alt:
+  tag:
+  - Single Level
+  - Demo
   author: 虫蛊蠡
   author_alt: CGL
   type: chinese
