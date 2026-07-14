@@ -510,14 +510,6 @@ function toggleTempTag(tag) {
   }
 }
 
-function selectAllTags() {
-  tempSelectedTags.value = [...availableTags.value];
-}
-
-function deselectAllTags() {
-  tempSelectedTags.value = [];
-}
-
 function removeTempTag(tag) {
   const idx = tempSelectedTags.value.indexOf(tag);
   if (idx !== -1) {
@@ -1365,14 +1357,10 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
             }"
           >{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTempTag(tag)">&times;</span></span>
-          <button class="tag-clear-all" @click="deselectAllTags">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
+          <button class="tag-clear-all" @click="tempSelectedTags = []">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
         </div>
 
         <div class="tag-modal-body">
-          <div class="tag-modal-actions">
-            <button class="md-button" @click="selectAllTags">{{ lan === 'zh' ? '全选' : 'Select all' }}</button>
-            <button class="md-button" @click="deselectAllTags">{{ lan === 'zh' ? '取消全选' : 'Deselect all' }}</button>
-          </div>
           <div class="tag-modal-grid">
             <span
               v-for="tag in availableTags"
@@ -1818,16 +1806,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     padding: 1em 1.2em;
     overflow-y: auto;
     flex: 1;
-  }
-
-  .tag-modal-actions {
-    display: flex;
-    margin-bottom: 0.8em;
-  }
-
-  .tag-modal-actions .md-button {
-    font-size: 0.85em;
-    padding: 0.3em 0.7em;
   }
 
   .tag-modal-grid {
