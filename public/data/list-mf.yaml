@@ -38,6 +38,63 @@
   download_url_alt:
   file_name: MF2026 - ADVENTURE OF 4 WORLDS.rar
   file_url:
+- game: Dusk Tank
+  game_alt:
+  tag:
+  - Single Level
+  author: WN-MASKER
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-07-04
+  source_url: https://www.bilibili.com/video/BV1QZMw6SEij/
+  source_url_alt:
+  download_url: https://qfile.qq.com/q/kXVNKqfsMa
+  code:
+  download_url_alt:
+  file_name: DUSK TANK BY WN-MASKER(CHEAKEAKNCHN LIFE LEVEL 5).rar
+  file_url:
+- game: CHEAKEAKNCHN'S LIFE
+  game_alt:
+  author: WN-MASKER
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v0.5.0:
+      ver_alt:
+      date: 2026-07-08
+      source_url: https://www.bilibili.com/opus/1222561637690507267
+      source_url_alt:
+      download_url: https://qfile.qq.com/q/7bdIw1S9va
+      code:
+      download_url_alt:
+      file_name: CHEAKEAKNCHN'S LIFE MARIO LEVELS V0.5.0.rar
+      file_url:
+  - v0.5:
+      ver_alt:
+      date: 2026-07-08
+      source_url: https://www.bilibili.com/opus/1222561637690507267
+      source_url_alt:
+      download_url: https://qfile.qq.com/q/oPub15Rzd6
+      code:
+      download_url_alt:
+      file_name: CHEAKEAKNCHN'S LIFE MARIO LEVELS V0.5.rar
+      file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2026-06-26
+      source_url: https://www.bilibili.com/opus/1218147807190319113
+      source_url_alt:
+      download_url: ~https://qfile.qq.com/q/P1QjkCPzCU
+      code:
+      download_url_alt:
+      file_name: CHEAKEAKNCHN'S LIFE.rar
+      file_url:
 - game: Mario Forever The Lost Map for Android
   game_alt:
   author: Sanyario
@@ -17623,7 +17680,7 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver.:
+  ver:
   ver_alt:
   date: 2018-04-18
   source_url:
