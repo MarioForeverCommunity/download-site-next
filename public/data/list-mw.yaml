@@ -2574,6 +2574,8 @@
   file_name: MW大冲关V.smwp
   file_url:
 - game: "."
+  alias:
+  - 标点哥
   author: 們桃螕
   smwp_ver: v1.7.6
   date: 2020-12-25
@@ -2583,6 +2585,8 @@
   file_name: "..smwl"
   file_url:
 - game: "#"
+  alias:
+  - 标点哥
   author: 們桃螕
   smwp_ver: v1.7.6
   date: 2020-12-13
@@ -2592,6 +2596,8 @@
   file_name: "#.smwl"
   file_url:
 - game: "!"
+  alias:
+  - 标点哥
   author: 們桃螕
   smwp_ver: v1.7.6
   date: 2020-12-08
@@ -2601,6 +2607,8 @@
   file_name: "!.smwl"
   file_url:
 - game: ","
+  alias:
+  - 标点哥
   author: 們桃螕
   smwp_ver: v1.7.6
   date: 2020-12-01
@@ -3111,6 +3119,8 @@
   file_name: 新人试炼关卡.smwp
   file_url:
 - game: Moonlight
+  alias:
+  - 月光
   author: LLX奶油马里奥
   smwp_ver: v1.6.5
   date: 2020-02-14
