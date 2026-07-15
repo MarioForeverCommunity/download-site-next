@@ -135,10 +135,10 @@
   software: gamemaker
   ver:
   - 640x480:
-      year: 2003
+      year: 2008
       portable: Polski Marian/Polski Marian 640x480.exe
   - 800x600:
-      year: 2003
+      year: 2008
       portable: Polski Marian/Polski Marian 800x600.exe
 - name: Super Mario
   type: mario
