@@ -2863,6 +2863,8 @@
   data_file_name: Welcome back to Marioworker Bar 2020 自定义音乐.zip
   data_file_url:
 - game: Decade（绿色简化版）
+  alias:
+  - 十年
   author: LLX奶油马里奥
   description: 原作为10th Anniversary Album返场作品
   smwp_ver: v1.7.3
@@ -2882,6 +2884,8 @@
   file_name: Castle Maze.smwp
   file_url:
 - game: 10th Anniversary Album
+  alias:
+  - 十周年合集
   author: LLX奶油马里奥
   smwp_ver: v1.7.3
   date: 2020-06-25
@@ -3751,6 +3755,7 @@
 - game: Bowser's Empire
   alias:
   - BE
+  - 库巴帝国
   author: 大幽灵王
   smwp_ver: MW 4.4
   date: 2015-07-13
