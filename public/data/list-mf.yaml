@@ -390,6 +390,8 @@
       file_url:
 - game: "Mario Forever - PHANTOM'SMAGORIA: Battle of the Twins"
   game_alt:
+  alias:
+  - 超级饭桶兄弟
   author: Phantom Sapphire
   author_alt:
   type: international
@@ -426,6 +428,7 @@
   game_alt:
   alias:
   - MFMP
+  - 马造派对
   tag:
   - Multiplayer
   author: 绿色的糖果
@@ -1168,6 +1171,11 @@
       file_url:
 - game: Mario Forever for Android
   game_alt:
+  alias:
+  - MF Android
+  - MFAndroid
+  - MF安卓版
+  - 永远的马里奥安卓版
   author: Sanyario
   author_alt:
   type: international
@@ -2847,6 +2855,7 @@
   alias:
   - MFCE
   - MF:CE
+  - MF社区版
   tag:
   - Remake
   author: Meteo Dream
@@ -21446,6 +21455,7 @@
   alias:
   - WU
   - Underground World
+  - World灯
   author: nmnmoooh
   author_alt:
   type: chinese
