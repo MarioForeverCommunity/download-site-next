@@ -338,17 +338,17 @@ const getGameImage = (game) => {
           </select>&nbsp;
         </div>
         <div class="inline-block">
+          {{ lan == "en" ? "Genre" : "特色" }}
+          <select v-model="filter_option.genre">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option v-for="g in availableGenres" :key="g" :value="g">{{ getGenreLabel(g, lan) }}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
           {{ lan == "en" ? "Engine" : "制作软件" }}
           <select v-model="filter_option.software">
             <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
             <option v-for="s in availableSoftwares" :key="s" :value="s">{{ getSoftwareLabel(s) }}</option>
-          </select>&nbsp;
-        </div>
-        <div class="inline-block">
-          {{ lan == "en" ? "Genre" : "类型" }}
-          <select v-model="filter_option.genre">
-            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
-            <option v-for="g in availableGenres" :key="g" :value="g">{{ getGenreLabel(g, lan) }}</option>
           </select>&nbsp;
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
