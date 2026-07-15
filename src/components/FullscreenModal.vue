@@ -6,7 +6,7 @@ import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
-import { getTagLabel } from '../util/TagUtil.js';
+import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -359,38 +359,6 @@ const latestUpdate = computed(() => {
     return `${month} ${day}, ${year}`;
   }
 });
-
-// Tag 颜色预设
-const TAG_COLORS = [
-  { bg: "#e8f5e9", border: "#4caf50", text: "#2e7d32" },
-  { bg: "#e3f2fd", border: "#2196f3", text: "#1565c0" },
-  { bg: "#fff3e0", border: "#ff9800", text: "#e65100" },
-  { bg: "#fce4ec", border: "#e91e63", text: "#c2185b" },
-  { bg: "#f3e5f5", border: "#9c27b0", text: "#6a1b9a" },
-  { bg: "#e0f7fa", border: "#00bcd4", text: "#0097a7" },
-  { bg: "#fff8e1", border: "#ffc107", text: "#f57f17" },
-  { bg: "#efebe9", border: "#795548", text: "#4e342e" },
-];
-
-const TAG_COLORS_DARK = [
-  { bg: "#1b3a1e", border: "#4caf50", text: "#81c784" },
-  { bg: "#1a2a3a", border: "#2196f3", text: "#64b5f6" },
-  { bg: "#3a2a1a", border: "#ff9800", text: "#ffb74d" },
-  { bg: "#3a1a2a", border: "#e91e63", text: "#f06292" },
-  { bg: "#2a1a3a", border: "#9c27b0", text: "#ba68c8" },
-  { bg: "#1a3a3a", border: "#00bcd4", text: "#4dd0e1" },
-  { bg: "#3a3a1a", border: "#ffc107", text: "#ffd54f" },
-  { bg: "#2a2220", border: "#795548", text: "#a1887f" },
-];
-
-function getTagColorIndex(tagName) {
-  let hash = 0;
-  for (let i = 0; i < tagName.length; i++) {
-    hash = ((hash << 5) - hash) + tagName.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return Math.abs(hash) % TAG_COLORS.length;
-}
 
 const gameTags = computed(() => {
   if (!props.game || !props.game.tag) return [];
@@ -999,12 +967,12 @@ const nextImage = () => {
                 :key="index"
                 class="tag-pill"
                 :style="{
-                  '--tag-bg': TAG_COLORS[getTagColorIndex(tagItem)].bg,
-                  '--tag-border': TAG_COLORS[getTagColorIndex(tagItem)].border,
-                  '--tag-text': TAG_COLORS[getTagColorIndex(tagItem)].text,
-                  '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].bg,
-                  '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].border,
-                  '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tagItem)].text,
+                  '--tag-bg': getTagColor(tagItem, false).bg,
+                  '--tag-border': getTagColor(tagItem, false).border,
+                  '--tag-text': getTagColor(tagItem, false).text,
+                  '--tag-bg-dark': getTagColor(tagItem, true).bg,
+                  '--tag-border-dark': getTagColor(tagItem, true).border,
+                  '--tag-text-dark': getTagColor(tagItem, true).text,
                 }"
               >{{ getTagLabel(tagItem, lan) }}</span>
             </div>

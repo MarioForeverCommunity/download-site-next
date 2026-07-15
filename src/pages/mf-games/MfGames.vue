@@ -14,7 +14,7 @@ import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
-import { getTagLabel } from "../../util/TagUtil.js"
+import { getTagLabel, getTagColor } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
 import Tooltip from '../../components/ToolTip.vue';
@@ -463,38 +463,6 @@ function clearFilter() {
 
 const showTagModal = ref(false);
 const tempSelectedTags = ref([]);
-
-// Tag 颜色预设
-const TAG_COLORS = [
-  { bg: "#e8f5e9", border: "#4caf50", text: "#2e7d32" },
-  { bg: "#e3f2fd", border: "#2196f3", text: "#1565c0" },
-  { bg: "#fff3e0", border: "#ff9800", text: "#e65100" },
-  { bg: "#fce4ec", border: "#e91e63", text: "#c2185b" },
-  { bg: "#f3e5f5", border: "#9c27b0", text: "#6a1b9a" },
-  { bg: "#e0f7fa", border: "#00bcd4", text: "#0097a7" },
-  { bg: "#fff8e1", border: "#ffc107", text: "#f57f17" },
-  { bg: "#efebe9", border: "#795548", text: "#4e342e" },
-];
-
-const TAG_COLORS_DARK = [
-  { bg: "#1b3a1e", border: "#4caf50", text: "#81c784" },
-  { bg: "#1a2a3a", border: "#2196f3", text: "#64b5f6" },
-  { bg: "#3a2a1a", border: "#ff9800", text: "#ffb74d" },
-  { bg: "#3a1a2a", border: "#e91e63", text: "#f06292" },
-  { bg: "#2a1a3a", border: "#9c27b0", text: "#ba68c8" },
-  { bg: "#1a3a3a", border: "#00bcd4", text: "#4dd0e1" },
-  { bg: "#3a3a1a", border: "#ffc107", text: "#ffd54f" },
-  { bg: "#2a2220", border: "#795548", text: "#a1887f" },
-];
-
-function getTagColorIndex(tagName) {
-  let hash = 0;
-  for (let i = 0; i < tagName.length; i++) {
-    hash = ((hash << 5) - hash) + tagName.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return Math.abs(hash) % TAG_COLORS.length;
-}
 
 function openTagModal() {
   tempSelectedTags.value = [...filter_option.value.tags];
@@ -1389,12 +1357,12 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             :key="tag"
             class="tag-pill tag-pill-sm tag-pill-selected"
             :style="{
-              '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
-              '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
-              '--tag-text': TAG_COLORS[getTagColorIndex(tag)].text,
-              '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].bg,
-              '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
-              '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
+              '--tag-bg': getTagColor(tag, false).bg,
+              '--tag-border': getTagColor(tag, false).border,
+              '--tag-text': getTagColor(tag, false).text,
+              '--tag-bg-dark': getTagColor(tag, true).bg,
+              '--tag-border-dark': getTagColor(tag, true).border,
+              '--tag-text-dark': getTagColor(tag, true).text,
             }"
           >{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTempTag(tag)">&times;</span></span>
           <button class="tag-clear-all" @click="tempSelectedTags = []">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
@@ -1408,12 +1376,12 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               class="tag-pill"
               :class="{ 'tag-pill-active': tempSelectedTags.includes(tag) }"
               :style="{
-                '--tag-bg': TAG_COLORS[getTagColorIndex(tag)].bg,
-                '--tag-border': TAG_COLORS[getTagColorIndex(tag)].border,
-                '--tag-text': TAG_COLORS[getTagColorIndex(tag)].text,
-                '--tag-bg-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].bg,
-                '--tag-border-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].border,
-                '--tag-text-dark': TAG_COLORS_DARK[getTagColorIndex(tag)].text,
+                '--tag-bg': getTagColor(tag, false).bg,
+                '--tag-border': getTagColor(tag, false).border,
+                '--tag-text': getTagColor(tag, false).text,
+                '--tag-bg-dark': getTagColor(tag, true).bg,
+                '--tag-border-dark': getTagColor(tag, true).border,
+                '--tag-text-dark': getTagColor(tag, true).text,
               }"
               @click="toggleTempTag(tag)"
             >
