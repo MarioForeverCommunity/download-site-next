@@ -5,7 +5,7 @@ import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoIma
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
-import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
+import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, getGenreLabel } from '../util/SoftendoUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import MarkdownIt from 'markdown-it';
 
@@ -889,6 +889,11 @@ const nextImage = () => {
           <div v-if="isSoftendo" class="software-info">
             <span class="software-label">{{ lan === 'zh' ? '制作软件' : 'Made with' }}: </span>
             <span class="software-value">{{ Array.isArray(getSoftwareLabel(game.software)) ? getSoftwareLabel(game.software).join(", ") : getSoftwareLabel(game.software) }}</span>
+          </div>
+
+          <div v-if="isSoftendo && game.genre && game.genre.length > 0" class="software-info">
+            <span class="software-label">{{ lan === 'zh' ? '类型' : 'Genre' }}: </span>
+            <span class="software-value">{{ Array.isArray(game.genre) ? game.genre.map(g => getGenreLabel(g, lan)).join(", ") : getGenreLabel(game.genre, lan) }}</span>
           </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
