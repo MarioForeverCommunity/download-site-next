@@ -776,6 +776,7 @@
       current: true
       ver_alt:
       date: 2025-11-26
+      software: gamemaker
       source_url: https://marioforever.space/topic/20/
       source_url_alt:
       download_url: https://github.com/toggins/KlaEditor/releases/tag/0.3
@@ -9372,7 +9373,7 @@
   game_alt:
   tag:
   - Gun
-  software: other
+  software: gamemaker
   author: Петър Петров
   author_alt:
   type: international
@@ -12004,6 +12005,7 @@
   author: Chahine
   author_alt:
   type: international
+  software: gamemaker
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
   ver:
@@ -12139,17 +12141,8 @@
       file_url:
   - Lost World 3:
       ver_alt:
-      date: 2020-06-19
-      source_url:
-      source_url_alt:
-      download_url:
-      code:
-      download_url_alt:
-      file_name: MFTLW.zip
-      file_url:
-  - Lost World 3:
-      ver_alt:
       date: 2018-07-30
+      software: mmf
       source_url:
       source_url_alt:
       download_url:
@@ -12160,6 +12153,7 @@
   - Lost World 2:
       ver_alt:
       date: 2018-04-17
+      software: mmf
       source_url:
       source_url_alt:
       download_url:
@@ -12170,6 +12164,7 @@
   - Lost World 1:
       ver_alt:
       date: 2018-04-16
+      software: mmf
       source_url:
       source_url_alt:
       download_url:
@@ -14929,7 +14924,7 @@
       date: 2020-06-01
       source_url: https://www.marioforever.net/thread-495-1-1.html
       source_url_alt:
-      download_url: https://pan.lanzouj.com/id7nruf
+      download_url: ~https://pan.lanzouj.com/id7nruf
       code:
       download_url_alt:
       file_name: w11++（1.0.4）.exe
@@ -14939,7 +14934,7 @@
       date: 2020-05-30
       source_url: https://www.marioforever.net/thread-495-1-1.html
       source_url_alt:
-      download_url: https://lanzoux.com/id59yvc
+      download_url: ~https://lanzoux.com/id59yvc
       code:
       download_url_alt:
       file_name: w11++（1.0.3）.exe
@@ -14949,7 +14944,7 @@
       date: 2020-05-30
       source_url: https://www.marioforever.net/thread-495-1-1.html
       source_url_alt:
-      download_url: https://lanzoux.com/id59m0j
+      download_url: ~https://lanzoux.com/id59m0j
       code:
       download_url_alt:
       file_name: w11++（1.0.2）.exe
@@ -14959,7 +14954,7 @@
       date: 2020-05-30
       source_url: https://www.marioforever.net/thread-495-1-1.html
       source_url_alt:
-      download_url: https://lanzoux.com/id4sesh
+      download_url: ~https://lanzoux.com/id4sesh
       code:
       download_url_alt:
       file_name: w11++（1.0.1）.exe
@@ -14969,7 +14964,7 @@
       date: 2020-05-29
       source_url: https://www.marioforever.net/thread-495-1-1.html
       source_url_alt:
-      download_url: https://lanzoux.com/id4re9c
+      download_url: ~https://lanzoux.com/id4re9c
       code:
       download_url_alt:
       file_name: w11++.exe
@@ -15197,7 +15192,7 @@
       date: 2020-03-07
       source_url: https://www.marioforever.net/thread-400-1-1.html
       source_url_alt:
-      download_url: https://www.lanzoux.com/ia0p0vg
+      download_url: ~https://www.lanzoux.com/ia0p0vg
       code:
       download_url_alt:
       file_name: Mario Forever Eas Village.exe
@@ -15207,7 +15202,7 @@
       date: 2020-03-06
       source_url: https://www.marioforever.net/thread-400-1-1.html
       source_url_alt:
-      download_url: https://www.lanzous.com/i9znb8b
+      download_url: ~https://www.lanzous.com/i9znb8b
       code:
       download_url_alt:
       file_name: Mario Forever Eas Village.rar
@@ -15785,7 +15780,7 @@
       date: 2019-08-28
       source_url: https://tieba.baidu.com/p/6233168612
       source_url_alt:
-      download_url: https://pan.lanzouj.com/i5ugech
+      download_url: ~https://pan.lanzouj.com/i5ugech
       code:
       download_url_alt:
       file_name: Mario Forever Rainbow Land 1.1.rar
@@ -15893,7 +15888,7 @@
   date: 2020-01-25
   source_url: https://www.marioforever.net/thread-313-1-1.html
   source_url_alt:
-  download_url: https://pan.lanzouj.com/i8uzfbe
+  download_url: ~https://pan.lanzouj.com/i8uzfbe
   code:
   download_url_alt:
   file_name: MRI2新年测试关卡.rar
@@ -16016,7 +16011,7 @@
   date: 2019-12-07
   source_url: https://www.marioforever.net/thread-250-1-1.html
   source_url_alt:
-  download_url: https://pan.lanzouj.com/i7vtubi
+  download_url: https://wwyd.lanzout.com/idpF70wb3csh
   code:
   download_url_alt:
   file_name: Mario Forever Save Zqh.rar
@@ -17933,7 +17928,7 @@
   date: 2018-02-21
   source_url: https://tieba.baidu.com/p/5559564654
   source_url_alt:
-  download_url: https://pan.lanzouj.com/i0j9vqf
+  download_url: ~https://pan.lanzouj.com/i0j9vqf
   code:
   download_url_alt:
   file_name: Mario Forever Another Space.7z
@@ -18290,7 +18285,7 @@
   date: 2018-01-13
   source_url: https://www.marioforever.net/thread-46-1-1.html
   source_url_alt:
-  download_url: https://pan.lanzouj.com/i2d7tub
+  download_url: ~https://pan.lanzouj.com/i2d7tub
   code:
   download_url_alt:
   file_name: Mario Forever Dream Escape压缩音乐版.rar
@@ -19363,6 +19358,7 @@
   author: LuNiney
   author_alt:
   type: international
+  software: gamemaker
   wiki_zh_url:
   wiki_en_url:
   ver: Demo

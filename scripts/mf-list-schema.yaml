@@ -75,6 +75,7 @@ definitions:
             - mmf
             - godot
             - gamemaker
+            - flash
             - other
       required:
       - game
@@ -175,6 +176,14 @@ definitions:
         anyOf:
         - type: 'null'
         - type: string
+      software:
+        type: string
+        enum:
+          - mmf
+          - godot
+          - gamemaker
+          - flash
+          - other
     required:
     - date
     title: varObj

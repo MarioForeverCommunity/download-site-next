@@ -697,13 +697,28 @@ const renderedDescription = computed(() => {
   return md.render(markdownContent.value);
 });
 
+// 检测 software，支持版本级别优先
+function detectSoftware(entry, verObj) {
+  // 版本级别优先
+  if (verObj && verObj.software) {
+    return verObj.software;
+  }
+  // 游戏级别
+  if (entry.software) {
+    return entry.software;
+  }
+  return "mmf";
+}
+
 const softwareLabel = computed(() => {
   if (!props.game) return null;
-  const software = props.game.software || 'mmf';
+  const software = detectSoftware(props.game, props.game.currentVer);
   const labels = {
     mmf: { zh: 'Multimedia Fusion / Clickteam Fusion', en: 'Multimedia Fusion / Clickteam Fusion' },
     godot: { zh: 'Godot Engine', en: 'Godot Engine' },
     gamemaker: { zh: 'GameMaker', en: 'GameMaker' },
+    flash: { zh: 'Flash', en: 'Flash' },
+    klik: { zh: 'Klik & Play / The Games Factory', en: 'Klik & Play / The Games Factory' },
     other: { zh: '其他', en: 'Other' }
   };
   return labels[software] ? labels[software][props.lan] : software;

@@ -437,6 +437,18 @@ function detectPlatform(verKey, fileName) {
   return "Windows";
 }
 
+function detectSoftware(entry, verObj) {
+  // 版本级别优先
+  if (verObj && verObj.software) {
+    return verObj.software;
+  }
+  // 游戏级别
+  if (entry.software) {
+    return entry.software;
+  }
+  return "mmf";
+}
+
 function clearName() {
   filter_option.value.name = "";
 }
@@ -522,8 +534,10 @@ const expandAllVersions = ref(false);
 const filteredGames = computed(() => {
   const year = filter_option.value.year;
   const platform = filter_option.value.platform;
+  const software = filter_option.value.software;
   const hasYearFilter = !isNaN(parseInt(year));
   const hasPlatformFilter = platform !== "";
+  const hasSoftwareFilter = software !== "";
 
   const list = games.value.filter((a) =>
     (
@@ -538,7 +552,6 @@ const filteredGames = computed(() => {
         }))
     )
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
-      && (filter_option.value.software === "" || (a.software || "mmf") === filter_option.value.software)
       && (filter_option.value.tags.length === 0 || (() => {
         const aTags = a.tag ? (Array.isArray(a.tag) ? a.tag : [a.tag]) : [];
         const hasUntagged = filter_option.value.tags.includes("Untagged");
@@ -556,9 +569,14 @@ const filteredGames = computed(() => {
         const verObj = verRaw[verKey];
         return detectPlatform(verKey, verObj.file_name) === platform;
       })))
+      // Pre-check: entry must have at least one version matching software
+      && (!hasSoftwareFilter || (Array.isArray(a.ver) && a.ver.some((verRaw) => {
+        const verObj = verRaw[Object.keys(verRaw)[0]];
+        return detectSoftware(a, verObj) === software;
+      })))
   );
   if (!expandAllVersions.value) {
-    if (!hasYearFilter && !hasPlatformFilter) {
+    if (!hasYearFilter && !hasPlatformFilter && !hasSoftwareFilter) {
       return list;
     }
     return list
@@ -574,6 +592,9 @@ const filteredGames = computed(() => {
           if (hasPlatformFilter) {
             match = match && detectPlatform(verKey, verObj.file_name) === platform;
           }
+          if (hasSoftwareFilter) {
+            match = match && detectSoftware(entry, verObj) === software;
+          }
           return match;
         });
         if (matchingVers.length === 0) return null;
@@ -581,9 +602,28 @@ const filteredGames = computed(() => {
         if (matchingVers.length === entry.ver.length) {
           return entry;
         }
+        // 检查当前版本是否匹配，若不匹配则切换到第一个匹配版本
+        const currentMatches = entry.currentVer && matchingVers.some(verRaw => {
+          const verKey = Object.keys(verRaw)[0];
+          return verKey === entry.currentVerStr;
+        });
+        if (currentMatches) {
+          return {
+            ...entry,
+            ver: matchingVers,
+            _original: entry,
+          };
+        }
+        // 切换到第一个匹配版本
+        const firstMatchingVerRaw = matchingVers[0];
+        const firstMatchingVerKey = Object.keys(firstMatchingVerRaw)[0];
+        const firstMatchingVerObj = firstMatchingVerRaw[firstMatchingVerKey];
         return {
           ...entry,
           ver: matchingVers,
+          currentVer: firstMatchingVerObj,
+          currentVerStr: firstMatchingVerKey,
+          currentVerStrAlt: firstMatchingVerObj.ver_alt || firstMatchingVerKey,
           _original: entry,
         };
       })
@@ -636,7 +676,7 @@ const filteredGames = computed(() => {
         const typeMatch = filter_option.value.type === "" || typeVal == filter_option.value.type || filter_option.value.force;
         const platformVal = detectPlatform(verKey, verObj.file_name);
         const platformMatch = filter_option.value.platform === "" || platformVal === filter_option.value.platform;
-        const softwareVal = entry.software || "mmf";
+        const softwareVal = detectSoftware(entry, verObj);
         const softwareMatch = filter_option.value.software === "" || softwareVal === filter_option.value.software;
         const entryTags = entry.tag ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag]) : [];
         const hasUntagged = filter_option.value.tags.includes("Untagged");
@@ -1758,6 +1798,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
   }
 
   .tag-modal-header {
