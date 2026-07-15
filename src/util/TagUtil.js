@@ -83,27 +83,6 @@ const TAG_COLOR_MAP_DARK = {
   "Untagged":     { bg: "#2a2a2a", border: "#E5E5E5", text: "#E5E5E5" },
 };
 
-const TAG_COLORS = [
-  { bg: "#e8f5e9", border: "#4caf50", text: "#2e7d32" },
-  { bg: "#e3f2fd", border: "#2196f3", text: "#1565c0" },
-  { bg: "#fff3e0", border: "#ff9800", text: "#e65100" },
-  { bg: "#fce4ec", border: "#e91e63", text: "#c2185b" },
-  { bg: "#f3e5f5", border: "#9c27b0", text: "#6a1b9a" },
-  { bg: "#e0f7fa", border: "#00bcd4", text: "#0097a7" },
-  { bg: "#fff8e1", border: "#ffc107", text: "#f57f17" },
-  { bg: "#efebe9", border: "#795548", text: "#4e342e" },
-];
-
-const TAG_COLORS_DARK = [
-  { bg: "#1b3a1e", border: "#4caf50", text: "#81c784" },
-  { bg: "#1a2a3a", border: "#2196f3", text: "#64b5f6" },
-  { bg: "#3a2a1a", border: "#ff9800", text: "#ffb74d" },
-  { bg: "#3a1a2a", border: "#e91e63", text: "#f06292" },
-  { bg: "#2a1a3a", border: "#9c27b0", text: "#ba68c8" },
-  { bg: "#1a3a3a", border: "#00bcd4", text: "#4dd0e1" },
-  { bg: "#3a3a1a", border: "#ffc107", text: "#ffd54f" },
-  { bg: "#2a2220", border: "#795548", text: "#a1887f" },
-];
 // 未知标签的回退颜色
 const FALLBACK_TAG_COLOR = { bg: "#ececec", border: "#b5b5b5", text: "#888888" };
 const FALLBACK_TAG_COLOR_DARK = { bg: "#2a2a2a", border: "#666666", text: "#aaaaaa" };

@@ -353,3 +353,23 @@ export function getSoftendoYearRange(entry) {
   const year = initialYear !== null ? initialYear : latestYear;
   return { initialYear: year, latestYear: year, display: String(year) };
 }
+
+const GENRE_LABELS_ZH = {
+  "Endless": "无尽",
+  "Find and Click": "益智",
+  "Minix": "Minix",
+  "Multiplayer": "多人",
+  "Other": "其他",
+  "Platformer": "平台跳跃",
+  "Puzzle": "解谜",
+  "STG": "射击",
+  "Sandbox": "沙盒",
+  "Vertical": "纵向"
+};
+
+export function getGenreLabel(genre, lan) {
+  if (lan === "zh") {
+    return GENRE_LABELS_ZH[genre] || genre;
+  }
+  return genre;
+}

@@ -408,13 +408,24 @@ const downloadEntries = computed(() => {
           } else {
             portableName = props.lan === 'zh' ? '绿色版' : 'Portable';
           }
+          const rawLabel = (p.label || '').toLowerCase();
+          const ext = p.url ? p.url.split('.').pop().toLowerCase().split('?')[0] : '';
+          // 从 label 前缀或 URL 扩展名判断文件类型
+          const labelMatch = (keyword) => rawLabel === keyword || rawLabel.startsWith(keyword + ' ') || rawLabel.startsWith(keyword + '-');
+          const extMatch = (keyword) => ext === keyword;
+          const portableFileType =
+            (labelMatch('exe') || extMatch('exe')) ? 'exe'
+              : (labelMatch('swf') || extMatch('swf')) ? 'swf'
+                : (labelMatch('zip') || labelMatch('7z') || extMatch('zip') || extMatch('7z')) ? 'archive'
+                  : null;
           entries.push({
             version: props.lan === 'zh' ? `${portableName} (${verKey})` : `${portableName} (${verKey})`,
             url: p.url,
             isRepackaged: false,
             repacker: null,
             isData: false,
-            isSoftendoPortable: true
+            isSoftendoPortable: true,
+            portableFileType
           });
         }
       }
@@ -1024,7 +1035,10 @@ const nextImage = () => {
                   :href="entry.url"
                   target="_blank"
                   class="download-link"
-                  :class="{ 'has-toolbar': entry.hasToolbar }"
+                  :class="[
+                    entry.hasToolbar ? 'has-toolbar' : '',
+                    entry.portableFileType ? 'portable-' + entry.portableFileType : ''
+                  ]"
                   @click="handleSoftendoDownloadClick($event, entry)"
                 >{{ entry.version }}</a>
                 <span v-if="fileSizeMap[entry.url]" class="file-size-label">
@@ -1381,6 +1395,54 @@ const nextImage = () => {
 
   body.dark .download-link.has-toolbar:hover {
     color: #e67e22;
+  }
+
+  .download-link.portable-exe {
+    color: #00D84F;
+  }
+
+  .download-link.portable-exe:hover {
+    color: #33FF7A;
+  }
+
+  body.dark .download-link.portable-exe {
+    color: #00D84F;
+  }
+
+  body.dark .download-link.portable-exe:hover {
+    color: #33FF7A;
+  }
+
+  .download-link.portable-swf {
+    color: #FF5B5B;
+  }
+
+  .download-link.portable-swf:hover {
+    color: #FF8A8A;
+  }
+
+  body.dark .download-link.portable-swf {
+    color: #FF5B5B;
+  }
+
+  body.dark .download-link.portable-swf:hover {
+    color: #FF8A8A;
+  }
+
+  .download-link.portable-archive {
+    color: #BD4DE2;
+  }
+
+  .download-link.portable-archive:hover {
+    color: #D47AEE;
+  }
+
+  body.dark .download-link.portable-archive {
+    color: #BD4DE2;
+  }
+
+  body.dark .download-link.portable-archive:hover {
+    color: #D47AEE;
   }
 
   .source-link.invalid {

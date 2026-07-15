@@ -4,6 +4,8 @@
   - MFBP
   type: mario
   software: gamemaker
+  genre:
+  - Puzzle
   ver:
   - "2018":
       year: 2018
@@ -30,6 +32,8 @@
   - MFG
   type: mario
   software: gamemaker
+  genre:
+  - STG
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -61,6 +65,10 @@
       portable:
 - game: Mario Games
   type: mario
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   software: gamemaker
   year: 2009
   installer: Mario Games.exe
@@ -68,6 +76,9 @@
 - game: Mario Online
   type: mario
   software: gamemaker
+  genre:
+  - Platformer
+  - Endless
   ver:
   - "2017 re-release":
       year: 2017
@@ -83,6 +94,8 @@
   type: mario
   nsmf: true
   software: gamemaker
+  genre:
+  - Platformer
   ver:
   - "2016-08-12 Pack":
       year: 2016
@@ -127,11 +140,18 @@
   type: mario
   nsmf: true
   software: gamemaker
+  genre:
+  - Sandbox
+  - Platformer
   year: 2018
   installer: Mario Forever World Maker.exe
   portable: Mario Forever World Maker.zip
 - game: Polski Marian
   type: mario
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   software: gamemaker
   ver:
   - 640x480:
@@ -143,11 +163,15 @@
 - name: Super Mario
   type: mario
   software: gamemaker
+  genre:
+  - Platformer
   year: 2009
   installer: Super Mario.exe
   portable: Super Mario.zip
 - game: Mario Forever Flash
   type: mff
+  genre:
+  - Platformer
   ver:
   - "2011":
       year: 2011
@@ -166,12 +190,16 @@
         swf: Mario Forever Flash Easier.swf
 - game: Mario DS
   type: mff
+  genre:
+  - Platformer
   year: 2010
   portable:
     exe: Mario DS.exe
     swf: Mario DS.swf
 - game: Mario Jeux
   type: mff
+  genre:
+  - Platformer
   year: 2009
   portable:
     exe: Mario Jeux.exe
@@ -179,6 +207,8 @@
 - game: Mario Super
   type: mff
   year: 2009
+  genre:
+  - Platformer
   portable:
     exe:
     - Mario Super.exe
@@ -186,17 +216,22 @@
     swf: Mario Super.swf
 - game: New Mario Flash
   type: mff
+  genre:
+  - Platformer
   year: 2010
   portable:
     swf: New Mario Flash.swf
 - game: New Mario Bros 2
   type: mff
+  genre:
+  - Platformer
   year: 2011
   portable:
     swf: New Mario Bros 2.swf
 - game: Squario
   type: mff
-  year: 2009
+  genre:
+  - Platformer
   ver:
   - "Original":
       year: 2009
@@ -209,17 +244,23 @@
         swf: Squario无限生命版.swf
 - game: Squario 2
   type: mff
+  genre:
+  - Platformer
   year: 2009
   portable:
     swf: Squario 2.swf
 - game: Super Furio
   type: mff
+  genre:
+  - Platformer
   year: 2009
   portable:
     exe: Super Furio.exe
     swf: Super Furio.swf
 - game: Super Furio Desert Adventures
   type: mff
+  genre:
+  - Platformer
   year: 2009
   portable:
     exe: Super Furio Adventures.exe
@@ -228,17 +269,23 @@
     - Super Furio Desert Adventures (2).swf
 - game: Super Furio and Monsters Bros
   type: mff
+  genre:
+  - Platformer
   year: 2009
   portable:
     exe: Super Furio and Monsters.exe
     swf: Super Furio and Monsters.swf
 - name: Super Buddy 2
   type: mff
+  genre:
+  - Platformer
   year: 2009
   portable:
     swf: Super Buddy 2.swf
 - name: Super Mario Bombastic
   type: flash
+  genre:
+  - Other
   ver:
   - "2017":
       year: 2017
@@ -255,6 +302,8 @@
         - Super Mario Bombastic (2).swf
 - name: Super Mario Bros and Friends
   type: flash
+  genre:
+  - Find and Click
   year: 2011
   installer: Super Mario Bros and Friends (with toolbar).exe
   portable:
@@ -262,6 +311,10 @@
     swf: Super Mario Bros And Friends.swf
 - name: Super Mario Castle
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Vertical
   year: 2017
   installer: Super Mario Castle.exe
   portable:
@@ -269,6 +322,10 @@
     zip: Super Mario Castle.zip
 - name: Super Mario Castle 2
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Vertical
   ver:
   - "2017":
       year: 2017
@@ -283,6 +340,8 @@
         zip: Super Mario Castle 2 (2011).zip
 - name: Super Mario Coins
   type: flash
+  genre:
+  - Find and Click
   ver:
   - "2017":
       year: 2017
@@ -297,6 +356,10 @@
         swf: Super Mario Coins.swf
 - name: Super Mario Dark Dungeon
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Vertical
   ver:
   - "2017":
       year: 2017
@@ -314,6 +377,8 @@
         - Super Mario Dark Dungeon (3).swf
 - name: Mario Galaxy the Star Finder
   type: flash
+  genre:
+  - Find and Click
   ver:
   - "2017 re-release":
       year: 2017
@@ -332,6 +397,9 @@
         exe: Super Mario Galaxy the Star Finder.exe
 - name: Super Mario Ice Tower
   type: flash
+  genre:
+  - Platformer
+  - Endless
   year: 2010
   installer: Super Mario Ice Tower (with toolbar).exe
   portable:
@@ -339,17 +407,25 @@
     zip: Super Mario Ice Tower.zip
 - name: Super Mario Peach Party (CONTENT WARNING)
   type: flash
+  genre:
+  - Find and Click
   year: 2011
   installer: Super Mario Peach Party (CONTENT WARNING) (with toolbar).exe
   portable:
     exe: Super Mario Peach Party (CONTENT WARNING).exe
 - name: Super Mario Peach Party 3 (CONTENT WARNING)
   type: flash
+  genre:
+  - Find and Click
   year: 2011
   portable:
     swf: Super Mario Peach Party 3 (CONTENT WARNING).swf
 - name: Mario Play
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   year: 2010
   installer: Super Mario Play (with toolbar).exe
   portable:
@@ -357,6 +433,10 @@
     zip: Super Mario Play.zip
 - name: Super Mario Playgrounds
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   year: 2011
   installer: Super Mario Playgrounds (with toolbar).exe
   portable:
@@ -366,6 +446,10 @@
     swf: Super Mario Playgrounds.swf
 - name: Super Mario Playgrounds 2
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   year: 2011
   installer: Super Mario Playgrounds 2 (with toolbar).exe
   portable:
@@ -374,6 +458,8 @@
 - name: Super Mario Shooten
   type: flash
   software: mmf
+  genre:
+  - Multiplayer
   ver:
   - "2003 ver, 2017 re-release":
       year: 2017
@@ -391,12 +477,16 @@
         zip: Super Mario Shooten (2003) (Polish).zip
 - name: Super Mario Starshine
   type: flash
+  genre:
+  - Find and Click
   year: 2011
   installer: Super Mario Starshine (with toolbar).exe
   portable:
     exe: Super Mario Starshine.exe
 - name: Super Mario The Curibo Shoe
   type: flash
+  genre:
+  - Other
   ver:
   - "2017":
       year: 2017
@@ -412,6 +502,8 @@
 - name: Super Mario The Tag Play
   type: flash
   software: mmf
+  genre:
+  - Multiplayer
   ver:
   - "2017":
       year: 2017
@@ -430,12 +522,18 @@
         zip: Super Mario The Tag Play (2006).zip
 - name: Super Mario Underwater
   type: flash
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   year: 2011
   portable:
     swf: Super Mario Underwater.swf
 - name: Arcade Sniper
   type: non-mario
   software: gamemaker
+  genre:
+  - STG
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -452,6 +550,8 @@
 - name: Bod Blob
   type: non-mario
   software: mmf
+  genre:
+  - Puzzle
   ver:
   - Plus Pack:
       year: 2017
@@ -471,18 +571,24 @@
 - name: Bod Blob 2 (Unfinished)
   type: non-mario
   software: gamemaker
+  genre:
+  - Puzzle
   year: 2017
   installer: Bod Blob 2 (Unfinished) (2017).exe
   portable: Bod Blob 2 (Unfinished) (2017).zip
 - name: Diamentowa Przygoda
   type: non-mario
   software: other
+  genre:
+  - Other
   year: 2003
   installer: Diamentowa Przygoda.exe
   portable: Diamentowa Przygoda.zip
 - name: Dragon Ball Arcade
   type: non-mario
   software: gamemaker
+  genre:
+  - STG
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -495,12 +601,16 @@
 - name: Heliforce (Unfinished)
   type: non-mario
   software: mmf
+  genre:
+  - Other
   year: 2017
   installer: Heliforce (Unfinished) (2017).exe
   portable: Heliforce (Unfinished) (2017).zip
 - name: Kulkis
   type: non-mario
   software: mmf
+  genre:
+  - Puzzle
   ver:
   - Original:
       year: 2003
@@ -512,6 +622,8 @@
 - name: Madloc Future Saga
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   year: 2006
   ver:
   - Original:
@@ -523,6 +635,8 @@
 - name: Madlocnoid
   type: non-mario
   software: mmf
+  genre:
+  - Other
   initial_year: 2001
   ver:
   - v1.5:
@@ -539,6 +653,8 @@
 - name: Myster Muszel
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   ver:
   - v2.5, 2017 re-release:
       year: 2017
@@ -562,6 +678,8 @@
 - name: Myster Muszel 2
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   ver:
   - Original:
       year: 2003
@@ -573,6 +691,8 @@
 - name: Ninja Jonder Deluxe
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   ver:
   - "2006":
       year: 2006
@@ -584,6 +704,8 @@
 - name: Obliterator
   type: non-mario
   software: gamemaker
+  genre:
+  - STG
   ver:
   - "2017":
       year: 2017
@@ -598,12 +720,16 @@
 - name: Oscar Forever (Unfinished)
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   year: 2017
   installer: Oscar Forever (Unfinished) (2017).exe
   portable: Oscar Forever (Unfinished) (2017).zip
 - name: Stargrade
   type: non-mario
   software: mmf
+  genre:
+  - STG
   ver:
   - "2005":
       year: 2005
@@ -619,12 +745,16 @@
 - name: Stargrade 2
   type: non-mario
   software: gamemaker
+  genre:
+  - STG
   year: 2017
   installer: Stargrade 2 (2017).exe
   portable: Stargrade 2 (2017).zip
 - name: Urbagility
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   ver:
   - Original:
       year: 2003
@@ -636,6 +766,8 @@
 - name: Urbagility 2
   type: non-mario
   software: mmf
+  genre:
+  - Platformer
   ver:
   - "2017":
       year: 2017
@@ -654,6 +786,8 @@
 - name: Zelda Forever
   type: non-mario
   software: gamemaker
+  genre:
+  - Puzzle
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -670,28 +804,40 @@
 - name: Megaman X Wackyland
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2008
   installer: Megaman X Wackyland.exe
   portable: Megaman X Wackyland.zip
 - name: Sonic in Marioland
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2008
   portable: Sonic in Marioland.zip
 - name: Super Mario Bros Cool
   type: banesoft
+  genre:
+  - Platformer
+  - Endless
+  - Minix
   software: mmf
   year: 2008
   portable: Super Mario Bros Cool.zip
 - name: Super Mario Castle Adventures
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2009
   installer: Super Mario Castle Adventures.exe
   portable: Super Mario Castle Adventures.zip
 - name: Super Mario Castle Buster
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   ver:
   - "2009":
       year: 2009
@@ -703,6 +849,8 @@
 - name: Super Mario Crystals
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   ver:
   - "Mar 2008":
       year: 2008
@@ -714,12 +862,16 @@
 - name: Super Mario Flayer
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2008
   installer: Super Mario Flayer.exe
   portable: Super Mario Flayer.zip
 - name: Super Mario Ice 2
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   ver:
   - "Mar 2008":
       year: 2008
@@ -731,29 +883,39 @@
 - name: Super Mario Maniac
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2009
   installer: Super Mario Maniac.exe
   portable: Super Mario Maniac.zip
 - name: Super Mario Sonic Armageddon
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2009
   installer: Super Mario Sonic Armageddon.exe
   portable: Super Mario Sonic Armageddon.zip
 - name: Super Mario Star
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2009
   installer: Super Mario Star.exe
   portable: Super Mario Star.zip
 - name: Super Mario With Shotgun
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2009
   installer: Super Mario With Shotgun.exe
   portable: Super Mario with Shotgun.zip
 - name: Super Sonic Mario
   type: banesoft
   software: mmf
+  genre:
+  - Platformer
   year: 2008
   portable: Super Sonic Mario.zip

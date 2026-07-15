@@ -6,7 +6,7 @@ import { navTop } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
-import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
+import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, getGenreLabel } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import axios from "axios";
@@ -154,7 +154,8 @@ const filter_option = ref({
   active: false,
   name: "",
   type: "",
-  software: ""
+  software: "",
+  genre: ""
 });
 
 function clearName() {
@@ -165,6 +166,7 @@ function clearFilter() {
   filter_option.value.name = "";
   filter_option.value.type = "";
   filter_option.value.software = "";
+  filter_option.value.genre = "";
 }
 
 const filteredGames = computed(() => {
@@ -180,7 +182,10 @@ const filteredGames = computed(() => {
     const softwareMatch =
       filter_option.value.software == "" ||
       (Array.isArray(a.software) ? a.software.includes(filter_option.value.software) : a.software == filter_option.value.software);
-    return nameMatch && typeMatch && softwareMatch;
+    const genreMatch =
+      filter_option.value.genre == "" ||
+      (Array.isArray(a.genre) ? a.genre.includes(filter_option.value.genre) : a.genre == filter_option.value.genre);
+    return nameMatch && typeMatch && softwareMatch && genreMatch;
   });
 });
 
@@ -274,6 +279,23 @@ const availableSoftwares = computed(() => {
   return Array.from(softwares).sort();
 });
 
+// Collect unique genre values for filter dropdown.
+const availableGenres = computed(() => {
+  const genres = new Set();
+  for (const game of games.value) {
+    if (game.genre) {
+      if (Array.isArray(game.genre)) {
+        for (const g of game.genre) {
+          genres.add(g);
+        }
+      } else {
+        genres.add(game.genre);
+      }
+    }
+  }
+  return Array.from(genres).sort();
+});
+
 // Image utilities.
 const getGameImage = (game) => {
   return imageResolver.resolve(game);
@@ -320,6 +342,13 @@ const getGameImage = (game) => {
           <select v-model="filter_option.software">
             <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
             <option v-for="s in availableSoftwares" :key="s" :value="s">{{ getSoftwareLabel(s) }}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block">
+          {{ lan == "en" ? "Genre" : "类型" }}
+          <select v-model="filter_option.genre">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option v-for="g in availableGenres" :key="g" :value="g">{{ getGenreLabel(g, lan) }}</option>
           </select>&nbsp;
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
@@ -637,8 +666,17 @@ const getGameImage = (game) => {
     text-decoration: underline;
   }
 
+  table {
+    width: 100%;
+  }
+
   p {
     margin: .5em 0;
+  }
+
+  ul {
+    margin: .5em 0;
+    padding-left: 30px;
   }
 
   h1 {
@@ -646,12 +684,46 @@ const getGameImage = (game) => {
     margin-top: 12px;
   }
 
-  p, h5, h6, button {
+  p, ol, ul, h5, h6, table, button {
     border: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
     line-height: 1.5em;
+  }
+
+  h4 {
+    font-size: 17px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  table thead {
+    background: #404248;
+    color: #fff;
+    text-align: left;
+  }
+
+  table tr:first-child {
+    border-top: 0 !important;
+  }
+
+  table tr {
+    border-top: solid 1px #eee;
+  }
+
+  table td {
+    padding: 0.5em 1em 0.5em 1em;
+  }
+
+  table th {
+    padding: 0.5em 1em 0.5em 1em;
   }
 
   .md-button {
