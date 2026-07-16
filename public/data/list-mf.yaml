@@ -1,4 +1,26 @@
 ---
+- game: "MARIOFELL DAMNATION - FELLTOPIA (MF: Solace of Beyond Justice DEMO)"
+  game_alt:
+  alias:
+  - MFSOBJ
+  tag:
+  - Demo
+  author: CS124
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  - v2.1:
+      ver_alt:
+      date: 2025-10-04
+      source_url: https://marioforever.space/topic/44/mario-forever-world-of-clusterfuck-2.0
+      source_url_alt:
+      download_url: https://files.fm/f/55frcrervb
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER - WORLD OF CLUSTERFUCK (V2.1).zip
+      file_url:
 - game: Mario Forever The Epic Voyage 2
   game_alt:
   alias:
