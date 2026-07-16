@@ -91,7 +91,7 @@ The editor was originally distributed alongside Mario Forever Remake, but starti
 ## Download Super Mario Worker Project
 Super Mario Worker Project (SMWP) is a Mario level editor based on Mario Worker 1.1, developed by INNOVATION LEAP, built with Game Maker 8.0.
 
-<a class="md-button" target="_blank" href="https://file.marioforever.net/smwp">Download Super Mario Worker Project</a><a class="md-button" target="_blank" href="https://inleap.marioforever.net/en/super-mario-worker-project/">Super Mario Worker Project website</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/smwp">Download Super Mario Worker Project</a><a class="md-button" target="_blank" href="https://smwp.marioforever.net/">Super Mario Worker Project website</a>
 
 SMWP enhances and expands upon MW 1.1 by introducing new elements and fixing various bugs, while preserving its original physics behavior and level format structure.
 
