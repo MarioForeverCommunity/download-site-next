@@ -6,7 +6,7 @@ import { navTop } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
-import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, getGenreLabel } from "../../util/SoftendoUtil.js";
+import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import axios from "axios";
@@ -16,6 +16,7 @@ import ButtonDarkMode from "../../components/ButtonDarkMode.vue";
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/OverlayScrollbarsUtil.js";
+import { getTagColor, getTagLabel } from "../../util/TagUtil.js";
 import softendoZh from '../../markdown/softendo-zh.md'
 import softendoEn from '../../markdown/softendo-en.md'
 
@@ -53,15 +54,20 @@ Promise.all([readList("list-softendo.yaml"), imageResolver.init()]).then(([list]
 });
 
 const selectedGameDetail = ref(null);
+const showGenreModal = ref(false);
 
-watch(selectedGameDetail, (newDetail) => {
-  if (newDetail) {
+watch([selectedGameDetail, showGenreModal], ([newDetail, newGenreModal]) => {
+  if (newDetail || newGenreModal) {
     document.documentElement.classList.add("modal-open");
     document.body.classList.add("modal-open");
-    disableScroll();
   } else {
     document.documentElement.classList.remove("modal-open");
     document.body.classList.remove("modal-open");
+  }
+  if (!newDetail) {
+    enableScroll();
+  }
+  if (!newGenreModal) {
     enableScroll();
   }
 });
@@ -155,7 +161,7 @@ const filter_option = ref({
   name: "",
   type: "",
   software: "",
-  genre: ""
+  genres: []
 });
 
 function clearName() {
@@ -166,7 +172,7 @@ function clearFilter() {
   filter_option.value.name = "";
   filter_option.value.type = "";
   filter_option.value.software = "";
-  filter_option.value.genre = "";
+  filter_option.value.genres = [];
 }
 
 const filteredGames = computed(() => {
@@ -183,8 +189,8 @@ const filteredGames = computed(() => {
       filter_option.value.software == "" ||
       (Array.isArray(a.software) ? a.software.includes(filter_option.value.software) : a.software == filter_option.value.software);
     const genreMatch =
-      filter_option.value.genre == "" ||
-      (Array.isArray(a.genre) ? a.genre.includes(filter_option.value.genre) : a.genre == filter_option.value.genre);
+      filter_option.value.genres.length === 0 ||
+      (Array.isArray(a.genre) ? a.genre.some(g => filter_option.value.genres.includes(g)) : filter_option.value.genres.includes(a.genre));
     return nameMatch && typeMatch && softwareMatch && genreMatch;
   });
 });
@@ -279,7 +285,7 @@ const availableSoftwares = computed(() => {
   return Array.from(softwares).sort();
 });
 
-// Collect unique genre values for filter dropdown.
+// Collect unique genre values for tag filter modal.
 const availableGenres = computed(() => {
   const genres = new Set();
   for (const game of games.value) {
@@ -295,6 +301,55 @@ const availableGenres = computed(() => {
   }
   return Array.from(genres).sort();
 });
+
+const genreGameCount = computed(() => {
+  const countMap = {};
+  for (const game of games.value) {
+    const genres = game.genre
+      ? (Array.isArray(game.genre) ? game.genre : [game.genre])
+      : [];
+    for (const g of genres) {
+      countMap[g] = (countMap[g] || 0) + 1;
+    }
+  }
+  return countMap;
+});
+
+// Genre tag modal state
+const tempSelectedGenres = ref([]);
+
+function openGenreModal() {
+  tempSelectedGenres.value = [...filter_option.value.genres];
+  showGenreModal.value = true;
+  disableScroll();
+}
+
+function confirmGenreModal() {
+  filter_option.value.genres = [...tempSelectedGenres.value];
+  showGenreModal.value = false;
+  enableScroll();
+}
+
+function cancelGenreModal() {
+  showGenreModal.value = false;
+  enableScroll();
+}
+
+function toggleTempGenre(genre) {
+  const idx = tempSelectedGenres.value.indexOf(genre);
+  if (idx === -1) {
+    tempSelectedGenres.value.push(genre);
+  } else {
+    tempSelectedGenres.value.splice(idx, 1);
+  }
+}
+
+function removeTempGenre(genre) {
+  const idx = tempSelectedGenres.value.indexOf(genre);
+  if (idx !== -1) {
+    tempSelectedGenres.value.splice(idx, 1);
+  }
+}
 
 // Image utilities.
 const getGameImage = (game) => {
@@ -338,18 +393,15 @@ const getGameImage = (game) => {
           </select>&nbsp;
         </div>
         <div class="inline-block">
-          {{ lan == "en" ? "Genre" : "特色" }}
-          <select v-model="filter_option.genre">
-            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
-            <option v-for="g in availableGenres" :key="g" :value="g">{{ getGenreLabel(g, lan) }}</option>
-          </select>&nbsp;
-        </div>
-        <div class="inline-block">
           {{ lan == "en" ? "Engine" : "制作软件" }}
           <select v-model="filter_option.software">
             <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
             <option v-for="s in availableSoftwares" :key="s" :value="s">{{ getSoftwareLabel(s) }}</option>
           </select>&nbsp;
+        </div>
+        <div class="visible-button" @click="openGenreModal">
+          {{ lan == "en" ? "Genres" : "标签筛选" }}
+          <span v-if="filter_option.genres.length > 0" class="tag-filter-count">{{ filter_option.genres.length }}</span>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
@@ -432,6 +484,62 @@ const getGameImage = (game) => {
   <ButtonDarkMode />
 
   <SiteFooter />
+
+  <!-- Genre Tag Filter Modal -->
+  <Transition name="modal">
+    <div v-if="showGenreModal" class="tag-modal-overlay" @click="cancelGenreModal">
+      <div class="tag-modal" @click.stop>
+        <div class="tag-modal-header">
+          <h3>{{ lan === 'zh' ? '标签筛选' : 'Genre Filter' }}</h3>
+        </div>
+
+        <div v-if="tempSelectedGenres.length > 0" class="tag-modal-selected">
+          <span class="tag-selected-label">{{ lan === 'zh' ? '已选：' : 'Selected: ' }}</span>
+          <span
+            v-for="genre in tempSelectedGenres"
+            :key="genre"
+            class="tag-pill tag-pill-sm tag-pill-selected"
+            :style="{
+              '--tag-bg': getTagColor(genre, false).bg,
+              '--tag-border': getTagColor(genre, false).border,
+              '--tag-text': getTagColor(genre, false).text,
+              '--tag-bg-dark': getTagColor(genre, true).bg,
+              '--tag-border-dark': getTagColor(genre, true).border,
+              '--tag-text-dark': getTagColor(genre, true).text,
+            }"
+          >{{ getTagLabel(genre, lan) }}<span class="tag-remove" @click="removeTempGenre(genre)">&times;</span></span>
+          <button class="tag-clear-all" @click="tempSelectedGenres = []">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
+        </div>
+
+        <div class="tag-modal-body">
+          <div class="tag-modal-grid">
+            <span
+              v-for="genre in availableGenres"
+              :key="genre"
+              class="tag-pill"
+              :class="{ 'tag-pill-active': tempSelectedGenres.includes(genre) }"
+              :style="{
+                '--tag-bg': getTagColor(genre, false).bg,
+                '--tag-border': getTagColor(genre, false).border,
+                '--tag-text': getTagColor(genre, false).text,
+                '--tag-bg-dark': getTagColor(genre, true).bg,
+                '--tag-border-dark': getTagColor(genre, true).border,
+                '--tag-text-dark': getTagColor(genre, true).text,
+              }"
+              @click="toggleTempGenre(genre)"
+            >
+              <span v-if="tempSelectedGenres.includes(genre)" class="tag-check">&check;</span>{{ getTagLabel(genre, lan) }}<span class="tag-game-count">{{ genreGameCount[genre] || 0 }}</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="tag-modal-footer">
+          <button class="md-button md-button-secondary" @click="cancelGenreModal">{{ lan === 'zh' ? '取消' : 'Cancel' }}</button>
+          <button class="md-button" @click="confirmGenreModal">{{ lan === 'zh' ? '确认' : 'Confirm' }}</button>
+        </div>
+      </div>
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
@@ -574,6 +682,19 @@ const getGameImage = (game) => {
     transform: translateY(0);
   }
 
+  body.dark .visible-button {
+    background-color: #222222;
+    border-color: #444;
+    color: #ddd;
+  }
+
+  body.dark .visible-button:hover,
+  body.dark .visible-button:focus {
+    background-color: #333;
+    border-color: #555;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+
   body.dark .visible-button:active {
     background-color: #444 !important;
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;
@@ -651,6 +772,250 @@ const getGameImage = (game) => {
     padding: .25em .75em;
     z-index: 1002;
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  }
+
+  .tag-filter-count {
+    margin-left: 0.2em;
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
+
+  /* Tag Modal */
+  .modal-enter-active, .modal-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-enter-from, .modal-leave-to {
+    opacity: 0;
+  }
+
+  .tag-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+  }
+
+  .tag-modal {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 90vw;
+    max-width: 520px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  }
+
+  .tag-modal-header {
+    padding: 1em 1.2em 0.6em;
+    border-bottom: 1px solid #eee;
+  }
+
+  .tag-modal-header h3 {
+    margin: 0;
+    font-size: 1.15em;
+    color: #333;
+  }
+
+  .tag-modal-selected {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.6em 1.2em;
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+  }
+
+  .tag-selected-label {
+    font-size: 0.85em;
+    color: #666;
+    margin-right: 0.2em;
+  }
+
+  .tag-clear-all {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 0.2em 0.4em;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .tag-clear-all:hover {
+    color: #333;
+  }
+
+  .tag-modal-body {
+    padding: 1em 1.2em;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .tag-modal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  /* Tag Pills */
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3em 0.75em;
+    border-radius: 999px;
+    border: 1.5px solid var(--tag-border);
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+
+  .tag-pill:hover {
+    opacity: 0.85;
+  }
+
+  .tag-pill-active {
+    border-width: 2.5px;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+    border-color: var(--tag-border);
+    font-weight: 600;
+  }
+
+  .tag-check {
+    margin-right: 0.2em;
+  }
+
+  .tag-game-count {
+    margin-left: 0.3em;
+    font-size: 0.8em;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  .tag-pill-sm {
+    font-size: 0.8em;
+    padding: 0.15em 0.5em;
+  }
+
+  .tag-pill-selected {
+    cursor: default;
+  }
+
+  .tag-remove {
+    margin-left: 0.3em;
+    cursor: pointer;
+    opacity: 0.6;
+    font-weight: normal;
+    transition: opacity 0.2s;
+  }
+
+  .tag-remove:hover {
+    opacity: 1;
+  }
+
+  .tag-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.8em 1.2em;
+    border-top: 1px solid #eee;
+  }
+
+  .tag-modal-footer .md-button {
+    font-size: 0.9em;
+    padding: 0.4em 1em;
+  }
+
+  .md-button-secondary {
+    background-color: #eee;
+    color: #555;
+    border-color: #ccc;
+  }
+
+  .md-button-secondary:hover {
+    background-color: #ddd;
+    color: #555;
+  }
+
+  /* Dark mode for tag modal */
+  body.dark .tag-modal {
+    background: #2a2a2a;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  body.dark .tag-modal-header {
+    border-bottom-color: #444;
+  }
+
+  body.dark .tag-modal-header h3 {
+    color: #eee;
+  }
+
+  body.dark .tag-modal-selected {
+    border-bottom-color: #444;
+    background: #333;
+  }
+
+  body.dark .tag-selected-label {
+    color: #aaa;
+  }
+
+  body.dark .tag-clear-all {
+    color: #888;
+  }
+
+  body.dark .tag-clear-all:hover {
+    color: #ccc;
+  }
+
+  body.dark .tag-pill {
+    border-color: var(--tag-border-dark);
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+  }
+
+  body.dark .tag-pill-active {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border-dark);
+  }
+
+  body.dark .tag-pill-selected {
+    border-color: var(--tag-border-dark);
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+  }
+
+  body.dark .tag-modal-footer {
+    border-top-color: #444;
+  }
+
+  body.dark .md-button-secondary {
+    background-color: #3a3a3a !important;
+    color: #bbb !important;
+    border-color: #555 !important;
+  }
+
+  body.dark .md-button-secondary:hover {
+    background-color: #444 !important;
+    color: #bbb !important;
   }
 
 </style>

@@ -915,6 +915,19 @@ const { floatingStyles } = useFloating(reference, floating,
     transform: translateY(0);
   }
 
+  body.dark .visible-button {
+    background-color: #222222;
+    border-color: #444;
+    color: #ddd;
+  }
+
+  body.dark .visible-button:hover,
+  body.dark .visible-button:focus {
+    background-color: #333;
+    border-color: #555;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+
   body.dark .visible-button:active {
     background-color: #444 !important;
     box-shadow: rgba(0, 0, 0, 0.06) 1px 1px 2px !important;

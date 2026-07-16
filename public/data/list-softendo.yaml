@@ -34,6 +34,7 @@
   software: gamemaker
   genre:
   - STG
+  - Vertical-scroll
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -535,6 +536,7 @@
   software: gamemaker
   genre:
   - STG
+  - Vertical-scroll
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -590,6 +592,7 @@
   software: gamemaker
   genre:
   - STG
+  - Vertical-scroll
   ver:
   - "2011 ver, 2017 re-release":
       year: 2017
@@ -707,6 +710,7 @@
   software: gamemaker
   genre:
   - STG
+  - Vertical-scroll
   ver:
   - "2017":
       year: 2017

@@ -22,6 +22,14 @@ const TAG_ZH_MAP = {
   "Festive": "节日",
   "Other": "其他",
   "Untagged": "未标签",
+  // Softendo genres
+  "Endless": "无尽",
+  "Find and Click": "益智",
+  "Minix": "Minix",
+  "Platformer": "平台跳跃",
+  "Puzzle": "解谜",
+  "Sandbox": "沙盒",
+  "Vertical-scroll": "纵向滚屏",
 };
 
 // 固定标签颜色映射：text 为用户指定深色模式文字颜色
@@ -52,6 +60,14 @@ const TAG_COLOR_MAP = {
   "Speedrun":     { bg: "#d8faf0", border: "#40d890", text: "#20b070" },
   "Single Level": { bg: "#f0e8f5", border: "#a088c0", text: "#7860a0" },
   "Untagged":     { bg: "#f0f0f0", border: "#b8b8b8", text: "#606060" },
+  // Softendo genres
+  "Endless":          { bg: "#eef5e0", border: "#90b060", text: "#6a8840" },
+  "Find and Click":   { bg: "#fde4fd", border: "#e050e8", text: "#b830c0" },
+  "Minix":            { bg: "#fce4e4", border: "#d0706e", text: "#b84a48" },
+  "Platformer":       { bg: "#e3ecf5", border: "#78a0c8", text: "#5078a0" },
+  "Puzzle":           { bg: "#f0e8f5", border: "#a088c0", text: "#7860a0" },
+  "Sandbox":          { bg: "#dff5f0", border: "#60b8a8", text: "#409888" },
+  "Vertical-scroll":  { bg: "#ede3f7", border: "#9078d0", text: "#6858b0" },
 };
 
 // 深色模式：text/border 用指定颜色，bg 为深色柔和背景
@@ -81,6 +97,14 @@ const TAG_COLOR_MAP_DARK = {
   "Speedrun":     { bg: "#183828", border: "#3EF5A7", text: "#3EF5A7" },
   "Single Level": { bg: "#281830", border: "#B088C0", text: "#B088C0" },
   "Untagged":     { bg: "#2a2a2a", border: "#E5E5E5", text: "#E5E5E5" },
+  // Softendo genres
+  "Endless":          { bg: "#1e3020", border: "#A0C072", text: "#A0C072" },
+  "Find and Click":   { bg: "#301838", border: "#FF5AFA", text: "#FF5AFA" },
+  "Minix":            { bg: "#3a2020", border: "#da6260", text: "#da6260" },
+  "Platformer":       { bg: "#1e2838", border: "#78A0C8", text: "#78A0C8" },
+  "Puzzle":           { bg: "#281830", border: "#B088C0", text: "#B088C0" },
+  "Sandbox":          { bg: "#1a3030", border: "#83CCC2", text: "#83CCC2" },
+  "Vertical-scroll":  { bg: "#2a1a38", border: "#9F8CE3", text: "#9F8CE3" },
 };
 
 // 未知标签的回退颜色

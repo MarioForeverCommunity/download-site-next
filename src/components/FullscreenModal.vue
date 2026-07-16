@@ -5,7 +5,7 @@ import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoIma
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
-import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, getGenreLabel } from '../util/SoftendoUtil.js';
+import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import MarkdownIt from 'markdown-it';
 
@@ -893,7 +893,21 @@ const nextImage = () => {
 
           <div v-if="isSoftendo && game.genre && game.genre.length > 0" class="software-info">
             <span class="software-label">{{ lan === 'zh' ? '类型' : 'Genre' }}: </span>
-            <span class="software-value">{{ Array.isArray(game.genre) ? game.genre.map(g => getGenreLabel(g, lan)).join(", ") : getGenreLabel(game.genre, lan) }}</span>
+            <span class="tag-list-inline">
+              <span
+                v-for="g in (Array.isArray(game.genre) ? game.genre : [game.genre])"
+                :key="g"
+                class="tag-pill tag-pill-sm"
+                :style="{
+                  '--tag-bg': getTagColor(g, false).bg,
+                  '--tag-border': getTagColor(g, false).border,
+                  '--tag-text': getTagColor(g, false).text,
+                  '--tag-bg-dark': getTagColor(g, true).bg,
+                  '--tag-border-dark': getTagColor(g, true).border,
+                  '--tag-text-dark': getTagColor(g, true).text,
+                }"
+              >{{ getTagLabel(g, lan) }}</span>
+            </span>
           </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
@@ -1334,6 +1348,13 @@ const nextImage = () => {
     padding-left: 0.6em;
   }
 
+  .tag-list-inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+    vertical-align: middle;
+  }
+
   .tag-pill {
     display: inline-block;
     padding: 0.2em 0.7em;
@@ -1345,6 +1366,11 @@ const nextImage = () => {
     font-weight: 500;
     line-height: 1.4;
     white-space: nowrap;
+  }
+
+  .tag-pill-sm {
+    font-size: 0.78em;
+    padding: 0.1em 0.5em;
   }
 
   .source-list li,
