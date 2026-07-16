@@ -361,9 +361,14 @@ const latestUpdate = computed(() => {
 });
 
 const gameTags = computed(() => {
-  if (!props.game || !props.game.tag) return [];
-  if (Array.isArray(props.game.tag)) return props.game.tag;
-  return [props.game.tag];
+  if (!props.game) return [];
+  // Softendo: 使用 genre 作为标签
+  if (isSoftendo.value && props.game.genre) {
+    return Array.isArray(props.game.genre) ? props.game.genre : [props.game.genre];
+  }
+  // MfGames: 使用 tag 字段
+  if (!props.game.tag) return [];
+  return Array.isArray(props.game.tag) ? props.game.tag : [props.game.tag];
 });
 
 const downloadEntries = computed(() => {
@@ -891,25 +896,6 @@ const nextImage = () => {
             <span class="software-value">{{ Array.isArray(getSoftwareLabel(game.software)) ? getSoftwareLabel(game.software).join(", ") : getSoftwareLabel(game.software) }}</span>
           </div>
 
-          <div v-if="isSoftendo && game.genre && game.genre.length > 0" class="software-info">
-            <span class="software-label">{{ lan === 'zh' ? '类型' : 'Genre' }}: </span>
-            <span class="tag-list-inline">
-              <span
-                v-for="g in (Array.isArray(game.genre) ? game.genre : [game.genre])"
-                :key="g"
-                class="tag-pill tag-pill-sm"
-                :style="{
-                  '--tag-bg': getTagColor(g, false).bg,
-                  '--tag-border': getTagColor(g, false).border,
-                  '--tag-text': getTagColor(g, false).text,
-                  '--tag-bg-dark': getTagColor(g, true).bg,
-                  '--tag-border-dark': getTagColor(g, true).border,
-                  '--tag-text-dark': getTagColor(g, true).text,
-                }"
-              >{{ getTagLabel(g, lan) }}</span>
-            </span>
-          </div>
-
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
             <span class="smwp-label">MW 版本:</span>
             <span v-if="smwpUrl" class="smwp-value">
@@ -990,7 +976,7 @@ const nextImage = () => {
           </div>
 
           <div v-if="gameTags.length > 0" class="content-section">
-            <h3 class="section-title">{{ lan === 'zh' ? '标签' : 'Tags' }}</h3>
+            <h3 class="section-title">{{ isSoftendo ? (lan === 'zh' ? '标签' : 'Genres') : (lan === 'zh' ? '标签' : 'Tags') }}</h3>
             <div class="tag-list">
               <span
                 v-for="(tagItem, index) in gameTags"

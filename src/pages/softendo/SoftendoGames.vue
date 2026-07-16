@@ -401,7 +401,7 @@ const getGameImage = (game) => {
         </div>
         <div class="visible-button" @click="openGenreModal">
           {{ lan == "en" ? "Genres" : "标签筛选" }}
-          <span v-if="filter_option.genres.length > 0" class="tag-filter-count">{{ filter_option.genres.length }}</span>
+          <span v-if="filter_option.genres.length > 0" class="tag-count-badge">{{ filter_option.genres.length }}</span>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
@@ -774,10 +774,25 @@ const getGameImage = (game) => {
     font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
   }
 
-  .tag-filter-count {
-    margin-left: 0.2em;
-    font-size: 0.85em;
-    opacity: 0.7;
+  /* Tag Count Badge */
+  .tag-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.2em;
+    padding: 0 0.3em;
+    margin-left: 0.3em;
+    border-radius: 999px;
+    background: #008cff;
+    color: #fff;
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  body.dark .tag-count-badge {
+    background: #222222;
+    color: #bbbbbb;
   }
 
   /* Tag Modal */
