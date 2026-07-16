@@ -314,7 +314,7 @@
   genre:
   - Platformer
   - Endless
-  - Vertical
+  - Vertical-scroll
   year: 2017
   installer: Super Mario Castle.exe
   portable:
@@ -325,7 +325,7 @@
   genre:
   - Platformer
   - Endless
-  - Vertical
+  - Vertical-scroll
   ver:
   - "2017":
       year: 2017
@@ -359,7 +359,7 @@
   genre:
   - Platformer
   - Endless
-  - Vertical
+  - Vertical-scroll
   ver:
   - "2017":
       year: 2017
@@ -400,7 +400,7 @@
   genre:
   - Platformer
   - Endless
-  - Vertical
+  - Vertical-scroll
   year: 2010
   installer: Super Mario Ice Tower (with toolbar).exe
   portable:

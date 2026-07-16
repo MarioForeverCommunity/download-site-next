@@ -364,7 +364,7 @@ const GENRE_LABELS_ZH = {
   "Puzzle": "解谜",
   "STG": "射击",
   "Sandbox": "沙盒",
-  "Vertical": "纵向"
+  "Vertical-scroll": "纵向滚屏"
 };
 
 export function getGenreLabel(genre, lan) {
