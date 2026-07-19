@@ -28,7 +28,7 @@ const TAG_ZH_MAP = {
   "Minix": "Minix",
   "Platformer": "平台跳跃",
   "Puzzle": "解谜",
-  "Sandbox": "沙盒",
+  "Level Editor": "关卡编辑",
   "Vertical-scroll": "纵向滚屏",
 };
 

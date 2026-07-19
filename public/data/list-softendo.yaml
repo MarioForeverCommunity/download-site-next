@@ -142,7 +142,7 @@
   nsmf: true
   software: gamemaker
   genre:
-  - Sandbox
+  - Level Editor
   - Platformer
   year: 2018
   installer: Mario Forever World Maker.exe
