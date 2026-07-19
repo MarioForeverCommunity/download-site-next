@@ -346,7 +346,8 @@ function sortByDate() {
 const filter_option = ref({
   active : false,
   name : "",
-  year : ""
+  year : "",
+  withImages : false,
 });
 
 function clearName() {
@@ -356,6 +357,7 @@ function clearFilter() {
   filter_option.value.name = "";
   filter_option.value.author = "";
   filter_option.value.year = "";
+  filter_option.value.withImages = false;
   showOnlyBundledSmwp.value = false;
   selectedSmwpVer.value = "";
 }
@@ -410,6 +412,7 @@ const filteredGames = computed(() => {
         )
     )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
+      && (!filter_option.value.withImages || imageResolver.resolve(a) !== null)
   );
   if (showOnlyBundledSmwp.value) {
     result = result.filter(a => a.has_bundled_smwp);
@@ -582,6 +585,10 @@ const { floatingStyles } = useFloating(reference, floating,
         <div class="inline-block">
           <input v-model="showOnlyBundledSmwp" type="checkbox" id="filterBundledSmwp" />
           <label for="filterBundledSmwp">仅显示附带 MW 的作品</label>
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.withImages" type="checkbox" id="withImages">
+          <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />

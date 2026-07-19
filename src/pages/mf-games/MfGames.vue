@@ -377,6 +377,7 @@ const filter_option = ref({
   platform : "",
   software : "",
   tags : [],
+  withImages : false,
 });
 
 const availableTags = computed(() => {
@@ -459,6 +460,7 @@ function clearFilter() {
   filter_option.value.platform = "";
   filter_option.value.software = "";
   filter_option.value.tags = [];
+  filter_option.value.withImages = false;
 }
 
 const showTagModal = ref(false);
@@ -542,6 +544,8 @@ const filteredGames = computed(() => {
         const verObj = verRaw[Object.keys(verRaw)[0]];
         return detectSoftware(a, verObj) === software;
       })))
+      // Pre-check: entry must have at least one image
+      && (!filter_option.value.withImages || imageResolver.resolve(a) !== null)
   );
   if (!expandAllVersions.value) {
     if (!hasYearFilter && !hasPlatformFilter && !hasSoftwareFilter) {
@@ -1052,6 +1056,10 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               </span>
             </template>
           </Tooltip>
+        </div>
+        <div class="inline-block">
+          <input v-model="filter_option.withImages" type="checkbox" id="withImages">
+          <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
