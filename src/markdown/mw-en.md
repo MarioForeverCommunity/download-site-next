@@ -89,13 +89,15 @@ Mario Worker Remake contains a bunch of new features compared to MW 1.0, such as
 The editor was originally distributed alongside Mario Forever Remake, but starting from v3.0, it has been released as a standalone editor.
 
 ## Download Super Mario Worker Project
-Super Mario Worker Project (SMWP) is a Mario level editor based on Mario Worker 1.1, developed by INNOVATION LEAP, built with Game Maker 8.0.
+Super Mario Worker Project (SMWP) is a Mario level editor based on Mario Worker 1.1, developed by INNOVATION LEAP, built with Game Maker 8.
 
-<a class="md-button" target="_blank" href="https://file.marioforever.net/smwp">Download Super Mario Worker Project</a><a class="md-button" target="_blank" href="https://smwp.marioforever.net/">Super Mario Worker Project website</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/smwp">Download Super Mario Worker Project</a><a class="md-button" target="_blank" href="https://smwp.marioforever.net/">Super Mario Worker Project website</a><a class="md-button" target="_blank" href="https://github.com/InnovationLeap/Super-Mario-Worker-Project-GM82">SMWP source repository</a>
 
 SMWP enhances and expands upon MW 1.1 by introducing new elements and fixing various bugs, while preserving its original physics behavior and level format structure.
 
 SMWP saves levels in the .smwl format by default and is backward compatible with levels made with older SMWP versions, as well as MW 1.1 (.mfl) levels. It would not save levels in the .mfl format.
+
+Since v1.7.13, SMWP has used an upgraded Game Maker 8.2 engine and has been open source.
 
 ## Download Mario Worker: Community Edition
 Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4's Thunder Engine, developed by Meteo Dream. It's currently in prototype stage.
