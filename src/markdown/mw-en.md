@@ -97,7 +97,7 @@ SMWP enhances and expands upon MW 1.1 by introducing new elements and fixing var
 
 SMWP saves levels in the .smwl format by default and is backward compatible with levels made with older SMWP versions, as well as MW 1.1 (.mfl) levels. It would not save levels in the .mfl format.
 
-Since v1.7.13, SMWP has used an upgraded Game Maker 8.2 engine and has been open source.
+Since v1.7.13, SMWP has used an upgraded [Game Maker 8.2](https://gm82.cherry-treehouse.com/) engine and has been open source.
 
 ## Download Mario Worker: Community Edition
 Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4's Thunder Engine, developed by Meteo Dream. It's currently in prototype stage.
