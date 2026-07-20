@@ -8,6 +8,7 @@ import { readList } from "../../util/ReadList.js";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
 import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
+import { fuzzyMatch, fuzzyMatchList } from "../../util/SearchUtil.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import axios from "axios";
 import Tooltip from "../../components/ToolTip.vue";
@@ -178,10 +179,11 @@ function clearFilter() {
 const filteredGames = computed(() => {
   return games.value.filter((a) => {
     const name = getSoftendoGameName(a);
+    const query = filter_option.value.name;
     const nameMatch =
-      filter_option.value.name.trim() == "" ||
-      name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()) ||
-      (a.alias && a.alias.some((al) => al.toUpperCase().includes(filter_option.value.name.trim().toUpperCase())));
+      query.trim() == "" ||
+      fuzzyMatch(name, query) ||
+      fuzzyMatchList(a.alias, query);
     const typeMatch =
       filter_option.value.type == "" ||
       a.type == filter_option.value.type;

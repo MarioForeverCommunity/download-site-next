@@ -11,6 +11,7 @@ import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
+import { fuzzyMatch } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
@@ -401,15 +402,16 @@ const smwpVersionOptions = computed(() => {
 const selectedSmwpVer = ref("");
 
 const filteredGames = computed(() => {
+  const query = filter_option.value.name.trim();
   let result = games.value.filter((a) =>
     (
-      (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-        || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-        || filterList(filter_option.value.name.trim(), a.alias)
+      query == ""
+        || fuzzyMatch(a.game, query)
+        || fuzzyMatch(getStrFromList(a.author), query)
+        || filterList(query, a.alias)
         || (Array.isArray(a.file_name)
-          ? a.file_name.some(fn => fn && fn.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
-          : (a.file_name && a.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase()))
-        )
+          ? a.file_name.some(fn => fuzzyMatch(fn, query))
+          : fuzzyMatch(a.file_name, query))
     )
       && (isNaN(parseInt(filter_option.value.year)) || (parseInt(a.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year)))
       && (!filter_option.value.withImages || imageResolver.resolve(a) !== null)

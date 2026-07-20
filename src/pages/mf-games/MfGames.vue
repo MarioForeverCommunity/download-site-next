@@ -14,6 +14,7 @@ import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
+import { fuzzyMatch } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -530,16 +531,18 @@ const filteredGames = computed(() => {
   const hasPlatformFilter = platform !== "";
   const hasSoftwareFilter = software !== "";
 
+  const query = filter_option.value.name.trim();
   const list = games.value.filter((a) =>
     (
-      (a.game && (filter_option.value.name.trim() == "" || a.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-        || (a.game_alt && (filter_option.value.name.trim() == "" || a.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-        || (getStrFromList(a.author) && (filter_option.value.name.trim() == "" || getStrFromList(a.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-        || (getStrFromList(a.author_alt) && (filter_option.value.name.trim() == "" || getStrFromList(a.author_alt).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-        || filterList(filter_option.value.name.trim(), a.alias)
+      query == ""
+        || fuzzyMatch(a.game, query)
+        || fuzzyMatch(a.game_alt, query)
+        || fuzzyMatch(getStrFromList(a.author), query)
+        || fuzzyMatch(getStrFromList(a.author_alt), query)
+        || filterList(query, a.alias)
         || (Array.isArray(a.ver) && a.ver.some(verRaw => {
           const verObj = verRaw[Object.keys(verRaw)[0]];
-          return verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
+          return fuzzyMatch(verObj.file_name, query);
         }))
     )
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
@@ -632,11 +635,12 @@ const filteredGames = computed(() => {
     const expanded = games.value.flatMap((entry) => {
       // 名称/作者/别名等只需判断一次
       const nameMatch = (
-        (entry.game && (filter_option.value.name.trim() == "" || entry.game.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (entry.game_alt && (filter_option.value.name.trim() == "" || entry.game_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (getStrFromList(entry.author_alt) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author_alt).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || filterList(filter_option.value.name.trim(), entry.alias)
+        query == ""
+          || fuzzyMatch(entry.game, query)
+          || fuzzyMatch(entry.game_alt, query)
+          || fuzzyMatch(getStrFromList(entry.author), query)
+          || fuzzyMatch(getStrFromList(entry.author_alt), query)
+          || filterList(query, entry.alias)
       );
       if (!Array.isArray(entry.ver)) return [];
       // 计算每个版本的最新版标记
@@ -666,7 +670,7 @@ const filteredGames = computed(() => {
         const verKey = Object.keys(verRaw)[0];
         const verObj = verRaw[verKey];
         // file_name匹配
-        const fileNameMatch = verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
+        const fileNameMatch = fuzzyMatch(verObj.file_name, query);
         if (!nameMatch && !fileNameMatch) return null;
         // 年份判断
         const yearMatch = isNaN(parseInt(filter_option.value.year)) || (parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year));

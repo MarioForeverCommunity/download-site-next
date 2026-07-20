@@ -8,6 +8,7 @@ import AssetCard from '../../components/AssetCard.vue';
 import { getName, getDownloadEntries } from "../../util/GameUtil.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import { filterList, getStrFromList } from "../../util/GameUtil.js"
+import { fuzzyMatch } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
@@ -181,13 +182,15 @@ function sortByDate() {
 
 const filteredAssets = computed(() => {
   let expandedIndex = 0;
+  const query = filter_option.value.name.trim();
   const expanded = assets.value.flatMap((entry) => {
     if (!entry.ver || entry.ver.length === 0) {
       const nameMatch = (
-        (entry.name && (filter_option.value.name.trim() == "" || entry.name.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (entry.name_alt && (filter_option.value.name.trim() == "" || entry.name_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || filterList(filter_option.value.name.trim(), entry.alias)
+        query == ""
+          || fuzzyMatch(entry.name, query)
+          || fuzzyMatch(entry.name_alt, query)
+          || fuzzyMatch(getStrFromList(entry.author), query)
+          || filterList(query, entry.alias)
       );
       const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")
@@ -203,12 +206,13 @@ const filteredAssets = computed(() => {
       const verKey = Object.keys(verRaw)[0];
       const verObj = verRaw[verKey];
       const nameMatch = (
-        (entry.name && (filter_option.value.name.trim() == "" || entry.name.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (entry.name_alt && (filter_option.value.name.trim() == "" || entry.name_alt.toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || (getStrFromList(entry.author) && (filter_option.value.name.trim() == "" || getStrFromList(entry.author).toUpperCase().match(filter_option.value.name.trim().toUpperCase())))
-          || filterList(filter_option.value.name.trim(), entry.alias)
+        query == ""
+          || fuzzyMatch(entry.name, query)
+          || fuzzyMatch(entry.name_alt, query)
+          || fuzzyMatch(getStrFromList(entry.author), query)
+          || filterList(query, entry.alias)
       );
-      const fileNameMatch = verObj.file_name && verObj.file_name.toUpperCase().includes(filter_option.value.name.trim().toUpperCase());
+      const fileNameMatch = fuzzyMatch(verObj.file_name, query);
       if (!nameMatch && !fileNameMatch) return null;
       const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")
