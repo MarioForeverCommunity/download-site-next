@@ -23,6 +23,7 @@ const TAG_ZH_MAP = {
   "Other": "其他",
   "Untagged": "未标签",
   "Cancelled": "已取消",
+  "Shmup": "STG",
   // Softendo genres
   "Endless": "无尽",
   "Find and Click": "益智",

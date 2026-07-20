@@ -358,7 +358,7 @@ const GENRE_LABELS_ZH = {
   "Endless": "无尽",
   "Find and Click": "益智",
   "Minix": "Minix",
-  "Multiplayer": "多人",
+  "Multiplayer": "多人游戏",
   "Other": "其他",
   "Platformer": "平台跳跃",
   "Puzzle": "解谜",
