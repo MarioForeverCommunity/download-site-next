@@ -362,7 +362,7 @@ const GENRE_LABELS_ZH = {
   "Other": "其他",
   "Platformer": "平台跳跃",
   "Puzzle": "解谜",
-  "STG": "射击",
+  "Shmup": "STG",
   "Level Editor": "关卡编辑",
   "Vertical-scroll": "纵向滚屏"
 };

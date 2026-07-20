@@ -16,7 +16,7 @@ import ButtonDarkMode from "../../components/ButtonDarkMode.vue";
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/OverlayScrollbarsUtil.js";
-import { getTagColor, getTagLabel } from "../../util/TagUtil.js";
+import { getTagColor, getTagLabel, matchTagStates, nextTagState } from "../../util/TagUtil.js";
 import softendoZh from '../../markdown/softendo-zh.md'
 import softendoEn from '../../markdown/softendo-en.md'
 
@@ -161,7 +161,7 @@ const filter_option = ref({
   name: "",
   type: "",
   software: "",
-  genres: []
+  genres: {}
 });
 
 function clearName() {
@@ -172,7 +172,7 @@ function clearFilter() {
   filter_option.value.name = "";
   filter_option.value.type = "";
   filter_option.value.software = "";
-  filter_option.value.genres = [];
+  filter_option.value.genres = {};
 }
 
 const filteredGames = computed(() => {
@@ -189,8 +189,11 @@ const filteredGames = computed(() => {
       filter_option.value.software == "" ||
       (Array.isArray(a.software) ? a.software.includes(filter_option.value.software) : a.software == filter_option.value.software);
     const genreMatch =
-      filter_option.value.genres.length === 0 ||
-      (Array.isArray(a.genre) ? a.genre.some(g => filter_option.value.genres.includes(g)) : filter_option.value.genres.includes(a.genre));
+      Object.keys(filter_option.value.genres).length === 0 ||
+      (() => {
+        const entryGenres = a.genre ? (Array.isArray(a.genre) ? a.genre : [a.genre]) : [];
+        return matchTagStates(entryGenres, filter_option.value.genres);
+      })();
     return nameMatch && typeMatch && softwareMatch && genreMatch;
   });
 });
@@ -316,16 +319,27 @@ const genreGameCount = computed(() => {
 });
 
 // Genre tag modal state
-const tempSelectedGenres = ref([]);
+const tempGenreStates = ref({});
+
+const activeGenreCount = computed(() => Object.keys(filter_option.value.genres).length);
+
+const tempGenreMatchCount = computed(() => {
+  const states = tempGenreStates.value;
+  if (Object.keys(states).length === 0) return games.value.length;
+  return games.value.filter(a => {
+    const entryGenres = a.genre ? (Array.isArray(a.genre) ? a.genre : [a.genre]) : [];
+    return matchTagStates(entryGenres, states);
+  }).length;
+});
 
 function openGenreModal() {
-  tempSelectedGenres.value = [...filter_option.value.genres];
+  tempGenreStates.value = { ...filter_option.value.genres };
   showGenreModal.value = true;
   disableScroll();
 }
 
 function confirmGenreModal() {
-  filter_option.value.genres = [...tempSelectedGenres.value];
+  filter_option.value.genres = { ...tempGenreStates.value };
   showGenreModal.value = false;
   enableScroll();
 }
@@ -335,20 +349,22 @@ function cancelGenreModal() {
   enableScroll();
 }
 
-function toggleTempGenre(genre) {
-  const idx = tempSelectedGenres.value.indexOf(genre);
-  if (idx === -1) {
-    tempSelectedGenres.value.push(genre);
+function cycleGenreState(genre) {
+  const current = tempGenreStates.value[genre] || null;
+  const next = nextTagState(current);
+  const newStates = { ...tempGenreStates.value };
+  if (next) {
+    newStates[genre] = next;
   } else {
-    tempSelectedGenres.value.splice(idx, 1);
+    delete newStates[genre];
   }
+  tempGenreStates.value = newStates;
 }
 
-function removeTempGenre(genre) {
-  const idx = tempSelectedGenres.value.indexOf(genre);
-  if (idx !== -1) {
-    tempSelectedGenres.value.splice(idx, 1);
-  }
+function removeGenreState(genre) {
+  const newStates = { ...tempGenreStates.value };
+  delete newStates[genre];
+  tempGenreStates.value = newStates;
 }
 
 // Image utilities.
@@ -401,7 +417,7 @@ const getGameImage = (game) => {
         </div>
         <div class="visible-button" @click="openGenreModal">
           {{ lan == "en" ? "Genres" : "标签筛选" }}
-          <span v-if="filter_option.genres.length > 0" class="tag-count-badge">{{ filter_option.genres.length }}</span>
+          <span v-if="activeGenreCount > 0" class="tag-count-badge">{{ activeGenreCount }}</span>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
@@ -493,31 +509,16 @@ const getGameImage = (game) => {
           <h3>{{ lan === 'zh' ? '标签筛选' : 'Genre Filter' }}</h3>
         </div>
 
-        <div v-if="tempSelectedGenres.length > 0" class="tag-modal-selected">
+        <div v-if="Object.keys(tempGenreStates).length > 0" class="tag-modal-selected">
           <span class="tag-selected-label">{{ lan === 'zh' ? '已选：' : 'Selected: ' }}</span>
-          <span
-            v-for="genre in tempSelectedGenres"
-            :key="genre"
-            class="tag-pill tag-pill-sm tag-pill-selected"
-            :style="{
-              '--tag-bg': getTagColor(genre, false).bg,
-              '--tag-border': getTagColor(genre, false).border,
-              '--tag-text': getTagColor(genre, false).text,
-              '--tag-bg-dark': getTagColor(genre, true).bg,
-              '--tag-border-dark': getTagColor(genre, true).border,
-              '--tag-text-dark': getTagColor(genre, true).text,
-            }"
-          >{{ getTagLabel(genre, lan) }}<span class="tag-remove" @click="removeTempGenre(genre)">&times;</span></span>
-          <button class="tag-clear-all" @click="tempSelectedGenres = []">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
-        </div>
-
-        <div class="tag-modal-body">
-          <div class="tag-modal-grid">
+          <template v-for="(state, genre) in tempGenreStates" :key="genre">
             <span
-              v-for="genre in availableGenres"
-              :key="genre"
-              class="tag-pill"
-              :class="{ 'tag-pill-active': tempSelectedGenres.includes(genre) }"
+              class="tag-pill tag-pill-sm tag-pill-selected"
+              :class="{
+                'tag-pill-state-or': state === 'or',
+                'tag-pill-state-and': state === 'and',
+                'tag-pill-state-not': state === 'not',
+              }"
               :style="{
                 '--tag-bg': getTagColor(genre, false).bg,
                 '--tag-border': getTagColor(genre, false).border,
@@ -526,11 +527,37 @@ const getGameImage = (game) => {
                 '--tag-border-dark': getTagColor(genre, true).border,
                 '--tag-text-dark': getTagColor(genre, true).text,
               }"
-              @click="toggleTempGenre(genre)"
+            ><span class="tag-state-indicator">{{ state === 'or' ? '∨' : state === 'and' ? '+' : '−' }}</span>{{ getTagLabel(genre, lan) }}<span class="tag-remove" @click="removeGenreState(genre)">&times;</span></span>
+          </template>
+          <button class="tag-clear-all" @click="tempGenreStates = {}">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
+          <span class="tag-match-count">{{ lan === 'zh' ? `${tempGenreMatchCount} 个匹配` : `${tempGenreMatchCount} match${tempGenreMatchCount !== 1 ? 'es' : ''}` }}</span>
+        </div>
+
+        <div class="tag-modal-body">
+          <div class="tag-modal-grid">
+            <span
+              v-for="genre in availableGenres"
+              :key="genre"
+              class="tag-pill"
+              :class="{
+                'tag-pill-state-or': tempGenreStates[genre] === 'or',
+                'tag-pill-state-and': tempGenreStates[genre] === 'and',
+                'tag-pill-state-not': tempGenreStates[genre] === 'not',
+              }"
+              :style="{
+                '--tag-bg': getTagColor(genre, false).bg,
+                '--tag-border': getTagColor(genre, false).border,
+                '--tag-text': getTagColor(genre, false).text,
+                '--tag-bg-dark': getTagColor(genre, true).bg,
+                '--tag-border-dark': getTagColor(genre, true).border,
+                '--tag-text-dark': getTagColor(genre, true).text,
+              }"
+              @click="cycleGenreState(genre)"
             >
-              <span v-if="tempSelectedGenres.includes(genre)" class="tag-check">&check;</span>{{ getTagLabel(genre, lan) }}<span class="tag-game-count">{{ genreGameCount[genre] || 0 }}</span>
+              <span v-if="tempGenreStates[genre]" class="tag-state-indicator">{{ tempGenreStates[genre] === 'or' ? '∨' : tempGenreStates[genre] === 'and' ? '+' : '−' }}</span>{{ getTagLabel(genre, lan) }}<span class="tag-game-count">{{ genreGameCount[genre] || 0 }}</span>
             </span>
           </div>
+          <p class="tag-modal-help">{{ lan === 'zh' ? '点击标签切换状态：∨ 或（满足任一）→ + 与（全部满足）→ − 非（排除）→ 关闭' : 'Click to cycle: ∨ OR (any) → + AND (all) → − NOT (exclude) → Off' }}</p>
         </div>
 
         <div class="tag-modal-footer">
@@ -872,6 +899,12 @@ const getGameImage = (game) => {
     color: #333;
   }
 
+  .tag-match-count {
+    font-size: 0.8em;
+    color: #888;
+    margin-left: 0.4em;
+  }
+
   .tag-modal-body {
     padding: 1em 1.2em;
     overflow-y: auto;
@@ -906,7 +939,7 @@ const getGameImage = (game) => {
     opacity: 0.85;
   }
 
-  .tag-pill-active {
+  .tag-pill-state-or {
     border-width: 2.5px;
     background-color: var(--tag-bg-dark);
     color: var(--tag-text-dark);
@@ -914,8 +947,32 @@ const getGameImage = (game) => {
     font-weight: 600;
   }
 
-  .tag-check {
-    margin-right: 0.2em;
+  .tag-pill-state-and {
+    border-width: 2.5px;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+    border-color: var(--tag-border);
+    font-weight: 600;
+    border-style: dashed;
+  }
+
+  .tag-pill-state-not {
+    border-width: 2.5px;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+    border-color: var(--tag-border);
+    font-weight: 600;
+    opacity: 0.6;
+  }
+
+  .tag-state-indicator {
+    font-weight: 700;
+    margin-right: 0.15em;
+    font-size: 0.9em;
+  }
+
+  .tag-pill-state-not .tag-state-indicator {
+    color: #d04040;
   }
 
   .tag-game-count {
@@ -932,6 +989,17 @@ const getGameImage = (game) => {
 
   .tag-pill-selected {
     cursor: default;
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border);
+  }
+
+  .tag-pill-selected.tag-pill-state-and {
+    border-style: dashed;
+  }
+
+  .tag-pill-selected.tag-pill-state-not {
+    opacity: 0.6;
   }
 
   .tag-remove {
@@ -951,6 +1019,13 @@ const getGameImage = (game) => {
     justify-content: flex-end;
     padding: 0.8em 1.2em;
     border-top: 1px solid #eee;
+  }
+
+  .tag-modal-help {
+    margin-top: 0.8em;
+    font-size: 0.78em;
+    color: #888;
+    line-height: 1.4;
   }
 
   .tag-modal-footer .md-button {
@@ -1000,13 +1075,29 @@ const getGameImage = (game) => {
     color: #ccc;
   }
 
+  body.dark .tag-match-count {
+    color: #777;
+  }
+
   body.dark .tag-pill {
     border-color: var(--tag-border-dark);
     background-color: var(--tag-bg-dark);
     color: var(--tag-text-dark);
   }
 
-  body.dark .tag-pill-active {
+  body.dark .tag-pill-state-or {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border-dark);
+  }
+
+  body.dark .tag-pill-state-and {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border-dark);
+  }
+
+  body.dark .tag-pill-state-not {
     background-color: var(--tag-bg);
     color: var(--tag-text);
     border-color: var(--tag-border-dark);
@@ -1016,6 +1107,18 @@ const getGameImage = (game) => {
     border-color: var(--tag-border-dark);
     background-color: var(--tag-bg-dark);
     color: var(--tag-text-dark);
+  }
+
+  body.dark .tag-pill-selected.tag-pill-state-and {
+    border-style: dashed;
+  }
+
+  body.dark .tag-pill-selected.tag-pill-state-not {
+    opacity: 0.6;
+  }
+
+  body.dark .tag-modal-help {
+    color: #777;
   }
 
   body.dark .tag-modal-footer {

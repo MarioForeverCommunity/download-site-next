@@ -33,7 +33,7 @@
   type: mario
   software: gamemaker
   genre:
-  - STG
+  - Shmup
   - Vertical-scroll
   ver:
   - "2011 ver, 2017 re-release":
@@ -535,7 +535,7 @@
   type: non-mario
   software: gamemaker
   genre:
-  - STG
+  - Shmup
   - Vertical-scroll
   ver:
   - "2011 ver, 2017 re-release":
@@ -591,7 +591,7 @@
   type: non-mario
   software: gamemaker
   genre:
-  - STG
+  - Shmup
   - Vertical-scroll
   ver:
   - "2011 ver, 2017 re-release":
@@ -709,7 +709,7 @@
   type: non-mario
   software: gamemaker
   genre:
-  - STG
+  - Shmup
   - Vertical-scroll
   ver:
   - "2017":
@@ -734,7 +734,7 @@
   type: non-mario
   software: mmf
   genre:
-  - STG
+  - Shmup
   ver:
   - "2005":
       year: 2005
@@ -751,7 +751,7 @@
   type: non-mario
   software: gamemaker
   genre:
-  - STG
+  - Shmup
   year: 2017
   installer: Stargrade 2 (2017).exe
   portable: Stargrade 2 (2017).zip

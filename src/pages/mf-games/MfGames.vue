@@ -14,7 +14,7 @@ import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
-import { getTagLabel, getTagColor } from "../../util/TagUtil.js"
+import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
 import Tooltip from '../../components/ToolTip.vue';
@@ -376,7 +376,7 @@ const filter_option = ref({
   type : "",
   platform : "",
   software : "",
-  tags : [],
+  tags : {},
   withImages : false,
 });
 
@@ -459,21 +459,40 @@ function clearFilter() {
   filter_option.value.type = "";
   filter_option.value.platform = "";
   filter_option.value.software = "";
-  filter_option.value.tags = [];
+  filter_option.value.tags = {};
   filter_option.value.withImages = false;
 }
 
 const showTagModal = ref(false);
-const tempSelectedTags = ref([]);
+const tempTagStates = ref({});
+
+const activeTagCount = computed(() => Object.keys(filter_option.value.tags).length);
+
+const tempTagMatchCount = computed(() => {
+  const states = tempTagStates.value;
+  if (Object.keys(states).length === 0) return games.value.length;
+  return games.value.filter(a => {
+    const aTags = a.tag ? (Array.isArray(a.tag) ? a.tag : [a.tag]) : [];
+    if (states["Untagged"]) {
+      const tagStatesWithoutUntagged = { ...states };
+      delete tagStatesWithoutUntagged["Untagged"];
+      const untaggedState = states["Untagged"];
+      const untaggedEntryTags = aTags.length === 0 ? ["Untagged"] : aTags;
+      return matchTagStates(untaggedEntryTags, tagStatesWithoutUntagged)
+        && (untaggedState === "or" ? aTags.length === 0 : untaggedState === "and" ? aTags.length === 0 : aTags.length > 0);
+    }
+    return matchTagStates(aTags, states);
+  }).length;
+});
 
 function openTagModal() {
-  tempSelectedTags.value = [...filter_option.value.tags];
+  tempTagStates.value = { ...filter_option.value.tags };
   showTagModal.value = true;
   disableScroll();
 }
 
 function confirmTagModal() {
-  filter_option.value.tags = [...tempSelectedTags.value];
+  filter_option.value.tags = { ...tempTagStates.value };
   showTagModal.value = false;
   enableScroll();
 }
@@ -483,20 +502,22 @@ function cancelTagModal() {
   enableScroll();
 }
 
-function toggleTempTag(tag) {
-  const idx = tempSelectedTags.value.indexOf(tag);
-  if (idx === -1) {
-    tempSelectedTags.value.push(tag);
+function cycleTagState(tag) {
+  const current = tempTagStates.value[tag] || null;
+  const next = nextTagState(current);
+  const newStates = { ...tempTagStates.value };
+  if (next) {
+    newStates[tag] = next;
   } else {
-    tempSelectedTags.value.splice(idx, 1);
+    delete newStates[tag];
   }
+  tempTagStates.value = newStates;
 }
 
-function removeTempTag(tag) {
-  const idx = tempSelectedTags.value.indexOf(tag);
-  if (idx !== -1) {
-    tempSelectedTags.value.splice(idx, 1);
-  }
+function removeTagState(tag) {
+  const newStates = { ...tempTagStates.value };
+  delete newStates[tag];
+  tempTagStates.value = newStates;
 }
 
 const expandAllVersions = ref(false);
@@ -522,11 +543,17 @@ const filteredGames = computed(() => {
         }))
     )
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
-      && (filter_option.value.tags.length === 0 || (() => {
+      && (Object.keys(filter_option.value.tags).length === 0 || (() => {
         const aTags = a.tag ? (Array.isArray(a.tag) ? a.tag : [a.tag]) : [];
-        const hasUntagged = filter_option.value.tags.includes("Untagged");
-        const tagFilters = filter_option.value.tags.filter(t => t !== "Untagged");
-        return (tagFilters.length > 0 && aTags.some(t => tagFilters.includes(t))) || (hasUntagged && aTags.length === 0);
+        if (filter_option.value.tags["Untagged"]) {
+          const tagStatesWithoutUntagged = { ...filter_option.value.tags };
+          delete tagStatesWithoutUntagged["Untagged"];
+          const untaggedState = filter_option.value.tags["Untagged"];
+          const untaggedEntryTags = aTags.length === 0 ? ["Untagged"] : aTags;
+          return matchTagStates(untaggedEntryTags, tagStatesWithoutUntagged)
+            && (untaggedState === "or" ? aTags.length === 0 : untaggedState === "and" ? aTags.length === 0 : aTags.length > 0);
+        }
+        return matchTagStates(aTags, filter_option.value.tags);
       })())
       // Pre-check: entry must have at least one version matching year
       && (!hasYearFilter || (Array.isArray(a.ver) && a.ver.some((verRaw) => {
@@ -651,11 +678,18 @@ const filteredGames = computed(() => {
         const softwareVal = detectSoftware(entry, verObj);
         const softwareMatch = filter_option.value.software === "" || softwareVal === filter_option.value.software;
         const entryTags = entry.tag ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag]) : [];
-        const hasUntagged = filter_option.value.tags.includes("Untagged");
-        const tagFilters = filter_option.value.tags.filter(t => t !== "Untagged");
-        const tagMatch = filter_option.value.tags.length === 0
-          || (tagFilters.length > 0 && entryTags.some(t => tagFilters.includes(t)))
-          || (hasUntagged && entryTags.length === 0);
+        const tagMatch = Object.keys(filter_option.value.tags).length === 0
+          || (() => {
+            if (filter_option.value.tags["Untagged"]) {
+              const tagStatesWithoutUntagged = { ...filter_option.value.tags };
+              delete tagStatesWithoutUntagged["Untagged"];
+              const untaggedState = filter_option.value.tags["Untagged"];
+              const untaggedEntryTags = entryTags.length === 0 ? ["Untagged"] : entryTags;
+              return matchTagStates(untaggedEntryTags, tagStatesWithoutUntagged)
+                && (untaggedState === "or" ? entryTags.length === 0 : untaggedState === "and" ? entryTags.length === 0 : entryTags.length > 0);
+            }
+            return matchTagStates(entryTags, filter_option.value.tags);
+          })();
         // 国际作品旧版file_name前缀处理
         let patchedVerRaw = { ...verRaw };
         if (typeVal === "international" && verObj.file_name && !latestIndexes.includes(idx) && !verObj.current) {
@@ -1039,7 +1073,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
         <div class="inline-block" v-if="availableTags.length > 0">
           <div class="visible-button" @click="openTagModal">
             {{ lan == "en" ? "Tags" : "标签筛选" }}
-            <span v-if="filter_option.tags.length > 0" class="tag-count-badge">{{ filter_option.tags.length }}</span>
+            <span v-if="activeTagCount > 0" class="tag-count-badge">{{ activeTagCount }}</span>
           </div>
         </div>
         <div class="inline-block">
@@ -1358,31 +1392,16 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <h3>{{ lan === 'zh' ? '标签筛选' : 'Tag Filter' }}</h3>
         </div>
 
-        <div v-if="tempSelectedTags.length > 0" class="tag-modal-selected">
+        <div v-if="Object.keys(tempTagStates).length > 0" class="tag-modal-selected">
           <span class="tag-selected-label">{{ lan === 'zh' ? '已选：' : 'Selected: ' }}</span>
-          <span
-            v-for="tag in tempSelectedTags"
-            :key="tag"
-            class="tag-pill tag-pill-sm tag-pill-selected"
-            :style="{
-              '--tag-bg': getTagColor(tag, false).bg,
-              '--tag-border': getTagColor(tag, false).border,
-              '--tag-text': getTagColor(tag, false).text,
-              '--tag-bg-dark': getTagColor(tag, true).bg,
-              '--tag-border-dark': getTagColor(tag, true).border,
-              '--tag-text-dark': getTagColor(tag, true).text,
-            }"
-          >{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTempTag(tag)">&times;</span></span>
-          <button class="tag-clear-all" @click="tempSelectedTags = []">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
-        </div>
-
-        <div class="tag-modal-body">
-          <div class="tag-modal-grid">
+          <template v-for="(state, tag) in tempTagStates" :key="tag">
             <span
-              v-for="tag in availableTags"
-              :key="tag"
-              class="tag-pill"
-              :class="{ 'tag-pill-active': tempSelectedTags.includes(tag) }"
+              class="tag-pill tag-pill-sm tag-pill-selected"
+              :class="{
+                'tag-pill-state-or': state === 'or',
+                'tag-pill-state-and': state === 'and',
+                'tag-pill-state-not': state === 'not',
+              }"
               :style="{
                 '--tag-bg': getTagColor(tag, false).bg,
                 '--tag-border': getTagColor(tag, false).border,
@@ -1391,11 +1410,37 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
                 '--tag-border-dark': getTagColor(tag, true).border,
                 '--tag-text-dark': getTagColor(tag, true).text,
               }"
-              @click="toggleTempTag(tag)"
+            ><span class="tag-state-indicator">{{ state === 'or' ? '∨' : state === 'and' ? '+' : '−' }}</span>{{ getTagLabel(tag, lan) }}<span class="tag-remove" @click="removeTagState(tag)">&times;</span></span>
+          </template>
+          <button class="tag-clear-all" @click="tempTagStates = {}">{{ lan === 'zh' ? '清除全部' : 'Clear all' }}</button>
+          <span class="tag-match-count">{{ lan === 'zh' ? `${tempTagMatchCount} 个匹配` : `${tempTagMatchCount} match${tempTagMatchCount !== 1 ? 'es' : ''}` }}</span>
+        </div>
+
+        <div class="tag-modal-body">
+          <div class="tag-modal-grid">
+            <span
+              v-for="tag in availableTags"
+              :key="tag"
+              class="tag-pill"
+              :class="{
+                'tag-pill-state-or': tempTagStates[tag] === 'or',
+                'tag-pill-state-and': tempTagStates[tag] === 'and',
+                'tag-pill-state-not': tempTagStates[tag] === 'not',
+              }"
+              :style="{
+                '--tag-bg': getTagColor(tag, false).bg,
+                '--tag-border': getTagColor(tag, false).border,
+                '--tag-text': getTagColor(tag, false).text,
+                '--tag-bg-dark': getTagColor(tag, true).bg,
+                '--tag-border-dark': getTagColor(tag, true).border,
+                '--tag-text-dark': getTagColor(tag, true).text,
+              }"
+              @click="cycleTagState(tag)"
             >
-              <span v-if="tempSelectedTags.includes(tag)" class="tag-check">&check;</span>{{ getTagLabel(tag, lan) }}<span class="tag-game-count">{{ tagGameCount[tag] || 0 }}</span>
+              <span v-if="tempTagStates[tag]" class="tag-state-indicator">{{ tempTagStates[tag] === 'or' ? '∨' : tempTagStates[tag] === 'and' ? '+' : '−' }}</span>{{ getTagLabel(tag, lan) }}<span class="tag-game-count">{{ tagGameCount[tag] || 0 }}</span>
             </span>
           </div>
+          <p class="tag-modal-help">{{ lan === 'zh' ? '点击标签切换状态：∨ 或（满足任一）→ + 与（全部满足）→ − 非（排除）→ 关闭' : 'Click to cycle: ∨ OR (any) → + AND (all) → − NOT (exclude) → Off' }}</p>
         </div>
 
         <div class="tag-modal-footer">
@@ -1832,6 +1877,12 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     color: #333;
   }
 
+  .tag-match-count {
+    font-size: 0.8em;
+    color: #888;
+    margin-left: 0.4em;
+  }
+
   .tag-modal-body {
     padding: 1em 1.2em;
     overflow-y: auto;
@@ -1866,7 +1917,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     opacity: 0.85;
   }
 
-  .tag-pill-active {
+  .tag-pill-state-or {
     border-width: 2.5px;
     background-color: var(--tag-bg-dark);
     color: var(--tag-text-dark);
@@ -1874,8 +1925,32 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     font-weight: 600;
   }
 
-  .tag-check {
-    margin-right: 0.2em;
+  .tag-pill-state-and {
+    border-width: 2.5px;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+    border-color: var(--tag-border);
+    font-weight: 600;
+    border-style: dashed;
+  }
+
+  .tag-pill-state-not {
+    border-width: 2.5px;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
+    border-color: var(--tag-border);
+    font-weight: 600;
+    opacity: 0.6;
+  }
+
+  .tag-state-indicator {
+    font-weight: 700;
+    margin-right: 0.15em;
+    font-size: 0.9em;
+  }
+
+  .tag-pill-state-not .tag-state-indicator {
+    color: #d04040;
   }
 
   .tag-game-count {
@@ -1892,6 +1967,17 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
 
   .tag-pill-selected {
     cursor: default;
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border);
+  }
+
+  .tag-pill-selected.tag-pill-state-and {
+    border-style: dashed;
+  }
+
+  .tag-pill-selected.tag-pill-state-not {
+    opacity: 0.6;
   }
 
   .tag-remove {
@@ -1911,6 +1997,13 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     justify-content: flex-end;
     padding: 0.8em 1.2em;
     border-top: 1px solid #eee;
+  }
+
+  .tag-modal-help {
+    margin-top: 0.8em;
+    font-size: 0.78em;
+    color: #888;
+    line-height: 1.4;
   }
 
   .tag-modal-footer .md-button {
@@ -1960,13 +2053,29 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     color: #ccc;
   }
 
+  body.dark .tag-match-count {
+    color: #777;
+  }
+
   body.dark .tag-pill {
     border-color: var(--tag-border-dark);
     background-color: var(--tag-bg-dark);
     color: var(--tag-text-dark);
   }
 
-  body.dark .tag-pill-active {
+  body.dark .tag-pill-state-or {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border-dark);
+  }
+
+  body.dark .tag-pill-state-and {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-color: var(--tag-border-dark);
+  }
+
+  body.dark .tag-pill-state-not {
     background-color: var(--tag-bg);
     color: var(--tag-text);
     border-color: var(--tag-border-dark);
@@ -1976,6 +2085,18 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     border-color: var(--tag-border-dark);
     background-color: var(--tag-bg-dark);
     color: var(--tag-text-dark);
+  }
+
+  body.dark .tag-pill-selected.tag-pill-state-and {
+    border-style: dashed;
+  }
+
+  body.dark .tag-pill-selected.tag-pill-state-not {
+    opacity: 0.6;
+  }
+
+  body.dark .tag-modal-help {
+    color: #777;
   }
 
   body.dark .tag-modal-footer {

@@ -57,7 +57,7 @@ const TAG_COLOR_MAP = {
   "Other":        { bg: "#e2e5ef", border: "#8088a8", text: "#505878" },
   "PK!MF":        { bg: "#fce4e4", border: "#d0706e", text: "#b84a48" },
   "Remake":       { bg: "#dfe8f8", border: "#6080b8", text: "#406098" },
-  "STG":          { bg: "#e1e8fc", border: "#6078e0", text: "#4058c0" },
+  "Shmup":        { bg: "#e1e8fc", border: "#6078e0", text: "#4058c0" },
   "Speedrun":     { bg: "#d8faf0", border: "#40d890", text: "#20b070" },
   "Single Level": { bg: "#f0e8f5", border: "#a088c0", text: "#7860a0" },
   "Untagged":     { bg: "#f0f0f0", border: "#b8b8b8", text: "#606060" },
@@ -95,7 +95,7 @@ const TAG_COLOR_MAP_DARK = {
   "Other":        { bg: "#1e2430", border: "#6C779B", text: "#6C779B" },
   "PK!MF":        { bg: "#3a2020", border: "#da6260", text: "#da6260" },
   "Remake":       { bg: "#1e2838", border: "#7E9ED8", text: "#7E9ED8" },
-  "STG":          { bg: "#1a2238", border: "#6785F3", text: "#6785F3" },
+  "Shmup":        { bg: "#1a2238", border: "#6785F3", text: "#6785F3" },
   "Speedrun":     { bg: "#183828", border: "#3EF5A7", text: "#3EF5A7" },
   "Single Level": { bg: "#281830", border: "#B088C0", text: "#B088C0" },
   "Untagged":     { bg: "#2a2a2a", border: "#E5E5E5", text: "#E5E5E5" },
@@ -125,4 +125,47 @@ export function getTagLabel(tag, lan) {
     return TAG_ZH_MAP[tag];
   }
   return tag;
+}
+
+// Tag filter state constants
+export const TAG_STATE_OR = "or";
+export const TAG_STATE_AND = "and";
+export const TAG_STATE_NOT = "not";
+
+/**
+ * Cycle through tag states: null → or → and → not → null (off)
+ */
+export function nextTagState(currentState) {
+  if (!currentState) return TAG_STATE_OR;
+  if (currentState === TAG_STATE_OR) return TAG_STATE_AND;
+  if (currentState === TAG_STATE_AND) return TAG_STATE_NOT;
+  return null;
+}
+
+/**
+ * Check if an entry's tags match the given tag states.
+ * OR tags: match if entry has ANY of them
+ * AND tags: match if entry has ALL of them
+ * NOT tags: match if entry has NONE of them
+ * All three groups must pass.
+ * @param {string[]} entryTags - Tags of the entry
+ * @param {Object} tagStates - Map of tag name to state ("or"/"and"/"not")
+ * @returns {boolean}
+ */
+export function matchTagStates(entryTags, tagStates) {
+  const orTags = [];
+  const andTags = [];
+  const notTags = [];
+  for (const [tag, state] of Object.entries(tagStates)) {
+    if (state === TAG_STATE_OR) orTags.push(tag);
+    else if (state === TAG_STATE_AND) andTags.push(tag);
+    else if (state === TAG_STATE_NOT) notTags.push(tag);
+  }
+  if (orTags.length === 0 && andTags.length === 0 && notTags.length === 0) return true;
+
+  const orMatch = orTags.length === 0 || orTags.some(t => entryTags.includes(t));
+  const andMatch = andTags.length === 0 || andTags.every(t => entryTags.includes(t));
+  const notMatch = notTags.length === 0 || notTags.every(t => !entryTags.includes(t));
+
+  return orMatch && andMatch && notMatch;
 }
