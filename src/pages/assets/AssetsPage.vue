@@ -8,7 +8,7 @@ import AssetCard from '../../components/AssetCard.vue';
 import { getName, getDownloadEntries } from "../../util/GameUtil.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import { filterList, getStrFromList } from "../../util/GameUtil.js"
-import { fuzzyMatch } from "../../util/SearchUtil.js"
+import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
@@ -212,7 +212,7 @@ const filteredAssets = computed(() => {
           || fuzzyMatch(getStrFromList(entry.author), query)
           || filterList(query, entry.alias)
       );
-      const fileNameMatch = fuzzyMatch(verObj.file_name, query);
+      const fileNameMatch = normalizedIncludes(verObj.file_name, query);
       if (!nameMatch && !fileNameMatch) return null;
       const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
           || (filter_option.value.type_addon && entry.type == "addon")

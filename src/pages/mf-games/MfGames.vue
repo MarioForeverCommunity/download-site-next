@@ -14,7 +14,7 @@ import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
-import { fuzzyMatch } from "../../util/SearchUtil.js"
+import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -542,7 +542,7 @@ const filteredGames = computed(() => {
         || filterList(query, a.alias)
         || (Array.isArray(a.ver) && a.ver.some(verRaw => {
           const verObj = verRaw[Object.keys(verRaw)[0]];
-          return fuzzyMatch(verObj.file_name, query);
+          return normalizedIncludes(verObj.file_name, query);
         }))
     )
       && (filter_option.value.type === "" || a.type == filter_option.value.type || filter_option.value.force)
@@ -670,7 +670,7 @@ const filteredGames = computed(() => {
         const verKey = Object.keys(verRaw)[0];
         const verObj = verRaw[verKey];
         // file_name匹配
-        const fileNameMatch = fuzzyMatch(verObj.file_name, query);
+        const fileNameMatch = normalizedIncludes(verObj.file_name, query);
         if (!nameMatch && !fileNameMatch) return null;
         // 年份判断
         const yearMatch = isNaN(parseInt(filter_option.value.year)) || (parseInt(verObj.date.toISOString().split('-')[0]) == parseInt(filter_option.value.year));

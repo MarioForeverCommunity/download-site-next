@@ -6,46 +6,70 @@
 
 /**
  * Normalize a string for search: uppercase and strip every non-alphanumeric
- * character. After normalization, "Phantom'sMagoria" and "phantomsmagoria"
- * collapse to the same token, so a plain substring check becomes tolerant of
- * punctuation and spacing differences.
+ * character. Uses Unicode property escapes so CJK and other scripts are
+ * preserved; only punctuation, symbols and whitespace are removed. After
+ * normalization, "Phantom'sMagoria" and "phantomsmagoria" collapse to the
+ * same token, so a plain substring check becomes tolerant of punctuation
+ * and spacing differences.
  * @param {string|*} str
  * @returns {string}
  */
 export function normalizeForSearch(str) {
   if (str == null) return "";
-  return String(str).toUpperCase().replace(/[^A-Z0-9]/g, "");
+  return String(str).toUpperCase().replace(/[^\p{L}\p{N}]/gu, "");
 }
 
 /**
- * Levenshtein edit distance between two strings (O(m*n) time, O(n) space).
- * @param {string} a
- * @param {string} b
+ * Fuzzy substring distance: the minimum edit distance between `query` and any
+ * contiguous substring of `target`. Unlike plain Levenshtein (which compares
+ * whole strings), the match may start at any position in `target`, so a partial
+ * query with a typo can still match -- e.g. "mamor" matches "Memory" with
+ * distance 1 (it aligns to the "Memor" substring with one substitution).
+ *
+ * Uses the Optimal String Alignment (OSA) metric, which counts an adjacent
+ * character transposition (e.g. "zo" -> "oz") as a single edit instead of two
+ * substitutions. This is the standard approximate-string-matching DP with the
+ * first row initialized to 0 (free start position); the result is the minimum
+ * value in the last row. O(m*n) time, O(n) space.
+ * @param {string} query
+ * @param {string} target
  * @returns {number}
  */
-function levenshtein(a, b) {
-  const m = a.length;
-  const n = b.length;
-  if (m === 0) return n;
+function fuzzySubstringDistance(query, target) {
+  const m = query.length;
+  const n = target.length;
+  if (m === 0) return 0;
   if (n === 0) return m;
+  let prev2 = null;
   let prev = new Array(n + 1);
-  for (let j = 0; j <= n; j++) prev[j] = j;
+  for (let j = 0; j <= n; j++) prev[j] = 0;
   let curr = new Array(n + 1);
   for (let i = 1; i <= m; i++) {
     curr[0] = i;
+    const qc = query.charCodeAt(i - 1);
+    const qcPrev = i > 1 ? query.charCodeAt(i - 2) : -1;
     for (let j = 1; j <= n; j++) {
-      const cost = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1;
+      const cost = qc === target.charCodeAt(j - 1) ? 0 : 1;
       curr[j] = Math.min(
         curr[j - 1] + 1,        // insertion
         prev[j] + 1,            // deletion
         prev[j - 1] + cost      // substitution
       );
+      // transposition: two adjacent characters swapped (counts as 1 edit)
+      if (i > 1 && j > 1 && qc === target.charCodeAt(j - 2) && qcPrev === target.charCodeAt(j - 1)) {
+        curr[j] = Math.min(curr[j], prev2[j - 2] + 1);
+      }
     }
-    const tmp = prev;
+    const tmp = prev2 || new Array(n + 1);
+    prev2 = prev;
     prev = curr;
     curr = tmp;
   }
-  return prev[n];
+  let min = prev[0];
+  for (let j = 1; j <= n; j++) {
+    if (prev[j] < min) min = prev[j];
+  }
+  return min;
 }
 
 /**
@@ -66,9 +90,11 @@ function typoThreshold(len) {
  *
  * Matching strategy (in order):
  *  1. Normalized substring match — handles all punctuation/space differences.
- *  2. Per-word Levenshtein fallback — handles minor misspellings by comparing
- *     the (normalized) query against each whitespace-delimited word of the
- *     target. Only applied for queries of length >= 4 to avoid noise.
+ *  2. Fuzzy substring distance fallback - allows the (normalized) query to
+ *     match any contiguous substring of the normalized target with a small
+ *     number of edits. This handles both whole-word and partial-word typos
+ *     (e.g. "mamor" matches "Memory"). Only applied for queries of length
+ *     >= 4 to avoid noise.
  *
  * @param {string|null|undefined} target - The string to search within.
  * @param {string} query - The search term typed by the user.
@@ -88,27 +114,24 @@ export function fuzzyMatch(target, query) {
   const threshold = typoThreshold(nQuery.length);
   if (threshold === 0) return false;
 
-  const words = String(target).toUpperCase().split(/[^A-Z0-9]+/);
-  for (const word of words) {
-    if (!word) continue;
-    if (Math.abs(word.length - nQuery.length) > threshold) continue;
-    if (levenshtein(word, nQuery) <= threshold) return true;
-  }
-  return false;
+  return fuzzySubstringDistance(nQuery, nTarget) <= threshold;
 }
 
 /**
- * Fuzzy match a query against a list of strings (e.g. aliases). Returns true
- * if any element matches.
- * @param {string[]|string|null|undefined} list
- * @param {string} query
+ * Normalized substring match: applies the same punctuation/space-insensitive
+ * normalization as fuzzyMatch, but WITHOUT the Levenshtein typo fallback.
+ * Intended for structured fields (file_name, alias) where approximate typo
+ * matching would produce false positives.
+ *
+ * @param {string|null|undefined} target - The string to search within.
+ * @param {string} query - The search term typed by the user.
  * @returns {boolean}
  */
-export function fuzzyMatchList(list, query) {
-  if (list == null) return false;
-  if (!Array.isArray(list)) return fuzzyMatch(list, query);
-  for (const item of list) {
-    if (fuzzyMatch(item, query)) return true;
-  }
-  return false;
+export function normalizedIncludes(target, query) {
+  const q = query == null ? "" : String(query).trim();
+  if (q === "") return true;
+  if (target == null) return false;
+  const nQuery = normalizeForSearch(q);
+  if (nQuery === "") return true;
+  return normalizeForSearch(target).includes(nQuery);
 }

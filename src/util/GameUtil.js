@@ -1,5 +1,5 @@
 import { sourceName, downloadName, videoName } from "../config.js"
-import { fuzzyMatch } from "./SearchUtil.js"
+import { normalizedIncludes } from "./SearchUtil.js"
 
 export function getSourceLink(item, lan) {
   if (lan == "en" && item.currentVer.source_url_alt) {
@@ -325,7 +325,7 @@ export function filterList(target, aliasList) {
     return false;
   }
   for (const alias of aliasList) {
-    if (fuzzyMatch(alias, target)) {
+    if (normalizedIncludes(alias, target)) {
       return true;
     }
   }
