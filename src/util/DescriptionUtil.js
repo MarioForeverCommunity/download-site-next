@@ -15,7 +15,7 @@ function getAuthorKey(entry) {
   const authors = entry.author;
   if (!authors) return '';
   const authorArray = Array.isArray(authors) ? authors : [authors];
-  return authorArray.sort().join(',');
+  return [...authorArray].sort().join(',');
 }
 
 async function loadYamlList(category) {
