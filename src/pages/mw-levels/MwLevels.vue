@@ -369,12 +369,13 @@ const smwpVersionOptions = computed(() => {
   // 收集所有主版本（如1.7）和完整版本（如1.7.6），只保留纯数字版本（不含字母）
   const allVers = Object.keys(SmwpVersions)
     .map(v => v.replace(/^v/, ""))
-    .filter(v => /^\d+\.\d+\.\d+$/.test(v));
+    .filter(v => /^\d+\.\d+\.\d+(\.\d+)?$/.test(v));
     // 语义版本排序函数
   function semverDesc(a, b) {
     const pa = a.split('.').map(Number);
     const pb = b.split('.').map(Number);
-    for (let i = 0; i < 3; ++i) {
+    const len = Math.max(pa.length, pb.length);
+    for (let i = 0; i < len; ++i) {
       if ((pa[i]||0) !== (pb[i]||0)) return (pb[i]||0) - (pa[i]||0);
     }
     return 0;
@@ -435,8 +436,8 @@ const filteredGames = computed(() => {
       if (/^\d+\.\d+$/.test(selectedSmwpVer.value)) {
         // 选中主版本如1.7，匹配1.7.x
         return ver.startsWith(selectedSmwpVer.value + ".");
-      } else if (/^\d+\.\d+\.\d+$/.test(selectedSmwpVer.value)) {
-        // 选中如1.7.11，匹配1.7.11和1.7.11+字母
+      } else if (/^\d+\.\d+\.\d+(\.\d+)?$/.test(selectedSmwpVer.value)) {
+        // 选中如1.7.11或1.7.12.1，匹配精确版本及带字母后缀的版本
         return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value) && /[a-zA-Z]$/.test(ver);
       }
       return false;
