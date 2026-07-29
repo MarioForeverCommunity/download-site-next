@@ -1,4 +1,17 @@
 ---
+- game: A Day Out 一命特别版+全存档练习模式
+  alias:
+  - ADO
+  author: 玛丽的死对头
+  smwp_ver: v1.7.8
+  date: 2026-07-29
+  source_url: https://www.marioforever.net/thread-3910-1-1.html
+  download_url:
+  code:
+  file_name:
+  - A Day Out (Golden Road).smwp
+  - Practice Mode.rar
+  file_url:
 - game: 后室2
   author: 有名氏
   smwp_ver: v1.7.12
