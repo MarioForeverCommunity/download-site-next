@@ -39,7 +39,7 @@ export const topBar = [
   },
   {
     "link" : "https://download.marioforever.net/",
-    "name" : "作品汇总",
+    "name" : "作品目录",
     "show_en" : false
   },
   {
