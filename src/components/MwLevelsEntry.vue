@@ -105,6 +105,50 @@ watch(selectedDownload, (newDownload) => {
   }
 })
 
+watch(selectedSmwp, async (newSmwp) => {
+  if (newSmwp) {
+    await fetchSmwpFileSize(newSmwp)
+  } else {
+    fileSizeMap.value = {}
+    fileSizeLoading.value = false
+  }
+})
+
+async function fetchSmwpFileSize(smwp) {
+  if (!smwp || !smwp.smwp_url) return
+
+  fileSizeLoading.value = true
+  fileSizeMap.value = {}
+
+  const cdnUrl = smwp.smwp_url_cdn
+  const resourceUrl = smwp.smwp_url
+  const sizes = {}
+
+  // 优先从对象存储获取
+  if (cdnUrl) {
+    const cdnSizes = await batchFetchFileSizes([cdnUrl])
+    if (cdnSizes[cdnUrl]) {
+      sizes[cdnUrl] = cdnSizes[cdnUrl]
+    }
+  }
+
+  // 对象存储未获取到，尝试资源站
+  if (!sizes[cdnUrl]) {
+    const resourceSizes = await batchFetchFileSizes([resourceUrl])
+    Object.assign(sizes, resourceSizes)
+  }
+
+  fileSizeMap.value = sizes
+  fileSizeLoading.value = false
+}
+
+function getSmwpFileSize() {
+  if (!selectedSmwp.value) return null
+  return fileSizeMap.value[selectedSmwp.value.smwp_url_cdn]
+    || fileSizeMap.value[selectedSmwp.value.smwp_url]
+    || null
+}
+
 async function fetchFileSizes(download) {
   if (!download) {
     fileSizeMap.value = {}
@@ -529,9 +573,13 @@ const getGameImage = () => {
           <div>
             {{ lan == 'en' ? 'Download' : '下载' }} {{ selectedSmwp.smwp_ver === 'MW 4.4' ? 'Mario Worker 4.4' : `Super Mario Worker Project ${selectedSmwp.smwp_ver}` }}
           </div>
+          <div v-if="fileSizeLoading || getSmwpFileSize()" class="file-size-info">
+            <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching file size...' : '获取文件大小中...' }}</span>
+            <span v-else-if="getSmwpFileSize()" class="file-size-text">{{ lan == 'en' ? 'File size:' : '文件大小:' }} {{ getSmwpFileSize() }}</span>
+          </div>
           <div class="button-line">
             <a class="download" :href="selectedSmwp.smwp_url" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
-            <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">{{ lan == 'en' ? 'Cloud Storage' : '对象存储' }}</a>
+            <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
           </div>
         </div>
       </div>
