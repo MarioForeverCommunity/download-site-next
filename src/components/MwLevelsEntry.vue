@@ -122,20 +122,29 @@ async function fetchSmwpFileSize(smwp) {
 
   const cdnUrl = smwp.smwp_url_cdn
   const resourceUrl = smwp.smwp_url
+  const dataCdnUrl = smwp.smwp_data_url_cdn
+  const dataResourceUrl = smwp.smwp_data_url
   const sizes = {}
 
-  // 优先从对象存储获取
+  // SMWP 主体：优先从对象存储获取
   if (cdnUrl) {
     const cdnSizes = await batchFetchFileSizes([cdnUrl])
     if (cdnSizes[cdnUrl]) {
       sizes[cdnUrl] = cdnSizes[cdnUrl]
     }
   }
-
-  // 对象存储未获取到，尝试资源站
   if (!sizes[cdnUrl]) {
     const resourceSizes = await batchFetchFileSizes([resourceUrl])
     Object.assign(sizes, resourceSizes)
+  }
+
+  // 数据包：优先从对象存储获取
+  if (dataCdnUrl || dataResourceUrl) {
+    const dataUrls = []
+    if (dataCdnUrl) dataUrls.push(dataCdnUrl)
+    if (!sizes[dataCdnUrl] && dataResourceUrl) dataUrls.push(dataResourceUrl)
+    const dataSizes = await batchFetchFileSizes(dataUrls)
+    Object.assign(sizes, dataSizes)
   }
 
   fileSizeMap.value = sizes
@@ -146,6 +155,13 @@ function getSmwpFileSize() {
   if (!selectedSmwp.value) return null
   return fileSizeMap.value[selectedSmwp.value.smwp_url_cdn]
     || fileSizeMap.value[selectedSmwp.value.smwp_url]
+    || null
+}
+
+function getSmwpDataFileSize() {
+  if (!selectedSmwp.value) return null
+  return fileSizeMap.value[selectedSmwp.value.smwp_data_url_cdn]
+    || fileSizeMap.value[selectedSmwp.value.smwp_data_url]
     || null
 }
 
@@ -581,6 +597,19 @@ const getGameImage = () => {
             <a class="download" :href="selectedSmwp.smwp_url" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
             <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
           </div>
+          <template v-if="selectedSmwp.smwp_data_url">
+            <div class="button-line" style="margin-top: 8px;">
+              <span>{{ lan == 'en' ? 'Download Data' : '下载数据包' }}</span>
+            </div>
+            <div v-if="fileSizeLoading || getSmwpDataFileSize()" class="file-size-info">
+              <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching data size...' : '获取数据包大小中...' }}</span>
+              <span v-else-if="getSmwpDataFileSize()" class="file-size-text">{{ lan == 'en' ? 'Data size:' : '数据包大小:' }} {{ getSmwpDataFileSize() }}</span>
+            </div>
+            <div class="button-line">
+              <a class="download" :href="selectedSmwp.smwp_data_url" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
+              <a class="download" :href="selectedSmwp.smwp_data_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
+            </div>
+          </template>
         </div>
       </div>
     </Transition>

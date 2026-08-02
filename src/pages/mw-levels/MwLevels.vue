@@ -10,7 +10,7 @@ import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
-import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, isCdnCompatible } from "../../util/GameUtil.js"
+import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible } from "../../util/GameUtil.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -86,6 +86,11 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       if (smwpUrl) {
         entry.smwp_url = smwpUrl;
         entry.smwp_url_cdn = getSmwpUrl(entry, true);
+      }
+      const smwpDataUrl = getSmwpDataUrl(entry);
+      if (smwpDataUrl) {
+        entry.smwp_data_url = smwpDataUrl;
+        entry.smwp_data_url_cdn = getSmwpDataUrl(entry, true);
       }
     }
 
@@ -276,20 +281,29 @@ async function fetchSmwpFileSize(smwp) {
 
   const cdnUrl = smwp.smwp_url_cdn;
   const resourceUrl = smwp.smwp_url;
+  const dataCdnUrl = smwp.smwp_data_url_cdn;
+  const dataResourceUrl = smwp.smwp_data_url;
   const sizes = {};
 
-  // 优先从对象存储获取
+  // SMWP 主体：优先从对象存储获取
   if (cdnUrl) {
     const cdnSizes = await batchFetchFileSizes([cdnUrl]);
     if (cdnSizes[cdnUrl]) {
       sizes[cdnUrl] = cdnSizes[cdnUrl];
     }
   }
-
-  // 对象存储未获取到，尝试资源站
   if (!sizes[cdnUrl]) {
     const resourceSizes = await batchFetchFileSizes([resourceUrl]);
     Object.assign(sizes, resourceSizes);
+  }
+
+  // 数据包：优先从对象存储获取
+  if (dataCdnUrl || dataResourceUrl) {
+    const dataUrls = [];
+    if (dataCdnUrl) dataUrls.push(dataCdnUrl);
+    if (!sizes[dataCdnUrl] && dataResourceUrl) dataUrls.push(dataResourceUrl);
+    const dataSizes = await batchFetchFileSizes(dataUrls);
+    Object.assign(sizes, dataSizes);
   }
 
   fileSizeMap.value = sizes;
@@ -300,6 +314,13 @@ function getSmwpFileSize() {
   if (!selectedSmwp.value) return null;
   return fileSizeMap.value[selectedSmwp.value.smwp_url_cdn]
     || fileSizeMap.value[selectedSmwp.value.smwp_url]
+    || null;
+}
+
+function getSmwpDataFileSize() {
+  if (!selectedSmwp.value) return null;
+  return fileSizeMap.value[selectedSmwp.value.smwp_data_url_cdn]
+    || fileSizeMap.value[selectedSmwp.value.smwp_data_url]
     || null;
 }
 
@@ -951,6 +972,19 @@ const { floatingStyles } = useFloating(reference, floating,
           <a class="download" :href="selectedSmwp.smwp_url" target="_blank">社区资源站</a>
           <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">对象存储</a>
         </div>
+        <template v-if="selectedSmwp.smwp_data_url">
+          <div class="button-line" style="margin-top: 8px;">
+            <span>下载数据包</span>
+          </div>
+          <div v-if="fileSizeLoading || getSmwpDataFileSize()" class="file-size-info">
+            <span v-if="fileSizeLoading" class="file-size-loading">获取数据包大小中...</span>
+            <span v-else-if="getSmwpDataFileSize()" class="file-size-text">数据包大小: {{ getSmwpDataFileSize() }}</span>
+          </div>
+          <div class="button-line">
+            <a class="download" :href="selectedSmwp.smwp_data_url" target="_blank">社区资源站</a>
+            <a class="download" :href="selectedSmwp.smwp_data_url_cdn" target="_blank">对象存储</a>
+          </div>
+        </template>
       </div>
     </div>
   </Transition>

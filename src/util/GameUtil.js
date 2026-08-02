@@ -415,6 +415,34 @@ export function getSmwpUrl(entry, useCdn = false) {
   return null;
 }
 
+/**
+ * 构建 SMWP 音乐包（数据包）下载链接
+ * v1.5.0+: Data.7z；v1.4.0~1.4.5: Data.zip；更低版本和 MW 4.4 无数据包
+ * @param {object} entry - 关卡条目
+ * @param {boolean} [useCdn=false] - 是否使用对象存储（CDN）
+ * @returns {string|null} 数据包下载 URL
+ */
+export function getSmwpDataUrl(entry, useCdn = false) {
+  if (!entry.smwp_ver || entry.smwp_ver === "MW 4.4") return null;
+  if (!SmwpVersions[entry.smwp_ver]) return null;
+
+  const parts = entry.smwp_ver.replace(/^v/, "").split(".").map(Number);
+  const major = parts[0] || 0;
+  const minor = parts[1] || 0;
+
+  let dataFile;
+  if (major > 1 || (major === 1 && minor >= 5)) {
+    dataFile = "Data.7z";
+  } else if (major === 1 && minor === 4) {
+    dataFile = "Data.zip";
+  } else {
+    return null;
+  }
+
+  const url = `${SMWP_BASE_PATH}${dataFile}`;
+  return useCdn ? url.replace("file.marioforever.net", "mf-cdn.kevinh.wang") : url;
+}
+
 export function getDataResourceURL(item, lan) {
   if (lan == "en") {
     return item.currentVer.data_file_url_en

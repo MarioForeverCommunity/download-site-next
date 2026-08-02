@@ -1,5 +1,5 @@
 import { readList } from "./ReadList.js"
-import { processFileNamesWithVolumes, getMwLevelFileUrl } from "./GameUtil.js"
+import { processFileNamesWithVolumes, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible } from "./GameUtil.js"
 
 let mwListPromise = null
 let mwListCache = null
@@ -34,20 +34,33 @@ const normalizeMwEntry = (raw) => {
           name: `社区资源站 (${displayNames[i]})`,
           url: getMwLevelFileUrl(entry, fileNameEntry)
         })
-        entry.file_urls_cdn.push({
-          name: `对象存储 (${displayNames[i]})`,
-          url: getMwLevelFileUrl(entry, fileNameEntry, true)
-        })
+        entry.file_urls_cdn.push(
+          isCdnCompatible(fileNameEntry)
+            ? { name: `对象存储 (${displayNames[i]})`, url: getMwLevelFileUrl(entry, fileNameEntry, true) }
+            : null
+        )
       }
     } else {
       entry.file_urls = [{
         name: "社区资源站",
         url: getMwLevelFileUrl(entry, entry.file_name)
       }]
-      entry.file_urls_cdn = [{
-        name: "对象存储",
-        url: getMwLevelFileUrl(entry, entry.file_name, true)
-      }]
+      entry.file_urls_cdn = isCdnCompatible(entry.file_name)
+        ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.file_name, true) }]
+        : []
+    }
+  }
+
+  if (entry.smwp_ver && !entry.has_bundled_smwp) {
+    const smwpUrl = getSmwpUrl(entry)
+    if (smwpUrl) {
+      entry.smwp_url = smwpUrl
+      entry.smwp_url_cdn = getSmwpUrl(entry, true)
+    }
+    const smwpDataUrl = getSmwpDataUrl(entry)
+    if (smwpDataUrl) {
+      entry.smwp_data_url = smwpDataUrl
+      entry.smwp_data_url_cdn = getSmwpDataUrl(entry, true)
     }
   }
 
@@ -64,20 +77,20 @@ const normalizeMwEntry = (raw) => {
             name: `社区资源站 (${displayNames[j]})`,
             url: getMwLevelFileUrl(entry, dataFileNameEntry)
           })
-          entry.data_file_urls_cdn.push({
-            name: `对象存储 (${displayNames[j]})`,
-            url: getMwLevelFileUrl(entry, dataFileNameEntry, true)
-          })
+          entry.data_file_urls_cdn.push(
+            isCdnCompatible(dataFileNameEntry)
+              ? { name: `对象存储 (${displayNames[j]})`, url: getMwLevelFileUrl(entry, dataFileNameEntry, true) }
+              : null
+          )
         }
       } else {
         entry.data_file_urls = [{
           name: "社区资源站",
           url: getMwLevelFileUrl(entry, entry.data_file_name)
         }]
-        entry.data_file_urls_cdn = [{
-          name: "对象存储",
-          url: getMwLevelFileUrl(entry, entry.data_file_name, true)
-        }]
+        entry.data_file_urls_cdn = isCdnCompatible(entry.data_file_name)
+          ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.data_file_name, true) }]
+          : []
       }
     }
   } else {
