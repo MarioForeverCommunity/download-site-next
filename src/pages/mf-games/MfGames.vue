@@ -1257,7 +1257,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             v-if="shouldShowResourceLink(selectedDownload)"
             :href="getResourceURL(selectedDownload, lan)"
             target="_blank"
-          >{{ lan == "en" ? "file.mario forever.net" : "社区资源站" }}</a>
+          >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
           <a
             class="download"
             v-if="getResourceCdnURL(selectedDownload)"
