@@ -21,6 +21,7 @@ import { navTop } from "../../config.js";
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
+import { getAssetResourceURLs } from "../../util/AssetUtil.js";
 const originalLan = ref(getLanguage());
 
 const lan = ref("zh");
@@ -327,11 +328,26 @@ async function fetchFileSizes(download) {
   fileSizeMap.value = {};
 
   const urls = [];
+  const cdnToResourceMap = {};
 
-  // Collect resource URLs
+  // Collect resource URLs and CDN URLs
   const resourceUrls = getAssetResourceURLs(download);
-  if (resourceUrls.length > 0) {
+  const cdnUrls = getAssetResourceURLs(download, true);
+
+  if (resourceUrls.length <= 1) {
+    // Non-array: prefer CDN for file size fetching
+    const resourceUrl = resourceUrls[0]?.url;
+    const cdnUrl = cdnUrls[0]?.url;
+    if (cdnUrl && resourceUrl) {
+      cdnToResourceMap[cdnUrl] = resourceUrl;
+      urls.push(cdnUrl);
+    } else if (resourceUrl) {
+      urls.push(resourceUrl);
+    }
+  } else {
+    // Array: fetch from both resource site and CDN
     urls.push(...resourceUrls.map(u => u.url));
+    urls.push(...cdnUrls.map(u => u.url));
   }
 
   // Collect download entries URLs
@@ -339,6 +355,15 @@ async function fetchFileSizes(download) {
   urls.push(...entries.map(e => e.url));
 
   const sizes = await batchFetchFileSizes(urls);
+
+  // Remap CDN sizes to resource URL keys for non-array case
+  for (const [cdnUrl, resourceUrl] of Object.entries(cdnToResourceMap)) {
+    if (sizes[cdnUrl] && !sizes[resourceUrl]) {
+      sizes[resourceUrl] = sizes[cdnUrl];
+      delete sizes[cdnUrl];
+    }
+  }
+
   fileSizeMap.value = sizes;
   fileSizeLoading.value = false;
 }
@@ -355,48 +380,6 @@ function getAssetImage(asset) {
     return `/data/assets/${asset.image}`;
   }
   return null;
-}
-
-function getAssetResourceURLs(asset) {
-  if (!asset.currentVer || !asset.currentVer.file_name) {
-    return [];
-  }
-  const fileNames = Array.isArray(asset.currentVer.file_name)
-    ? asset.currentVer.file_name.filter(fn => fn != null)
-    : [asset.currentVer.file_name];
-
-  return fileNames.map(fileName => {
-    const encodedFileName = encodeURIComponent(fileName);
-    let url;
-    if (asset.type === 'effect') {
-      url = `https://file.marioforever.net/Mario Forever/引擎/CTF特效/${encodedFileName}`;
-    } else if (asset.type === 'addon') {
-      url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
-    } else if (asset.type === 'engine') {
-      const path = asset.path || '';
-      const encodedPath = path ? encodeURIComponent(path) + '/' : '';
-      url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
-    } else if (asset.type === 'sprite') {
-      url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
-    } else if (asset.type === 'tool') {
-      url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`;
-    } else if (asset.type === 'mwtool') {
-      url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`;
-    }
-
-    let displayFileName = fileName.split('/').pop();
-    displayFileName = displayFileName.replace(/\.[^.]*$/, "");
-    try {
-      displayFileName = decodeURIComponent(displayFileName);
-    } catch (error) {
-      console.error('Failed to decode URI component:', displayFileName, error);
-    }
-
-    return {
-      name: fileNames.length > 1 ? `社区资源站 (${displayFileName})` : '社区资源站',
-      url: url
-    };
-  });
 }
 
 // Optimized tooltip.
@@ -561,6 +544,15 @@ const { floatingStyles } = useFloating(reference, floating,
               </a>
             </template>
           </span>
+          <template v-if="getAssetResourceURLs(selectedDownload, true).length > 0">
+            <a
+              class="download"
+              v-for="url in getAssetResourceURLs(selectedDownload, true)"
+              :key="url.url"
+              :href="url.url"
+              target="_blank"
+            >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
+          </template>
           <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
             <ClipboardButton

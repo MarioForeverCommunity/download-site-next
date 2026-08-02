@@ -20,7 +20,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail']);
+const emit = defineEmits(['selectGame', 'selectVideos', 'showTooltip', 'hideTooltip', 'selectVersion', 'showTiebaDialog', 'showGameDetail', 'selectSmwp']);
 
 const selectVersion = (ver) => {
   // 通过emit事件通知父组件更新版本信息
@@ -195,7 +195,7 @@ const getHomepageUrl = () => {
     </div>
     <div class="game-version" v-if="game.category == 'mw'">
       {{ game.smwp_ver }}<Tooltip v-if="game.smwp_url && !game.has_bundled_smwp">
-        <a :href="game.smwp_url" target="_blank">
+        <a @click.prevent="emit('selectSmwp', game)">
           <DownloadIcon class="icon button"></DownloadIcon>
         </a>
         <template #popper>

@@ -1,11 +1,13 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
+import Cookies from 'js-cookie';
 import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/GameUtil.js';
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync } from '../util/ImageUtil.js';
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
+import { getAssetFileUrl } from '../util/AssetUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import MarkdownIt from 'markdown-it';
 
@@ -42,6 +44,7 @@ const markdownContent = ref('');
 const originalTitle = ref(document.title);
 const fileSizeMap = ref({});
 const fileSizeLoading = ref(false);
+const useCdn = ref(Cookies.get('useCdn') === 'true');
 
 const isMwLevel = computed(() => {
   return props.category === 'mw-levels';
@@ -89,7 +92,7 @@ const smwpVersion = computed(() => {
 
 const smwpUrl = computed(() => {
   if (!props.game || !props.game.smwp_ver || !props.game.smwp_url) return null;
-  return props.game.smwp_url;
+  return useCdn.value ? (props.game.smwp_url_cdn || props.game.smwp_url) : props.game.smwp_url;
 });
 
 const titleImage = computed(() => {
@@ -384,15 +387,16 @@ const downloadEntries = computed(() => {
       const ver = verRaw[verKey];
 
       // Installer (安装版)
-      if (ver.installer_url) {
-        const toolbarDetected = ver.installer_url.toLowerCase().includes('toolbar');
+      const installerUrl = useCdn.value ? ver.installer_url_cdn : ver.installer_url;
+      if (installerUrl) {
+        const toolbarDetected = installerUrl.toLowerCase().includes('toolbar');
         let installerLabel = props.lan === 'zh' ? `安装版 (${verKey})` : `Installer (${verKey})`;
         if (toolbarDetected) {
           installerLabel += props.lan === 'zh' ? ' (含广告插件)' : ' (with toolbar)';
         }
         entries.push({
           version: installerLabel,
-          url: ver.installer_url,
+          url: installerUrl,
           isRepackaged: false,
           repacker: null,
           isData: false,
@@ -402,8 +406,9 @@ const downloadEntries = computed(() => {
       }
 
       // Portable (绿色版)
-      if (ver.portable_urls && ver.portable_urls.length > 0) {
-        for (const p of ver.portable_urls) {
+      const portableUrls = useCdn.value ? ver.portable_urls_cdn : ver.portable_urls;
+      if (portableUrls && portableUrls.length > 0) {
+        for (const p of portableUrls) {
           // flash/mff 类型显示格式标签 (如 "绿色版 EXE")
           let portableName;
           if (props.game.type === 'flash' || props.game.type === 'mff') {
@@ -440,32 +445,37 @@ const downloadEntries = computed(() => {
   }
 
   if (isMwLevel.value) {
-    if (props.game.file_urls && props.game.file_urls.length > 0) {
-      const fileNames = props.game.file_name;
-      const isArray = Array.isArray(fileNames);
-      const displayNames = isArray ? processFileNamesWithVolumes(fileNames) : null;
+    const resourceUrls = props.game.file_urls || [];
+    const cdnUrls = props.game.file_urls_cdn || [];
+    const fileNames = props.game.file_name;
+    const isArray = Array.isArray(fileNames);
+    const displayNames = isArray ? processFileNamesWithVolumes(fileNames) : null;
 
-      return props.game.file_urls.map((item, idx) => {
-        const url = item.url || '';
-        const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
+    const entries = [];
+    for (let idx = 0; idx < resourceUrls.length; idx++) {
+      // CDN 开启时仅显示兼容的条目，不兼容则跳过（显示"暂无下载链接"）
+      const item = useCdn.value ? (cdnUrls[idx] || null) : resourceUrls[idx];
+      if (!item) continue;
 
-        let version;
-        if (isArray && displayNames && displayNames[idx]) {
-          version = props.lan === 'zh' ? `下载 ${displayNames[idx]}` : `Download ${displayNames[idx]}`;
-        } else {
-          version = props.lan === 'zh' ? '下载作品' : 'Download';
-        }
+      const url = item.url || '';
+      const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
 
-        return {
-          version,
-          url: url,
-          isRepackaged: isRepackaged,
-          repacker: null,
-          isData: false
-        };
+      let version;
+      if (isArray && displayNames && displayNames[idx]) {
+        version = props.lan === 'zh' ? `下载 ${displayNames[idx]}` : `Download ${displayNames[idx]}`;
+      } else {
+        version = props.lan === 'zh' ? '下载作品' : 'Download';
+      }
+
+      entries.push({
+        version,
+        url: url,
+        isRepackaged: isRepackaged,
+        repacker: null,
+        isData: false
       });
     }
-    return [];
+    return entries;
   }
 
   if (isAssets.value) {
@@ -482,23 +492,7 @@ const downloadEntries = computed(() => {
             : [ver.file_name];
 
           for (const fileName of fileNames) {
-            const encodedFileName = encodeURIComponent(fileName);
-            let url;
-            if (props.game.type === 'effect') {
-              url = `https://file.marioforever.net/Mario Forever/引擎/CTF特效/${encodedFileName}`;
-            } else if (props.game.type === 'addon') {
-              url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
-            } else if (props.game.type === 'engine') {
-              const path = props.game.path || '';
-              const encodedPath = path ? encodeURIComponent(path) + '/' : '';
-              url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
-            } else if (props.game.type === 'sprite') {
-              url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
-            } else if (props.game.type === 'tool') {
-              url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`;
-            } else if (props.game.type === 'mwtool') {
-              url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`;
-            }
+            const url = getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value);
 
             if (url) {
               let versionText = '下载';
@@ -526,23 +520,7 @@ const downloadEntries = computed(() => {
         : [props.game.currentVer.file_name];
 
       for (const fileName of fileNames) {
-        const encodedFileName = encodeURIComponent(fileName);
-        let url;
-        if (props.game.type === 'effect') {
-          url = `https://file.marioforever.net/Mario Forever/引擎/CTF特效/${encodedFileName}`;
-        } else if (props.game.type === 'addon') {
-          url = `https://file.marioforever.net/Mario Forever/引擎/拓展资源包/${encodedFileName}`;
-        } else if (props.game.type === 'engine') {
-          const path = props.game.path || '';
-          const encodedPath = path ? encodeURIComponent(path) + '/' : '';
-          url = `https://file.marioforever.net/Mario Forever/引擎/${encodedPath}${encodedFileName}`;
-        } else if (props.game.type === 'sprite') {
-          url = `https://file.marioforever.net/Mario Forever/游戏素材/${encodedFileName}`;
-        } else if (props.game.type === 'tool') {
-          url = `https://file.marioforever.net/Mario Forever/游戏工具/${encodedFileName}`;
-        } else if (props.game.type === 'mwtool') {
-          url = `https://file.marioforever.net/Mario Worker/辅助工具/${encodedFileName}`;
-        }
+        const url = getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value);
 
         if (url) {
           const versionText = props.game.currentVer?.ver || '下载';
@@ -563,8 +541,8 @@ const downloadEntries = computed(() => {
   if (!props.game.ver) return [];
 
   const entries = [];
-  const fileUrlKey = props.lan === 'zh' ? 'file_url_zh' : 'file_url_en';
-  const dataUrlKey = props.lan === 'zh' ? 'data_file_url_zh' : 'data_file_url_en';
+  const fileUrlKey = useCdn.value ? 'file_url_cdn' : (props.lan === 'zh' ? 'file_url_zh' : 'file_url_en');
+  const dataUrlKey = useCdn.value ? 'data_file_url_cdn' : (props.lan === 'zh' ? 'data_file_url_zh' : 'data_file_url_en');
 
   for (const verRaw of props.game.ver) {
     const verKey = Object.keys(verRaw)[0];
@@ -612,23 +590,28 @@ const dataDownloadEntries = computed(() => {
 
   if (!isMwLevel.value) return [];
 
-  if (props.game.currentVer.data_file_urls && props.game.currentVer.data_file_urls.length > 0) {
-    const dataFileNames = props.game.currentVer.data_file_name;
-    const isArray = Array.isArray(dataFileNames);
-    const displayNames = isArray ? processFileNamesWithVolumes(dataFileNames) : null;
+  const resourceUrls = props.game.currentVer.data_file_urls || [];
+  const cdnUrls = props.game.currentVer.data_file_urls_cdn || [];
+  const dataFileNames = props.game.currentVer.data_file_name;
+  const isArray = Array.isArray(dataFileNames);
+  const displayNames = isArray ? processFileNamesWithVolumes(dataFileNames) : null;
 
-    return props.game.currentVer.data_file_urls.map((item, idx) => {
-      let name;
-      if (isArray && displayNames && displayNames[idx]) {
-        name = props.lan === 'zh' ? `下载 ${displayNames[idx]}` : `Download ${displayNames[idx]}`;
-      } else {
-        name = props.lan === 'zh' ? '下载数据包' : 'Download Data';
-      }
+  const entries = [];
+  for (let idx = 0; idx < resourceUrls.length; idx++) {
+    // CDN 开启时仅显示兼容的条目，不兼容则跳过
+    const item = useCdn.value ? (cdnUrls[idx] || null) : resourceUrls[idx];
+    if (!item) continue;
 
-      return { name, url: item.url };
-    });
+    let name;
+    if (isArray && displayNames && displayNames[idx]) {
+      name = props.lan === 'zh' ? `下载 ${displayNames[idx]}` : `Download ${displayNames[idx]}`;
+    } else {
+      name = props.lan === 'zh' ? '下载数据包' : 'Download Data';
+    }
+
+    entries.push({ name, url: item.url });
   }
-  return [];
+  return entries;
 });
 
 const videos = computed(() => {
@@ -748,6 +731,13 @@ watch(() => [props.game, props.lan], () => {
     fetchFileSizes();
   }
 }, { immediate: true });
+
+watch(useCdn, (newVal) => {
+  Cookies.set('useCdn', String(newVal));
+  if (props.show) {
+    fetchFileSizes();
+  }
+});
 
 watch(() => props.show, (newVal) => {
   if (newVal) {
@@ -1030,6 +1020,14 @@ const nextImage = () => {
 
           <div class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '下载' : 'Downloads' }}</h3>
+            <div class="cdn-toggle">
+              <span class="toggle-label">{{ lan === 'zh' ? '资源站' : 'Community File Hub' }}</span>
+              <label class="toggle-switch">
+                <input type="checkbox" v-model="useCdn" />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">{{ lan === 'zh' ? '对象存储' : 'CDN (Cloudflare R2)' }}</span>
+            </div>
             <div v-if="fileSizeLoading" class="file-size-loading-info">
               {{ lan === 'zh' ? '获取文件大小中...' : 'Fetching file size...' }}
             </div>
@@ -1049,7 +1047,7 @@ const nextImage = () => {
                 <span v-if="fileSizeMap[entry.url]" class="file-size-label">
                   ({{ fileSizeMap[entry.url] }})
                 </span>
-                <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
+                <span v-else-if="fileSizeLoading && entry.url && (entry.url.includes('file.marioforever.net') || entry.url.includes('mf-cdn.kevinh.wang'))" class="file-size-loading-label">
                   ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
                 </span>
                 <span v-if="entry.isRepackaged" class="repackaged-label">
@@ -1069,7 +1067,7 @@ const nextImage = () => {
                 <span v-if="fileSizeMap[entry.url]" class="file-size-label">
                   ({{ fileSizeMap[entry.url] }})
                 </span>
-                <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
+                <span v-else-if="fileSizeLoading && entry.url && (entry.url.includes('file.marioforever.net') || entry.url.includes('mf-cdn.kevinh.wang'))" class="file-size-loading-label">
                   ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
                 </span>
               </li>
@@ -1302,6 +1300,64 @@ const nextImage = () => {
     margin-bottom: 0.5em;
     border-left: 3px solid #008cff;
     padding-left: 0.5em;
+  }
+
+  .cdn-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.8em;
+    font-size: 0.85em;
+  }
+
+  .toggle-label {
+    color: #666;
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 20px;
+  }
+
+  .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  .toggle-switch input:checked + .toggle-slider {
+    background-color: #008cff;
+  }
+
+  .toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(16px);
   }
 
   .source-list,

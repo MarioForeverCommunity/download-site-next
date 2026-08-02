@@ -43,6 +43,7 @@ const level = ref(null)
 const isLoading = ref(true)
 const notFound = ref(false)
 const selectedDownload = ref(null)
+const selectedSmwp = ref(null)
 const fileSizeMap = ref({})
 const fileSizeLoading = ref(false)
 const selectedVideo = ref(null)
@@ -83,8 +84,8 @@ function tooltipMouseLeave(obj) {
   }
 }
 
-watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail], ([newDownload, newVideo, newTieba, newDetail]) => {
-  if (newDownload || newVideo || newTieba || newDetail) {
+watch([selectedDownload, selectedSmwp, selectedVideo, tiebaDialog, selectedGameDetail], ([newDownload, newSmwp, newVideo, newTieba, newDetail]) => {
+  if (newDownload || newSmwp || newVideo || newTieba || newDetail) {
     document.documentElement.classList.add("modal-open")
     document.body.classList.add("modal-open")
     disableScroll()
@@ -114,10 +115,27 @@ async function fetchFileSizes(download) {
   fileSizeMap.value = {}
 
   const urls = []
+  const cdnToResourceMap = {}
 
   // Collect all URLs from file_urls array
   if (download.file_urls) {
-    urls.push(...download.file_urls.map(u => u.url))
+    if (download.file_urls.length <= 1) {
+      // Non-array: prefer CDN for file size fetching
+      const resourceUrl = download.file_urls[0]?.url
+      const cdnUrl = download.file_urls_cdn?.[0]?.url
+      if (cdnUrl && resourceUrl) {
+        cdnToResourceMap[cdnUrl] = resourceUrl
+        urls.push(cdnUrl)
+      } else if (resourceUrl) {
+        urls.push(resourceUrl)
+      }
+    } else {
+      // Array: fetch from both resource site and CDN
+      urls.push(...download.file_urls.map(u => u.url))
+      if (download.file_urls_cdn) {
+        urls.push(...download.file_urls_cdn.filter(u => u).map(u => u.url))
+      }
+    }
   }
 
   // Collect download link
@@ -128,7 +146,23 @@ async function fetchFileSizes(download) {
 
   // Collect data file URLs
   if (download.currentVer?.data_file_urls) {
-    urls.push(...download.currentVer.data_file_urls.map(u => u.url))
+    if (download.currentVer.data_file_urls.length <= 1) {
+      // Non-array: prefer CDN
+      const resourceUrl = download.currentVer.data_file_urls[0]?.url
+      const cdnUrl = download.currentVer.data_file_urls_cdn?.[0]?.url
+      if (cdnUrl && resourceUrl) {
+        cdnToResourceMap[cdnUrl] = resourceUrl
+        urls.push(cdnUrl)
+      } else if (resourceUrl) {
+        urls.push(resourceUrl)
+      }
+    } else {
+      // Array: fetch from both
+      urls.push(...download.currentVer.data_file_urls.map(u => u.url))
+      if (download.currentVer.data_file_urls_cdn) {
+        urls.push(...download.currentVer.data_file_urls_cdn.filter(u => u).map(u => u.url))
+      }
+    }
   }
 
   // Collect data download URL
@@ -137,6 +171,15 @@ async function fetchFileSizes(download) {
   }
 
   const sizes = await batchFetchFileSizes(urls)
+
+  // Remap CDN sizes to resource URL keys for non-array case
+  for (const [cdnUrl, resourceUrl] of Object.entries(cdnToResourceMap)) {
+    if (sizes[cdnUrl] && !sizes[resourceUrl]) {
+      sizes[resourceUrl] = sizes[cdnUrl]
+      delete sizes[cdnUrl]
+    }
+  }
+
   fileSizeMap.value = sizes
   fileSizeLoading.value = false
 }
@@ -295,6 +338,7 @@ const getGameImage = () => {
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => { tiebaDialog = data }"
         @show-game-detail="(entry) => { selectedGameDetail = entry }"
+        @select-smwp="(entry) => { selectedSmwp = entry }"
       >
         <template v-if="gallery.length === 1" #gallery>
           <div class="entry-gallery single-image">
@@ -373,6 +417,15 @@ const getGameImage = () => {
                 </a>
               </template>
             </span>
+            <template v-if="selectedDownload.file_urls_cdn">
+              <a
+                class="download"
+                v-for="url in selectedDownload.file_urls_cdn.filter(u => u)"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
+            </template>
             <template v-if="getDownloadLink(selectedDownload, lan)">
               <a
                 class="download"
@@ -426,6 +479,15 @@ const getGameImage = () => {
                 </a>
               </template>
             </span>
+            <template v-if="selectedDownload.currentVer.data_file_urls_cdn">
+              <a
+                class="download"
+                v-for="url in selectedDownload.currentVer.data_file_urls_cdn.filter(u => u)"
+                :key="url.url"
+                :href="url.url"
+                target="_blank"
+              >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
+            </template>
             <template v-if="selectedDownload.currentVer.data_download_url">
               <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
                 {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
@@ -456,6 +518,20 @@ const getGameImage = () => {
                 <a :href="Object.values(video)[0]" target="_blank">{{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], lan) }})</a>
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </Transition>
+
+    <Transition name="modal">
+      <div v-if="selectedSmwp != null" class="modal-bg" @click="selectedSmwp = null;">
+        <div class="modal-content" @click.stop="">
+          <div>
+            {{ lan == 'en' ? 'Download' : '下载' }} {{ selectedSmwp.smwp_ver === 'MW 4.4' ? 'Mario Worker 4.4' : `Super Mario Worker Project ${selectedSmwp.smwp_ver}` }}
+          </div>
+          <div class="button-line">
+            <a class="download" :href="selectedSmwp.smwp_url" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
+            <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">{{ lan == 'en' ? 'Cloud Storage' : '对象存储' }}</a>
           </div>
         </div>
       </div>

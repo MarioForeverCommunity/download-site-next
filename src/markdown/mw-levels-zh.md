@@ -15,7 +15,7 @@
 
 <a class="md-button" target="_blank" href="https://smwp.marioforever.net/downloads/">Super Mario Worker Project 下载页</a><a class="md-button" target="_blank" href="https://file.marioforever.net/smwp/Data.7z">最新版 Super Mario Worker Project 音乐包</a>
 
-本页面现已收录一部分较为知名的 Mario Worker 4.4 (1.1) 作品，更多本页面暂未收录的 Mario Worker 4.4 作品请到 [社区资源站](https://file.marioforever.net/Mario%20Worker/Mario%20Worker%204.4%20%E4%BD%9C%E5%93%81) 下载，或下载下面的作品合集。
+本页面现已收录一部分较为知名的 Mario Worker 4.4 作品，更多本页面暂未收录的 Mario Worker 4.4 作品请到 [社区资源站](https://file.marioforever.net/Mario%20Worker/Mario%20Worker%204.4%20%E4%BD%9C%E5%93%81) 下载，或下载下面的作品合集。
 
 为方便玩家，特别整理提供 Mario Worker 作品合集，合集内包含大部分不附带 Mario Worker 本体的作品。
 

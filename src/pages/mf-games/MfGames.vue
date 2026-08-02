@@ -13,7 +13,7 @@ import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
+import { getVideoDesc, getResourceURL, getResourceCdnURL, filterList, getDataResourceURL, getDataResourceCdnURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl } from "../../util/GameUtil.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -177,19 +177,9 @@ Promise.all([readList("list-mf.yaml"), imageResolver.init()]).then(([list]) => {
       if (!ver.file_url) {
         if (ver.file_name) {
           // 检查是否为APK文件，如果是则使用包含作者名的安卓游戏路径
-          if (ver.file_name.toLowerCase().endsWith('.apk')) {
-            ver.file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${entry.first_author}/${ver.file_name}`;
-            ver.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${ver.file_name}`;
-          } else if (ver.repacker) {
-            ver.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.file_name}`;
-            ver.file_url_en = `https://file.marioforever.net/mario-forever/games/repackaged-fangames/${ver.file_name}`;
-          } else if (entry.type == "chinese") {
-            ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
-            ver.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.file_name}`;
-          } else if (entry.type == "international") {
-            ver.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.file_name}`;
-            ver.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.file_name}`;
-          }
+          ver.file_url_zh = getMfFileUrl(ver.file_name, ver, entry, "zh");
+          ver.file_url_en = getMfFileUrl(ver.file_name, ver, entry, "en");
+          ver.file_url_cdn = getMfFileUrl(ver.file_name, ver, entry, "cdn");
         }
       } else {
         ver.file_url_zh = ver.file_url;
@@ -198,19 +188,9 @@ Promise.all([readList("list-mf.yaml"), imageResolver.init()]).then(([list]) => {
       if (!ver.data_file_url) {
         if (ver.data_file_name) {
           // 检查是否为APK相关的数据文件，如果是则使用包含作者名的安卓游戏路径
-          if (ver.data_file_name.toLowerCase().endsWith('.apk') || ver.file_name?.toLowerCase().endsWith('.apk')) {
-            ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${entry.first_author}/${ver.data_file_name}`;
-            ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${ver.data_file_name}`;
-          } else if (ver.repacker) {
-            ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${ver.data_file_name}`;
-            ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${ver.data_file_name}`;
-          } else if (entry.type == "chinese") {
-            ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
-            ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${ver.date.toISOString().split('-')[0]}/${ver.data_file_name}`;
-          } else if (entry.type == "international") {
-            ver.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${ver.data_file_name}`;
-            ver.data_file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${ver.data_file_name}`;
-          }
+          ver.data_file_url_zh = getMfFileUrl(ver.data_file_name, ver, entry, "zh", true);
+          ver.data_file_url_en = getMfFileUrl(ver.data_file_name, ver, entry, "en", true);
+          ver.data_file_url_cdn = getMfFileUrl(ver.data_file_name, ver, entry, "cdn", true);
         }
       } else {
         ver.data_file_url_zh = ver.data_file_url;
@@ -917,17 +897,21 @@ async function fetchFileSize(game) {
   selectedFileSize.value = null;
   selectedDataFileSize.value = null;
 
-  // Get the resource URL (file.marioforever.net)
+  // Prefer CDN URL for file size fetching, fallback to resource site URL
+  const cdnUrl = getResourceCdnURL(game);
   const resourceUrl = getResourceURL(game, lan.value);
-  if (resourceUrl) {
-    const size = await getFormattedFileSize(resourceUrl);
+  const fetchUrl = cdnUrl || resourceUrl;
+  if (fetchUrl) {
+    const size = await getFormattedFileSize(fetchUrl);
     selectedFileSize.value = size;
   }
 
   // Get data file size if available
+  const cdnDataUrl = getDataResourceCdnURL(game);
   const dataResourceUrl = getDataResourceURL(game, lan.value);
-  if (dataResourceUrl) {
-    const dataSize = await getFormattedFileSize(dataResourceUrl);
+  const fetchDataUrl = cdnDataUrl || dataResourceUrl;
+  if (fetchDataUrl) {
+    const dataSize = await getFormattedFileSize(fetchDataUrl);
     selectedDataFileSize.value = dataSize;
   }
 
@@ -1273,7 +1257,13 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             v-if="shouldShowResourceLink(selectedDownload)"
             :href="getResourceURL(selectedDownload, lan)"
             target="_blank"
-          >{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+          >{{ lan == "en" ? "file.mario forever.net" : "社区资源站" }}</a>
+          <a
+            class="download"
+            v-if="getResourceCdnURL(selectedDownload)"
+            :href="getResourceCdnURL(selectedDownload)"
+            target="_blank"
+          >{{ lan == "en" ? "CDN (Cloudflare R2)" : "对象存储" }}</a>
           <template v-for="entry in getDownloadEntriesForView(selectedDownload)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
             <ClipboardButton
@@ -1298,7 +1288,13 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               v-if="getDataResourceURL(selectedDownload, lan)"
               :href="getDataResourceURL(selectedDownload, lan)"
               target="_blank"
-            >{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+            >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
+            <a
+              class="download"
+              v-if="getDataResourceCdnURL(selectedDownload)"
+              :href="getDataResourceCdnURL(selectedDownload)"
+              target="_blank"
+            >{{ lan == "en" ? "CDN (Cloudflare R2)" : "对象存储" }}</a>
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
               <template v-if="selectedDownload.currentVer.data_code">

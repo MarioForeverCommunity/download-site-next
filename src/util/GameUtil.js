@@ -1,5 +1,6 @@
 import { sourceName, downloadName, videoName } from "../config.js"
 import { normalizedIncludes } from "./SearchUtil.js"
+import { SmwpVersions } from "./SmwpVersions.js"
 
 export function getSourceLink(item, lan) {
   if (lan == "en" && item.currentVer.source_url_alt) {
@@ -259,6 +260,10 @@ export function getResourceURL(item, lan) {
   return item.currentVer.file_url_zh
 }
 
+export function getResourceCdnURL(item) {
+  return item.currentVer.file_url_cdn
+}
+
 export function getAuthorFolderURL(item, author, lan) {
   // Android 游戏：统一指向 mobile-fangames，不分国内外
   if (item.currentVer && item.currentVer.file_name &&
@@ -299,11 +304,126 @@ export function getAuthorFolderURL(item, author, lan) {
   return `https://file.marioforever.net/Mario Forever/国外作品/${encodeURIComponent(folder)}/`;
 }
 
+// MF 游戏资源站基础路径
+const MF_FILE_BASE_PATHS_ZH = {
+  android: "https://file.marioforever.net/Mario Forever/安卓游戏/",
+  repackaged: "https://file.marioforever.net/Mario Forever/重打包作品/",
+  chinese: "https://file.marioforever.net/Mario Forever/国内作品/",
+  international: "https://file.marioforever.net/Mario Forever/国外作品/"
+}
+
+const MF_FILE_BASE_PATHS_EN = {
+  android: "https://file.marioforever.net/mario-forever/games/mobile-fangames/",
+  repackaged: "https://file.marioforever.net/mario-forever/games/repackaged-fangames/",
+  chinese: "https://file.marioforever.net/mario-forever/games/chinese-fangames/",
+  international: "https://file.marioforever.net/mario-forever/games/international-fangames/"
+}
+
+// 对象存储（CDN）基础路径，遵循英文资源站路径规则
+const MF_FILE_BASE_PATHS_CDN = {
+  android: "https://mf-cdn.kevinh.wang/mario-forever/games/mobile-fangames/",
+  repackaged: "https://mf-cdn.kevinh.wang/mario-forever/games/repackaged-fangames/",
+  chinese: "https://mf-cdn.kevinh.wang/mario-forever/games/chinese-fangames/",
+  international: "https://mf-cdn.kevinh.wang/mario-forever/games/international-fangames/"
+}
+
+/**
+ * 构建 MF 游戏下载链接
+ * @param {string} fileName - 文件名
+ * @param {object} ver - 版本对象
+ * @param {object} entry - 游戏条目
+ * @param {string} lan - 语言/来源 ("zh"/"en"/"cdn")，cdn 遵循英文路径规则
+ * @param {boolean} [isDataFile=false] - 是否为数据文件
+ * @returns {string|null} 下载 URL
+ */
+export function getMfFileUrl(fileName, ver, entry, lan, isDataFile = false) {
+  if (!fileName) return null
+  // 数据文件需同时检查自身与主文件是否为 APK
+  const isApk = isDataFile
+    ? (fileName.toLowerCase().endsWith(".apk") || (ver.file_name && ver.file_name.toLowerCase().endsWith(".apk")))
+    : fileName.toLowerCase().endsWith(".apk")
+
+  const paths = lan === "zh" ? MF_FILE_BASE_PATHS_ZH
+    : lan === "cdn" ? MF_FILE_BASE_PATHS_CDN
+      : MF_FILE_BASE_PATHS_EN
+
+  if (isApk) {
+    return `${paths.android}${entry.first_author}/${fileName}`
+  }
+  if (ver.repacker) {
+    return `${paths.repackaged}${fileName}`
+  }
+  if (entry.type === "chinese") {
+    const year = ver.date instanceof Date ? ver.date.toISOString().split("-")[0] : ""
+    return `${paths.chinese}${year}/${fileName}`
+  }
+  if (entry.type === "international") {
+    return `${paths.international}${entry.first_author}/${fileName}`
+  }
+  return null
+}
+
+// MW 关卡资源站基础路径
+const MW_LEVEL_BASE_PATH = "https://file.marioforever.net/Mario Worker/"
+// 对象存储（CDN）基础路径，将 Mario Worker/ 替换为 mw-levels/
+const MW_LEVEL_CDN_BASE_PATH = "https://mf-cdn.kevinh.wang/mw-levels/"
+const SMWP_BASE_PATH = "https://file.marioforever.net/smwp/"
+const SMWP_MW44_URL = "https://file.marioforever.net/Mario%20Worker/%E5%8E%9F%E7%89%88%20Mario%20Worker%20%E4%B8%8B%E8%BD%BD"
+const SMWP_MW44_CDN_URL = "https://mf-cdn.kevinh.wang/mario-worker/original-mw/Mario%20Worker%204.4%20(2011).zip"
+
+/**
+ * 构建 MW 关卡下载链接
+ * @param {object} entry - 关卡条目
+ * @param {string} fname - 文件名
+ * @param {boolean} [useCdn=false] - 是否使用对象存储（CDN）
+ * @returns {string} 下载 URL
+ */
+export function getMwLevelFileUrl(entry, fname, useCdn = false) {
+  const author = Array.isArray(entry.author) ? "合作作品" : entry.author
+  const basePath = useCdn ? MW_LEVEL_CDN_BASE_PATH : MW_LEVEL_BASE_PATH
+  if (entry.smwp_ver === "MW 4.4") {
+    return `${basePath}Mario Worker 4.4 作品/${author}/${fname}`
+  }
+  const folder = author === "合作作品" ? "合作作品" : `吧友作品/${author}`
+  return `${basePath}${folder}/${fname}`
+}
+
+/**
+ * 判断文件名是否兼容 CDN（有扩展名且不以斜杠结尾）
+ * @param {string} fileName - 文件名
+ * @returns {boolean}
+ */
+export function isCdnCompatible(fileName) {
+  if (!fileName || fileName.endsWith('/')) return false;
+  const lastSegment = fileName.split('/').pop();
+  return lastSegment.includes('.');
+}
+
+/**
+ * 构建 SMWP 下载链接
+ * @param {object} entry - 关卡条目
+ * @returns {string|null} SMWP 下载 URL
+ */
+export function getSmwpUrl(entry, useCdn = false) {
+  if (SmwpVersions[entry.smwp_ver]) {
+    const url = `${SMWP_BASE_PATH}${SmwpVersions[entry.smwp_ver]}`;
+    return useCdn ? url.replace("file.marioforever.net", "mf-cdn.kevinh.wang") : url;
+  }
+  if (entry.smwp_ver === "MW 4.4") {
+    return useCdn ? SMWP_MW44_CDN_URL : SMWP_MW44_URL;
+  }
+  return null;
+}
+
 export function getDataResourceURL(item, lan) {
   if (lan == "en") {
     return item.currentVer.data_file_url_en
   }
   return item.currentVer.data_file_url_zh
+}
+
+export function getDataResourceCdnURL(item) {
+  return item.currentVer.data_file_url_cdn
 }
 
 export function hasDownloadableContent(item) {

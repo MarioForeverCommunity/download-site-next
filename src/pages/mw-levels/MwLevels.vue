@@ -10,7 +10,7 @@ import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
-import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel } from "../../util/GameUtil.js"
+import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, isCdnCompatible } from "../../util/GameUtil.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -33,14 +33,6 @@ const titleZh = navTop.find(item => item.id === pageId).title;
 
 const games = ref([]);
 
-function generateResourceUrl(entry, fname) {
-  const author = Array.isArray(entry.author) ? "合作作品" : entry.author;
-  if (entry.smwp_ver === "MW 4.4") {
-    return `https://file.marioforever.net/Mario Worker/Mario Worker 4.4 作品/${author}/${fname}`;
-  }
-  return `https://file.marioforever.net/Mario Worker/${author == "合作作品" ? "合作作品" : `吧友作品/${author}`}/${fname}`;
-}
-
 // Fetch game list.
 
 const imageResolver = createGameImageResolver('mw-levels');
@@ -58,6 +50,7 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       // Automatically generate resource site link.
       if (Array.isArray(entry.file_name)) {
         entry.file_urls = [];
+        entry.file_urls_cdn = [];
         // For array, we generate all download links and give each link a name.
         const displayNames = processFileNamesWithVolumes(entry.file_name);
         for (let i = 0; i < entry.file_name.length; i++) {
@@ -67,23 +60,32 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
           }
           entry.file_urls.push({
             name: `社区资源站 (${displayNames[i]})`,
-            url: generateResourceUrl(entry, file_name_entry)
+            url: getMwLevelFileUrl(entry, file_name_entry)
           });
+          // CDN 不支持目录或无扩展名的文件，用 null 占位保持索引对齐
+          entry.file_urls_cdn.push(
+            isCdnCompatible(file_name_entry)
+              ? { name: `对象存储 (${displayNames[i]})`, url: getMwLevelFileUrl(entry, file_name_entry, true) }
+              : null
+          );
         }
       } else {
         // For single file, we generate a download link.
         entry.file_urls = [{
           name: "社区资源站",
-          url: generateResourceUrl(entry, entry.file_name)
+          url: getMwLevelFileUrl(entry, entry.file_name)
         }];
+        entry.file_urls_cdn = isCdnCompatible(entry.file_name)
+          ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.file_name, true) }]
+          : [];
       }
     }
 
     if (entry.smwp_ver && !entry.has_bundled_smwp) {
-      if (SmwpVersions[entry.smwp_ver]) {
-        entry.smwp_url = `https://file.marioforever.net/smwp/${SmwpVersions[entry.smwp_ver]}`;
-      } else if (entry.smwp_ver === "MW 4.4") {
-        entry.smwp_url = "https://file.marioforever.net/Mario%20Worker/%E5%8E%9F%E7%89%88%20Mario%20Worker%20%E4%B8%8B%E8%BD%BD";
+      const smwpUrl = getSmwpUrl(entry);
+      if (smwpUrl) {
+        entry.smwp_url = smwpUrl;
+        entry.smwp_url_cdn = getSmwpUrl(entry, true);
       }
     }
 
@@ -92,6 +94,7 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       if (entry.data_file_name) {
         if (Array.isArray(entry.data_file_name)) {
           entry.data_file_urls = [];
+          entry.data_file_urls_cdn = [];
           const displayNames = processFileNamesWithVolumes(entry.data_file_name);
           for (let j = 0; j < entry.data_file_name.length; j++) {
             const data_file_name_entry = entry.data_file_name[j];
@@ -100,14 +103,23 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
             }
             entry.data_file_urls.push({
               name: `社区资源站 (${displayNames[j]})`,
-              url: generateResourceUrl(entry, data_file_name_entry)
+              url: getMwLevelFileUrl(entry, data_file_name_entry)
             });
+            // CDN 不支持目录或无扩展名的文件，用 null 占位保持索引对齐
+            entry.data_file_urls_cdn.push(
+              isCdnCompatible(data_file_name_entry)
+                ? { name: `对象存储 (${displayNames[j]})`, url: getMwLevelFileUrl(entry, data_file_name_entry, true) }
+                : null
+            );
           }
         } else {
           entry.data_file_urls = [{
             name: "社区资源站",
-            url: generateResourceUrl(entry, entry.data_file_name)
+            url: getMwLevelFileUrl(entry, entry.data_file_name)
           }];
+          entry.data_file_urls_cdn = isCdnCompatible(entry.data_file_name)
+            ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.data_file_name, true) }]
+            : [];
         }
       }
     } else {
@@ -123,10 +135,12 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       date : entry.date,
       download_url : entry.download_url,
       file_url : entry.file_url,
+      file_urls_cdn : entry.file_urls_cdn,
       source_url : entry.source_url,
       data_file_name : entry.data_file_name,
       data_file_url : entry.data_file_url,
       data_file_urls : entry.data_file_urls,
+      data_file_urls_cdn : entry.data_file_urls_cdn,
       data_download_url : entry.data_download_url,
       data_code : entry.data_code,
     }
@@ -185,6 +199,7 @@ const checkUrlGameParam = () => {
 };
 
 const selectedDownload = ref(null); // For download modal.
+const selectedSmwp = ref(null); // For SMWP download modal.
 const fileSizeMap = ref({}); // File sizes for download modal.
 const fileSizeLoading = ref(false); // Loading state for file sizes.
 const selectedVideo = ref(null); // For download modal.
@@ -254,10 +269,27 @@ async function fetchFileSizes(download) {
   fileSizeMap.value = {};
 
   const urls = [];
+  const cdnToResourceMap = {};
 
   // Collect all URLs from file_urls array
   if (download.file_urls) {
-    urls.push(...download.file_urls.map(u => u.url));
+    if (download.file_urls.length <= 1) {
+      // Non-array: prefer CDN for file size fetching
+      const resourceUrl = download.file_urls[0]?.url;
+      const cdnUrl = download.file_urls_cdn?.[0]?.url;
+      if (cdnUrl && resourceUrl) {
+        cdnToResourceMap[cdnUrl] = resourceUrl;
+        urls.push(cdnUrl);
+      } else if (resourceUrl) {
+        urls.push(resourceUrl);
+      }
+    } else {
+      // Array: fetch from both resource site and CDN
+      urls.push(...download.file_urls.map(u => u.url));
+      if (download.file_urls_cdn) {
+        urls.push(...download.file_urls_cdn.filter(u => u).map(u => u.url));
+      }
+    }
   }
 
   // Collect download link
@@ -268,7 +300,23 @@ async function fetchFileSizes(download) {
 
   // Collect data file URLs
   if (download.currentVer?.data_file_urls) {
-    urls.push(...download.currentVer.data_file_urls.map(u => u.url));
+    if (download.currentVer.data_file_urls.length <= 1) {
+      // Non-array: prefer CDN
+      const resourceUrl = download.currentVer.data_file_urls[0]?.url;
+      const cdnUrl = download.currentVer.data_file_urls_cdn?.[0]?.url;
+      if (cdnUrl && resourceUrl) {
+        cdnToResourceMap[cdnUrl] = resourceUrl;
+        urls.push(cdnUrl);
+      } else if (resourceUrl) {
+        urls.push(resourceUrl);
+      }
+    } else {
+      // Array: fetch from both
+      urls.push(...download.currentVer.data_file_urls.map(u => u.url));
+      if (download.currentVer.data_file_urls_cdn) {
+        urls.push(...download.currentVer.data_file_urls_cdn.filter(u => u).map(u => u.url));
+      }
+    }
   }
 
   // Collect data download URL
@@ -277,6 +325,15 @@ async function fetchFileSizes(download) {
   }
 
   const sizes = await batchFetchFileSizes(urls);
+
+  // Remap CDN sizes to resource URL keys for non-array case
+  for (const [cdnUrl, resourceUrl] of Object.entries(cdnToResourceMap)) {
+    if (sizes[cdnUrl] && !sizes[resourceUrl]) {
+      sizes[resourceUrl] = sizes[cdnUrl];
+      delete sizes[cdnUrl];
+    }
+  }
+
   fileSizeMap.value = sizes;
   fileSizeLoading.value = false;
 }
@@ -666,6 +723,7 @@ const { floatingStyles } = useFloating(reference, floating,
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => {tiebaDialog = data;}"
         @show-game-detail="(entry) => {selectedGameDetail = entry;}"
+        @select-smwp="(entry) => {selectedSmwp = entry;}"
       />
     </div>
   </template>
@@ -682,6 +740,7 @@ const { floatingStyles } = useFloating(reference, floating,
         @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
         @show-tieba-dialog="(data) => {tiebaDialog = data;}"
         @show-game-detail="(entry) => {selectedGameDetail = entry;}"
+        @select-smwp="(entry) => {selectedSmwp = entry;}"
       />
     </div>
   </div>
@@ -728,6 +787,15 @@ const { floatingStyles } = useFloating(reference, floating,
               </a>
             </template>
           </span>
+          <template v-if="selectedDownload.file_urls_cdn">
+            <a
+              class="download"
+              v-for="url in selectedDownload.file_urls_cdn.filter(u => u)"
+              :key="url.url"
+              :href="url.url"
+              target="_blank"
+            >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
+          </template>
           <template v-if="getDownloadLink(selectedDownload, 'zh')">
             <a
               class="download"
@@ -781,6 +849,15 @@ const { floatingStyles } = useFloating(reference, floating,
               </a>
             </template>
           </span>
+          <template v-if="selectedDownload.currentVer.data_file_urls_cdn">
+            <a
+              class="download"
+              v-for="url in selectedDownload.currentVer.data_file_urls_cdn.filter(u => u)"
+              :key="url.url"
+              :href="url.url"
+              target="_blank"
+            >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
+          </template>
           <template v-if="selectedDownload.currentVer.data_download_url">
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, 'zh').desc }}
@@ -811,6 +888,20 @@ const { floatingStyles } = useFloating(reference, floating,
               <a :href="Object.values(video)[0]" target="_blank">{{ Object.keys(video)[0] }} ({{ getVideoDesc(Object.values(video)[0], "zh") }})</a>
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </Transition>
+
+  <Transition name="modal">
+    <div v-if="selectedSmwp != null" class="modal-bg" @click="selectedSmwp = null;">
+      <div class="modal-content" @click.stop="">
+        <div>
+          下载 {{ selectedSmwp.smwp_ver === 'MW 4.4' ? 'Mario Worker 4.4' : `Super Mario Worker Project ${selectedSmwp.smwp_ver}` }}
+        </div>
+        <div class="button-line">
+          <a class="download" :href="selectedSmwp.smwp_url" target="_blank">社区资源站</a>
+          <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">对象存储</a>
         </div>
       </div>
     </div>

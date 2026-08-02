@@ -210,7 +210,7 @@ export const downloadName = [
   {
     "domain" : "file.marioforever.net",
     "desc_zh" : "社区资源站",
-    "desc_en" : "file.marioforever.net"
+    "desc_en" : "Community File Hub"
   },
   {
     "domain" : /(pan|yun)\.baidu\.com/,
@@ -235,6 +235,11 @@ export const downloadName = [
     "desc_zh" : "夸克网盘",
     "desc_en" : "Quark",
     "show_code" : true
+  },
+  {
+    "domain": "qfile.qq.com",
+    "desc_zh": "QQ 闪传",
+    "desc_en": "QQ File Transfer"
   },
   {
     "domain" : "mediafire.com",
@@ -296,7 +301,7 @@ export const downloadName = [
     "desc_en" : "Yandex"
   },
   {
-    "domain" : /123(pan|\d{3})\.com/,
+    "domain" : /123(pan|\d{3})\.(com|cn)/,
     "desc_zh" : "123 云盘",
     "desc_en" : "123Pan",
     "show_code" : true

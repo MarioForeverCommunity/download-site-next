@@ -3,7 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent 
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { parseVer } from "../util/Misc.js"
-import { getDataResourceURL, getDownloadEntries, getDownloadInfo, getName, getResourceURL, getVideoDesc, getCodeLabel } from "../util/GameUtil.js"
+import { getDataResourceURL, getDataResourceCdnURL, getDownloadEntries, getDownloadInfo, getName, getResourceURL, getResourceCdnURL, getVideoDesc, getCodeLabel } from "../util/GameUtil.js"
 import { getGameImageSync, getShowcaseImagesSync, loadImageIndex } from "../util/ImageUtil.js"
 import { ensureMfList, findMfByName, resolveVerRaw } from "../util/useMfList.js"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
@@ -129,15 +129,20 @@ async function fetchFileSize(download) {
   selectedFileSize.value = null
   selectedDataFileSize.value = null
 
+  // Prefer CDN URL for file size fetching, fallback to resource site URL
+  const cdnUrl = getResourceCdnURL(download)
   const resourceUrl = getResourceURL(download, lan.value)
-  if (resourceUrl) {
-    const size = await getFormattedFileSize(resourceUrl)
+  const fetchUrl = cdnUrl || resourceUrl
+  if (fetchUrl) {
+    const size = await getFormattedFileSize(fetchUrl)
     selectedFileSize.value = size
   }
 
+  const cdnDataUrl = getDataResourceCdnURL(download)
   const dataResourceUrl = getDataResourceURL(download, lan.value)
-  if (dataResourceUrl) {
-    const dataSize = await getFormattedFileSize(dataResourceUrl)
+  const fetchDataUrl = cdnDataUrl || dataResourceUrl
+  if (fetchDataUrl) {
+    const dataSize = await getFormattedFileSize(fetchDataUrl)
     selectedDataFileSize.value = dataSize
   }
 
@@ -478,7 +483,13 @@ function hasDataDownload(download) {
               v-if="shouldShowResourceLink(selectedDownload)"
               :href="getResourceURL(selectedDownload, lan)"
               target="_blank"
-            >{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+            >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
+            <a
+              class="download"
+              v-if="getResourceCdnURL(selectedDownload)"
+              :href="getResourceCdnURL(selectedDownload)"
+              target="_blank"
+            >{{ lan == "en" ? "CDN (Cloudflare R2)" : "对象存储" }}</a>
             <template v-for="entry in getDownloadEntriesForView(selectedDownload)" :key="entry.url">
               <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
               <ClipboardButton
@@ -503,7 +514,13 @@ function hasDataDownload(download) {
                 v-if="getDataResourceURL(selectedDownload, lan)"
                 :href="getDataResourceURL(selectedDownload, lan)"
                 target="_blank"
-              >{{ lan == "en" ? "file.marioforever.net" : "社区资源站" }}</a>
+              >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
+              <a
+                class="download"
+                v-if="getDataResourceCdnURL(selectedDownload)"
+                :href="getDataResourceCdnURL(selectedDownload)"
+                target="_blank"
+              >{{ lan == "en" ? "CDN (Cloudflare R2)" : "对象存储" }}</a>
               <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
                 {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
                 <template v-if="selectedDownload.currentVer.data_code">

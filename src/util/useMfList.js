@@ -1,5 +1,6 @@
 import { readList } from "./ReadList.js"
 import { parseVer } from "./Misc.js"
+import { getMfFileUrl } from "./GameUtil.js"
 
 let mfListPromise = null
 let mfListCache = null
@@ -136,40 +137,18 @@ const normalizeMfEntry = (raw) => {
       verObj.file_url_zh = verObj.file_url
       verObj.file_url_en = verObj.file_url
     } else if (verObj.file_name) {
-      if (verObj.file_name.toLowerCase().endsWith(".apk")) {
-        verObj.file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${entry.first_author}/${verObj.file_name}`
-        verObj.file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${verObj.file_name}`
-      } else if (verObj.repacker) {
-        verObj.file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${verObj.file_name}`
-        verObj.file_url_en = `https://file.marioforever.net/mario-forever/games/repackaged-fangames/${verObj.file_name}`
-      } else if (entry.type === "chinese") {
-        const year = verObj.date instanceof Date ? verObj.date.toISOString().split("-")[0] : ""
-        verObj.file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${year}/${verObj.file_name}`
-        verObj.file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${year}/${verObj.file_name}`
-      } else if (entry.type === "international") {
-        verObj.file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${verObj.file_name}`
-        verObj.file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${verObj.file_name}`
-      }
+      verObj.file_url_zh = getMfFileUrl(verObj.file_name, verObj, entry, "zh")
+      verObj.file_url_en = getMfFileUrl(verObj.file_name, verObj, entry, "en")
+      verObj.file_url_cdn = getMfFileUrl(verObj.file_name, verObj, entry, "cdn")
     }
 
     if (verObj.data_file_url) {
       verObj.data_file_url_zh = verObj.data_file_url
       verObj.data_file_url_en = verObj.data_file_url
     } else if (verObj.data_file_name) {
-      if (verObj.data_file_name.toLowerCase().endsWith(".apk") || verObj.file_name?.toLowerCase().endsWith(".apk")) {
-        verObj.data_file_url_zh = `https://file.marioforever.net/Mario Forever/安卓游戏/${entry.first_author}/${verObj.data_file_name}`
-        verObj.data_file_url_en = `https://file.marioforever.net/mario-forever/games/mobile-fangames/${entry.first_author}/${verObj.data_file_name}`
-      } else if (verObj.repacker) {
-        verObj.data_file_url_zh = `https://file.marioforever.net/Mario Forever/重打包作品/${verObj.data_file_name}`
-        verObj.data_file_url_en = `https://file.marioforever.net/mario-forever/games/repacked-fangames/${verObj.data_file_name}`
-      } else if (entry.type === "chinese") {
-        const year = verObj.date instanceof Date ? verObj.date.toISOString().split("-")[0] : ""
-        verObj.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国内作品/${year}/${verObj.data_file_name}`
-        verObj.data_file_url_en = `https://file.marioforever.net/mario-forever/games/chinese-fangames/${year}/${verObj.data_file_name}`
-      } else if (entry.type === "international") {
-        verObj.data_file_url_zh = `https://file.marioforever.net/Mario Forever/国外作品/${entry.first_author}/${verObj.data_file_name}`
-        verObj.data_file_url_en = `https://file.marioforever.net/mario-forever/games/international-fangames/${entry.first_author}/${verObj.data_file_name}`
-      }
+      verObj.data_file_url_zh = getMfFileUrl(verObj.data_file_name, verObj, entry, "zh", true)
+      verObj.data_file_url_en = getMfFileUrl(verObj.data_file_name, verObj, entry, "en", true)
+      verObj.data_file_url_cdn = getMfFileUrl(verObj.data_file_name, verObj, entry, "cdn", true)
     }
 
     if (verObj.source_url != null && verObj.source_url[0] === "~") {

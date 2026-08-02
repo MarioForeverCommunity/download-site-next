@@ -1,5 +1,5 @@
 import { readList } from "./ReadList.js"
-import { processFileNamesWithVolumes } from "./GameUtil.js"
+import { processFileNamesWithVolumes, getMwLevelFileUrl } from "./GameUtil.js"
 
 let mwListPromise = null
 let mwListCache = null
@@ -17,11 +17,6 @@ const normalizeMwEntry = (raw) => {
   entry.category = "mw"
   entry.date = normalizeDate(entry.date)
 
-  function generateResourceUrl(levelEntry, fname) {
-    const author = Array.isArray(levelEntry.author) ? "合作作品" : levelEntry.author
-    return `https://file.marioforever.net/Mario Worker/${author == "合作作品" ? "合作作品" : `吧友作品/${author}`}/${fname}`
-  }
-
   if (entry.file_url) {
     entry.file_urls = [{
       name: "社区资源站",
@@ -30,19 +25,28 @@ const normalizeMwEntry = (raw) => {
   } else if (entry.file_name) {
     if (Array.isArray(entry.file_name)) {
       entry.file_urls = []
+      entry.file_urls_cdn = []
       const displayNames = processFileNamesWithVolumes(entry.file_name)
       for (let i = 0; i < entry.file_name.length; i++) {
         const fileNameEntry = entry.file_name[i]
         if (fileNameEntry == null) continue
         entry.file_urls.push({
           name: `社区资源站 (${displayNames[i]})`,
-          url: generateResourceUrl(entry, fileNameEntry)
+          url: getMwLevelFileUrl(entry, fileNameEntry)
+        })
+        entry.file_urls_cdn.push({
+          name: `对象存储 (${displayNames[i]})`,
+          url: getMwLevelFileUrl(entry, fileNameEntry, true)
         })
       }
     } else {
       entry.file_urls = [{
         name: "社区资源站",
-        url: generateResourceUrl(entry, entry.file_name)
+        url: getMwLevelFileUrl(entry, entry.file_name)
+      }]
+      entry.file_urls_cdn = [{
+        name: "对象存储",
+        url: getMwLevelFileUrl(entry, entry.file_name, true)
       }]
     }
   }
@@ -51,19 +55,28 @@ const normalizeMwEntry = (raw) => {
     if (entry.data_file_name) {
       if (Array.isArray(entry.data_file_name)) {
         entry.data_file_urls = []
+        entry.data_file_urls_cdn = []
         const displayNames = processFileNamesWithVolumes(entry.data_file_name)
         for (let j = 0; j < entry.data_file_name.length; j++) {
           const dataFileNameEntry = entry.data_file_name[j]
           if (dataFileNameEntry == null) continue
           entry.data_file_urls.push({
             name: `社区资源站 (${displayNames[j]})`,
-            url: generateResourceUrl(entry, dataFileNameEntry)
+            url: getMwLevelFileUrl(entry, dataFileNameEntry)
+          })
+          entry.data_file_urls_cdn.push({
+            name: `对象存储 (${displayNames[j]})`,
+            url: getMwLevelFileUrl(entry, dataFileNameEntry, true)
           })
         }
       } else {
         entry.data_file_urls = [{
           name: "社区资源站",
-          url: generateResourceUrl(entry, entry.data_file_name)
+          url: getMwLevelFileUrl(entry, entry.data_file_name)
+        }]
+        entry.data_file_urls_cdn = [{
+          name: "对象存储",
+          url: getMwLevelFileUrl(entry, entry.data_file_name, true)
         }]
       }
     }
@@ -80,10 +93,12 @@ const normalizeMwEntry = (raw) => {
     code: entry.code,
     file_name: entry.file_name,
     file_url: entry.file_url,
+    file_urls_cdn: entry.file_urls_cdn,
     data_file_name: entry.data_file_name,
     data_file_url: entry.data_file_url,
     data_download_url: entry.data_download_url,
     data_file_urls: entry.data_file_urls,
+    data_file_urls_cdn: entry.data_file_urls_cdn,
     data_code: entry.data_code
   }
   if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] === "~") {

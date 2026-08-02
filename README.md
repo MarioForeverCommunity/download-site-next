@@ -146,7 +146,7 @@ The following fields are for a specific version. For single-version games, pleas
 | `download_url` | No | String | The **official download link** provided by the author. |
 | `code` | No | String | If the game's download page requires a password, please fill it in here. |
 | `download_url_alt` | No | String | If the game provides download links on both Chinese and English websites, please fill in the Chinese download link in download_url and the English download link in download_url_alt, otherwise only fill in the download_url field. |
-| `repacker` | No | String | If the game is a repacked version, fill in the repackager of the game's file. |
+| `repacker` | No | String | If the game is a repackaged version, fill in the repackager of the game's file. |
 | `repacker_alt` | No | String | The English name of the `repacker` (if the repackager's name is in Chinese). |
 | `file_name` | No | String | The file name of the game in **file.marioforever.net**. Usually filled in by the file.marioforever.net maintainer. |
 | `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |

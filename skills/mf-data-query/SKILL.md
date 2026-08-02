@@ -280,7 +280,7 @@ The resource site is at `https://file.marioforever.net/`. URLs are auto-generate
 | Condition | Chinese URL | English URL |
 |-----------|-------------|-------------|
 | APK file | `…/Mario Forever/安卓游戏/{author}/{file_name}` | `…/mobile-fangames/{author}/{file_name}` |
-| Repacked/Repackaged | `…/Mario Forever/重打包作品/{file_name}` | `…/repackaged-fangames/{file_name}` |
+| Repackaged | `…/Mario Forever/重打包作品/{file_name}` | `…/repackaged-fangames/{file_name}` |
 | Chinese game | `…/Mario Forever/国内作品/{year}/{file_name}` | `…/chinese-fangames/{year}/{file_name}` |
 | International game | `…/Mario Forever/国外作品/{author}/{file_name}` | `…/international-fangames/{author}/{file_name}` |
 

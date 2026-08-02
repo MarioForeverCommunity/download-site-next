@@ -11,7 +11,7 @@ Due to the goal of this catalog, we don't set any quality bar on games that appe
 - The game contains virus and may harm others' devices.
 - The game contains topics that are not appropriate to be published on open Internet.
 
-Some old versions of fangames are available on [file.marioforever.net](https://file.marioforever.net/mario-forever/games/). If a game's author would like their archived older version(s) removed, please send a request.
+Some old versions of fangames are available on the [Community File Hub](https://file.marioforever.net/mario-forever/games/). If a game's author would like their archived older version(s) removed, please send a request.
 
 <a href="#" id="open-credits">We sincerely thank these people for their contributions.</a>
 
