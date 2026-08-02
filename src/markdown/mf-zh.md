@@ -1,6 +1,5 @@
 <script setup>
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-  import ClipboardButton from "../components/ButtonClipboard.vue"
   import DownloadButton from "../components/ButtonDownload.vue"
   import OriginalMfTable from '../components/OriginalMfTable.vue'
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
@@ -94,9 +93,9 @@ Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游�
 <p>各个版本的详细更新日志，请参见 <a href="https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5" target="_blank">Wiki 页面</a>。</p>
 </div>
 
-为方便玩家下载，特提供第三方网盘备用地址（**备用地址下载需登录 123 云盘账号，请勿付费下载**）。
+为方便玩家下载，特提供第三方网盘备用地址（**123 云盘下载需登录账号，请勿付费下载**）。
 
-<a class="md-button" target="_blank" href="https://www.123684.com/s/U3vrVv-VD0f">原版 Mario Forever 备用下载地址 (提取码: MAat)</a><ClipboardButton lan="zh" code="MAat" />
+<a class="md-button" target="_blank" href="https://yun.139.com/shareweb/#/w/i/2wFGsyjSZbX50">中国移动云盘 - 总集</a><a class="md-button" target="_blank" href="https://1812011858.share.123pan.cn/123pan/U3vrVv-VD0f?pwd=MAat#">123 云盘 - 原版 MF</a>
 <OriginalMfTable lan="zh" />
 <div class="foot-note" style="font-size:12px">
 
