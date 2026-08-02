@@ -5,20 +5,20 @@ const BASE_URLS_EN = {
     portable: "https://file.marioforever.net/mario-forever/games/softendo/portable/"
   },
   mff: {
-    installer: "https://file.marioforever.net/mario-forever/games/softendo/Flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/Flash/swf/Mario%20Forever%20Flash/",
-    portable_exe: "https://file.marioforever.net/mario-forever/games/softendo/Flash/exe/"
+    installer: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe-installer/",
+    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/flash/swf/Mario%20Forever%20Flash/",
+    portable_exe: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe/"
   },
   flash: {
-    installer: "https://file.marioforever.net/mario-forever/games/softendo/Flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/Flash/swf/Other/",
-    portable_exe: "https://file.marioforever.net/mario-forever/games/softendo/Flash/exe/",
-    portable_zip: "https://file.marioforever.net/mario-forever/games/softendo/Flash/zip/"
+    installer: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe-installer/",
+    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/flash/swf/Other/",
+    portable_exe: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe/",
+    portable_zip: "https://file.marioforever.net/mario-forever/games/softendo/flash/zip/"
   },
   "non-mario": {
-    installer: "https://file.marioforever.net/mario-forever/games/softendo/Non-Mario%20games%20by%20Buziol%20(Softendo)/installer/",
-    portable: "https://file.marioforever.net/mario-forever/games/softendo/Non-Mario%20games%20by%20Buziol%20(Softendo)/portable/",
-    kliktopia: "https://file.marioforever.net/mario-forever/games/softendo/Non-Mario%20games%20by%20Buziol%20(Softendo)/Kliktopia%20repackages/"
+    installer: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/installer/",
+    portable: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/portable/",
+    kliktopia: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/Kliktopia%20repackages/"
   },
   banesoft: {
     installer: "https://file.marioforever.net/mario-forever/games/banesoft/installer/",
@@ -33,20 +33,20 @@ const BASE_URLS_ZH = {
     portable: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E7%BB%BF%E8%89%B2%E7%89%88/"
   },
   mff: {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/swf/Mario%20Forever%20Flash/",
-    portable_exe: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/exe/"
+    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe-installer/",
+    portable_swf: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/Mario%20Forever%20Flash/",
+    portable_exe: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe/"
   },
   flash: {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/swf/Other/",
-    portable_exe: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/exe/",
-    portable_zip: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Flash/zip/"
+    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe-installer/",
+    portable_swf: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/Other/",
+    portable_exe: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe/",
+    portable_zip: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/zip/"
   },
   "non-mario": {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Non-Mario%20games%20by%20Buziol%20(Softendo)/installer/",
-    portable: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Non-Mario%20games%20by%20Buziol%20(Softendo)/portable/",
-    kliktopia: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/Non-Mario%20games%20by%20Buziol%20(Softendo)/Kliktopia%20repackages/"
+    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/installer/",
+    portable: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/portable/",
+    kliktopia: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/Kliktopia%20repackages/"
   },
   banesoft: {
     installer: "https://file.marioforever.net/Mario%20Forever/Banesoft%20%E7%9B%B8%E5%85%B3%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/",

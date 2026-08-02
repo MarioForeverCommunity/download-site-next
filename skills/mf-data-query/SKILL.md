@@ -336,16 +336,16 @@ URLs are generated based on the `type` field. All URLs differ between Chinese an
 |------|------|-------------|-------------|
 | `mario` | installer | `…/Softendo 其他游戏下载/安装版/{installer}` | `…/softendo/installer/{installer}` |
 | `mario` | portable | `…/Softendo 其他游戏下载/绿色版/{portable}` | `…/softendo/portable/{portable}` |
-| `mff` | installer | `…/Softendo 其他游戏下载/Flash/exe-installer/{installer}` | `…/softendo/Flash/exe-installer/{installer}` |
-| `mff` | portable (exe) | `…/Softendo 其他游戏下载/Flash/exe/{exe}` | `…/softendo/Flash/exe/{exe}` |
-| `mff` | portable (swf) | `…/Softendo 其他游戏下载/Flash/swf/Mario Forever Flash/{swf}` | `…/softendo/Flash/swf/Mario Forever Flash/{swf}` |
-| `flash` | installer | `…/Softendo 其他游戏下载/Flash/exe-installer/{installer}` | `…/softendo/Flash/exe-installer/{installer}` |
-| `flash` | portable (exe) | `…/Softendo 其他游戏下载/Flash/exe/{exe}` | `…/softendo/Flash/exe/{exe}` |
-| `flash` | portable (swf) | `…/Softendo 其他游戏下载/Flash/swf/Other/{swf}` | `…/softendo/Flash/swf/Other/{swf}` |
-| `flash` | portable (zip) | `…/Softendo 其他游戏下载/Flash/zip/{zip}` | `…/softendo/Flash/zip/{zip}` |
-| `non-mario` | installer | `…/Non-Mario games by Buziol (Softendo)/installer/{installer}` | `…/Non-Mario games by Buziol (Softendo)/installer/{installer}` |
-| `non-mario` | portable | `…/Non-Mario games by Buziol (Softendo)/portable/{portable}` | `…/Non-Mario games by Buziol (Softendo)/portable/{portable}` |
-| `non-mario` | kliktopia repackage | `…/Non-Mario games by Buziol (Softendo)/Kliktopia repackages/{file}` | `…/Non-Mario games by Buziol (Softendo)/Kliktopia repackages/{file}` |
+| `mff` | installer | `…/Softendo 其他游戏下载/flash/exe-installer/{installer}` | `…/softendo/flash/exe-installer/{installer}` |
+| `mff` | portable (exe) | `…/Softendo 其他游戏下载/flash/exe/{exe}` | `…/softendo/flash/exe/{exe}` |
+| `mff` | portable (swf) | `…/Softendo 其他游戏下载/flash/swf/Mario Forever Flash/{swf}` | `…/softendo/flash/swf/Mario Forever Flash/{swf}` |
+| `flash` | installer | `…/Softendo 其他游戏下载/flash/exe-installer/{installer}` | `…/softendo/flash/exe-installer/{installer}` |
+| `flash` | portable (exe) | `…/Softendo 其他游戏下载/flash/exe/{exe}` | `…/softendo/flash/exe/{exe}` |
+| `flash` | portable (swf) | `…/Softendo 其他游戏下载/flash/swf/Other/{swf}` | `…/softendo/flash/swf/Other/{swf}` |
+| `flash` | portable (zip) | `…/Softendo 其他游戏下载/flash/zip/{zip}` | `…/softendo/flash/zip/{zip}` |
+| `non-mario` | installer | `…/Softendo 其他游戏下载/non-mario/installer/{installer}` | `…/softendo/non-mario/installer/{installer}` |
+| `non-mario` | portable | `…/Softendo 其他游戏下载/non-mario/portable/{portable}` | `…/softendo/non-mario/portable/{portable}` |
+| `non-mario` | kliktopia repackage | `…/Softendo 其他游戏下载/non-mario/Kliktopia repackages/{file}` | `…/softendo/non-mario/Kliktopia repackages/{file}` |
 | `banesoft` | installer | `…/Banesoft 相关游戏下载/安装版/{installer}` | `…/banesoft/installer/{installer}` |
 | `banesoft` | portable | `…/Banesoft 相关游戏下载/绿色版/{portable}` | `…/banesoft/portable/{portable}` |
 
