@@ -16253,6 +16253,16 @@
       download_url_alt:
       file_name: Mario Forever Minus Worlds v1.0.exe
       file_url:
+  - v0.2:
+      ver_alt:
+      date: 2014-09-17
+      source_url: https://nsmbhd.net/thread/2672-mario-forever-minus-worlds-development/
+      source_url_alt:
+      download_url: https://www.mediafire.com/download/4gb142ei3ny88m9/MF_Minus_Worlds_v0.2.exe
+      code:
+      download_url_alt:
+      file_name: MF_Minus_Worlds_v0.2.exe
+      file_url:
 - game: 'Mario Forever: World of Haste'
   game_alt:
   author: 幽霊鬼yuureiki
