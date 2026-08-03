@@ -439,6 +439,22 @@ const downloadEntries = computed(() => {
           });
         }
       }
+
+      // Self-extracting (自解压)，URL 与 portable 相同，仅链接颜色区分
+      const selfextractUrls = useCdn.value ? ver.selfextract_urls_cdn : ver.selfextract_urls;
+      if (selfextractUrls && selfextractUrls.length > 0) {
+        for (const s of selfextractUrls) {
+          const selfextractName = props.lan === 'zh' ? '自解压' : 'Self-extracting';
+          entries.push({
+            version: `${selfextractName} (${verKey})`,
+            url: s.url,
+            isRepackaged: false,
+            repacker: null,
+            isData: false,
+            isSoftendoSelfextract: true
+          });
+        }
+      }
     }
 
     return entries;
@@ -1040,7 +1056,8 @@ const nextImage = () => {
                   class="download-link"
                   :class="[
                     entry.hasToolbar ? 'has-toolbar' : '',
-                    entry.portableFileType ? 'portable-' + entry.portableFileType : ''
+                    entry.portableFileType ? 'portable-' + entry.portableFileType : '',
+                    entry.isSoftendoSelfextract ? 'selfextract' : ''
                   ]"
                   @click="handleSoftendoDownloadClick($event, entry)"
                 >{{ entry.version }}</a>
@@ -1516,6 +1533,22 @@ const nextImage = () => {
 
   body.dark .download-link.portable-archive:hover {
     color: #D47AEE;
+  }
+
+  .download-link.selfextract {
+    color: #d81b60;
+  }
+
+  .download-link.selfextract:hover {
+    color: #ff64b1;
+  }
+
+  body.dark .download-link.selfextract {
+    color: #ff64b1;
+  }
+
+  body.dark .download-link.selfextract:hover {
+    color: #ff9bcf;
   }
 
   .source-link.invalid {

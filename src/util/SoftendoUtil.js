@@ -307,7 +307,10 @@ export function normalizeSoftendoList(list, lan = "en") {
             installer_url: getInstallerUrl(entry.type, verObj.installer, lan, isNsmf),
             installer_url_cdn: getInstallerUrl(entry.type, verObj.installer, "cdn", isNsmf),
             portable_urls: getPortableUrls(entry.type, verObj.portable, lan, isNsmf, verKey),
-            portable_urls_cdn: getPortableUrls(entry.type, verObj.portable, "cdn", isNsmf, verKey)
+            portable_urls_cdn: getPortableUrls(entry.type, verObj.portable, "cdn", isNsmf, verKey),
+            // selfextract 的 URL 构建逻辑与 portable 相同
+            selfextract_urls: getPortableUrls(entry.type, verObj.selfextract, lan, isNsmf, verKey),
+            selfextract_urls_cdn: getPortableUrls(entry.type, verObj.selfextract, "cdn", isNsmf, verKey)
           }
         };
       });
@@ -326,7 +329,10 @@ export function normalizeSoftendoList(list, lan = "en") {
         installer_url: getInstallerUrl(entry.type, entry.installer, lan, isNsmf),
         installer_url_cdn: getInstallerUrl(entry.type, entry.installer, "cdn", isNsmf),
         portable_urls: getPortableUrls(entry.type, entry.portable, lan, isNsmf, String(year)),
-        portable_urls_cdn: getPortableUrls(entry.type, entry.portable, "cdn", isNsmf, String(year))
+        portable_urls_cdn: getPortableUrls(entry.type, entry.portable, "cdn", isNsmf, String(year)),
+        // selfextract 的 URL 构建逻辑与 portable 相同
+        selfextract_urls: getPortableUrls(entry.type, entry.selfextract, lan, isNsmf, String(year)),
+        selfextract_urls_cdn: getPortableUrls(entry.type, entry.selfextract, "cdn", isNsmf, String(year))
       };
       game.ver = [{ [String(year)]: verObj }];
       game.currentVerStr = "";

@@ -59,11 +59,11 @@
   - "Oct 2008":
       year: 2008
       installer: Mario Forever Galaxy (Oct 2008).exe
-      portable:
+      portable: Mario Forever Galaxy (Oct 2008).zip
   - "Aug 2008":
       year: 2008
       installer: Mario Forever Galaxy (Aug 2008).exe
-      portable:
+      portable: Mario Forever Galaxy (Aug 2008).zip
 - game: Mario Games
   type: mario
   genre:
@@ -74,6 +74,7 @@
   year: 2009
   installer: Mario Games.exe
   portable: Mario Games.zip
+  selfextract: Mario Games.exe
 - game: Mario Online
   type: mario
   software: gamemaker
@@ -169,6 +170,7 @@
   year: 2009
   installer: Super Mario.exe
   portable: Super Mario.zip
+  selfextract: Super Mario.exe
 - game: Mario Forever Flash
   type: mff
   genre:
@@ -651,6 +653,7 @@
       year: 2003
       installer: Madlocnoid v1.x (2003).exe
       portable: Madlocnoid v1.x (2003).zip
+      selfextract: Madlocnoid v1.x (2003).exe
   - Kliktopia repackage:
       year: 2024
       portable: Madlocnoid.zip
@@ -703,7 +706,7 @@
       portable: Ninja with the Real Balls (2006).zip
   - "2004":
       year: 2004
-      installer: Ninja Jonder Deluxe (2004).exe
+      selfextract: Ninja Jonder Deluxe (2004).exe
       portable: Ninja Jonder Deluxe (2004).zip
 - name: Obliterator
   type: non-mario

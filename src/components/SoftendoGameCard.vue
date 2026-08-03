@@ -76,7 +76,7 @@ const getGameImageSrc = () => {
         </span>
       </div>
       <div class="game-options">
-        <Tooltip v-if="game.currentVer && (game.currentVer.installer_url || (game.currentVer.portable_urls && game.currentVer.portable_urls.length > 0))">
+        <Tooltip v-if="game.currentVer && (game.currentVer.installer_url || (game.currentVer.portable_urls && game.currentVer.portable_urls.length > 0) || (game.currentVer.selfextract_urls && game.currentVer.selfextract_urls.length > 0))">
           <DownloadIcon class="icon button" @click="$emit('showGameDetail', game)"></DownloadIcon>
           <template #popper>{{ lan === "en" ? "Download" : "下载链接" }}</template>
         </Tooltip>
