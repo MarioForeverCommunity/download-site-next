@@ -6,7 +6,7 @@ import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoIma
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
-import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from '../util/SoftendoUtil.js';
+import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, isKliktopiaRepackage } from '../util/SoftendoUtil.js';
 import { getAssetFileUrl } from '../util/AssetUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import MarkdownIt from 'markdown-it';
@@ -423,8 +423,10 @@ const downloadEntries = computed(() => {
           // 从 label 前缀或 URL 扩展名判断文件类型
           const labelMatch = (keyword) => rawLabel === keyword || rawLabel.startsWith(keyword + ' ') || rawLabel.startsWith(keyword + '-');
           const extMatch = (keyword) => ext === keyword;
-          const portableFileType =
-            (labelMatch('exe') || extMatch('exe')) ? 'exe'
+          // Kliktopia repackage 版本使用独立的 turquoise 颜色
+          const portableFileType = isKliktopiaRepackage(verKey)
+            ? 'kliktopia'
+            : (labelMatch('exe') || extMatch('exe')) ? 'exe'
               : (labelMatch('swf') || extMatch('swf')) ? 'swf'
                 : (labelMatch('zip') || labelMatch('7z') || extMatch('zip') || extMatch('7z')) ? 'archive'
                   : null;
@@ -1533,6 +1535,23 @@ const nextImage = () => {
 
   body.dark .download-link.portable-archive:hover {
     color: #D47AEE;
+  }
+
+  /* Kliktopia repackage 版本的 portable 使用 turquoise (松绿色) */
+  .download-link.portable-kliktopia {
+    color: #2ba8a0;
+  }
+
+  .download-link.portable-kliktopia:hover {
+    color: #40E0D0;
+  }
+
+  body.dark .download-link.portable-kliktopia {
+    color: #40E0D0;
+  }
+
+  body.dark .download-link.portable-kliktopia:hover {
+    color: #7FF0E5;
   }
 
   .download-link.selfextract {

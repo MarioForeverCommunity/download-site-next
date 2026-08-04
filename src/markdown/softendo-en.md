@@ -10,6 +10,7 @@ Within each game's listing, there exists downloads to specific builds of the gam
 - Green: A standalone exe file for the game that can be played anywhere on your computer.
 - Purple: A zip/7z archive file that contains a portable version of the game which can be easily extracted and played, stripped of unnecessary advertising files.
 - Red: A SWF of the game, exclusive to Flash games.
-- Pink: A WinRAR SFX (Self Extracting Archive) that serves as nothing more than a special archive file with a simple UI that extracts the game files like an installer into the same folder it's located in, without writing to Program Files, the registry or involving toolbars.
+- Pink: A WinRAR SFX (Self Extracting Archive) that serves as nothing more than a special archive file with a simple UI that extracts the game files like an installer into the same folder it's located in, without writing to Program Files, the registry or involving toolbars. A file archiving software such as WinRAR or 7zip is not needed for these types of files.
+- Turquoise: A Kliktopia repackage of the game, exclusively in portable format and only for non-Mario games.
 
 To find out more about these games, head to https://file.marioforever.net/mario-forever/games/softendo and https://file.marioforever.net/mario-forever/games/banesoft.
