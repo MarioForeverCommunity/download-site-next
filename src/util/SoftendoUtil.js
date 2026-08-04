@@ -18,7 +18,7 @@ const BASE_URLS_EN = {
   "non-mario": {
     installer: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/installer/",
     portable: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/portable/",
-    kliktopia: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/Kliktopia%20repackages/"
+    kliktopia: "https://file.marioforever.net/mario-forever/games/softendo/non-mario/portable/kliktopia-repackage/"
   },
   banesoft: {
     installer: "https://file.marioforever.net/mario-forever/games/banesoft/installer/",
@@ -46,7 +46,7 @@ const BASE_URLS_ZH = {
   "non-mario": {
     installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/installer/",
     portable: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/portable/",
-    kliktopia: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/Kliktopia%20repackages/"
+    kliktopia: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/portable/kliktopia-repackage/"
   },
   banesoft: {
     installer: "https://file.marioforever.net/Mario%20Forever/Banesoft%20%E7%9B%B8%E5%85%B3%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/",

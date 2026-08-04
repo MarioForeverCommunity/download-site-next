@@ -345,7 +345,7 @@ URLs are generated based on the `type` field. All URLs differ between Chinese an
 | `flash` | portable (zip) | `…/Softendo 其他游戏下载/flash/zip/{zip}` | `…/softendo/flash/zip/{zip}` |
 | `non-mario` | installer | `…/Softendo 其他游戏下载/non-mario/installer/{installer}` | `…/softendo/non-mario/installer/{installer}` |
 | `non-mario` | portable | `…/Softendo 其他游戏下载/non-mario/portable/{portable}` | `…/softendo/non-mario/portable/{portable}` |
-| `non-mario` | kliktopia repackage | `…/Softendo 其他游戏下载/non-mario/Kliktopia repackages/{file}` | `…/softendo/non-mario/Kliktopia repackages/{file}` |
+| `non-mario` | kliktopia repackage | `…/Softendo 其他游戏下载/non-mario/portable/kliktopia-repackage/{file}` | `…/softendo/non-mario/portable/kliktopia-repackage/{file}` |
 | `banesoft` | installer | `…/Banesoft 相关游戏下载/安装版/{installer}` | `…/banesoft/installer/{installer}` |
 | `banesoft` | portable | `…/Banesoft 相关游戏下载/绿色版/{portable}` | `…/banesoft/portable/{portable}` |
 
