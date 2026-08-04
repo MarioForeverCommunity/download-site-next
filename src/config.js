@@ -113,9 +113,9 @@ export const navTop = [
     "id" : "mario-worker",
     "link" : "./mario-worker.html",
     "option" : "MW 资源导航",
-    "option_alt" : "Mario Worker Downloads",
+    "option_alt" : "Level Editors",
     "title" : "Mario Worker 资源导航",
-    "title_alt" : "Mario Worker Downloads",
+    "title_alt" : "Mario Forever Level Editors (Mario Worker) Downloads",
     "show_zh" : false,
     "show_en" : true
   },
