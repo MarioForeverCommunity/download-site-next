@@ -16580,6 +16580,16 @@
       download_url_alt:
       file_name: happy mario world 国庆特别版.exe
       file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2015-08-21
+      source_url: https://tieba.baidu.com/p/3988303427
+      source_url_alt:
+      download_url: ~http://pan.baidu.com/s/1pJCD5zH
+      code:
+      download_url_alt:
+      file_name: Happy Mario World.exe
+      file_url:
 - game: Mario Forever Fantasy Nightmare
   game_alt:
   author: Adeel Malik
@@ -16972,16 +16982,27 @@
   wiki_en_url:
   video_zh:
   - WSW 解说: https://www.bilibili.com/video/BV19t411C7xD/
-  ver: v1.0fix
-  ver_alt:
-  date: 2019-02-05
-  source_url: https://tieba.baidu.com/p/5935771728
-  source_url_alt:
-  download_url: http://modunlocker.ysepan.com/
-  code:
-  download_url_alt:
-  file_name: Mario Forever World 11 Plus.zip
-  file_url:
+  ver:
+  - v1.0fix:
+      ver_alt:
+      date: 2019-02-05
+      source_url: https://tieba.baidu.com/p/5935771728
+      source_url_alt:
+      download_url: http://modunlocker.ysepan.com/
+      code:
+      download_url_alt:
+      file_name: Mario Forever World 11 Plus.zip
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2018-11-03
+      source_url: https://tieba.baidu.com/p/5935771728
+      source_url_alt:
+      download_url: ~https://pan.baidu.com/s/1MShdFN9I3AGrM-j6KRM7Bg
+      code: adoo
+      download_url_alt:
+      file_name: Mario Forever World 11 Plus.rar
+      file_url:
 - game: 'Mario Forever: Russian Letter Worlds Series'
   game_alt:
   author: JUE13
@@ -20361,13 +20382,23 @@
       file_url:
   - v1.01:
       ver_alt:
-      date: 2015-01-31
+      date: 2015-02-01
       source_url: https://tieba.baidu.com/p/3560297840
       source_url_alt:
       download_url: http://pan.baidu.com/s/1c0vVlpI
       code:
       download_url_alt:
       file_name: 随机的空间1.01.exe
+      file_url:
+  - v1.0:
+      ver_alt:
+      date: 2015-01-31
+      source_url: https://tieba.baidu.com/p/3560297840
+      source_url_alt:
+      download_url: ~http://pan.baidu.com/s/1pJqO1AV
+      code:
+      download_url_alt:
+      file_name: 随机的空间.exe
       file_url:
 - game: 龟版跑酷
   game_alt: Running Turtle
@@ -21147,16 +21178,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v0.1.3
-  ver_alt:
-  date: 2014-08-12
-  source_url: https://tieba.baidu.com/p/2814538246
-  source_url_alt:
-  download_url:
-  code:
-  download_url_alt:
-  file_name: 吧主吧友 离线包140812_2.zip
-  file_url:
+  ver:
+  - v0.1.3:
+      ver_alt:
+      date: 2014-08-12
+      source_url: https://tieba.baidu.com/p/2814538246
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: 吧主吧友 离线包140812_2.zip
+      file_url:
+  - v0.1:
+      ver_alt:
+      date: 2014-01-14
+      source_url: https://tieba.baidu.com/p/2814538246
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: 永远的吧主吧友.exe
+      file_url:
 - game: 'Mario Worker: The contest'
   game_alt:
   tag:
