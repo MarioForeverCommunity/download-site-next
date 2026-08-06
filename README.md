@@ -13,10 +13,11 @@ The archive would not have been possible without the efforts of many contributor
 - [Fisjokas](https://www.youtube.com/@Tomek839839) - for providing numerous links and resources that greatly enriched the archive. His contributions between 2022 and 2024 helped uncover many rare and valuable files.
 - [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for the archive.
 - wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might otherwise have been lost.
-- Super Mario Fan 01 - for privately providing several scattered game files that helped fill gaps in the collection.
+- Super Mario Fan 01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the collection.
 - Happy Mario 8 - for providing several Chinese fangames released in 2015.
 - Green Sweet and WSW - for collecting a number of fangame links in the early stage of this website (2020–2021), which helped shape the foundation of the archive.
 - JUE13 - for providing several repackaged versions of fangames.
+- TwoSpaceSG and Zik the Green - for providing numerous Softendo legacy games.
 
 We are grateful to all of the above, as well as many other community members whose efforts (large or small) have helped preserve the history of Mario Forever fangames. Please forgive us if any contributors were unintentionally omitted; we sincerely thank them as well.
 
