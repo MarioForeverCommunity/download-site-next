@@ -304,9 +304,9 @@ URLs differ by language and file type. If the entry has `nsmf: true`, use the NS
 
 | Type | Chinese URL | English URL |
 |------|-------------|-------------|
-| Installer (normal) | `https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/安装版/{installer}` | `https://file.marioforever.net/mario-forever/games/original-mf/installer/{installer}` |
-| Installer (NSMF) | `https://file.marioforever.net/Mario%20Forever/New%20Super%20Mario%20Forever%20%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/{installer}` | `https://file.marioforever.net/mario-forever/games/softendo/installer/{installer}` |
-| Portable | `https://file.marioforever.net/Mario%20Forever/Mario%20Forever%20全版本下载/绿色版/{portable}` | `https://file.marioforever.net/mario-forever/games/original-mf/portable/{portable}` |
+| Installer (normal) | `https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/安装版/{installer}` | `https://file.marioforever.net/mario-forever/games/original-mf/installer/{installer}` |
+| Installer (NSMF) | `https://file.marioforever.net/Mario Forever/ New Super Mario Forever 下载/安装版/{installer}` | `https://file.marioforever.net/mario-forever/games/softendo/installer/{installer}` |
+| Portable | `https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/绿色版/{portable}` | `https://file.marioforever.net/mario-forever/games/original-mf/portable/{portable}` |
 
 Additionally, a backup download link is available for all original MF versions:
 - 备用地址: https://www.123684.com/s/U3vrVv-VD0f (提取码: MAat)
@@ -338,10 +338,10 @@ URLs are generated based on the `type` field. All URLs differ between Chinese an
 | `mario` | portable | `…/Softendo 其他游戏下载/绿色版/{portable}` | `…/softendo/portable/{portable}` |
 | `mff` | installer | `…/Softendo 其他游戏下载/flash/exe-installer/{installer}` | `…/softendo/flash/exe-installer/{installer}` |
 | `mff` | portable (exe) | `…/Softendo 其他游戏下载/flash/exe/{exe}` | `…/softendo/flash/exe/{exe}` |
-| `mff` | portable (swf) | `…/Softendo 其他游戏下载/flash/swf/Mario Forever Flash/{swf}` | `…/softendo/flash/swf/Mario Forever Flash/{swf}` |
+| `mff` | portable (swf) | `…/Softendo 其他游戏下载/flash/swf/mario-forever-flash/{swf}` | `…/softendo/flash/swf/mario-forever-flash/{swf}` |
 | `flash` | installer | `…/Softendo 其他游戏下载/flash/exe-installer/{installer}` | `…/softendo/flash/exe-installer/{installer}` |
 | `flash` | portable (exe) | `…/Softendo 其他游戏下载/flash/exe/{exe}` | `…/softendo/flash/exe/{exe}` |
-| `flash` | portable (swf) | `…/Softendo 其他游戏下载/flash/swf/Other/{swf}` | `…/softendo/flash/swf/Other/{swf}` |
+| `flash` | portable (swf) | `…/Softendo 其他游戏下载/flash/swf/other/{swf}` | `…/softendo/flash/swf/other/{swf}` |
 | `flash` | portable (zip) | `…/Softendo 其他游戏下载/flash/zip/{zip}` | `…/softendo/flash/zip/{zip}` |
 | `non-mario` | installer | `…/Softendo 其他游戏下载/non-mario/installer/{installer}` | `…/softendo/non-mario/installer/{installer}` |
 | `non-mario` | portable | `…/Softendo 其他游戏下载/non-mario/portable/{portable}` | `…/softendo/non-mario/portable/{portable}` |

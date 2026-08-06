@@ -462,11 +462,11 @@ Mario Forever Flash 是一款质量较高的 Flash 马里奥同人游戏。游�
 
 Mario Forever Flash 的实际作者是 Maurycy Zarzycki。除 Mario Forever Flash 外，还有与之相关的 Flash 游戏，如 Mario Super、Squraio 等。
 
-Mario Forever Flash 已被复刻进 <a href="#mario-forever-community-edition">Mario Forever Community Edition</a>。
+Mario Forever Flash 已被复刻进 <a href="#" @click.prevent="currentTab = 'ce'">Mario Forever Community Edition</a>。
 
-游玩本作需使用 <a target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/Adobe%20Flash%20Player">Adobe Flash Player</a> 或 <a target="_blank" href="https://ruffle.rs/">Ruffle</a>。
+游玩本作需使用 [Adobe Flash Player](https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/adobe-flash-player/) 或 [Ruffle](https://ruffle.rs/)。
 
-<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/Mario%20Forever%20Flash">下载更多 Mario Forever Flash 相关游戏</a>
+<a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/mario-forever-flash">下载更多 Mario Forever Flash 相关游戏</a>
 
 <SoftendoEntry name="Mario Forever Flash" />
 </div>

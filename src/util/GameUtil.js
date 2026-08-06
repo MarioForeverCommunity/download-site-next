@@ -368,8 +368,8 @@ const MW_LEVEL_BASE_PATH = "https://file.marioforever.net/Mario Worker/"
 // 对象存储（CDN）基础路径，将 Mario Worker/ 替换为 mw-levels/
 const MW_LEVEL_CDN_BASE_PATH = "https://mf-cdn.kevinh.wang/mw-levels/"
 const SMWP_BASE_PATH = "https://file.marioforever.net/smwp/"
-const SMWP_MW44_URL = "https://file.marioforever.net/Mario%20Worker/%E5%8E%9F%E7%89%88%20Mario%20Worker%20%E4%B8%8B%E8%BD%BD"
-const SMWP_MW44_CDN_URL = "https://mf-cdn.kevinh.wang/mario-worker/original-mw/Mario%20Worker%204.4%20(2011).zip"
+const SMWP_MW44_URL = "https://file.marioforever.net/Mario Worker/原版 Mario Worker 下载"
+const SMWP_MW44_CDN_URL = "https://mf-cdn.kevinh.wang/mario-worker/original-mw/Mario Worker 4.4 (2011).zip"
 
 /**
  * 构建 MW 关卡下载链接

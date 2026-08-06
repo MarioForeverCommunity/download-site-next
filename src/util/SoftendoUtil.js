@@ -6,12 +6,12 @@ const BASE_URLS_EN = {
   },
   mff: {
     installer: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/flash/swf/Mario%20Forever%20Flash/",
+    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/flash/swf/mario-forever-flash/",
     portable_exe: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe/"
   },
   flash: {
     installer: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/flash/swf/Other/",
+    portable_swf: "https://file.marioforever.net/mario-forever/games/softendo/flash/swf/other/",
     portable_exe: "https://file.marioforever.net/mario-forever/games/softendo/flash/exe/",
     portable_zip: "https://file.marioforever.net/mario-forever/games/softendo/flash/zip/"
   },
@@ -29,35 +29,35 @@ const BASE_URLS_EN = {
 // Base URLs for Softendo downloads (Chinese version)
 const BASE_URLS_ZH = {
   mario: {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/",
-    portable: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E7%BB%BF%E8%89%B2%E7%89%88/"
+    installer: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/安装版/",
+    portable: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/绿色版/"
   },
   mff: {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/Mario%20Forever%20Flash/",
-    portable_exe: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe/"
+    installer: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/exe-installer/",
+    portable_swf: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/swf/mario-forever-flash/",
+    portable_exe: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/exe/"
   },
   flash: {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe-installer/",
-    portable_swf: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/Other/",
-    portable_exe: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/exe/",
-    portable_zip: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/zip/"
+    installer: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/exe-installer/",
+    portable_swf: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/swf/other/",
+    portable_exe: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/exe/",
+    portable_zip: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/flash/zip/"
   },
   "non-mario": {
-    installer: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/installer/",
-    portable: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/portable/",
-    kliktopia: "https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/non-mario/portable/kliktopia-repackage/"
+    installer: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/non-mario/installer/",
+    portable: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/non-mario/portable/",
+    kliktopia: "https://file.marioforever.net/Mario Forever/Softendo 其他游戏下载/non-mario/portable/kliktopia-repackage/"
   },
   banesoft: {
-    installer: "https://file.marioforever.net/Mario%20Forever/Banesoft%20%E7%9B%B8%E5%85%B3%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/",
-    portable: "https://file.marioforever.net/Mario%20Forever/Banesoft%20%E7%9B%B8%E5%85%B3%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/%E7%BB%BF%E8%89%B2%E7%89%88/"
+    installer: "https://file.marioforever.net/Mario Forever/Banesoft 相关游戏下载/安装版/",
+    portable: "https://file.marioforever.net/Mario Forever/Banesoft 相关游戏下载/绿色版/"
   }
 };
 
 // Special URLs for NSMF games (Chinese version only)
 const NSMF_URLS_ZH = {
-  installer: "https://file.marioforever.net/Mario%20Forever/New%20Super%20Mario%20Forever%20%E4%B8%8B%E8%BD%BD/%E5%AE%89%E8%A3%85%E7%89%88/",
-  portable: "https://file.marioforever.net/Mario%20Forever/New%20Super%20Mario%20Forever%20%E4%B8%8B%E8%BD%BD/%E7%BB%BF%E8%89%B2%E7%89%88/"
+  installer: "https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/安装版/",
+  portable: "https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/绿色版/"
 };
 
 // 对象存储（CDN）基础路径，遵循英文资源站路径规则，不使用中文路径名
