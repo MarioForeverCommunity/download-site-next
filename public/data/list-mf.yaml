@@ -12126,13 +12126,23 @@
   ver:
   - Latest version:
       ver_alt:
-      date: 2025-07-15
+      date: 2026-08-02
       source_url:
       source_url_alt:
       download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
       code:
       download_url_alt:
       file_name: MFTLW.zip
+      file_url:
+  - Ver (2025-07-15):
+      ver_alt:
+      date: 2025-07-15
+      source_url:
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      code:
+      download_url_alt:
+      file_name: MFTLW (2025-07-15).zip
       file_url:
   - Ver (2022-09-26):
       ver_alt:
