@@ -1,4 +1,23 @@
 ---
+- game: 绿锤之行
+  game_alt: Green Sledge Hammer Level
+  tag:
+  - Single Level
+  author: WN-MASKER
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-08-09
+  source_url: https://www.bilibili.com/video/BV1CWuV6iEgy/
+  source_url_alt:
+  download_url: https://qfile.qq.com/q/CcBCw9cgve
+  code:
+  download_url_alt:
+  file_name: GREEN SLEDGE HAMMER THE LEVEL BY WN-MASKER.rar
+  file_url:
 - game: Mario Forever FbdFeelingZ's Retro Levels
   game_alt:
   author: FbdFeelingZ
@@ -147,6 +166,8 @@
   file_url:
 - game: CHEAKEAKNCHN'S LIFE
   game_alt:
+  alias:
+  - MFCL
   author: WN-MASKER
   author_alt:
   type: chinese
@@ -2488,6 +2509,17 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - World -G:
+      current: true
+      ver_alt:
+      date: 2026-08-09
+      source_url: https://www.youtube.com/watch?v=rdPXrb679XU
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/wf7x9hx1szgbigp/MWMLWS_-_World_-G.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -G.zip
+      file_url:
   - World -F:
       current: true
       ver_alt:
