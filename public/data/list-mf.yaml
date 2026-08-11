@@ -12213,15 +12213,25 @@
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
   ver:
-  - Latest version:
+  - v2.1:
+      ver_alt:
+      date: 2026-08-09
+      source_url:
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      code:
+      download_url_alt: https://gamejolt.com/games/MFTLW/1067401
+      file_name: MFTLW v2.1.zip
+      file_url:
+  - v2.0:
       ver_alt:
       date: 2026-08-02
       source_url:
       source_url_alt:
       download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
       code:
-      download_url_alt:
-      file_name: MFTLW.zip
+      download_url_alt: https://gamejolt.com/games/MFTLW/1067401
+      file_name: MFTLW v2.0.zip
       file_url:
   - Ver (2025-07-15):
       ver_alt:
@@ -12243,7 +12253,7 @@
       download_url_alt:
       file_name: MFTLW (2022-09-26).zip
       file_url:
-  - v2.5:
+  - v2.5 (old):
       ver_alt:
       date: 2021-08-13
       source_url:
@@ -12253,7 +12263,7 @@
       download_url_alt:
       file_name: MFTLW 2.5.zip
       file_url:
-  - v2.1:
+  - v2.1 (old):
       ver_alt:
       date: 2021-03-28
       source_url:
@@ -12263,7 +12273,7 @@
       download_url_alt:
       file_name: MFTLW 2.1.zip
       file_url:
-  - v2.0:
+  - v2.0 (old):
       ver_alt:
       date: 2021-02-25
       source_url:
@@ -16564,6 +16574,7 @@
   game_alt:
   tag:
   - Single Level
+  - Kaizo
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
