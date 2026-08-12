@@ -342,6 +342,30 @@ Version fields:
 | `portable` | No | String or Object | Portable version. Can be a simple string filename, or an object with `exe`/`swf`/`zip` keys. Supports arrays for multiple files. |
 | `image` | No | String | Image file name for this specific version. |
 
+## Static JSON API
+
+This site provides a **static JSON API** containing every work's parameters, resource-site and object-storage download links, image paths, and description content. It is suitable for third-party development, data analysis, or hosting your own mirror.
+
+The API base URL is `https://download.marioforever.net/api/`, with the following endpoints:
+
+| Endpoint | Content |
+| --- | --- |
+| `/api/index.json` | Manifest listing all endpoints and the generation time |
+| `/api/mf.json` | Mario Forever fangames |
+| `/api/mw.json` | Super Mario Worker Project levels |
+| `/api/assets.json` | Development assets |
+| `/api/softendo.json` | Softendo / Buziol Games |
+| `/api/original-mf.json` | All original Mario Forever versions |
+
+Since these are static files, a plain GET is all you need - no authentication and no rate limits:
+
+```javascript
+const games = await fetch('https://download.marioforever.net/api/mf.json').then(r => r.json())
+console.log(games.length)
+```
+
+See the [API documentation](API.md) for the full field reference and usage examples.
+
 ## Help Maintain and Further Development
 
 Programmers are welcomed to help in improving this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To ensure the stability of the online website, all changes except from list updates should be committed to the `next` branch of this project.

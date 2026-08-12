@@ -342,6 +342,30 @@ Softendo 作品列表使用 yaml 编写，位于 `public/data/list-softendo.yaml
 | `portable` | 否 | 字符串或对象 | 绿色版。可以是简单的字符串文件名，或包含 `exe`/`swf`/`zip` 键的对象。支持数组格式以指定多个文件。 |
 | `image` | 否 | 字符串 | 该特定版本的图片文件名。 |
 
+## 静态 JSON API
+
+本站提供一套**静态 JSON API**，包含全部作品的各项参数、资源站与对象存储下载链接、作品图片路径以及作品描述内容，可用于二次开发、数据分析或搭建自己的镜像站。
+
+API 基址为 `https://download.marioforever.net/api/`，包含以下端点：
+
+| 端点 | 内容 |
+|---|---|
+| `/api/index.json` | 清单，列出所有端点及生成时间 |
+| `/api/mf.json` | Mario Forever 同人作品 |
+| `/api/mw.json` | Super Mario Worker Project 作品 |
+| `/api/assets.json` | 创作资源 |
+| `/api/softendo.json` | Softendo / Buziol Games 游戏 |
+| `/api/original-mf.json` | 原版 Mario Forever 全版本 |
+
+由于是静态文件，直接 GET 即可，无需鉴权，也没有速率限制：
+
+```javascript
+const games = await fetch('https://download.marioforever.net/api/mf.json').then(r => r.json())
+console.log(games.length)
+```
+
+完整的字段说明与调用示例请查阅 [API 文档](API.md)。
+
 ## 帮助维护、二次开发
 
 欢迎有能力的编程者通过 [pull request](https://github.com/MarioForeverCommunity/download-site-next/pulls) 方式协助完善本项目。为了保证上线网站的稳定性，所有列表更新之外的更改请提交至本项目的 `next` 分支。
