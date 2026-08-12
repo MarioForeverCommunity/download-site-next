@@ -3,7 +3,8 @@ import { ref, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vu
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { parseVer } from "../util/Misc.js"
-import { getName, getDownloadEntries } from "../util/GameUtil.js"
+import { getName, getDownloadEntries, toResourceDirectUrl } from "../util/GameUtil.js"
+import { getUseDirectLink } from "../util/Language.js"
 import { ensureAssetsList, findAssetsByName, resolveVariantRaw } from "../util/useAssetsList.js"
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"
@@ -29,6 +30,11 @@ const props = defineProps({
 })
 
 const lan = ref(getLanguage())
+
+const useDirectLink = getUseDirectLink()
+
+// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const handleLanguageChanged = (event) => {
   const nextLan = event?.detail?.language || getLanguage()
@@ -289,7 +295,7 @@ function getAssetImage(assetEntry) {
                   class="download"
                   v-for="url in getAssetResourceURLs(selectedDownload)"
                   :key="url.url"
-                  :href="url.url"
+                  :href="resourceUrl(url.url)"
                   target="_blank"
                 >{{ url.name }}</a>
               </template>
@@ -299,7 +305,7 @@ function getAssetImage(assetEntry) {
                   class="download"
                   v-for="url in getAssetResourceURLs(selectedDownload)"
                   :key="url.url"
-                  :href="url.url"
+                  :href="resourceUrl(url.url)"
                   target="_blank"
                 >{{ url.name }}
                   <span v-if="fileSizeMap[url.url]" class="btn-file-size">

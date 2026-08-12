@@ -44,7 +44,7 @@ onUnmounted(() => {
 
   .back-to-top {
     position: fixed;
-    bottom: 80px;
+    bottom: 128px;
     right: 30px;
     width: 20px;
     height: 20px;

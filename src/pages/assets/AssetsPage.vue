@@ -5,7 +5,8 @@ import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
 import SiteFooter from '../../components/SiteFooter.vue';
 import AssetCard from '../../components/AssetCard.vue';
-import { getName, getDownloadEntries } from "../../util/GameUtil.js";
+import { getName, getDownloadEntries, toResourceDirectUrl } from "../../util/GameUtil.js";
+import { getUseDirectLink } from "../../util/Language.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import { filterList, getStrFromList } from "../../util/GameUtil.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
@@ -13,6 +14,7 @@ import ClipboardButton from '../../components/ButtonClipboard.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+import GlobalSettings from '../../components/GlobalSettings.vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { readList } from "../../util/ReadList.js";
 import { parseVer } from "../../util/Misc.js";
@@ -25,6 +27,11 @@ import { getAssetResourceURLs } from "../../util/AssetUtil.js";
 const originalLan = ref(getLanguage());
 
 const lan = ref("zh");
+
+const useDirectLink = getUseDirectLink()
+
+// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const pageId = "assets"
 
@@ -525,7 +532,7 @@ const { floatingStyles } = useFloating(reference, floating,
                 class="download"
                 v-for="url in getAssetResourceURLs(selectedDownload)"
                 :key="url.url"
-                :href="url.url"
+                :href="resourceUrl(url.url)"
                 target="_blank"
               >{{ url.name }}</a>
             </template>
@@ -535,7 +542,7 @@ const { floatingStyles } = useFloating(reference, floating,
                 class="download"
                 v-for="url in getAssetResourceURLs(selectedDownload)"
                 :key="url.url"
-                :href="url.url"
+                :href="resourceUrl(url.url)"
                 target="_blank"
               >{{ url.name }}
                 <span v-if="fileSizeMap[url.url]" class="btn-file-size">
@@ -614,6 +621,7 @@ const { floatingStyles } = useFloating(reference, floating,
 
   <ButtonBackToTop />
   <ButtonDarkMode />
+  <GlobalSettings />
 
   <SiteFooter />
 </template>

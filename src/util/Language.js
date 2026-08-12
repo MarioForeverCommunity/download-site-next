@@ -1,3 +1,4 @@
+import { ref, watch } from "vue";
 import Cookies from "js-cookie";
 
 export function getLanguage() {
@@ -55,4 +56,15 @@ export function setDisplayModeLine() {
 export function setDisplayModeCard() {
   Cookies.set("displayMode", "card");
   return "card";
+}
+
+// 资源站直链开关（全局共享状态，cookie 持久化）
+const useDirectLink = ref(Cookies.get("useDirectLink") === "true");
+
+watch(useDirectLink, (value) => {
+  Cookies.set("useDirectLink", String(value));
+});
+
+export function getUseDirectLink() {
+  return useDirectLink;
 }

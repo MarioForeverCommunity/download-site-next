@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import Cookies from 'js-cookie';
-import { getName, getAuthorList, processFileNamesWithVolumes } from '../util/GameUtil.js';
+import { getName, getAuthorList, processFileNamesWithVolumes, toResourceDirectUrl } from '../util/GameUtil.js';
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync } from '../util/ImageUtil.js';
 import { loadDescription } from '../util/DescriptionUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
@@ -9,6 +9,7 @@ import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, isKliktopiaRepackage } from '../util/SoftendoUtil.js';
 import { getAssetFileUrl } from '../util/AssetUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
+import { getUseDirectLink } from '../util/Language.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -45,6 +46,10 @@ const originalTitle = ref(document.title);
 const fileSizeMap = ref({});
 const fileSizeLoading = ref(false);
 const useCdn = ref(Cookies.get('useCdn') === 'true');
+const useDirectLink = getUseDirectLink();
+
+// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+const effectiveResourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url;
 
 const isMwLevel = computed(() => {
   return props.category === 'mw-levels';
@@ -92,7 +97,8 @@ const smwpVersion = computed(() => {
 
 const smwpUrl = computed(() => {
   if (!props.game || !props.game.smwp_ver || !props.game.smwp_url) return null;
-  return useCdn.value ? (props.game.smwp_url_cdn || props.game.smwp_url) : props.game.smwp_url;
+  const url = useCdn.value ? (props.game.smwp_url_cdn || props.game.smwp_url) : props.game.smwp_url;
+  return useDirectLink.value ? toResourceDirectUrl(url) : url;
 });
 
 const titleImage = computed(() => {
@@ -387,7 +393,7 @@ const downloadEntries = computed(() => {
       const ver = verRaw[verKey];
 
       // Installer (安装版)
-      const installerUrl = useCdn.value ? ver.installer_url_cdn : ver.installer_url;
+      const installerUrl = effectiveResourceUrl(useCdn.value ? ver.installer_url_cdn : ver.installer_url);
       if (installerUrl) {
         const toolbarDetected = installerUrl.toLowerCase().includes('toolbar');
         let installerLabel = props.lan === 'zh' ? `安装版 (${verKey})` : `Installer (${verKey})`;
@@ -432,7 +438,7 @@ const downloadEntries = computed(() => {
                   : null;
           entries.push({
             version: props.lan === 'zh' ? `${portableName} (${verKey})` : `${portableName} (${verKey})`,
-            url: p.url,
+            url: effectiveResourceUrl(p.url),
             isRepackaged: false,
             repacker: null,
             isData: false,
@@ -449,7 +455,7 @@ const downloadEntries = computed(() => {
           const selfextractName = props.lan === 'zh' ? '自解压' : 'Self-extracting';
           entries.push({
             version: `${selfextractName} (${verKey})`,
-            url: s.url,
+            url: effectiveResourceUrl(s.url),
             isRepackaged: false,
             repacker: null,
             isData: false,
@@ -472,7 +478,13 @@ const downloadEntries = computed(() => {
     const entries = [];
     for (let idx = 0; idx < resourceUrls.length; idx++) {
       // CDN 开启时仅显示兼容的条目，不兼容则跳过（显示"暂无下载链接"）
-      const item = useCdn.value ? (cdnUrls[idx] || null) : resourceUrls[idx];
+      let item;
+      if (useCdn.value) {
+        item = cdnUrls[idx] || null;
+      } else {
+        const resourceItem = resourceUrls[idx];
+        item = resourceItem ? { ...resourceItem, url: effectiveResourceUrl(resourceItem.url) } : null;
+      }
       if (!item) continue;
 
       const url = item.url || '';
@@ -510,7 +522,7 @@ const downloadEntries = computed(() => {
             : [ver.file_name];
 
           for (const fileName of fileNames) {
-            const url = getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value);
+            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value));
 
             if (url) {
               let versionText = '下载';
@@ -538,7 +550,7 @@ const downloadEntries = computed(() => {
         : [props.game.currentVer.file_name];
 
       for (const fileName of fileNames) {
-        const url = getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value);
+        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value));
 
         if (url) {
           const versionText = props.game.currentVer?.ver || '下载';
@@ -568,7 +580,7 @@ const downloadEntries = computed(() => {
     const versionKey = (props.lan === 'en' && ver.ver_alt) ? ver.ver_alt : verKey;
 
     if (ver[fileUrlKey]) {
-      const url = ver[fileUrlKey];
+      const url = effectiveResourceUrl(ver[fileUrlKey]);
       const isRepackaged = url.includes('重打包作品') || url.includes('repackaged-fangames');
 
       let repacker = null;
@@ -592,7 +604,7 @@ const downloadEntries = computed(() => {
     if (ver[dataUrlKey]) {
       entries.push({
         version: props.lan === 'zh' ? `数据包 (${versionKey})` : `Data (${versionKey})`,
-        url: ver[dataUrlKey],
+        url: effectiveResourceUrl(ver[dataUrlKey]),
         isRepackaged: false,
         repacker: null,
         isData: true
@@ -617,7 +629,13 @@ const dataDownloadEntries = computed(() => {
   const entries = [];
   for (let idx = 0; idx < resourceUrls.length; idx++) {
     // CDN 开启时仅显示兼容的条目，不兼容则跳过
-    const item = useCdn.value ? (cdnUrls[idx] || null) : resourceUrls[idx];
+    let item;
+    if (useCdn.value) {
+      item = cdnUrls[idx] || null;
+    } else {
+      const resourceItem = resourceUrls[idx];
+      item = resourceItem ? { ...resourceItem, url: effectiveResourceUrl(resourceItem.url) } : null;
+    }
     if (!item) continue;
 
     let name;
@@ -752,6 +770,12 @@ watch(() => [props.game, props.lan], () => {
 
 watch(useCdn, (newVal) => {
   Cookies.set('useCdn', String(newVal));
+  if (props.show) {
+    fetchFileSizes();
+  }
+});
+
+watch(useDirectLink, () => {
   if (props.show) {
     fetchFileSizes();
   }

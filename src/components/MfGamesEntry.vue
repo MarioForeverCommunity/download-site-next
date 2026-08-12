@@ -3,7 +3,8 @@ import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent 
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
 import { parseVer } from "../util/Misc.js"
-import { getDataResourceURL, getDataResourceCdnURL, getDownloadEntries, getDownloadInfo, getName, getResourceURL, getResourceCdnURL, getVideoDesc, getCodeLabel } from "../util/GameUtil.js"
+import { getDataResourceURL, getDataResourceCdnURL, getDownloadEntries, getDownloadInfo, getName, getResourceURL, getResourceCdnURL, getVideoDesc, getCodeLabel, toResourceDirectUrl } from "../util/GameUtil.js"
+import { getUseDirectLink } from "../util/Language.js"
 import { getGameImageSync, getShowcaseImagesSync, loadImageIndex } from "../util/ImageUtil.js"
 import { ensureMfList, findMfByName, resolveVerRaw } from "../util/useMfList.js"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
@@ -45,6 +46,8 @@ const ensureImageIndex = async () => {
 }
 
 const lan = ref(getLanguage())
+
+const useDirectLink = getUseDirectLink()
 
 const handleLanguageChanged = (event) => {
   const nextLan = event?.detail?.language || getLanguage()
@@ -342,6 +345,17 @@ function shouldShowResourceLink(download) {
   return !!getResourceURL(download, lan.value)
 }
 
+// 根据直链开关返回资源站链接（开启时转换为直链）
+function getResourceDirectUrl(download) {
+  const url = getResourceURL(download, lan.value)
+  return useDirectLink.value ? toResourceDirectUrl(url) : url
+}
+
+function getDataResourceDirectUrl(download) {
+  const url = getDataResourceURL(download, lan.value)
+  return useDirectLink.value ? toResourceDirectUrl(url) : url
+}
+
 function getDownloadEntriesForView(download) {
   return getDownloadEntries(download, lan.value)
 }
@@ -481,7 +495,7 @@ function hasDataDownload(download) {
             <a
               class="download"
               v-if="shouldShowResourceLink(selectedDownload)"
-              :href="getResourceURL(selectedDownload, lan)"
+              :href="getResourceDirectUrl(selectedDownload)"
               target="_blank"
             >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
             <a
@@ -512,7 +526,7 @@ function hasDataDownload(download) {
               <a
                 class="download"
                 v-if="getDataResourceURL(selectedDownload, lan)"
-                :href="getDataResourceURL(selectedDownload, lan)"
+                :href="getDataResourceDirectUrl(selectedDownload)"
                 target="_blank"
               >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
               <a

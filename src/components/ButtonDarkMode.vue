@@ -47,7 +47,7 @@ onMounted(() => {
 
   .dark-mode-btn {
     position: fixed;
-    bottom: 80px;
+    bottom: 128px;
     right: 30px;
     width: 44px;
     height: 44px;

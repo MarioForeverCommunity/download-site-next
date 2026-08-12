@@ -400,6 +400,23 @@ export function isCdnCompatible(fileName) {
 }
 
 /**
+ * 将资源站下载链接转换为直链（在 https://file.marioforever.net/ 后插入 d/）
+ * 不适用的情况（file_name 以斜杠结尾的条目判断方法与 CDN 相同）：
+ * - 非资源站链接（如对象存储、网盘等）
+ * - 目录条目（file_name 以斜杠结尾，生成的 URL 也以斜杠结尾）
+ * - SMWP MW 4.4 的文件夹链接
+ * @param {string} url - 原始 URL
+ * @returns {string} 直链 URL
+ */
+export function toResourceDirectUrl(url) {
+  if (!url || typeof url !== "string") return url;
+  if (!url.startsWith("https://file.marioforever.net/")) return url;
+  if (url.endsWith("/")) return url;
+  if (url === SMWP_MW44_URL) return url;
+  return url.replace("https://file.marioforever.net/", "https://file.marioforever.net/d/");
+}
+
+/**
  * 构建 SMWP 下载链接
  * @param {object} entry - 关卡条目
  * @returns {string|null} SMWP 下载 URL

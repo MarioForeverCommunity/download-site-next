@@ -13,7 +13,8 @@ import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-import { getVideoDesc, getResourceURL, getResourceCdnURL, filterList, getDataResourceURL, getDataResourceCdnURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl } from "../../util/GameUtil.js"
+import { getVideoDesc, getResourceURL, getResourceCdnURL, filterList, getDataResourceURL, getDataResourceCdnURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
+import { getUseDirectLink } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -21,6 +22,7 @@ import axios from 'axios';
 import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+import GlobalSettings from '../../components/GlobalSettings.vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
@@ -28,6 +30,8 @@ import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js
 import { getFormattedFileSize } from '../../util/OpenListApi.js';
 
 const lan = ref(getLanguage());
+
+const useDirectLink = getUseDirectLink();
 
 const pageId = "mf-games"
 
@@ -935,6 +939,17 @@ function shouldShowResourceLink(game) {
   return !hasFileMirror && !!getResourceURL(game, lan.value);
 }
 
+// 根据直链开关返回资源站链接（开启时转换为直链）
+function getResourceDirectUrl(game) {
+  const url = getResourceURL(game, lan.value);
+  return useDirectLink.value ? toResourceDirectUrl(url) : url;
+}
+
+function getDataResourceDirectUrl(game) {
+  const url = getDataResourceURL(game, lan.value);
+  return useDirectLink.value ? toResourceDirectUrl(url) : url;
+}
+
 function hasDataDownload(game) {
   if (!game || !game.currentVer) {
     return false;
@@ -1255,7 +1270,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <a
             class="download"
             v-if="shouldShowResourceLink(selectedDownload)"
-            :href="getResourceURL(selectedDownload, lan)"
+            :href="getResourceDirectUrl(selectedDownload)"
             target="_blank"
           >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
           <a
@@ -1286,7 +1301,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             <a
               class="download"
               v-if="getDataResourceURL(selectedDownload, lan)"
-              :href="getDataResourceURL(selectedDownload, lan)"
+              :href="getDataResourceDirectUrl(selectedDownload)"
               target="_blank"
             >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
             <a
@@ -1381,6 +1396,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
 
   <ButtonBackToTop />
   <ButtonDarkMode />
+  <GlobalSettings />
 
   <SiteFooter />
 

@@ -3,6 +3,8 @@ import { ref, onMounted, watch } from 'vue';
 import DownloadIcon from './icons/IconDownload.vue';
 import { readList } from '../util/ReadList.js';
 import { getFormattedFileSize } from '../util/OpenListApi.js';
+import { toResourceDirectUrl } from '../util/GameUtil.js';
+import { getUseDirectLink } from '../util/Language.js';
 
 const props = defineProps({
   lan: {
@@ -66,6 +68,14 @@ const getDownloadUrl = (version, type, useCdn = false) => {
     return `${urls.portable}${version.portable}`;
   }
   return null;
+};
+
+const useDirectLink = getUseDirectLink();
+
+// 根据直链开关返回资源站链接（开启时转换为直链）
+const getDownloadDirectUrl = (version, type) => {
+  const url = getDownloadUrl(version, type);
+  return useDirectLink.value ? toResourceDirectUrl(url) : url;
 };
 
 // 打开下载弹框
@@ -185,7 +195,7 @@ const isFiveStar = (rating) => {
           <a
             class="download"
             :class="{ 'has-toolbar': isToolbarInstaller() }"
-            :href="getDownloadUrl(selectedDownload.version, selectedDownload.type)"
+            :href="getDownloadDirectUrl(selectedDownload.version, selectedDownload.type)"
             target="_blank"
             @click="handleDownloadClick"
           >{{ lan === 'en' ? 'Community File Hub' : '社区资源站' }}</a>

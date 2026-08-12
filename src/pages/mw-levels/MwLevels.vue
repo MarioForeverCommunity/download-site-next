@@ -10,7 +10,8 @@ import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
-import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible } from "../../util/GameUtil.js"
+import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible, toResourceDirectUrl } from "../../util/GameUtil.js"
+import { getUseDirectLink } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -18,6 +19,7 @@ import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { SmwpVersions } from "../../util/SmwpVersions.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
+import GlobalSettings from '../../components/GlobalSettings.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
@@ -26,6 +28,11 @@ import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 const originalLan = ref(getLanguage());
 
 const lan = "zh"
+
+const useDirectLink = getUseDirectLink()
+
+// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const pageId = "mw-levels"
 
@@ -833,7 +840,7 @@ const { floatingStyles } = useFloating(reference, floating,
                 class="download"
                 v-for="url in selectedDownload.file_urls"
                 :key="url.url"
-                :href="url.url"
+                :href="resourceUrl(url.url)"
                 target="_blank"
               >{{ url.name }}</a>
             </template>
@@ -843,7 +850,7 @@ const { floatingStyles } = useFloating(reference, floating,
                 class="download"
                 v-for="url in selectedDownload.file_urls"
                 :key="url.url"
-                :href="url.url"
+                :href="resourceUrl(url.url)"
                 target="_blank"
               >{{ url.name }}
                 <span v-if="fileSizeMap[url.url]" class="btn-file-size">
@@ -895,7 +902,7 @@ const { floatingStyles } = useFloating(reference, floating,
                 class="download"
                 v-for="url in selectedDownload.currentVer.data_file_urls"
                 :key="url.url"
-                :href="url.url"
+                :href="resourceUrl(url.url)"
                 target="_blank"
               >{{ url.name }}</a>
             </template>
@@ -905,7 +912,7 @@ const { floatingStyles } = useFloating(reference, floating,
                 class="download"
                 v-for="url in selectedDownload.currentVer.data_file_urls"
                 :key="url.url"
-                :href="url.url"
+                :href="resourceUrl(url.url)"
                 target="_blank"
               >{{ url.name }}
                 <span v-if="fileSizeMap[url.url]" class="btn-file-size">
@@ -969,7 +976,7 @@ const { floatingStyles } = useFloating(reference, floating,
           <span v-else-if="getSmwpFileSize()" class="file-size-text">文件大小: {{ getSmwpFileSize() }}</span>
         </div>
         <div class="button-line">
-          <a class="download" :href="selectedSmwp.smwp_url" target="_blank">社区资源站</a>
+          <a class="download" :href="resourceUrl(selectedSmwp.smwp_url)" target="_blank">社区资源站</a>
           <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">对象存储</a>
         </div>
         <template v-if="selectedSmwp.smwp_data_url">
@@ -981,7 +988,7 @@ const { floatingStyles } = useFloating(reference, floating,
             <span v-else-if="getSmwpDataFileSize()" class="file-size-text">数据包大小: {{ getSmwpDataFileSize() }}</span>
           </div>
           <div class="button-line">
-            <a class="download" :href="selectedSmwp.smwp_data_url" target="_blank">社区资源站</a>
+            <a class="download" :href="resourceUrl(selectedSmwp.smwp_data_url)" target="_blank">社区资源站</a>
             <a class="download" :href="selectedSmwp.smwp_data_url_cdn" target="_blank">对象存储</a>
           </div>
         </template>
@@ -1030,6 +1037,7 @@ const { floatingStyles } = useFloating(reference, floating,
 
   <ButtonBackToTop />
   <ButtonDarkMode />
+  <GlobalSettings />
 
   <SiteFooter />
 

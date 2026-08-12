@@ -66,7 +66,12 @@ export function extractPathFromUrl(url) {
   try {
     const urlObj = new URL(url);
     // Decode the pathname to handle encoded Chinese characters
-    return decodeURIComponent(urlObj.pathname);
+    let path = decodeURIComponent(urlObj.pathname);
+    // 资源站直链（/d/ 前缀）的路径需去掉前缀后才是资源站上的实际路径
+    if (path.startsWith('/d/')) {
+      path = path.slice(3);
+    }
+    return path;
   } catch (_e) {
     return null;
   }

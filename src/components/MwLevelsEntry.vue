@@ -2,7 +2,8 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from "vue"
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue"
 import { getLanguage } from "../util/Language.js"
-import { getDownloadCode, getDownloadDesc, getDownloadInfo, getDownloadLink, getName, getVideoDesc, getCodeLabel } from "../util/GameUtil.js"
+import { getDownloadCode, getDownloadDesc, getDownloadInfo, getDownloadLink, getName, getVideoDesc, getCodeLabel, toResourceDirectUrl } from "../util/GameUtil.js"
+import { getUseDirectLink } from "../util/Language.js"
 import { getGameImageSync, getShowcaseImagesSync, loadImageIndex } from "../util/ImageUtil.js"
 import { ensureMwList, findMwByName } from "../util/useMwList.js"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
@@ -33,6 +34,11 @@ const ensureImageIndex = async () => {
 }
 
 const lan = ref(getLanguage())
+
+const useDirectLink = getUseDirectLink()
+
+// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const handleLanguageChanged = (event) => {
   const nextLan = event?.detail?.language || getLanguage()
@@ -458,7 +464,7 @@ const getGameImage = () => {
                   class="download"
                   v-for="url in selectedDownload.file_urls"
                   :key="url.url"
-                  :href="url.url"
+                  :href="resourceUrl(url.url)"
                   target="_blank"
                 >{{ url.name }}</a>
               </template>
@@ -468,7 +474,7 @@ const getGameImage = () => {
                   class="download"
                   v-for="url in selectedDownload.file_urls"
                   :key="url.url"
-                  :href="url.url"
+                  :href="resourceUrl(url.url)"
                   target="_blank"
                 >{{ url.name }}
                   <span v-if="fileSizeMap[url.url]" class="btn-file-size">
@@ -520,7 +526,7 @@ const getGameImage = () => {
                   class="download"
                   v-for="url in selectedDownload.currentVer.data_file_urls"
                   :key="url.url"
-                  :href="url.url"
+                  :href="resourceUrl(url.url)"
                   target="_blank"
                 >{{ url.name }}</a>
               </template>
@@ -530,7 +536,7 @@ const getGameImage = () => {
                   class="download"
                   v-for="url in selectedDownload.currentVer.data_file_urls"
                   :key="url.url"
-                  :href="url.url"
+                  :href="resourceUrl(url.url)"
                   target="_blank"
                 >{{ url.name }}
                   <span v-if="fileSizeMap[url.url]" class="btn-file-size">
@@ -594,7 +600,7 @@ const getGameImage = () => {
             <span v-else-if="getSmwpFileSize()" class="file-size-text">{{ lan == 'en' ? 'File size:' : '文件大小:' }} {{ getSmwpFileSize() }}</span>
           </div>
           <div class="button-line">
-            <a class="download" :href="selectedSmwp.smwp_url" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
+            <a class="download" :href="resourceUrl(selectedSmwp.smwp_url)" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
             <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
           </div>
           <template v-if="selectedSmwp.smwp_data_url">
@@ -606,7 +612,7 @@ const getGameImage = () => {
               <span v-else-if="getSmwpDataFileSize()" class="file-size-text">{{ lan == 'en' ? 'Data size:' : '数据包大小:' }} {{ getSmwpDataFileSize() }}</span>
             </div>
             <div class="button-line">
-              <a class="download" :href="selectedSmwp.smwp_data_url" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
+              <a class="download" :href="resourceUrl(selectedSmwp.smwp_data_url)" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
               <a class="download" :href="selectedSmwp.smwp_data_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
             </div>
           </template>
