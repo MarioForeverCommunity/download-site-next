@@ -38,6 +38,23 @@ const md = new MarkdownIt({
   linkify: true,
   html: false
 });
+
+// 渲染 markdown 中的资源站链接：非斜杠结尾的链接跟随直链开关转换
+const defaultLinkOpen = md.renderer.rules.link_open
+  || function (tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+  const token = tokens[idx];
+  const hrefIndex = token.attrIndex('href');
+  if (hrefIndex >= 0) {
+    const href = token.attrs[hrefIndex][1];
+    if (useDirectLink.value) {
+      token.attrs[hrefIndex][1] = toResourceDirectUrl(href);
+    }
+  }
+  return defaultLinkOpen(tokens, idx, options, env, self);
+};
 const showImagePreview = ref(false);
 const previewImageUrl = ref('');
 const previewImageIndex = ref(0);
@@ -697,6 +714,8 @@ const wikiUrl = computed(() => {
 });
 
 const renderedDescription = computed(() => {
+  // 读取直链开关以建立响应式依赖，使渲染结果随开关变化
+  useDirectLink.value;
   return md.render(markdownContent.value);
 });
 
