@@ -267,6 +267,10 @@ export function getSoftwareDefault(type, entry) {
   }
 
   if (hasAnyExe || hasAnyZip) {
+    // mff 分类一律不再添加 mmf software，仅 flash 分类保留 mmf
+    if (type === "mff") {
+      return "flash";
+    }
     return ["flash", "mmf"];
   }
 

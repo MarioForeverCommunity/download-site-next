@@ -47,7 +47,7 @@
   wiki_en_url:
   ver:
   ver_alt:
-  date: 2026-08-11
+  date: 2026-08-12
   source_url: https://www.youtube.com/watch?v=AyLhoAOCxy0
   source_url_alt:
   download_url: https://www.mediafire.com/file/bxrb8oiexzboixf/MARIO+FOREVER+-+WORLD+SUPRAXOCAN.zip/file
@@ -638,6 +638,7 @@
   - 马造派对
   tag:
   - Multiplayer
+  - Level Editor
   author: 绿色的糖果
   author_alt: Green Sweet
   type: chinese
@@ -851,6 +852,7 @@
   - Mario Together
   tag:
   - Multiplayer
+  - Level Editor
   author:
   - toggins
   - nonk123

@@ -233,8 +233,8 @@ const getGameImageSrc = () => {
   }
 
   .dot.type-dot[data-type="banesoft"] {
-    background: #4caf50;
-    border-color: #2e7d32;
+    background: #0a8200;
+    border-color: #006905;
   }
 
   body.dark .dot.type-dot {
@@ -263,7 +263,7 @@ const getGameImageSrc = () => {
   }
 
   body.dark .dot.type-dot[data-type="banesoft"] .type-text {
-    color: #4caf50;
+    color: #0a8200;
   }
 
   .dot .type-text {
