@@ -264,6 +264,7 @@ function buildMf() {
       versions = [{
         [entry.ver || '']: {
           code: entry.code,
+          code_alt: entry.code_alt,
           date: entry.date,
           download_url: entry.download_url,
           download_url_alt: entry.download_url_alt,
@@ -310,6 +311,7 @@ function buildMf() {
           url: dlUrl || null,
           urlAlt: dlUrlAlt || null,
           code: ver.code || null,
+          codeAlt: ver.code_alt || null,
           invalid: !!dlInvalid,
           invalidAlt: !!dlInvalidAlt
         },

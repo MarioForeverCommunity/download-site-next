@@ -196,7 +196,7 @@ function getDescription(item, lan = 'zh') {
 | `date` | 字符串 \| null | 发布日期 |
 | `current` | 布尔 | 该版本是否为当前版本 |
 | `source` | 对象 | 发布链接，见「失效链接标记」 |
-| `download` | 对象 | 官方下载链接与提取码 |
+| `download` | 对象 | 官方下载链接与提取码（含备用提取码 `codeAlt`） |
 | `dataDownload` | 对象 | 数据包（如音乐）的外部下载链接与提取码，见下 |
 | `resource` | 对象 | 游戏本体的链接对象 |
 | `dataResource` | 对象 | 数据包（如音乐）的链接对象 |
@@ -248,7 +248,7 @@ const primary = game.versions.find(v => v.current) || game.versions[0]
       "download": {
         "url": "https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp",
         "urlAlt": "https://www.mediafire.com/folder/hgtsobi2ofnn2/mfmp",
-        "code": "mfmp", "invalid": false, "invalidAlt": false
+        "code": "mfmp", "codeAlt": null, "invalid": false, "invalidAlt": false
       },
       "dataDownload": { "url": null, "code": null, "invalid": false },
       "resource": {
