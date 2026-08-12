@@ -1351,10 +1351,15 @@ const nextImage = () => {
     gap: 8px;
     margin-bottom: 0.8em;
     font-size: 0.85em;
+    padding-left: 0.6em;
   }
 
   .toggle-label {
     color: #666;
+  }
+
+  body.dark .toggle-label {
+    color: #777;
   }
 
   .toggle-switch {
