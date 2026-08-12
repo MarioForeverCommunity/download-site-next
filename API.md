@@ -179,6 +179,7 @@ function getDescription(item, lan = 'zh') {
 | `type` | 字符串 | `chinese`（国内作品）/ `international`（国外作品） |
 | `tags` | 字符串数组 | 标签，如 `Single Level`、`Speedrun`、`Horror` |
 | `wiki` | 对象 | `{ zh, en }` Wiki 链接 |
+| `homepage` | 对象 | `{ zh, en, repo }` 主页 / 源码仓库链接 |
 | `inlineDescription` | 对象 | `{ zh, en }` 简短说明 |
 | `versions` | 数组 | 全部版本，见下 |
 | `currentVersion` | 字符串数组 | **当前（最新）版本名列表**，见下 |
@@ -191,13 +192,17 @@ function getDescription(item, lan = 'zh') {
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `version` | 字符串 | 版本名（可能为空字符串，表示单版本作品） |
+| `versionAlt` | 字符串 \| null | 版本英文名/别名 |
 | `date` | 字符串 \| null | 发布日期 |
 | `current` | 布尔 | 该版本是否为当前版本 |
 | `source` | 对象 | 发布链接，见「失效链接标记」 |
 | `download` | 对象 | 官方下载链接与提取码 |
+| `dataDownload` | 对象 | 数据包（如音乐）的外部下载链接与提取码，见下 |
 | `resource` | 对象 | 游戏本体的链接对象 |
 | `dataResource` | 对象 | 数据包（如音乐）的链接对象 |
 | `repacker` | 字符串 \| null | 重打包者（若为重打包版本） |
+
+`dataDownload` 结构：`{ url, code, invalid }`，与 `download` 类似但无备用链接（仅对应数据包的 `data_download_url`/`data_code`）。注意它与 `dataResource`（资源站/对象存储镜像）并存、来源不同。
 
 关于 **`currentVersion` 是数组**：一个作品可以同时有多个「当前版本」（例如同一作品的 Windows 版与 Android 版并列为最新）。因此该字段列出所有当前版本的名称：
 
@@ -227,11 +232,13 @@ const primary = game.versions.find(v => v.current) || game.versions[0]
   "type": "chinese",
   "tags": ["Multiplayer"],
   "wiki": { "zh": null, "en": null },
+  "homepage": { "zh": null, "en": null, "repo": null },
   "inlineDescription": { "zh": null, "en": null },
   "firstAuthor": "绿色的糖果",
   "versions": [
     {
       "version": "Windows",
+      "versionAlt": null,
       "date": "2026-07-09",
       "current": true,
       "source": {
@@ -243,6 +250,7 @@ const primary = game.versions.find(v => v.current) || game.versions[0]
         "urlAlt": "https://www.mediafire.com/folder/hgtsobi2ofnn2/mfmp",
         "code": "mfmp", "invalid": false, "invalidAlt": false
       },
+      "dataDownload": { "url": null, "code": null, "invalid": false },
       "resource": {
         "fileName": "mfmp_20260709.rar",
         "zh": "https://file.marioforever.net/Mario Forever/国内作品/2026/mfmp_20260709.rar",
@@ -277,6 +285,8 @@ SMWP 作品只有中文数据，故链接对象**不含 `en`**，且无 `nameAlt
 | `hasBgm` | 布尔 | 是否含自定义 BGM |
 | `hasBundledSmwp` | 布尔 | 是否已附带 SMWP 本体 |
 | `inlineDescription` | 字符串 \| null | 简短说明 |
+| `wiki` | 字符串 \| null | Wiki 链接 |
+| `homepage` | 字符串 \| null | 主页链接 |
 | `source` / `download` | 对象 | 发布链接 / 下载链接 |
 | `resource` | 数组 | 作品文件的链接对象**列表**（可能分卷，故为数组） |
 | `dataResource` | 数组 | 数据包文件的链接对象列表 |
@@ -308,6 +318,8 @@ for (const file of level.resource) {
   "hasBgm": false,
   "hasBundledSmwp": false,
   "inlineDescription": null,
+  "wiki": "https://zh.wiki.marioforever.net/wiki/Super_Mario_Worker_Maker",
+  "homepage": null,
   "source": { "url": "https://www.marioforever.net/thread-3910-1-1.html", "invalid": false },
   "download": { "url": null, "code": null, "invalid": false },
   "resource": [

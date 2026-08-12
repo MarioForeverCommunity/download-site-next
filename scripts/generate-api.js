@@ -231,6 +231,11 @@ function buildMf() {
     out.type = entry.type || '';
     out.tags = toArray(entry.tag);
     out.wiki = { zh: entry.wiki_zh_url || null, en: entry.wiki_en_url || null };
+    out.homepage = {
+      zh: entry.homepage_zh || null,
+      en: entry.homepage_en || null,
+      repo: entry.repo || null
+    };
     // MF 使用 description_zh / description_en 双语字段
     out.inlineDescription = {
       zh: entry.description_zh || null,
@@ -287,9 +292,12 @@ function buildMf() {
       const dlUrl = dlInvalid ? ver.download_url.substring(1) : ver.download_url;
       const dlInvalidAlt = typeof ver.download_url_alt === 'string' && ver.download_url_alt[0] === '~';
       const dlUrlAlt = dlInvalidAlt ? ver.download_url_alt.substring(1) : ver.download_url_alt;
+      const dataDlInvalid = typeof ver.data_download_url === 'string' && ver.data_download_url[0] === '~';
+      const dataDlUrl = dataDlInvalid ? ver.data_download_url.substring(1) : ver.data_download_url;
 
       return {
         version: verKey,
+        versionAlt: ver.ver_alt || null,
         date: normDate(ver.date),
         current: !!ver.current,
         source: {
@@ -304,6 +312,11 @@ function buildMf() {
           code: ver.code || null,
           invalid: !!dlInvalid,
           invalidAlt: !!dlInvalidAlt
+        },
+        dataDownload: {
+          url: dataDlUrl || null,
+          code: ver.data_code || null,
+          invalid: !!dataDlInvalid
         },
         resource: {
           fileName: ver.file_name || null,
@@ -442,6 +455,8 @@ function buildMw() {
     out.hasBgm = !!entry.has_bgm;
     out.hasBundledSmwp = !!entry.has_bundled_smwp;
     out.inlineDescription = entry.description || null;
+    out.wiki = entry.wiki_zh_url || null;
+    out.homepage = entry.homepage || null;
 
     const srcInvalid = typeof entry.source_url === 'string' && entry.source_url[0] === '~';
     const srcUrl = srcInvalid ? entry.source_url.substring(1) : entry.source_url;
