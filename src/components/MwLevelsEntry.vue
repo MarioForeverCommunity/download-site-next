@@ -444,7 +444,7 @@ const getGameImage = () => {
     <Transition name="modal">
       <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
         <div class="modal-content" @click.stop="">
-          <div>
+          <div class="download-title">
             {{ lan == 'en' ? 'Download' : '下载' }} {{ getName(selectedDownload, lan) }}
           </div>
           <!-- Single file: show file size above buttons -->
@@ -507,7 +507,7 @@ const getGameImage = () => {
             ></ClipboardButton>
           </div>
           <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
-            <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} Data` : `下载 ${getName(selectedDownload, lan)} 数据包` }}</span>
+            <span class="download-title">{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} Data` : `下载 ${getName(selectedDownload, lan)} 数据包` }}</span>
           </div>
           <!-- Single data file: show file size above buttons -->
           <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length <= 1 && (fileSizeLoading || getSingleDataFileSize(selectedDownload))" class="file-size-info">

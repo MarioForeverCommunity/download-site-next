@@ -5,8 +5,8 @@ import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
 import SiteFooter from '../../components/SiteFooter.vue';
 import AssetCard from '../../components/AssetCard.vue';
-import { getName, getDownloadEntries, toResourceDirectUrl } from "../../util/GameUtil.js";
-import { getUseDirectLink } from "../../util/Language.js";
+import { getName, getAuthor, getDownloadEntries, toResourceDirectUrl } from "../../util/GameUtil.js";
+import { getUseDirectLink, getDefaultSort } from "../../util/Language.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
 import { filterList, getStrFromList } from "../../util/GameUtil.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
@@ -179,12 +179,27 @@ function sortByName() {
   }
 }
 
+function sortByAuthor() {
+  if (sort_option.value.field != "author") {
+    sort_option.value.field = "author";
+    sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
+  } else {
+    defaultSort();
+    return;
+  }
+}
+
 function sortByDate() {
   if (sort_option.value.field != "date") {
     sort_option.value.field = "date";
     sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
   } else {
-    sort_option.value.asc = !sort_option.value.asc;
+    defaultSort();
+    return;
   }
 }
 
@@ -265,26 +280,34 @@ const filteredAssets = computed(() => {
     }
     return expIdx;
   };
-  if (sort_option.value.field === "name") {
+  const defaultSortValue = getDefaultSort().value;
+  if (sort_option.value.field === "name"
+    || (sort_option.value.field === null && (defaultSortValue === "name_asc" || defaultSortValue === "name_desc"))) {
+    const asc = sort_option.value.field === "name" ? sort_option.value.asc : defaultSortValue === "name_asc";
     expanded.sort((a, b) => {
       const nameA = getName(a, lan.value);
       const nameB = getName(b, lan.value);
-      return sort_option.value.asc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+      return asc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+    });
+  } else if (sort_option.value.field === "author"
+    || (sort_option.value.field === null && (defaultSortValue === "author_asc" || defaultSortValue === "author_desc"))) {
+    const asc = sort_option.value.field === "author" ? sort_option.value.asc : defaultSortValue === "author_asc";
+    expanded.sort((a, b) => {
+      const authorA = getAuthor(a, lan.value);
+      const authorB = getAuthor(b, lan.value);
+      return asc ? authorA.localeCompare(authorB) : authorB.localeCompare(authorA);
     });
   } else {
+    const asc = sort_option.value.field === "date" ? sort_option.value.asc : defaultSortValue === "date_asc";
     expanded.sort((a, b) => {
       const dateA = a.currentVer && a.currentVer.date ? new Date(a.currentVer.date).getTime() : null;
       const dateB = b.currentVer && b.currentVer.date ? new Date(b.currentVer.date).getTime() : null;
       if (dateA !== null && dateB !== null) {
-        return sort_option.value.field === "date"
-          ? (sort_option.value.asc ? dateA - dateB : dateB - dateA)
-          : dateB - dateA;
+        return asc ? dateA - dateB : dateB - dateA;
       }
       const refA = dateA !== null ? dateA : getRefDate(a);
       const refB = dateB !== null ? dateB : getRefDate(b);
-      return sort_option.value.field === "date"
-        ? (sort_option.value.asc ? refA - refB : refB - refA)
-        : refB - refA;
+      return asc ? refA - refB : refB - refA;
     });
   }
   return expanded;
@@ -480,6 +503,16 @@ const { floatingStyles } = useFloating(reference, floating,
             <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
           </span>
         </div>
+        <div class="visible-button" @click="sortByAuthor();">
+          {{ lan == "en" ? "Author" : "作者" }}
+          <span v-if="sort_option.field == 'author'">
+            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+          </span>
+          <span v-if="sort_option.field != 'author'">
+            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+          </span>
+        </div>
         <div class="visible-button" @click="sortByDate();">
           {{ lan == "en" ? "Date" : "日期" }}
           <span v-if="sort_option.field == 'date'">
@@ -512,7 +545,7 @@ const { floatingStyles } = useFloating(reference, floating,
   <Transition name="modal">
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
-        <div>
+        <div class="download-title">
           下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
         </div>
         <!-- Single file: show file size above buttons -->

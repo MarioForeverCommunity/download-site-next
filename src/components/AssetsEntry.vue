@@ -275,7 +275,7 @@ function getAssetImage(assetEntry) {
     <Transition name="modal">
       <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
         <div class="modal-content" @click.stop="">
-          <div>
+          <div class="download-title">
             下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
           </div>
           <!-- Single file: show file size above buttons -->

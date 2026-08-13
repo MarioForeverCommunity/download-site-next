@@ -14,7 +14,7 @@ import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, getResourceCdnURL, filterList, getDataResourceURL, getDataResourceCdnURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
-import { getUseDirectLink } from "../../util/Language.js"
+import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -311,10 +311,42 @@ const sort_option = ref({
   asc : true
 });
 
+// 按全局默认排序设置排序（缺省为日期倒序）
+function applyDefaultSort(list) {
+  const sort = getDefaultSort().value;
+  if (sort === "name_asc" || sort === "name_desc") {
+    const asc = sort === "name_asc";
+    list.sort((a, b) => asc
+      ? getName(a, lan.value).localeCompare(getName(b, lan.value))
+      : getName(b, lan.value).localeCompare(getName(a, lan.value))
+    );
+  } else if (sort === "author_asc" || sort === "author_desc") {
+    const asc = sort === "author_asc";
+    list.sort((a, b) => asc
+      ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value))
+      : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value))
+    );
+  } else if (sort === "date_asc") {
+    list.sort((a, b) => a.currentVer.date - b.currentVer.date);
+  } else {
+    list.sort((a, b) => b.currentVer.date - a.currentVer.date);
+  }
+}
+
 function defaultSort() {
-  games.value.sort((a, b) => parseVer(b.ver[0]).date - parseVer(a.ver[0]).date);
+  applyDefaultSort(games.value);
   sort_option.value.field = null;
 }
+
+// 切换全局默认排序后，若当前未手动排序，则自动应用新的默认排序
+watch(
+  () => getDefaultSort().value,
+  () => {
+    if (sort_option.value.field === null) {
+      defaultSort();
+    }
+  }
+);
 
 function sortByName() {
   if (sort_option.value.field != "game") {
@@ -346,8 +378,11 @@ function sortByDate() {
   if (sort_option.value.field != "date") {
     sort_option.value.field = "date";
     sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
   } else {
-    sort_option.value.asc = !sort_option.value.asc;
+    defaultSort();
+    return;
   }
   games.value = games.value.sort((a, b) => sort_option.value.asc ? a.currentVer.date - b.currentVer.date : b.currentVer.date - a.currentVer.date);
 }
@@ -719,7 +754,7 @@ const filteredGames = computed(() => {
         : b.currentVer.date - a.currentVer.date
       );
     } else {
-      expanded.sort((a, b) => b.currentVer.date - a.currentVer.date);
+      applyDefaultSort(expanded);
     }
     return expanded;
   }
@@ -1004,7 +1039,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
   } else if (sort_option.value.field === "author") {
     games.value.sort((a, b) => sort_option.value.asc ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value)) : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value)));
   } else {
-    games.value.sort((a, b) => b.currentVer.date - a.currentVer.date);
+    applyDefaultSort(games.value);
   }
 });
 </script>
@@ -1200,7 +1235,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
   <Transition name="modal">
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
-        <div>
+        <div class="download-title">
           {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedDownload, lan) }} {{ lan == 'en' && selectedDownload.currentVerStrAlt ? selectedDownload.currentVerStrAlt : selectedDownload.currentVerStr }}
           <Tooltip
             v-if="lan == 'zh'"
@@ -1290,7 +1325,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           </template>
         </div>
         <div v-if="hasDataDownload(selectedDownload)" class="button-line" style="margin-top: 8px;">
-          <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
+          <span class="download-title">{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
         </div>
         <div v-if="hasDataDownload(selectedDownload) && (fileSizeLoading || selectedDataFileSize)" class="file-size-info">
           <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching data file size...' : '获取数据包大小中...' }}</span>
@@ -1859,7 +1894,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
   .tag-modal-header h3 {
     margin: 0;
     font-size: 1.15em;
-    color: #333;
   }
 
   .tag-modal-selected {
@@ -2046,10 +2080,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
 
   body.dark .tag-modal-header {
     border-bottom-color: #444;
-  }
-
-  body.dark .tag-modal-header h3 {
-    color: #eee;
   }
 
   body.dark .tag-modal-selected {

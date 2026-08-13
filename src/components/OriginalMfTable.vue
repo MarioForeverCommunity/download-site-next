@@ -181,7 +181,7 @@ const isFiveStar = (rating) => {
   <Transition name="modal">
     <div v-if="selectedDownload" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
-        <div>
+        <div class="download-title">
           {{ lan === 'en' ? 'Download' : '下载' }} Mario Forever {{ selectedDownload.version.ver }}
           {{ selectedDownload.type === 'installer' ? (lan === 'en' ? 'Installer' : '安装版') : (lan === 'en' ? 'Portable' : '绿色版') }}
         </div>

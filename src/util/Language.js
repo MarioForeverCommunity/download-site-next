@@ -68,3 +68,19 @@ watch(useDirectLink, (value) => {
 export function getUseDirectLink() {
   return useDirectLink;
 }
+
+// 全局默认排序（全局共享状态，cookie 持久化），缺省值为日期倒序
+const DEFAULT_SORT_VALUES = ["name_asc", "name_desc", "author_asc", "author_desc", "date_asc", "date_desc"];
+const defaultSort = ref(DEFAULT_SORT_VALUES.includes(Cookies.get("defaultSort")) ? Cookies.get("defaultSort") : "date_desc");
+
+watch(defaultSort, (value) => {
+  Cookies.set("defaultSort", value);
+});
+
+export function getDefaultSort() {
+  return defaultSort;
+}
+
+export function setDefaultSort(value) {
+  defaultSort.value = value;
+}

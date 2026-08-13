@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import DownloadHeader from "../../components/HeaderNav.vue";
-import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
+import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort } from "../../util/Language.js";
 import { navTop } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
@@ -81,14 +81,46 @@ const sort_option = ref({
   asc: true
 });
 
+// 按全局默认排序设置排序（缺省为年份倒序；作者正序/作者倒序忽略，仍维持年份倒序）
+function applyDefaultSort(list) {
+  const sort = getDefaultSort().value;
+  if (sort === "name_asc" || sort === "name_desc") {
+    const asc = sort === "name_asc";
+    list.sort((a, b) =>
+      asc
+        ? getSoftendoGameName(a).localeCompare(getSoftendoGameName(b))
+        : getSoftendoGameName(b).localeCompare(getSoftendoGameName(a))
+    );
+  } else if (sort === "date_asc") {
+    list.sort((a, b) => {
+      const yearA = getSoftendoYearRange(a).latestYear || 0;
+      const yearB = getSoftendoYearRange(b).latestYear || 0;
+      return yearA - yearB;
+    });
+  } else {
+    // 作者正序/作者倒序/日期倒序（缺省）均维持年份倒序
+    list.sort((a, b) => {
+      const yearA = getSoftendoYearRange(a).latestYear || 0;
+      const yearB = getSoftendoYearRange(b).latestYear || 0;
+      return yearB - yearA;
+    });
+  }
+}
+
 function defaultSort() {
-  games.value.sort((a, b) => {
-    const yearA = getSoftendoYearRange(a).latestYear || 0;
-    const yearB = getSoftendoYearRange(b).latestYear || 0;
-    return yearB - yearA;
-  });
+  applyDefaultSort(games.value);
   sort_option.value.field = null;
 }
+
+// 切换全局默认排序后，若当前未手动排序，则自动应用新的默认排序
+watch(
+  () => getDefaultSort().value,
+  () => {
+    if (sort_option.value.field === null) {
+      defaultSort();
+    }
+  }
+);
 
 function sortByName() {
   if (sort_option.value.field != "game") {
@@ -128,8 +160,11 @@ function sortByYear() {
   if (sort_option.value.field != "year") {
     sort_option.value.field = "year";
     sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
   } else {
-    sort_option.value.asc = !sort_option.value.asc;
+    defaultSort();
+    return;
   }
   games.value = games.value.sort((a, b) => {
     const yearA = getSoftendoYearRange(a).latestYear || 0;
@@ -869,7 +904,6 @@ const getGameImage = (game) => {
   .tag-modal-header h3 {
     margin: 0;
     font-size: 1.15em;
-    color: #333;
   }
 
   .tag-modal-selected {
@@ -1056,10 +1090,6 @@ const getGameImage = (game) => {
 
   body.dark .tag-modal-header {
     border-bottom-color: #444;
-  }
-
-  body.dark .tag-modal-header h3 {
-    color: #eee;
   }
 
   body.dark .tag-modal-selected {

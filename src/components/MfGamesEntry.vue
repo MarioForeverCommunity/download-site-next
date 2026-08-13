@@ -425,7 +425,7 @@ function hasDataDownload(download) {
     <Transition name="modal">
       <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
         <div class="modal-content" @click.stop="">
-          <div>
+          <div class="download-title">
             {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedDownload, lan) }} {{ lan == 'en' && selectedDownload.currentVerStrAlt ? selectedDownload.currentVerStrAlt : selectedDownload.currentVerStr }}
             <Tooltip
               v-if="lan == 'zh'"
@@ -515,7 +515,7 @@ function hasDataDownload(download) {
             </template>
           </div>
           <div v-if="hasDataDownload(selectedDownload)" class="button-line" style="margin-top: 8px;">
-            <span>{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
+            <span class="download-title">{{ lan == 'en' ? `Download ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStrAlt || selectedDownload.currentVerStr || ''} Data` : `下载 ${getName(selectedDownload, lan)} ${selectedDownload.currentVerStr || ''} 数据包` }}</span>
           </div>
           <div v-if="hasDataDownload(selectedDownload) && (fileSizeLoading || selectedDataFileSize)" class="file-size-info">
             <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching data file size...' : '获取数据包大小中...' }}</span>

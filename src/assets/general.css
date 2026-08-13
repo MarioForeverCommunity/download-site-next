@@ -131,6 +131,10 @@
   margin-left: 1.5em;
 }
 
+.download-title {
+  line-height: 1.5;
+}
+
 @media (max-width: 1333px) and (min-width: 800px) {
   .card-container {
     width: 90vw;

@@ -11,7 +11,7 @@ import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible, toResourceDirectUrl } from "../../util/GameUtil.js"
-import { getUseDirectLink } from "../../util/Language.js"
+import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
 import axios from 'axios';
@@ -183,10 +183,9 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
 
     games.value.push(entry);
   }
-  games.value.sort((a, b) => b.date - a.date)
+  defaultSort();
   checkUrlGameParam();
 });
-
 const getGameSlug = (entry) => {
   const name = entry.game;
   const author = getStrFromList(entry.author);
@@ -430,10 +429,39 @@ const sort_option = ref({
   asc : true
 });
 
+// 按全局默认排序设置排序（缺省为日期倒序）
+function applyDefaultSort(list) {
+  const sort = getDefaultSort().value;
+  if (sort === "name_asc" || sort === "name_desc") {
+    const asc = sort === "name_asc";
+    list.sort((a, b) => asc ? a.game.localeCompare(b.game) : b.game.localeCompare(a.game));
+  } else if (sort === "author_asc" || sort === "author_desc") {
+    const asc = sort === "author_asc";
+    list.sort((a, b) => asc
+      ? getAuthor(a, "zh").localeCompare(getAuthor(b, "zh"))
+      : getAuthor(b, "zh").localeCompare(getAuthor(a, "zh"))
+    );
+  } else if (sort === "date_asc") {
+    list.sort((a, b) => a.date - b.date);
+  } else {
+    list.sort((a, b) => b.date - a.date);
+  }
+}
+
 function defaultSort() {
-  games.value.sort((a, b) => b.date - a.date);
+  applyDefaultSort(games.value);
   sort_option.value.field = null;
 }
+
+// 切换全局默认排序后，若当前未手动排序，则自动应用新的默认排序
+watch(
+  () => getDefaultSort().value,
+  () => {
+    if (sort_option.value.field === null) {
+      defaultSort();
+    }
+  }
+);
 
 function sortByName() {
   if (sort_option.value.field != "game") {
@@ -465,8 +493,11 @@ function sortByDate() {
   if (sort_option.value.field != "date") {
     sort_option.value.field = "date";
     sort_option.value.asc = true;
+  } else if (sort_option.value.asc == true) {
+    sort_option.value.asc = false;
   } else {
-    sort_option.value.asc = !sort_option.value.asc;
+    defaultSort();
+    return;
   }
   games.value = games.value.sort((a, b) => sort_option.value.asc ? a.date - b.date : b.date - a.date);
 }
@@ -820,7 +851,7 @@ const { floatingStyles } = useFloating(reference, floating,
   <Transition name="modal">
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
       <div class="modal-content" @click.stop="">
-        <div>
+        <div class="download-title">
           下载 {{ selectedDownload.game }}
         </div>
         <!-- Single file: show file size above buttons -->
@@ -883,7 +914,7 @@ const { floatingStyles } = useFloating(reference, floating,
           ></ClipboardButton>
         </div>
         <div v-if="selectedDownload.currentVer && (selectedDownload.currentVer.data_download_url || (selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length > 0))" class="button-line" style="margin-top: 8px;">
-          <span>下载 {{ selectedDownload.game }} 数据包</span>
+          <span class="download-title">下载 {{ selectedDownload.game }} 数据包</span>
         </div>
         <!-- Single data file: show file size above buttons -->
         <div v-if="selectedDownload.currentVer && selectedDownload.currentVer.data_file_urls && selectedDownload.currentVer.data_file_urls.length <= 1 && (fileSizeLoading || getSingleDataFileSize(selectedDownload))" class="file-size-info">
