@@ -134,12 +134,7 @@ Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
 const filter_option = ref({
   active : false,
   name : "",
-  type_engine: true,
-  type_addon: true,
-  type_effect: true,
-  type_sprite: true,
-  type_tool: true,
-  type_mwtool: true,
+  type : "",
 });
 
 function clearName() {
@@ -147,12 +142,7 @@ function clearName() {
 }
 function clearFilter() {
   filter_option.value.name = "";
-  filter_option.value.type_engine = true;
-  filter_option.value.type_addon = true;
-  filter_option.value.type_effect = true;
-  filter_option.value.type_sprite = true;
-  filter_option.value.type_tool = true;
-  filter_option.value.type_mwtool = true;
+  filter_option.value.type = "";
 }
 
 // Sort operations.
@@ -215,12 +205,7 @@ const filteredAssets = computed(() => {
           || fuzzyMatch(getStrFromList(entry.author), query)
           || filterList(query, entry.alias)
       );
-      const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
-          || (filter_option.value.type_addon && entry.type == "addon")
-          || (filter_option.value.type_effect && entry.type == "effect")
-          || (filter_option.value.type_sprite && entry.type == "sprite")
-          || (filter_option.value.type_tool && entry.type == "tool")
-          || (filter_option.value.type_mwtool && entry.type == "mwtool");
+      const typeMatch = !filter_option.value.type || entry.type == filter_option.value.type;
       if (!nameMatch || !typeMatch) return [];
       return [{ ...entry, _expandedIndex: expandedIndex++ }];
     }
@@ -237,12 +222,7 @@ const filteredAssets = computed(() => {
       );
       const fileNameMatch = normalizedIncludes(verObj.file_name, query);
       if (!nameMatch && !fileNameMatch) return null;
-      const typeMatch = (filter_option.value.type_engine && entry.type == "engine")
-          || (filter_option.value.type_addon && entry.type == "addon")
-          || (filter_option.value.type_effect && entry.type == "effect")
-          || (filter_option.value.type_sprite && entry.type == "sprite")
-          || (filter_option.value.type_tool && entry.type == "tool")
-          || (filter_option.value.type_mwtool && entry.type == "mwtool");
+      const typeMatch = !filter_option.value.type || entry.type == filter_option.value.type;
       if (!typeMatch) return null;
       return {
         ...entry,
@@ -466,28 +446,16 @@ const { floatingStyles } = useFloating(reference, floating,
           >✕</span>
         </div>&nbsp;
         <div class="inline-block">
-          <input v-model="filter_option.type_engine" type="checkbox" id="filterEngine">
-          <label for="filterEngine">制作模板 (引擎)</label>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.type_addon" type="checkbox" id="filterAddon">
-          <label for="filterAddon">拓展资源</label>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.type_sprite" type="checkbox" id="filterSprite">
-          <label for="filterSprite">素材</label>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.type_effect" type="checkbox" id="filterEffect">
-          <label for="filterEffect">特效</label>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.type_tool" type="checkbox" id="filterTool">
-          <label for="filterTool">工具程序</label>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.type_mwtool" type="checkbox" id="filterMwtool">
-          <label for="filterMwtool">MW 工具</label>
+          {{ lan == "en" ? "Category" : "类别" }}
+          <select v-model="filter_option.type">
+            <option value="">全部</option>
+            <option value="engine">制作模板 (引擎)</option>
+            <option value="addon">拓展资源</option>
+            <option value="sprite">素材</option>
+            <option value="effect">特效</option>
+            <option value="tool">工具程序</option>
+            <option value="mwtool">MW 工具</option>
+          </select>
         </div>
         <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
           <FilterIcon class="icon button" @click="clearFilter()" />
