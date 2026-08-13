@@ -12271,14 +12271,24 @@
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
   ver:
+  - v2.2:
+      ver_alt:
+      date: 2026-08-09
+      source_url:
+      source_url_alt:
+      download_url: https://gamejolt.com/games/MFTLW/1067401
+      code:
+      download_url_alt: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      file_name: MFTLW v2.2.zip
+      file_url:
   - v2.1:
       ver_alt:
       date: 2026-08-09
       source_url:
       source_url_alt:
-      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      download_url: https://gamejolt.com/games/MFTLW/1067401
       code:
-      download_url_alt: https://gamejolt.com/games/MFTLW/1067401
+      download_url_alt:
       file_name: MFTLW v2.1.zip
       file_url:
   - v2.0:
@@ -12286,9 +12296,9 @@
       date: 2026-08-02
       source_url:
       source_url_alt:
-      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      download_url: https://gamejolt.com/games/MFTLW/1067401
       code:
-      download_url_alt: https://gamejolt.com/games/MFTLW/1067401
+      download_url_alt:
       file_name: MFTLW v2.0.zip
       file_url:
   - Ver (2025-07-15):
@@ -12296,7 +12306,7 @@
       date: 2025-07-15
       source_url:
       source_url_alt:
-      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      download_url:
       code:
       download_url_alt:
       file_name: MFTLW (2025-07-15).zip
@@ -12306,7 +12316,7 @@
       date: 2022-09-26
       source_url: https://marioforeverforum.boards.net/thread/839/chadooks-lost-world-remastered
       source_url_alt:
-      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      download_url:
       code:
       download_url_alt:
       file_name: MFTLW (2022-09-26).zip
