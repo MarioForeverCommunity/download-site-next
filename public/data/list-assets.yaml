@@ -75,20 +75,6 @@
       ver: "231011.1"
       date: 2023-10-11
       file_name: UER Dialog 231011.1ver.7z
-- name: OpenFusionExamples
-  alias:
-  - Fini
-  author: defisym
-  type: addon
-  description: 开源 Clickteam Fusion 扩展、Shader、特效、示例资源
-  image:
-  source_url:
-  download_url:
-  code:
-  repo: https://github.com/defisym/OpenFusionExamples
-  ver:
-  date:
-  file_name:
 - name: Tilesets（适用于 UE Autotile）
   author: dasasdhba
   type: sprite
@@ -769,6 +755,20 @@
       ver: "170809"
       date: 2017-08-09
       file_name: NeverlandEngineMod170809.zip
+- name: OpenFusionExamples
+  alias:
+  - Fini
+  author: defisym
+  type: addon
+  description: 开源 Clickteam Fusion 扩展、Shader、特效、示例资源；日期为 repo 创建时间
+  image:
+  source_url:
+  download_url:
+  code:
+  repo: https://github.com/defisym/OpenFusionExamples
+  ver:
+  date: 2018-12-06
+  file_name:
 - name: Factory Engine
   alias:
   - FE
@@ -985,7 +985,7 @@
   download_url:
   code:
   ver:
-  date:
+  date: 2013-01-31
   file_name: 静止探照灯批量处理器.exe
 - name: 封顶器
   author: nmnmoooh
