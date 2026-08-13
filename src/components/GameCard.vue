@@ -525,9 +525,11 @@ const getHomepageUrl = () => {
   }
 
   .dot {
-    display: inline-block;
-    width: 2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 1em;
+    padding: 0 0.2em;
     border-radius: 0.6em;
     vertical-align: middle;
     box-sizing: border-box;
@@ -551,12 +553,10 @@ const getHomepageUrl = () => {
   }
   .dot.mw-dot {
     background: #ff9800;
-    width: 3.5em;
     border: 1.5px solid #e65100;
   }
   .dot.bgm-dot {
     background: #f50057;
-    width: 2.5em;
     border: 1.5px solid #c51162;
   }
   body.dark .dot.cn-dot,
@@ -593,10 +593,6 @@ const getHomepageUrl = () => {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     letter-spacing: 0.02em;
     pointer-events: none;
     user-select: none;

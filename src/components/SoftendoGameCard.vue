@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { DownloadIcon } from "./icons/Icons.js";
-import { getTypeLabel, getTypeDotWidth, getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange } from "../util/SoftendoUtil.js";
+import { getTypeLabel, getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange } from "../util/SoftendoUtil.js";
 import Tooltip from "./ToolTip.vue";
 
 const props = defineProps({
@@ -30,7 +30,6 @@ const handleGameNameClick = () => {
   emit("showGameDetail", props.game);
 };
 
-const typeDotWidth = () => getTypeDotWidth(props.game.type);
 const yearRange = computed(() => getSoftendoYearRange(props.game));
 
 const handleImageError = (event) => {
@@ -53,7 +52,7 @@ const getGameImageSrc = () => {
     <div class="body-line">
       <div class="game-meta">
         <Tooltip v-if="!hideDot">
-          <span class="dot type-dot" :style="{ width: typeDotWidth() }" :data-type="game.type">
+          <span class="dot type-dot" :data-type="game.type">
             <span class="type-text">{{ getTypeLabel(game.type) }}</span>
           </span>
           <template #popper>{{ getTypeLabel(game.type) }}</template>
@@ -196,7 +195,9 @@ const getGameImageSrc = () => {
   }
 
   .dot {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 1em;
     border-radius: 0.6em;
     vertical-align: middle;
@@ -208,7 +209,7 @@ const getGameImageSrc = () => {
   }
 
   .dot.type-dot {
-    padding: 0 0.4em;
+    padding: 0 0.2em;
     border: 1.5px solid;
   }
 
@@ -270,10 +271,6 @@ const getGameImageSrc = () => {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     letter-spacing: 0.02em;
     pointer-events: none;
     user-select: none;

@@ -385,9 +385,11 @@ const getVariantName = () => {
   }
 
   .dot {
-    display: inline-block;
-    width: 2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 1em;
+    padding: 0 0.2em;
     border-radius: 0.6em;
     margin-right: 4px;
     vertical-align: middle;
@@ -426,7 +428,6 @@ const getVariantName = () => {
   .dot.mwtool-dot {
     background: #ff9800;
     border: 1.5px solid #e65100;
-    width: 3.5em;
   }
 
   body.dark .dot.engine-dot,
@@ -477,10 +478,6 @@ const getVariantName = () => {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     letter-spacing: 0.02em;
     pointer-events: none;
     user-select: none;

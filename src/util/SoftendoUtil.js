@@ -199,18 +199,6 @@ export function getTypeColor(type) {
   return colors[type] || { bg: "#888", border: "#555" };
 }
 
-export function getTypeDotWidth(type) {
-  // Widths based on label text length
-  const widths = {
-    mario: "2.5em",
-    mff: "2em",
-    flash: "2.5em",
-    "non-mario": "4.3em",
-    banesoft: "3.8em"
-  };
-  return widths[type] || "3em";
-}
-
 export function getSoftwareLabel(software) {
   const labels = {
     mmf: "Multimedia Fusion",

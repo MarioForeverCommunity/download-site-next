@@ -367,9 +367,11 @@ const getHomepageUrl = () => {
   }
 
   .dot {
-    display: inline-block;
-    width: 2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 1em;
+    padding: 0 0.2em;
     border-radius: 0.6em;
     margin-left: 5px;
     margin-right: 5px;
@@ -395,12 +397,10 @@ const getHomepageUrl = () => {
   /* 新增MW和BGM标识样式 */
   .dot.mw-dot {
     background: #f39c12;
-    width: 3.5em;
     border: 1.5px solid #e67e22;
   }
   .dot.bgm-dot {
     background: #d5006d;
-    width: 2.5em;
     border: 1.5px solid #a50036;
   }
   body.dark .dot.cn-dot,
@@ -455,10 +455,6 @@ const getHomepageUrl = () => {
     color: #fff;
     font-size: 0.75em;
     font-weight: bold;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     letter-spacing: 0.02em;
     pointer-events: none;
     user-select: none;
