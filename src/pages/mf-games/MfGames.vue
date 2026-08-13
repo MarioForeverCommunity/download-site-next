@@ -348,6 +348,29 @@ watch(
   }
 );
 
+// 按当前排序选项重新排序（名称/作者依赖当前语言）
+function reapplyCurrentSort() {
+  if (sort_option.value.field === "game") {
+    games.value = games.value.sort((a, b) => sort_option.value.asc
+      ? getName(a, lan.value).localeCompare(getName(b, lan.value))
+      : getName(b, lan.value).localeCompare(getName(a, lan.value))
+    );
+  } else if (sort_option.value.field === "author") {
+    games.value = games.value.sort((a, b) => sort_option.value.asc
+      ? getAuthor(a, lan.value).localeCompare(getAuthor(b, lan.value))
+      : getAuthor(b, lan.value).localeCompare(getAuthor(a, lan.value))
+    );
+  } else if (sort_option.value.field === null) {
+    applyDefaultSort(games.value);
+  }
+  // 手动日期排序不依赖语言，无需处理
+}
+
+// 中英文切换后按当前语言重新应用名称/作者排序
+watch(lan, () => {
+  reapplyCurrentSort();
+});
+
 function sortByName() {
   if (sort_option.value.field != "game") {
     sort_option.value.field = "game";
