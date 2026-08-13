@@ -177,6 +177,7 @@ function getDescription(item, lan = 'zh') {
 | `authorAlt` | 字符串数组 \| null | 作者英文名 |
 | `firstAuthor` | 字符串 \| null | 用于构建资源站路径的主作者名 |
 | `type` | 字符串 | `chinese`（国内作品）/ `international`（国外作品） |
+| `software` | 字符串 | 制作软件，游戏级别：`mmf`/`godot`/`gamemaker`/`flash`/`other`；未指定时默认 `"mmf"` |
 | `tags` | 字符串数组 | 标签，如 `Single Level`、`Speedrun`、`Horror` |
 | `wiki` | 对象 | `{ zh, en }` Wiki 链接 |
 | `homepage` | 对象 | `{ zh, en, repo }` 主页 / 源码仓库链接 |
@@ -195,6 +196,7 @@ function getDescription(item, lan = 'zh') {
 | `versionAlt` | 字符串 \| null | 版本英文名/别名 |
 | `date` | 字符串 \| null | 发布日期 |
 | `current` | 布尔 | 该版本是否为当前版本 |
+| `software` | 字符串 | 该版本的制作软件：显式指定则用之，否则回退到游戏级 `software`（最终未指定时为 `"mmf"`） |
 | `source` | 对象 | 发布链接，见「失效链接标记」 |
 | `download` | 对象 | 官方下载链接与提取码（含备用提取码 `codeAlt`） |
 | `dataDownload` | 对象 | 数据包（如音乐）的外部下载链接与提取码，见下 |
@@ -216,7 +218,13 @@ const currents2 = game.versions.filter(v => game.currentVersion.includes(v.versi
 const primary = game.versions.find(v => v.current) || game.versions[0]
 ```
 
-若作品未显式标记 current，生成器会自动回退为日期最新的版本，因此 `currentVersion` 一般至少有一项（无版本数据的条目为空数组）。
+`current` 解析规则：
+- 存在显式 `current: true` 的版本时，这些版本为当前版本（支持多 current）。
+- 无任何显式 `current: true` 时，自动回退为日期最新的版本；但若该最新日期版本已显式 `current: false`，则不再自动标记（此时次新版本也不会被视为 current）。
+
+无版本数据的条目 `currentVersion` 为空数组。
+
+**国外作品（`international`）旧版本归档**：非当前版本（解析后 `current === false`）的 `resource` / `dataResource` 链接（`zh` / `en` / `cdn`）会在文件名前加入 `old-versions/` 指向归档路径（重打包版本与安卓 `.apk` 除外）；`fileName` 字段保留原始文件名。
 
 <details>
 <summary>示例条目</summary>
@@ -420,7 +428,7 @@ for (const file of level.resource) {
 | `versions` | 数组 | 版本列表，见下 |
 | `currentVersion` | 字符串 \| null | 首个版本名 |
 | `years` | 数字数组 | 涉及的所有年份（升序） |
-| `images` / `description` | 对象 | 同通用约定 |
+| `image` | 字符串 \| null | 单张封面图（标题界面或 logo），文件名与游戏名相同，路径如 `/data/softendo/Sonic in Marioland.webp`；无 showcase |
 
 `versions` 中每项：
 

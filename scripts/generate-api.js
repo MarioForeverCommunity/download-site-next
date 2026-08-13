@@ -229,6 +229,8 @@ function buildMf() {
     out.author = entry.author == null ? [] : toArray(entry.author);
     out.authorAlt = entry.author_alt == null ? null : toArray(entry.author_alt);
     out.type = entry.type || '';
+    // 制作软件：游戏级别 software，未指定则默认 mmf（与前端 detectSoftware 一致）
+    out.software = entry.software || 'mmf';
     out.tags = toArray(entry.tag);
     out.wiki = { zh: entry.wiki_zh_url || null, en: entry.wiki_en_url || null };
     out.homepage = {
@@ -282,6 +284,64 @@ function buildMf() {
       }];
     }
 
+    // 解析版本元数据（用于 current 判定与旧版本归档）
+    const verMeta = versions.map(verRaw => {
+      const verKey = Object.keys(verRaw)[0];
+      const ver = verRaw[verKey] || {};
+      const rawTime = ver.date ? new Date(ver.date).getTime() : -Infinity;
+      return {
+        verKey,
+        ver,
+        dateTime: Number.isNaN(rawTime) ? -Infinity : rawTime,
+        // 显式 current 标记：未指定为 null
+        current: ver.current === undefined ? null : !!ver.current
+      };
+    });
+
+    // 解析当前（最新）版本集合：
+    // - 有显式 current: true 时，取所有标记为 current 的版本（支持多 current）
+    // - 无显式 current: true 时，回退为日期最新的版本（多个并列取第一个）；
+    //   但若该最新日期版本已显式 current: false，则不再自动标记（次新版本也不视为 current）
+    const currentKeys = new Set();
+    if (verMeta.some(m => m.current === true)) {
+      for (const m of verMeta) {
+        if (m.current === true) currentKeys.add(m.verKey);
+      }
+    } else if (verMeta.length > 0) {
+      let latest = null;
+      let maxTime = -Infinity;
+      for (const m of verMeta) {
+        if (m.dateTime > maxTime) {
+          maxTime = m.dateTime;
+          latest = m;
+        }
+      }
+      if (latest && latest.current !== false) {
+        currentKeys.add(latest.verKey);
+      }
+    }
+
+    // 国际作品（非安卓）旧版本归档处理：
+    // 以解析后的 current === false 为判断标准，标记旧版本为归档（重打包版本与 apk 除外）。
+    // 注意：仅记录归档标记，不改动 file_name 字段本身，URL 构建时再前缀 old-versions/
+    const archivedKeys = new Map(); // verKey -> { file_name, data_file_name }
+    if (entry.type === 'international') {
+      for (const m of verMeta) {
+        const isCurrent = currentKeys.has(m.verKey);
+        const decide = (field) => {
+          const f = m.ver[field];
+          if (!f || m.ver.repacker) return false;
+          if (f.startsWith('old-versions/')) return false;
+          if (f.toLowerCase().endsWith('.apk')) return false;
+          return !isCurrent;
+        };
+        archivedKeys.set(m.verKey, {
+          file_name: decide('file_name'),
+          data_file_name: decide('data_file_name')
+        });
+      }
+    }
+
     const verList = versions.map(verRaw => {
       const verKey = Object.keys(verRaw)[0];
       const ver = verRaw[verKey] || {};
@@ -296,11 +356,19 @@ function buildMf() {
       const dataDlInvalid = typeof ver.data_download_url === 'string' && ver.data_download_url[0] === '~';
       const dataDlUrl = dataDlInvalid ? ver.data_download_url.substring(1) : ver.data_download_url;
 
+      const arch = archivedKeys.get(verKey) || { file_name: false, data_file_name: false };
+      // 归档版本的链接文件名前缀 old-versions/（仅用于构建 URL，fileName 字段保留原始文件名）
+      const resFileName = arch.file_name && ver.file_name ? 'old-versions/' + ver.file_name : ver.file_name;
+      const dataFileName = arch.data_file_name && ver.data_file_name ? 'old-versions/' + ver.data_file_name : ver.data_file_name;
+
       return {
         version: verKey,
         versionAlt: ver.ver_alt || null,
         date: normDate(ver.date),
-        current: !!ver.current,
+        // current 已在解析阶段确定（currentKeys）
+        current: currentKeys.has(verKey),
+        // 单版本级别制作软件：显式指定则用之，否则回退到游戏级 software（未指定时为 mmf）
+        software: ver.software || entry.software || 'mmf',
         source: {
           url: srcUrl || null,
           urlAlt: srcUrlAlt || null,
@@ -322,33 +390,18 @@ function buildMf() {
         },
         resource: {
           fileName: ver.file_name || null,
-          ...mfResourceLinks(ver.file_name, ver, entry)
+          ...mfResourceLinks(resFileName, ver, entry)
         },
         dataResource: {
           fileName: ver.data_file_name || null,
-          ...mfResourceLinks(ver.data_file_name, ver, entry, true)
+          ...mfResourceLinks(dataFileName, ver, entry, true)
         },
         repacker: ver.repacker || null
       };
     });
 
-    // 计算当前（最新）版本名列表：
-    // - 有 current: true 标记时，取所有标记为 current 的版本（支持多 current）
-    // - 无标记时，回退为日期最新的版本（多个并列取第一个）
-    const markedCurrent = verList.filter(v => v.current);
-    let currentList = [];
-    if (markedCurrent.length > 0) {
-      currentList = markedCurrent;
-    } else if (verList.length > 0) {
-      let maxTime = -Infinity;
-      for (const v of verList) {
-        const t = v.date ? new Date(v.date).getTime() : -Infinity;
-        if (t > maxTime) {
-          maxTime = t;
-          currentList = [v];
-        }
-      }
-    }
+    // current 已在解析阶段确定（currentKeys），此处生成 current 版本列表
+    const currentList = verList.filter(v => v.current);
 
     out.versions = verList;
     // 所有 current 版本的版本名（轻量数组，避免与 versions 中的完整对象重复）
@@ -776,6 +829,76 @@ function installerUrl(type, fileName, lan, nsmf) {
   return urls.installer + encodeURIComponent(fileName);
 }
 
+/**
+ * 根据 type 和所有版本的 portable 判断默认的 software 值
+ * 镜像 src/util/SoftendoUtil.js getSoftwareDefault：
+ * - 仅对 mff / flash 分类生效
+ * - 所有版本中同时存在 exe 和 zip（允许分布在不同版本）时，flash 返回 ["flash", "mmf"]
+ * - mff 分类一律不再添加 mmf software，返回 "flash"
+ * - 否则返回 "flash"
+ */
+function softendoSoftwareDefault(type, entry) {
+  if (type !== 'mff' && type !== 'flash') {
+    return null;
+  }
+
+  // 收集所有 portable 数据
+  const portables = [];
+
+  if (entry.portable) {
+    portables.push(entry.portable);
+  }
+
+  if (entry.ver && Array.isArray(entry.ver)) {
+    for (const verRaw of entry.ver) {
+      const verObj = verRaw[Object.keys(verRaw)[0]];
+      if (verObj.portable) {
+        portables.push(verObj.portable);
+      }
+    }
+  }
+
+  // 检查所有版本中是否存在 exe 和 zip（允许分布在不同版本）
+  let hasAnyExe = false;
+  let hasAnyZip = false;
+
+  for (const portable of portables) {
+    if (portable && typeof portable === 'object') {
+      if (portable.exe && (typeof portable.exe === 'string' || (Array.isArray(portable.exe) && portable.exe.length > 0))) {
+        hasAnyExe = true;
+      }
+      if (portable.zip && (typeof portable.zip === 'string' || (Array.isArray(portable.zip) && portable.zip.length > 0))) {
+        hasAnyZip = true;
+      }
+    }
+  }
+
+  if (hasAnyExe || hasAnyZip) {
+    // mff 分类一律不再添加 mmf software，仅 flash 分类保留 mmf
+    if (type === 'mff') {
+      return 'flash';
+    }
+    return ['flash', 'mmf'];
+  }
+
+  return 'flash';
+}
+
+/**
+ * 归一化 software 字段，镜像 src/util/SoftendoUtil.js normalizeSoftendoList：
+ * - 优先使用显式指定的 software（支持字符串或数组）
+ * - 否则对 mff / flash 分类按 portable 自动匹配默认值
+ */
+function softendoSoftware(type, entry) {
+  if (entry.software) {
+    return entry.software;
+  }
+  if (type === 'mff' || type === 'flash') {
+    return softendoSoftwareDefault(type, entry);
+  }
+  return '';
+}
+
 function buildSoftendo() {
   const list = loadYaml('list-softendo.yaml');
   const imageIndex = loadJson('image-index.json');
@@ -785,7 +908,7 @@ function buildSoftendo() {
     out.name = entry.game || entry.name || '';
     out.aliases = toArray(entry.alias);
     out.type = entry.type || '';
-    out.software = entry.software || '';
+    out.software = softendoSoftware(entry.type, entry);
     out.genre = toArray(entry.genre);
     out.initialYear = entry.initial_year || null;
     out.isNsmf = !!entry.nsmf;
@@ -834,14 +957,32 @@ function buildSoftendo() {
 
     // 年份范围
     const years = [];
-    for (const verRaw of entry.ver || []) {
-      const verObj = verRaw[Object.keys(verRaw)[0]];
-      if (verObj?.year) years.push(verObj.year);
+    if (entry.ver && Array.isArray(entry.ver)) {
+      // 多版本：取每个版本的 year
+      for (const verRaw of entry.ver) {
+        const verObj = verRaw[Object.keys(verRaw)[0]];
+        if (verObj?.year) years.push(verObj.year);
+      }
+    } else if (entry.year) {
+      // 单版本：取 entry.year
+      years.push(entry.year);
     }
-    out.years = [...new Set(years)].sort((a, b) => a - b);
+    const sortedYears = [...new Set(years)].sort((a, b) => a - b);
+    out.years = sortedYears;
 
-    out.images = resolveImages(imageIndex, 'softendo', entry);
-    out.description = readDescriptionFiles('softendo', '');
+    // initialYear：显式指定则用之，否则取所有版本中最旧的年份
+    if (out.initialYear == null && sortedYears.length > 0) {
+      out.initialYear = sortedYears[0];
+    }
+
+    // softendo 每条仅一张图（文件名与游戏名相同，为标题界面或 logo，无 showcase），
+    // 采用与 assets 相同的单图格式：image 字段
+    const softendoInfo = findGameInfo(imageIndex, 'softendo', entry);
+    const softendoImages = softendoInfo?.images || [];
+    const softendoDir = softendoInfo?.dirName || '';
+    out.image = softendoImages.length > 0
+      ? imagePath('softendo', softendoDir, softendoImages[0])
+      : null;
     return out;
   });
 }
