@@ -3756,6 +3756,16 @@
   code:
   file_name: Fahlee-Album6-Don t be regretful.rar
   file_url:
+- game: VN’s Conspiracy
+  author: 我懂你不懂的lz
+  description:
+  smwp_ver: MW 4.4
+  date: 2016-05-02
+  source_url: https://tieba.baidu.com/p/4520153009
+  download_url: http://ds--mario.ysepan.com/
+  code: "1234"
+  file_name: vn的阴谋.rar
+  file_url:
 - game: Randomize
   author: zqh——123
   smwp_ver: MW 4.4
@@ -3774,6 +3784,25 @@
   download_url:
   code:
   file_name: Fahlee-Worlds Album5.rar
+  file_url:
+- game: Grand Theft Auto 1
+  author: 大爷23大买卖吗
+  smwp_ver: MW 4.4
+  date: 2016-01-01
+  source_url: https://tieba.baidu.com/p/4244349170
+  download_url:
+  code:
+  file_name: "[By gym]Grand Theft Auto 1(上半集）.mfs"
+  file_url:
+- game: Deep Sleep
+  author: 我懂你不懂的lz
+  description:
+  smwp_ver: MW 4.4
+  date: 2015-08-18
+  source_url: https://tieba.baidu.com/p/3982016211
+  download_url: http://ds--mario.ysepan.com/
+  code: "1234"
+  file_name: Deep Sleep.rar
   file_url:
 - game: Bowser's Empire
   alias:
@@ -3807,6 +3836,28 @@
   code:
   file_name: Bzshzpm Album 1.rar
   file_url:
+- game: Mario Forever Magic Land
+  alias:
+  - MFML
+  description: 半集，后来被作者迁移到MMF平台了
+  author: 大爷23大买卖吗
+  smwp_ver: MW 4.4
+  date: 2015-03-08
+  source_url: https://tieba.baidu.com/p/3669123429
+  download_url:
+  code:
+  file_name: "[gym works]mario forever magic land半发布/"
+  file_url:
+- game: Little Room 1
+  author: 我懂你不懂的lz
+  description:
+  smwp_ver: MW 4.4
+  date: 2015-03-08
+  source_url: https://tieba.baidu.com/p/3623595493
+  download_url: http://ds--mario.ysepan.com/
+  code: "1234"
+  file_name: Little Room 1.mfl
+  file_url:
 - game: 王一凡01234567-Worlds Album1
   author: wyf01234567
   smwp_ver: MW 4.4
@@ -3826,6 +3877,24 @@
   download_url: http://123568023.ysepan.com/
   code:
   file_name: "[123568024 works]New The Four Seasons World V1.0.rar"
+  file_url:
+- game: Natsy World 残卷
+  author: 祝贺高考成功
+  smwp_ver: MW 4.4
+  date: 2014-10-05
+  source_url: https://tieba.baidu.com/p/3333767560
+  download_url:
+  code:
+  file_name: Nasty World 残卷/
+  file_url:
+- game: The National Day
+  author: 祝贺高考成功
+  smwp_ver: MW 4.4
+  date: 2014-10-05
+  source_url: https://tieba.baidu.com/p/3333767560
+  download_url:
+  code:
+  file_name: 【From Bostoncake】The National Day/【From Bostoncake】The National Day.mfs
   file_url:
 - game: Rolling in the deep
   author: zqh——123
@@ -3857,6 +3926,15 @@
   download_url: http://zqh--123.ysepan.com/
   code: "114514"
   file_name: The Seasons 3.rar
+  file_url:
+- game: Bostoncake's Return
+  author: 祝贺高考成功
+  smwp_ver: MW 4.4
+  date: 2014-08-18
+  source_url: https://tieba.baidu.com/p/3239339319
+  download_url:
+  code:
+  file_name: Bostoncake's Return/
   file_url:
 - game: General Maps V1.0
   alias:
@@ -3988,6 +4066,15 @@
   download_url: http://bluesun0505.ysepan.com/
   code:
   file_name: Bluesuns world.zip
+  file_url:
+- game: Dangerous Canyon
+  author: 祝贺高考成功
+  smwp_ver: MW 4.4
+  date: 2012-11-19
+  source_url: https://tieba.baidu.com/p/1995374334
+  download_url:
+  code:
+  file_name: Dangerous Canyon - 代码过后？.mfl
   file_url:
 - game: Great Adventure
   author: zqh——123
@@ -4173,7 +4260,7 @@
   code:
   file_name: shasdo Child World.rar
   file_url:
-- game: Shasdo Creative Album
+- game: Shasdo Creative Album 2
   author: shasdo
   smwp_ver: MW 4.4
   date: 2012-02-26
@@ -4232,6 +4319,15 @@
   download_url: http://xiongyusheng.ysepan.com/
   code:
   file_name: Bostoncake-Crazy Album.rar
+  file_url:
+- game: 勇闯恐怖城堡
+  author: 马里奥奥里马
+  smwp_ver: MW 4.4
+  date: 2011-10-22
+  source_url: https://tieba.baidu.com/p/1254083848
+  download_url: http://mlaalm.ysepan.com/
+  code: mlaalm
+  file_name: 勇闯恐怖城堡.rar
   file_url:
 - game: Nmnmoooh Difficult Album
   author: nmnmoooh
