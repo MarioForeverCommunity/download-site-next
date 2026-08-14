@@ -24,7 +24,7 @@
   source_url_alt:
   download_url: https://wwbwc.lanzouq.com/b00v095dni
   code: eb1h
-  download_url_alt:
+  download_url_alt: https://www.mediafire.com/file/7lo1uzp11jcqb4l/WORLD+%E2%84%96.rar/file
   file_name: WORLD №.rar
   file_url:
 - game: 新手眼里的普通关卡
@@ -2624,6 +2624,17 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - World -H:
+      current: true
+      ver_alt:
+      date: 2026-08-14
+      source_url: https://www.youtube.com/watch?v=0B3jE9CPSi8
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/dv0krymrmqw3ksc/MWMLWS_-_World_-H.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -H.zip
+      file_url:
   - World -G:
       current: true
       ver_alt:
