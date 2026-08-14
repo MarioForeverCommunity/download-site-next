@@ -23,7 +23,7 @@ Some old versions of fangames are available on the [Community File Hub](https://
     <li>Classic Yoshi 666 - for preserving many works in his own archives, which served as an important foundation for this catalog.</li>
     <li>wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might otherwise have been lost.</li>
     <li>SuperMarioFan01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the catalog.</li>
-    <li>Happy Mario 8 - for providing several Chinese fangames released in 2015.</li>
+    <li>Happy Mario 9 - for providing several Chinese fangames released in 2015.</li>
     <li>Green Sweet and WSW - for collecting a number of fangame links during the early days of this site (2020–2021), which helped shape the foundation of the catalog.</li>
     <li>JUE13 - for providing several repackaged versions of fangames.</li>
     <li>TwoSpaceSG and Zik the Green - for providing numerous Softendo legacy games.</li>

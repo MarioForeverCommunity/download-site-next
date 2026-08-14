@@ -1,4 +1,32 @@
 ---
+- game: WORLD №
+  game_alt:
+  alias:
+  - World Number
+  tag:
+  - Single Level
+  - Roguelike
+  - PK!MF
+  - Contest
+  author:
+  - 绿色的糖果
+  - 快乐mario9
+  author_alt:
+  - Green Sweet
+  - Happy Mario 9
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-08-14
+  source_url: https://www.marioforever.net/thread-3922-1-1.html
+  source_url_alt:
+  download_url: https://wwbwc.lanzouq.com/b00v095dni
+  code: eb1h
+  download_url_alt:
+  file_name: WORLD №.rar
+  file_url:
 - game: 新手眼里的普通关卡
   game_alt: A Normal Newbie Level
   tag:
@@ -378,8 +406,8 @@
   game_alt:
   alias:
   - HMWR
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   software: godot
   homepage_zh: https://happymario9.github.io/Mario-Forever-Happy-Mario-World-Reforged/
@@ -2811,7 +2839,7 @@
   - PK!MF
   - Single Level
   author: AS-ChenFeng
-  author_alt: Andrews123
+  author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -3510,7 +3538,7 @@
 - game: Mario Forever Midnight Challenger
   game_alt:
   author: AS-ChenFeng
-  author_alt: Andrews123
+  author_alt:
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -7464,7 +7492,7 @@
   - AS-ChenFeng
   author_alt:
   - Green Sweet
-  - Andrews123
+  - AS-ChenFeng
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -16740,8 +16768,8 @@
   game_alt:
   alias:
   - HMW
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Happy_Mario_World
   wiki_en_url:
@@ -20520,8 +20548,8 @@
   file_url:
 - game: 随机的空间2
   game_alt: Random Spaces 2
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E9%9A%8F%E6%9C%BA%E7%9A%84%E7%A9%BA%E9%97%B42
   wiki_en_url:
@@ -20550,8 +20578,8 @@
       file_url:
 - game: 随机的空间
   game_alt: Random Spaces
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E9%9A%8F%E6%9C%BA%E7%9A%84%E7%A9%BA%E9%97%B4
   wiki_en_url:
@@ -20644,8 +20672,8 @@
   tag:
   - Single Level
   - Shmup
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -20952,8 +20980,8 @@
   alias:
   - 疯狂的滑稽
   - 狂滑
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E7%96%AF%E7%8B%82%E7%9A%84%E6%96%9C%E7%9C%BC
   wiki_en_url:
@@ -21092,8 +21120,8 @@
   game_alt:
   tag:
   - Single Level
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -21112,8 +21140,8 @@
   alias:
   - 疯狂的滑稽番外篇
   - 狂滑番外篇
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/%E7%96%AF%E7%8B%82%E7%9A%84%E6%96%9C%E7%9C%BC%E7%95%AA%E5%A4%96%E7%AF%87
   wiki_en_url:
@@ -21300,8 +21328,8 @@
   file_url:
 - game: Mario Forever Fantastic Land World 1 复刻
   game_alt: Mario Forever Fantastic Land World 1 Remake
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -21408,8 +21436,8 @@
   game_alt: The Endless Sky Bridge
   tag:
   - Single Level
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -21604,8 +21632,8 @@
   game_alt:
   tag:
   - Single Level
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url:
   wiki_en_url:
@@ -21695,8 +21723,8 @@
   game_alt: 1-1
   tag:
   - Single Level
-  author: 快乐mario8
-  author_alt: Happy Mario 8
+  author: 快乐mario9
+  author_alt: Happy Mario 9
   type: chinese
   wiki_zh_url:
   wiki_en_url:
