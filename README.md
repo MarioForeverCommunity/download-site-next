@@ -2,63 +2,69 @@
 
 **English** | [简体中文](README.zh-cn.md)
 
-> [!NOTE]  
-> This page is currently translated by machine from the Chinese version. Please help us improve the quality of the document.
+> [!NOTE]
+> This page is a translation of the Chinese version. If you spot any inaccuracies, please help us improve it.
 
-This repository is the source code for [download.marioforever.net](https://download.marioforever.net/) website. It stores and collects information about Mario Forever, its fangames, and Super Mario Worker Project games. [Visit the site](https://download.marioforever.net/) to find the games you want!
+This repository is the source code for [download.marioforever.net](https://download.marioforever.net/). It collects and organizes information about Mario Forever, its fangames, and Super Mario Worker Project levels. [Visit the site](https://download.marioforever.net/) to find the games you are looking for!
 
 ## Credits
 
-The archive would not have been possible without the efforts of many contributors in the Mario Forever community. We would like to express our sincere thanks to:
-- [Fisjokas](https://www.youtube.com/@Tomek839839) - for providing numerous links and resources that greatly enriched the archive. His contributions between 2022 and 2024 helped uncover many rare and valuable files.
-- [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for the archive.
+This catalog would not exist without the efforts of many contributors in the Mario Forever community. We would like to sincerely thank:
+
+- [Fisjokas](https://www.youtube.com/@Tomek839839) - for providing numerous links and resources between 2022 and 2024 that greatly enriched the catalog and helped uncover many rare, valuable files.
+- [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for this catalog.
 - wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might otherwise have been lost.
-- Super Mario Fan 01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the collection.
+- SuperMarioFan01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the catalog.
 - Happy Mario 8 - for providing several Chinese fangames released in 2015.
-- Green Sweet and WSW - for collecting a number of fangame links in the early stage of this website (2020–2021), which helped shape the foundation of the archive.
+- Green Sweet and WSW - for collecting a number of fangame links during the early days of this site (2020–2021), which helped shape the foundation of the catalog.
 - JUE13 - for providing several repackaged versions of fangames.
 - TwoSpaceSG and Zik the Green - for providing numerous Softendo legacy games.
 
-We are grateful to all of the above, as well as many other community members whose efforts (large or small) have helped preserve the history of Mario Forever fangames. Please forgive us if any contributors were unintentionally omitted; we sincerely thank them as well.
+We are grateful to everyone listed above, as well as many other community members whose contributions, large or small, have helped preserve the history of Mario Forever fangames. If any contributor was unintentionally omitted, please forgive us - we thank you all the same.
 
 ## Q & A
 
-### What's the difference from file.marioforever.net?
+### What is the difference from file.marioforever.net?
 
-Although file.marioforever.net also archives game resources and provides download links, it is limited by the [OpenList](github.com/OpenListTeam/OpenList) mechanism, allowing only filename searches instead of game name searches, and lacks convenient filtering, sorting, and historical version searching for games. Additionally, this repository includes related information about several games, such as release links, Wiki links, and related videos.
+Although file.marioforever.net also archives game resources and provides download links, it is limited by the [OpenList](github.com/OpenListTeam/OpenList) mechanism: it only supports filename searches (not game-name searches), and offers no convenient way to filter, sort, or browse historical versions. In addition, this catalog stores related information for many games, such as release links, Wiki links, and related videos.
 
-Moreover, the games in file.marioforever.net are uploaded and maintained by [Newlife2017](https://github.com/KHwang9883); in this repository, you can help improve the resource list through pull requests, thereby contributing to the improvement of file.marioforever.net as well!
+Moreover, the files on file.marioforever.net are uploaded and maintained by [Newlife2017](https://github.com/KHwang9883). By contributing to this repository through pull requests, you can help improve the resource list here - and, in turn, help improve file.marioforever.net as well!
 
-### Why isn't there any content related to Mario Worker Remake?
+### Why is there no Mario Worker Remake content?
 
-Mario Worker Remake levels are maintained by an official and comprehensive [database](https://marioworkerdatabase.altervista.org/), allowing players to search for and download games quite conveniently. However, Mario Forever and Super Mario Worker Project games are published in various and scattered ways, so we are trying to establish a game list to facilitate players in understanding, searching for, and downloading them.
+Mario Worker Remake levels are maintained by an official, comprehensive [database](https://marioworkerdatabase.altervista.org/), where players can search for and download games quite conveniently. Mario Forever and Super Mario Worker Project games, however, are published in varied and scattered ways, so we are building this list to make it easier for players to discover, search for, and download them.
 
-## Help Us Improve the List!
+## Help Us Improve the Catalog!
 
-If there are missing games or versions in the list, incorrect information, or if you want to add your videos to the related video list of a game, you can help us improve the game list in the following ways:
-- Contact [Newlife2017](https://github.com/KHwang9883) for feedback;
-- [Open an Issue](https://github.com/MarioForeverCommunity/download-site-next/issues) and be detailed. If you have a Chinese MF community account, you can post in this [thread](https://www.marioforever.net/thread-1635-1-1.html);
-- If you have a GitHub account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list, and directly contribute to this repository through a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You don't need to download complex software like Git or have professional knowledge of version control. You can complete these operations using the fork, edit, and pull request functions on GitHub webpage! All you need to do is read the following instructions to learn how to edit the content in the game list correctly.
+If a game or version is missing, some information is incorrect, or you would like to add your video to a game's related-video list, you can help in any of these ways:
 
-## Guide for Editing the List
+- Contact [Newlife2017](https://github.com/KHwang9883) directly;
+- [Open an Issue](https://github.com/MarioForeverCommunity/download-site-next/issues) with the details. If you have an account in the Chinese MF community, you can also post in this [feedback thread](https://www.marioforever.net/thread-1635-1-1.html);
+- If you have a GitHub account, you can [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository, update the game list, and contribute directly via a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). You do not need to install complex tools like Git or master version control - everything can be done through GitHub's web-based fork, edit, and pull request features! Just read the instructions below to learn how to edit the list correctly.
 
-This repository includes lists of Mario Forever and Super Mario Worker Project games. The compositions of the two lists have slight differences, so please carefully read the documentation for each list to understand how to edit them correctly.
+## Guide for Editing the Lists
+
+This repository contains **four types of lists**: Mario Forever games, Super Mario Worker Project levels, development assets, and Softendo games. Since the field structures differ slightly between them, please read the section for each list carefully before editing.
 
 ### Mario Forever Game List
 
-The Mario Forever game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/data/list-mf.yaml`. Some games may have multiple versions with different download links, so there is a slight difference in the format of single-version and multi-version games. Here is an example of a single-version game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
+The Mario Forever game list is written in YAML (a human-friendly data format) and lives in `public/data/list-mf.yaml`. Some games have multiple versions with different download links, so single-version and multi-version entries use slightly different formats. Here is a single-version example (*note: for demonstration purposes, some descriptions and fields do not match any real game exactly*):
 
 ```yaml
 - game: Mario Forever - A Fabulous Space
   game_alt:
   alias:
   - AFS
+  tag:
+  - Single Level
   author: gurcd
   author_alt: CD
   type: chinese
   software: mmf
   wiki_zh_url:
   wiki_en_url:
+  homepage_zh:
+  homepage_en:
   ver: v3.0
   ver_alt: v3.0
   date: 2017-06-26
@@ -69,13 +75,11 @@ The Mario Forever game list is written in yaml (a data format that is easy for h
   download_url_alt:
   repacker: 克洛伊Prime
   repacker_alt: Koopa4
-  source_url:
-  source_url_alt:
   file_name: MF A Fabulous Space V3.0（收藏版）.7z
   file_url:
 ```
 
-Here is an example of a multi-version game:
+And here is a multi-version example:
 
 ```yaml
 - game: 'Mario Forever: Lunar New Year 2022 - The Ultimate Voyage'
@@ -115,49 +119,55 @@ Here is an example of a multi-version game:
       file_url:
 ```
 
-Below are the meanings of each field. Since the site includes both Chinese and English versions, we use `_alt`, `_zh`, `_en` fields for multi-language support.
+The fields below are explained next. Because the site is available in both Chinese and English, we use the `_alt`, `_zh`, and `_en` suffixes to support multiple languages.
 
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
-| `game` | **Yes** | String | The original name of the game. Please use the language and name used at the time of the game's release, while avoiding aliases, abbreviations, and translations. |
-| `game_alt` | No | String | The English name or translation of the game in English (if the game name is in Chinese). If the author provided an English name for the game, please try to use the name provided by the author. <br>The English page will prioritize the name with the _alt field, and the original language name can be retrieved through the filter function. |
-| `alias` | No | String List | Abbreviations, aliases, translations in other languages, or frequently confused names of the game, to facilitate users to better search for this game.  <br>Please try to add aliases or author-specified game abbreviations and translations that are recognized and used by a certain number of players. |
-| `author` | **Yes** | String | The name of the author. |
-| `author_alt` | No | String | The English name of the author (if the author's name is in Chinese). |
-| `author_alias` | No | String | The name of the author used for file url (International games exclusive). |
-| `description_zh` | No | String | The description of the game on the Chinese page (if there is content that needs to be explained on the list page). |
-| `description_en` | No | String | The description of the game on the English page (if there is content that needs to be explained on the list page). |
-| `type` | **Yes** | String | Supports three fields for filtering function retrieval: <br>`chinese`: Games made by Chinese players. <br>`international`: Games made by international Mario Forever players. |
-| `software` | No | String | The software used to create the game. Defaults to `mmf` if not specified. Supported values: <br>`mmf`: Multimedia Fusion / Clickteam Fusion <br>`godot`: Godot Engine <br>`gamemaker`: GameMaker <br>`other`: Other software |
-| `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
-| `wiki_en_url` | No | String | The link of the game in the English Mario Forever Wiki. |
-| `video_zh` | No | Dictionary List | Videos related to the game uploaded by other players, located on Chinese pages or mainly in Chinese, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
-| `video_en` | No | Dictionary List | Videos related to the game uploaded by other players, located on English pages or mainly in English, such as gameplay videos, commentaries, and secondary creations. <br>There are multiple entries, and each entry should follow the format `- Video Title: Video Link`. |
-| `repo` | No | String | The source code repository url of the game. |
-| `ver` | No | String (Single Version) <br>Version List (Multiple Versions) | The version name of the game. Generally, different language versions of a game, different updates, different branch versions (such as difficult and easy versions), and a single world version of a collection are considered different versions of a game. <br>For single-version or games with only one version included in the list, `ver` can be empty or the name of the current version. <br>For multi-version games, `ver` needs to be a dictionary list, with dictionary names as version names, and the value of each dictionary item. |
+| `game` | **Yes** | String | The game's original name. Use the language and name from the time of release, avoiding aliases, abbreviations, and translations. |
+| `game_alt` | No | String | The game's English name or translation (if the game name is in Chinese). If the author provided an English name, prefer it. <br>The English page prioritizes the `_alt` name, while the original-language name can still be found through filtering. |
+| `alias` | No | String List | Abbreviations, aliases, translations in other languages, or easily confused names, to help users search for the game. <br>Please only add aliases that a meaningful number of players recognize or that the author specifies. |
+| `tag` | No | String List | Tags used for filtering and display, e.g. `Single Level`, `Horror`, `Speedrun`. |
+| `author` | **Yes** | String | The author's name. |
+| `author_alt` | No | String | The author's English name (if the name is in Chinese). |
+| `author_alias` | No | String | The author name used when building Community File Hub paths (international games only). |
+| `description_zh` | No | String | The description shown on the Chinese page (when the list page needs extra explanation). |
+| `description_en` | No | String | The description shown on the English page (when the list page needs extra explanation). |
+| `type` | **Yes** | String | Used by the filter feature. <br>`chinese`: games made by Chinese community members. <br>`international`: games made by international Mario Forever community members. |
+| `software` | No | String | The software used to create the game. Defaults to `mmf` if unspecified. Supported values: <br>`mmf`: Multimedia Fusion / Clickteam Fusion <br>`godot`: Godot Engine <br>`gamemaker`: GameMaker <br>`flash`: Flash <br>`other`: Other |
+| `wiki_zh_url` | No | String | The game's page in the Chinese Mario Forever Wiki. |
+| `wiki_en_url` | No | String | The game's page in the English Mario Forever Wiki. |
+| `homepage_zh` | No | String | The game's Chinese homepage link. |
+| `homepage_en` | No | String | The game's English homepage link. |
+| `video_zh` | No | Dictionary List | Videos about the game uploaded by other players, hosted on Chinese pages or primarily in Chinese (gameplay, commentary, fan creations, etc.). <br>Multiple entries allowed; each entry follows the format `- Video Title: Video Link`. |
+| `video_en` | No | Dictionary List | Videos about the game uploaded by other players, hosted on English pages or primarily in English (gameplay, commentary, fan creations, etc.). <br>Multiple entries allowed; each entry follows the format `- Video Title: Video Link`. |
+| `repo` | No | String | The game's source code repository URL. |
+| `ver` | No | String (Single Version) <br>Version List (Multiple Versions) | The version name(s) of the game. Different language versions, updates, branch versions (e.g. hard and easy), or single-world versions of a collection are all treated as distinct versions. <br>For single-version entries (or when only one version is listed), `ver` may be empty or hold the current version name. <br>For multi-version entries, `ver` is a list of dictionaries keyed by version name, with each value being the version's fields. |
 
-The following fields are for a specific version. For single-version games, please fill in the fields directly for the game; for multi-version games, please refer to the example for multi-version games and fill in the following information for each version in the version list.
+The following fields apply to a specific version. For single-version games, write them directly on the game entry; for multi-version games, fill them in for **each** version inside the version list, as shown in the example above.
 
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
-| `ver_alt` | No | String | If the version name is in Chinese, the corresponding English name of the version can be filled in here. |
-| `date` | **Yes** | Date | The release date of the game or version. Please use the "YYYY-MM-DD" format for software parsing. |
-| `source_url` | No | String | The **release link** of the game (note not the download link), such as the release post on the forum, the release video on YouTube, etc. <br>Official release videos should be filled in here, and should not be expanded under the video_zh or video_en fields. <br>If the link has expired, you can mark it with a half-width tilde `~` in front of the link (the same for other links below). |
-| `source_url_alt` | No | String | If the game is released on both Chinese and English websites, please fill in the Chinese release link in `source_url` and the English release link in `source_url_alt`, so that the game list can display links in the corresponding language for different languages. <br>If the game is only released on Chinese or English websites, only fill in the source_url field; if there is no release link (such as released through instant messaging software, Discord servers, etc.), leave it blank. |
+| `ver_alt` | No | String | If the version name is in Chinese, its English name can be given here. |
+| `date` | **Yes** | Date | The release date of the game or version. Use the `YYYY-MM-DD` format for software parsing. |
+| `current` | No | Boolean | Mark this version as the "current version". When several versions are equally current (e.g. a Windows build and an Android build), set `true` on all of them. |
+| `source_url` | No | String | The **release link** of the game (not the download link), such as a forum release post or a YouTube release video. <br>Official release videos belong here and should not be duplicated under `video_zh` or `video_en`. <br>If a link has expired, prefix it with a half-width tilde `~` (same for the other links below). |
+| `source_url_alt` | No | String | If the game is released on both Chinese and English sites, put the Chinese link in `source_url` and the English link in `source_url_alt`, so each language displays its corresponding link. <br>If the game was only released on one site, fill in only `source_url`; leave it empty if there is no release link (e.g. released via messaging apps or Discord). |
 | `download_url` | No | String | The **official download link** provided by the author. |
-| `code` | No | String | If the game's download page requires a password, please fill it in here. |
-| `download_url_alt` | No | String | If the game provides download links on both Chinese and English websites, please fill in the Chinese download link in download_url and the English download link in download_url_alt, otherwise only fill in the download_url field. |
-| `repacker` | No | String | If the game is a repackaged version, fill in the repackager of the game's file. |
+| `code` | No | String | The password/extraction code, if the download page requires one. |
+| `code_alt` | No | String | The password/extraction code for the `download_url_alt` page. |
+| `download_url_alt` | No | String | Another official download link for the game. Both `download_url` and `download_url_alt` are shown on the Chinese and English pages; for games made by Chinese community members (`type: chinese`), the English page swaps their display order (`download_url_alt` first), while international games keep the original order. |
+| `repacker` | No | String | If this version is a repackage, the name of the person who repackaged the files. |
 | `repacker_alt` | No | String | The English name of the `repacker` (if the repackager's name is in Chinese). |
-| `file_name` | No | String | The file name of the game in **file.marioforever.net**. Usually filled in by the file.marioforever.net maintainer. |
-| `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
-| `data_download_url` | No | String | If the game includes a data package separated from the game itself (such as music), please fill in the download link of the data package here. |
-| `data_file_name` | No | String | The file name of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
-| `data_file_url` | No | String | The complete link of the data package in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `file_name` | No | String | The file name on the Community File Hub (file.marioforever.net). Usually filled in by the site maintainer. |
+| `file_url` | No | String | The full Community File Hub link. Usually filled in by the site maintainer. |
+| `data_download_url` | No | String | If the game ships with a separate data package (e.g. music), the download link for it. |
+| `data_code` | No | String | The password/extraction code for the data package's download page. |
+| `data_file_name` | No | String | The data package's file name on the Community File Hub. Usually filled in by the site maintainer. |
+| `data_file_url` | No | String | The data package's full Community File Hub link. Usually filled in by the site maintainer. |
 
 ### Super Mario Worker Project Game List
 
-The Super Mario Worker Project game list is written in yaml (a data format that is easy for humans to read and edit) and is located in `public/data/list-mw.yaml`. Since SMWP is usually popular in the Chinese MF community, the game list only provides the display for the Chinese page, and does not support English. Here is an example of an SMWP game (*Please note, for demonstration purposes, some descriptions and actual game information are not exactly the same*):
+The Super Mario Worker Project game list is written in YAML and lives in `public/data/list-mw.yaml`. Since SMWP is mainly popular within the Chinese MF community, this list only powers the Chinese page and does not offer an English version. Here is an example entry (*note: for demonstration purposes, some descriptions and fields do not match any real entry exactly*):
 
 ```yaml
 - game: A Day Out(S2简化版)
@@ -165,7 +175,6 @@ The Super Mario Worker Project game list is written in yaml (a data format that 
   smwp_ver: v1.7.9
   date: 2023-07-01
   description: 为 Welcome back to Marioworker Bar 2022 中的一个作品的简化版本。
-  note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/A_Day_Out
   source_url: https://www.marioforever.net/thread-2748-1-1.html
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
@@ -174,27 +183,35 @@ The Super Mario Worker Project game list is written in yaml (a data format that 
   file_url:
 ```
 
-Below are the meanings of each field.
+The fields are explained below.
 
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
-| `game` | **Yes** | String | The name of the game. |
-| `author` | **Yes** | String | The name of the author. Multiple authors is allowed. |
-| `smwp_ver` | No | String | The version number of SMWP used in the game. If the game includes the use of multiple SMWP versions or involves other complex situations, it can be left blank. |
-| `date` | **Yes** | Date | The release date of the game. Please use the "YYYY-MM-DD" format for software parsing. |
-| `description` | No | String | The description of the game **on the game list**. |
-| `wiki_zh_url` | No | String | The link of the game in the Chinese Mario Forever Wiki. |
-| `source_url` | No | String | The link of the game's release post, release video, etc. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link (the same for other links below). |
-| `download_url` | No | String | The download link of the game. |
-| `code` | No  | String | If the game's download page requires a password, please fill it in here. |
-| `has_bundled_smwp` | No | Boolean | If the game has bundled SMWP, fill in `true`. |
-| `has_bgm` | No | Boolean | If the game has custom BGMs, fill in `true`. |
-| `file_name` | No | String | The file name of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
-| `file_url` | No | String | The complete link of the game in the file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `game` | **Yes** | String | The name of the level/work. |
+| `alias` | No | String List | Abbreviations or aliases, to make the work easier to find. |
+| `author` | **Yes** | String | The author's name. Multiple authors are supported (string list). |
+| `author_alias` | No | String | The author name used in Community File Hub paths (usually same as `author`, for author names containing non-ASCII/special characters). |
+| `smwp_ver` | No | String | The SMWP version used by the work, e.g. `v1.7.12`. May be left empty for complex cases (e.g. multiple SMWP versions). |
+| `date` | **Yes** | Date | The release date. Use the `YYYY-MM-DD` format. |
+| `description` | No | String | The description shown **on the list page**. |
+| `video` | No | Dictionary List | Related videos; each entry follows the format `- Video Title: Video Link`. |
+| `source_url` | No | String | The release post, release video, etc. <br>If a link is invalid, prefix it with a half-width tilde `~` (same for the other links below). |
+| `wiki_zh_url` | No | String | The work's page in the Chinese Mario Forever Wiki. |
+| `homepage` | No | String | The work's homepage link. |
+| `download_url` | No | String | The download link. |
+| `code` | No | String | The password/extraction code, if the download page requires one. |
+| `has_bundled_smwp` | No | Boolean | Whether the work bundles SMWP. |
+| `has_bgm` | No | Boolean | Whether the work includes custom BGM. |
+| `file_name` | No | String or String List | The file name(s) on the Community File Hub. A single work may have multiple files (e.g. a level file plus a practice mode, or split archives), in which case use a list. Usually filled in by the site maintainer. |
+| `file_url` | No | String | The full Community File Hub link. Usually filled in by the site maintainer. |
+| `data_download_url` | No | String | The download link for a data package (e.g. music). |
+| `data_code` | No | String | The password/extraction code for the data package's download page. |
+| `data_file_name` | No | String | The data package's file name on the Community File Hub. Usually filled in by the site maintainer. |
+| `data_file_url` | No | String | The data package's full Community File Hub link. Usually filled in by the site maintainer. |
 
 ### Assets List
 
-The Assets list is written in yaml and is located in `public/data/list-assets.yaml`. It contains various resources for Mario Forever development, including engines, addons, sprites, effects, and tools. Here is an example:
+The Assets list is written in YAML and lives in `public/data/list-assets.yaml`. It collects resources for Mario Forever development, including engines, addons, sprites, effects, and tools. Here is an example:
 
 ```yaml
 - name: Super Mario Ultra Engine
@@ -241,28 +258,28 @@ The Assets list is written in yaml and is located in `public/data/list-assets.ya
   file_name:
 ```
 
-Below are the meanings of each field:
+The fields are explained below.
 
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
 | `name` | **Yes** | String | The name of the asset. |
 | `alias` | No | String List | Abbreviations or aliases of the asset. |
-| `author` | **Yes** | String | The name of the author. Multiple authors are allowed. |
+| `author` | **Yes** | String | The author's name. Multiple authors are supported. |
 | `type` | **Yes** | String | Asset type: <br>`engine`: Game engines/templates <br>`addon`: Extension packs/addons <br>`sprite`: Graphics/sprites <br>`effect`: Visual effects/shaders <br>`tool`: General tools <br>`mwtool`: Mario Worker tools |
 | `description` | No | String | Description of the asset. |
 | `image` | No | String | Image file name for the asset. |
-| `source_url` | No | String | The release link of the asset. <br>If the link is invalid, it can be marked with a half-width tilde `~` in front of the link. |
-| `download_url` | No | String | The download link of the asset. |
-| `download_url_alt` | No | String | Alternative download link. |
+| `source_url` | No | String | The release link. <br>If a link is invalid, prefix it with a half-width tilde `~`. |
+| `download_url` | No | String | The download link. |
+| `download_url_alt` | No | String | An alternative download link. |
 | `code` | No | String | Extraction code for the download. |
-| `code_alt` | No | String | Alternative extraction code. |
+| `code_alt` | No | String | Extraction code for the alternative download link. |
 | `repo` | No | String | Source code repository URL. |
 | `ver` | No | String | Version number. |
-| `date` | **Yes** | Date | The release date. Please use the "YYYY-MM-DD" format. |
-| `file_name` | No | String | The file name in file.marioforever.net. Usually filled in by the file.marioforever.net maintainer. |
+| `date` | **Yes** | Date | The release date. Use the `YYYY-MM-DD` format. |
+| `file_name` | No | String | The file name on the Community File Hub. Usually filled in by the site maintainer. |
 | `path` | No | String | Subdirectory path under the engines folder (only for `type: engine`). |
 
-For assets with multiple variants (e.g., different versions or editions), use the `variants` field:
+For assets with multiple variants (e.g. different versions or editions), use the `variants` field:
 
 ```yaml
 variants:
@@ -272,11 +289,11 @@ variants:
     file_name: filename.ext
 ```
 
-Each variant can have its own `ver`, `date`, and `file_name`. The `download_url`, `code`, and `source_url` from the parent entry are inherited if not specified in the variant.
+Each variant can have its own `ver`, `date`, and `file_name`. If not specified in a variant, the parent entry's `download_url`, `code`, and `source_url` are inherited.
 
 ### Softendo / Buziol Games List
 
-The Softendo games list is written in yaml and is located in `public/data/list-softendo.yaml`. These are games created by Buziol Games (Softendo). Here is an example:
+The Softendo games list is written in YAML and lives in `public/data/list-softendo.yaml`. These are games created by Buziol Games (Softendo). Here is an example:
 
 ```yaml
 - game: Mario Forever Block Party
@@ -321,17 +338,17 @@ The Softendo games list is written in yaml and is located in `public/data/list-s
       image: New Super Mario Forever.webp
 ```
 
-Below are the meanings of each field:
+The fields are explained below.
 
 | Field Name | Required | Type | Field Description |
 | --- | --- | --- | --- |
 | `game` | **Yes** | String | The name of the game. |
 | `alias` | No | String List | Abbreviations or aliases of the game. |
-| `type` | **Yes** | String | Game type: `mario` (Mario games), `mff` (Mario Forever Flash), `flash` (Other Flash games), `non-mario` (Non-Mario games), `banesoft` (Banesoft games). |
-| `software` | No | String | The software used to create the game. For `flash`/`mff` types, defaults to `flash` or `["flash", "mmf"]` if both exe and zip exist. |
-| `nsmf` | No | Boolean | Mark as New Super Mario Forever game (uses special download URLs). |
-| `initial_year` | No | Number | The year when the game was first released. |
-| `ver` | No | Version List | Version list. Each version is a dictionary with version name as key. |
+| `type` | **Yes** | String | Game type: `mario` (Mario games), `mff` (Mario Forever Flash), `flash` (other Flash games), `non-mario` (non-Mario games), `banesoft` (Banesoft games). |
+| `software` | No | String | The software used to create the game. For `flash`/`mff` types, defaults to `flash`, or `["flash", "mmf"]` when both exe and zip exist. |
+| `nsmf` | No | Boolean | Mark as a New Super Mario Forever game (uses special download URLs). |
+| `initial_year` | No | Number | The year the game was first released. |
+| `ver` | No | Version List | The version list. Each version is a dictionary keyed by version name. |
 
 Version fields:
 
@@ -339,12 +356,12 @@ Version fields:
 | --- | --- | --- | --- |
 | `year` | **Yes** | Number | Release year. |
 | `installer` | No | String | Installer file name. |
-| `portable` | No | String or Object | Portable version. Can be a simple string filename, or an object with `exe`/`swf`/`zip` keys. Supports arrays for multiple files. |
+| `portable` | No | String or Object | Portable version. Can be a plain file name, or an object with `exe`/`swf`/`zip` keys. Arrays are supported for multiple files. |
 | `image` | No | String | Image file name for this specific version. |
 
 ## Static JSON API
 
-This site provides a **static JSON API** containing every work's parameters, resource-site and object-storage download links, image paths, and description content. It is suitable for third-party development, data analysis, or hosting your own mirror.
+This site also provides a **static JSON API** containing every work's parameters, Community File Hub and Cloudflare R2 download links, image paths, and description content. It is suitable for third-party development, data analysis, or hosting your own mirror.
 
 The API base URL is `https://download.marioforever.net/api/`, with the following endpoints:
 
@@ -366,8 +383,8 @@ console.log(games.length)
 
 See the [API documentation](API.md) for the full field reference and usage examples.
 
-## Help Maintain and Further Development
+## Help Maintain and Further Develop
 
-Programmers are welcomed to help in improving this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To ensure the stability of the online website, all changes except from list updates should be committed to the `next` branch of this project.
+Programmers are welcome to help improve this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To keep the live site stable, all changes other than list updates should be committed to the `next` branch of this repository.
 
-This project is open source under the MIT license. You can modify and deploy within the scope allowed by the license.
+This project is open source under the MIT license. You are free to modify and deploy it within the scope of the license.

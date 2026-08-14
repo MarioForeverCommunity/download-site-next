@@ -42,7 +42,7 @@ Mario Worker Remake 作品已经有官方、完善的 [数据库](https://mariow
 
 ## 列表修改指南
 
-本仓库包括了 Mario Forever 和 Super Mario Worker Project 的作品列表。两个列表的构成有细微差别，因此请仔细阅读每个列表的文档已了解如何正确地编辑列表。
+本仓库包括 Mario Forever 作品、Super Mario Worker Project 作品、创作资源与 Softendo 游戏共**四类列表**。各类列表的字段构成有细微差别，请仔细阅读对应小节的说明，了解如何正确地编辑列表。
 
 ### Mario Forever 作品列表
 
@@ -53,12 +53,16 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
   game_alt:
   alias:
   - AFS
+  tag:
+  - Single Level
   author: gurcd
   author_alt: CD
   type: chinese
   software: mmf
   wiki_zh_url:
   wiki_en_url:
+  homepage_zh:
+  homepage_en:
   ver: v3.0
   ver_alt: v3.0
   date: 2017-06-26
@@ -69,8 +73,6 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
   download_url_alt:
   repacker: 克洛伊Prime
   repacker_alt: Koopa4
-  source_url:
-  source_url_alt:
   file_name: MF A Fabulous Space V3.0（收藏版）.7z
   file_url:
 ```
@@ -122,15 +124,18 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
 | `game` | **是** | 字符串 | 游戏的原始名称。请使用游戏发布时的语言、称呼而避免使用别名、缩写、翻译。 |
 | `game_alt` | 否 | 字符串 | 游戏的英文名或在英文中的译名（如果游戏名称为中文）。如果作者提供了游戏的英文名，请尽量使用作者提供的名称。<br>英文页面将会优先显示带有 `_alt` 字段的名称，而原始语言的名称可以通过过滤功能被检索到。 |
 | `alias` | 否 | 字符串列表 | 作品的缩写、别名、在其他语言的译名或者容易混淆的名称，便于用户更好检索到这个作品。<br>请注意，请尽量增加有一定数量玩家认可、使用的别名或者作者指定的游戏缩写、译名。 |
+| `tag` | 否 | 字符串列表 | 作品的标签，用于页面过滤与展示，如 `Single Level`（单关）、`Horror`（恐怖）、`Speedrun`（速通）等。 |
 | `author` | **是** | 字符串 | 作者的名称。 |
 | `author_alt` | 否 | 字符串 | 作者的英文名（如果作者名称为中文）。 |
-| `author_alias` | 否 | 字符串 | 仅对国外作品生效，用于替代资源站链接的作者名称。 |
+| `author_alias` | 否 | 字符串 | 仅对国外作品生效，用于替代资源站/对象存储链接的作者名称。 |
 | `description_zh` | 否 | 字符串 | 作品在中文页面中的描述（如果有内容需要在列表网页中说明）。 |
 | `description_en` | 否 | 字符串 | 作品在英文页面中的描述（如果有内容需要在列表网页中说明）。 |
 | `type` | **是** | 字符串 | 支持两种字段，用于过滤功能检索：<br>`chinese` 由中文 Mario Forever 社区用户制作、发布在中文页面的作品。<br>`international` 由国际 Mario Forever 社区用户制作的作品。 |
-| `software` | 否 | 字符串 | 用于创建游戏的软件。如果未指定，则默认为 `mmf`。支持的值：<br>`mmf`：Multimedia Fusion / Clickteam Fusion <br>`godot`：Godot Engine <br>`gamemaker`：GameMaker <br>`other`：其他 |
+| `software` | 否 | 字符串 | 用于创建游戏的软件。如果未指定，则默认为 `mmf`。支持的值：<br>`mmf`：Multimedia Fusion / Clickteam Fusion <br>`godot`：Godot Engine <br>`gamemaker`：GameMaker <br>`flash`：Flash <br>`other`：其他 |
 | `wiki_zh_url` | 否 | 字符串 | 作品在中文 Mario Forever Wiki 中的链接。 |
 | `wiki_en_url` | 否 | 字符串 | 作品在英文 Mario Forever Wiki 中的链接。 |
+| `homepage_zh` | 否 | 字符串 | 作品的中文主页链接。 |
+| `homepage_en` | 否 | 字符串 | 作品的英文主页链接。 |
 | `video_zh` | 否 | 字典列表 | 由其他玩家上传的、位于中文网页或主要语言为中文的、作品相关的视频（游玩视频、解说、二次创作等）。<br>有多个表项，每个表项请遵循 `- 视频标题: 视频链接` 的格式。 |
 | `video_en` | 否 | 字典列表 | 由其他玩家上传的、位于英文网页或主要语言为英文的、作品相关的视频（游玩视频、解说、二次创作等）。<br>有多个表项，每个表项请遵循 `- 视频标题: 视频链接` 的格式。 |
 | `repo` | 否 | 字符串 | 作品的源代码仓库链接。 |
@@ -142,18 +147,21 @@ Mario Forever 作品列表使用 yaml（这是一种人类便于阅读和编辑�
 |---|---|---|---|
 | `ver_alt` | 否 | 字符串 | 如果版本名称为中文，可以在这里填写对应版本的英文名称。 |
 | `date` | **是** | 日期 | 作品或版本的发布日期。请使用 `YYYY-MM-DD` 格式便于软件解析。 |
+| `current` | 否 | 布尔值 | 标记该版本是否为「当前版本」。当一个作品有多个并列的最新版本（如 Windows 版与 Android 版）时，可对多个版本都填写 `true`。 |
 | `source_url` | 否 | 字符串 | 作品的**发布链接**（注意不是下载链接），如在论坛的发布贴、YouTube 的发布视频，等等。<br>官方发布视频请填写至此处，请勿在 `video_zh` 或 `video_en` 字段下扩展。<br>如果链接已经失效，你可以在链接前加入半角波浪号 `~` 进行标记（下同）。 |
 | `source_url_alt` | 否 | 字符串 | 如果作品同时在中文**和**英文网站上进行发布，请在 `source_url` 填写中文发布链接、`source_url_alt` 填写英文发布链接，从而让作品列表为不同语言展示对应语言的链接。<br>如果作品只在中文**或**英文网站进行发布，则只填写 `source_url` 字段；如果没有发布链接（如通过即时信息软件、Discord 服务器等渠道发布），则留空。 |
 | `download_url` | 否 | 字符串 | 作者提供的**官方下载链接**。 |
 | `code` | 否 | 字符串 | 如作品的下载页需要密码，则在此处填写。 |
-| `download_url_alt` | 否 | 字符串 | 如果作品同时在中文和英文网站上提供下载链接，请在 `download_url` 填写中文下载链接，`download_url_alt` 填写英文下载链接。 |
+| `download_url_alt` | 否 | 字符串 | 作品的另一个官方下载链接（备用）。中英文页面都会展示 `download_url` 与 `download_url_alt`；国内作品（`type: chinese`）在英文页面会交换两者的展示顺序（`download_url_alt` 在前），国外作品顺序不变。 |
+| `code_alt` | 否 | 字符串 | `download_url_alt` 对应下载页的提取码/密码。 |
 | `repacker` | 否 | 字符串 | 如果版本为重打包，则此处需填写该作品文件的打包者。 |
 | `repacker_alt` | 否 | 字符串 | `repacker` 打包者的英文名（如果打包者名称为中文）。 |
-| `file_name` | 否 | 字符串 | 作品在**资源站**中的文件名。通常由资源站维护者进行填写。对于国外作品，现在此处一般无需添加 `old-versions` 前缀。 |
-| `file_url` | 否 | 字符串 | 作品在资源站中的完整链接。通常由资源站维护者进行填写。 |
+| `file_name` | 否 | 字符串 | 作品在**资源站/对象存储**中的文件名。通常由资源维护者进行填写。对于国外作品，现在此处一般无需添加 `old-versions` 前缀。 |
+| `file_url` | 否 | 字符串 | 作品在资源站中的完整链接。通常由资源维护者进行填写。 |
 | `data_download_url` | 否 | 字符串 | 如果作品包含和作品本体分离的数据包（如音乐等），请在此处填写数据包的下载链接。 |
-| `data_file_name` | 否 | 字符串 | 数据包在资源站中的文件名。通常由资源站维护者进行填写。 |
-| `data_file_url` | 否 | 字符串 | 数据包在资源站中的完整链接。通常由资源站维护者进行填写。 |
+| `data_code` | 否 | 字符串 | 数据包下载页的提取码/密码。 |
+| `data_file_name` | 否 | 字符串 | 数据包在资源站/对象存储中的文件名。通常由资源维护者进行填写。 |
+| `data_file_url` | 否 | 字符串 | 数据包在资源站中的完整链接。通常由资源维护者进行填写。 |
 
 ### Super Mario Worker Project 作品列表
 
@@ -165,7 +173,6 @@ Super Mario Worker Project 作品列表使用 yaml（这是一种人类便于阅
   smwp_ver: v1.7.9
   date: 2023-07-01
   description: 为 Welcome back to Marioworker Bar 2022 中的一个作品的简化版本。
-  note: 请使用Welcome back to Marioworker Bar 2022自带的MW游玩
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/A_Day_Out
   source_url: https://www.marioforever.net/thread-2748-1-1.html
   download_url: https://pan.baidu.com/s/1NQUXTDr8uOmvK384-WWT-g
@@ -179,18 +186,26 @@ Super Mario Worker Project 作品列表使用 yaml（这是一种人类便于阅
 | 字段名称 | 是否必须 | 类型 | 字段描述 |
 |---|---|---|---|
 | `game` | **是** | 字符串 | 作品名称。 |
+| `alias` | 否 | 字符串列表 | 作品的缩写或别名，便于检索。 |
 | `author` | **是** | 字符串 | 作者名称。支持多作者字符串列表。 |
+| `author_alias` | 否 | 字符串 | 资源站/对象存储链接中使用的作者名称（通常与 `author` 一致，用于英文/特殊字符作者名的资源站/对象存储路径）。 |
 | `smwp_ver` | 否 | 字符串 | 作品使用的 SMWP 版本号。若作品中包含使用多个 SMWP 版本等复杂情形，可以留空。 |
 | `date` | **是** | 日期 | 作品的发布时间。请使用 `YYYY-MM-DD` 格式以便软件解析。 |
 | `description` | 否 | 字符串 | 作品**在作品列表中**的描述。 |
+| `video` | 否 | 字典列表 | 作品相关视频，每个表项遵循 `- 视频标题: 视频链接` 的格式。 |
 | `source_url` | 否 | 字符串 | 作品发布贴、发布视频等的链接。<br>如果链接失效，可以在链接前加半角波浪号 `~` 进行标记（下同）。 |
 | `wiki_zh_url` | 否 | 字符串 | 作品在中文 Mario Forever Wiki 中的链接。 |
+| `homepage` | 否 | 字符串 | 作品的主页链接。 |
 | `download_url` | 否 | 字符串 | 作品的下载链接。 |
 | `code` | 否 | 字符串 | 如作品的下载页需要密码，则在此处填写。 |
 | `has_bundled_smwp` | 否 | 布尔值 | 作品是否附带 SMWP。 |
 | `has_bgm` | 否 | 布尔值 | 作品是否有替换 BGM。 |
-| `file_name` | 否 | 字符串 | 作品在资源站中的文件名。通常由资源站管理者填写。 |
-| `file_url` | 否 | 字符串 | 作品在资源站中的完整链接。通常由资源站管理者填写。 |
+| `file_name` | 否 | 字符串或字符串列表 | 作品在资源站/对象存储中的文件名。一个作品可有多个文件（如关卡文件 + 练习模式、分卷压缩包等），此时请用列表填写。通常由资源维护者填写。 |
+| `file_url` | 否 | 字符串 | 作品在资源站中的完整链接。通常由资源维护者填写。 |
+| `data_download_url` | 否 | 字符串 | 数据包（如音乐）的下载链接。 |
+| `data_code` | 否 | 字符串 | 数据包下载页的提取码/密码。 |
+| `data_file_name` | 否 | 字符串 | 数据包在资源站/对象存储中的文件名。通常由资源维护者填写。 |
+| `data_file_url` | 否 | 字符串 | 数据包在资源站中的完整链接。通常由资源维护者填写。 |
 
 ### 素材资源列表
 
@@ -259,8 +274,9 @@ Super Mario Worker Project 作品列表使用 yaml（这是一种人类便于阅
 | `repo` | 否 | 字符串 | 源代码仓库链接。 |
 | `ver` | 否 | 字符串 | 版本号。 |
 | `date` | **是** | 日期 | 发布日期。请使用 `YYYY-MM-DD` 格式。 |
-| `file_name` | 否 | 字符串 | 资源站在资源站中的文件名。通常由资源站维护者填写。 |
+| `file_name` | 否 | 字符串 | 资源在资源站/对象存储中的文件名。通常由资源维护者填写。 |
 | `path` | 否 | 字符串 | 引擎文件夹下的子目录路径（仅 `type: engine` 时使用）。 |
+| `path_alt` | 否 | 字符串 | 对象存储（CDN）中引擎文件夹下的子目录英文路径（仅 `type: engine` 时使用）；缺省时回退到 `path`。 |
 
 对于包含多个版本或变体的资源，可以使用 `variants` 字段：
 

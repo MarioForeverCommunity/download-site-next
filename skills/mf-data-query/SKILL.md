@@ -124,7 +124,7 @@ Each entry represents one fangame:
   source_url: https://...             # Source/publish post URL
   source_url_alt: https://...         # English source URL (optional)
   download_url: https://...           # Primary download URL
-  download_url_alt: https://...       # Alternative (English) download URL (optional)
+  download_url_alt: https://...       # Backup download URL, shown on both language pages (optional)
   code: abc123                        # Extraction code (optional)
   code_alt: xyz789                    # Alt extraction code (optional)
   file_name: game.zip                 # File name on resource site (optional)

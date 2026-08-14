@@ -19,8 +19,8 @@ https://download.marioforever.net/api/
 | 端点 | 内容 | 条目数 | 顶层类型 |
 | --- | --- | --- | --- |
 | `/api/index.json` | 清单：列出所有端点及其条目数、生成时间 | — | 对象 |
-| `/api/mf.json` | Mario Forever 同人作品 | ~598 | 数组 |
-| `/api/mw.json` | Super Mario Worker Project 作品 | ~415 | 数组 |
+| `/api/mf.json` | Mario Forever 同人作品 | ~600 | 数组 |
+| `/api/mw.json` | Super Mario Worker Project 作品 | ~425 | 数组 |
 | `/api/assets.json` | 创作资源（引擎、拓展、素材、特效、工具） | ~76 | 数组 |
 | `/api/softendo.json` | Softendo / Buziol Games 游戏 | ~70 | 数组 |
 | `/api/original-mf.json` | 原版 Mario Forever 全版本 | ~43 | 数组 |
@@ -47,12 +47,14 @@ print(len(games))
 
 ### 先读清单
 
-`index.json` 用于发现端点与检查数据新鲜度，适合做缓存判断：
+`index.json` 用于发现端点与检查数据新鲜度，适合做缓存判断。除 `generatedAt` 与 `endpoints` 外，还包含 `name`（API 名称）与 `notes`（对数据字段的说明）：
 
 ```javascript
 const manifest = await fetch('https://download.marioforever.net/api/index.json').then(r => r.json())
-// manifest.generatedAt  -> "2026-08-12T05:58:21.797Z"
-// manifest.endpoints    -> [{ id, path, file, count, category }, ...]
+// manifest.name          -> "download.marioforever.net static API"
+// manifest.generatedAt   -> "2026-08-12T05:58:21.797Z"
+// manifest.endpoints     -> [{ id, path, file, count, category }, ...]
+// manifest.notes         -> [ ...字段说明 ]
 
 for (const ep of manifest.endpoints) {
   console.log(ep.id, ep.count, ep.path)
@@ -79,7 +81,7 @@ for (const ep of manifest.endpoints) {
 - `zh` 与 `en` 指向**同一份文件**，只是资源站的目录命名不同（中文站用中文目录名）。按用户界面语言择一即可。
 - MW 作品（`mw.json`）**没有 `en`**，因为 SMWP 作品只有中文资源站路径。
 - `cdn` 可能为 `null`（如目标是目录而非单个文件时不兼容 CDN），此时请回退到 `zh`/`en`。
-- 链接**未经 URL 编码**的部分可能包含中文与空格。多数 HTTP 客户端与浏览器会自动处理；若你的客户端不处理，请自行 `encodeURI()`。
+- 所有端点的链接在生成时都**不做 URL 编码**：`fileName` 含中文与空格时会原样拼接，多数 HTTP 客户端与浏览器会自动处理；若你的客户端不处理，请自行 `encodeURI()`。
 
 一个健壮的取链接写法：
 
@@ -99,7 +101,7 @@ function pickUrl(item, lan = 'zh') {
 "download": { "url": "https://...", "urlAlt": null, "code": "abcd", "invalid": true, "invalidAlt": false }
 ```
 
-- `url` / `urlAlt`：主链接与备用（另一语言）链接
+- `url` / `urlAlt`：`source` 的 `urlAlt` 为另一语言的发布链接；`download` 的 `urlAlt` 为备用下载链接——中英文页面均会展示 `url` 与 `urlAlt`，但国内作品（MF `type: chinese`）在英文页面会交换两者展示顺序（`urlAlt` 在前），国外作品顺序不变
 - `invalid` / `invalidAlt`：对应链接是否已失效，展示时建议置灰或标注
 - `download.code`：网盘提取码/密码（若需要）
 
@@ -184,7 +186,7 @@ function getDescription(item, lan = 'zh') {
 | `inlineDescription` | 对象 | `{ zh, en }` 简短说明 |
 | `versions` | 数组 | 全部版本，见下 |
 | `currentVersion` | 字符串数组 | **当前（最新）版本名列表**，见下 |
-| `currentVersionAlt` | 字符串 \| null | 当前版本的英文名 |
+| `currentVersionAlt` | 字符串 \| null | 顶层 `ver_alt` 字段（作品首个版本对应的英文名/别名，通常与当前版本一致） |
 | `images` | 对象 | 见「图片」 |
 | `description` | 对象 | 见「描述」 |
 

@@ -17,16 +17,16 @@ Some old versions of fangames are available on the [Community File Hub](https://
 
 <div id="credits-content" style="display:none">
   <h3>Credits</h3>
-  <p>This archive would not have been possible without the efforts of many contributors in the Mario Forever community. We would like to express our sincere thanks to:</p>
+  <p>This catalog would not exist without the efforts of many contributors in the Mario Forever community. We would like to sincerely thank:</p>
   <ul>
-    <li>Fisjokas - for providing numerous links and resources that greatly enriched the archive. His contributions between 2022 and 2024 helped uncover many rare and valuable files.</li>
-    <li>Classic Yoshi 666 - for preserving many works in his own archives, which served as an important foundation for the archive.</li>
+    <li>Fisjokas - for providing numerous links and resources between 2022 and 2024 that greatly enriched the catalog and helped uncover many rare, valuable files.</li>
+    <li>Classic Yoshi 666 - for preserving many works in his own archives, which served as an important foundation for this catalog.</li>
     <li>wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might otherwise have been lost.</li>
-    <li>SuperMarioFan01 and ChloePrime- for privately providing several scattered game files that helped fill gaps in the collection.</li>
+    <li>SuperMarioFan01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the catalog.</li>
     <li>Happy Mario 8 - for providing several Chinese fangames released in 2015.</li>
-    <li>Green Sweet and WSW - for collecting a number of fangame links in the early stage of this website (2020–2021), which helped shape the foundation of the archive.</li>
+    <li>Green Sweet and WSW - for collecting a number of fangame links during the early days of this site (2020–2021), which helped shape the foundation of the catalog.</li>
     <li>JUE13 - for providing several repackaged versions of fangames.</li>
     <li>TwoSpaceSG and Zik the Green - for providing numerous Softendo legacy games.</li>
   </ul>
-  <p>We are grateful to all of the above, as well as many other community members whose efforts (large or small) have helped preserve the history of Mario Forever fangames. Please forgive us if any contributors were unintentionally omitted; we sincerely thank them as well.</p>
+  <p>We are grateful to everyone listed above, as well as many other community members whose contributions, large or small, have helped preserve the history of Mario Forever fangames. If any contributor was unintentionally omitted, please forgive us - we thank you all the same.</p>
 </div>
