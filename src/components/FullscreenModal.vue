@@ -527,6 +527,10 @@ const downloadEntries = computed(() => {
 
   if (isAssets.value) {
     const entries = [];
+    // 对象存储（CDN）使用英文路径 path_alt，社区资源站使用 path
+    const assetPath = useCdn.value
+      ? (props.game.path_alt || props.game.path || '')
+      : (props.game.path || '');
 
     if (props.game.ver && props.game.ver.length > 0) {
       for (const verRaw of props.game.ver) {
@@ -539,7 +543,7 @@ const downloadEntries = computed(() => {
             : [ver.file_name];
 
           for (const fileName of fileNames) {
-            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value));
+            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, useCdn.value));
 
             if (url) {
               let versionText = '下载';
@@ -567,7 +571,7 @@ const downloadEntries = computed(() => {
         : [props.game.currentVer.file_name];
 
       for (const fileName of fileNames) {
-        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, props.game.path || '', useCdn.value));
+        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, useCdn.value));
 
         if (url) {
           const versionText = props.game.currentVer?.ver || '下载';

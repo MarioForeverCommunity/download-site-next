@@ -581,14 +581,14 @@ const ENGINE_CDN = 'https://mf-cdn.kevinh.wang/mario-forever/engines/';
 
 function assetFileUrl(type, fileName, path = '', useCdn = false) {
   if (!fileName) return null;
-  const encoded = encodeURIComponent(fileName);
+  // 与 MF/MW 保持一致：文件名不做 URL 编码，交由客户端处理（含中文/空格）
   if (type === 'engine') {
-    const encodedPath = path ? encodeURIComponent(path) + '/' : '';
+    const pathPart = path ? path + '/' : '';
     const base = useCdn ? ENGINE_CDN : ENGINE_BASE;
-    return `${base}${encodedPath}${encoded}`;
+    return `${base}${pathPart}${fileName}`;
   }
   const baseUrl = useCdn ? ASSET_CDN[type] : ASSET_BASE[type];
-  return baseUrl ? baseUrl + encoded : null;
+  return baseUrl ? baseUrl + fileName : null;
 }
 
 function buildAssets() {
@@ -605,6 +605,7 @@ function buildAssets() {
     out.author = entry.author == null ? [] : toArray(entry.author);
     out.type = entry.type || '';
     out.path = entry.path || '';
+    out.pathAlt = entry.path_alt || null;
     out.inlineDescription = entry.description || null;
     out.repo = entry.repo || null;
 
@@ -624,7 +625,8 @@ function buildAssets() {
           fileName: fn,
           zh: url,
           en: url,
-          cdn: assetFileUrl(entry.type, fn, entry.path, true)
+          // 对象存储（CDN）使用英文路径 path_alt，资源站使用中文路径 path
+          cdn: assetFileUrl(entry.type, fn, entry.path_alt || entry.path || '', true)
         };
       });
       return {
@@ -819,14 +821,15 @@ function portableUrlFor(type, kind, fileName, lan, nsmf, verKey) {
     baseUrl = defaultBaseUrl || urls.portable_zip || urls.portable_exe;
   }
   if (!baseUrl) return null;
-  return baseUrl + encodeURIComponent(fileName);
+  // 与 MF/MW 保持一致：文件名不做 URL 编码
+  return baseUrl + fileName;
 }
 
 function installerUrl(type, fileName, lan, nsmf) {
   if (!fileName) return null;
   const urls = softendoBaseUrl(type, lan, nsmf);
   if (!urls || !urls.installer) return null;
-  return urls.installer + encodeURIComponent(fileName);
+  return urls.installer + fileName;
 }
 
 /**
@@ -996,7 +999,7 @@ const ORIGINAL_MF_BASE = {
   zh: {
     installer: 'https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/安装版/',
     portable: 'https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/绿色版/',
-    nsmfInstaller: 'https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/%E5%AE%89%E8%A3%85%E7%89%88/'
+    nsmfInstaller: 'https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/安装版/'
   },
   en: {
     installer: 'https://file.marioforever.net/mario-forever/games/original-mf/installer/',

@@ -18,7 +18,7 @@ const baseUrls = {
   'zh': {
     installer: 'https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/安装版/',
     portable: 'https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/绿色版/',
-    nsmf_installer: 'https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/%E5%AE%89%E8%A3%85%E7%89%88/'
+    nsmf_installer: 'https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/安装版/'
   },
   'en': {
     installer: 'https://file.marioforever.net/mario-forever/games/original-mf/installer/',

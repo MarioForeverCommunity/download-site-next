@@ -34,6 +34,7 @@
   download_url: https://wwi.lanzoui.com/b02bgtrub
   code:
   path: Super Mario Ultra Edition
+  path_alt: ultra-edition
   variants:
   - Full:
       ver: "260226.1"
@@ -370,6 +371,7 @@
   download_url: https://nx.wtf/s/aVtZ?path=Cloud%20Engine
   code:
   path: 原版系引擎
+  path_alt: mfeditor-based
   variants:
   - 本体:
       ver: v2.2
@@ -491,6 +493,7 @@
   download_url: https://pan.baidu.com/s/1s_4WD0yQ-FxteCmPWFEwKQ?pwd=geu0
   code: geu0
   path: 其他MMF引擎
+  path_alt: misc
   ver: 2022-0518-4
   date: 2022-05-18
   file_name: GEU 2022-0518-4.zip
@@ -521,6 +524,7 @@
   download_url:
   code:
   path: 原版系引擎
+  path_alt: mfeditor-based
   ver: v1.6
   date: 2021-12-13
   file_name: Mario_Forever_-_Feather_Engine_v1.6.rar
@@ -658,6 +662,7 @@
   download_url: https://www.mediafire.com/folder/1s3kwfyagbhc2/Rainbow%20Engine%20Mod
   code:
   path: RE系引擎及其二次开发
+  path_alt: rainbow-engine-based
   variants:
   - Full MFA:
       ver: v1.0
@@ -684,6 +689,7 @@
   download_url: https://pan.baidu.com/s/1_cGZL51VCUQ9-ZaslEQhuQ
   code: hyfd
   path: 原版系引擎
+  path_alt: mfeditor-based
   ver: v0.3
   date: 2020-05-19
   file_name: 【0.3.0】MFEditorV1 (MCW Special)200519.mfa
@@ -710,6 +716,7 @@
   download_url: https://www.lanzoui.com/b0bd46ji
   code:
   path: 其他MMF引擎
+  path_alt: misc
   variants:
   - 本体:
       ver: 200309v1
@@ -728,6 +735,7 @@
   download_url: https://pan.baidu.com/s/1W3CSvk2niHRs-tMSGbxZng
   code: 729o
   path: 其他MMF引擎
+  path_alt: misc
   ver: v1.3
   date: 2020-02-20
   file_name: MF Star Engine v1.3.zip
@@ -742,6 +750,7 @@
   download_url: https://wwbtb.lanzout.com/b0w9p5p4b
   code: 8vf6
   path: RE系引擎及其二次开发
+  path_alt: rainbow-engine-based
   variants:
   - All:
       ver: "201205"
@@ -782,6 +791,7 @@
   download_url: https://www.lanzoui.com/b356308/
   code: FE
   path: RE系引擎及其二次开发
+  path_alt: rainbow-engine-based
   ver: v1.0
   date: 2018-08-28
   file_name: Factory Engine.7z
@@ -797,6 +807,7 @@
   download_url: http://mfresources.ysepan.com/
   code: marioforever
   path: RE系引擎及其二次开发
+  path_alt: rainbow-engine-based
   variants:
   - 含开始页:
       ver: 0.10.7.1
@@ -860,6 +871,7 @@
   download_url: https://pan.baidu.com/s/1qWzEDqs
   code:
   path: RE系引擎及其二次开发
+  path_alt: rainbow-engine-based
   ver: v1.10.2
   date: 2018-02-23
   file_name: Cauldron Engine 1.10.2.zip
@@ -875,6 +887,7 @@
   download_url: http://mfresources.ysepan.com/
   code: marioforever
   path: 原版系引擎
+  path_alt: mfeditor-based
   ver:
   date: 2017-04-02
   file_name: Mario Forever Editor ( MF Remake Engine )（适用于MMF2 R249HWA及以上版本）.zip
@@ -889,6 +902,7 @@
   download_url: https://pan.baidu.com/s/1i5lVkWl
   code:
   path: RE系引擎及其二次开发
+  path_alt: rainbow-engine-based
   ver: v0.8
   date: 2016-08-08
   file_name: RainbowEnginePro.rar
@@ -926,6 +940,7 @@
   download_url:
   code:
   path: 原版系引擎
+  path_alt: mfeditor-based
   ver:
   date: 2013-10-06
   file_name: Mario Forever World 10 Engine.rar
@@ -940,6 +955,7 @@
   download_url:
   code:
   path: 其他MMF引擎
+  path_alt: misc
   ver: v2.3
   date: 2013-08-23
   file_name: Dunami Mario Forever Engine v2.3.zip

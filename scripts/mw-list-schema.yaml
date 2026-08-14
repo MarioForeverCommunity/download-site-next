@@ -80,10 +80,6 @@ definitions:
           - type: array
             items:
               $ref: '#/definitions/Video'
-      note:
-        anyOf:
-          - type: 'null'
-          - type: string
       description:
         anyOf:
           - type: 'null'

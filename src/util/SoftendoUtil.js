@@ -100,11 +100,11 @@ function processPortableItem(value, baseUrl, label) {
     // 如果值是数组，生成多个链接
     return value.map((item, index) => ({
       label: value.length > 1 ? `${label} ${index + 1}` : label,
-      url: baseUrl + encodeURIComponent(item)
+      url: baseUrl + item
     }));
   }
   if (typeof value === "string") {
-    return [{ label, url: baseUrl + encodeURIComponent(value) }];
+    return [{ label, url: baseUrl + value }];
   }
   return [];
 }
@@ -113,7 +113,7 @@ export function getInstallerUrl(type, fileName, lan = "en", nsmf = false) {
   if (!fileName) return null;
   const urls = getBaseUrl(type, lan, nsmf);
   if (!urls || !urls.installer) return null;
-  return urls.installer + encodeURIComponent(fileName);
+  return urls.installer + fileName;
 }
 
 export function getPortableUrls(type, portable, lan = "en", nsmf = false, verKey = null) {
@@ -126,7 +126,7 @@ export function getPortableUrls(type, portable, lan = "en", nsmf = false, verKey
     const useKliktopia = type === "non-mario" && isKliktopiaRepackage(verKey);
     const baseUrl = useKliktopia ? (urls.kliktopia || urls.portable) : (urls.portable || urls.portable_zip || urls.portable_exe);
     if (!baseUrl) return [];
-    return [{ label: "portable", url: baseUrl + encodeURIComponent(portable) }];
+    return [{ label: "portable", url: baseUrl + portable }];
   }
 
   // portable is an object with exe/swf/zip keys (for flash/mff types)

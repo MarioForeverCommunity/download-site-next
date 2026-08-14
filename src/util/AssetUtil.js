@@ -30,29 +30,24 @@ const ENGINE_CDN_BASE_PATH = "https://mf-cdn.kevinh.wang/mario-forever/engines/"
  */
 export function getAssetFileUrl(type, fileName, path = "", useCdn = false) {
   if (!fileName) return null
-  const encodedFileName = encodeURIComponent(fileName)
+  // 与 MF/MW 保持一致：文件名不做 URL 编码，交由客户端处理（含中文/空格）
   if (type === "engine") {
-    const encodedPath = path ? encodeURIComponent(path) + "/" : ""
+    const pathPart = path ? path + "/" : ""
     const basePath = useCdn ? ENGINE_CDN_BASE_PATH : ENGINE_BASE_PATH
-    return `${basePath}${encodedPath}${encodedFileName}`
+    return `${basePath}${pathPart}${fileName}`
   }
   const baseUrl = useCdn ? ASSET_CDN_BASE_PATHS[type] : ASSET_BASE_PATHS[type]
-  return baseUrl ? baseUrl + encodedFileName : null
+  return baseUrl ? baseUrl + fileName : null
 }
 
 /**
- * 获取资源文件的展示名称（去除路径与扩展名，并尝试解码）
+ * 获取资源文件的展示名称（去除路径与扩展名）
  * @param {string} fileName - 原始文件名
  * @returns {string} 展示名称
  */
 export function getAssetFileDisplayName(fileName) {
   let displayFileName = fileName.split("/").pop()
   displayFileName = displayFileName.replace(/\.[^.]*$/, "")
-  try {
-    displayFileName = decodeURIComponent(displayFileName)
-  } catch (error) {
-    console.error("Failed to decode URI component:", displayFileName, error)
-  }
   return displayFileName
 }
 
@@ -70,8 +65,13 @@ export function getAssetResourceURLs(assetEntry, useCdn = false) {
     ? assetEntry.currentVer.file_name.filter(fn => fn != null)
     : [assetEntry.currentVer.file_name]
 
+  // 对象存储（CDN）使用英文路径 path_alt，社区资源站使用中文路径 path
+  const path = useCdn
+    ? (assetEntry.path_alt || assetEntry.path || "")
+    : (assetEntry.path || "")
+
   return fileNames.map((fileName) => {
-    const url = getAssetFileUrl(assetEntry.type, fileName, assetEntry.path || "", useCdn)
+    const url = getAssetFileUrl(assetEntry.type, fileName, path, useCdn)
     const displayFileName = getAssetFileDisplayName(fileName)
     const baseName = useCdn ? "对象存储" : "社区资源站"
     return {
