@@ -27,6 +27,25 @@
   download_url_alt: https://www.mediafire.com/file/x9ukin92npn8d25/WORLD_%E2%84%96.rar/file
   file_name: WORLD №.rar
   file_url:
+- game: Mario Forever Deadly Worlds
+  game_alt:
+  alias:
+  - MFDW
+  author: Turkish_bussines
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver: Full Release
+  ver_alt:
+  date: 2026-08-14
+  source_url: https://www.youtube.com/watch?v=JHZV7h2HFV4
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/im89kivf92abjf6/Mario_Forever_Deadly_Worlds_FULL_RELEASE.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Deadly Worlds FULL RELEASE.zip
+  file_url:
 - game: 新手眼里的普通关卡
   game_alt: A Normal Newbie Level
   tag:
