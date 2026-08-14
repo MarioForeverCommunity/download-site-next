@@ -1,4 +1,23 @@
 ---
+- game: 新手眼里的普通关卡
+  game_alt: A Normal Newbie Level
+  tag:
+  - Single Level
+  author: WN-MASKER
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-08-14
+  source_url: https://www.bilibili.com/video/BV1P3gP6mE1c/
+  source_url_alt:
+  download_url: https://qfile.qq.com/q/DJYhp7whXy
+  code:
+  download_url_alt:
+  file_name: 新手眼里的普通关卡.exe
+  file_url:
 - game: MELODY HELL!!!
   game_alt:
   tag:
