@@ -1,4 +1,18 @@
 ---
+- game: 26年MW杯正赛
+  author: 有名氏
+  smwp_ver: v1.7.12
+  date: 2026-08-15
+  source_url: https://www.marioforever.net/thread-3924-1-1.html
+  download_url:
+  code:
+  has_bgm: true
+  file_name: 26年MW杯正赛.smwl
+  file_url:
+  data_download_url: https://mwcup2026.marioforever.net/download/mwcup_music_pack.zip
+  data_code:
+  data_file_name:
+  data_file_url: https://file.marioforever.net/Mario Worker/Mario Worker 杯/2026年第十五届/mwcup_music_pack_2026.zip
 - game: LongZongKuiYan World - Restart 残卷
   author: LongZongKuiYan
   smwp_ver: v1.7.11
