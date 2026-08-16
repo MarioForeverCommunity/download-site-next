@@ -558,6 +558,8 @@ const smwpVersionOptions = computed(() => {
   }
   // 添加 MW 4.4 选项（加粗），置于最后
   options.push({ label: "MW 4.4", value: "MW 4.4", bold: true });
+  // 添加 MW 4.0 选项（不加粗），置于最后
+  options.push({ label: "MW 4.0", value: "MW 4.0" });
   return options;
 });
 const selectedSmwpVer = ref("");
@@ -586,9 +588,9 @@ const filteredGames = computed(() => {
         // 选中"未指定"时，筛出没有指定SMWP版本的作品
         return !a.smwp_ver;
       }
-      if (selectedSmwpVer.value === "MW 4.4") {
-        // MW 4.4 特殊处理
-        return a.smwp_ver === "MW 4.4";
+      if (selectedSmwpVer.value === "MW 4.0" || selectedSmwpVer.value === "MW 4.4") {
+        // MW 4.0 / MW 4.4 特殊处理
+        return a.smwp_ver === selectedSmwpVer.value;
       }
       if (!a.smwp_ver) return false;
       const ver = a.smwp_ver.replace(/^v/, "");
