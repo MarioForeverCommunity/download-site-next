@@ -7,7 +7,9 @@
   download_url:
   code:
   has_bgm: true
-  file_name: 26年MW杯正赛.smwl
+  file_name:
+  - 26年MW杯正赛.smwl
+  - 26年MW杯正赛（降难版）.smwl
   file_url:
   data_download_url: https://mwcup2026.marioforever.net/download/mwcup_music_pack.zip
   data_code:
