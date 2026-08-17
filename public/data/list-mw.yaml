@@ -1,4 +1,18 @@
 ---
+- game: LLX的1.8即兴关卡（0817）
+  author: LLX奶油马里奥
+  smwp_ver: v1.8.0-beta.1
+  date: 2026-08-17
+  source_url: https://www.marioforever.net/thread-3930-1-1.html
+  download_url:
+  code:
+  has_bgm: true
+  file_name: 0817即兴关卡（LLX）.smwl
+  file_url:
+  data_download_url: https://mwcup2026.marioforever.net/download/mwcup_music_pack.zip
+  data_code:
+  data_file_name:
+  data_file_url: https://file.marioforever.net/Mario Worker/Mario Worker 杯/2026年第十五届/mwcup_music_pack_2026.zip
 - game: Flappy Bird
   author: 玛丽的死对头
   smwp_ver: v1.8.0-beta.1
