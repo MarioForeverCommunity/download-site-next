@@ -16,7 +16,7 @@
     "@floating-ui/vue": "^2.0.1",
     "axios": "^1.19.0",
     "js-cookie": "^3.0.8",
-    "js-yaml": "^5.2.3",
+    "js-yaml": "^5.3.0",
     "markdown-it": "^15.0.0",
     "overlayscrollbars": "^2.16.0",
     "vue": "^3.5.41",
