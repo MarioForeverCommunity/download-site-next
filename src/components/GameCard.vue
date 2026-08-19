@@ -478,6 +478,7 @@ const getHomepageUrl = () => {
   .smwp-link {
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .smwp-link:hover {

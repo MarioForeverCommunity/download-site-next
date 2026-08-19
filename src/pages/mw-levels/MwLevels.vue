@@ -526,33 +526,34 @@ function clearFilter() {
 const showOnlyBundledSmwp = ref(false);
 
 const smwpVersionOptions = computed(() => {
-  // 收集所有主版本（如1.7）和完整版本（如1.7.6），只保留纯数字版本（不含字母）
+  // 收集所有 SMWP 版本（如 v1.7.12、v1.8.0-beta.1），去掉 v 前缀
   const allVers = Object.keys(SmwpVersions)
     .map(v => v.replace(/^v/, ""))
-    .filter(v => /^\d+\.\d+\.\d+(\.\d+)?$/.test(v));
-    // 语义版本排序函数
+    .filter(v => /^\d+\.\d+\.\d+/.test(v));
+  // 语义版本排序函数（去掉 -beta.X 后缀后比较）
   function semverDesc(a, b) {
-    const pa = a.split('.').map(Number);
-    const pb = b.split('.').map(Number);
+    const pa = a.replace(/-.*$/, '').split('.').map(Number);
+    const pb = b.replace(/-.*$/, '').split('.').map(Number);
     const len = Math.max(pa.length, pb.length);
     for (let i = 0; i < len; ++i) {
       if ((pa[i]||0) !== (pb[i]||0)) return (pb[i]||0) - (pa[i]||0);
     }
     return 0;
   }
-  // 主版本集合
-  const mainVersSet = new Set(allVers.map(v => v.split(".").slice(0,2).join(".")));
+  // 主版本集合（去掉 -beta.X 后缀后取前两位）
+  const mainVersSet = new Set(allVers.map(v => v.replace(/-.*$/, '').split(".").slice(0,2).join(".")));
   const mainVers = Array.from(mainVersSet).sort(semverDesc);
   // 每个主版本下，主版本.x在最前，其次为所有完整版本
   const options = [];
   for (const main of mainVers) {
-    // 该主版本下所有完整版本，倒序
-    const subVers = allVers.filter(v => v.startsWith(main+".")).sort(semverDesc);
-    if (subVers.length > 1) {
+    // 该主版本下所有完整版本，去掉 -beta.X 后缀后匹配前缀
+    const subVers = allVers.filter(v => v.replace(/-.*$/, '').startsWith(main+".")).sort(semverDesc);
+    if (subVers.length > 1 || (subVers.length === 1 && subVers[0].includes('-'))) {
+      // 多版本或单版本为预发布版（如 beta）时，显示主版本分组 + 子版本
       options.push({ label: `SMWP v${main}.x`, value: main, bold: true });
       options.push(...subVers.map(v => ({ label: `SMWP v${v}`, value: v })));
     } else if (subVers.length === 1) {
-      // 只有一个次版本时，该次版本加粗
+      // 只有一个稳定版本时，该版本加粗
       options.push({ label: `SMWP v${subVers[0]}`, value: subVers[0], bold: true });
     }
   }
@@ -601,6 +602,9 @@ const filteredGames = computed(() => {
       } else if (/^\d+\.\d+\.\d+(\.\d+)?$/.test(selectedSmwpVer.value)) {
         // 选中如1.7.11或1.7.12.1，匹配精确版本及带字母后缀的版本
         return ver === selectedSmwpVer.value || ver.startsWith(selectedSmwpVer.value) && /[a-zA-Z]$/.test(ver);
+      } else if (/^\d+\.\d+\.\d+-beta\.\d+$/.test(selectedSmwpVer.value)) {
+        // 选中如1.8.0-beta.1，精确匹配
+        return ver === selectedSmwpVer.value;
       }
       return false;
     });
