@@ -1,9 +1,9 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import { getName, getAuthorList, processFileNamesWithVolumes, toResourceDirectUrl } from '../util/GameUtil.js';
-import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync } from '../util/ImageUtil.js';
-import { loadDescription } from '../util/DescriptionUtil.js';
+import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync, getDescriptionSync } from '../util/ImageUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, isKliktopiaRepackage } from '../util/SoftendoUtil.js';
@@ -769,8 +769,22 @@ const loadMarkdownDescription = async () => {
     return;
   }
 
-  const content = await loadDescription(props.game, props.category, props.lan);
-  markdownContent.value = content || '';
+  const descUrl = getDescriptionSync(props.game, props.category, props.lan);
+  if (!descUrl) {
+    markdownContent.value = '';
+    return;
+  }
+
+  try {
+    const response = await axios.get(descUrl);
+    if (response.status === 200 && typeof response.data === 'string' && !response.data.trim().startsWith('<!DOCTYPE html>')) {
+      markdownContent.value = response.data;
+    } else {
+      markdownContent.value = '';
+    }
+  } catch {
+    markdownContent.value = '';
+  }
 };
 
 const fetchFileSizes = async () => {

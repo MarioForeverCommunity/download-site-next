@@ -38,6 +38,23 @@ function getImageFiles(dir) {
     .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 }
 
+function readDescriptionFiles(dir) {
+  if (!existsSync(dir)) {
+    return undefined;
+  }
+
+  const descriptions = [];
+  const descFiles = ['description.md', 'description_zh.md', 'description_en.md'];
+  for (const file of descFiles) {
+    const filePath = join(dir, file);
+    if (existsSync(filePath)) {
+      descriptions.push(file);
+    }
+  }
+
+  return descriptions.length > 0 ? descriptions : undefined;
+}
+
 function getSubdirectoriesWithImages(baseDir) {
   if (!existsSync(baseDir)) {
     return {};
@@ -78,7 +95,7 @@ function getAuthorKey(entry) {
   return authorArray.sort().join(',');
 }
 
-function buildGameImageMapping(list, subdirs) {
+function buildGameImageMapping(list, subdirs, baseDir) {
   const nameCount = {};
   const mapping = {};
 
@@ -100,15 +117,20 @@ function buildGameImageMapping(list, subdirs) {
     }
 
     const images = subdirs[dirName];
+    const descriptions = baseDir ? readDescriptionFiles(join(baseDir, dirName)) : undefined;
 
-    if (images && images.length > 0) {
+    if ((images && images.length > 0) || descriptions) {
       mapping[gameName] = mapping[gameName] || [];
-      mapping[gameName].push({
+      const entryInfo = {
         dirName,
         occurrenceIndex,
         authorKey,
-        images
-      });
+        images: images || []
+      };
+      if (descriptions) {
+        entryInfo.descriptions = descriptions;
+      }
+      mapping[gameName].push(entryInfo);
     }
   }
 
@@ -157,8 +179,8 @@ function generateImageIndex() {
   // Softendo uses direct image files, not subdirectories
   const softendoImages = getImageFiles(softendoDir);
 
-  const mfMapping = buildGameImageMapping(mfList, mfSubdirs);
-  const mwMapping = buildGameImageMapping(mwList, mwSubdirs);
+  const mfMapping = buildGameImageMapping(mfList, mfSubdirs, mfGamesDir);
+  const mwMapping = buildGameImageMapping(mwList, mwSubdirs, mwLevelsDir);
   const softendoMapping = buildSoftendoImageMapping(softendoList, {}, softendoImages);
 
   const index = {

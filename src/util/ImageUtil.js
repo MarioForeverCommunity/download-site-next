@@ -321,6 +321,30 @@ export function hasLogoImageSync(game, category = 'mf-games') {
   return hasLogoImage(game, category);
 }
 
+export function getDescriptionSync(game, category, lan) {
+  if (!game || !imageIndex) return null;
+  if (category !== 'mf-games' && category !== 'mw-levels') return null;
+
+  const gameInfo = findGameInfo(game, category);
+  if (!gameInfo || !gameInfo.descriptions || gameInfo.descriptions.length === 0) return null;
+
+  const descriptions = gameInfo.descriptions;
+  const dirName = gameInfo.dirName;
+
+  // Try description.md first
+  if (descriptions.includes('description.md')) {
+    return `/data/${category}/${dirName}/description.md`;
+  }
+
+  // Try language-specific
+  const fileName = lan === 'zh' ? 'description_zh.md' : 'description_en.md';
+  if (descriptions.includes(fileName)) {
+    return `/data/${category}/${dirName}/${fileName}`;
+  }
+
+  return null;
+}
+
 export function createGameImageResolver(category) {
   let loaded = false;
 
