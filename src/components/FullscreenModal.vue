@@ -595,10 +595,41 @@ const downloadEntries = computed(() => {
   const fileUrlKey = useCdn.value ? 'file_url_cdn' : (props.lan === 'zh' ? 'file_url_zh' : 'file_url_en');
   const dataUrlKey = useCdn.value ? 'data_file_url_cdn' : (props.lan === 'zh' ? 'data_file_url_zh' : 'data_file_url_en');
 
+  // 解析当前（最新）版本集合：逻辑与 generate-api.js 保持一致
+  // - 有显式 current: true 时，取所有标记为 current 的版本（支持多 current）
+  // - 无显式 current: true 时，回退为日期最新的版本（多个并列取第一个）；
+  //   但若该最新日期版本已显式 current: false，则不再自动标记
+  const verMeta = props.game.ver.map(verRaw => {
+    const vk = Object.keys(verRaw)[0];
+    const v = verRaw[vk];
+    const rawTime = v.date ? (v.date instanceof Date ? v.date.getTime() : new Date(v.date).getTime()) : -Infinity;
+    return { verKey: vk, ver: v, dateTime: Number.isNaN(rawTime) ? -Infinity : rawTime, current: v.current === undefined ? null : !!v.current };
+  });
+  const currentKeys = new Set();
+  if (verMeta.some(m => m.current === true)) {
+    for (const m of verMeta) {
+      if (m.current === true) currentKeys.add(m.verKey);
+    }
+  } else if (verMeta.length > 0) {
+    let latest = null;
+    let maxTime = -Infinity;
+    for (const m of verMeta) {
+      if (m.dateTime > maxTime) {
+        maxTime = m.dateTime;
+        latest = m;
+      }
+    }
+    if (latest && latest.current !== false) {
+      currentKeys.add(latest.verKey);
+    }
+  }
+
   for (const verRaw of props.game.ver) {
     const verKey = Object.keys(verRaw)[0];
     const ver = verRaw[verKey];
     const versionKey = (props.lan === 'en' && ver.ver_alt) ? ver.ver_alt : verKey;
+    const isCurrentVer = currentKeys.has(verKey) && !isSingleVersion.value;
+    const currentVerSuffix = isCurrentVer ? (props.lan === 'zh' ? ' (最新)' : ' (latest)') : '';
 
     if (ver[fileUrlKey]) {
       const url = effectiveResourceUrl(ver[fileUrlKey]);
@@ -614,7 +645,7 @@ const downloadEntries = computed(() => {
       }
 
       entries.push({
-        version: versionKey || (props.lan === 'zh' ? '下载' : 'Download'),
+        version: (versionKey + currentVerSuffix) || (props.lan === 'zh' ? '下载' : 'Download'),
         url: url,
         isRepackaged: isRepackaged,
         repacker: repacker,
@@ -624,7 +655,7 @@ const downloadEntries = computed(() => {
 
     if (ver[dataUrlKey]) {
       entries.push({
-        version: props.lan === 'zh' ? `数据包 (${versionKey})` : `Data (${versionKey})`,
+        version: props.lan === 'zh' ? `数据包 (${versionKey}${currentVerSuffix})` : `Data (${versionKey}${currentVerSuffix})`,
         url: effectiveResourceUrl(ver[dataUrlKey]),
         isRepackaged: false,
         repacker: null,
