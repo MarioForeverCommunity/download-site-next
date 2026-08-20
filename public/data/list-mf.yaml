@@ -3124,13 +3124,34 @@
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   ver:
-  - v2.2.0 Windows:
+  - v2.2.1 Windows:
       ver_alt:
-      date: 2026-08-08
+      date: 2026-08-19
       current: true
       source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
       source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
       download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      code:
+      download_url_alt: https://mega.nz/file/5qRBSKzC#zYIHkOKYmfQLahxfNB7ge07wj2YhaB3smiTTiRXGCI0
+      file_name: Mario Forever Community Edition 2.2.1 Windows.zip
+      file_url:
+  - v2.2.1 Linux:
+      ver_alt:
+      date: 2026-08-19
+      current: true
+      source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
+      source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      code:
+      download_url_alt: https://mega.nz/file/xyR03bBC#fGI9bIOdGOjVhM6hQ9LKlC4ySAmZWRh1FIDdUeb94aA
+      file_name: Mario Forever Community Edition 2.2.1 Linux.zip
+      file_url:
+  - v2.2.0 Windows:
+      ver_alt:
+      date: 2026-08-08
+      source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
+      source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520Community%2520Edition
       code:
       download_url_alt: https://mega.nz/file/J3QHjAoK#UaK5YC5cSBPgOow7i44nHl1raDwjEg-w1vvo75AyExs
       file_name: Mario Forever Community Edition 2.2.0 Windows.zip
@@ -3138,10 +3159,9 @@
   - v2.2.0 Linux:
       ver_alt:
       date: 2026-08-08
-      current: true
       source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
       source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
-      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520Community%2520Edition
       code:
       download_url_alt: https://mega.nz/file/83h1RZxI#_2kco46FoScrzzPrQ76NG_QTvuSqZfdLWGqLQ7vyQhA
       file_name: Mario Forever Community Edition 2.2.0 Linux.zip
@@ -3151,7 +3171,7 @@
       date: 2026-01-31
       source_url: https://www.marioforever.net/thread-3698-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
-      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520Community%2520Edition
       code:
       download_url_alt: https://mega.nz/file/dqICXLLb#0LpFDuuSmnr90J_yxsO-Mt-Mbsh5NZd7AH8QivoFdfM
       file_name: Mario Forever Community Edition 2.1.3 Windows.zip
@@ -3161,7 +3181,7 @@
       date: 2026-01-31
       source_url: https://www.marioforever.net/thread-3698-1-1.html
       source_url_alt: https://www.youtube.com/watch?v=x418mJPtFms
-      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520Community%2520Edition
       code:
       download_url_alt: https://mega.nz/file/dqICXLLb#0LpFDuuSmnr90J_yxsO-Mt-Mbsh5NZd7AH8QivoFdfM
       file_name: Mario Forever Community Edition 2.1.3 Linux.zip
