@@ -1,4 +1,53 @@
 ---
+- game: PK!MF8 竞技赛关卡集
+  game_alt: PK!MF8 Competitive Collection
+  alias:
+  - PKMF8竞技赛关卡集
+  - PKMF8竞技赛整合
+  - PK!MF8竞技赛整合
+  - PK!MF8竞技赛关卡集
+  tag:
+  - PK!MF
+  - Contest
+  author: PK!MF 组委会
+  author_alt: PK!MF OC
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-08-20
+  source_url: https://www.marioforever.net/thread-3940-1-1.html
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: PK!MF8_Competitive_Collection.7z
+  file_url:
+- game: PK!MF7 娱乐赛关卡集
+  game_alt: PK!MF7 Entertainment Collection
+  alias:
+  - PKMF7娱乐赛关卡集
+  - PKMF7娱乐赛整合
+  - PK!MF7娱乐赛整合
+  - PK!MF7娱乐赛关卡集
+  tag:
+  - PK!MF
+  author: PK!MF 组委会
+  author_alt: PK!MF OC
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-08-20
+  source_url: https://www.marioforever.net/thread-3939-1-1.html
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: PK!MF7_Entertainment_Collection.7z
+  file_url:
 - game: World11++ Advanced Edition
   game_alt:
   author: 克洛伊Prime
