@@ -44,7 +44,7 @@ function readDescriptionFiles(dir) {
   }
 
   const descriptions = [];
-  const descFiles = ['description.md', 'description_zh.md', 'description_en.md'];
+  const descFiles = ['description.md', 'description.txt', 'description_zh.md', 'description_zh.txt', 'description_en.md', 'description_en.txt'];
   for (const file of descFiles) {
     const filePath = join(dir, file);
     if (existsSync(filePath)) {

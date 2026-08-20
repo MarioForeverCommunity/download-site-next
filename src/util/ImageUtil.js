@@ -331,15 +331,22 @@ export function getDescriptionSync(game, category, lan) {
   const descriptions = gameInfo.descriptions;
   const dirName = gameInfo.dirName;
 
-  // Try description.md first
-  if (descriptions.includes('description.md')) {
-    return `/data/${category}/${dirName}/description.md`;
+  // Try generic description first (.md preferred over .txt)
+  const genericFiles = ['description.md', 'description.txt'];
+  for (const file of genericFiles) {
+    if (descriptions.includes(file)) {
+      return `/data/${category}/${dirName}/${file}`;
+    }
   }
 
-  // Try language-specific
-  const fileName = lan === 'zh' ? 'description_zh.md' : 'description_en.md';
-  if (descriptions.includes(fileName)) {
-    return `/data/${category}/${dirName}/${fileName}`;
+  // Try language-specific (.md preferred over .txt)
+  const langFiles = lan === 'zh'
+    ? ['description_zh.md', 'description_zh.txt']
+    : ['description_en.md', 'description_en.txt'];
+  for (const file of langFiles) {
+    if (descriptions.includes(file)) {
+      return `/data/${category}/${dirName}/${file}`;
+    }
   }
 
   return null;
