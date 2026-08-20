@@ -1,0 +1,25 @@
+THANK YOU FOR DOWNLOADING MARIO FOREVER: LUNAR NEW YEAR 2021 SPECIAL VERSION 2.0!
+
+"Mario Forever: Lunar New Year 2021 Special" is the 2021 sequel of MF:LNY 2020. This project is a fanmade version of the original "Mario Forever", a Super Mario fanmade game created by a Polish creator, legend Michal "Buziol" Gdaniec made with Multimedia Fusion 1.2.
+This project is made with Clickteam Fusion 2.5+.
+
+1. Version general info
+"MF:LNY 2021 v2.0" contain 5 main worlds and extra levels by JohnzVN & JoséLPK.CF&MF.
+
+2. Project participants and level participated:
+- JoséLPK.CF&MF (1-2, 1-3, 1-5, 2-1, 3-5, 4-2, 4-3, 4-4, 5-3, 5-5)
+- JohnzVN (1-1, 1-4, 1-5, 2-3, 3-2, 3-4, 5-4)
+- TheMarioVariable (2-4, 3-1, 4-5, 5-2)
+- Crist1919 (2-4, 2-5, 4-1, 4-4, 5-1, 5-6)
+- TheSharkMaster (2-2, 3-3)
+
+3. Version history:
+- v1.0 (February 12th, 2021)
++ Vietnamese Festival world.
++ Extra level by JohnzVN.
+
+- v2.0 (September 12th, 2021)
++ Added 4 more worlds by members of Forever Team (TheMarioVariable, Crist1919, TheSharkMaster, JohnzVN, JoséLPK.CF&MF).
++ Added two extra levels by JoséLPK.CF&MF.
++ Several nerfs.
++ Bug fixes.

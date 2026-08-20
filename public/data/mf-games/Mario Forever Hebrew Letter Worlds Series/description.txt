@@ -1,0 +1,33 @@
+(==============================================================================================================================)
+                                               Hello there!
+
+		First and foremost I would like to thank you for downloading this game.
+			 Mario Forever Hebrew Letter Worlds Series v0.5
+
+(==============================================================================================================================)
+01. Info
+
+IMPORTANT: DO NOT DELETE ANY .DLL FILE, NEITHER THE MAFOSAV.INI FILE. 
+DO NOT EDIT MAFOSAV.INI FILE AS IT MIGHT BREAK YOUR SAVE PROGRESS.
+IN CASE IF THAT WOULD HAPPEN, REMOVE MAFOSAV.INI FILE COMPLETELY.
+(==============================================================================================================================)
+02. Version history
+
+-v0.5 (Ferbruary, 2021)
+  *Initial release.
+(==============================================================================================================================)
+03. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+(==============================================================================================================================)
+04. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec to have made the game first.
+Mario and all relatives belong to Nintendo.
+Looper231 - Major assistance and bugfixing
+Xykijun, TheSharkMaster, SerafimGWS and JohnzVN - GFX
+(==============================================================================================================================)
+05. Have fun :D
+(==============================================================================================================================)

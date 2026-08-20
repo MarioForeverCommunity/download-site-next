@@ -1,0 +1,33 @@
+=======ORDER OF FATE README=======
+
+Hello Everyone! today 25-8-2016 I released Order Of fate v1.0
+
+Consists : 
+
+1 . GoldenDom and Lichyard
+
+2 . Activity world ,Multi-SC and Hot Uranus
+
+3 . The Three Mysteries ,themes : Beach/Water - Electronic CORE - Chemical Nation
+
+Credits : 
+
+Mariovariable - SaveGameRoom Help
+
+Crist1919 - Graphics (Mainly) and bugfixing
+
+Xykijun - Graphics ,Bugfixing and Hard Programming.
+
+MrPrzemistrz - Beta Testing ,Graphics and Bugfixing.
+
+Hunting - Helping with some CTF2.5 Problems
+
+Moc Lop Jose - Collection Themes And SFX
+
+PS (me) - Game Idea and Making ,including Maps ,New graphics in title screen and of course level designing.
+
+And thanks to all people who i forgot to mention and they still helped :)
+
+Hope you Nice time playing!
+
+=PhantomSapphire=

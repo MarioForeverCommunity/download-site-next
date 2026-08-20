@@ -1,0 +1,90 @@
+		Thanks to have downloaded Mario Forever Revolution - DEMO VERSION
+
+00. SUMMARY
+   01. INFOS
+   02. CONTROLS
+   03. VERSIONS HISTORY
+   04. CREDITS
+
+===============================================================
+
+01. Infos
+Development for Mario Forever Revolution started in late 2015. I wanted to make something completely different from the usual
+stuff always seen in classic MF games. I've started to check and test around some codes and then I've started to build and create
+new things like new characters, new objects like the P-Switches and the Note Blocks, and even new cocnepts for levels and maps,
+while keeping the original and classic visual style, with some redefinitions of course.
+
+Almost one year later, to celebrate my birthday, I've showed worldwide the very first prototype of the game, showing Peach and Toad
+as fully playable characters, new objects, new powerups, new mechanics and more. Neverless the long wait, I'm is still in pre-alpha
+stages, with a lot of stuff incomplete, but I'm continuing to work on it for fixing, changing and adding stuff to it.
+My main goal is to make MFRevolution a real "revolution"!
+
+===============================================================
+
+02. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+Up and down arrows = Enter in pipes
+Space bar = Panoramic of the map (map only)
+CTRL+J = Hide top bar
+CTRL+H = Show top bar
+CTRL+P/Enter = Pause
+
+===============================================================
+03. Version history
+
+-v0.0.0.1 (aka DEMO VERSION)
+  *Initial release.
+
+===============================================================
+
+04. Credits
+
+MARIO FOREVER REVOLUTION - CREDITS
+
+============================================================================================================================
+
+SOURCES:
+www.spriters-resouce.com
+www.mfgg.net
+www.supermariobrosx.org
+www.themushroomkingdom.net
+www.sounds-resource.com
+www.youtube.com
+
+============================================================================================================================
+
+MUSICS:
+  *Mario Forever* - Super Mario Bros. main theme remix - Buziol Games
+  *Super Paper Mario - Lineland Road - Nintendo
+  *Paper Mario: The Thousand-Year Door - Petal Overplains - Intelligent Systems
+  *Super Mario 3D Land - Underground levels - Nintendo EAD
+  *Super Smash Bros. Brawl - Mushroomy Kingdom (underground version) - Nintendo EAD
+  *New Super Mario Bros. - Unused Overworld music - Nintendo
+  *New Super Mario Bros. - Underwater levels - Nintendo
+  *Mario Kart 64 - Bowser's Castle - Nintendo
+  *Boss Battle* - Kaosession - Maze
+
+*Subject to change
+
+============================================================================================================================
+
+GRAPHICS:
+  *Tilesets: Radel999, Achiro Himuro, SaladGirl88
+  *Backgrounds: Achiro Himuro
+  *Enemies: Achiro Himuro
+  *? Blocks: Achiro Himuro
+  *P-Switch: Kojimkj
+  *Desert tileset: Sednaiur
+
+
+============================================================================================================================
+
+SPECIAL THANKS
+Special credits go to Buziol Games for the original Mario Forever and to Nintendo for the Mario franchise. Thank you!! <3
+
+Visit our websites for more Mario Forever stuff:
+www.themariovariable.altervista.org
+http://marioforeverforum.boards.net

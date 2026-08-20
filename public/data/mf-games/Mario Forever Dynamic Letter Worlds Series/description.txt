@@ -1,0 +1,156 @@
+World A Map: New Super Mario Bros World 1 Map theme
+Level A-1: Super Mario World-Overworld Theme
+Level A-2: Super Mario RPG-Nimbus Land (Let's Do The Fooka Fooka!) 
+Level A-3: Super Mario World-Castle
+
+World B Map: Kanugek Kao-Levels Menu
+Level B-1: Mario Party 3 Creppy Cavern
+Level B-2: Super Smash Bros SMB Underground
+Level B-3: Castlevania IV Bloody Tears
+
+World C Map: Hidenori Iwasaki-Military Goverment
+Level C-1: MF Lunar New Year 2022 World 0-1 Music
+Level C-2: Rayman Origins-Jibberish Jungle-The Darktoon Chase
+Level C-3: MF Vietnamese Letter Worlds World Colour-7 Music
+Level C-4: Rosenkreuzstilette Freudenstachel-Iris Stage 3
+
+World D Map: 4mat-In the kitchen
+Level D-1: Virgill-Interference ending
+Level D-2: Martin Iveson-YKY
+Level D-4: 4mat-Silver
+
+World E Map: Pokémon Black and White-Psychic Encounter
+Level E-1: Elwood-One Fine Day
+Level E-2: Jazz Jackrabbit 2-Jazz Belmont
+
+World F Map: Pokémon Black and White-Come Along 2 Theme
+Level F-1: Mario Kart 8 Deluxe-Sweet Sweet Canyon OST
+Level F-2: Game and Wario-Ashley's ☆ Revolution
+Level F-3: Kirby Triple Deluxe Music-Lollipop Land
+Level F-4: Miitopia-Battle Peculia-OST
+
+World G Map: Elwood-One Fine Day
+Level G-1: Yoshi's Island-Underground
+Level G-2: Super Mario World 2:Yoshi's Island-Underground (OC Remix)
+Level G-4: Super Mario World-Ghosthouse
+
+World H Map: New Super Mario Bros Wii World 6
+Level H-1: Megaman&Bass Groundman theme
+Level H-2: New Super Mario Bros Wii-Athletic
+Level H-3: Shovel Knight-Tinker Knight
+World H Boss: Castlevania 3 Clock Tower Remix
+
+World I Map: Touhou Project Jungle Trojan
+Level I-1: New Super Mario Bros Wii-Desert
+Level I-2: Newer Super Mario Bros Wii Desert
+Level I-3: Super Mario 64 Lethal Lava Land
+Level I-4: Final Fantasy V-Battle With Gilgamesh
+
+World J Map: Yume Nikki BGM 18-Faceless People
+Level J-1: Super Mario All Stars SMB1 Underwater (%150 speed)
+Level J-2: Bee Hunter-Crossroads
+Level J-3: Megaman 11-Acid Man (xstyle remix)
+
+World K Map: New Super Mario Bros. Wii Music-World 3 Map-Snow
+Level K-1: Mario Kart 64-Frappe Snowland Sherbet Land
+Level K-2: New Super Mario Bros Wii Snow
+Level K-3: Paper Mario-Crystal Palace Crawl
+
+World L Map: Metal Slug 3-The Military System
+Level L-1: PUBG Mobile-Runic Power Theme
+Level L-2: PUBG Mobile-Season 18 Metro Royale (Main Theme 2)
+Level L-3: Metal Slug 5-Intrigue Theme
+Level L-4: Metal Slug 5-Speeder Theme
+
+World M Map: 4mat-The Golden Ages
+Level M-1: Super Mario World-Overworld (Yoshi)
+Level M-2: Super Mario World-Athletic (Yoshi)
+Level M-4: Yoshi Island-Castle & Fortress
+
+World N Map: Mario Strikers Charged Music-Title Theme
+Level N-1: Megaman Wily Wars-Wily Tower Stage 1
+Level N-2: 4mat-In Game
+Level N-3: SMW Custom Music:Ninja Gaiden-Ryu's Determinantion
+Level N-4: Megaman 10 Wily fortress 2 (Sega genesis remix)
+
+World O Map: 4mat-Federation
+Level O-1: Megamari-Yakogoro Eirin Stage
+Level O-2: Megamari-Reisen Udongein Inaba Stage
+Level O-3: Megamari-Remilia Scarlet Stage
+
+World P Map: Maf-dyna-k music6
+Level P-4: Megamari-Patchouli Stage 5
+World P Boss: Megamari-Boss Battle
+
+World Q Map: Aquaria-Technique
+Level Q-1: Megaman 8 Frost Man
+Level Q-2: Mega Man 8 Unsued Beta Tracks Frost Man stage
+Level Q-3: Alexander Brandon-Snowfall
+Level Q-4: Megaman 6 Blizzard Man Arranged
+
+World R Map: New Super Mario Bros World 7 Map
+Level R-1: LKA-A New Day
+Level R-2: Megaman 8 Tengu Man PS1 
+Level R-3: Megaman X Storm Eagle
+
+Level S Map: Rayman 2 The Great Escape-Overworld
+Level S-1: Star Fox-Corneria
+Level S-2: Super Mario Galaxy-Buoy Base Galaxy Theme
+Level S-4: Super Mario Galaxy-Purple Coins
+Level S-5: Shadow Fight 2-Factory
+
+World T Map: New Super Mario Bros. (World 2 Map)
+Level T-1: New Super Mario Bros. (Desert Overworld)
+Level T-2: Super Mario Galaxy-Dusty Dune Galaxy
+Level T-3: New Super Mario Bros. Wii (Desert-Yoshi Drums)
+Level T-4: New Super Mario Bros. (Castle)
+
+World U Map: Mellow-d Underground
+Level U-1: Super Mario World-Underground 
+Level U-2: Super Mario All Stars Underground theme
+Level U-3: Unknown-Caveland
+Level U-4: Megaman The Wily Wars Hyperstorm H Stage
+
+World V Map: 4mat-In the kitchen
+Level V-1: Dave the Brave-Sirens
+Level V-3: Rokko chan-Dr Mad Stage 1 (rock remix)
+Level V-4: Jazz Jackrabbit OST-Turtle-Terror MEDIVO REMASTERE
+
+World W Map: Shadow Fight 2-Ascension
+Level W-1: The Concealed Four Seasons (HSiFS)-TOUHOU EX Stage 1 [MM8 Style]
+Level W-2: Megaman 10 Blade Man
+Level W-3: Mega Man 6 Yamato Man
+Level W-4: Best of Umineko BGM-Mirage Coordinator
+
+World X Map: Darth Nefelim-World Map tune
+Level X-1: Mr.Gamer-Respray (short version)
+Level X-2: TJ TechnoiZ-Sunday Morning
+Level X-3: TJ TechnoiZ-Curse of Divine Love
+Level X-4: XZ-A Little Progress
+
+World Y Map: 4mat-Phantas magoria
+Level Y-1: New Super Mario Bros-Ghost House
+Level Y-2: Super Metroid-Brinstar Red Soil
+Level Y-3: Super Meat Boy-Can O' Salt (Ch 3 Light World)
+Level Y-4: 4mat-Winners
+
+World Z Part 1 Map: Mass Effect Trilogy-Extended Galaxy Map Theme
+World Z Part 2 Map: Super Meat Boy: Carmeaty Burana
+World Z Part 3 Map: Touhou Hm Kokoro-The Lost Emotion
+Level Z-1: Black/Matrix 00-Dark Choir
+Level Z-2: Jazz Jackrabbit 2 Soundtrack-Jazz be Damned
+Level Z-3: Hard Wave (v2)-ModArchive Music
+Level Z-4: Prince of Persia-Stage 1
+Level Z-5: Ninja Gaiden II-The Dark Sword of Chaos (NES)-Ending REMIX
+Level Z-6: Rolling Sky-Sky Level 2
+Level Z-7: Romancing SaGa 3-Hack Schirach Battle (RS1 Version)
+Level Z-8: MF Lunar New Year 2022 World 4-5 Music
+Level Z-9: Leon-Gnon
+Level Z-10: Touhou 8:Inperishable Night-Old World 
+Level Z-11: Touhou 11:Subterranean Animism-Walking the streets of former hell
+Level Z-12: Touhou IN-Ghostly eyes
+Level Z-13: Touhou MoF-The Primal Science of Japan the Girl Saw
+Level Z-14: Touhou SA-Lullaby of the Deserted Hell
+Level Z-15 Part 1: Touhou MoF-Faith is for the Transient People
+Level Z-15 Part 2: Touhou DDC-Kobito of the Shining Needle~Little Princess
+World Z Boss: Super Mario Galaxy-Final Bowser Battle

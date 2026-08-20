@@ -1,0 +1,137 @@
+...................................................
+..%%%%%...%%%%%%...%%%%...%%%%%...%%...%%..%%%%%%..
+..%%..%%..%%......%%..%%..%%..%%..%%%.%%%..%%......
+..%%%%%...%%%%....%%%%%%..%%..%%..%%.%.%%..%%%%....
+..%%..%%..%%......%%..%%..%%..%%..%%...%%..%%......
+..%%..%%..%%%%%%..%%..%%..%%%%%...%%...%%..%%%%%%..
+...................................................
+(Please, read this in a monospaced font...)
+
+===================================================
+====         Thank you for downloading         ====
+==== Mario Forever : Human Laboratory Edition! ====
+===================================================
+
+About This Document: 
+
+This document contains last-minute information about MF: Human Lab Edition, including questions you may have concerning the game or your computer. If you have a question, check to see if it is addressed here first.
+
+1. GAME INFORMATION
+2. GENERAL TECHNICAL ISSUES
+3. GENERAL GAME ISSUES
+4. CONTACTING DEVS
+5. CREDITS
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++             GAME INFORMATION              ++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Mario Forever: Human Laboratory Edition is an edit of the original Mario Forever game where all enemies in all levels have been replaced with their Human Lab counterpart, but the general level geometry has been left intact.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++          GENERAL TECHNICAL ISSUES         ++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+If you get an error about Fini.mfx or adshow.mfx, install Microsoft Visual C++ 2015-2022 Redistributable. It's included with the game in the 'Redist' folder, just run the installer.
+
+If the game displays a solid white colour, it may be a problem with your video drivers. Update them to the latest version, or if you don't have any video drivers, install them:
+NVIDIA: https://www.nvidia.com/download/index.aspx
+AMD: https://www.amd.com/en/support
+INTEL: https://www.intel.com/content/www/us/en/download-center/home.html
+
+If you don't hear any music while playing the game, check if you've extracted the Data folder correctly.
+
+If, after playing for a while, you get an error popup while loading the Save Room, your Progress File may have got corrupted. Delete the 'savprog.mfsav' from the game directory and rename 'savprog-backup.mfsav' (if there is any) to 'savprog.mfsav'.
+
+If you cannot move in Save Game Room at all, make sure you've copied the file 'forevermopt.ini' over from the game archive correctly. It's still possible to play without that file, just reconfigure all control keys in the Main Menu > Options > Controls screen.
+
+If you experience framerate drops after collecting the Star power-up, try disabling 'Effects' in Options of the Main Menu.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++            GENERAL GAME ISSUES            ++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+*** MENU BAR ***
+Changing options from the Menu Bar are NOT guaranteed to be saved on the next game session. Go to Options in the Main Menu, change the desired values, and then select EXIT to save your settings! There may be some options missing from that screen, sorry for the inconvenience.
+
+
+*** USEFUL KEY COMBINATIONS ***
+You can press F11 key to switch between Fullscreen and Windowed modes.
+
+Use key combinations Ctrl+J and Ctrl+H to open and close a menu bar respectively in both Fullscreen and Windowed modes.
+
+There are some shortcut keys to quickly access main screens of the game:
+- F2 to fully restart the game;
+- F3 to go to the Save Game Room;
+- F4 to go to the Main Menu.
+
+Press either P or ESC key to pause the game.
+
+
+*** FULLSCREEN MODE ***
+You can either access it from the Menu Bar, or toggle with F11 key.
+
+While in the Fullscreen Mode, you can no longer pause the game through the menu bar item due to the software limitation, but you can still pause it with P or ESC keys, which will also make the screen darker, to indicate that the game is on hold. While in this state, you can press any key to resume the game.
+If you have a problem with pausing the game in Fullscreen Mode, try re-entering it with F11.
+
+
+*** GAMEPAD / JOYPAD SUPPORT ***
+Gamepad is not currently supported natively by the game. You can still use third party tools, though, such as JoyToKey.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++              CONTACTING DEVS              ++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+You can contact the developers on Cloud Lounge Discord Server: https://discord.gg/VwgV6GmwXv
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++            SYSTEM REQUIREMENTS            ++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+MINIMAL:
+Windows 7, Windows 8.1 or Windows 10, 32-bit or newer
+Pentium 4 2.4GHz, 2 GB RAM
+Any GPU supporting DirectX 9 with 128MB of VRAM
+Storage: at least 100MB of free space
+Network connection: not needed
+
+This game was made in Clickteam Fusion.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++                  CREDITS                  ++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
+                HOST & PROGRAMMING:
+                       JUE13
+
+         LEAD GRAPHICS DIRECTOR & TESTING:
+                     SerafimGWS
+
+            ALSO SPECIAL THANKS GOES TO:
+                      Rock357
+  (Sprites and animations for Coder Clone D - Deluxe,
+Zorro Clone, Star-Closed Clone, Star-Closed Clone Mod G,
+       Coder Clone Mod J, and Clone 3/A Model G)
+
+                     Jeansowaty
+   (Sprites and animations for Clone 2 and Clone 3)
+
+                      Seby Bab
+     (Animations for All Bowser's Minions House)
+
+                     Can't Sleep
+  (Sprites and animations for Wasabi Jaws Clone and
+                    Worker Clone)
+
+                     Player Guy
+   (Sprites for Pogoclone A, Skeleton Coder Clone,
+      Shark Clone, Humanoid Clone, Crab Clone,
+               and Skeleton Clone 1)
+
+                      SuperMany
+  (Sprites for Painting and Pharoah Mummy Clone 5/A)
+
+                       Bullex
+         (Sprites for Tank-styled Reservoir)
+

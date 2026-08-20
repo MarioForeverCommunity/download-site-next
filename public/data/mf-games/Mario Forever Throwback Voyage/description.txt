@@ -1,0 +1,46 @@
+MARIO FOREVER: THROWBACK VOYAGE
+
+Release date (Beta):  04-12-2022
+Final version release date: 30-12-2022 (1.0) / 03-02-2023 (1.5)
+--------------------------------------------------------------------------------------------------------------------
+==VERSION HISTORY==
+
+v0.5 (December 04, 2022)
+- Beta release.
+
+v1.0 (December 30, 2022)
+- RTM release.
+- 2 levels were implemented (TW-1, TW-2; which´re taken into a sunset-themed level and an underground cave respectively)
+- Decreased Bowser´s difficulty degree.
+- Graphics and scenarios have been updated.
+- Display mode switched from Standard to DirectX 3D11.
+
+v1.5 (February 03, 2023)
+- Tittle screen, map and levels 4 & 6 musics were switched.
+- Castle cutscene was added. 
+- Brand-new author introductory scene has been added. Credits´re aimed at CS124 for mading the sprite for me.
+- Main menu tittle screen was completely remade from scratch.
+- (Fix) The track heard during the world completion screen was previously preset to low pitch, this was fixed and is now at normal pitch.
+ 
+==ENGINE CREDITS==
+
+Mario Forever Vanilla Engine is known as Michal's Original Mario Forever Engine created by Xykijun.
+
+Original Engine: Xykijun
+Graphics: Xykijun, Achiro, TheMarioVariable, Crist1919, AM999 & JoséLPK.CF&MF
+Original Idea fix and Pipe Warp guide by: Kavekkusu (A.K.A. Kavex or Kavehkoopa) (For Castle Cutscene, Game Over, Glitch Timer Count and Much More)
+Engine Fix Implemention: Hyper Somario
+Updated Fire Bro and Sledgebro: Hyper Somario
+Freezed Fire Bro and Sledgebro: KavehKoopa
+Bowser Code Fix: KavehKoopa
+Main menu fixes: Myself (Thanks to some additional research i did and Looper231 giving me his version of the engine)
+Special thanks to Soundwave961 for giving me important suggestions and for supporting me throughout this project´s development.
+
+==FURTHER CHANGES MADE INTO THE ENGINE==
+
+- Mario Minix mini-game re-added into the game
+- Japanese language added (Thanks to Looper231´s version of the engine) 
+
+-----------------------------------------------------------------------------------------------------------------------
+Have fun and report me every single drawback you find within the game!!.
+Thank you for downloading my game!.

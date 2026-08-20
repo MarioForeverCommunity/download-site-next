@@ -1,0 +1,31 @@
+
+===============================================================
+01. Infos
+
+IMPORTANT: DO NOT DELETE ANY .DLL FILE, NEITHER THE MAFOSAV.INI FILE. 
+DO NOT EDIT MAFOSAV.INI FILE AS IT MIGHT BREAK YOUR SAVE PROGRESS.
+IN CASE IF THAT WOULD HAPPEN, REMOVE MAFOSAV.INI FILE COMPLETELY.
+
+===============================================================
+02. Author's note
+
+Hey there, Playeru's here. Thank you for downloading the demo version of the game ! 
+This game includes 4 random level from the upcoming version, each 4 level has it's own unique theme that you could find by yourself.
+
+Warning: this game weren't mean to be easy, as you can see to the game's name and the difficulty can be unforgiven to some players.
+
+First of all I'd like to thank you everyone for their help and support to this game, 
+it's my first time releasing my very own game here. You guys are the best !
+
+===============================================================
+03. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+
+===============================================================
+04. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec to have made the game first.
+Mario and all relatives belong to Nintendo.

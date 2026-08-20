@@ -1,0 +1,15 @@
+[MARIO FOREVER A NEW JOURNEY VERSION 1.5 CHANGELOG AND FEATURES]
+
+The game is completely remade with a new engine (cloud engine)
+
+Version V1.5
+- All the level's atmospheres (except 2-1) are now completely changed with some original MF v6.0 graphics.
+- World 1 and 2 maps musics are changed.
+- Some levels musics are changed.
+- World 3 is now avaliable.
+- Brand new main menu screen.
+- 3 new power ups.
+- Blue/Grey skin goomba and blocks are removed due to me didn't have enough times for it, but they will come back when World 4 is released.
+- W2 and W3 castle cutscenes used the same W1 castle cutscene due to there is only one castle cutscene in cloud engine and didn't have enough
+  times for me to make differents, but they will also changed when World 4 released.
+- Fixed a lot of bugs from previous version.

@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------
+	Infernal Stronghold - Boss Battle  - created by HVMetal
+-------------------------------------------------------------------------
+
+- Before starting, I'd like to thank mariogeek (a.k.a Cosinium Sigma) for helping me in a small fraction of the boss' code.
+
+Greetings! As I promised back before, here is a short "sequel" of Infernal Stronghold, or just simply a bossfight. It's my first time
+creating a boss, so don't really any spectacular designs or moves. I hope there won't be any bug encounters, but if there are, you may
+find me on the Mario Forever discord. Have fun!

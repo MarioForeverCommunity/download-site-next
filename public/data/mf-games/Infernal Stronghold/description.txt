@@ -1,0 +1,11 @@
+----------------------------------------------------------------
+	Infernal Stronghold - created by HVMetal
+----------------------------------------------------------------
+ 
+ Special thanks to: - rapbattle5742 (Vlad & Cosmin) for giving permission to use their "Fireball Roto-Disc"
+                    - TheMachinumps for creating REM
+
+ Notes: - The level is an ~2:30 minutes long autoscrolling level with tons of fiery hazzards. The difficulty is meant to be similar
+	with endgame (World 8+) difficulty, so it may require a few attempts until you reach the goal. Despite it being a stronghold/
+	fortress level, it doesn't have a boss (yet). The level was inspired from Toad Strikes Back's last castle level, "The Koopa
+	Curse", an autoscrolling level. Have fun! :)

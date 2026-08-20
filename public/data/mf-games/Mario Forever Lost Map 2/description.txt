@@ -1,0 +1,29 @@
+		Thanks for have downloaded Mario Forever - Lost Map 2!
+
+As the name may suggest, this game is a continuation of Mario Forever Lost Map, a fangame made firstly by Michal "Buziol" Gdaniec with with Multimedia Fusion 1.2.
+This game is made with Clickteam Fusion 2.5.
+
+===============================================================
+01. IMPORTAN NOTES:
+DO NOT delete for any reasons the mafosav.ini, it's very important for the game's save settings.
+
+===============================================================
+02. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+
+===============================================================
+03. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec for have made the game first and Nintendo for Mario and all relative
+stuff included in the game.
+
+All people which worked hard in this project:
+*Syzxchulun (main engine creator)
+*Lyh (coder, graphics (ripped))
+*Mario Worker (main director, coder, fangame creator, graphics (ripped and customized), Polish translation)
+*Crist1919 (coder, level designer, beta tester, Polish translation help)
+*Mariovariable3410 (coder, beta tester)
+*Night Fury (level designer, beta tester, graphics (customized))

@@ -1,0 +1,50 @@
+Hi-Fire, dear gamer!! Thank you for wanting to play my game. This version include 4 various, but really interesting worlds,
+and 4 extra-levels (include "50 lives for Bowser") which, I think, will not leave you indifferent.
+
+If you want to pause the game - press "P" and "Enter" to continue your gaming.
+
+So, I wish you a pleasant gaming, and, I hope, you will pass this game without any problem. With respect to you, Firecat!! ;)
+
+P.S. Special thanks to ClassicYoshi666, SakuraMotchi2020, Patchouli Knowledge RL, Tomek839839 and David Escorche for playing and testing this game.
+And special thanks to Dante19977, MJXXX, Patchouli Knowledge RL, Tomek839839 and Krzyspasztecik12 for testing my game and giving some recommendations.
+
+Also some words about MF Through The Rainbow v.2.5.5:
+- Fonts have been replaced.
+- Fixed bugs in 1-1 (with moving platform), 1-2 (with star-block), 1-3 (invisible lava), 2-2 (autoscroll wind),
+4-2 (Horizontal Piranha's Plants), 4-3 (invisible huge Piranha's Plants), etc.
+- Added Extra-Levels which also will be available in version v.3.0 (world 5-2, world 6-5, world 7-5)
+- Replaced some elements and added new enemies (for example, Toxic Bro in 4-1 and 4-3)
+- World 2: In 2-1, 2-3 and 2-4 Shy Guys are now "immune" to Mario's Fireballs, Beetroots and Gears.
+- and many other fixes that I can't remember :D
+
+SOUNDTRACKS:
+Start frame - Rainbow Road - Mario Kart 8 Deluxe OST
+Save Room - Sonic Generations (3DS) (gamerip) - Track 53
+
+World 1 map - Mario Kart 8 Deluxe - N64 Rainbow Road
+1-1 - Mario Kart 64 - Rainbow Road [N64]
+1-2 - Kirby Mass Attack - Tree to tree
+1-3 - Lava Realm I Roadbeasts Theme I Lava Twists - HotWheels World R
+1-4 - Rayman 2 TGE Music Request - Riding The Lava
+Boss Battle - Metal Slug Music- Steel Beast (Boss Theme)
+
+World 2 map - 4mat-Cloudream
+2-1 - Emax - Denied Love
+2-2 - HMC - Dream Off
+2-3 - Super Meat Boy: Can o' Salt (Indie Game Music HD)
+2-4 - New Super Mario Bros Wii - Castle theme
+Boss Battle - ??
+
+World 3 map - Super Mario Galaxy - Sad Girl
+3-1 - Mario Kart 8 Deluxe - N64 Toad's Turnpike
+3-2 - Kirby's Return to Dream Land - Beyond the Hill
+3-3 - The Legend of Zelda: Spirit Tracks - Realm Overworld
+3-4 - Sonic Generations - Scrap Brain Classic (remix by Nico CW)
+Boss Battle - ??
+
+World 4 map - Super Mario 3D world - World 5
+4-1 - Haltmann Works Co. HQ (HQ Area) - Kirby: Planet Robobot
+4-2 - Rainbow Road - Mario Kart: Double Dash!!
+4-3 - Idolm@ster - Town BGM
+4-4 - Megaman X - Boomer Kuwanger Stage
+Boss Battle - Super Robot Taisen Original Generations - Violent Battle

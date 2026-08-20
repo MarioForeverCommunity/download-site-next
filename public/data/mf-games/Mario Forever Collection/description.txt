@@ -1,0 +1,31 @@
+
+  =-= TheMarioVariable presents: Mario Forever Collection =-=
+
+This little application is a bundle of all Mario Forever games I've developed in ten years and counting. You can either decide to open the executable I made for a candy-eye play, or simply go to "games" folder and choose the game you want to play by name.
+
+Mario Forever projects include:
+
+*Mario Worker: Oldest World
+*Mario Worker: Letter Worlds Series (Worlds I to X)
+*Mario Forever Speedrun
+*Mario Forever Remake
+*Mario Worker Remake
+*Mario Forever All-Stars
+*Mario Forever Fanmade
+*Mario Forever Revolution
+*Mario Forever: Hardcore Distopia
+
+===============================================================
+Credits
+
+Michal "Buziol" Gdaniec for Mario Forever
+Mario and all relatives belong to Nintendo
+
+www.themushroomkingdom.net for some soundtracks and www.spriters-resource.com for some sprites.
+
+Visit websites for more informations:
+www.themariovariable.altervista.org
+
+=== INFOS ===
+Release date: October 1, 2019
+Project codename: Project "Variable"

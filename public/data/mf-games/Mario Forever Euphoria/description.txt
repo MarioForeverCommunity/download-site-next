@@ -1,0 +1,74 @@
+[Mario Forever Euphoria] by Ultra Team
+version: v4
+
+Thanks for downloading our game:P
+This game is a little hard(yeah, JUST A LITTLE), but we all believe that you'll defeat it if you can keep trying! And you'll surely be amazed by your great performance when you finally make it.
+
+[tips]
+1.You can easily save your game process at any time by Pause Menu.
+(Be sure that you have saved your game before you end the game process!)
+2.If you have some trouble dashing in some directions in the Chapter 2 Halcyon, it's likely that your keyboard exists some key conflicts. Try to change the options or replace a new keyboard to see if it works.
+
+[Rank Standard]
+Death by Glamour
+3min S
+10min A
+20min B
+40min C
+rest F
+
+Halcyon
+3min30s S
+12min A
+25min B
+45min C
+rest F
+
+Swing Bit Brawl
+6min45s S
+16min A
+40min B
+75min C
+rest F
+
+Rapture
+7min25s S
+20min A
+45min B
+80min C
+rest F
+
+Stratus
+7min30s S
+25min A
+60min B
+90min C
+rest F
+
+True Love
+15min S
+40min A
+90min B
+150min C
+rest F
+
+If you get All S, please contact us and there will be a great gift for you!
+
+[Credit]
+Program: dasasdhba
+Level Design: dasasdhba zqh 2333ty
+Artworks: dasasdhba
+Test: dasasdhba zqh 2333ty xfx daye
+
+[Used Music]
+Death by Glamour by Tobyfox
+Halcyon by xi
+Swing Bit Brawl by waterflame
+Dr.Fetus's Castle by Danny Baranowsky
+Stratus by ~EnV~
+True Love remixed version from Celeste 9D
+
+
+
+---Ultra Team 2021---
+

@@ -1,0 +1,130 @@
+JoséLPK.CF&MF (Lê Phý?c Khánh) presents: Mario Forever: Inversive Worlds - World of Colors
+
+This world is made in Rainbow Engine Mod, originally created by Lyh, modded by TheMachinumps.
+
+SUMMARY
+1. Information
+2. Musics used in the game
+3. Credits
+4. Basic Keys
+
+1. INFORMATION
+World of Colors is served as an extra world in Mario Forever: Inversive Worlds. The arrangement of each level based on
+color arrangement of a rainbow. There are 7 levels - 7 colors to play with, featuring:
+World of Colors-1: Lavatic Lair
+World of Colors-2: Sunset Delight
+World of Colors-3: Pyramid Ruins
+World of Colors-4: Forest Wreck
+World of Colors-5: Jumpy Sky Fly
+World of Colors-6: Sleeting Night Showdown
+World of Colors-7: Poisonous Castle
+
+2. MUSICS USED IN THE GAME
+WoC-1: Jester - Basic Instinct
+WoC-2: (Unknown) - Used in MF:Mysterious Island's world 1-3 & 4-1
+WoC-3: Super Smah Bros. Brawl - Underground theme 2
+WoC-4: Super Meat Boy - Forest Funk
+WoC-5: Mario Kart 8 - Hyrule Circuit
+WoC-6: Stephan Eicher - Combien de Temps ? (MF edition, credits to Xykijun for helping me)
+WoC-7: Megaman Zero 2 - Departure (Mythos version)
+WoC-3 boss: Sonic Generations - Final battle (remix by NicoCW)
+WoC-7 boss: Shingeki no Kyojin (Attack on Titan) - E.M.A
+
+3. CREDITS:
+Michal Gdaniec & Buziol Games: The original game ideas
+ClickTeam: Clickteam Fusion 2.5 Developer provider
+
+GRAPHICS
+- Mariovariable3410
+- TheMachinumps
+- Achiro1407
+
+PROGRAMMINGS
+- TheMachinumps
+- Xykijun
+
+TESTERS
+- Mariovariable3410
+- Phantom Sapphire
+- Xykijun
+- MrPrzemistrz
+
+4. BASIC KEYS
+X: Run/Shoot fireballs
+Z: Jump/Start a level
+ENTER: Start the game
+Left/Right keys: Move left/right.
+Up/Down keys: Enter vertical pipes
+F2: Restart the game
+F3: Go to Save Game Room
+F4: Go to Main Menu
+
+Thanks for downloading my game and wish you a good luck !
+
+Mario Forever is a fangame made by Michal (Buziol) Gdaniec, contents are developed by Nintendo® and Buziol Games.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

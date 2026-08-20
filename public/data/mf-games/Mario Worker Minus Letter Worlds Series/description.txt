@@ -1,0 +1,49 @@
+--- Mario Worker - Minus Letter Worlds Series ---
+Developed by: Xanderstar1456
+Engine by: Lyh and Szxychulun
+
+-- Compilation Releases --
+
+1.) First Batch (Volume 1) - October 21, 2025
+- The game consists of four worlds.
+- Two extra levels are added in the game.
+- One extra demo world is also added in the game.
+
+-- Individual Releases --
+
+1.) World -A (The Beginning) - June 26, 2025
+- The world consists of three levels.
+- An extra level has been added in the game.
+- Newly improved game system (unlike MFEWS :>).
+
+2.) World -B - July 19, 2025
+- The world consists of four levels.
+- System bugfixes in the game.
+
+3.) World -C - October 04, 2025
+- The world consists of four levels.
+- More bugfixes in the game system.
+
+4.) World -D - October 19, 2025
+- The world consists of five levels.
+- An extra level has been added in the game.
+- Some system bugfixes.
+
+5.) World -E - December 6, 2025
+- The world consists of three levels.
+- More bugfixes throughout the game.
+
+6.) World -F (My First Snow World) - December 27, 2025
+- The world consists of four levels.
+- An extra level has been added in the game.
+- Several system bugfixes in the game.
+
+7.) World -G - August 9, 2026
+- The world consists of four levels.
+- A retro level has been added in the game.
+- More bugfixes throughout the game.
+
+8.) World -H - August 14, 2026
+- The world consists of four (?) levels.
+- Two retro levels have been added in the game.
+- Some system bugfixes.

@@ -1,0 +1,46 @@
+		Thanks to have downloaded Mario Worker: New Levels series - version 1.1 BETA!
+
+===============================================================
+01. Infos
+
+IMPORTANT: DON'T DELETE ANY .DLL FILE, NEITHER THE MAFOSAV.INI FILE
+
+===============================================================
+02. Version history
+-v1.1 (January 1, 2021)
+  *[FIX] World 8-2 scroll bug.
+  *[FIX] General fix for Bowser battles, items and enemy placement in some levels.
+
+-v1.07 (October 14, 2020)
+  *[FIX] Fixed some issues encountered in various levels.
+
+-v1.05 (October 10, 2020)
+  *[EDIT] Worlds 6-1, 7-3 and 8-3 difficulty has been decreased.
+  *[FIX] In World 3-3, Mario could die when he touched Piranha Plants in pipes.
+  *[FIX] In World 7-4, Hammer Bros didn't work.
+  *[FIX] Some music didn't loop properly.
+
+-v1.01 (October 8, 2020)
+  *[FIX] Bonus rooms let a bug appear when main next levels started, resulting in scroll not working at all.
+
+-v1.0 (October 7, 2020)
+  *Initial release.
+
+===============================================================
+03. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+CTRL+J = Hide top bar
+CTRL+H = Show top bar
+
+===============================================================
+04. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec to have made the game first.
+Mario and all relatives belong to Nintendo.
+
+Visit our websites for more information:
+www.themariovariable.altervista.org
+http://marioforeverforum.boards.net

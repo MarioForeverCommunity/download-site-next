@@ -1,0 +1,25 @@
+Hello everyone! Welcome to the Official Demo Version of Mario Forever Russian Letter Worlds Series. As a special revival of this series since the cancelation of it.
+
+Game developed by Hyper Somario with Vanilla Engine by Xykijun. Original idea by JUE13.
+
+Special thanks to:
+- KavehKoopa for Mario's Map Direction Fix, any advices on how to use this engine and much more
+- Playerrrr for World Map Making advices and much more
+- Xykijun - engine development
+- Electronic Boy (a.k.a. MarioX7) for life counter and timer graphic
+- TheMarioVariable, JoséLPK.CF&MF, RafaelVitória, Chahine, Crist1919, Phantom Sapphire, MrPrzemistrz, The_Isaax_0480, Super Mario Bros., KavehKoopa, Karol_Pik,
+playerrrr, ReflexGURU, JUE13, 451T, Xykijun, SerafimGWS, Soundwave961, JohnzVN, Dr. Chaos Kirby, Third Star 248 for Support
+
+Credits:
+- Cave background from MF 6.0 belongs to Softendo/Buziol
+- All soundtracks used belongs to their respective owners
+- Timer clock count and heart life counter belongs to Electronic Boy/MarioX7
+- Angry Twhomp by KavehKoopa
+- Pyramid Background by Hyper Somario. Original Idea by Achiro Himuro
+- Columns, Petroleum lavas, Desert Background, Pipemaze background and the custom castle tilesets were made by me from scratch and used with Hue & Saturation
+- Custom Sprite Sheet of Pipes edited by KavehKoopa. Thanks for this. Without it, I would never finish the DEMO Version of my game.
+- Hyper Somario Head-art belongs to Noobvyon (a.k.a. Sehiku The Hedgehog)
+
+Enjoy the game! Have fun!
+
+Peace!

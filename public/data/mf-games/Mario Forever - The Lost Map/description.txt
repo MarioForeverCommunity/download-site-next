@@ -1,0 +1,115 @@
+[MARIO FOREVER: THE LOST MAP]
+
+--------------------------------
+
+THIS GAME IS A STANDALONE EXPANSION
+OF THE SECRET "LOST MAP" WORLD, FEATURING
+8 MAIN WORLDS, MULTIPLAYER AND CUSTOM SKINS!
+
+Thank you for playing The Lost Map!
+
+--------------------------------
+
+[CHANGELOGS]
+>FINAL RELEASE
+-Adjusted cutscene speeds
+-Minor difficulty adjustments in levels
+-Koopa Troopas will now only fall from the sky when there is ground in Koopa Party
+-Adjusted Flying Cheep Cheep spawning position
+-Adjusted wheel debris impact sounds in ending cutscene
+-Fixed animation error in World 2-6 cutscene
+-Fixed 2 instances of Mario being visible in goal warps
+-Fixed an issue in World 7-6 with Spiky Cheep Cheeps appearing from first to second area
+-Fixed Peach's "Help!" text not appearing
+-Fixed synchronization of Koopa Party's spawner in multiplayer. Koopa Troopas will now rain at the player closest to the goal
+-Optimized code
+
+>VERSION 1.4.4
+-"Players spectating" text's transparency is no longer affected by chat
+-Fixed audio issues with moving water
+-Removed auto-updater
+
+>VERSION 1.4.3
+-Added a text string when the game is looking for updates
+-Mario will no longer be coloured without a custom skin
+-Auto-updater is no longer threaded
+
+>VERSION 1.4.2
+-Added custom skin support. For more information, read skinsTutorial.txt
+-Adjusted username position above other players
+-Adjusted tight spots in Hardcore World 1
+-Fixed Lakitu's throwing animation to be more consistent
+-Fixed camera issues in World 5-2
+-Potential fix for error during transition
+
+>VERSION 1.4.1
+-Fixed Upside Down Fire Piranha Plants shooting upwards instead of downwards
+
+>VERSION 1.4
+-Improved syncing of Spiked Cheep Cheep and RNG-based projectiles
+-Improved collision detection for some projectiles
+-Optimized code
+
+>VERSION 1.3
+-Added multiplayer checkpoints in Human Laboratory World
+-You must now have at least 1 more player on your server before entering a world in multiplayer
+-The game will now return to the Save Game room instead after finishing the game in multiplayer
+-Auto-updater is now "threaded", no more freezing when connecting to the auto-updater
+-Fixed an issue where infinite 1UPs would be available after a multiplayer session
+-Fixed being able to crouch and warp while typing in multiplayer
+-Fixed power-up desync in multiplayer
+-Optimized Bowser's movement in multiplayer
+
+>VERSION 1.2
+-Updated ending credits
+-Fixed an error that could occur when defeating Bowser
+-Fixed an issue where Mario wouldn't be invincible after defeating Bowser
+-Fixed Lakitu hit detection
+-Fixed an issue where the ending credits wouldn't appear when revisiting it
+-Optimized code
+
+>VERSION 1.1.1
+-Fixed game crash when auto-updater is not available
+-Optimized code
+
+WARNING: When launching the game with auto-updates enabled and the auto-
+	 updater is not available, the game will freeze momentarily to
+         prevent it from crashing.
+
+>VERSION 1.1
+-Fixed auto-updater showing an error
+-Fixed multiplayer breaking on more than 2 players
+-Fixed update prompt screen
+-Fixed Mario's animations in World 3 ending cutscene
+-Optimized code
+
+[CREDITS]
+
+Nintendo (graphics, sounds, music)
+Buziol Games/Softendo (graphics, sounds, programming, level design)
+Can't Sleep (graphics, programming, level design)
+Mario Worker (level design)
+Player Guy (graphics)
+XYKIJUN (graphics, sounds, programming, assistance)
+JUE13 (programming, assistance)
+Furret78 (graphics)
+Mors (programming, assistance)
+ReflexGURU (hosting)
+
+GMFMODSimple by icuurd12b42
+Crypt by freaked
+Download Manager 2 by hobbel
+Faucet Networking by Medo42
+FN Simple Scripts by wnsrn3436
+
+[DISCLAIMER]
+
+Mario and other related characters
+are a copyright of Nintendo.
+
+This fangame is designed for non-
+profit and is meant to be freeware.
+If you bought this game, you were
+ripped off!
+
+October 20, 2018 - September 2, 2020

@@ -1,0 +1,19 @@
+MARIO FOREVER - ? (readme)
+--------------------------------
+It's a game created and developed by master171. with 9 short-longs levels. I hope you like it. This is the first version of this project, so if you saw a bug, please comment on video preview or DM me on marioforeverforum.boards.net.
+--------------------------------
+Thank you for reading this!
+
+Thanks, master171.
+
+MARIO FOREVER - ? (version log)
+----------------------------------
+v1.0 (10/14/2020):
+- Created first 6 levels of World ,,?"
+
+v1.2 (10/26/2020):
+- Added more 3 levels of this world (?-7, ?-8, ?-9).
+- Fixed some bugs on ?-5 when Mario die.
+- Implemented the ,,Fullscreen Mode" option in game. Now, you can play in Fullscreen mode without problems. You can set Window Mode if you want to exit by Fullscreen by pressing Ctrl+J, going to Options and select the ,,Window Mode" option.
+- Added the first main 3 frames: Intro, my Logo and Disclaimer for a more ,,beauty" aspect ;P.
+----------------------------------

@@ -1,0 +1,43 @@
+Mariovariable3410 presents:
+
+Mario Worker: The contest II - Winners
+made with marioforevereditorv1.cca, fixed by Syzxchulun, Lyh and Mariovariable3410
+Release date: March 8th, 2015
+-----------------------------------------------------------------------------
+SUMMARY:
+*01. Infos
+*02. Credits
+*03. Keys
+*04. Ends
+
+
+01. INFOS
+-----------------------------------------------------------------------------
+Mario Worker: The contest II, like the first one, is a contest for all users which want to see their levels made with a Mario Worker,
+remade in a Mario Forever style. Only the best three can obatin this possibilty.
+
+The best world will be implemented in Mario Forever Remake, with a unique map for it.
+
+02. CREDITS
+-----------------------------------------------------------------------------
+Michal Gdaniec: for the original game ideas. Very special thanks to him;
+Nintendo: for the developed stuff in the game;
+Syzxchulun: For great help to make the engine better;
+Rock537: for gave me a lot of sprites which were very useful for my game.
+www.clickteam.com: for MultiMedia Fusion 2 Developer
+
+And all guys which helped us for make this engine better!
+
+03. KEYS
+-----------------------------------------------------------------------------
+The basic keys are:
+X: Run/Shoot Fireballs
+Z: Jump/Start a level
+ENTER: Start the game
+Arrow keys: Move left and right. Press up or down for enter in a vertical pipe.
+
+04. ENDS
+-----------------------------------------------------------------------------
+Visit www.mariovariable3410.jimdo.com for more infos about me and other worlds!
+
+Mario Forever is a fangame made by Michal (Buziol) Gdaniec, contents are developed by Nintendo® and Buziol Games.

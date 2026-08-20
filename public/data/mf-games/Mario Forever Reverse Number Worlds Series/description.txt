@@ -1,0 +1,51 @@
+WORLD 1-1: Virgill-Interference ending
+WORLD 1-2: 4mat-Bubblebath
+WORLD 1-3: b.r. gibson-Happy Mountain
+WORLD 1-4: Super Mario World-Ghosthouse
+WORLD 1-4 Map Music: Corrosion-Riot11
+
+WORLD 2-1: Beach-New Super Mario Bros. Wii
+WORLD 2-2: MegaMan X2 - Bubble Crab Stage
+WORLD 2-3: Dave the Brave-Sirens
+WORLD 2-4: Yoshi's Island - Castle Theme Remix/Remaster
+WORLD 2-4 Map Music: 4mat-The Golden Ages
+
+WORLD 3-1: Garry's Mod ZS Zombie
+WORLD 3-2: Super Smash Bros Brawl Vs Ridley
+WORLD 3-3: Epic ZOMBIE Soundtrack, track 4
+WORLD 3-4: Toy Story 2-Elevator Hop
+WORLD 3-4 Map Music: 4mat-Phantas Magoria
+
+WORLD 4-1: Undertale OST: 024-Bonetrousle
+WORLD 4-2: Undertale OST: 098-Battle Against a True Hero
+WORLD 4-3: Jazz Jackrabbit 3 OST-Haunted terrero
+WORLD 4-4: Jazz Jackrabbit 2 Soundtrack-Jazz Belmont
+WORLD 4 Map Music: New Super Mario Bros World 8 map
+
+WORLD 5-1: Yoshi's Island-Underground
+WORLD 5-2: Corrosion-The Glory
+WORLD 5-3: EastNewSound-Alegro (Insturmental)
+WORLD 5-4: RosenKreuzStilette-Iris Stage
+WORLD 5 Map Music: 4mat-Shadow Dancing 
+
+WORLD 6-1: Rayman 2 The Great Escape-The Attack Run
+WORLD 6-2: Star Fox-Corneria
+WORLD 6-3: PacMan-Space Race 
+WORLD 6-4: Elwood-Sweet dreams
+WORLD 6 Map Music: Rayman 2 The Great Escape-Overworld
+
+WORLD 7-1: Athletic Theme-Super Mario World 2
+WORLD 7-2: No Music!!!
+WORLD 7-3: Athletic Theme-Super Mario World
+WORLD 7-4: Underground Theme-Super Mario World
+WORLD 7-5: Yoshi's Island-Castle
+WORLD 7 Map Music: Corrosion-Italian Boys
+
+World 8-1: Newer Super Mario Bros Wii-Fire
+World 8-2: Mosez-The Dark Half
+World 8-3: Super Mario All Stars SMB3 Castle
+World 8-4: SMW Custom Music The 7th Annual VLDC-Fire
+World 8-5: HMC-Dream Off
+World 8-6: No Music!!!
+World 8-7: Mario Kart 64 Bowser Castle
+World 8 Map Music: 4mat-Dream Again

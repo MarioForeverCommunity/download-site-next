@@ -1,0 +1,30 @@
+THANK YOU FOR DOWNLOADING MARIO FOREVER: INVERSIVE WORLDS!
+
+"Mario Forever: Inversive Worlds" is my grand project, consisting of worlds in inversive numbers of the integer number. This project is a fanmade version of the original "Mario Forever", a Super Mario fanmade game created by a Polish creator, legend Michal "Buziol" Gdaniec made in Multimedia Fusion 1.2.
+This project is made in Multimedia Fusion 2.0.
+
+1. Version general info
+
+MF:IW 1.0 contains 3 main worlds, alongside with 1 world from VNLWS, 2 worlds from NVNLWS, 3 levels from 3 later worlds of IW main story.
+
+2. Version history
+
+- v1.0 (December 23th, 2019)
+First release of the game. Featuring:
++ First main worlds: 1/1, 1/2, 1/3.
++ World Ã from VNese Letter Worlds Series.
++ Worlds from non-VNese Letter Worlds Series.
++ Pre-release levels from the later main worlds: 1/4-1, 1/5-5, 1/6-3.
++ Additional Secrets.
+
+3. Basic keys and further infomation
+X: Run/Shoot fireballs
+Z: Jump/Start a level
+ENTER: Start the game
+Left/Right keys: Move left/right.
+Up/Down keys: Enter vertical pipes
+P: Pause the game
+F2: Restart the game
+F3: Go to Save Game room
+F4: Go to Main Menu
+Thanks for downloading my game and wish you a good luck !

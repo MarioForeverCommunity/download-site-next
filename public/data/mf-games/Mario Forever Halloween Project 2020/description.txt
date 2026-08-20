@@ -1,0 +1,70 @@
+		The Forever Team presents: Mario Forever: Halloween Project 2020
+
+===============================================================
+01. Infos
+
+This is a Mario Forever game entirely Halloween themed; you'll encounter spooky levels, scary enemies and deadful boss battles!
+Every level has been built by a member of the team, each with its own style and thematic.
+
+Each world has a proper theme:
+World 1 - Pumpkin Kingdom
+World 2 - Haunted Hills
+World 3 - Dark Deadlands
+
+We hope you enjoy the game, and Happy Halloween (even if a bit late :p)
+
+===============================================================
+02. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+CTRL+J = Hide top bar
+CTRL+H = Show top bar
+
+===============================================================
+03. Version history
+v1.2 (Novembre 21, 2020)
+*[FIX] If a Game Over occours in 3-6 boss battle, the game will restart oddly.
+*[FIX] Ambience sound in outro cutscene still goes on.
+
+v1.1 (November 16, 2020)
+*[ADD] Continue screen
+*[FIX] Save system glitched; when saving in a slot, other slots might be damaged.
+*[FIX] Lives, coin counter and score displayed incorrectly due to ini bug.
+*[FIX] 3-2 started with checkpoint enabled.
+*[FIX] Some innacurancies in 3-4 have been adjusted.
+
+v1.0 (November 15, 2020)
+*Initial release
+
+===============================================================
+04. Credits
+
+Main menu - Welcome to Skull's Hell (Fortress 2 Blue) - Wyatt
+Save game room frame - Toad Town - Mario & Luigi: Partners in Time
+
+World 1 Map - Halloween Kingdom - dead_silence - Stamen
+- World 1-1: Plains - Pumpkin - Newer Super Mario Bros Wii
+- World 1-2: Underground - The Beginning - Squids Odyssey
+- World 1-3: Athletic - Flying around - 4mat
+- World 1-4: Castle - Mystic Mansion - Sonic Heroes
+- World 1-4: Boss - Dark Meta Knight - Kirby & The Amazing Mirror
+
+World 2 Map - Haunted Hills - haunted - YAZ
+- World 2-1: Plains - Twilight City - Mario vs Donkey Kong
+- World 2-2: Athletic - Dark World: C.H.A.D.'s Broken Wind - Super Meat Boy: Chapter 2
+- World 2-3: Undergrounds - Diet - mikekay
+- World 2-4: Clock Tower - End of the Darkness (SMW Port) - Nepheshel
+- World 2-4: Boss - Final Boss - Sonic Mania
+
+World 3 Map - Dark Deadlands - deadpianoman - ???
+- World 3-1: Plains - Haunted House - Super Mario 64
+- World 3-2: Underwater - Crossroads - Bee Hunter
+- World 3-3: Abandoned City - Fear - Front Mission 4
+- World 3-4: Abandoned Factory - One Calm Day - Alexander Brandon
+- World 3-5: Abandoned Tanks - Music Kit 'Lion's Mouth' Main Menu - Counter Strike: Global Offensive
+- World 3-5: Abandoned Forest - Betus Blues - Super Meat Boy
+- World 3-6: Abandoned Castle - Haunted Terrero - Alexander Brandon
+- World 3-6: Boss Part 1 - King of the Koopas - Paper Mario 64
+- World 3-6: Boss Part 2 - Dr Wily Machine - Mega Man 8

@@ -1,0 +1,1 @@
+When you see any freezes problems in the game, you can turn on V-Sync from menu bar.

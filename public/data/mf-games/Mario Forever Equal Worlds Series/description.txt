@@ -1,0 +1,203 @@
+--- Mario Forever: Equal Worlds Series ---
+Developed by: Xanderstar1456
+Engine by: Lyh and Szxychulun
+
+This idea was originally planned in 2020 and some levels are made with Mario Worker Remake v3.03 by TheMarioVariable. After discovering an engine made by Lyh and Szxychulun, I was planning to remake those levels and put it in that engine. But unfortunately, some objects in the engine are not complete and they have to be made in order to finish those levels. So, with my struggle to modify the engine, I have completed it and here's the journey that started. :)
+
+-- Version Update --
+
+1.) v1.0 (Starting Point) - June 10, 2021
+- Worlds =1, =2, and =3 are added.
+- Evil Sunset Coins and Poison Clouds are added as extras.
+- Full Modification of the engine (especially the levels).
+- Maps and Texts are not yet properly made (especially the texts in the main menu part).
+- No Cutscenes are yet made (Soon, or I need anyone to help me to make cutscenes in some levels hehehe :>).
+
+2.) v1.05 (Small Improvement) - July 15, 2021
+- Checkpoints are added in all levels.
+- Difficulty of Worlds =1-2, =1-5, =2-2, and =3-4 are nerfed.
+- Fixed an issue where the enemies move fast when they're falling.
+- Fixed a bug in the finish line in all levels.
+
+3.) v1.1 - December 01, 2021
+- World =4 Demo is added (Worlds =4-1 and =4-2 specifically).
+- Space Rainbow is added as an extra level. (Not fully polished)
+- Difficulty of World =1-3 is nerfed.
+- Fixed an issue where it leads to World =2-2 when the game is over.
+- Improvements in the save game room.
+
+4.) v1.2 - January 20, 2022
+- World =6-1 (Sneak Peek) is added as a secret level.
+- Big fixed level designs.
+- Maps are slightly improved.
+- Cutscenes are added (not all, castle cutscenes are not yet made).
+
+5.) v1.4 - May 11, 2022
+- Sneak Peek Zone is added. Enter the pipe below when you enter the first save game room screen.
+- World =6-1 (Sneak Peek) is removed as a secret level and was moved to the Sneak Peek Zone.
+- Underground Trip is added as an extra level.
+- The levels are now slightly alike with the original Mario Forever style (or Mario Forever Remake style).
+- Fixed an issue where Mario dies when he goes further in the end of the level (the finish line).
+
+6.) v1.45 - February 17, 2023
+- World =5-1 is added in the Sneak Peek Zone.
+- Big expansion in World =3-4.
+- Dark Below is added as an extra level.
+- Main Menu screen is now slightly improved.
+- Modification of the map system of all worlds. Now it is slightly like the original game (except for the map designs :)).
+
+7.) v1.5 - October 07, 2023
+- Fireball Madness, Roto-Discs Attack, and The UnderFire are added as extras.
+- Complete improvements in all levels.
+- Fixed more bugs in the game.
+- Credits are now updated after checking the application information (where it is mainly forgotten by me :l).
+
+8.) v2.0 (The Big Update) - February 12, 2024
+- World =5 is now officially added in the game.
+- A Cheat System is added in the game (just like in MFR).
+- Roto-Discs Attack is now made as World =5-2.
+- Afternoon Play is added as an extra level (This was originally made in MWR v3.03).
+- No Power-Ups Challenge is added as an extra world.
+- The Alternate Versions Zone is added.
+- Underground Trip is now renamed as Cave Trip.
+- World =4 Demo is removed.
+- Sneak Peek Zone is removed.
+- The Underfire is removed as an extra level.
+- Big Modification in the save game room. Now you can select Worlds from =1 to =5 by pressing 1 or 2 in the keyboard, red color means the world is not yet available.
+- The Power-Up Shop in the save game room is now like in the original game.
+- Texts are slightly improved.
+- Fixed the lava animation with fire boo in all levels.
+- Fireball Madness has mass changes.
+
+9. v2.1 (The Big Improvements and Official Release in the Public) - April 23, 2024
+- Big Map Design revamp in World =3 and =5.
+- Added a storm effect in Fireball Madness.
+- Added a rain and storm effect in World NP-3.
+- Added a snow effect in World NP-4.
+- A little design improvement in Evil Sunset Coins.
+- Added a new star background in Poison Clouds.
+- Level Name Colors are now added in the levels in The Alternate Versions Zone. Red means the level is in an alternative difficulty while Green means the level is in an alternative change.
+
+10. v2.1.1 (Small Bugfix Update) - April 26, 2024
+- Beetroots won't disappear after going down off-screen in World =1-2.
+- Fixed a bug where the volume of the music in World =1-3 AV was minimized after getting the super star power.
+
+11. v2.2 (Exclusive Revamps and Improvements) - July 15, 2024
+- World =4 and =6 has been finally added in the game, along with World =7.
+- Rainbow Shell's Area has been added as an extra level.
+- World =1 has mass changes. Added a short introduction story when entering the world.
+- Slight changes, new designs and nerfs in most levels.
+- World NP-4 has slight revamps: Pink Piranha Plants has been replaced by Snowball Piranha Plants, Ice Coins has been added, and Fire Roto-Discs are replaced by Ice Roto-Discs.
+- Castle cutscenes are also finally added, but some parts needs to be replaced because they are not the actual ones in that particular world.
+- Added some parts in the save game room where their levels are coming soon in future updates.
+- Added a window/full screen mode selection when opening the game.
+- Texts and Designs in the game are finally managed and improved.
+- The design for the Main Menu screen has been finally also improved.
+- All extra levels have now a unique level name design (except for Cave Trip and Afternoon Play since they are formerly made with MWR v3.03, making their default level name design a sign that is really made with.)
+- Map system in all worlds have been finally managed and completely fixed.
+- Bugfixes in the bowser battle system in all levels.
+- Fixed a bug in all levels where the timer is directly reduced in the end flag while the theme was still playing.
+- Fixed a bug in most levels where if you move forward after the end flag but not triggering the end level part, the screen will automatically focus on the part that is in 12000 pixels in the level width.
+- Fixed a bug where you will be directed to World =2-2 after completing World =1.
+- Fixed a bug where you will be directed to World =3-3 after completing World =2.
+- Fixed more bugs that I don't need to say them one by one. :)
+
+12. v2.2.1 (Minor Fix Update) - July 17, 2024
+- Minor design fix in World =1.
+- Fire Flower misplaced bug removed in World =2-3.
+- More nerfs in World =3-4.
+- Minor bowser battle system fix in all levels.
+- World =7-3 has buffed.
+
+13. v2.3 (Not a Big Update) - November 5, 2024
+- World =8 has been added in the game.
+- Minor changes in most levels.
+- World =9-4 has been added as a sneak peek level.
+- The Alternate Versions Zone has been removed but the levels will remain as secrets.
+- More bugfixes on the Bowser Battle system on all levels.
+
+14. v2.4 (The Next Project Level) - December 26, 2024
+- World =9 has been added in the game.
+- World =9-4 (Sneak Peek level) is now removed since the main one is available.
+- The "Creator's" Levels - World XS has been added in the game.
+- Lava Raise Challenge level development has been cancelled as an extra level.
+- Some slight level changes in No Power-Ups Challenge.
+- More bugfixes in the game.
+- World =8-3 has slight level changes.
+- Possibility of expanding the level of World =8-5 has increased.
+- More buffs and nerfs in most levels.
+- More bugfixes in bowser battle system.
+
+15. v2.4.1 (Major Bugfix Update/Fixed Export) - January 4, 2025
+- Checkpoint bug fixed in the whole game.
+- Fixed Beetroot bug where Mario can shoot two beetroots instantly with one press.
+- Colorful animation in blocks (especially the ground) fixed in Space Rainbow.
+- World XS map music frequency changed.
+- Fixed Duplicate bug where there are two Power Marios generated when Super Mario gets a power-up.
+- Fixed bug in World NP-1 where Super Mario object didn't dissapear after reaching the power-up limit in the level.
+- Minor buffs implemented in World XS-3.
+- Major lagging bug fixed in World =8.
+- Death bug in World XS-2 has been fixed.
+- Misplaced layer blocks fixed in World =3-4.
+- Map screen bug for World =4-2 has been fixed.
+- Thwomp bug during bowser battle in World =5-4 has been fixed.
+- Buffs implemented in World =7-2.
+- A new main menu screen has been implemented in this version.
+- A selection after the game is over has been added instead of just leading to the save game room.
+
+16. v2.4.1.5 (Pre-requisite of the Final Update) - February 22, 2025
+- The "Creator's" Levels - World BZ has been added in the game.
+- New Checkpoint Effect has been added in the game (Thanks to MF Feather Engine).
+- The Sticky Ceiling Bug has been fixed in the whole game (not supposed to implement it since the game refers to the original mf system where this bug exists).
+- New Improvements in the bowser battle system in all levels.
+- The Main Worlds can now only be accessed consecutively (Ex: Completing World =1 unlocks World =2).
+
+17. v2.5 (The Final Update of the Game) - March 29, 2025
+- World =10 (The Final World) has been added in the game.
+- Spring On The Ride has been added as an extra level.
+- World =8-2 and Evil Sunset Coins musics has been changed.
+- More Layering bugfixes throughout the whole game.
+- Fixed Level Layout in World NP-3 (AV) otherwise it's impossible to complete.
+- World =3-4 is back in its early version where it is not a long level to complete, but its extended version is still available as a secret level. The Roto-Discs is also back in its default speed.
+- New mechanics when fighting Bowser in all levels.
+- World BZ-4 Bowser Battle has a new mechanic where Bowser can heal himself in a special torchlight.
+- World =3-3, =4-3, =6-4, =9-4, XS-3, and =1-3 (AV) has slight nerfs.
+- The idea of the level expanding of World =8-5 has been cancelled.
+- New conditions added to access certain levels in the Save Game Room.
+- A new option added in the toolbar. Now, you can switch between the two original Bowser Battle musics.
+- The Lava Cave Room in the Save Game Room has been replaced by an ordinary version of a room in the game.
+- The Version Update Info in the Save Game Room has been removed and replaced by a new Achievement Room.
+
+18. v2.5.1 (First Final Update Bugfix) - March 31, 2025
+- Certain changes in the level layouts of World =10.
+- World =10-4 Mini-boss fight bug fixed.
+- World =10-7 3rd Section Platform bug fixed otherwise it's impossible to reach and complete the world.
+- More layering fixes throughout the entire game.
+- As for the Developer's compensation, here's the following changes that are added in the game.
+ * New Toolbar Option: Unlock All Equal Worlds (Restart To Disable) - Enabling this option will unlock all of the main worlds in the game, but this option changes the following conditions:
+                   a.) Available only when not in the Save Game Room onwards, the game.
+                   b.) Achievements Room will not be available.
+                   c.) The Extra Levels will not be available.
+
+19. v2.5.2 (Down With The Flow Bugfix) - June 19, 2025
+- Level Layout Changes in World NP-5 otherwise the world cannot be completed.
+- Evil Sunset Coins level have bugfixes.
+- Another fix on the bowser battle system on all levels.
+- Minor improvements in the Main Menu of the game.
+- Some new mechanics added in World XS-3 and World BZ-4.
+- Added some elements in some levels to make it slightly less difficult.
+- Bugfix in Spring On The Ride level after completing it.
+- The game will bring you directly to the save game room after completing a main world instead of the next world when the "Unlock All Equal Worlds" option is enabled.
+- More layering fixes throughout the entire game.
+
+20. v2.5.5 (Possible Bugfix) - October 1, 2025
+- Various nerfs in the level layouts of World =1, =2 and =3.
+- Added a new message when an alternate version passage is near.
+- World =1-3 (AV) has nerfs since it is very difficult to complete.
+- Several buffs in World XS-3.
+- Bowser Battle in World BZ-4 is slightly nerfed.
+
+21. v2.5.6 (Rare Bugfix) - January 4, 2026
+- The annoying rare bug during the bowser fight in certain levels in the game has been finally fixed (especially World =10-7).
+- Few changes throughout the entire game.
+- More nerfs included in World =1-3 (AV)

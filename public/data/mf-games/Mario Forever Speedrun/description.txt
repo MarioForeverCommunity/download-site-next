@@ -1,0 +1,36 @@
+		Thanks to have downloaded Mario Forever Seasons - version 1.1 BETA!
+
+This game is a kind of homage to Mario Forever: Advance Editon. Here you'll play 5 worlds that will drive you crazy because of their
+insane difficulty. If you beat them, it means that you're a MF pro player!
+
+Have fun! ;)
+
+===============================================================
+01. Infos
+
+IMPORTANT: DON'T DELETE ANY .DLL FILE, NEITHER THE MAFOSAV.INI FILE
+
+===============================================================
+02. Version history
+
+-v1.0 (October 6, 2017)
+  *Initial release.
+
+===============================================================
+03. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+CTRL+J = Hide top bar
+CTRL+H = Show top bar
+
+===============================================================
+04. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec to have made the game first.
+Mario and all relatives belong to Nintendo.
+
+Visit our websites for more information:
+www.themariovariable.altervista.org
+http://marioforeverforum.boards.net

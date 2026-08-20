@@ -18,8 +18,10 @@ const imageExtensions = ['.webp', '.png', '.jpg', '.jpeg', '.gif', '.avif', '.sv
 function sanitizeName(name) {
   if (!name) return '';
   let sanitized = name.replace(/[:/\\]/g, '');
+  // 移除 Windows 非法目录字符，使目录名可与实际文件夹匹配（如 "Mario Forever - ?" -> "Mario Forever -"）
+  sanitized = sanitized.replace(/[*?"<>|]/g, '');
   sanitized = sanitized.replace(/\.+$/g, '');
-  return sanitized;
+  return sanitized.trim();
 }
 
 function getImageFiles(dir) {

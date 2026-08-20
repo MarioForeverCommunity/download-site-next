@@ -1,0 +1,7 @@
+Please make sure the windows of your PC is at least windows 10. Otherwise, you will encounter an error.
+
+If your PC does not support Vulkan or Direct3D 12, please consider running via "Run in Compatibility Mode.bat".
+
+If your PC does not support Direct3D 12 but supports Vulkan, please run the game via "Run in Vulkan.bat"
+
+Due to the fact that running from bat will allow you to check the console of the game, you can help with feedbacks based on the information in the console.

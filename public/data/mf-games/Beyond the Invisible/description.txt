@@ -1,0 +1,20 @@
+Mario Worker Level Remake: Beyond the Invisible
+=====================================================
+1. Info
+This game is a remake of zqh__123's Mario Worker 1.1 level: Beyond the Invisible.
+=====================================================
+2. Default Controls
+Z - Jump
+X - Run
+Left / Right Arrow: Move left / right
+F1 - Show "About" dialogBox
+F2 - Restart game
+=====================================================
+3. Credits
+Original level is created by zqh__123.
+Remade by newlife2017.
+Title screen is made by wsw.
+Powered by Lyh's Rainbow Engine.
+=====================================================
+4. Contact Info
+Innovation Leap Website: http://newlifegames.jimdo.com/

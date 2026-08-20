@@ -1,0 +1,34 @@
+Hi!
+
+Thank you so, SO much for playing this game, trust me, it really does mean a lot!
+
+This is the second demo of my Mario Forever Fangame, The Grand Star, which is currently in development.
+Newer versions will be released as time passes.
+
+This fangame is NOT affiliated with Nintendo, and I am making NO profit out of it. All assets belong to their
+original creators.
+
+
+The game by default runs with the Compatibility renderer.
+
+If your computer supports Vulkan/Forward+ graphics, please run the game with the file:
+"00. Launch in Forward+ Mode (Vulkan).bat"
+
+If, for some reason, you open the executable file and it doesn't open/stays stuck in a blank screen, try using the .bat 
+files to launch the game in Compatibility Mode (compatible with OpenGL devices).
+
+
+Any skins made in the latest version of Mario Forever: Community Edition should be compatible with this game.
+
+
+
+--- CREDITS ---
+
+This game is made in the Thunder Engine, a Mario Forever engine in Godot made by Meteo Dream.
+
+Mario Forever was made by Buziol Games/Softendo in 2004.
+
+The Mario franchise belongs to Nintendo.
+
+
+NES TrueType font made by Patrick Adams (TheWolfBunny64)

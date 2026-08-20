@@ -1,0 +1,28 @@
+ Mario Forever - Winter Warmth README
+---------------------★☆★-------------------
+1.Greetings
+    I am very grateful for choosing this one from the vast number of MF games. Although only half of the whole game is presented this time, I believe that as long as you experience it with your heart, you can feel its uniqueness, enjoy it, and look forward to the full version:)
+    The next content is answering some questions about the controls, as well as some cautions when playing. In order to get the best experience, please read this text carefully:)
+    Hope you can enjoy it:)
+----------------------------------------------
+2. Preparation before Starting
+    This game does not need to be installed. You can directly open the EXE file of the game to play it.
+    Please be sure to install the Delfino font in the game folder to ensure that the text in the game can be displayed normally. It's one of the "features" of MMF games......
+----------------------------------------------
+3. Controls
+    Default:
+    ←/→ - Move left/ right
+    ↓ - Crouch down/ Enter pipes
+    z - Jump
+    x - Fire/ Run
+    ↑ - Investigate/ Talk/ Enter Doors/ Enter Pipes/ Use Natural Protection
+    Enter - Talk with Redember/ Show next conversation
+    Backspace - Return to Mushroom Kingdom/ Return to Main Menu
+    Shift - Use Elemental Absorbing
+    Except for the last four items, all other items can be changed to your habitual controller mode through Key Config.
+----------------------------------------------
+4. Goals
+    Different from the traditional MF games, the condition for stage clear is not to reach the destination, but to collect Warm Jewels with the help of task hints and your partner. Please try your best to collect all the Warm Jewels.
+----------------------------------------------
+5. If all is well......
+    Then start your journey now. Good luck!

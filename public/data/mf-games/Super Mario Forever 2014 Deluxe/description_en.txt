@@ -1,0 +1,77 @@
+﻿Super Mario Forever 2014 Deluxe v1.0
+Release Date: February 15, 2018
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONTENTS:
+*01. Info
+*02. Credits
+*03. How to Play this Game
+*04. Release History of Super Mario Forever 2014 (Deluxe)
+*05. Ends
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+01. Info
+"Super Mario Forever 2014 Deluxe", as you are going to play, is the deluxe version of "Super Mario Forever 2014" (first released in July 20, 2014).
+
+As you know, the original version of "Super Mario Forever 2014" only have 9 worlds, 38 levels, which doesn't meet the plan I had ever made because I have no much time to complete my plan in 2014.
+Now I remake the original version of "Super Mario Forever 2014", and add some new levels. Besides, some design of level are adjusted, too. Now the deluxe version have 10 worlds in total.
+Enjoy the game!
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+02. Credits
+Clickteam: Provide the working platform (Clickteam Fusion R283.5 & Multimedia Fusion 2 Developer).
+Nintendo: The pioneer of Mario games, who created the world of Mario.
+Michal Gdaniec: Provide the original idea of Mario Forever.
+Mario Forever Remake Group (China): Provide the game engine and sponsored the game. Some numbers also help to test the game.
+LongZongKuiYan: The Producer, Director, Level Designer of the game.
+
+Thanks for all the support and help!
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+03. How to Play this Game 
+
+*The recommended keys are:
+Z: Jump / Start a level
+X: Run / Shoot Fireballs
+Left / Right: Move / Run (with "X" pressed) / Enter a horizontal pipe
+Up / Down: Crouch / Change a option / Enter a vertical pipe
+Enter: Select an option
+
+*You can change all the settings in "options" as your preferences.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+04. Release History of Super Mario Forever 2014 (Deluxe).
+
+*Super Mario Forever 2014 Deluxe:
+February 15, 2018: Super Mario Forever 2014 Deluxe v1.0
+
+*Super Mario Forever 2014:
+February 18, 2015: Super Mario Forever 2014 v1.25
+August 23, 2014: Super Mario Forever 2014 v1.2
+July 20, 2014: Super Mario Forever 2014 v1.0
+
+*Super Mario Forever 2014 World 1
+February 11, 2014: (Super) Mario Forever 2014 v0.92 Beta
+February 9, 2014: (Super) Mario Forever 2014 v0.90 Beta
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+05. Ends
+Thanks again for all the players!
+Have a nice playing time!
+
+-------------------------------------------------------------------------------------------------------
+
+Appendix:
+Visit our websites for more information:
+http://tieba.baidu.com/f?kw=%D3%C0%D4%B6%B5%C4%C2%EA%C0%F6&fr=index
+(Wibesite of Baidu Mario Forever Bar)
+
+Suggested reading: http://mfresources.ys168.com
+(Official Netdisk of Baidu Mario Forever Bar)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

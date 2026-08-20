@@ -1,0 +1,88 @@
+		Hello! Welcome, and thanks to play Mario Forever: Community's New Year 2021!
+
+This special edition of Mario Forever is made by MF Community people who wanted to drag a new experience of play, with their own levels, bundled together to make a proper game!
+
+INDEX
+  01. STANDARD vs. DIRECT 3D 9
+  02. CHANGELOG
+  03. CONTROLS
+  04. CREDITS
+
+===============================================================
+01. STANDARD vs. DIRECT 3D 9
+
+The game comes with two versions: Standard display and Direct 3D 9 display.
+
+Standard display mode is the classic method which displays all common stuff like original MF games, but this might income in lags for some specific PCs.
+This mode is recommended generally for any PC, aside some cases where most recent PCs doesn't support old screen mode.
+
+Direct 3D 9 display mode shows less effects and candy-eye graphics in the game, but it might run better without incoming lags in the aforementioned specific PCs.
+This mode is recommended specifically for most recent PCs.
+
+If you're unsure which mode to choose, use the Standard mode.
+
+===============================================================
+02. CHANGELOG
+-v2.05 (March 12, 2021)
+  *Worlds 2-3, 2-4, and 3-3 have been nerfed.
+
+-v2.04 (March 7, 2021)
+  *Time increased in 2-4, from 360 to 700.
+
+-v2.03 (February 16, 2021)
+  *Bugfixing:
+    *World 3-3 was impossible to end due to Mario dying after he walked out the level.
+    *World 3-A started at checkpoint.
+
+-v2.02 (February 14, 2021)
+  *Bugfixing:
+    *World 3 levels, for some reason, were deactivated by default, not being loaded at all and closing the game afterwards.
+
+-v2.01 (February 14, 2021)
+  *Bugfixing:
+    *World 2-3 end music looped endlessly
+    *World 2 and 3 levels game over skipped directly to main menu, not resetting lives, coins and score
+
+-v2.0 (February 13, 2021)
+  *Worlds 2 and 3 have been added
+    *2-1, by WSW
+    *2-2, by RafaelVitoria
+    *2-3, by Shadow_78
+    *2-4, by rapbattle5472 (Vlad)
+    *3-1, by KavehKoopa
+    *3-2, by TheMarioVariable
+    *3-A, by Crist1919
+    *3-3, by rapbattle5472 (Cosmin)
+    *3-4, by Karol_Pik, Chahine and RafaelVitoria
+-v1.0 (January 1, 2021)
+  *Initial release with following features:
+    *World 1:
+      *Level 1, by TheMarioVariable
+      *Level 2, by Karol_Pik
+      *Level 3, by KavehKoopa
+      *Level 4, by Playerrr
+
+More worlds are set to appear in next versions!
+
+===============================================================
+03. CONTROLS
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+Left and right arrows = Choose Mario or Luigi (Main Menu only)
+CTRL+J = Hide top bar
+CTRL+H = Show top bar
+1 (Keyboard) / 4 (Num. Keyboard) = Choose a letter world
+2 (Keyboard) / 6 (Num. Keyboard) = Choose a letter world
+
+
+===============================================================
+04. CREDITS
+
+Mayor credits go to Michal "Buziol" Gdaniec for Mario Forever game.
+Mario and all relatives belong to Nintendo.
+
+I want to thank all people who took part to this project. It means a lot for Mario Forever community in general and fans. Everyone has his own right to make something special, made by people who have effort and warranty to still play this old-style game, and still wants to improve it!
+
+Karol_Pik in first place for idea, and Chahine, Crist1919, Demon Slayer, JoséLPK.CF&MF, KavehKoopa, Playerrr, RafalVitoria, rapbattle5472 (Vlad), rapbattle5472 (Cosmin),  Shadow_78 and WSW for their levels and support!

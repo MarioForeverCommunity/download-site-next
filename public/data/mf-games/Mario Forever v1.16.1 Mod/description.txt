@@ -1,0 +1,27 @@
+Mario Forever - Version 1.16.1
+
+Original game by Buziol Games/Softendo.
+Modded by JUE13 ^ Meteo Dream to support newer hardware and portability.
+
+Press Ctrl+J to open a menu bar with some additional settings!
+Note: The option "Higher quality music" is not applied immediately and will only affect music that will play afterwards.
+
+This mod also includes Human Laboratory World (named GRY.o2.PL here), which has been ported over from Version 2.16.
+It wasn't there in the original v1.16.1! I think it is a nice addition to the main game, so I am including it in this mod.
+
+The main focus of this mod, as previously mentioned, is better support for new hardware. The game itself will not be very different from the original.
+Generally, no bugs have been fixed (aside from the controls failure bug and the World 3-3 crash, which have been fixed), although some bugs might have been indirectly fixed due to the MMF1.5 to CTF2.5 switch.
+All features from v1.16.1 are here, including harder level design and the non-standard soundtrack choice in some levels.
+
+
+The game runs in Direct3D 9 display mode by default. If you want to switch to the Software mode, launch the game with "/DIB" launch argument (without quotes).
+
+If you feel like the game is very janky, you should try playing Mario Forever: Community Edition instead!
+
+
+Join our Discord server Cloud Lounge! https://discord.gg/VwgV6GmwXv
+
+
+Disclaimer:
+This game is freeware and free of any charge.
+Super Mario names, graphics are copyright of Nintendo LTD.

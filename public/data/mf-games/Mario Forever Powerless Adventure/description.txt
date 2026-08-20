@@ -1,0 +1,48 @@
+						Hello!
+
+		First and foremost I would like to thank you for downloading this game.
+
+				Mario Forever: Powerless Adventure
+
+===============================================================
+01. Infos
+
+IMPORTANT: DO NOT DELETE ANY .DLL FILE, NEITHER THE MAFOSAV.INI FILE. 
+DO NOT EDIT MAFOSAV.INI FILE AS IT MIGHT BREAK YOUR SAVE PROGRESS.
+IN CASE IF THAT WOULD HAPPEN, REMOVE MAFOSAV.INI FILE COMPLETELY.
+
+THE MAFOSAV.INI FILE FROM THE PREVIOUS RELEASES CAN BE USED WITH THE NEWER VERSIONS.
+
+===============================================================
+02. Version history
+
+-v1.9 (October, 07, 2023)
+  *More bugfixing
+  *Worlds 6 and 7 added with another part of story
+  *New powerdown level added
+  *New entry added into Powerless Expansion zone
+
+-v1.5 (January 10, 2021)
+  *Known glitches have been fixed
+  *The difficulty of 2-2 and 3-4 was decreased
+  *World 5 introduced with new story
+  *Powerdown levels added
+  *New zone included: Powerless Expansion which will be a compilation of Powerless World done by my friends.
+    -The first entry to this zone is Powerless World prepared by Jose'LPF.CF&MF in a small collaboration with myself.
+
+-v1.0 (October 28, 2020)
+  *Initial release.
+
+===============================================================
+03. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+
+===============================================================
+04. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec to have made the game first.
+Mario and all relatives belong to Nintendo.
+

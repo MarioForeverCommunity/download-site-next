@@ -1,0 +1,56 @@
+Buziol Games (C) 2003/2004
+
+Game created by one person!!!
+
+Credits:
+
+- Idea		: Michael (Buziol) Gdaniec
+- GFX remake	: Michael (Buziol) Gdaniec
+- SFX		: Michael (Buziol) Gdaniec
+- SFX remake	: Michael (Buziol) Gdaniec
+- Algorithms	: Michael (Buziol) Gdaniec
+- Music		: Free Sources
+- Levels	: Michael (Buziol) Gdaniec
+- Test (BETA)	: Michael (Buziol) Gdaniec
+		  Maurycy (Skell) Zarzycki Fans
+
+- Translate help		: Lukham
+- Some elements come from 	: Super Mario Bros. from Nintendo
+				  Some GFX elements from www.tlen.pl
+
+
+
+Mario Forever: A Gorgeous Journey Credits:
+
+- Engine development	: Michael (Buziol) Gdaniec
+			: TheMarioVariable
+- Coding assistance	: TheMarioVariable
+- Level editing		: Joanna
+- Custom GFX		: Christ1919
+			  Fonodi Zsolt
+			  Joanna
+			  JoséLPK.CF&MF
+			  MrPrzemistrz
+			  TheMarioVariable
+			  Xykijun
+- Beta testing		: Brトーマス451
+			  Chahine
+			  Elpolo
+			  HighSierraFox
+			  Hyper Somario
+			  JoséLPK.CF&MF
+			  MrPrzemistrz
+			  Phantom
+			  RadRolla
+			  RafaelVitória
+			  TheMarioVariable
+			  Uiric391
+			  Xykijun
+
+
+Special thanks to the Mario Forever community for the support during the game development
+
+Disclaimer:
+
+This game is a freeware and I do not own the GFX and SFX.
+All musics and soundtracks belong to their respective authors.

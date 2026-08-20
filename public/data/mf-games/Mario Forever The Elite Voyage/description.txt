@@ -1,0 +1,25 @@
+Mario Forever The Elite Voyage Version0.3.1 马里奥的精英之旅
+【修复已知问题】
+第一关cp无音乐
+go后错误转跳场景
+甜菜默认被顶出
+【简介】
+本版本一共有10关，9个主线关卡+1奖励关卡，由风格不同的关卡组成，难度较高
+【游戏特性】
+支持双角色 马里奥 路易吉
+大金币系统 每关一共有三个大金币，一共30个，过关保存
+成就系统
+【关卡简介】
+Secluded Woods 隐秘丛林 难度：★★★★★
+Mushroom Island 蘑菇岛   难度：★★★
+Enchanted Region 诅咒区  难度：★★★★★
+Sunset Summit 落日之巅    难度：★★★★
+Snowy Garden 雪花园       难度： ★★★★★
+Forbidden Desert禁闭沙漠 难度：★★★★
+Flashy Nights 闪烁之夜      难度：★★★★★★
+Raging Tanks 凶猛的坦克   难度：★★★★★
+Crazy Fortress 疯狂堡垒（带boss战） 难度：★★★★★★★
+Party Time：派对时间 难度：★★
+
+
+

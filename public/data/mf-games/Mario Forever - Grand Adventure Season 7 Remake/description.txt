@@ -1,0 +1,32 @@
+If you have ever watched Phantom Sapphire's Grand Adventure Season 7 one time and wondered
+"This is a pretty funny april fools joke game and all, but I'd love it if it was playable"?
+
+Its release was jokingly Feb 30 and it never really came.
+The original source of said project was lost and therefore was never playable...
+
+BUT that changes today!
+You can now finally play this game you've been waiting for years now.
+
+Originally created by Phantom Sapphire
+Remade by CS124, using Xykijun's Vanilla Engine (Kavex 'n Somario's fix)
+REST OF THE CREDITS ARE IN-GAME.
+
+------------------------------------------------------------------------------------
+
+QUIRKS FROM VANILLA ENGINE:
+- Playing in Alternate Display will have a few changes.
+  ( Like Nozomi's sprite will resemble more like the one from Lu9's Good Ending Rip )
+  [ NOTE: THE SECRET "9" LEVEL IS A SWAPPED CASE. ]
+  ( Alternate Display also has alternate music too, just not in either the main game or the bonus level ! )
+
+SECRETS DURING LOADING SCREEN:
+- Press "N" ( YOU CAN ONLY DO THIS AFTER BEATING THE MAIN GAME )
+- Press "9" ( UNLOCKED BY DEFAULT, ORIGINAL LEVEL BY LU9 )
+
+MAKE SURE TO DISABLE YOUR ANTIVIRUS IF IT DETECTS THIS AS A VIRUS OR ADD THE FILE TO EXCEPTIONS.
+IT IS A FALSE POSTIIVE, THEREFORE IT'S SAFE TO LAUNCH.
+THIS IS A COMMON CLICKTEAM ISSUE WHEN IT COMES TO SIGNING APPLICATIONS.
+
+------------------------------------------------------------------------------------
+
+In any case, have fun playing!

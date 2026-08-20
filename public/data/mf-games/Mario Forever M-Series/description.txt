@@ -1,0 +1,340 @@
+Mario Forever M-Series v2.0.1 Release
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Thank you for downloading and playing my game! It's based on the original Mario Forever made by one person, Michał Gdaniec, known as Softendo and Buziol Games. Mario Forever was inspired from Super Mario games series by Nintendo. The game, levels and maps were created by Tomek839839. Graphics, music and sounds come from the original Mario Forever, Super Mario games, free sources or were created by me.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Website: https://intesit.blogspot.com/
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Controls:
+
+Z - Jump
+X - Shoot/Run
+Left Arrow - Move left
+Right Arrow - Move right
+Up Arrow - Enter into up pipe/Cursor toogle
+Down Arrow - Enter into down pipe/Cursor toogle
+These are the default definitions, you can change them by entering to Main menu -> Options -> Controls.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Keyboard shortcuts:
+
+F2 - Restart the game
+F3 - Go to Save Game Room
+F4 - Go to Main Menu
+P - Pause the game
+Ctrl + F - Fullscreen mode
+Ctrl + W - Window mode
+Ctrl + H - Hide the menu bar
+Ctrl + J - Show the menu bar
+Alt + F4 - Close the game
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Credits:
+
+- Tomek839839 (the author of the game, game idea, levels creator).
+- TheMarioGamer (opinions and "Work in Progress" sign graphic).
+- TheMarioVariable, MrPrzemistrz, Eurobercik and some communities (coding help).
+
+- David Escorche, TheDarkMario, DeluxeGamer705, MrWiktor15, Bullex, Classic Yoshi 666, TheEvilPiranha (a.k.a. MarioT02), Turkish_bussines, Firecat Bro, Useful, wufeiling, QuasarYT09, SakuraMotchi 2020, Mario Gaming 315, The Gamer & Animations, 禹宸玩音乐 (recording the game on YouTube and Bilibili).
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Changelog:
+
+2.0.1 Release (2025-01-18)
+- Fixed a glitch of missing DLL file errors that occured especially in M2-4 or in all levels when effects were disabled.
+2.0 Release (2025-01-11)
+- The first version after 1.5.2 that is defined as stable.
+- New bonus level accessible from Save Game Room: "Nightly Hillock".
+- Corrections and minor changes in most of levels.
+- Very much bugfixes. A few fatal errors have been removed too, such as level M4-4's checkpoint glitch.
+- "Play Music" option from a menu bar has been restored.
+2.0 Beta Build 10 (2025-01-02)
+- You can now select and play previous main worlds without having to reset the save.
+- Big changes in the world M5.
+- Swapped places of worlds M2 and M4.
+- Player collision now feels more solid and reduced the chance of stumbling and falling through tilesets.
+- Fixed the glitch of the passages to the first and third secret levels. They work now.
+- Time subtracts more fast when a level is completed.
+- Cosmetic changes through the game and levels and a few bugfixes.
+- Save Porter of Mario Forever M-Series v2.0 is no longer included in files.
+2.0 Beta Build 9 (2024-11-17)
+- World M8 is out!
+- Mario Forever M-Series logo has been updated.
+- Game main menu was modified.
+- Lui power-up's jump power has been slightly increased.
+- Small lifting to a start screen.
+- Modified level design in some areas (especially in M1-4 and M3-3).
+- Removed many bugs. Examples:
+	- Fireballs and Beetroots shot by player no longer ignore obstacles while Mario is warping through a pipe.
+	- The bug related to breaking bricks when small Mario dies just under them is fixed. The same applies to knocking power-up better than Mushroom from the Question Block in the same situation.
+	- Repaired glitches of Lui power-up.
+	- Turning mechanism of red and yellow Koopa and green Spiny is now more precise.
+- Updated several graphics.
+- Author screen on the start screen can now be skipped.
+- Names of soundtracks of secret rooms are no longer included in the music list.
+2.0 Beta Build 8 (2024-08-31)
+- Added Hardcore World 1.
+- Two new secret levels have been introduced.
+- Added a start screen.
+- Achievements table added to Save Game Room.
+- Graphical cursor appended.
+- Main menu and options buttons are now clickable.
+- Secret rooms to a few levels have been added.
+- Map scrolling is now 2 times faster.
+- Completed map music's volume and loop have been corrected.
+- M1-1 modified and simplified.
+- M1-2 and M1-3 simplified.
+- M1-4 level design quite significantly reshaped.
+- M2-1 lightly modified and increased the time to 435.
+- Minor design changes in M2-3 and M2-4.
+- World M4 graphics change: background stars have now a glow effect, added falling stars to certain levels and removed clouds from M4-3 and M4-4 stages.
+- M4-1 level improved.
+- Music in M4-4 now has a higher quality; also some stars align was changed.
+- Small facilities in M4-2 (time also increased to 460), M4-3, M4-4, M5-4, M6-3, M6-4 and M6-5.
+- In levels M6-2, M6-3 and M6-4, when you land onto the snowy ground, the snow dust will appear under Mario.
+- Another design simplifications in M7-3.
+- A few graphics corrected.
+- World title graphic animation corrected (now it doesn't seem to lag when bouncing).
+- Added more items to music list.
+- More bricks are generated in World M1 end cutscene.
+- AboutBox text (Menu bar -> Help -> About...) modified.
+- Readme file slightly corrected.
+- Going to Fullscreen mode automatically hides menu bar.
+- Fixed a few bugs.
+2.0 Beta Build 7 Fix1 (2024-05-24)
+- Fixed Mario path movement bug in map before M6-3.
+- Fixed a small graphical bug in the secret level.
+2.0 Beta Build 7 (2024-04-30)
+- Added a secret level!
+- Many bug fixes.
+- World M1, M3, M5 and M6 maps updated.
+- Map corner effect added to all maps (still don't understand how the lack of them could be overlooked in all 2.0 Beta previous builds).
+- Fixed a bug occuring in certain levels that caused one of Mario's fireball to ignore obstacles.
+- M1-3, M3-3 and M5-4 musics are now in MP3/OGG format instead of MIDI, so there's no heavy lag at level loading.
+- Coming soon sign and rain graphic updated; also it now sends to Main Menu intead of Save Game Room.
+- Music list included in Readme file.
+- Fireballs and Beetroots no longer go through blockades (above the top blocks).
+- Beetroots in water have been fixed.
+- Beetroots no longer generate bubbles in air.
+- Fixed a level end bug that didn't exchange Mario's fireballs into points.
+- Bowser battle music loop fixed.
+- M1-3 has been simplified and modified.
+- M2-1 music changed and implemented a few level design changes.
+- M2-2 facilitated and extended time to 500.
+- M2-3 simplified.
+- M3-3 little modified.
+- M3-4 Bowser lives counter display fixed (similar fix in M5-4 and M6-5 from version 2.0 Beta Build 6).
+- M4-2 outside bonus zone added; outside music changed.
+- Very small changes in M5-2 and M5-3.
+- M6-1, M6-2, M6-3 and M6-5 slightly simplified.
+- M7-1 time is now 1000 instead of 850; a few Bloopers and Roto-Discs removed.
+- M7-3 slightly simplified and the secret warp now works.
+2.0 Beta Build 6 (2024-04-20)
+- Improved and simplified the level design in many stages:
+	- All levels: fixed a bug related to the jumping from Bill Blaster.
+	- World M1 levels: slightly moved level name HUD elements to make them look more precise and better.
+	- M1-1: the level has been facilitated and extended.
+	- M1-4: removed some enemies and simplified the stage.
+	- M2-2: lava standing time at the bottom is now 14 seconds instead of 12; facilitated and shortened the end of level; one ring of golden Koopa Paratroopa removed.
+	- M2-4: simplified and slightly extended (lava escape part) the level; added Checkpoint.
+	- M3-1: small changes in design.
+	- M4-3: removed one wall hanging from above at the end of level.
+	- M4-4: changed music; added very small facilities.
+	- M4-5: changed the background and platform texture; simplfied level; stone Spinies replaced with generic red Spinies; added castle pillars scenery.
+	- M5-1: small level design changes in the stage; level width has been slightly expanded; changed colour of the blocks.
+	- M5-4: the centipende platform is faster; time has been reduced from 650 to 480; Bowser HP counter now displays correctly (it's no longer covered by the shadow effect); the place that Mario comes at it and that begins the Bowser battle is now a bit closer.
+	- M6-5: Bowser HP counter display corrected (similar change in M5-4).
+	- M7-1: modified the movement of Bloopers to make them slowler; removed some yellow Cheep Cheeps and bloopers and made a few small changes to some Roto-Discs and electrocorals placement; added one 1-up.
+	- M7-2: modified the movement (fall faster) and frequency of generating Cheep Cheeps; removed some Cheep Cheeps; added an 1-up at the beginning of level; level is now longer by 64px.
+	- M7-3: fixed Cheep Cheeps that jump at Bowser battle; time decreased from 700 to 620.
+- Small bugfixing...
+2.0 Beta Build 5-2 (2024-04-06)
+- Fixed the world MPW completed map bug.
+- Coins above small Piranhas in world MPW-1 have slightly been moved up.
+- Sliver Bro was replaced by Beetroot Bro in MPW-2.
+2.0 Beta Build 5 (2024-04-04)
+- Bonus world MPW included.
+- "BETA" word in version mark in main menu is now lower-case: "Beta".
+- Added the secret room in a level M6-3.
+- World M7 bugs fixed.
+- Fixed some minor bugs and glitches (mainly graphical ones).
+- A few small changes in the Readme file.
+2.0 Beta Build 4 (2024-02-25)
+- New remade world - world M6. All main worlds are now complete.
+- Music of map of world M6 replaced to "Newer Super Mario Bros. Wii - World 5 Freezeflame Glacier".
+- World M6-2 music changed.
+- Beta version milestone is now marked by "Build" + <build number> instead of "#" + <build number>.
+- AboutBox text (Menu Bar->Help->About...) changed.
+2.0 Beta #3 Fix1 (2024-01-26)
+- Certain platforms in M2-4 bug fixed.
+2.0 Beta #3 (2024-01-25)
+- Remade world M3 added.
+- World M2-4 design slightly modified.
+- Changed the fade effect when you enter Save Game Room from Main Menu; now it looks like in Mario Forever 5.0.
+- The map fade out effect bug has been fixed everywhere.
+- Fixed the Game Over bug.
+- World M4-5 end level fatal bug fixed.
+- If you killed Bowser on his last HP with Fireball or Beetroot, the battle music didn't end; now it's repaired.
+- World M5-4's music loop fixed.
+- Lava shooting Podoboo animation speed fixed.
+- The timer now stops after Bowser is beaten.
+- Map dots on world M7 map have competlely been fixed.
+- If the effects are disabled, the lava light effect in world M2-4 won't be present.
+- Rare bug with Piranhas being graphically in front of pipes has been experimentally fixed.
+- Many other bugfixes.
+2.0 Beta #2 (2024-01-21)
+- World M2 is now complete; added M2-3 and M2-4 levels, end cutscene and the map. The world is generally easier comparing to its original version (added in v1.1).
+- Fixed the invisible and inactive disposable question blocks (they were solid).
+- Fixed the bug where the Beetroot Bro's projectile killed after touching.
+- The map fade out effect is now completely repaired; now it won't recognize jump key after trigerring.
+- Added the missing cutscene before level M4-2.
+- Corrected the background in world M1-1 bonus room.
+- Fixed a bug that trigerred falling platforms to when Mario jumped through them from below (would be especially noticeable in M2-4 if not fixed).
+- Some other bugfixing...
+2.0 Beta #1 Fix1 (2023-12-20)
+- Removed useless "0" digit from Save Game Room.
+- Fixed the bug that resulted in starting M5-4 just before the Bowser battle place.
+- Broken "Play Music" option from menu bar has temporarily been disabled (you can still disable the music in options in main menu).
+- "Go to Main Menu / Save Game" options from main menu now work.
+- Fixed a bug of Bowser colliding with lava that would recognise multiple collisions.
+- Fixed bugs in M4-1 (camera in bonus zone, Piranha hurting in pipe and missing blockades above the top blocks added).
+- Now the camera won't break after reaching finish line (for example in M4-1, M4-2 and M1-1 (if you reach the finish line by standing on the ground).
+- Fixed M7-1's Checkpoint bug.
+- Game size has been reduced a bit.
+- M1-3: fixed the parallax mountain at later part of level and golden pipes are now green.
+- M1-2: jumping blue Koopa Paratroopa correctly colidies with question blocks now.
+- Fixed the Thwomps (the fix was also spread to MF World TGJ v1.0.6 and 666 Subscribers Level Fix1).
+- Fixed the map fade out effect. (note added at v2.0 Beta #2)
+2.0 Beta #1 (2023-12-17)
+- New engine.
+- World M7 added.
+- Level design changed in many places (they have generally been facilitated).
+- Some graphics modified.
+- Modified Save Game Room; there are now 3 pipe warps working like in original Mario Forever, also the curtain opening effect from Mario Forever 5.0 was added.
+- World M2-2 modified; music and background are changed and the lava floor now works diffirently.
+- You can now maximize the game window normally instead switching to Fullscreen mode.
+- Worlds M3, M6, M2-3 and M2-4 aren't available now; they will be introduced in next revisions of version 2.0 Beta.
+- World M1 end cutscene reworked.
+- Music are now internal (in game EXE file).
+- Bugfixes.
+- M5-1 music has been changed. (note added at v2.0 Beta #1 Fix 1)
+1.5.2 (2023-05-07)
+- On some PCs with cyrillic language, game could refuse to load properly (due to wrong music detected). Now it's fixed.
+1.5.1 (2023-05-05)
+- Fixed some bugs in world M6.
+1.5 (2023-05-05)
+- World M6 created.
+1.4 (2023-04-15)
+- Another new world: world M5.
+- Fixed the fatal bug at beginning of world M3-1.
+1.3 (2023-03-21)
+- Added the world M4.
+- The world progress can be now reseted from Save Game Room.
+- Transition from main menu to Save Game Room now begins faster.
+- HUGE bugfix:
+	- Fire Piranha's fireball now hurts Mario after touch
+	- fixed Bro's movement
+	- fixed music system
+	- many other fixes
+1.2 (2023-03-06)
+- New world M3.
+- Better Mario's movement on maps.
+- New "WORLD M1" graphic on map.
+- Castle cutscene of world M1 fixed.
+- The level progress won't get bugged anymore.
+- Bugfix (thanks for MarioT02 for reports of many bugs from prior versions).
+1.1.1 (2023-01-03)
+- Fixed the critical bug that didn't let to enter the world (if musics were turned on).
+- Fixed wrong key definition; Up Arrow's key definition was set to Down Arrow key definition (if Up Arrow key definition had user custom definition).
+- Turned off music also now influences to the main menu music.
+1.1 (2023-01-02)
+- World M2 added.
+- Save Game Room slightly patched.
+- Bugfix.
+1.0.2 (2022-11-20)
+- Changed music in world M1-3.
+- Pipes in world M1-1 fixed.
+- Bowser & Thwomps in world M1-4 fixed.
+- New Full Screen mode fixed.
+- Fixed quit button in main menu.
+- When you are entering to Save Game Room from main menu, the music now fades.
+1.0.1 (2022-11-17)
+- Fixed M1-1 finish line soflock bug.
+1.0 (2022-11-17)
+- Initial release with only world M1 included.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Music list:
+
+- Start & Save Game Room: Super Mario World - Wandering the Plains [MOD]
+- Main Menu: super mario brothers
+- Level Complete: Super Mario World - Fortress Clear [MOD & remixed]
+- Death: Super Mario World - Player Down [MOD]
+- Game Over: Super Mario All-Stars (Super Mario Bros.) - Game Over
+- Bowser Battle: Super Mario RPG - Fight Against Bowser [MOD]
+- Cutscene: Super Mario All-Stars (Super Mario Bros.) - Going Underground [remixed]
+- Map Completed: Super Mario World 2: Yoshi's Island - Score [MOD]
+- Map M1: In The Kitchen
+- World M1-1: Super Mario World - Overworld [MOD]
+- World M1-2: Super Smash Bros. Brawl - Underground Theme
+- World M1-3: Mario Kart 64 - Koopa Troopa Beach [MIDI]
+- World M1-4: Super Mario All-Stars (Super Mario Bros.) - Castle
+- Map M2: Super Mario All-Stars (Super Mario Bros. 3) - Giant Land
+- World M2-1: Interference Ending
+- World M2-2: A Clashing of Underground Waves by JudgeSpear
+- World M2-3: New Super Mario Bros. Wii - Volcano
+- World M2-4: Super Mario Bros. 3 - Fortress [MIDI]
+- Map M3: Trancoi (unfinished)
+- World M3-1: Super Mario World 2: Yoshi's Island - Overworld [MOD]
+- World M3-2: Super Mario World - Athletic [MOD]
+- World M3-3: Super Mario RPG - Fight Against Culex [MIDI]
+- World M3-4: Super Mario World - Fortress [MOD]
+- Map M4: One fine day...
+- World M4-1: Super Mario World 2: Yoshi's Island - Underground [MOD]
+- World M4-2: Super Mario All-Stars (Super Mario Bros.) - Swimming [MOD]
+- World M4-3: SMW Custom Music - Track 12 (Yoshi's Island (Super Mario World 2) - Underground Theme) (Variety 1)
+- World M4-4: SMW Custom Music - A Super Mario Thing - World 6
+- World M4-5: Super Mario World 2: Yoshi's Island - Castle & Fortress [MOD]
+- Map M5: Super Mario All-Stars (Super Mario Bros. 3) - Desert Land
+- World M5-1: Mario & Luigi: Partners in Time - Gritzy Desert
+- World M5-2: Super Mario All-Stars (Super Mario Bros. 3) - Swimwing [MOD]
+- World M5-3: Super Mario 3D World - Conkdor Canyon
+- World M5-4: Super Mario Land - Easton Kingdom [MIDI]
+- Map M6: Newer Super Mario Bros. Wii - World 5 Freezeflame Glacier
+- World M6-1: Super Mario All-Stars (Super Mario Bros.) - Underworld
+- World M6-2: Super Mario 3D World - Snowball Field SNES Remix by Meepmeep189
+- World M6-3: Paper Mario - Shiver Mountain
+- World M6-4: Mario Kart DS Beta Music: SEQ_CIRCUIT2
+- World M6-5: Metal Slug 3 - Secret Factory
+- Map M7: the golden ages
+- World M7-1: Super Mario World - Underwater (in F Harmonic Minor)
+- World M7-2: YKY
+- World M7-3: Super Mario World 2: Yoshi's Island - Castle & Fortress Remix
+- Map M8: Mario & Luigi: Bowser's Inside Story - Stolen Koopa Castle (Inside Bowser)
+- World M8-1: Super Metroid - Brinstar Red Soil Swampy Area
+- World M8-2: Golden Sun - Venus Lighthouse 
+- World M8-3: Mobile Suit Gundam SEED - Justice and Freedom
+- World M8-4: Golden Sun: Dark Dawn - Battle! [Fight of Sons]
+- Map MPW: Trancoi (unfinished)
+- World MPW-1: Super Mario World 2: Yoshi's Island - Overworld [MOD]
+- World MPW-2: Super Mario World 2: Yoshi's Island - Castle & Fortress [MOD]
+- Nightly Hillock: Mega Man 7 - Spring Man Stage (Sega Genesis Remix)
+- Hardcore World 1-1: YKY
+- Hardcore World 1-2: Super Mario World - Athletic [MOD]
+- Hardcore World 1-2b: Super Mario World - Vanilla Dome
+- Hardcore World 1-3: Super Mario Land - Birabuto Kingdom (16-Bit Remix)
+- Hardcore World 1-4: Syobon Action - Level 3
+Note that some musics are in MOD (module tracker) or MIDI format, so they sound slightly different compared to their original versions. Eventual format conversion information is in square bracket at the end of the soundtrack name.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Save Mover:
+
+Since in version 2.0 of Mario Forever M-Series the save system has been modified, Save Porter program was attached from version 2.0 Beta #1 to Build 9 (can be downloaded separately on https://www.mediafire.com/file/p08qicvjbsr17ym). It transfers the world progress from 1.X versions to 2.X. When you open it, it will detect the highest unlocked world and you will be able to choose the pipe whose progress will be patched.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Contact:
+
+Intesit website: https://intesit.blogspot.com/
+E-mail: toi5354@gmail.com
+YouTube: https://www.youtube.com/@Tomek839839/
+Other contact ways can be found on my website.
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Useful links:
+
+- Mario Forever M-Series v2.0 Save Porter: https://www.mediafire.com/file/p08qicvjbsr17ym
+- Old version 1.5.2: https://www.mediafire.com/file/jyqoiqfpqnoywc0
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Good luck in playing the Maro Forever M-Series.

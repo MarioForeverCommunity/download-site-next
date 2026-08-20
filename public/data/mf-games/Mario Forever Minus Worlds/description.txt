@@ -1,0 +1,64 @@
+Mario Forever: Minus Worlds version 1.8
+====================================================
+1. Info:
+This game is a fan game based orginally on Super Mario Bros made by nintendo
+and Mario Forever by buziol (aka. Michał Gdaniec). This game includes new worlds
+that brings challenge for all players.
+IMPORTANT NOTE: Deleting "minussav.ini" file or moving it into other folder may cause save functionality not work.
+====================================================
+2. Controls (default):
+Z - jump
+X - run/shoot fireball
+left/right arrow - move left/right
+up/down + Z - jump into pipe
+F2 - go to loading screen
+F3 - go to save menu
+F4 - go to main menu
+F5 - enable/disable music
+F6 - enable/disable sound effects
+F7 - fullscreen mode
+F8 - windowscreen mode
+====================================================
+3. Version history:
+Here's list of levels and Worlds that were added to game.
+----------------------------------------------------------------------------------------------
+v1.0
+- World -1 & World -2
+- World 0 Demo (first contest world)
+- Bowser's Revenge
+- Secret Beyond World
+----------------------------------------------------------------------------------------------
+v1.5
+- World -3 & World -4
+- Piranha Plant Mayhem
+- SAL World A & World B
+- fixed Beyond World
+----------------------------------------------------------------------------------------------
+v1.6
+- fixed World -4 bug
+- World 0 completed
+----------------------------------------------------------------------------------------------
+v1.8
+- World -5 & World -6
+- old SAL Worlds removed
+- new SAL contest round 1 winner world: World A (McGentherius)
+- Millenary Map (mariovariable3410)
+- Hammer Bonanza
+- World Ø (second contest world)
+====================================================
+4. Credits:
+Main credits go to nintedo for Mario & relatives and to buziol for Mario Forever idea.
+List of people that worked hard on this project:
+- crist1919: major director, coding, level design, beta test, custom GFX & SFX, polish translation
+- mariovariable3410: coding, level design, custom GFX, beta test, italian translation
+- Mario Worker: coding, level design, custom GFX, beta test, polist translation
+- nmnmoooh: coding, level design
+- Mariogeek1234: beta test, custom SFX
+- Achiro Himuro: custom GFX
+- mario2233: beta test
+- NightFury: beta test
+====================================================
+5. Contact info:
+My website: www.crist1919.jimdo.com
+My youtube channel: crist1919
+Mariovariable3410 website: www.mariovariable3410.jimdo.com

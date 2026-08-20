@@ -1,0 +1,53 @@
+						Hello!
+
+		First and foremost I would like to thank you for downloading this game.
+
+				Mario Forever Revival
+
+===============================================================
+01. Infos
+
+IMPORTANT: DO NOT DELETE ANY .DLL FILE, NEITHER THE MAFOSAV.INI FILE. 
+DO NOT EDIT MAFOSAV.INI FILE AS IT MIGHT BREAK YOUR SAVE PROGRESS.
+IN CASE IF THAT WOULD HAPPEN, REMOVE MAFOSAV.INI FILE COMPLETELY.
+
+THE MAFOSAV.INI FILE FROM THE PREVIOUS RELEASES CAN BE USED WITH THE NEWER VERSIONS.
+
+===============================================================
+02. Project Overview
+
+Hello everyone, I am happy to share with you my newest game: Mario Forever Revival.
+Unlike my previous productions, this time around I aimed to create something, that
+will be accessible in terms of difficulty level to broader spectrum of MF players.
+Furthermore, with this game I tried to stay closer to classic Mario Forever by Buziol,
+while introducing some new enemies and gimmicks that fit general style. I hope you will
+have fun time playing this one.
+
+This game was also developed under updated version of the engine in which I made my previous games:
+Mario Forever: Powerup Engine. Here are some of the key features that were edited in comparison to
+what you could experience in my other productions:
+-springboard physics are more lenient: you can now jump off them like any regular enemy,
+-you can bounce of Bowser higher than before - jumping height depends on whether you hold jump buton,
+-additional collisions were coded: for example beetroots can now hit [?] blocks, koopa shells can defeat piranha plants and so on,
+-enemy collision detections was slightly improved - you should experience less often now situations when enemy goes through solid blocks.
+
+===============================================================
+03. Version history
+
+-v1.0 (December 7, 2024)
+  *Initial release.
+
+===============================================================
+04. Default Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+P = Pause the game
+
+===============================================================
+05. Credits
+
+Major credits go to Michal "Buziol" Gdaniec, creator of the original Mario Forever.
+Mario and all relatives belong to Nintendo.
+

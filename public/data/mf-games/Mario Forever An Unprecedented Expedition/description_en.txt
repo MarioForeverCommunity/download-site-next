@@ -1,0 +1,114 @@
+Mario Forever: An Unprecedented Expedition
+Version 0.4.5	
+
+NOTICE
+1. Do not load save files from versions higher than 0.4.5 in games with versions lower than 0.4.5.
+2. Save files using game earlier than 0.4.5 may not be supported in future versions. It's recommend that you play from a empty save file.
+
+CHANGELOG
+V0.4.5
+1. Fixed the bug that when entering any green mushroom house after quitting a level by pressing F3, Mario will infinitely die.
+2. Fixed the issue that star coin 2 in World 2-5 cannot be get.
+3. Fixed the sound effect issue that appears after completing a level that you died after checkpoint.
+4. Adjusted the save system.
+V0.4.4
+1. Adjust the condition of Scorer series achievements
+2. Fixed the problem of Mario being not able to push ice blocks in some levels.
+3. Fixed the layer issue of Boos.
+4. Fixed no level complete bonus in 3-C
+V0.4.3 Update 1
+1. Fixed the sound and display problem when passing the level with 0 time bonus.
+2. Fixed the Boom Booms of World 4 disappearing sometimes.
+3. Fixed the problem that chests of Yellow Bonus Room sometimes opened with no items.
+4. Fixed the icon problem of World 4 map.
+5. Fixed the disappearance of the star coins get when playing some levels.
+V0.4.3
+1. Fixed that Boom Boom can sometimes fly out of top border of the level.
+2. Fixed star coins automatically get in some cases.
+3. Fixed the display problems of levels in the world map.
+4. Fixed tile issue in World 3-3.
+5. Fixed star coin icons sometimes disappear.
+6. Fixed the problem that you need to hit the save block to see the achievements even when you have chosen a save in Save Game Room
+7. Beetroot cannot interact with save blocks in Save Game Room
+8. Fixed some sound problems.
+9. Fixed the issue that Mario can pierce through solid platforms when stepping on a falling platform.
+10. Modified Mario's movements on platforms.
+11. Updated Info AUE.
+V0.4.2 Update 2
+1. Fixed that the Angry Sun sometimes does not appear fully.
+2. Fixed the small flaw of background of 2-6.
+3. Fixed the problem with Tanooki Mario.
+V0.4.2 Update 1
+1. Fixed remaining dialog problem of zqh.
+2. Fixed bugs introduced in V0.4.2.
+V0.4.2
+1. Updated dialogs of zqh, removed some misleading information (Some of the levels mentioned and number of star coins are wrong.)
+2. Fixed further platform issues.
+3. Fixed missing blocks in some levels.
+V0.4.1 Update 1
+1. Fixed leaf icon in 3-G.
+2. Fixed the passage issue in 2-5.
+3. Fixed the bug that Mario can swim as Statue Mario.
+4. Modified Mario's movement on platforms.
+V0.4.1
+1. Fixed the problem that when Mario touch the goal as Statue Mario and the player keep on pressing down, Mario will move right as Statue Mario.
+2. Fixed the solid issue of a pipe in 4-1.
+3. Fixed the problem that spotlights sometimes do not activate (The star coin influenced will be reset).
+4. Fixed some spelling issues.
+5. Fixed the problem that sometimes Small Mario can break bricks.
+6. Fixed the problem that Player can get no death bonus even when died after check point.
+V0.4.0 Update 5
+1. Modified Mario's movement.
+2. Fixed the logical problem of a puzzle level (The star coin influenced will be reset).
+3. Modified the star coin 1 of 4-6.
+4. Modified the efficiency of reading save file.
+V0.4.0 Update 4
+1. Cut down requirements of some achievements, especially those who can't be achieved in current version.
+2. Fixed infinite death in 3-Ghost House when rebirth after the final check point.
+3. Fixed passage issue in 4-Castle.
+4. Fixed star coins automatically get in some cases.
+5. Fixed +clock, superstar and P-wings usability issue in bonus games and shops.
+6. Possibly fix infinite death in shops in some cases.
+V0.4.0 Update 3
+1. [Vital] Fixed game crash when read some save files.
+2. Fixed wrong game-over count.
+3. Fixed Small Mario stuck into bridge in 3-7 when getting Star Coin 2.
+4. Fixed iceballs cannot calculated into score when completing the game.
+5. Fixed layer problems in 4-1 and 4-6.
+6. Fixed some progress calculation problems.
+7. Fixed no BGM when rebirth after checkpoint in 3-2
+V0.4.0 Update 2
+1. [Vital] Fixed pipes in World 4 map cannot enter.
+2. Fixed golden bricks breaking into brown pieces in World 2.
+3. Fixed shells cannot break bricks when Mario is Small Mario.
+V0.4.0 Update 1
+1. Fixed the initial inventory problem in some cases.
+NOTICE: Inventory info incompatible with earlier version.
+
+About Save Files...
+The game will be automatically saved when enter a level or pass a level.
+- Do not play the game in zipped file or the progress be saved normally! Please unzip it first!
+- Do not play the game while the save file is opened or the file cannot be loaded normally.
+- Do not edit the save file, or all the progress will be lost.
+- If your save file does not work (e.g. all the progress are lost after load a save slot), contact the author.
+
+About cheating...
+For the best game experience, you are not supposed to do the following things using Cheat Engine or other cheats:
+- hack the lives,
+- hack the coins you have.
+The following behaviors are strictly forbidden, doing these might cause progress loss or other bad influence:
+- hack the save file,
+- hack the Mario status,
+- hack the score,
+- hack other things related to score.
+Doing these will influence the fairness of the game. Unnatural records uploaded to scoreboard will be deleted.
+
+Credit
+Nintendo for Super Mario series
+Softendo for the original Mario Forever game
+Clickteam for game development tools
+lyh for Rainbow Engine
+dasasdhba for some of the effects
+num1528, zqh for ideas of some minigames
+koopa4, Da_ai Mario, 878yfy, num1528, 1168438795, Happy Mario 8 for testing the game
+For the full credit including sprites, music and etc., see in the game.

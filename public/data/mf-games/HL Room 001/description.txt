@@ -1,0 +1,31 @@
+Greetings. This is a tiny game I designed using syzxchulun & lyh's Mario Forever engine, called Room 001.
+
+It's just a small room, but you have to use all your brain to escape through the red pipe.
+
+This room's specially designed for very advanced MF players to challenge. Let's see who can solve this puzzle all by himself (or herself). For those of the newcomers, I don't recommend playing this game.
+
+Remember, the red thorn is star-immunized, which means, you can't touch the red thorn even if you've eaten a star (unless you wanna get hurt), but you can touch it when you're invisible (just got hurt).
+
+I couldn't have done this without the help from syzxchulun. Special thanks to syzxchulun!
+
+	--HappyLee  2013.10.24
+
+大家好，这是我第一个使用syzx和lyh的引擎制作的MF改版小作品，名叫Room 001。从8月18号构思并开始制作，到现在已过了两个多月，中间因大学刚入学耽搁了很久。syzxchulun给予了本作很大帮助，特此鸣谢！
+
+来看一下这个狭小的房间，主要分为三层，你需要用尽所有智慧，所有能利用的道具，以及所有能用的技巧（包括bug技），通过红色的管道逃离此房间。此密室特别为MF变态级玩家设计，欢迎各路高手来挑战，看看谁能凭一己之力解决这个难关。不推荐新手尝试，否则可能连最开头都过不去。
+
+发明了一种新敌人，红刺，它和正常刺的唯一区别就是它对星星无敌状态是免疫的，就是说吃完星星碰它照样会受伤，但刚受完伤时的隐身状态碰它没事。
+
+注意，如果你成功进入那个红色管道逃离密室，但是以小个子状态进入的，恭喜你但你只成功了一半，要想真正通关必须以大个子状态进入红色管道才能打开后面通向旗杆的拦路砖头。
+
+还有隐藏点哦，希望大家挑战开心，不要被虐得太惨……
+
+关卡设计：HappyLee
+原版引擎：syzxchulun & lyh
+引擎增强：syzxchulun & HappyLee
+标题画面：HappyLee
+图标制作：HappyLee
+关卡测试：syzxchulun
+特别鸣谢：syzxchulun
+
+	--HappyLee  2013.10.24

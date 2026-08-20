@@ -1,0 +1,2 @@
+若发现游戏无法正常启动，请尝试运行 compatible_launch.bat
+If you find the game cannot launch, try to run compatible_launch.bat

@@ -1,0 +1,75 @@
+		Thanks for have downloaded Mario Forever Fanmade - version 4.0 beta!
+
+Mario Forever Fanmade is a Mario Forever game developed graphicwise and codewise by Mariovariable3410,
+but all the levels are originally by fans, hence the name of the game. All the worlds available in the game are the first ranked worlds
+in Mariovariable's "Mario Worker: The Contests", starting with World 0 by Crist1919 and going on with the next contests.
+
+Originally part of Mario Forever Remake, the first ranked worlds by other users are now completely part of a great new adventure.
+
+===============================================================
+01. Infos
+
+The remake contains all the 8 standard worlds with some, if not much, custom elements for make it a bit different
+from the original, such custom special worlds and extras, which aren't included in the original Mario Forever
+(World 9 excluded, as MF6.0 has it).
+
+To make musics work, extract the "data" folder from its .rar archive, and place it in the game's folder.
+
+===============================================================
+02. Version history
+-v4.0 (May 19, 2018)
+  *World R7 by Goombario10 has been added in the main game
+  *"Seventh Valley" by OTFin has been added as extra world
+  *"World 6 Beyond" by PlayerGuy has been added as extra world
+  *Several bug fixing
+
+
+-v3.0 (November 1, 2017)
+  *Icy Lake by MrPrzemistrz has been added in the main game
+  *Waterland by CenaKhodarapast has been added as extra world
+  *Adventurous Gorge by Crist1919, Phantom Sapphire, Xykijun and 12345678905551 has been added as extra world
+  *Players now can choose which main game world they want to play first from Save Game Room jusy by pressing 1 or 2
+
+-v2.0 (July 26, 2017)
+  *Great Journey World by LuigimanN and Hagalta has been added in the main game
+  *Unknown Valley by PlayerGuy has been added as extra level
+  *Crazy Summer Party by koopa456 has been added as extra level
+  *Slight bug fix
+  *Save Game Room has been enhanced
+
+
+-v1.0 (July 1, 2017)
+  *First release:
+    *World 0 by Crist1919
+    *World 1: World of Maze by Goomba's Star 101
+    *World 2: Desert World by Fonodi Zsolt
+    *World 3: World OT 17 by OTFin
+    *Extra level: Blue Lands by TheMachinumps (first ranked user of MFForum Contest 1)
+
+===============================================================
+03. Controls
+
+X = Run/Shoot fireballs
+Z = Jump/Start level
+Left and right arrows = Move left/right
+CTRL+J = Hide top bar
+CTRL+H = Show top bar
+1 / 2 = Choose the world in Save Game Room.
+
+===============================================================
+04. Credits
+
+Mayor credits go to Michal "Buziol" Gdaniec for have made the game first.
+Every user who made these awesome levels.
+Achiro for graphics and Crist1919 for helping with recreation of some levels and beta testing. Also Phantom Sapphire, JoséLPK.CF&MF, and Xykijun for support.
+
+www.themushroomkingdom.net, MOD archvie, and Amiga scene for providing some soundtracks and www.spriters-resource.com for providing some sprites.
+
+Mario and all relatives belong to Nintendo.
+
+===============================================================
+05. External links
+
+Visit relative websites for more informations:
+www.themariovariable.altervista.org
+www.marioforeverforum.boards.com

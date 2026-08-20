@@ -1,0 +1,30 @@
+Mario Forever: Minus Worlds version 1.8
+====================================================
+1. Info:
+This game is a fan game based orginally on Super Mario Bros made by nintendo
+and Mario Forever by buziol (aka. Micha? Gdaniec). This game includes new worlds
+that brings challenge for all players.
+IMPORTANT NOTE: Deleting "minussav.ini" file or moving it into other folder may cause save functionality not work.
+====================================================
+2. Controls (default):
+Z - jump
+X - run/shoot fireball
+left/right arrow - move left/right
+up/down + Z - jump into pipe
+F2 - go to loading screen
+F3 - go to save menu
+F4 - go to main menu
+F5 - enable/disable music
+F6 - enable/disable sound effects
+F7 - fullscreen mode
+F8 - windowscreen mode
+====================================================
+3. Credits:
+Main credits go to nintedo for Mario & relatives and to buziol for Mario Forever idea.
+List of people that worked hard on this project:
+Zluo33: major director, coding, level design, beta test, custom GFX & SFX, polish translation
+====================================================
+5. Contact info:
+My website: www.liil3.ys168.com
+My bilibili channel: http://space.bilibili.com/29363911/#!/index
+My bilibili BAIDU ID:ZLUO33(×Öluo)

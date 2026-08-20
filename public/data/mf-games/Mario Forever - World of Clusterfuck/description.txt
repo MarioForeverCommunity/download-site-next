@@ -1,0 +1,138 @@
+W           W   OOOOO   RRRR   L      DDDDD
+ W         W   O     O  R   R  L      D    D
+  W   W   W    O     O  RRRR   L      D    D
+   W W W W     O     O  R   R  L      D    D
+    W   W       OOOOO   R   R  LLLLLL DDDDD
+
+ OOO  FFFFF
+O   O F
+O   O FFF
+O   O F
+ OOO  F
+
+ CCCCC  L       U     U   SSSS  TTTTT  EEEEE  RRRR
+C       L       U     U  S        T    E      R   R
+C       L       U     U   SSSS    T    EEE    RRRR
+C       L       U     U       S   T    E      R   R
+ CCCCC  LLLLLL   UUUUU   SSSSS    T    EEEEE  R   R
+                FFFFF  U     U   CCCCC  K   K
+                F      U     U  C       K  K
+                FFF    U     U  C       KKK
+                F      U     U  C       K  K
+                F       UUUUU    CCCCC  K   K
+
+BY CS124 - 2024-2025
+
+< == WORLD OF CLUSTERFUCK - CHANGE LOG == >
+
+EVER WANTED A MARIO FOREVER FANGAME FILLED WITH LITERALLY EVERYTHING?
+WORLD OF CLUSTERFUCK ANSWERS THAT QUESTION!
+
+IF YOU'RE NEW, IT'S RECOMMENDED TO PLAY THE GAME FIRST BEFORE READING THE CHANGELOG TO
+GET THE BEST EXPERIENCE ! [ UNLESS YOU DON'T CARE ABOUT SPOILERS ]
+60 FPS IS HIGHLY RECOMMENDED SINCE THAT'S WHAT THE GAME IS MAINLY MADE FOR.
+although, 50 fps is an option too so that's completely fine :)
+
+OTHERWISE, READ ALONG AND SEE WHAT'S NEW
+
+ |
+ |
+ |
+ |
+ |
+ |
+ |
+\ /
+ '
+
+
+
+
+
+
+
+
+
+
+
+Related to Bugs :
+Self-Reported = Found out by myself
+Reported by <someone> = Self-Explanatory.
+
+1.0 // 1/17/2024 - < THE BEGINNING >
+
+- Initial ( Unstable ) Release.
+
+1.5 // 1/17/2024 - < BUGFIX >
+
+- If spammed enter on title screen, It will play the MF_LetzGo sound too many times ( Reported by SerafimGWS )
+- Coder Clones have a rare chance to speak if played on the alternate display, 
+  made another global value to avoid this. ( Self-Reported )
+  NOTE : Coder Clones have their own global value "PITISPEAKS", they originally used "Numer Zapisu"
+         Which made the running coder clones silent in fact.
+- Fixed a rare bug in Jaws Clone 4/A (and the Red Piranha)'s conditions, 
+  where sometimes you can't get hurt by them ( Reported by Kavex )
+- Fixed Big Human Sky Rider Mod G being behind the Human Lab Bottle ( Reported by SerafimGWS )
+- Improved Worker Clone's Animations ( Reported by SerafimGWS )
+- Increased the time limit for the sixth level ( Reported by Kavex )
+- Improved behavior and animation of the Star-Closed Clones ( Reported by SerafimGWS )
+
+2.0 // 10/2/2025 - < MASSIVE UPDATE >
+
+GENERAL FIXES:
+- Fixed Check Point Positioning Issue
+- Complete Polish and Japanese Support 
+  ( WARNING: DEEP-L/MACHINE TRANSLATION USED ! SOME TRANSLATIONS MAY BE INACCURATE )
+- Tons of new content
+- Battle Levels!
+- Optional Thunder Engine-style fades ( ON By Default )
+- A Character Skin ( Martha ) [ MORE SKINS ARE CONSIDERED, BUT MAY NOT INCLUDE CUSTOM SKINNING IN V3.0 JUST SO YOU KNOW. ]
+- Smooth Clones Animations on Mario Worker Display ( except for some clones. )
+- Improved the Coder Clone ( and its derivatives ) behavior to be more source-accurate ( Self-Reported )
+- Mid-Enemy Portals ( Both Displays Support, Special Thanks to Bugsie for the sprites and TaXMaN for giving these )
+- [ CASTLE CUTSCENE ] Changed Kamilia's 'Animation' and Power Sound to be more source accurate. ( Self-Reported )
+- Freezable Enemies with the Ice Flower Powerup ( except for some enemies. ) ( Self-Reported )
+- Slightly revamped the Superball and Mario Worker Coin Sounds
+- Improved Worker Clone's Laugh Animation ( Reported by SerafimGWS )
+- Improved World 9's Dark Lakitu's Graphics ( Reported by SerafimGWS )
+- Changed up the title screen
+- Implemented a new viewport/motion blur shake "system" ( Based off of "I wanna be the boshy" )
+  NOTE: If playing with no effects, It will revert back to Vanilla's Default Shake.
+  ( Making it an option will be considered on v3.0 ! )
+- You can now switch between Original and Alternate Soundtracks, both context menu and options !
+  Whether another version of the same chosen track or a different track completely !
+  ( Keep in mind, some chosen tracks remain the same even when playing on the alternate soundtrack.
+    E.G: WOC's World Map Music stays the same even on alternate soundtrack. )
+- Added a few Side-Levels ( some joke and some serious lol )
+  and a bonus world based off of a Mario Forever Flash derivative.
+- Auto-saves! ( Code by JUE13 )
+- THE CLUSTERFUCK EXPANSION !
+  ( NOTE : ORIGINAL SOUNDTRACK FOR LEVEL 6 IN CLUSTERFUCK 2 MAY TRIGGER A COPYRIGHT CLAIM,
+    SO IF YOU WANT TO KEEP YOUR CHANNEL SAFE FROM THOSE CLAIMS, SWITCH TO THE ALTENRATE SOUNDTRACK 
+    IMMEDIATELY UPON REACHING THAT LEVEL. Unless you don't care about them :P )
+BETA TESTING FIXES:
+- Fixed the Solgryn and Rainbow Dash Changeling ( Reported by Kavex & SerafimGWS ) .....hopefully
+- Map Stuck! Map Stuck!
+  Fixed the map not scrolling with arrow keys after mario stops on certain paths 
+  ( Reported by Master 48 and Kavex )
+- Added blockers for Human Lab Bottles and Fusion Laboratory ( Reported by SerafimGWS )
+
+2.1 // 10/4/2025 - < QUICK MINOR UPDATE, NERFS >
+
+- Health Warning ( Reported by [DATA_EXPUNGED} )
+- Made the last phase of Ice Clone stompable  ( Already reported by Master 48, fixed just now )
+- Nerfed most of the levels ( Reported by [DATA_EXPUNGED} )
+- Removed time limits for Clusterfuck levels [ except for WoC2-1 ]
+- Improved Blue Pirahna to be more consistent with Viking Jaws ( Reported by SerafimGWS )
+- Included Bullex in Credits ( Reported by Bullex )
+
+ISSUES NOT WORTH FIXING ON THIS ENGINE WITHOUT SUCH A PAINSTAKING PROCESS ( FOR ME AND MY LAZINESS, AT LEAST ) :
+
+- IN RARE CASES, DO NOT CHANGE THE CONTROLS. It will reset them... like *completely*,
+  Leaving all the key bindings all blank, and sometimes when that happens the music won't play at all.
+  ( Reported by a friend of mine )
+- Enemies with Group.Bullets/Edge-Detection all turn at the same time another one turns.
+  Cannot be fixed without rewriting the entire code for it. Vanilla's code is rather quirky.
+- Alternate Display Sprites going behind the Original Display Sprites
+- Issues that somehow still persist even when fixed, cases of Clickteam's black magic
+  on other people's computers.

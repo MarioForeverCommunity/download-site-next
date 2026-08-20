@@ -1,0 +1,77 @@
+Hi! I'm glad you downloaded World KP and want to play my fangame! Because I added [+], changed [ ] or disabled [-] several things in engine, should explain all these issues below.
+
+[ ] Springboard mechanics. To jump high, player can just hold the jump button down instead of pressing that precisely.
+
+[ ] Beetroot projectiles. Very similar physics to Roman Worlds. If Mario runs fast, Beetroot will launch for a much longer range.
+
+[ ] Hammer and Fire Bros can NOT jump. It means these enemies can move only left and right.
+
+[-] Disabled Full Screen mode. Sorry, but playing on full screen may cause wrong display of certain sprites. If you prefer play on this mode, just maximize the window or change his resolution. I'll try fix this bug in near future :)
+
+[+] The arrow of fireballs. In this game, the special arrows has been added. If fireball, which was launched by Piranha Plant, is over the screen, then will appear a special orange arrow to help the player. This arrow is on top of the screen and always has the same X position as fireball which is over the screen. These objects may really help the player to avoid the fireballs falling suddenly.
+
+[+] The new kind of Bill Blaster. It can launch a special Bullet Bill are following Mario. Few seconds after launch, it will start the countdown (as sound notifications). If it sounds three times (three, two, one like in TheMarioVariable's World M), this Bullet Bill explodes. This explosion also can hit Mario (sprite is a fireball explosion upscaled four times).
+
+The new Bullet Bill is also spiky. It means it's unstompable. Every collision between Mario and this Bullet Bill ALWAYS causes getting a hit. I saw follow Bullet Bills in Decasamsara Worlds for example, and that Bullet Bills would be stomped (which made it much easier in my opinion). So that's the reason why I added spikes for these Bullet Bills :)
+
+And the last issue about that enemy. Only one that Bullet Bill may be activating at the same time. It means the another Bullet Bill will launch if the previous one exploded and Bill Blaster is on the screen at that moment. If would be more than one following and exploding Bullet Bill at the same time, player couldn't predict which Bullet Bill will explode soon. That would be such chaotic.
+
+[+] Skipping the cutscenes. If you don't want to watching all castle cutscenes, warp cutscenes etc., you could skip this animation in every moment. Press the jump button and the game jumps to next frame.
+
+[+] Hiding score. Am I only one person who are thinking the earning points in Mario Forever has a less and less matter? That's why I added this option. If score counter is disabled, player cannot see his score and number of points from coins, defeating enemies, end-level gate etc. Moreover, game won't show calculating extra points for time. In other words, score will still calculate, but everything, which has a certain amount of score, will be invisible.
+
+[ ] Changed the menu bar. In World KP, player can change also frame rate and enable/disable XScroll, helpful arrows or hide the score.
+
+-------------------------------------------------------------
+
+List of changes in version 1.0.1:
+
+- fixed springboard physics. It should work for every key now, not only for "Z" (thanks to MrPrzemistrz);
+- fixed Bowser's semi-transparency while his I-frame lasts;
+- fixed Mario's passing through pipes in KP-3;
+- fixed Thwomp's earthquake while XScroll is turned on;
+- fixed softlock in world map if player has press the jump button before Mario reaches the crossed goal (it was possible after completing KP-4, thanks to MrWiktor15);
+- fixed immediate jump to world map after completing the level while showing score is turned off;
+- fixed display bug in non-level frames (game showed at 60 FPS even player had chose 50 FPS);
+- small corrections in level design of stages;
+- ground's sprites in KP-1 have been improved;
+- skipping the cutscene is disabled;
+- if the game was lagging on some devices, these lags should be removed (thanks to Tomek839839). If you still see the lags, sorry, I can't do more now...
+- level KP-4 is possible to complete also in 50 FPS and form higher than Small Mario. It means I removed the sign and spikes in the end of previous level;
+- LEVEL KP-4 HAD BEEN NERFED 😄
+
+-------------------------------------------------------------
+
+It's time to say more about World KP. Viewers, who know my YouTube content from 2008 and 2009, remember that I made a multiple short levels in Mario Worker 1.0. Moreover, my gameplays and style of my videos are really original. Lots of fans may still remember these videos and say about it "that is created by krzyspasztecik12" :D So World KP contains several ideas and has many memories from the past. It may be one of the most nostalgic worlds ever made in Mario Forever.
+
+KP-1: Grassland/Darkland
+KP-2: Following Bullet Bills
+KP-3: Switches
+KP-4: Escape from destroying castle
+KP-5: Destroying castle walls
+
+Description of all levels in World KP:
+
+KP-1: I'll say the most about audiovisual effects. I very liked slowdown music in my old videos. By the way, TheMarioVariable did it in Y-3 and he confirmed that slower music in this level is inspired by me! In KP-1 we'll listen slowdown music again. More precisely, the closer is end of the level, the slower is the music. It's synchronized with sprites are darker and darker. I hope that's the very cool treat for my first viewers. The easiest level on this world undoubtedly.
+
+KP-2: in this level can see a combination of following Bullet Bills and falling spikes. In other words, player must watch out for following Bullet Bill at the top (before Checkpoint) and crouch down when Mario is in gray stones (not red), otherwise Mario will hurt (after Checkpoint). And, of course, music slowdown again.
+
+KP-3: it's my concept to using switches in Mario. Several tough moments and the second part which was divided to three "ways": blue, green and red. In every section, I showed other way of switches' using. Blocks enabled or disabled automatically, touching switches by Mario to save himself and avoiding them when he is on a springboard. The third level of World KP may be the favourite one for lots of players, I guess :D
+
+KP-4: absolutely the craziest level in this world and, in my opinion, one of the craziest autoscroll levels ever in Mario Forever. When I was a child and recorded MF, I loved speedrunning. And the fourth stage is exactly like that: just the speedrun. There's no accident I chose this level to show you as the first one on YouTube Shorts.
+
+KP-5: Let's talk about one issue. When I created levels in Mario Worker 1.0 over a decade ago, the stage with castle walls background was one of the best my levels in MW. And I inspired that in creating KP-5. According me, the last stage has the best level design of all five. This level is finally longer than I expected, but it contains very interesting gameplay (in my opinion). There are spikeball launchers can launch five spikeballs and homing Bullet Bills are launching until the end of the level. As I often say on my videos: billion objects on the screen :P
+
+The Bowser battle is difficult, but I still nerfed him. Firstly, he is moving at the same speed. No stop, no speed change - his movement is predictable. Secondly, Bowser can jump high, so player can often run under him. It may make easier the game. And the Thwomps. These guys "help" the player. More precisely, player cannot wait near left or right edge of the screen. If Mario would be very near edge, he may not escape from Bowser's attacks. So these Thwomps were made because player won't choose a bad strategy for this fight :)
+
+So that's look my first Mario Worker/Mario Forever world since 2009 :D I'm proud of this fangame, although I'm aware World KP may contain lots of little bugs. Rather not big ones... but who knows :P
+
+-------------------------------------------------------------
+
+Thank you for playing World KP. If you want to tell me something about this production or just give a feedback, write on YouTube or e-mail:
+
+🌐 youtube.com/@krzyspasztecik12
+
+📧 krzyspasztecik@gmail.com
+
+Good luck, have fun!

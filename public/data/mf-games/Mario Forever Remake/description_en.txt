@@ -1,0 +1,145 @@
+﻿Mario Forever Edition Remake V3.5
+Release Date: February 2, 2017
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONTENTS:
+*01. Info
+*02. Credits
+*03. How to Play this Game
+*04. The Release History of Mario Forever (Advance Edition) Remake
+*05. Some Info about Mario Forever Remake Group
+*06. What's New in Version 3.5
+*07. Ends
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+01. Info
+"Mario Forever Remake", as you are going to play, is the remake version of "Mario Forever" (first released in 2003 (Michael Gdaniec's item)).
+The major purpose of this project is to restore the characteristics of the original game, enhance the fluency of the game, and also improve the quality of it through reducing defects and fixing bugs.
+The remake version of Mario Forever also contains five new worlds, named World 9, World 10, World 12, World 13 and World U, which are not available in the original game.
+
+*Insturctions for the additional levels mentioned above:
+World 9, World 10 are made by syzxchulun (A team member of Mario Forever Remake Group, as the director of Mario Forever Remake project).
+World 12, World 13 are made by Mario Forever Remake Group (China).
+World U is made by Nmnmoooh.
+
+World 9 is a Mario Forever project made by Syzxchulun in 2013 ("World 9" in Mario Forever Remake is the simplified version of the original levels first released in 2012).
+World 10 is a Mario Forever project made by Syzxchulun in 2013.
+World 12 is greatly modified from the previous version of World 12 first released in 2015. Version 3.5 mainly reduces the difficulty and enhance its fun.  
+World 13 is newly made for the release of this game.
+World U is actually the Mario Forever Project "World U (Easy mode)" made by Nmnmoooh.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+02. Credits
+Clickteam: Provide the working platform (Clickteam Fusion R283.5 & Multimedia Fusion 2 Developer).
+Nintendo: The pioneer of Mario games, who created the world of Mario.
+Michal Gdaniec: Provide the original idea of Mario Forever (Advance Edition).
+
+Thanks for all the support and help!
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+03. How to Play this Game 
+
+*The recommended keys are:
+Z: Jump / Start a level
+X: Run / Shoot Fireballs
+Left / Right: Move / Run (with "X" pressed) / Enter a horizontal pipe
+Up / Down: Crouch / Change a option / Enter a vertical pipe
+Enter: Select an option
+
+*You can change all the settings in "options" as your preferences.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+04. The Release History of Mario Forever (Advance Edition) Remake.
+*Chinese: Version (A)
+January 30, 2014: Mario Forever Remake A Version 1.0
+September 8 2014: Mario Forever Remake A Version 1.7
+October 1, 2014: Mario Forever Remake A Version 2.0
+November 27, 2014: Mario Forever Remake A Version 2.1
+November 28, 2014: Mario Forever Remake A Version 2.2
+February 18, 2015: Mario Forever Remake A Version 3.0
+February 2, 2017: Mario Forever Remake A Version 3.5
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*European: Version (B)
+February 2, 2014: Mario Forever Remake B Version 1.0
+July 25, 2014: Mario Forever Remake B Version 1.5
+October 15, 2014: Mario Forever Remake B Version 2.0
+February 21,2015:Mario Forever Remake B Version 2.2
+March 1,2015:Mario Forever Remake B Version 2.3
+June 29,2015:Mario Forever Remake B Version 2.7
+July 7, 2016: Mario Forever Remake B Version 3.0 
+July 11, 2016: Mario Forever Remake B Version 3.1 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*Mario Forever Advance Edition Remake
+August 12, 2016: Mario Forever Advance Edition Remake Version 1.0
+February 2, 2017: Mario Forever Advance Edition Remake Version 1.5
+
+*If you find it difficult to pass levels in this game, make sure the downloaded version isn't advanced.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+05. Some Info about the Mario Forever Remake Group
+Tip top: The following list mentions all the members who have devoted themselves to the evolution of Mario Forever (Advance Edition) Remake.
+The word inside the bracket is the Chinese identification (ID) of the member, and you can contact him/her according to this information in "tieba.baidu.com".
+If anything inside the bracket is garbled, please install the font "Arial" and check again.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*Syzxchulun (syzxchulun)
+*Lyh (虹原翼) (Name used before: lyh娘)
+*HappyLee_12 (Exactly as the English ID in front)
+*Anding7 (俺滴娘7)
+*风华正茂999999 (No English name)
+*Longzongkuiyan (巃嵸巋巚)
+*OnceBeta (Exactly as the English ID in front)
+*similarFANA (Exactly as the English ID in front) (Name used before: 死不了兜着走)
+*nmnmoooh (Exactly as the English ID in front)
+*WSW (无视我……)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*If you have installation problems, or any comments about this game, please send your email to:
+syzxchulun@sina.com
+OnceBeta@hotmail.com
+longzongkuiyan@qq.com
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+06. What's new in Version 3.5 (Compared with 3.0)
+*Fixing some bugs in drawings of remaked levels.
+*The falling characteristic of enemies is amended to be consistent with the original game.
+*New levels available: Koopa the Devastator Level & Koopa Troopa Liberation.
+*Greatly modifing World 12 from the previous version, which mainly reduces the difficulty and enhance its fun.
+*Including New world 13.
+*Adding world U made by Nmnmoooh.
+*The ending animation has been changed.
+*Optimizing music stuff and displaying effects.
+*Revising other details.
+
+Note: World 11 is temporarily removed due to the revising process.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+07. Ends
+Thanks again for all the players!
+Have a nice playing time!
+
+-------------------------------------------------------------------------------------------------------
+
+Appendix:
+Visit our websites for more information:
+http://tieba.baidu.com/f?kw=%D3%C0%D4%B6%B5%C4%C2%EA%C0%F6&fr=index
+(Wibesite of Baidu Mario Forever Bar)
+
+Suggested reading: http://mfresources.ys168.com
+(Official Netdisk of Baidu Mario Forever Bar)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

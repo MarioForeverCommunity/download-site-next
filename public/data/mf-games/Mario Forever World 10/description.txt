@@ -1,0 +1,13 @@
+Mario Forever World 10
+RELEASED:17.10.2015
+
+My designs are released :
+-World 10
+-World Q.
+
+Current version: 1.0
+Next version: 1.8
+
+-Controls
+Jump = Z .
+Run and sending bullets fire = X .

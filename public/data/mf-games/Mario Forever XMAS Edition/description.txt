@@ -1,0 +1,74 @@
+**---------** [ MARIO FOREVER - CHRISTMAS EDITION // Wersja 1.15.1.0 ] **---------**
+
+                        CRIST1919 - PHANTOM SAPPHIRE - XYKIJUN
+                           2016/2017 - FINAL FIXED VERSION !
+
+	            -============================================-
+                     |                                           |
+                     | _______________( POLSKI )________________ |
+                     |                                           |
+                     |   [ Oryginal program stworzony przez : ]  |
+                     |               BUZIOL GAMES                |
+                     |                                           |
+                     |         [ Program na licencji : ]         |
+                     |                 FREEWARE                  |
+                     |                                           |
+                     | ______________( ANGIELSKI )______________ |
+                     |                                           |
+                     |     [ Original program created by : ]     |
+                     |               BUZIOL GAMES                |
+                     |                                           |
+                     |           [ Program license : ]           |
+                     |                 FREEWARE                  |
+                     |                                           |
+	            -============================================-
+
+
+**--------------------------------------------------------------------------------**
+
+				      ( POLSKI )
+I - JEZYK
+
+Trzy jezyki sa insert w oprogramowaniu ( POLSKA - ANGIELSKI ). Jest to mozliwe, aby
+go zmienic, gdy gra uruchamiania lub poprzez ustawienie go w opcjach.
+
+
+II - OPCJI / KONTROLUJE
+
+Kontroli mozna zmienic z poziomu oprogramowania. Przejdz do menu opcji, a nastepnie
+w grupie kontrolnej. Aby zmodyfikowac klucz, nacisnij "Enter". Komunikat "nacisnij
+dowolny klawisz, aby ustawic" pojawi sie, wybierz przycisk, który mozna.
+
+III - UZYTECZNOSC
+
+"Escape" = Pauza
+"F2" = Gra Restartowania
+"F3" = Windowed Mode
+"F4" = Fullscreen Mode
+
+
+**--------------------------------------------------------------------------------**
+
+
+				     ( ANGIELSKI )
+I - LANGUAGE
+
+Two languages are available in the software ( POLISH - ENGLISH ). It's possible to
+change it, when the game starting or by setting it in the options.
+
+
+II - OPTIONS / CONTROLS
+
+You can change controls from the software. Go to the options menu, then in controls.
+To modify a key, push "Enter". A message "PRESS ANY KEY TO SET" will appear, choose
+the key that you would use for such action.
+
+III - UTILITIES
+
+"Escape" = Pause
+"F2" = Restart game
+"F3" = Windowed Mode
+"F4" = Fullscreen Mode
+
+
+**--------------------------------------------------------------------------------**

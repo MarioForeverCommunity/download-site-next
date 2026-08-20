@@ -1,0 +1,117 @@
+If you want to skip intro and start cutscene you can press "Escape" and if you want to delete the progress hold "Ctrl"+"Delete" during several seconds in the
+start screen, after that write "Yes" in the pop-up window. ;)
+
+In this version of the game you can use mouse, right click opened context menu ;) (special thanks to MrPrzemistrz for this idea)
+"Helpful Arrows" (to determine where Mario or the enemy fireball/iceball/spikeball/hammer are currently located, if they are above the screen area;
+special thanks to @krzyspasztecik12 for this cool idea) and "V-Sync" are also enabled by default.
+You can change these settings in the settings section of the game menu.
+
+IMPORTANT:
+1. Default framerate is 50 FPS. Yes, you can change framerate to 60 FPS, but I wanna warning you: technically it will works not so good. I'm so sorry about it.
+2. Please don't hold the button "Pause" if you use button "P" as pause button. If you'll hold that button cursor will be removed.
+I don't know why it happened and I can't fix that. In this case I can offer you to change pause button in settings.
+3. Unfortunately context menu doesn't work in Save Game Room.
+But I think, it's not necessarily thing there, however, if you wanna come back to Main Menu you can always press F3.
+
+version v.2.0.1:
+- fixed bug with exit from the pipe in 3-4 (special thanks to HP (@HPTheWrenSaga) )
+- fixed some small issues in 1-5
+- menu "credits" updated (HP (@HPTheWrenSaga) - thank you so much for playing to my game)
+
+version v.2.0.2:
+- fixed main terrible bug with IL-2
+- fixed bug with water animation
+- fixed bug "text with stages fall down on the maps"
+- fixed bugs with entrances to the pipes
+- fixed some small issues
+- menu "credits" updated (SupraXOCan (@SupraXOCan123) - thank you for playing to my game)
+
+version v.2.1:
+- more friendly interface, added more toolpits
+- level 2-2 - fixed problems with water level
+- level 2-5 - fixed problems with paths (thanks to @krzyspasztecik12 for advice)
+- level 3-1 - fixed starman
+- level 3-4 - fixed bugs with entrances to the pipes
+- level 5-5 - fixed final Bowser's room and some improvements here
+	+ Small Mario turns into Super Mario after winning the final battle
+- updated cutscenes with Peach and Toad, Mario doesn't run away + gnomes happily great his friends
+- added notifications if we have not enough star-coins when we'll go to Fire Land/Ice Land/Crazy Ships/One Last Challenge from previous stage
+	+ added notification Fire Land/Ice Land/Crazy Ships/One Last Challenge unlocked in Save Game Room
+- Map "Fire Land" and all another maps - fixed Mario run away from the level points
+	+ added new option in context menu: you can choose the level by click mouse in context menu (!!!)
+- level FL-1 - some changes in structure of level
+- some fixes of Bowser in Fire Land/Ice Land
+- One Last Challenge - 1-UP after the first checkpoint ;)
+- menu "credits" updated (@krzyspasztecik12 - thank you for testing my game)
+... and some other small fixes and improvements...
+
+SOUNDTRACKS:
+
+Stage 1 Map - Super Mario 3D Land - World 1/Special 1
+1-1 - Yoshi's New Island OST - Bouncy Beanstalk Walk
+1-2 - Donkey Kong Country 3 - Wrinkly's Save Cave
+1-3 - Yoshi's New Island OST - Overworld
+1-4 - Undertale - Hotel
+1-5 - Super Mario Bros - Castle - Remix by silentzorah
+1-5 Boss - Kirby Super Star Ultra - Galacta Knight - Remix by iR2-X 
+
+Stage 2 Map - Earthbound (Mother 2) - Buzz Buzz’s Prophecy
+2-1 - Earthbound (Mother 2) - Boy Meets Girl
+2-2 - Super Paper Mario OST - The Open Plane (The Bitlands)
+2-3 - Super Mario Odyssey OST - Bubblaine (Underwater)
+2-4 - Shovel Knight OST - Strike the Earth! (Plains of Passage)
+2-5 - Dr. Franken-Rhyme - Cheetahmen
+2-5 Boss - Freedom Planet 2 - Boss Battle Demo
+
+Stage 3 Map - 4-mat - Eurobeat
+3-1 - Undertale OST - Metal Crusher
+3-2 - Paper Mario: The Origami King - Overlook Mountain
+3-3 - Flandre's Theme - U.N. Owen Was Her?
+3-4 - M&H Band - Popcorn - Remix by xain l.k
+3-5 - Showel Knight - In The Halls Of Urusper (Pridemoor Keep) - Remix by GaMetal
+3-5 Boss - Super Mario Bros. Wonder OST - Bowser's Rage Stage
+
+Stage 4 Map - 4-mat - Eternity
+4-1 - CYN - A Cyn-Etic Life
+4-2 - Super Mario Bros 3 - Sky Night
+4-3 - Paper Mario Star Matrix - Shooting Star Tower (Final) by Sm64Pi
+4-4 - A Koopa's Revenge 2 - Cave (Night)
+4-5 - SMW Custom Music - Showel Knight - A Thousand Leagues Below (Iron Whale)
+4-5 Boss - Super Paper Mario - I'm Not Nice (Mimi Battle)
+
+Stage 5 Map - Super Paper Mario OST - In The Darkness
+5-1 - Mega Man 2: The Willy Wars - Quick Man's Stage
+5-1 Boss - La Mulana OST - Treasure Sealed Off
+5-2 - Boruto: Naruto Next Generations OST II - Hard Battle (苦闘)
+5-3 - Ys: The Oath in Felghana OST - Valestein Castle
+5-3 Boss - Megaman X6 - Bosses Theme Song
+5-4 - Boruto: Naruto Next Generations OST II - Genin's Intensive Training (Genin no Tokkun)
+5-5 - Touhou 1 - Shingyoku's Theme - The Positive and Negative
+5-5 Boss - RosenkreuzStilette & RosenkreuzStilette Freudenstachel - Title/Luste Talk (AM Fight No. 1 by AM3)
+
+Fire Land Map - Rayman 1 OST - World Map
+FL-1 - Mega Man X5 OST T17 - Mattrex Burn Dinorex Stage Volcanic Inferno - Red Hot World!
+FL-2 - Amazing Post Pounding - Yoshi's Woolly World
+FL-3 - Mega Man - Flame Man Dr. Cossack Stage 2 - Rock Cover by MattAttack
+FL-4 - Sonic Hoshi OST - Last Lane Act 2 - Cover by CD-DA
+FL-5 - Mega Man 2: The Wily Wars - Dr. Wily Stage 3 & 4
+FL-5 Boss - Mega Man X4 OST T18 - Boss
+
+Ice Land Map - Super Mario Bros. 3 - World Map 6: Ice Land Theme
+IL-1 - Touhou Azure Reflections - Lunate Elf
+IL-2 - Kirby's Return to Dream Land OST - Icy Cavern
+IL-3 - Maximum Tune OST - Stream Of Tears
+IL-4 - Super Mario World custom song - Ice Cave - SMC soundtrack disc III by TheCrushedJoycon
+IL-5 - Super Mario World custom music - Cursed Cathedral
+IL-5 Boss - Megamari Boss Battle Theme - Boss
+
+Crazy Ships Map - Dark Cloud Soundtrack - A Sinking Ship
+CS-1 - Rayman 2: The Great Escape - Whale Bay Part 2 (2-18)
+CS-2 - Metroid Prime - Lava Caves [Magmoor Caverns]
+CS-3 - Yu-Gi-Oh: Arc V Sound Duel 3 - Looming Monster
+CS-4 - A Koopa's Revenge 2 - Cave (Day)
+CS-5 - Super Mario World - Monstrous Turtles by zircon
+CS-5 Boss - New Super Mario Bros. U OST - Koopaling Battle
+
+One Last Challenge Map - Slender Fortress Soundtrack - Ambiences 1-5 by Axel Nosferatu
+OLC - Rayman 3 OST - No Time to Lose!: Conveyor Belts

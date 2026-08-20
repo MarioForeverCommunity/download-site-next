@@ -1,0 +1,10 @@
+In game, press F1 button to read some informations.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+MADE ON: marioforevereditorv1.cca fixed by master171. - creator of this game
+Level editor: master171.
+Codec: master171.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+You can play only in fullscreen because this is a beta version [the game is not completed finished (some bugs is not fixed)]. So, if you seen a bug, please be patient, because is a beta version of the original.
+
+All enemies *exclude the second hammer bro (blue bro)*, graphics and some codecs has been added by the original creator of this game, Softendo(TM). All rights reversed to him.
+2004 (c) Buziol Games
