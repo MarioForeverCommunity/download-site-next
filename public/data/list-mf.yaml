@@ -1,4 +1,23 @@
 ---
+- game: WN-MASKER'S ADVENTURE
+  game_alt:
+  tag:
+  - Single Level
+  author: WN-MASKER
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-08-21
+  source_url: https://www.bilibili.com/video/BV1Fy8K6aELZ/
+  source_url_alt:
+  download_url: https://qfile.qq.com/q/I4mS595U8G
+  code:
+  download_url_alt:
+  file_name: WN-MASKER ADVENTURE.rar
+  file_url:
 - game: FUNNY DUSK TANKS???
   game_alt:
   tag:
@@ -16,7 +35,7 @@
   download_url: https://qfile.qq.com/q/AxxrCEWBhu
   code:
   download_url_alt:
-  file_name: FUNNY DUSK TANKS.exe
+  file_name: FUNNY DUSK TANKS.rar
   file_url:
 - game: PK!MF8 竞技赛关卡集
   game_alt: PK!MF8 Competitive Collection
@@ -1766,12 +1785,22 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v5.0:
+      ver_alt:
+      date: 2026-08-21
+      source_url: https://www.youtube.com/watch?v=10nPYEIIMy4
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/gwlgiqexxeu57a2/Mario_Forever_Sensitive_Journey_v5.0.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Sensitive Journey v5.0.zip
+      file_url:
   - v4.6:
       ver_alt:
       date: 2026-07-19
       source_url: https://www.youtube.com/watch?v=BH4HaZcUAxE
       source_url_alt:
-      download_url: https://www.mediafire.com/file/we4ewd07bnxjm2r/Mario_Forever_Sensitive_Journey_v4.6.zip/file
+      download_url: ~https://www.mediafire.com/file/we4ewd07bnxjm2r/Mario_Forever_Sensitive_Journey_v4.6.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v4.6.zip
@@ -1781,7 +1810,7 @@
       date: 2026-06-28
       source_url: https://www.youtube.com/watch?v=yyyGFOI9e9c
       source_url_alt:
-      download_url: https://www.mediafire.com/file/au6cjfuttdieqkn/Mario_Forever_Sensitive_Journey_v4.3.zip/file
+      download_url: ~https://www.mediafire.com/file/au6cjfuttdieqkn/Mario_Forever_Sensitive_Journey_v4.3.zip/file
       code:
       download_url_alt:
       file_name: Mario Forever Sensitive Journey v4.3.zip
@@ -3191,6 +3220,7 @@
   homepage_en: https://mfce.rnx.su/
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
+  repo: https://github.com/meteo-dream/mf-community-edition
   ver:
   - v2.2.1 Windows:
       ver_alt:
