@@ -45,6 +45,14 @@ version v.2.1:
 - menu "credits" updated (@krzyspasztecik12 - thank you for testing my game)
 ... and some other small fixes and improvements...
 
+version v.2.2:
+- fixed a lot of collisions in general, special thanks to @Patchouli_Knowledge
+- some star-coins have been repositioned as follows: the first is closer to the start of the level, the second is closer to the middle of the level and the third is closer to the end of the level.
+- the difficulty of the levels and stages is more balanced (in general)
+- current size of the game was been decreased until 195 MB (!!!)
+- level "One Last Challenge" renamed to "Abandoned Tower"
+- added Turbo_42 in credits - special thanks to you, bro, for playing to my game. ;)
+
 SOUNDTRACKS:
 
 Stage 1 Map - Super Mario 3D Land - World 1/Special 1
