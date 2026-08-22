@@ -9,6 +9,12 @@ Engine by: Lyh and Szxychulun
 - Two extra levels are added in the game.
 - One extra demo world is also added in the game.
 
+2.) Second Batch (Volume 2) - August 21, 2026
+- The game consists of four worlds.
+- Three retro levels are added in the game.
+- Two extra levels are added in the game.
+- Some adjustments in certain levels in all worlds.
+
 -- Individual Releases --
 
 1.) World -A (The Beginning) - June 26, 2025

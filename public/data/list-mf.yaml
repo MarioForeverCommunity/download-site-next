@@ -2719,8 +2719,18 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  - World -H:
+  - Vol.2:
       current: true
+      ver_alt:
+      date: 2026-08-22
+      source_url: https://www.youtube.com/post/UgkxgU8JtIckwGeCPyE7x72csAOiQ-Z-ETFL
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/pe7ywe2tl22y60l/MWMLWS_-_Vol._2.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - Vol. 2.zip
+      file_url:
+  - World -H:
       ver_alt:
       date: 2026-08-14
       source_url: https://www.youtube.com/watch?v=0B3jE9CPSi8
@@ -2731,7 +2741,6 @@
       file_name: MWMLWS - World -H.zip
       file_url:
   - World -G:
-      current: true
       ver_alt:
       date: 2026-08-09
       source_url: https://www.youtube.com/watch?v=rdPXrb679XU
@@ -2742,7 +2751,6 @@
       file_name: MWMLWS - World -G.zip
       file_url:
   - World -F:
-      current: true
       ver_alt:
       date: 2025-12-26
       source_url: https://www.youtube.com/watch?v=gra8ViW-VAE
@@ -2753,7 +2761,6 @@
       file_name: MWMLWS - World -F.zip
       file_url:
   - World -E (Bugfix):
-      current: true
       ver_alt:
       date: 2025-12-26
       source_url: https://www.youtube.com/watch?v=73fdT--c_aA
@@ -2777,7 +2784,7 @@
       current: true
       ver_alt:
       date: 2025-11-06
-      source_url:
+      source_url: https://www.youtube.com/post/UgkxjazzY-wavpLC2U4vjnkyw9gRpbfzs1rR
       source_url_alt:
       download_url: https://www.mediafire.com/file/7ci49e210r929xf/MWMLWS_-_Vol.1_%2528BUGFIX%2529.zip/file
       code:
@@ -2787,7 +2794,7 @@
   - Vol.1:
       ver_alt:
       date: 2025-10-21
-      source_url:
+      source_url: https://www.youtube.com/post/UgkxjazzY-wavpLC2U4vjnkyw9gRpbfzs1rR
       source_url_alt:
       download_url: https://www.mediafire.com/file/e74elv4p94oq6qr/MWMLWS_-_Vol.1.zip/file
       code:
