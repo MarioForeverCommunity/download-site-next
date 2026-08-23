@@ -598,8 +598,8 @@ body.dark .nav-dropdown-item.active {
     padding: 6px 16px;
     position: relative;
     transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
     white-space: nowrap;
