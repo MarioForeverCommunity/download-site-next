@@ -1,4 +1,16 @@
 ---
+- name: TileExporter
+  author: 绿色的糖果
+  type: addon
+  description:
+  image: tp_pces_4.webp
+  source_url: https://www.marioforever.net/thread-3846-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/GreenSweet233/ctf-TileExporter
+  ver: "20260823"
+  date: 2026-08-23
+  file_name:
 - name: 全图工具
   author: 数字1528君
   type: addon
