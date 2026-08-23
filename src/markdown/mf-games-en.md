@@ -26,7 +26,7 @@ Some old versions of fangames are available on the [Community File Hub](https://
     <li>Happy Mario 9 - for providing several Chinese fangames released in 2015.</li>
     <li>Green Sweet and WSW - for collecting a number of fangame links during the early days of this site (2020–2021), which helped shape the foundation of the catalog.</li>
     <li>JUE13 - for providing several repackaged versions of fangames.</li>
-    <li>TwoSpaceSG and Zik the Green - for providing numerous Softendo legacy games.</li>
+    <li>TwoSpacesSG and Zik the Green - for providing numerous Softendo legacy games.</li>
   </ul>
   <p>We are grateful to everyone listed above, as well as many other community members whose contributions, large or small, have helped preserve the history of Mario Forever fangames. If any contributor was unintentionally omitted, please forgive us - we thank you all the same.</p>
 </div>
