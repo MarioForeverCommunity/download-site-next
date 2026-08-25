@@ -142,7 +142,7 @@ Mario Forever Remake 和 Mario Forever Advance Remake 是分别基于 Mario Fore
 
 Mario Forever: Community Edition（简称 MF:CE）是基于原版 Mario Forever 的全复刻作品。MF:CE 摒弃了原版的制作软件 Clickteam Fusion，而采用更加现代的 Godot 游戏引擎。MF:CE 不仅复刻了原版游戏的绝大部分内容，还增添了一些自定义功能与新的挑战，以及一些面向玩家的特性，并对游戏的美术表现进行了略微调整。MF:CE 还允许路易吉成为可玩角色。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
 
-<MfGamesEntry name="Mario Forever - Community Edition" />
+<MfGamesEntry name="Mario Forever: Community Edition" />
 </div>
 
 <div v-if="currentTab === 'android'">

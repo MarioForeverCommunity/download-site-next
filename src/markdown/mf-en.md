@@ -45,7 +45,7 @@
 ## Download Mario Forever: Community Edition
 **Recommended.** Suitable for relatively modern PCs, with controller support and high FPS support. Tweaks are integrated for customizing the player's gameplay experience. It also features custom character skins and the ability to play as Luigi.
 
-<MfGamesEntry name="Mario Forever - Community Edition" />
+<MfGamesEntry name="Mario Forever: Community Edition" />
 
 ## Download Mario Forever Remake
 Suitable for the vast majority of Windows PCs. Runs better on some modern computers, compared to the original Mario Forever. It also adds several fan-made worlds. The game has two different iterations: European version (PAL) and Chinese version.
