@@ -1794,6 +1794,8 @@
   file_url:
 - game: "Mario Forever: Advanced Mario Bros."
   game_alt:
+  tag:
+  - Hardcore
   author: AppliconReal
   author_alt:
   type: international
