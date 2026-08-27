@@ -1,4 +1,21 @@
 ---
+- game: Mario Forever Traveling and Touring
+  game_alt:
+  author: 小胖有萌新
+  author_alt: XIAOPANG
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver: World 15
+  ver_alt:
+  date: 2026-08-27
+  source_url: https://www.marioforever.net/thread-3944-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1Am6gMv3sQZq8zfKyetcc2A
+  code: hh27
+  download_url_alt:
+  file_name: Mario Forever Traveling and Touring World 15.7z
+  file_url:
 - game: DEADLY LEVEL (WELCOME BACK!)
   game_alt:
   tag:
@@ -10268,7 +10285,7 @@
       source_url_alt:
       download_url: https://pan.baidu.com/s/1gVdlT7EGpdUvMfxEe5vYmA
       code: tb51
-      download_url_alt:
+      download_url_alt: https://www.mediafire.com/file/o1t2m5u6k7vy15f/MF_A_Fabulous_Space_V5.1_Bugfix.rar/file
       file_name: MF A Fabulous Space V5.1 Bugfix.rar
       file_url:
   - v5.0:
