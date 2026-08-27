@@ -66,10 +66,12 @@ onUnmounted(() => {
 
   body.dark .back-to-top {
     background-color: #555 !important;
+    color: #bbbbbb !important;
   }
 
   body.dark .back-to-top:hover {
     background-color: #444 !important;
+    color: #bbbbbb !important;
   }
 
   .back-to-top span {
