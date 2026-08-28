@@ -827,16 +827,28 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: v2.0
-  ver_alt:
-  date: 2026-04-19
-  source_url: https://www.marioforever.net/thread-3838-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1ZY-wdSYYtwL6Ck0LyP22zg
-  code: 7b86
-  download_url_alt:
-  file_name: Mario Forever 2022 XTGZ 2.0.rar
-  file_url:
+  ver:
+  - v3.0 12-4 单关版:
+      ver_alt: v3.0 12-4 Single Level
+      date: 2026-08-28
+      source_url: https://www.marioforever.net/thread-3946-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1wfHTy-hOune72tDteXXrtg
+      code: 28gn
+      download_url_alt:
+      file_name: Mario Forever 2022 XTGZ v3.0 12-4单关版.rar
+      file_url:
+  - v2.0:
+      current: true
+      ver_alt:
+      date: 2026-04-19
+      source_url: https://www.marioforever.net/thread-3838-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1ZY-wdSYYtwL6Ck0LyP22zg
+      code: 7b86
+      download_url_alt:
+      file_name: Mario Forever 2022 XTGZ 2.0.rar
+      file_url:
 - game: "Mario Forever: Maker Party"
   game_alt:
   alias:
@@ -6935,6 +6947,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.0.1:
+      ver_alt:
+      date: 2026-08-28
+      source_url: https://www.marioforever.net/thread-3945-1-1.html
+      source_url_alt: https://www.youtube.com/watch?v=CoWvyG8-NB8
+      download_url: https://mega.nz/file/uZg12DRJ#LkCnWtaP115gn019m6M7ZebJNIhC1y42Y5RYyRNKcto
+      code:
+      download_url_alt:
+      file_name: Mario Forever - Fabulous Letter Worlds Series v2.0.1.rar
+      file_url:
   - v2.0:
       ver_alt:
       date: 2026-08-27
