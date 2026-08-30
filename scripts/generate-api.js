@@ -552,14 +552,25 @@ const ASSET_BASE = {
 };
 const ENGINE_BASE = 'https://file.marioforever.net/Mario Forever/引擎/';
 
-function assetFileUrl(type, fileName, path = '') {
+// 英文路径（后缀与原对象存储 CDN 一致，域名换为资源站 file.marioforever.net）
+const ASSET_BASE_EN = {
+  effect: 'https://file.marioforever.net/mario-forever/engines/clickteam-fusion-effects/',
+  addon: 'https://file.marioforever.net/mario-forever/engines/resource-packs/',
+  sprite: 'https://file.marioforever.net/mario-forever/resources/',
+  tool: 'https://file.marioforever.net/mario-forever/tools/',
+  mwtool: 'https://file.marioforever.net/mario-worker/tools/'
+};
+const ENGINE_BASE_EN = 'https://file.marioforever.net/mario-forever/engines/';
+
+function assetFileUrl(type, fileName, path = '', lan = 'zh') {
   if (!fileName) return null;
   // 与 MF/MW 保持一致：文件名不做 URL 编码，交由客户端处理（含中文/空格）
   if (type === 'engine') {
     const pathPart = path ? path + '/' : '';
-    return `${ENGINE_BASE}${pathPart}${fileName}`;
+    const base = lan === 'en' ? ENGINE_BASE_EN : ENGINE_BASE;
+    return `${base}${pathPart}${fileName}`;
   }
-  const baseUrl = ASSET_BASE[type];
+  const baseUrl = lan === 'en' ? ASSET_BASE_EN[type] : ASSET_BASE[type];
   return baseUrl ? baseUrl + fileName : null;
 }
 
@@ -587,16 +598,16 @@ function buildAssets() {
       const dlUrl = dlInvalid ? v.download_url.substring(1) : v.download_url;
       const srcInvalid = typeof v?.source_url === 'string' && v.source_url[0] === '~';
       const srcUrl = srcInvalid ? v.source_url.substring(1) : v.source_url;
-      const fileName = v?.file_name || v?.image;
-      const fileNames = Array.isArray(fileName) ? fileName.filter(f => f != null) : (fileName ? [fileName] : []);
+      // 仅 file_name 为资源站下载文件；image 为配图，不作为下载文件
+      const rawFileName = v?.file_name;
+      const fileNames = Array.isArray(rawFileName) ? rawFileName.filter(f => f != null) : (rawFileName ? [rawFileName] : []);
       // 结构参考 mf.json 的 resource：每项含 fileName 与 zh/en 链接
-      // assets 的资源站链接不分中英文，zh 与 en 相同
+      // zh 使用中文路径 path；en 使用英文路径，engine 类子目录用 path_alt（缺省回退 path）
       const resource = fileNames.map(fn => {
-        const url = assetFileUrl(entry.type, fn, entry.path);
         return {
           fileName: fn,
-          zh: url,
-          en: url
+          zh: assetFileUrl(entry.type, fn, entry.path, 'zh'),
+          en: assetFileUrl(entry.type, fn, entry.path_alt || entry.path || '', 'en')
         };
       });
       return {

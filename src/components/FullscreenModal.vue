@@ -518,7 +518,10 @@ const downloadEntries = computed(() => {
 
   if (isAssets.value) {
     const entries = [];
-    const assetPath = props.game.path || '';
+    // 英文路径使用英文子目录 path_alt（缺省回退 path）
+    const assetPath = props.lan === 'en'
+      ? (props.game.path_alt || props.game.path || '')
+      : (props.game.path || '');
 
     if (props.game.ver && props.game.ver.length > 0) {
       for (const verRaw of props.game.ver) {
@@ -531,7 +534,7 @@ const downloadEntries = computed(() => {
             : [ver.file_name];
 
           for (const fileName of fileNames) {
-            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath));
+            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, props.lan));
 
             if (url) {
               let versionText = '下载';
@@ -559,7 +562,7 @@ const downloadEntries = computed(() => {
         : [props.game.currentVer.file_name];
 
       for (const fileName of fileNames) {
-        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath));
+        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, props.lan));
 
         if (url) {
           const versionText = props.game.currentVer?.ver || '下载';

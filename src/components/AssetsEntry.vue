@@ -105,8 +105,8 @@ async function fetchFileSizes(download) {
 
   const urls = []
 
-  // Collect resource URLs
-  const resourceUrls = getAssetResourceURLs(download)
+  // Collect resource URLs（按当前语言）
+  const resourceUrls = getAssetResourceURLs(download, lan.value)
   urls.push(...resourceUrls.map(u => u.url))
 
   // Collect download entries URLs
@@ -120,7 +120,7 @@ async function fetchFileSizes(download) {
 }
 
 function getSingleFileSize(download) {
-  const urls = getAssetResourceURLs(download)
+  const urls = getAssetResourceURLs(download, lan.value)
   if (urls.length === 0) return null
   const url = urls[0].url
   return fileSizeMap.value[url] || null
@@ -254,21 +254,21 @@ function getAssetImage(assetEntry) {
             下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
           </div>
           <!-- Single file: show file size above buttons -->
-          <div v-if="getAssetResourceURLs(selectedDownload).length <= 1" class="file-size-info">
+          <div v-if="getAssetResourceURLs(selectedDownload, lan).length <= 1" class="file-size-info">
             <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'zh' ? '获取文件大小中...' : 'Fetching file size...' }}</span>
             <span v-else-if="getSingleFileSize(selectedDownload)" class="file-size-text">{{ lan == 'zh' ? '文件大小' : 'File size' }}: {{ getSingleFileSize(selectedDownload) }}</span>
           </div>
           <!-- Multiple files: show loading indicator -->
-          <div v-if="getAssetResourceURLs(selectedDownload).length > 1 && fileSizeLoading" class="file-size-loading">
+          <div v-if="getAssetResourceURLs(selectedDownload, lan).length > 1 && fileSizeLoading" class="file-size-loading">
             {{ lan == 'zh' ? '获取文件大小中...' : 'Fetching file sizes...' }}
           </div>
           <div class="button-line">
-            <span v-if="getAssetResourceURLs(selectedDownload).length > 0">
+            <span v-if="getAssetResourceURLs(selectedDownload, lan).length > 0">
               <!-- Single file: normal button -->
-              <template v-if="getAssetResourceURLs(selectedDownload).length <= 1">
+              <template v-if="getAssetResourceURLs(selectedDownload, lan).length <= 1">
                 <a
                   class="download"
-                  v-for="url in getAssetResourceURLs(selectedDownload)"
+                  v-for="url in getAssetResourceURLs(selectedDownload, lan)"
                   :key="url.url"
                   :href="resourceUrl(url.url)"
                   target="_blank"
@@ -278,7 +278,7 @@ function getAssetImage(assetEntry) {
               <template v-else>
                 <a
                   class="download"
-                  v-for="url in getAssetResourceURLs(selectedDownload)"
+                  v-for="url in getAssetResourceURLs(selectedDownload, lan)"
                   :key="url.url"
                   :href="resourceUrl(url.url)"
                   target="_blank"

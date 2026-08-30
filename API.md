@@ -395,7 +395,7 @@ for (const file of level.resource) {
         {
           "fileName": "截图Active(2026.4.4).mfa",
           "zh": "https://file.marioforever.net/Mario Forever/引擎/拓展资源包/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa",
-          "en": "https://file.marioforever.net/Mario Forever/引擎/拓展资源包/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa"
+          "en": "https://file.marioforever.net/mario-forever/engines/resource-packs/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa"
         }
       ]
     }

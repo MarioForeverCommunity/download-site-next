@@ -10,21 +10,34 @@ const ASSET_BASE_PATHS = {
 // 引擎类型基础路径
 const ENGINE_BASE_PATH = "https://file.marioforever.net/Mario Forever/引擎/"
 
+// 英文路径（后缀与原对象存储 CDN 一致，域名换为资源站 file.marioforever.net）
+const ASSET_BASE_PATHS_EN = {
+  effect: "https://file.marioforever.net/mario-forever/engines/clickteam-fusion-effects/",
+  addon: "https://file.marioforever.net/mario-forever/engines/resource-packs/",
+  sprite: "https://file.marioforever.net/mario-forever/resources/",
+  tool: "https://file.marioforever.net/mario-forever/tools/",
+  mwtool: "https://file.marioforever.net/mario-worker/tools/"
+}
+
+const ENGINE_BASE_PATH_EN = "https://file.marioforever.net/mario-forever/engines/"
+
 /**
  * 根据资源类型、文件名（及可选路径）构建下载链接
  * @param {string} type - 资源类型 (effect/addon/engine/sprite/tool/mwtool)
  * @param {string} fileName - 文件名
  * @param {string} [path=""] - engine 类型下的子路径
+ * @param {string} [lan="zh"] - 语言 ("zh"/"en")，en 使用英文路径
  * @returns {string|null} 完整的 URL
  */
-export function getAssetFileUrl(type, fileName, path = "") {
+export function getAssetFileUrl(type, fileName, path = "", lan = "zh") {
   if (!fileName) return null
   // 与 MF/MW 保持一致：文件名不做 URL 编码，交由客户端处理（含中文/空格）
   if (type === "engine") {
     const pathPart = path ? path + "/" : ""
-    return `${ENGINE_BASE_PATH}${pathPart}${fileName}`
+    const basePath = lan === "en" ? ENGINE_BASE_PATH_EN : ENGINE_BASE_PATH
+    return `${basePath}${pathPart}${fileName}`
   }
-  const baseUrl = ASSET_BASE_PATHS[type]
+  const baseUrl = lan === "en" ? ASSET_BASE_PATHS_EN[type] : ASSET_BASE_PATHS[type]
   return baseUrl ? baseUrl + fileName : null
 }
 
@@ -42,9 +55,10 @@ export function getAssetFileDisplayName(fileName) {
 /**
  * 为资源条目生成下载链接列表
  * @param {object} assetEntry - 资源条目，需包含 currentVer.file_name 与 type
+ * @param {string} [lan="zh"] - 语言 ("zh"/"en")，en 使用英文路径与 path_alt
  * @returns {Array<{name: string, url: string}>} 下载链接列表
  */
-export function getAssetResourceURLs(assetEntry) {
+export function getAssetResourceURLs(assetEntry, lan = "zh") {
   if (!assetEntry?.currentVer || !assetEntry.currentVer.file_name) {
     return []
   }
@@ -52,11 +66,18 @@ export function getAssetResourceURLs(assetEntry) {
     ? assetEntry.currentVer.file_name.filter(fn => fn != null)
     : [assetEntry.currentVer.file_name]
 
+  // 英文路径下 engine 类使用英文子目录 path_alt（缺省回退 path）
+  const path = lan === "en"
+    ? (assetEntry.path_alt || assetEntry.path || "")
+    : (assetEntry.path || "")
+
+  const baseName = lan === "en" ? "Community File Hub" : "社区资源站"
+
   return fileNames.map((fileName) => {
-    const url = getAssetFileUrl(assetEntry.type, fileName, assetEntry.path || "")
+    const url = getAssetFileUrl(assetEntry.type, fileName, path, lan)
     const displayFileName = getAssetFileDisplayName(fileName)
     return {
-      name: fileNames.length > 1 ? `社区资源站 (${displayFileName})` : "社区资源站",
+      name: fileNames.length > 1 ? `${baseName} (${displayFileName})` : baseName,
       url
     }
   })
