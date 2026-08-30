@@ -1,6 +1,6 @@
 # API 文档
 
-download.marioforever.net 提供一套**静态 JSON API**，包含 Mario Forever 同人作品、Super Mario Worker Project 作品、创作资源、Softendo 游戏与原版 Mario Forever 的完整数据，包括各项参数、资源站/对象存储下载链接、作品图片路径与作品描述内容。
+download.marioforever.net 提供一套**静态 JSON API**，包含 Mario Forever 同人作品、Super Mario Worker Project 作品、创作资源、Softendo 游戏与原版 Mario Forever 的完整数据，包括各项参数、资源站下载链接、作品图片路径与作品描述内容。
 
 API 在站点构建时由 `scripts/generate-api.js` 从 `public/data/` 下的 YAML 数据生成，随站点一起以静态文件形式部署。因此它**没有后端服务**，也不存在速率限制、鉴权或查询参数——你只需用任意 HTTP 客户端 GET 对应的 JSON 文件，再在本地做筛选。
 
@@ -67,28 +67,26 @@ for (const ep of manifest.endpoints) {
 
 ### 下载链接对象
 
-所有下载链接都统一为**链接对象**，包含文件名与三种来源：
+所有下载链接都统一为**链接对象**，包含文件名与来源：
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `fileName` | 字符串 \| null | 在资源站中的原始文件名 |
 | `zh` | 字符串 \| null | 社区资源站（中文路径）链接 |
 | `en` | 字符串 \| null | 社区资源站（英文路径）链接 |
-| `cdn` | 字符串 \| null | 对象存储（Cloudflare R2）链接，通常速度更快 |
 
 需要注意：
 
 - `zh` 与 `en` 指向**同一份文件**，只是资源站的目录命名不同（中文站用中文目录名）。按用户界面语言择一即可。
 - MW 作品（`mw.json`）**没有 `en`**，因为 SMWP 作品只有中文资源站路径。
-- `cdn` 可能为 `null`（如目标是目录而非单个文件时不兼容 CDN），此时请回退到 `zh`/`en`。
 - 所有端点的链接在生成时都**不做 URL 编码**：`fileName` 含中文与空格时会原样拼接，多数 HTTP 客户端与浏览器会自动处理；若你的客户端不处理，请自行 `encodeURI()`。
 
 一个健壮的取链接写法：
 
 ```javascript
-// 优先 CDN，其次按语言回退到资源站
+// 按语言选择资源站链接
 function pickUrl(item, lan = 'zh') {
-  return item.cdn || (lan === 'en' ? item.en : item.zh) || item.zh || null
+  return (lan === 'en' ? item.en : item.zh) || item.zh || null
 }
 ```
 
@@ -206,7 +204,7 @@ function getDescription(item, lan = 'zh') {
 | `dataResource` | 对象 | 数据包（如音乐）的链接对象 |
 | `repacker` | 字符串 \| null | 重打包者（若为重打包版本） |
 
-`dataDownload` 结构：`{ url, code, invalid }`，与 `download` 类似但无备用链接（仅对应数据包的 `data_download_url`/`data_code`）。注意它与 `dataResource`（资源站/对象存储镜像）并存、来源不同。
+`dataDownload` 结构：`{ url, code, invalid }`，与 `download` 类似但无备用链接（仅对应数据包的 `data_download_url`/`data_code`）。注意它与 `dataResource`（资源站镜像）并存、来源不同。
 
 关于 **`currentVersion` 是数组**：一个作品可以同时有多个「当前版本」（例如同一作品的 Windows 版与 Android 版并列为最新）。因此该字段列出所有当前版本的名称：
 
@@ -226,7 +224,7 @@ const primary = game.versions.find(v => v.current) || game.versions[0]
 
 无版本数据的条目 `currentVersion` 为空数组。
 
-**国外作品（`international`）旧版本归档**：非当前版本（解析后 `current === false`）的 `resource` / `dataResource` 链接（`zh` / `en` / `cdn`）会在文件名前加入 `old-versions/` 指向归档路径（重打包版本与安卓 `.apk` 除外）；`fileName` 字段保留原始文件名。
+**国外作品（`international`）旧版本归档**：非当前版本（解析后 `current === false`）的 `resource` / `dataResource` 链接（`zh` / `en`）会在文件名前加入 `old-versions/` 指向归档路径（重打包版本与安卓 `.apk` 除外）；`fileName` 字段保留原始文件名。
 
 <details>
 <summary>示例条目</summary>
@@ -264,10 +262,9 @@ const primary = game.versions.find(v => v.current) || game.versions[0]
       "resource": {
         "fileName": "mfmp_20260709.rar",
         "zh": "https://file.marioforever.net/Mario Forever/国内作品/2026/mfmp_20260709.rar",
-        "en": "https://file.marioforever.net/mario-forever/games/chinese-fangames/2026/mfmp_20260709.rar",
-        "cdn": "https://mf-cdn.kevinh.wang/mario-forever/games/chinese-fangames/2026/mfmp_20260709.rar"
+        "en": "https://file.marioforever.net/mario-forever/games/chinese-fangames/2026/mfmp_20260709.rar"
       },
-      "dataResource": { "fileName": null, "zh": null, "en": null, "cdn": null },
+      "dataResource": { "fileName": null, "zh": null, "en": null },
       "repacker": null
     }
   ],
@@ -300,15 +297,15 @@ SMWP 作品只有中文数据，故链接对象**不含 `en`**，且无 `nameAlt
 | `source` / `download` | 对象 | 发布链接 / 下载链接 |
 | `resource` | 数组 | 作品文件的链接对象**列表**（可能分卷，故为数组） |
 | `dataResource` | 数组 | 数据包文件的链接对象列表 |
-| `smwp` | 对象 \| null | 运行所需的 SMWP 本体下载 `{ zh, cdn }` |
-| `smwpData` | 对象 \| null | SMWP 音乐/数据包下载 `{ zh, cdn }` |
+| `smwp` | 对象 \| null | 运行所需的 SMWP 本体下载 `{ zh }` |
+| `smwpData` | 对象 \| null | SMWP 音乐/数据包下载 `{ zh }` |
 | `images` / `description` | 对象 | 同通用约定 |
 
 `resource` 是数组而非单个对象，因为一个作品可能有多个文件（关卡文件 + 练习模式、分卷压缩包等）：
 
 ```javascript
 for (const file of level.resource) {
-  console.log(file.fileName, file.cdn || file.zh)
+  console.log(file.fileName, file.zh)
 }
 ```
 
@@ -335,18 +332,15 @@ for (const file of level.resource) {
   "resource": [
     {
       "fileName": "A Day Out (Golden Road).smwp",
-      "zh": "https://file.marioforever.net/Mario Worker/吧友作品/玛丽的死对头/A Day Out (Golden Road).smwp",
-      "cdn": "https://mf-cdn.kevinh.wang/mw-levels/吧友作品/玛丽的死对头/A Day Out (Golden Road).smwp"
+      "zh": "https://file.marioforever.net/Mario Worker/吧友作品/玛丽的死对头/A Day Out (Golden Road).smwp"
     }
   ],
   "dataResource": [],
   "smwp": {
-    "zh": "https://file.marioforever.net/smwp/smwp-1.7.8.7z",
-    "cdn": "https://mf-cdn.kevinh.wang/smwp/smwp-1.7.8.7z"
+    "zh": "https://file.marioforever.net/smwp/smwp-1.7.8.7z"
   },
   "smwpData": {
-    "zh": "https://file.marioforever.net/smwp/Data.7z",
-    "cdn": "https://mf-cdn.kevinh.wang/smwp/Data.7z"
+    "zh": "https://file.marioforever.net/smwp/Data.7z"
   }
 }
 ```
@@ -401,8 +395,7 @@ for (const file of level.resource) {
         {
           "fileName": "截图Active(2026.4.4).mfa",
           "zh": "https://file.marioforever.net/Mario Forever/引擎/拓展资源包/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa",
-          "en": "https://file.marioforever.net/Mario Forever/引擎/拓展资源包/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa",
-          "cdn": "https://mf-cdn.kevinh.wang/mario-forever/engines/resource-packs/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa"
+          "en": "https://file.marioforever.net/Mario Forever/引擎/拓展资源包/%E6%88%AA%E5%9B%BEActive(2026.4.4).mfa"
         }
       ]
     }
@@ -447,7 +440,7 @@ for (const file of level.resource) {
 ```javascript
 for (const v of game.versions) {
   for (const item of [...v.installer, ...v.portable, ...v.selfextract]) {
-    console.log(v.version, item.kind ?? 'installer', item.cdn || item.en)
+    console.log(v.version, item.kind ?? 'installer', item.en)
   }
 }
 ```
@@ -495,19 +488,17 @@ for (const v of game.versions) {
     "toolbar": true,
     "nsmf": false,
     "zh": "https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/安装版/Mario Forever 5.0.exe",
-    "en": "https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario Forever 5.0.exe",
-    "cdn": "https://mf-cdn.kevinh.wang/mario-forever/games/original-mf/installer/Mario Forever 5.0.exe"
+    "en": "https://file.marioforever.net/mario-forever/games/original-mf/installer/Mario Forever 5.0.exe"
   },
   "portable": {
     "fileName": "Mario Forever 5.0.7z",
     "zh": "https://file.marioforever.net/Mario Forever/Mario Forever 全版本下载/绿色版/Mario Forever 5.0.7z",
-    "en": "https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario Forever 5.0.7z",
-    "cdn": "https://mf-cdn.kevinh.wang/mario-forever/games/original-mf/portable/Mario Forever 5.0.7z"
+    "en": "https://file.marioforever.net/mario-forever/games/original-mf/portable/Mario Forever 5.0.7z"
   }
 }
 ```
 
-某些版本没有安装版或绿色版，此时 `fileName` 与三个链接均为 `null`，但对象结构保持完整，无需判空分支。
+某些版本没有安装版或绿色版，此时 `fileName` 与两个链接均为 `null`，但对象结构保持完整，无需判空分支。
 
 ## 使用示例
 
@@ -563,10 +554,9 @@ function collectDownloads(game, lan = 'zh') {
     if (v.download.url && !v.download.invalid) {
       out.push({ version: v.version, kind: '官方', url: v.download.url, code: v.download.code })
     }
-    // 资源站 / 对象存储
+    // 资源站
     for (const res of [v.resource, v.dataResource]) {
       if (!res.fileName) continue
-      if (res.cdn) out.push({ version: v.version, kind: '对象存储', url: res.cdn })
       const site = lan === 'en' ? res.en : res.zh
       if (site) out.push({ version: v.version, kind: '资源站', url: site })
     }
@@ -606,14 +596,14 @@ import requests
 BASE = 'https://download.marioforever.net/api'
 games = requests.get(f'{BASE}/mf.json').json()
 
-# 找出带对象存储链接的当前版本，并打印下载地址
+# 找出当前版本的资源站链接，并打印下载地址
 for g in games:
     for v in g['versions']:
         if not v['current']:
             continue
         res = v['resource']
-        if res['cdn']:
-            print(g['name'], v['version'] or '(单版本)', res['cdn'])
+        if res['zh']:
+            print(g['name'], v['version'] or '(单版本)', res['zh'])
 ```
 
 ## 注意事项

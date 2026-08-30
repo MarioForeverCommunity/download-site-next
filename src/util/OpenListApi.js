@@ -2,28 +2,10 @@ import axios from 'axios';
 
 // OpenList API configuration
 const OPENLIST_BASE_URL = 'https://file.marioforever.net';
-const CDN_HOST = 'mf-cdn.kevinh.wang';
 
 // Cache for file info to avoid repeated requests
 const fileInfoCache = new Map();
 const CACHE_EXPIRY_MS = 5 * 60 * 1000; // 5 minutes
-
-/**
- * fetch 包装，添加超时控制
- * @param {string} url - 请求 URL
- * @param {object} [options] - fetch options
- * @param {number} [timeout=5000] - 超时毫秒
- * @returns {Promise<Response>}
- */
-async function fetchWithTimeout(url, options = {}, timeout = 5000) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
-  try {
-    return await fetch(url, { ...options, signal: controller.signal });
-  } finally {
-    clearTimeout(timeoutId);
-  }
-}
 
 /**
  * Format file size to human readable string
@@ -125,62 +107,12 @@ export async function getFileInfo(path) {
 }
 
 /**
- * 通过 HEAD 请求获取 CDN (Cloudflare R2) 文件大小，失败时回退到 Range 请求
- * @param {string} url - CDN URL
- * @returns {Promise<number|null>} - File size in bytes
- */
-async function getFileSizeFromCdnUrl(url) {
-  // Check cache first
-  const cachedSize = fileInfoCache.get(url);
-  if (cachedSize && Date.now() - cachedSize.timestamp < CACHE_EXPIRY_MS) {
-    return cachedSize.data;
-  }
-
-  try {
-    // HEAD 请求（无 body 传输）
-    let response = await fetchWithTimeout(url, { method: 'HEAD' });
-    if (response.ok) {
-      const contentLength = response.headers.get('Content-Length');
-      if (contentLength) {
-        const size = parseInt(contentLength, 10);
-        fileInfoCache.set(url, { data: size, timestamp: Date.now() });
-        return size;
-      }
-    }
-
-    // 回退：Range 请求仅取 1 字节，从 Content-Range 解析总大小
-    response = await fetchWithTimeout(url, { headers: { Range: 'bytes=0-0' } });
-    if (response.ok || response.status === 206) {
-      const contentRange = response.headers.get('Content-Range');
-      if (contentRange) {
-        const match = contentRange.match(/\/(\d+)$/);
-        if (match) {
-          const size = parseInt(match[1], 10);
-          fileInfoCache.set(url, { data: size, timestamp: Date.now() });
-          return size;
-        }
-      }
-    }
-
-    return null;
-  } catch (_e) {
-    console.warn('CDN file size request failed:', _e.message);
-    return null;
-  }
-}
-
-/**
  * Get file size from URL
- * @param {string} url - Full URL (资源站或 CDN)
+ * @param {string} url - 资源站 URL
  * @returns {Promise<number|null>} - File size in bytes
  */
 export async function getFileSizeFromUrl(url) {
   if (!url) return null;
-
-  // CDN URLs: 使用 HEAD/Range 请求
-  if (url.includes(CDN_HOST)) {
-    return getFileSizeFromCdnUrl(url);
-  }
 
   // 资源站 URLs: 使用 OpenList API
   const path = extractPathFromUrl(url);
@@ -214,8 +146,8 @@ export async function batchFetchFileSizes(urls) {
 
   if (!urls || urls.length === 0) return result;
 
-  // Filter URLs that are from resource site or CDN
-  const validUrls = urls.filter(url => url && (url.includes('file.marioforever.net') || url.includes(CDN_HOST)));
+  // Filter URLs that are from resource site
+  const validUrls = urls.filter(url => url && url.includes('file.marioforever.net'));
 
   // Fetch in parallel with limit of 5 concurrent requests
   const batchSize = 5;

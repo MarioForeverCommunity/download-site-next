@@ -10,7 +10,7 @@ import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
-import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible, toResourceDirectUrl } from "../../util/GameUtil.js"
+import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -31,7 +31,7 @@ const lan = "zh"
 
 const useDirectLink = getUseDirectLink()
 
-// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+// 根据直链开关转换资源站链接（非资源站链接不受影响）
 const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const pageId = "mw-levels"
@@ -57,7 +57,6 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       // Automatically generate resource site link.
       if (Array.isArray(entry.file_name)) {
         entry.file_urls = [];
-        entry.file_urls_cdn = [];
         // For array, we generate all download links and give each link a name.
         const displayNames = processFileNamesWithVolumes(entry.file_name);
         for (let i = 0; i < entry.file_name.length; i++) {
@@ -69,12 +68,6 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
             name: `社区资源站 (${displayNames[i]})`,
             url: getMwLevelFileUrl(entry, file_name_entry)
           });
-          // CDN 不支持目录或无扩展名的文件，用 null 占位保持索引对齐
-          entry.file_urls_cdn.push(
-            isCdnCompatible(file_name_entry)
-              ? { name: `对象存储 (${displayNames[i]})`, url: getMwLevelFileUrl(entry, file_name_entry, true) }
-              : null
-          );
         }
       } else {
         // For single file, we generate a download link.
@@ -82,9 +75,6 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
           name: "社区资源站",
           url: getMwLevelFileUrl(entry, entry.file_name)
         }];
-        entry.file_urls_cdn = isCdnCompatible(entry.file_name)
-          ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.file_name, true) }]
-          : [];
       }
     }
 
@@ -92,12 +82,10 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       const smwpUrl = getSmwpUrl(entry);
       if (smwpUrl) {
         entry.smwp_url = smwpUrl;
-        entry.smwp_url_cdn = getSmwpUrl(entry, true);
       }
       const smwpDataUrl = getSmwpDataUrl(entry);
       if (smwpDataUrl) {
         entry.smwp_data_url = smwpDataUrl;
-        entry.smwp_data_url_cdn = getSmwpDataUrl(entry, true);
       }
     }
 
@@ -106,7 +94,6 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       if (entry.data_file_name) {
         if (Array.isArray(entry.data_file_name)) {
           entry.data_file_urls = [];
-          entry.data_file_urls_cdn = [];
           const displayNames = processFileNamesWithVolumes(entry.data_file_name);
           for (let j = 0; j < entry.data_file_name.length; j++) {
             const data_file_name_entry = entry.data_file_name[j];
@@ -117,21 +104,12 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
               name: `社区资源站 (${displayNames[j]})`,
               url: getMwLevelFileUrl(entry, data_file_name_entry)
             });
-            // CDN 不支持目录或无扩展名的文件，用 null 占位保持索引对齐
-            entry.data_file_urls_cdn.push(
-              isCdnCompatible(data_file_name_entry)
-                ? { name: `对象存储 (${displayNames[j]})`, url: getMwLevelFileUrl(entry, data_file_name_entry, true) }
-                : null
-            );
           }
         } else {
           entry.data_file_urls = [{
             name: "社区资源站",
             url: getMwLevelFileUrl(entry, entry.data_file_name)
           }];
-          entry.data_file_urls_cdn = isCdnCompatible(entry.data_file_name)
-            ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.data_file_name, true) }]
-            : [];
         }
       }
     } else {
@@ -147,12 +125,10 @@ Promise.all([readList("list-mw.yaml"), imageResolver.init()]).then(([list]) => {
       date : entry.date,
       download_url : entry.download_url,
       file_url : entry.file_url,
-      file_urls_cdn : entry.file_urls_cdn,
       source_url : entry.source_url,
       data_file_name : entry.data_file_name,
       data_file_url : entry.data_file_url,
       data_file_urls : entry.data_file_urls,
-      data_file_urls_cdn : entry.data_file_urls_cdn,
       data_download_url : entry.data_download_url,
       data_code : entry.data_code,
     }
@@ -285,30 +261,19 @@ async function fetchSmwpFileSize(smwp) {
   fileSizeLoading.value = true;
   fileSizeMap.value = {};
 
-  const cdnUrl = smwp.smwp_url_cdn;
   const resourceUrl = smwp.smwp_url;
-  const dataCdnUrl = smwp.smwp_data_url_cdn;
   const dataResourceUrl = smwp.smwp_data_url;
   const sizes = {};
 
-  // SMWP 主体：优先从对象存储获取
-  if (cdnUrl) {
-    const cdnSizes = await batchFetchFileSizes([cdnUrl]);
-    if (cdnSizes[cdnUrl]) {
-      sizes[cdnUrl] = cdnSizes[cdnUrl];
-    }
-  }
-  if (!sizes[cdnUrl]) {
+  // SMWP 主体
+  if (resourceUrl) {
     const resourceSizes = await batchFetchFileSizes([resourceUrl]);
     Object.assign(sizes, resourceSizes);
   }
 
-  // 数据包：优先从对象存储获取
-  if (dataCdnUrl || dataResourceUrl) {
-    const dataUrls = [];
-    if (dataCdnUrl) dataUrls.push(dataCdnUrl);
-    if (!sizes[dataCdnUrl] && dataResourceUrl) dataUrls.push(dataResourceUrl);
-    const dataSizes = await batchFetchFileSizes(dataUrls);
+  // 数据包
+  if (dataResourceUrl) {
+    const dataSizes = await batchFetchFileSizes([dataResourceUrl]);
     Object.assign(sizes, dataSizes);
   }
 
@@ -318,15 +283,13 @@ async function fetchSmwpFileSize(smwp) {
 
 function getSmwpFileSize() {
   if (!selectedSmwp.value) return null;
-  return fileSizeMap.value[selectedSmwp.value.smwp_url_cdn]
-    || fileSizeMap.value[selectedSmwp.value.smwp_url]
+  return fileSizeMap.value[selectedSmwp.value.smwp_url]
     || null;
 }
 
 function getSmwpDataFileSize() {
   if (!selectedSmwp.value) return null;
-  return fileSizeMap.value[selectedSmwp.value.smwp_data_url_cdn]
-    || fileSizeMap.value[selectedSmwp.value.smwp_data_url]
+  return fileSizeMap.value[selectedSmwp.value.smwp_data_url]
     || null;
 }
 
@@ -340,27 +303,10 @@ async function fetchFileSizes(download) {
   fileSizeMap.value = {};
 
   const urls = [];
-  const cdnToResourceMap = {};
 
   // Collect all URLs from file_urls array
   if (download.file_urls) {
-    if (download.file_urls.length <= 1) {
-      // Non-array: prefer CDN for file size fetching
-      const resourceUrl = download.file_urls[0]?.url;
-      const cdnUrl = download.file_urls_cdn?.[0]?.url;
-      if (cdnUrl && resourceUrl) {
-        cdnToResourceMap[cdnUrl] = resourceUrl;
-        urls.push(cdnUrl);
-      } else if (resourceUrl) {
-        urls.push(resourceUrl);
-      }
-    } else {
-      // Array: fetch from both resource site and CDN
-      urls.push(...download.file_urls.map(u => u.url));
-      if (download.file_urls_cdn) {
-        urls.push(...download.file_urls_cdn.filter(u => u).map(u => u.url));
-      }
-    }
+    urls.push(...download.file_urls.map(u => u.url));
   }
 
   // Collect download link
@@ -371,23 +317,7 @@ async function fetchFileSizes(download) {
 
   // Collect data file URLs
   if (download.currentVer?.data_file_urls) {
-    if (download.currentVer.data_file_urls.length <= 1) {
-      // Non-array: prefer CDN
-      const resourceUrl = download.currentVer.data_file_urls[0]?.url;
-      const cdnUrl = download.currentVer.data_file_urls_cdn?.[0]?.url;
-      if (cdnUrl && resourceUrl) {
-        cdnToResourceMap[cdnUrl] = resourceUrl;
-        urls.push(cdnUrl);
-      } else if (resourceUrl) {
-        urls.push(resourceUrl);
-      }
-    } else {
-      // Array: fetch from both
-      urls.push(...download.currentVer.data_file_urls.map(u => u.url));
-      if (download.currentVer.data_file_urls_cdn) {
-        urls.push(...download.currentVer.data_file_urls_cdn.filter(u => u).map(u => u.url));
-      }
-    }
+    urls.push(...download.currentVer.data_file_urls.map(u => u.url));
   }
 
   // Collect data download URL
@@ -396,14 +326,6 @@ async function fetchFileSizes(download) {
   }
 
   const sizes = await batchFetchFileSizes(urls);
-
-  // Remap CDN sizes to resource URL keys for non-array case
-  for (const [cdnUrl, resourceUrl] of Object.entries(cdnToResourceMap)) {
-    if (sizes[cdnUrl] && !sizes[resourceUrl]) {
-      sizes[resourceUrl] = sizes[cdnUrl];
-      delete sizes[cdnUrl];
-    }
-  }
 
   fileSizeMap.value = sizes;
   fileSizeLoading.value = false;
@@ -896,15 +818,6 @@ const { floatingStyles } = useFloating(reference, floating,
               </a>
             </template>
           </span>
-          <template v-if="selectedDownload.file_urls_cdn">
-            <a
-              class="download"
-              v-for="url in selectedDownload.file_urls_cdn.filter(u => u)"
-              :key="url.url"
-              :href="url.url"
-              target="_blank"
-            >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
-          </template>
           <template v-if="getDownloadLink(selectedDownload, 'zh')">
             <a
               class="download"
@@ -958,15 +871,6 @@ const { floatingStyles } = useFloating(reference, floating,
               </a>
             </template>
           </span>
-          <template v-if="selectedDownload.currentVer.data_file_urls_cdn">
-            <a
-              class="download"
-              v-for="url in selectedDownload.currentVer.data_file_urls_cdn.filter(u => u)"
-              :key="url.url"
-              :href="url.url"
-              target="_blank"
-            >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
-          </template>
           <template v-if="selectedDownload.currentVer.data_download_url">
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, 'zh').desc }}
@@ -1014,7 +918,6 @@ const { floatingStyles } = useFloating(reference, floating,
         </div>
         <div class="button-line">
           <a class="download" :href="resourceUrl(selectedSmwp.smwp_url)" target="_blank">社区资源站</a>
-          <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">对象存储</a>
         </div>
         <template v-if="selectedSmwp.smwp_data_url">
           <div class="button-line" style="margin-top: 8px;">
@@ -1026,7 +929,6 @@ const { floatingStyles } = useFloating(reference, floating,
           </div>
           <div class="button-line">
             <a class="download" :href="resourceUrl(selectedSmwp.smwp_data_url)" target="_blank">社区资源站</a>
-            <a class="download" :href="selectedSmwp.smwp_data_url_cdn" target="_blank">对象存储</a>
           </div>
         </template>
       </div>

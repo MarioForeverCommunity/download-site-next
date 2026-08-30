@@ -2,7 +2,7 @@
 //
 // 为 download.marioforever.net 生成静态 JSON API。
 // 读取 public/data 下的 YAML 数据、image-index.json 与各作品 data 文件夹，
-// 预聚合成可直接 fetch 的静态 JSON（参数 / 资源站 / 对象存储链接 / 图片 / description）。
+// 预聚合成可直接 fetch 的静态 JSON（参数 / 资源站链接 / 图片 / description）。
 // 输出到 public/api/。URL 构建逻辑与 src/util 下的 GameUtil.js / SoftendoUtil.js / AssetUtil.js 保持一致。
 //
 // 运行：node scripts/generate-api.js
@@ -161,7 +161,7 @@ function readDescriptionFiles(category, dirName) {
 }
 
 // ---------------------------------------------------------------------------
-// MF 资源站 / 对象存储链接（镜像 src/util/GameUtil.js getMfFileUrl）
+// MF 资源站链接（镜像 src/util/GameUtil.js getMfFileUrl）
 // ---------------------------------------------------------------------------
 
 const MF_BASE_ZH = {
@@ -176,19 +176,13 @@ const MF_BASE_EN = {
   chinese: 'https://file.marioforever.net/mario-forever/games/chinese-fangames/',
   international: 'https://file.marioforever.net/mario-forever/games/international-fangames/'
 };
-const MF_BASE_CDN = {
-  android: 'https://mf-cdn.kevinh.wang/mario-forever/games/mobile-fangames/',
-  repackaged: 'https://mf-cdn.kevinh.wang/mario-forever/games/repackaged-fangames/',
-  chinese: 'https://mf-cdn.kevinh.wang/mario-forever/games/chinese-fangames/',
-  international: 'https://mf-cdn.kevinh.wang/mario-forever/games/international-fangames/'
-};
 
 function mfFileUrl(fileName, ver, entry, lan, isDataFile = false) {
   if (!fileName) return null;
   const isApk = isDataFile
     ? (fileName.toLowerCase().endsWith('.apk') || (ver.file_name && ver.file_name.toLowerCase().endsWith('.apk')))
     : fileName.toLowerCase().endsWith('.apk');
-  const paths = lan === 'zh' ? MF_BASE_ZH : lan === 'cdn' ? MF_BASE_CDN : MF_BASE_EN;
+  const paths = lan === 'zh' ? MF_BASE_ZH : MF_BASE_EN;
   if (isApk) return `${paths.android}${entry.first_author}/${fileName}`;
   if (ver.repacker) return `${paths.repackaged}${fileName}`;
   if (entry.type === 'chinese') {
@@ -204,12 +198,11 @@ function mfFileUrl(fileName, ver, entry, lan, isDataFile = false) {
 function mfResourceLinks(fileName, ver, entry, isDataFile = false) {
   if (ver.file_url) {
     // 显式 file_url 时，直接使用
-    return { zh: ver.file_url, en: ver.file_url, cdn: null };
+    return { zh: ver.file_url, en: ver.file_url };
   }
   return {
     zh: mfFileUrl(fileName, ver, entry, 'zh', isDataFile),
-    en: mfFileUrl(fileName, ver, entry, 'en', isDataFile),
-    cdn: mfFileUrl(fileName, ver, entry, 'cdn', isDataFile)
+    en: mfFileUrl(fileName, ver, entry, 'en', isDataFile)
   };
 }
 
@@ -415,14 +408,12 @@ function buildMf() {
 }
 
 // ---------------------------------------------------------------------------
-// MW 资源站 / 对象存储链接（镜像 src/util/GameUtil.js getMwLevelFileUrl）
+// MW 资源站链接（镜像 src/util/GameUtil.js getMwLevelFileUrl）
 // ---------------------------------------------------------------------------
 
 const MW_BASE = 'https://file.marioforever.net/Mario Worker/';
-const MW_CDN_BASE = 'https://mf-cdn.kevinh.wang/mw-levels/';
 const SMWP_BASE = 'https://file.marioforever.net/smwp/';
 const SMWP_MW44_URL = 'https://file.marioforever.net/Mario Worker/原版 Mario Worker 下载';
-const SMWP_MW44_CDN = 'https://mf-cdn.kevinh.wang/mario-worker/original-mw/Mario Worker 4.4 (2011).zip';
 
 const SmwpVersions = {
   'v0.2.4': 'SuperMarioWorkerProject_v0.2.4_Fix.rar',
@@ -455,34 +446,26 @@ const SmwpVersions = {
   'v1.7.13': 'smwp-1.7.13-beta1.7z'
 };
 
-function isCdnCompatible(fileName) {
-  if (!fileName || fileName.endsWith('/')) return false;
-  const lastSegment = fileName.split('/').pop();
-  return lastSegment.includes('.');
-}
-
-function mwFileUrl(entry, fname, useCdn = false) {
+function mwFileUrl(entry, fname) {
   const author = Array.isArray(entry.author) ? '合作作品' : entry.author;
-  const basePath = useCdn ? MW_CDN_BASE : MW_BASE;
   if (entry.smwp_ver === 'MW 4.4') {
-    return `${basePath}Mario Worker 4.4 作品/${author}/${fname}`;
+    return `${MW_BASE}Mario Worker 4.4 作品/${author}/${fname}`;
   }
   const folder = author === '合作作品' ? '合作作品' : `吧友作品/${author}`;
-  return `${basePath}${folder}/${fname}`;
+  return `${MW_BASE}${folder}/${fname}`;
 }
 
-function mwSmwpUrl(entry, useCdn = false) {
+function mwSmwpUrl(entry) {
   if (SmwpVersions[entry.smwp_ver]) {
-    const url = `${SMWP_BASE}${SmwpVersions[entry.smwp_ver]}`;
-    return useCdn ? url.replace('file.marioforever.net', 'mf-cdn.kevinh.wang') : url;
+    return `${SMWP_BASE}${SmwpVersions[entry.smwp_ver]}`;
   }
   if (entry.smwp_ver === 'MW 4.4') {
-    return useCdn ? SMWP_MW44_CDN : SMWP_MW44_URL;
+    return SMWP_MW44_URL;
   }
   return null;
 }
 
-function mwSmwpDataUrl(entry, useCdn = false) {
+function mwSmwpDataUrl(entry) {
   if (!entry.smwp_ver || entry.smwp_ver === 'MW 4.4') return null;
   if (!SmwpVersions[entry.smwp_ver]) return null;
   const parts = entry.smwp_ver.replace(/^v/, '').split('.').map(Number);
@@ -492,8 +475,7 @@ function mwSmwpDataUrl(entry, useCdn = false) {
   if (major > 1 || (major === 1 && minor >= 5)) dataFile = 'Data.7z';
   else if (major === 1 && minor === 4) dataFile = 'Data.zip';
   else return null;
-  const url = `${SMWP_BASE}${dataFile}`;
-  return useCdn ? url.replace('file.marioforever.net', 'mf-cdn.kevinh.wang') : url;
+  return `${SMWP_BASE}${dataFile}`;
 }
 
 function buildMw() {
@@ -522,10 +504,10 @@ function buildMw() {
     out.download = { url: dlUrl || null, code: entry.code || null, invalid: !!dlInvalid };
 
     // 主文件 / 数据文件（字段名与 mf.json 保持一致：resource / dataResource）
-    // MW 作品仅有中文资源站路径，故不含 en；不兼容 CDN 的文件 cdn 为 null
+    // MW 作品仅有中文资源站路径，故不含 en
     const buildFiles = (fileName, explicitUrl) => {
       if (explicitUrl) {
-        return [{ fileName: null, zh: explicitUrl, cdn: null }];
+        return [{ fileName: null, zh: explicitUrl }];
       }
       if (!fileName) return [];
       const names = Array.isArray(fileName) ? fileName : [fileName];
@@ -534,8 +516,7 @@ function buildMw() {
         if (fn == null) continue;
         result.push({
           fileName: fn,
-          zh: mwFileUrl(entry, fn),
-          cdn: isCdnCompatible(fn) ? mwFileUrl(entry, fn, true) : null
+          zh: mwFileUrl(entry, fn)
         });
       }
       return result;
@@ -543,10 +524,10 @@ function buildMw() {
     out.resource = buildFiles(entry.file_name, entry.file_url);
     out.dataResource = buildFiles(entry.data_file_name, entry.data_file_url);
 
-    // SMWP 与数据包链接（键名与 resource 一致：zh / cdn）
+    // SMWP 与数据包链接
     if (entry.smwp_ver && !entry.has_bundled_smwp) {
-      out.smwp = { zh: mwSmwpUrl(entry), cdn: mwSmwpUrl(entry, true) };
-      out.smwpData = { zh: mwSmwpDataUrl(entry), cdn: mwSmwpDataUrl(entry, true) };
+      out.smwp = { zh: mwSmwpUrl(entry) };
+      out.smwpData = { zh: mwSmwpDataUrl(entry) };
     } else {
       out.smwp = null;
       out.smwpData = null;
@@ -569,25 +550,16 @@ const ASSET_BASE = {
   tool: 'https://file.marioforever.net/Mario Forever/游戏工具/',
   mwtool: 'https://file.marioforever.net/Mario Worker/辅助工具/'
 };
-const ASSET_CDN = {
-  effect: 'https://mf-cdn.kevinh.wang/mario-forever/engines/clickteam-fusion-effects/',
-  addon: 'https://mf-cdn.kevinh.wang/mario-forever/engines/resource-packs/',
-  sprite: 'https://mf-cdn.kevinh.wang/mario-forever/resources/',
-  tool: 'https://mf-cdn.kevinh.wang/mario-forever/tools/',
-  mwtool: 'https://mf-cdn.kevinh.wang/mario-worker/tools/'
-};
 const ENGINE_BASE = 'https://file.marioforever.net/Mario Forever/引擎/';
-const ENGINE_CDN = 'https://mf-cdn.kevinh.wang/mario-forever/engines/';
 
-function assetFileUrl(type, fileName, path = '', useCdn = false) {
+function assetFileUrl(type, fileName, path = '') {
   if (!fileName) return null;
   // 与 MF/MW 保持一致：文件名不做 URL 编码，交由客户端处理（含中文/空格）
   if (type === 'engine') {
     const pathPart = path ? path + '/' : '';
-    const base = useCdn ? ENGINE_CDN : ENGINE_BASE;
-    return `${base}${pathPart}${fileName}`;
+    return `${ENGINE_BASE}${pathPart}${fileName}`;
   }
-  const baseUrl = useCdn ? ASSET_CDN[type] : ASSET_BASE[type];
+  const baseUrl = ASSET_BASE[type];
   return baseUrl ? baseUrl + fileName : null;
 }
 
@@ -617,16 +589,14 @@ function buildAssets() {
       const srcUrl = srcInvalid ? v.source_url.substring(1) : v.source_url;
       const fileName = v?.file_name || v?.image;
       const fileNames = Array.isArray(fileName) ? fileName.filter(f => f != null) : (fileName ? [fileName] : []);
-      // 结构参考 mf.json 的 resource：每项含 fileName 与 zh/en/cdn 链接
+      // 结构参考 mf.json 的 resource：每项含 fileName 与 zh/en 链接
       // assets 的资源站链接不分中英文，zh 与 en 相同
       const resource = fileNames.map(fn => {
         const url = assetFileUrl(entry.type, fn, entry.path);
         return {
           fileName: fn,
           zh: url,
-          en: url,
-          // 对象存储（CDN）使用英文路径 path_alt，资源站使用中文路径 path
-          cdn: assetFileUrl(entry.type, fn, entry.path_alt || entry.path || '', true)
+          en: url
         };
       });
       return {
@@ -728,18 +698,7 @@ const NSMF_ZH = {
   installer: 'https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/安装版/',
   portable: 'https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/绿色版/'
 };
-const SOFTENDO_CDN_HOST = 'https://mf-cdn.kevinh.wang';
-
-function toCdnUrls(urls) {
-  const result = {};
-  for (const key in urls) result[key] = urls[key].replace('https://file.marioforever.net', SOFTENDO_CDN_HOST);
-  return result;
-}
-const SOFTENDO_CDN = {};
-for (const key of Object.keys(SOFTENDO_BASE_EN)) SOFTENDO_CDN[key] = toCdnUrls(SOFTENDO_BASE_EN[key]);
-
 function softendoBaseUrl(type, lan, nsmf) {
-  if (lan === 'cdn') return SOFTENDO_CDN[type];
   if (nsmf && lan === 'zh') return NSMF_ZH;
   return lan === 'zh' ? SOFTENDO_BASE_ZH[type] : SOFTENDO_BASE_EN[type];
 }
@@ -750,7 +709,7 @@ function isKliktopiaRepackage(verKey) {
 
 /**
  * 解析 portable / selfextract 字段，返回每个文件的分类与文件名
- * 不直接生成 URL，由调用方按 zh/en/cdn 分别构建
+ * 不直接生成 URL，由调用方按 zh/en 分别构建
  * @returns {Array<{kind: string, fileName: string}>}
  */
 function portableEntries(type, portable, nsmf, verKey) {
@@ -918,15 +877,14 @@ function buildSoftendo() {
 
     // 归一化版本数组（镜像 normalizeSoftendoList）
     // installer / portable / selfextract 均对齐其他文件的结构：
-    // 数组形式，每项含 fileName 与 zh/en/cdn 链接
+    // 数组形式，每项含 fileName 与 zh/en 链接
     const buildVer = (verKey, v) => {
       const installerFile = v?.installer;
       const installer = installerFile
         ? [{
           fileName: installerFile,
           zh: installerUrl(entry.type, installerFile, 'zh', out.isNsmf),
-          en: installerUrl(entry.type, installerFile, 'en', out.isNsmf),
-          cdn: installerUrl(entry.type, installerFile, 'cdn', out.isNsmf)
+          en: installerUrl(entry.type, installerFile, 'en', out.isNsmf)
         }]
         : [];
 
@@ -935,8 +893,7 @@ function buildSoftendo() {
         // kind 表示文件形态：portable / exe / swf / zip 等
         kind: item.kind,
         zh: portableUrlFor(entry.type, item.kind, item.fileName, 'zh', out.isNsmf, verKey),
-        en: portableUrlFor(entry.type, item.kind, item.fileName, 'en', out.isNsmf, verKey),
-        cdn: portableUrlFor(entry.type, item.kind, item.fileName, 'cdn', out.isNsmf, verKey)
+        en: portableUrlFor(entry.type, item.kind, item.fileName, 'en', out.isNsmf, verKey)
       }));
 
       return {
@@ -1005,11 +962,6 @@ const ORIGINAL_MF_BASE = {
     installer: 'https://file.marioforever.net/mario-forever/games/original-mf/installer/',
     portable: 'https://file.marioforever.net/mario-forever/games/original-mf/portable/',
     nsmfInstaller: 'https://file.marioforever.net/mario-forever/games/softendo/installer/'
-  },
-  cdn: {
-    installer: 'https://mf-cdn.kevinh.wang/mario-forever/games/original-mf/installer/',
-    portable: 'https://mf-cdn.kevinh.wang/mario-forever/games/original-mf/portable/',
-    nsmfInstaller: 'https://mf-cdn.kevinh.wang/mario-forever/games/softendo/installer/'
   }
 };
 
@@ -1039,7 +991,7 @@ function buildOriginalMf() {
     const linksFor = (kind, fileName) => {
       if (!fileName) return null;
       const result = {};
-      for (const lan of ['zh', 'en', 'cdn']) {
+      for (const lan of ['zh', 'en']) {
         const paths = ORIGINAL_MF_BASE[lan];
         // NSMF 版本的安装版使用 New Super Mario Forever / Softendo 路径
         const base = kind === 'installer'
@@ -1062,11 +1014,11 @@ function buildOriginalMf() {
         toolbar: hasToolbar,
         // 是否使用 NSMF（New Super Mario Forever）链接格式
         nsmf: isNsmf,
-        ...(linksFor('installer', entry.installer) || { zh: null, en: null, cdn: null })
+        ...(linksFor('installer', entry.installer) || { zh: null, en: null })
       },
       portable: {
         fileName: entry.portable || null,
-        ...(linksFor('portable', entry.portable) || { zh: null, en: null, cdn: null })
+        ...(linksFor('portable', entry.portable) || { zh: null, en: null })
       }
     };
   });
@@ -1111,7 +1063,7 @@ function main() {
     })),
     notes: [
       '静态 JSON API，随站点构建生成。',
-      'resource: 资源站(file.marioforever.net)与对象存储(mf-cdn.kevinh.wang)链接。',
+      'resource: 社区资源站(file.marioforever.net)链接。',
       'images.* 与 description.* 指向 public/data 下的图片与 markdown 文件路径。'
     ]
   };

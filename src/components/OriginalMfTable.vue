@@ -24,11 +24,6 @@ const baseUrls = {
     installer: 'https://file.marioforever.net/mario-forever/games/original-mf/installer/',
     portable: 'https://file.marioforever.net/mario-forever/games/original-mf/portable/',
     nsmf_installer: 'https://file.marioforever.net/mario-forever/games/softendo/installer/'
-  },
-  'cdn': {
-    installer: 'https://mf-cdn.kevinh.wang/mario-forever/games/original-mf/installer/',
-    portable: 'https://mf-cdn.kevinh.wang/mario-forever/games/original-mf/portable/',
-    nsmf_installer: 'https://mf-cdn.kevinh.wang/mario-forever/games/softendo/installer/'
   }
 };
 
@@ -59,8 +54,8 @@ const formatDate = (dateString) => {
 };
 
 // 获取下载链接
-const getDownloadUrl = (version, type, useCdn = false) => {
-  const urls = useCdn ? baseUrls['cdn'] : baseUrls[props.lan];
+const getDownloadUrl = (version, type) => {
+  const urls = baseUrls[props.lan];
   if (type === 'installer' && version.installer) {
     const baseUrl = version.nsmf ? urls.nsmf_installer : urls.installer;
     return `${baseUrl}${version.installer}`;
@@ -101,7 +96,7 @@ const handleDownloadClick = (event) => {
   }
 };
 
-// 获取文件大小（优先从 CDN 获取）
+// 获取文件大小
 const fetchFileSize = async () => {
   if (!selectedDownload.value) return;
 
@@ -109,9 +104,7 @@ const fetchFileSize = async () => {
   fileSize.value = null;
 
   const { version, type } = selectedDownload.value;
-  const cdnUrl = getDownloadUrl(version, type, true);
-  const resourceUrl = getDownloadUrl(version, type, false);
-  const fetchUrl = cdnUrl || resourceUrl;
+  const fetchUrl = getDownloadUrl(version, type);
 
   if (fetchUrl) {
     fileSize.value = await getFormattedFileSize(fetchUrl);
@@ -199,13 +192,6 @@ const isFiveStar = (rating) => {
             target="_blank"
             @click="handleDownloadClick"
           >{{ lan === 'en' ? 'Community File Hub' : '社区资源站' }}</a>
-          <a
-            class="download"
-            :class="{ 'has-toolbar': isToolbarInstaller() }"
-            :href="getDownloadUrl(selectedDownload.version, selectedDownload.type, true)"
-            target="_blank"
-            @click="handleDownloadClick"
-          >{{ lan === 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
         </div>
       </div>
     </div>

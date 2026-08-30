@@ -37,7 +37,7 @@ const lan = ref(getLanguage())
 
 const useDirectLink = getUseDirectLink()
 
-// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+// 根据直链开关转换资源站链接（非资源站链接不受影响）
 const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const handleLanguageChanged = (event) => {
@@ -126,30 +126,19 @@ async function fetchSmwpFileSize(smwp) {
   fileSizeLoading.value = true
   fileSizeMap.value = {}
 
-  const cdnUrl = smwp.smwp_url_cdn
   const resourceUrl = smwp.smwp_url
-  const dataCdnUrl = smwp.smwp_data_url_cdn
   const dataResourceUrl = smwp.smwp_data_url
   const sizes = {}
 
-  // SMWP 主体：优先从对象存储获取
-  if (cdnUrl) {
-    const cdnSizes = await batchFetchFileSizes([cdnUrl])
-    if (cdnSizes[cdnUrl]) {
-      sizes[cdnUrl] = cdnSizes[cdnUrl]
-    }
-  }
-  if (!sizes[cdnUrl]) {
+  // SMWP 主体
+  if (resourceUrl) {
     const resourceSizes = await batchFetchFileSizes([resourceUrl])
     Object.assign(sizes, resourceSizes)
   }
 
-  // 数据包：优先从对象存储获取
-  if (dataCdnUrl || dataResourceUrl) {
-    const dataUrls = []
-    if (dataCdnUrl) dataUrls.push(dataCdnUrl)
-    if (!sizes[dataCdnUrl] && dataResourceUrl) dataUrls.push(dataResourceUrl)
-    const dataSizes = await batchFetchFileSizes(dataUrls)
+  // 数据包
+  if (dataResourceUrl) {
+    const dataSizes = await batchFetchFileSizes([dataResourceUrl])
     Object.assign(sizes, dataSizes)
   }
 
@@ -159,15 +148,13 @@ async function fetchSmwpFileSize(smwp) {
 
 function getSmwpFileSize() {
   if (!selectedSmwp.value) return null
-  return fileSizeMap.value[selectedSmwp.value.smwp_url_cdn]
-    || fileSizeMap.value[selectedSmwp.value.smwp_url]
+  return fileSizeMap.value[selectedSmwp.value.smwp_url]
     || null
 }
 
 function getSmwpDataFileSize() {
   if (!selectedSmwp.value) return null
-  return fileSizeMap.value[selectedSmwp.value.smwp_data_url_cdn]
-    || fileSizeMap.value[selectedSmwp.value.smwp_data_url]
+  return fileSizeMap.value[selectedSmwp.value.smwp_data_url]
     || null
 }
 
@@ -181,27 +168,10 @@ async function fetchFileSizes(download) {
   fileSizeMap.value = {}
 
   const urls = []
-  const cdnToResourceMap = {}
 
   // Collect all URLs from file_urls array
   if (download.file_urls) {
-    if (download.file_urls.length <= 1) {
-      // Non-array: prefer CDN for file size fetching
-      const resourceUrl = download.file_urls[0]?.url
-      const cdnUrl = download.file_urls_cdn?.[0]?.url
-      if (cdnUrl && resourceUrl) {
-        cdnToResourceMap[cdnUrl] = resourceUrl
-        urls.push(cdnUrl)
-      } else if (resourceUrl) {
-        urls.push(resourceUrl)
-      }
-    } else {
-      // Array: fetch from both resource site and CDN
-      urls.push(...download.file_urls.map(u => u.url))
-      if (download.file_urls_cdn) {
-        urls.push(...download.file_urls_cdn.filter(u => u).map(u => u.url))
-      }
-    }
+    urls.push(...download.file_urls.map(u => u.url))
   }
 
   // Collect download link
@@ -212,23 +182,7 @@ async function fetchFileSizes(download) {
 
   // Collect data file URLs
   if (download.currentVer?.data_file_urls) {
-    if (download.currentVer.data_file_urls.length <= 1) {
-      // Non-array: prefer CDN
-      const resourceUrl = download.currentVer.data_file_urls[0]?.url
-      const cdnUrl = download.currentVer.data_file_urls_cdn?.[0]?.url
-      if (cdnUrl && resourceUrl) {
-        cdnToResourceMap[cdnUrl] = resourceUrl
-        urls.push(cdnUrl)
-      } else if (resourceUrl) {
-        urls.push(resourceUrl)
-      }
-    } else {
-      // Array: fetch from both
-      urls.push(...download.currentVer.data_file_urls.map(u => u.url))
-      if (download.currentVer.data_file_urls_cdn) {
-        urls.push(...download.currentVer.data_file_urls_cdn.filter(u => u).map(u => u.url))
-      }
-    }
+    urls.push(...download.currentVer.data_file_urls.map(u => u.url))
   }
 
   // Collect data download URL
@@ -237,14 +191,6 @@ async function fetchFileSizes(download) {
   }
 
   const sizes = await batchFetchFileSizes(urls)
-
-  // Remap CDN sizes to resource URL keys for non-array case
-  for (const [cdnUrl, resourceUrl] of Object.entries(cdnToResourceMap)) {
-    if (sizes[cdnUrl] && !sizes[resourceUrl]) {
-      sizes[resourceUrl] = sizes[cdnUrl]
-      delete sizes[cdnUrl]
-    }
-  }
 
   fileSizeMap.value = sizes
   fileSizeLoading.value = false
@@ -483,15 +429,6 @@ const getGameImage = () => {
                 </a>
               </template>
             </span>
-            <template v-if="selectedDownload.file_urls_cdn">
-              <a
-                class="download"
-                v-for="url in selectedDownload.file_urls_cdn.filter(u => u)"
-                :key="url.url"
-                :href="url.url"
-                target="_blank"
-              >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
-            </template>
             <template v-if="getDownloadLink(selectedDownload, lan)">
               <a
                 class="download"
@@ -545,15 +482,6 @@ const getGameImage = () => {
                 </a>
               </template>
             </span>
-            <template v-if="selectedDownload.currentVer.data_file_urls_cdn">
-              <a
-                class="download"
-                v-for="url in selectedDownload.currentVer.data_file_urls_cdn.filter(u => u)"
-                :key="url.url"
-                :href="url.url"
-                target="_blank"
-              >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
-            </template>
             <template v-if="selectedDownload.currentVer.data_download_url">
               <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
                 {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
@@ -601,7 +529,6 @@ const getGameImage = () => {
           </div>
           <div class="button-line">
             <a class="download" :href="resourceUrl(selectedSmwp.smwp_url)" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
-            <a class="download" :href="selectedSmwp.smwp_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
           </div>
           <template v-if="selectedSmwp.smwp_data_url">
             <div class="button-line" style="margin-top: 8px;">
@@ -613,7 +540,6 @@ const getGameImage = () => {
             </div>
             <div class="button-line">
               <a class="download" :href="resourceUrl(selectedSmwp.smwp_data_url)" target="_blank">{{ lan == 'en' ? 'Community File Hub' : '社区资源站' }}</a>
-              <a class="download" :href="selectedSmwp.smwp_data_url_cdn" target="_blank">{{ lan == 'en' ? 'CDN (Cloudflare R2)' : '对象存储' }}</a>
             </div>
           </template>
         </div>

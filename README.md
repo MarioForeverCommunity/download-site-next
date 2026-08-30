@@ -361,7 +361,7 @@ Version fields:
 
 ## Static JSON API
 
-This site also provides a **static JSON API** containing every work's parameters, Community File Hub and Cloudflare R2 download links, image paths, and description content. It is suitable for third-party development, data analysis, or hosting your own mirror.
+This site also provides a **static JSON API** containing every work's parameters, Community File Hub download links, image paths, and description content. It is suitable for third-party development, data analysis, or hosting your own mirror.
 
 The API base URL is `https://download.marioforever.net/api/`, with the following endpoints:
 

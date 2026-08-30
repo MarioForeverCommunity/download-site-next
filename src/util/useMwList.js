@@ -1,5 +1,5 @@
 import { readList } from "./ReadList.js"
-import { processFileNamesWithVolumes, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, isCdnCompatible } from "./GameUtil.js"
+import { processFileNamesWithVolumes, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl } from "./GameUtil.js"
 
 let mwListPromise = null
 let mwListCache = null
@@ -25,7 +25,6 @@ const normalizeMwEntry = (raw) => {
   } else if (entry.file_name) {
     if (Array.isArray(entry.file_name)) {
       entry.file_urls = []
-      entry.file_urls_cdn = []
       const displayNames = processFileNamesWithVolumes(entry.file_name)
       for (let i = 0; i < entry.file_name.length; i++) {
         const fileNameEntry = entry.file_name[i]
@@ -34,20 +33,12 @@ const normalizeMwEntry = (raw) => {
           name: `社区资源站 (${displayNames[i]})`,
           url: getMwLevelFileUrl(entry, fileNameEntry)
         })
-        entry.file_urls_cdn.push(
-          isCdnCompatible(fileNameEntry)
-            ? { name: `对象存储 (${displayNames[i]})`, url: getMwLevelFileUrl(entry, fileNameEntry, true) }
-            : null
-        )
       }
     } else {
       entry.file_urls = [{
         name: "社区资源站",
         url: getMwLevelFileUrl(entry, entry.file_name)
       }]
-      entry.file_urls_cdn = isCdnCompatible(entry.file_name)
-        ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.file_name, true) }]
-        : []
     }
   }
 
@@ -55,12 +46,10 @@ const normalizeMwEntry = (raw) => {
     const smwpUrl = getSmwpUrl(entry)
     if (smwpUrl) {
       entry.smwp_url = smwpUrl
-      entry.smwp_url_cdn = getSmwpUrl(entry, true)
     }
     const smwpDataUrl = getSmwpDataUrl(entry)
     if (smwpDataUrl) {
       entry.smwp_data_url = smwpDataUrl
-      entry.smwp_data_url_cdn = getSmwpDataUrl(entry, true)
     }
   }
 
@@ -68,7 +57,6 @@ const normalizeMwEntry = (raw) => {
     if (entry.data_file_name) {
       if (Array.isArray(entry.data_file_name)) {
         entry.data_file_urls = []
-        entry.data_file_urls_cdn = []
         const displayNames = processFileNamesWithVolumes(entry.data_file_name)
         for (let j = 0; j < entry.data_file_name.length; j++) {
           const dataFileNameEntry = entry.data_file_name[j]
@@ -77,20 +65,12 @@ const normalizeMwEntry = (raw) => {
             name: `社区资源站 (${displayNames[j]})`,
             url: getMwLevelFileUrl(entry, dataFileNameEntry)
           })
-          entry.data_file_urls_cdn.push(
-            isCdnCompatible(dataFileNameEntry)
-              ? { name: `对象存储 (${displayNames[j]})`, url: getMwLevelFileUrl(entry, dataFileNameEntry, true) }
-              : null
-          )
         }
       } else {
         entry.data_file_urls = [{
           name: "社区资源站",
           url: getMwLevelFileUrl(entry, entry.data_file_name)
         }]
-        entry.data_file_urls_cdn = isCdnCompatible(entry.data_file_name)
-          ? [{ name: "对象存储", url: getMwLevelFileUrl(entry, entry.data_file_name, true) }]
-          : []
       }
     }
   } else {
@@ -106,12 +86,10 @@ const normalizeMwEntry = (raw) => {
     code: entry.code,
     file_name: entry.file_name,
     file_url: entry.file_url,
-    file_urls_cdn: entry.file_urls_cdn,
     data_file_name: entry.data_file_name,
     data_file_url: entry.data_file_url,
     data_download_url: entry.data_download_url,
     data_file_urls: entry.data_file_urls,
-    data_file_urls_cdn: entry.data_file_urls_cdn,
     data_code: entry.data_code
   }
   if (entry.currentVer.source_url != null && entry.currentVer.source_url[0] === "~") {

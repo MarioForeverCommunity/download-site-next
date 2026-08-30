@@ -13,7 +13,7 @@ import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
-import { getVideoDesc, getResourceURL, getResourceCdnURL, filterList, getDataResourceURL, getDataResourceCdnURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
+import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
@@ -183,7 +183,6 @@ Promise.all([readList("list-mf.yaml"), imageResolver.init()]).then(([list]) => {
           // 检查是否为APK文件，如果是则使用包含作者名的安卓游戏路径
           ver.file_url_zh = getMfFileUrl(ver.file_name, ver, entry, "zh");
           ver.file_url_en = getMfFileUrl(ver.file_name, ver, entry, "en");
-          ver.file_url_cdn = getMfFileUrl(ver.file_name, ver, entry, "cdn");
         }
       } else {
         ver.file_url_zh = ver.file_url;
@@ -194,7 +193,6 @@ Promise.all([readList("list-mf.yaml"), imageResolver.init()]).then(([list]) => {
           // 检查是否为APK相关的数据文件，如果是则使用包含作者名的安卓游戏路径
           ver.data_file_url_zh = getMfFileUrl(ver.data_file_name, ver, entry, "zh", true);
           ver.data_file_url_en = getMfFileUrl(ver.data_file_name, ver, entry, "en", true);
-          ver.data_file_url_cdn = getMfFileUrl(ver.data_file_name, ver, entry, "cdn", true);
         }
       } else {
         ver.data_file_url_zh = ver.data_file_url;
@@ -959,21 +957,17 @@ async function fetchFileSize(game) {
   selectedFileSize.value = null;
   selectedDataFileSize.value = null;
 
-  // Prefer CDN URL for file size fetching, fallback to resource site URL
-  const cdnUrl = getResourceCdnURL(game);
+  // 获取主文件大小（失败时静默跳过）
   const resourceUrl = getResourceURL(game, lan.value);
-  const fetchUrl = cdnUrl || resourceUrl;
-  if (fetchUrl) {
-    const size = await getFormattedFileSize(fetchUrl);
+  if (resourceUrl) {
+    const size = await getFormattedFileSize(resourceUrl);
     selectedFileSize.value = size;
   }
 
   // Get data file size if available
-  const cdnDataUrl = getDataResourceCdnURL(game);
   const dataResourceUrl = getDataResourceURL(game, lan.value);
-  const fetchDataUrl = cdnDataUrl || dataResourceUrl;
-  if (fetchDataUrl) {
-    const dataSize = await getFormattedFileSize(fetchDataUrl);
+  if (dataResourceUrl) {
+    const dataSize = await getFormattedFileSize(dataResourceUrl);
     selectedDataFileSize.value = dataSize;
   }
 
@@ -1331,12 +1325,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             :href="getResourceDirectUrl(selectedDownload)"
             target="_blank"
           >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
-          <a
-            class="download"
-            v-if="getResourceCdnURL(selectedDownload)"
-            :href="getResourceCdnURL(selectedDownload)"
-            target="_blank"
-          >{{ lan == "en" ? "CDN (Cloudflare R2)" : "对象存储" }}</a>
           <template v-for="entry in getDownloadEntriesForView(selectedDownload)" :key="entry.url">
             <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
             <ClipboardButton
@@ -1362,12 +1350,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               :href="getDataResourceDirectUrl(selectedDownload)"
               target="_blank"
             >{{ lan == "en" ? "Community File Hub" : "社区资源站" }}</a>
-            <a
-              class="download"
-              v-if="getDataResourceCdnURL(selectedDownload)"
-              :href="getDataResourceCdnURL(selectedDownload)"
-              target="_blank"
-            >{{ lan == "en" ? "CDN (Cloudflare R2)" : "对象存储" }}</a>
             <a class="download" :href="selectedDownload.currentVer.data_download_url" target="_blank">
               {{ getDownloadInfo(null, selectedDownload.currentVer.data_download_url, lan).desc }}
               <template v-if="selectedDownload.currentVer.data_code">

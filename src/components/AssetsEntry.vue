@@ -33,7 +33,7 @@ const lan = ref(getLanguage())
 
 const useDirectLink = getUseDirectLink()
 
-// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+// 根据直链开关转换资源站链接（非资源站链接不受影响）
 const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url
 
 const handleLanguageChanged = (event) => {
@@ -104,41 +104,16 @@ async function fetchFileSizes(download) {
   fileSizeMap.value = {}
 
   const urls = []
-  const cdnToResourceMap = {}
 
-  // Collect resource URLs and CDN URLs
+  // Collect resource URLs
   const resourceUrls = getAssetResourceURLs(download)
-  const cdnUrls = getAssetResourceURLs(download, true)
-
-  if (resourceUrls.length <= 1) {
-    // Non-array: prefer CDN for file size fetching
-    const resourceUrl = resourceUrls[0]?.url
-    const cdnUrl = cdnUrls[0]?.url
-    if (cdnUrl && resourceUrl) {
-      cdnToResourceMap[cdnUrl] = resourceUrl
-      urls.push(cdnUrl)
-    } else if (resourceUrl) {
-      urls.push(resourceUrl)
-    }
-  } else {
-    // Array: fetch from both resource site and CDN
-    urls.push(...resourceUrls.map(u => u.url))
-    urls.push(...cdnUrls.map(u => u.url))
-  }
+  urls.push(...resourceUrls.map(u => u.url))
 
   // Collect download entries URLs
   const entries = getDownloadEntries(download, lan.value)
   urls.push(...entries.map(e => e.url))
 
   const sizes = await batchFetchFileSizes(urls)
-
-  // Remap CDN sizes to resource URL keys for non-array case
-  for (const [cdnUrl, resourceUrl] of Object.entries(cdnToResourceMap)) {
-    if (sizes[cdnUrl] && !sizes[resourceUrl]) {
-      sizes[resourceUrl] = sizes[cdnUrl]
-      delete sizes[cdnUrl]
-    }
-  }
 
   fileSizeMap.value = sizes
   fileSizeLoading.value = false
@@ -314,15 +289,6 @@ function getAssetImage(assetEntry) {
                 </a>
               </template>
             </span>
-            <template v-if="getAssetResourceURLs(selectedDownload, true).length > 0">
-              <a
-                class="download"
-                v-for="url in getAssetResourceURLs(selectedDownload, true)"
-                :key="url.url"
-                :href="url.url"
-                target="_blank"
-              >{{ url.name }}<span v-if="fileSizeMap[url.url]" class="btn-file-size"> ({{ fileSizeMap[url.url] }})</span></a>
-            </template>
             <template v-for="entry in getDownloadEntries(selectedDownload, lan)" :key="entry.url">
               <a class="download" :href="entry.url" target="_blank">{{ entry.desc }}</a>
               <ClipboardButton

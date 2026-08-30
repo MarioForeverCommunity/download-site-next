@@ -139,7 +139,6 @@ const normalizeMfEntry = (raw) => {
     } else if (verObj.file_name) {
       verObj.file_url_zh = getMfFileUrl(verObj.file_name, verObj, entry, "zh")
       verObj.file_url_en = getMfFileUrl(verObj.file_name, verObj, entry, "en")
-      verObj.file_url_cdn = getMfFileUrl(verObj.file_name, verObj, entry, "cdn")
     }
 
     if (verObj.data_file_url) {
@@ -148,7 +147,6 @@ const normalizeMfEntry = (raw) => {
     } else if (verObj.data_file_name) {
       verObj.data_file_url_zh = getMfFileUrl(verObj.data_file_name, verObj, entry, "zh", true)
       verObj.data_file_url_en = getMfFileUrl(verObj.data_file_name, verObj, entry, "en", true)
-      verObj.data_file_url_cdn = getMfFileUrl(verObj.data_file_name, verObj, entry, "cdn", true)
     }
 
     if (verObj.source_url != null && verObj.source_url[0] === "~") {

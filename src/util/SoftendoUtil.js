@@ -60,30 +60,7 @@ const NSMF_URLS_ZH = {
   portable: "https://file.marioforever.net/Mario Forever/New Super Mario Forever 下载/绿色版/"
 };
 
-// 对象存储（CDN）基础路径，遵循英文资源站路径规则，不使用中文路径名
-const CDN_BASE_URL = "https://mf-cdn.kevinh.wang"
-
-function toCdnUrls(urls) {
-  const result = {}
-  for (const key in urls) {
-    result[key] = urls[key].replace("https://file.marioforever.net", CDN_BASE_URL)
-  }
-  return result
-}
-
-const CDN_BASE_URLS = {
-  mario: toCdnUrls(BASE_URLS_EN.mario),
-  mff: toCdnUrls(BASE_URLS_EN.mff),
-  flash: toCdnUrls(BASE_URLS_EN.flash),
-  "non-mario": toCdnUrls(BASE_URLS_EN["non-mario"]),
-  banesoft: toCdnUrls(BASE_URLS_EN.banesoft)
-}
-
 function getBaseUrl(type, lan, nsmf) {
-  // CDN 遵循英文资源站路径规则，不使用中文路径名
-  if (lan === "cdn") {
-    return CDN_BASE_URLS[type];
-  }
   // NSMF games use special URLs (Chinese only)
   if (nsmf && lan === "zh") {
     return NSMF_URLS_ZH;
@@ -297,12 +274,9 @@ export function normalizeSoftendoList(list, lan = "en") {
             ...verObj,
             year: verObj.year,
             installer_url: getInstallerUrl(entry.type, verObj.installer, lan, isNsmf),
-            installer_url_cdn: getInstallerUrl(entry.type, verObj.installer, "cdn", isNsmf),
             portable_urls: getPortableUrls(entry.type, verObj.portable, lan, isNsmf, verKey),
-            portable_urls_cdn: getPortableUrls(entry.type, verObj.portable, "cdn", isNsmf, verKey),
             // selfextract 的 URL 构建逻辑与 portable 相同
-            selfextract_urls: getPortableUrls(entry.type, verObj.selfextract, lan, isNsmf, verKey),
-            selfextract_urls_cdn: getPortableUrls(entry.type, verObj.selfextract, "cdn", isNsmf, verKey)
+            selfextract_urls: getPortableUrls(entry.type, verObj.selfextract, lan, isNsmf, verKey)
           }
         };
       });
@@ -319,12 +293,9 @@ export function normalizeSoftendoList(list, lan = "en") {
         installer: entry.installer,
         portable: entry.portable,
         installer_url: getInstallerUrl(entry.type, entry.installer, lan, isNsmf),
-        installer_url_cdn: getInstallerUrl(entry.type, entry.installer, "cdn", isNsmf),
         portable_urls: getPortableUrls(entry.type, entry.portable, lan, isNsmf, String(year)),
-        portable_urls_cdn: getPortableUrls(entry.type, entry.portable, "cdn", isNsmf, String(year)),
         // selfextract 的 URL 构建逻辑与 portable 相同
-        selfextract_urls: getPortableUrls(entry.type, entry.selfextract, lan, isNsmf, String(year)),
-        selfextract_urls_cdn: getPortableUrls(entry.type, entry.selfextract, "cdn", isNsmf, String(year))
+        selfextract_urls: getPortableUrls(entry.type, entry.selfextract, lan, isNsmf, String(year))
       };
       game.ver = [{ [String(year)]: verObj }];
       game.currentVerStr = "";

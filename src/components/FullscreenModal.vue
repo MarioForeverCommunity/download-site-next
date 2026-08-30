@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 import { getName, getAuthorList, processFileNamesWithVolumes, toResourceDirectUrl } from '../util/GameUtil.js';
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync, getDescriptionSync } from '../util/ImageUtil.js';
@@ -62,10 +61,9 @@ const markdownContent = ref('');
 const originalTitle = ref(document.title);
 const fileSizeMap = ref({});
 const fileSizeLoading = ref(false);
-const useCdn = ref(Cookies.get('useCdn') === 'true');
 const useDirectLink = getUseDirectLink();
 
-// 根据直链开关转换资源站链接（对象存储等非资源站链接不受影响）
+// 根据直链开关转换资源站链接（非资源站链接不受影响）
 const effectiveResourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : url;
 
 const isMwLevel = computed(() => {
@@ -114,7 +112,7 @@ const smwpVersion = computed(() => {
 
 const smwpUrl = computed(() => {
   if (!props.game || !props.game.smwp_ver || !props.game.smwp_url) return null;
-  const url = useCdn.value ? (props.game.smwp_url_cdn || props.game.smwp_url) : props.game.smwp_url;
+  const url = props.game.smwp_url;
   return useDirectLink.value ? toResourceDirectUrl(url) : url;
 });
 
@@ -410,7 +408,7 @@ const downloadEntries = computed(() => {
       const ver = verRaw[verKey];
 
       // Installer (安装版)
-      const installerUrl = effectiveResourceUrl(useCdn.value ? ver.installer_url_cdn : ver.installer_url);
+      const installerUrl = effectiveResourceUrl(ver.installer_url);
       if (installerUrl) {
         const toolbarDetected = installerUrl.toLowerCase().includes('toolbar');
         let installerLabel = props.lan === 'zh' ? `安装版 (${verKey})` : `Installer (${verKey})`;
@@ -429,7 +427,7 @@ const downloadEntries = computed(() => {
       }
 
       // Portable (绿色版)
-      const portableUrls = useCdn.value ? ver.portable_urls_cdn : ver.portable_urls;
+      const portableUrls = ver.portable_urls;
       if (portableUrls && portableUrls.length > 0) {
         for (const p of portableUrls) {
           // flash/mff 类型显示格式标签 (如 "绿色版 EXE")
@@ -466,7 +464,7 @@ const downloadEntries = computed(() => {
       }
 
       // Self-extracting (自解压)，URL 与 portable 相同，仅链接颜色区分
-      const selfextractUrls = useCdn.value ? ver.selfextract_urls_cdn : ver.selfextract_urls;
+      const selfextractUrls = ver.selfextract_urls;
       if (selfextractUrls && selfextractUrls.length > 0) {
         for (const s of selfextractUrls) {
           const selfextractName = props.lan === 'zh' ? '自解压' : 'Self-extracting';
@@ -487,21 +485,14 @@ const downloadEntries = computed(() => {
 
   if (isMwLevel.value) {
     const resourceUrls = props.game.file_urls || [];
-    const cdnUrls = props.game.file_urls_cdn || [];
     const fileNames = props.game.file_name;
     const isArray = Array.isArray(fileNames);
     const displayNames = isArray ? processFileNamesWithVolumes(fileNames) : null;
 
     const entries = [];
     for (let idx = 0; idx < resourceUrls.length; idx++) {
-      // CDN 开启时仅显示兼容的条目，不兼容则跳过（显示"暂无下载链接"）
-      let item;
-      if (useCdn.value) {
-        item = cdnUrls[idx] || null;
-      } else {
-        const resourceItem = resourceUrls[idx];
-        item = resourceItem ? { ...resourceItem, url: effectiveResourceUrl(resourceItem.url) } : null;
-      }
+      const resourceItem = resourceUrls[idx];
+      const item = resourceItem ? { ...resourceItem, url: effectiveResourceUrl(resourceItem.url) } : null;
       if (!item) continue;
 
       const url = item.url || '';
@@ -527,10 +518,7 @@ const downloadEntries = computed(() => {
 
   if (isAssets.value) {
     const entries = [];
-    // 对象存储（CDN）使用英文路径 path_alt，社区资源站使用 path
-    const assetPath = useCdn.value
-      ? (props.game.path_alt || props.game.path || '')
-      : (props.game.path || '');
+    const assetPath = props.game.path || '';
 
     if (props.game.ver && props.game.ver.length > 0) {
       for (const verRaw of props.game.ver) {
@@ -543,7 +531,7 @@ const downloadEntries = computed(() => {
             : [ver.file_name];
 
           for (const fileName of fileNames) {
-            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, useCdn.value));
+            const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath));
 
             if (url) {
               let versionText = '下载';
@@ -571,7 +559,7 @@ const downloadEntries = computed(() => {
         : [props.game.currentVer.file_name];
 
       for (const fileName of fileNames) {
-        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, useCdn.value));
+        const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath));
 
         if (url) {
           const versionText = props.game.currentVer?.ver || '下载';
@@ -592,8 +580,8 @@ const downloadEntries = computed(() => {
   if (!props.game.ver) return [];
 
   const entries = [];
-  const fileUrlKey = useCdn.value ? 'file_url_cdn' : (props.lan === 'zh' ? 'file_url_zh' : 'file_url_en');
-  const dataUrlKey = useCdn.value ? 'data_file_url_cdn' : (props.lan === 'zh' ? 'data_file_url_zh' : 'data_file_url_en');
+  const fileUrlKey = props.lan === 'zh' ? 'file_url_zh' : 'file_url_en';
+  const dataUrlKey = props.lan === 'zh' ? 'data_file_url_zh' : 'data_file_url_en';
 
   // 解析当前（最新）版本集合：逻辑与 generate-api.js 保持一致
   // - 有显式 current: true 时，取所有标记为 current 的版本（支持多 current）
@@ -673,21 +661,14 @@ const dataDownloadEntries = computed(() => {
   if (!isMwLevel.value) return [];
 
   const resourceUrls = props.game.currentVer.data_file_urls || [];
-  const cdnUrls = props.game.currentVer.data_file_urls_cdn || [];
   const dataFileNames = props.game.currentVer.data_file_name;
   const isArray = Array.isArray(dataFileNames);
   const displayNames = isArray ? processFileNamesWithVolumes(dataFileNames) : null;
 
   const entries = [];
   for (let idx = 0; idx < resourceUrls.length; idx++) {
-    // CDN 开启时仅显示兼容的条目，不兼容则跳过
-    let item;
-    if (useCdn.value) {
-      item = cdnUrls[idx] || null;
-    } else {
-      const resourceItem = resourceUrls[idx];
-      item = resourceItem ? { ...resourceItem, url: effectiveResourceUrl(resourceItem.url) } : null;
-    }
+    const resourceItem = resourceUrls[idx];
+    const item = resourceItem ? { ...resourceItem, url: effectiveResourceUrl(resourceItem.url) } : null;
     if (!item) continue;
 
     let name;
@@ -835,13 +816,6 @@ watch(() => [props.game, props.lan], () => {
     fetchFileSizes();
   }
 }, { immediate: true });
-
-watch(useCdn, (newVal) => {
-  Cookies.set('useCdn', String(newVal));
-  if (props.show) {
-    fetchFileSizes();
-  }
-});
 
 watch(useDirectLink, () => {
   if (props.show) {
@@ -1130,14 +1104,6 @@ const nextImage = () => {
 
           <div class="content-section">
             <h3 class="section-title">{{ lan === 'zh' ? '下载' : 'Downloads' }}</h3>
-            <div class="cdn-toggle">
-              <span class="toggle-label">{{ lan === 'zh' ? '资源站' : 'Community File Hub' }}</span>
-              <label class="toggle-switch">
-                <input type="checkbox" v-model="useCdn" />
-                <span class="toggle-slider"></span>
-              </label>
-              <span class="toggle-label">{{ lan === 'zh' ? '对象存储' : 'CDN (Cloudflare R2)' }}</span>
-            </div>
             <div v-if="fileSizeLoading" class="file-size-loading-info">
               {{ lan === 'zh' ? '获取文件大小中...' : 'Fetching file size...' }}
             </div>
@@ -1158,7 +1124,7 @@ const nextImage = () => {
                 <span v-if="fileSizeMap[entry.url]" class="file-size-label">
                   ({{ fileSizeMap[entry.url] }})
                 </span>
-                <span v-else-if="fileSizeLoading && entry.url && (entry.url.includes('file.marioforever.net') || entry.url.includes('mf-cdn.kevinh.wang'))" class="file-size-loading-label">
+                <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
                   ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
                 </span>
                 <span v-if="entry.isRepackaged" class="repackaged-label">
@@ -1178,7 +1144,7 @@ const nextImage = () => {
                 <span v-if="fileSizeMap[entry.url]" class="file-size-label">
                   ({{ fileSizeMap[entry.url] }})
                 </span>
-                <span v-else-if="fileSizeLoading && entry.url && (entry.url.includes('file.marioforever.net') || entry.url.includes('mf-cdn.kevinh.wang'))" class="file-size-loading-label">
+                <span v-else-if="fileSizeLoading && entry.url && entry.url.includes('file.marioforever.net')" class="file-size-loading-label">
                   ({{ lan === 'zh' ? '获取中...' : 'Fetching...' }})
                 </span>
               </li>
@@ -1411,69 +1377,6 @@ const nextImage = () => {
     margin-bottom: 0.5em;
     border-left: 3px solid #008cff;
     padding-left: 0.5em;
-  }
-
-  .cdn-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 0.8em;
-    font-size: 0.85em;
-    padding-left: 0.6em;
-  }
-
-  .toggle-label {
-    color: #666;
-  }
-
-  body.dark .toggle-label {
-    color: #777;
-  }
-
-  .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 20px;
-    flex-shrink: 0;
-  }
-
-  .toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.3s;
-    border-radius: 20px;
-  }
-
-  .toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: 0.3s;
-    border-radius: 50%;
-  }
-
-  .toggle-switch input:checked + .toggle-slider {
-    background-color: #008cff;
-  }
-
-  .toggle-switch input:checked + .toggle-slider:before {
-    transform: translateX(16px);
   }
 
   .source-list,
