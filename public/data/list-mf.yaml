@@ -28,16 +28,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: World 15
-  ver_alt:
-  date: 2026-08-27
-  source_url: https://www.marioforever.net/thread-3944-1-1.html
-  source_url_alt:
-  download_url: https://pan.baidu.com/s/1Am6gMv3sQZq8zfKyetcc2A
-  code: hh27
-  download_url_alt:
-  file_name: Mario Forever Traveling and Touring World 15.7z
-  file_url:
+  ver:
+  - World 14:
+      ver_alt:
+      date: 2026-08-31
+      source_url: https://www.marioforever.net/thread-3944-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1A-RTMQZ6t2dcWX8ev1Q-zA
+      code: p2x1
+      download_url_alt:
+      file_name: Mario Forever Traveling and Touring World 14.7z
+      file_url:
+  - World 15:
+      ver_alt:
+      date: 2026-08-27
+      source_url: https://www.marioforever.net/thread-3944-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1Am6gMv3sQZq8zfKyetcc2A
+      code: hh27
+      download_url_alt:
+      file_name: Mario Forever Traveling and Touring World 15.7z
+      file_url:
 - game: DEADLY LEVEL (WELCOME BACK!)
   game_alt:
   tag:
