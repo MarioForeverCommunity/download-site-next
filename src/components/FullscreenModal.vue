@@ -543,11 +543,12 @@ const downloadEntries = computed(() => {
             const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, props.lan));
 
             if (url) {
+              const variantDisplayName = (props.lan === 'en' && ver.variant_alt) ? ver.variant_alt : verKey;
               let versionText = '下载';
               if (verKey && ver.ver && verKey !== ver.ver) {
-                versionText = `${verKey} ${ver.ver}`;
+                versionText = `${variantDisplayName} ${ver.ver}`;
               } else if (verKey) {
-                versionText = verKey;
+                versionText = variantDisplayName;
               } else if (ver.ver) {
                 versionText = ver.ver;
               }
