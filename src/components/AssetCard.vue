@@ -1,6 +1,7 @@
 <script setup>
 import { LinkIcon, DownloadIcon, UserIcon, GithubIcon } from "./icons/Icons.js";
 import { getName, getAuthorList, hasDownloadableContent } from "../util/GameUtil.js";
+import { getVariantDisplayName } from "../util/useAssetsList.js";
 import { sourceName } from "../config.js";
 import Tooltip from "./ToolTip.vue";
 
@@ -13,6 +14,10 @@ const props = defineProps({
     type: Function,
     required: false,
     default: () => null
+  },
+  lan: {
+    type: String,
+    default: "zh"
   }
 });
 
@@ -41,7 +46,9 @@ const getAssetSourceDesc = (asset) => {
   }
   for (const entry of sourceName) {
     if (link.match(entry.domain)) {
-      return entry.desc_zh || entry.desc_en;
+      return props.lan === 'en'
+        ? (entry.desc_en || entry.desc_zh)
+        : (entry.desc_zh || entry.desc_en);
     }
   }
   return null;
@@ -67,12 +74,12 @@ const handleSourceClick = (event) => {
 
 const getTypeLabel = (type) => {
   const types = {
-    engine: '引擎',
-    addon: '拓展',
-    effect: '特效',
-    sprite: '素材',
-    tool: '工具',
-    mwtool: 'MW工具'
+    engine: props.lan === 'en' ? 'Engine' : '引擎',
+    addon: props.lan === 'en' ? 'Addon' : '拓展',
+    effect: props.lan === 'en' ? 'Effect' : '特效',
+    sprite: props.lan === 'en' ? 'Sprite' : '素材',
+    tool: props.lan === 'en' ? 'Tool' : '工具',
+    mwtool: props.lan === 'en' ? 'MW Tool' : 'MW工具'
   };
   return types[type] || type;
 };
@@ -91,12 +98,12 @@ const getTypeClass = (type) => {
 
 const getTypeTooltip = (type) => {
   const tooltips = {
-    engine: '制作模板 (引擎)',
-    addon: '拓展资源',
-    effect: '特效',
-    sprite: '素材',
-    tool: '工具程序',
-    mwtool: '工具 (Mario Worker)'
+    engine: props.lan === 'en' ? 'Engine' : '制作模板 (引擎)',
+    addon: props.lan === 'en' ? 'Addon' : '拓展资源',
+    effect: props.lan === 'en' ? 'Effect' : '特效',
+    sprite: props.lan === 'en' ? 'Sprite' : '素材',
+    tool: props.lan === 'en' ? 'Tool' : '工具程序',
+    mwtool: props.lan === 'en' ? 'Tool (Mario Worker)' : '工具 (Mario Worker)'
   };
   return tooltips[type] || type;
 };
@@ -120,7 +127,13 @@ const getDateString = () => {
 };
 
 const getVariantName = () => {
-  return props.asset._variantName || null;
+  if (!props.asset._variantName) return null;
+  return getVariantDisplayName(props.asset, props.asset._variantName, props.lan);
+};
+
+const getAssetDescription = (asset) => {
+  if (props.lan === "en" && asset.description_alt) return asset.description_alt;
+  return asset.description;
 };
 </script>
 
@@ -142,7 +155,7 @@ const getVariantName = () => {
         </Tooltip>
         <span v-if="getDateString()">{{ getDateString() }}</span>
       </div>
-      <p v-if="asset.description">{{ asset.description }}</p>
+      <p v-if="asset.description">{{ getAssetDescription(asset) }}</p>
     </div>
     <div class="asset-image" v-if="getAssetImage()">
       <img :src="getAssetImage()" :alt="getName(asset, 'zh')" @error="handleImageError" />
@@ -156,26 +169,26 @@ const getVariantName = () => {
           <span class="inline-block author-ellipsis">
             <UserIcon class="icon author-icon"></UserIcon>
             <span class="author-text">
-              <template v-if="typeof getAuthorList(asset, 'zh') == 'string'">
-                {{ getAuthorList(asset, 'zh') }}
+              <template v-if="typeof getAuthorList(asset, props.lan) == 'string'">
+                {{ getAuthorList(asset, props.lan) }}
               </template>
               <template v-else>
                 <span
                   class="inline-block"
-                  v-for="(author, authorindex) in getAuthorList(asset, 'zh')"
+                  v-for="(author, authorindex) in getAuthorList(asset, props.lan)"
                   :key="author + authorindex"
                 >
-                  {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">,&nbsp;</span>
+                  {{ author }}<span v-if="authorindex != getAuthorList(asset, props.lan).length - 1">,&nbsp;</span>
                 </span>
               </template>
             </span>
           </span>
           <template #popper>
             <span>
-              <span v-if="typeof getAuthorList(asset, 'zh') == 'string'">{{ getAuthorList(asset, 'zh') }}</span>
+              <span v-if="typeof getAuthorList(asset, props.lan) == 'string'">{{ getAuthorList(asset, props.lan) }}</span>
               <template v-else>
-                <span v-for="(author, authorindex) in getAuthorList(asset, 'zh')" :key="author + authorindex">
-                  {{ author }}<span v-if="authorindex != getAuthorList(asset, 'zh').length - 1">, </span>
+                <span v-for="(author, authorindex) in getAuthorList(asset, props.lan)" :key="author + authorindex">
+                  {{ author }}<span v-if="authorindex != getAuthorList(asset, props.lan).length - 1">, </span>
                 </span>
               </template>
             </span>
@@ -189,7 +202,7 @@ const getVariantName = () => {
           </a>
           <template #popper>
             <span class="content-center">
-              发布页
+              {{ props.lan === 'en' ? 'Source' : '发布页' }}
               <span v-if="getAssetSourceDesc(asset)" class="small"><br>({{ getAssetSourceDesc(asset) }})</span>
             </span>
           </template>
@@ -198,11 +211,11 @@ const getVariantName = () => {
           <a :href="asset.repo" target="_blank">
             <GithubIcon class="icon button"></GithubIcon>
           </a>
-          <template #popper>源代码</template>
+          <template #popper>{{ props.lan === 'en' ? 'Source Code' : '源代码' }}</template>
         </Tooltip>
         <Tooltip v-if="hasDownloadableContent(asset)">
           <DownloadIcon class="icon button" @click="$emit('selectDownload', asset)"></DownloadIcon>
-          <template #popper>下载链接</template>
+          <template #popper>{{ props.lan === 'en' ? 'Download' : '下载链接' }}</template>
         </Tooltip>
       </div>
     </div>

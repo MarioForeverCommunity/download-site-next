@@ -129,3 +129,12 @@ export const resolveVariantRaw = (entry, desiredVariant, desiredVer) => {
   })
   return candidates[0]
 }
+
+// 获取变体的显示名称：英文环境优先使用 variant_alt，缺省回退变体原名
+export const getVariantDisplayName = (entry, variantName, lan = "zh") => {
+  if (!entry || !variantName) return null
+  if (lan !== "en") return variantName
+  const raw = resolveVariantRaw(entry, variantName, null)
+  const data = raw ? raw[Object.keys(raw)[0]] : null
+  return data?.variant_alt || variantName
+}

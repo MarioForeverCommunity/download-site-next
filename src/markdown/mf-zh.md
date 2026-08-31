@@ -395,7 +395,7 @@ Rainbow Engine Mod 在 Rainbow Engine 的基础上添加了新的敌人、设施
 #### Cloud Engine
 Cloud Engine 是由 Meteo Dream（原 Team CE）基于 MarioForeverEditorV1.cca 制作的模板，其利用了 Clickteam Fusion 2.5+ 的子事件特性，并且有完善的注释和使用说明、长期的维护与更新，因此是较易使用的原版系引擎。
 
-<AssetsEntry name="Cloud Engine" variant="本体" />
+<AssetsEntry name="Cloud Engine" variant="本体" /><AssetsEntry name="Cloud Engine" variant="Official Plugins" />
 
 #### Feather Engine
 Feather Engine 是由国外玩家 TheMarioVariable 基于 MarioForeverEditorV1.cca 改良的引擎，一些国外作品使用了该引擎。

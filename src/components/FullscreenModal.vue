@@ -87,12 +87,12 @@ const isSingleVersion = computed(() => {
 const assetTypeLabel = computed(() => {
   if (!isAssets.value || !props.game || !props.game.type) return null;
   const types = {
-    engine: '引擎',
-    addon: '拓展',
-    effect: '特效',
-    sprite: '素材',
-    tool: '工具',
-    mwtool: 'MW工具'
+    engine: props.lan === 'en' ? 'Engine' : '引擎',
+    addon: props.lan === 'en' ? 'Addon' : '拓展',
+    effect: props.lan === 'en' ? 'Effect' : '特效',
+    sprite: props.lan === 'en' ? 'Sprite' : '素材',
+    tool: props.lan === 'en' ? 'Tool' : '工具',
+    mwtool: props.lan === 'en' ? 'MW Tool' : 'MW工具'
   };
   return types[props.game.type] || props.game.type;
 });
@@ -300,10 +300,16 @@ const releaseDate = computed(() => {
       date = props.game.currentVer.date;
     }
     if (!date) return null;
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
+    if (props.lan === 'zh') {
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      return `${year} 年 ${month} 月 ${day} 日`;
+    }
     const day = date.getDate();
-    return `${year} 年 ${month} 月 ${day} 日`;
+    const month = date.toLocaleString('en-US', { month: 'long' });
+    const year = date.getFullYear();
+    return `${month} ${day}, ${year}`;
   }
 
   if (!props.game.ver) return null;
@@ -565,7 +571,7 @@ const downloadEntries = computed(() => {
         const url = effectiveResourceUrl(getAssetFileUrl(props.game.type, fileName, assetPath, props.lan));
 
         if (url) {
-          const versionText = props.game.currentVer?.ver || '下载';
+          const versionText = props.game.currentVer?.ver || (props.lan === 'zh' ? '下载' : 'Download');
           entries.push({
             version: versionText,
             url: url,
@@ -771,6 +777,9 @@ const shortDesc = computed(() => {
   const descKey = props.lan === 'zh' ? 'description_zh' : 'description_en';
   if (props.game[descKey]) {
     return props.game[descKey];
+  }
+  if (props.lan === 'en' && props.game.description_alt) {
+    return props.game.description_alt;
   }
   if (props.game.description) {
     return props.game.description;
@@ -978,11 +987,11 @@ const nextImage = () => {
           </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
-            <span class="smwp-label">MW 版本:</span>
+            <span class="smwp-label">{{ lan === 'zh' ? 'MW 版本:' : 'MW Version:' }}</span>
             <span v-if="smwpUrl" class="smwp-value">
               <a :href="smwpUrl" target="_blank">{{ smwpVersion.startsWith('MW ') ? smwpVersion : `SMWP ${smwpVersion}` }}</a>
             </span>
-            <span v-else class="smwp-value">{{ smwpVersion.startsWith('MW ') ? smwpVersion : `SMWP ${smwpVersion} (作品自带)` }}</span>
+            <span v-else class="smwp-value">{{ smwpVersion.startsWith('MW ') ? smwpVersion : `SMWP ${smwpVersion}${lan === 'zh' ? ' (作品自带)' : ' (bundled)'}` }}</span>
           </div>
 
           <div v-if="!isMwLevel" class="title-image-container">

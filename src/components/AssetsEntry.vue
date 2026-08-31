@@ -5,7 +5,7 @@ import { getLanguage } from "../util/Language.js"
 import { parseVer } from "../util/Misc.js"
 import { getName, getDownloadEntries, toResourceDirectUrl } from "../util/GameUtil.js"
 import { getUseDirectLink } from "../util/Language.js"
-import { ensureAssetsList, findAssetsByName, resolveVariantRaw } from "../util/useAssetsList.js"
+import { ensureAssetsList, findAssetsByName, resolveVariantRaw, getVariantDisplayName } from "../util/useAssetsList.js"
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"
 import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
@@ -238,6 +238,7 @@ function getAssetImage(assetEntry) {
     <template v-else>
       <AssetCard
         :asset="asset"
+        :lan="lan"
         :get-asset-image="getAssetImage"
         @select-download="(entry) => { selectedDownload = entry }"
         @show-tooltip="(obj) => tooltipMouseEnter(obj)"
@@ -251,7 +252,7 @@ function getAssetImage(assetEntry) {
       <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">
         <div class="modal-content" @click.stop="">
           <div class="download-title">
-            下载 {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${selectedDownload._variantName})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
+            {{ lan == 'en' ? 'Download' : '下载' }} {{ getName(selectedDownload, lan) }}{{ selectedDownload._variantName ? ` (${getVariantDisplayName(selectedDownload, selectedDownload._variantName, lan)})` : '' }}{{ selectedDownload.currentVer && selectedDownload.currentVer.ver ? ` ${selectedDownload.currentVer.ver}` : '' }}
           </div>
           <!-- Single file: show file size above buttons -->
           <div v-if="getAssetResourceURLs(selectedDownload, lan).length <= 1" class="file-size-info">
@@ -307,11 +308,11 @@ function getAssetImage(assetEntry) {
       <div v-if="tiebaDialog != null" class="modal-bg" @click="tiebaDialog = null;">
         <div class="modal-content" @click.stop="">
           <div>
-            选择要访问的链接
+            {{ lan == 'en' ? 'Choose Link to Visit' : '选择要访问的链接' }}
           </div>
           <div class="button-line">
-            <a class="download" :href="tiebaDialog.originalUrl" target="_blank">百度贴吧源站</a>
-            <a class="download" :href="tiebaDialog.archiveUrl" target="_blank">社区备份站</a>
+            <a class="download" :href="tiebaDialog.originalUrl" target="_blank">{{ lan == 'en' ? 'Baidu Tieba (tieba.baidu.com)' : '百度贴吧源站' }}</a>
+            <a class="download" :href="tiebaDialog.archiveUrl" target="_blank">{{ lan == 'en' ? 'Tieba Archive (archive.marioforever.net)' : '社区备份站' }}</a>
           </div>
         </div>
       </div>

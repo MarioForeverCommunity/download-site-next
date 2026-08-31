@@ -586,10 +586,12 @@ function buildAssets() {
     out.nameAlt = entry.name_alt || null;
     out.aliases = toArray(entry.alias);
     out.author = entry.author == null ? [] : toArray(entry.author);
+    out.authorAlt = entry.author_alt == null ? null : toArray(entry.author_alt);
     out.type = entry.type || '';
     out.path = entry.path || '';
     out.pathAlt = entry.path_alt || null;
     out.inlineDescription = entry.description || null;
+    out.inlineDescriptionAlt = entry.description_alt || null;
     out.repo = entry.repo || null;
 
     const buildVer = (variantKey, v) => {
@@ -612,6 +614,7 @@ function buildAssets() {
       });
       return {
         variant: variantKey || null,
+        variantAlt: v?.variant_alt || null,
         version: v?.ver || null,
         date,
         source: { url: srcUrl || null, invalid: !!srcInvalid },

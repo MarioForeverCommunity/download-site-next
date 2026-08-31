@@ -363,8 +363,10 @@
   - 地鼠引擎
   - Godot4
   author: 克洛伊Prime
+  author_alt: ChloePrime
   type: engine
   description: 本项目使用了 git submodules，clone 后请 init submodules；编辑地形需要安装 Tiled 编辑器
+  description_alt: This engine uses git submodules, please init submodules after cloning. Editing terrain requires Tiled.
   image:
   source_url: https://www.marioforever.net/thread-2873-1-1.html
   download_url:
@@ -386,6 +388,7 @@
   path_alt: mfeditor-based
   variants:
   - 本体:
+      variant_alt: Base
       ver: v2.2
       date: 2023-05-05
       file_name: Cloud Engine 2.2.7z
@@ -498,6 +501,7 @@
   - GEU
   - 地理引擎
   author: 马里奥X7
+  author_alt: MarioX7
   type: engine
   description:
   image: GEU.webp
@@ -553,6 +557,7 @@
   file_name:
 - name: New Styled Mario Forever Logo
   author: 马里奥X7
+  author_alt: MarioX7
   type: sprite
   description:
   image: I0mymn.png
@@ -669,6 +674,7 @@
   author: TheMachinumps
   type: engine
   description: 原名 Rainbow Engine Mod
+  description_alt: Formerly named Rainbow Engine Mod
   image: SpectrumEngine.webp
   source_url: https://marioforeverforum.boards.net/thread/63/spectrum-engine-rem-1
   download_url: https://www.mediafire.com/folder/1s3kwfyagbhc2/Rainbow%20Engine%20Mod
@@ -731,15 +737,18 @@
   path_alt: misc
   variants:
   - 本体:
+      variant_alt: Base
       ver: 200309v1
       date: 2020-03-09
       file_name: Super Mario Ultra Engine 200309v1.7z
   - 特效包:
+      variant_alt: Effects Pack
       ver:
       date: 2019-07-03
       file_name: Ultra Engine 特效包.7z
 - name: Mario Forever Star Engine
   author: 马里奥X7
+  author_alt: MarioX7
   type: engine
   description:
   image: StarEngine.webp
@@ -812,6 +821,7 @@
   - RE
   - 彩虹引擎
   author: 虹原翼
+  author_alt: Lyh
   type: engine
   description:
   image: rainbow.webp
@@ -822,42 +832,56 @@
   path_alt: rainbow-engine-based
   variants:
   - 含开始页:
+      variant_alt: Full
       ver: 0.10.7.1
       date: 2018-09-29
       file_name: RainbowEngine 0.10.7.1（含开始页）.7z
   - 单关版:
+      variant_alt: Single
       ver: 0.10.7.1
       date: 2018-09-29
       file_name: RainbowEngine 0.10.7.1 单关版.7z
   - HTML5版:
+      variant_alt: HTML5
       ver: 0.10.7.1
       date: 2018-09-29
       file_name: RainbowEngine 0.10.7.1 HTML5.7z
   - 含开始页:
+      variant_alt: Full
       ver: 0.10.7.0
       date: 2017-09-30
       file_name: RainbowEngine 0.10.7.0（含开始页）.7z
   - 单关版:
+      variant_alt: Single
       ver: 0.10.7.0
       date: 2017-09-30
       file_name: RainbowEngine 0.10.7.0 单关版.7z
   - HTML5版:
+      variant_alt: HTML5
       ver: 0.10.7.0
       date: 2017-09-30
       file_name: RainbowEngine 0.10.7.0（HTML5版）.7z
   - 含开始页:
+      variant_alt: Full
       ver: 0.10.6.1
       date: 2016-08-10
       file_name: RainbowEngine_0.10.6.1带开始页.7z
   - 单关版:
+      variant_alt: Single
       ver: 0.10.6.1
       date: 2016-08-10
       file_name: RainbowEngine_0.10.6.1单关版.7z
+  - EnglishLocalized:
+      ver: 0.10.4RC
+      date: 2016-01-27
+      file_name: RainbowEngine_EnglishLocalized_0.10.4RC_160127.7z
   - 含开始页:
+      variant_alt: Full
       ver: 0.9.9
       date: 2015-08-07
       file_name: RainbowEngine_0.9.9_150807带开始页.7z
   - 单关版:
+      variant_alt: Single
       ver: 0.9.9
       date: 2015-08-07
       file_name: RainbowEngine_0.9.9_150807单关版.7z
@@ -876,6 +900,7 @@
   alias:
   - MFEEB
   author: 马里奥X7
+  author_alt: MarioX7
   type: engine
   description: 原名 Mario Forever Engine Every Body
   image:
@@ -892,6 +917,7 @@
   - MFRE
   - W10E
   author: Mario Forever Remake Team
+  author_alt: MF Remake Team (China)
   type: engine
   description:
   image:
@@ -945,6 +971,7 @@
   - MFW10E
   - 第十世界引擎
   author: Mario Forever Remake Team
+  author_alt: MF Remake Team (China)
   type: engine
   description:
   image:
