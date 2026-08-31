@@ -1,6 +1,5 @@
 <script setup>
 import { ref, getCurrentInstance } from 'vue'
-import axios from 'axios'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
 import introEn from '../../markdown/engines-en.md'
@@ -24,27 +23,6 @@ const titleEn = navTop.find(item => item.id === pageId).title_alt
 
 document.title = titleEn
 
-// Get last update date (markdown 文档的最新提交时间).
-const lastUpdate = ref(null);
-
-const formatDate = (date) => {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const seconds = String(date.getSeconds()).padStart(2, '0')
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
-};
-
-axios
-  .get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?page=1&per_page=1&path=src%2Fmarkdown%2Fengines-en.md")
-  .then((response) => {
-    lastUpdate.value = formatDate(new Date(response.data[0].commit.committer.date));
-  }).catch(() => {
-    lastUpdate.value = null;
-  });
-
 </script>
 
 <template>
@@ -58,7 +36,6 @@ axios
   <div class="md-container">
     <h1>{{ titleEn }}</h1>
     <introEn />
-    <p v-if="lastUpdate" class="last-update">{{ originalLan == "en" ? "Last updated: " : "最后更新：" }}{{ lastUpdate }}</p>
   </div>
 
   <ButtonBackToTop />

@@ -1,3 +1,31 @@
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+
+// Last update date from the latest commit of this markdown file.
+const lastUpdate = ref(null)
+
+const formatDate = (date) => {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+}
+
+axios
+  .get('https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?page=1&per_page=1&path=src%2Fmarkdown%2Fengines-en.md')
+  .then((response) => {
+    lastUpdate.value = formatDate(new Date(response.data[0].commit.committer.date))
+  }).catch(() => {
+    lastUpdate.value = null
+  })
+</script>
+
+<p v-if="lastUpdate" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdate }}</p>
+
 ## Clickteam Fusion 2.5
 Clickteam Fusion, formerly known as Multimedia Fusion and abbreviated as MMF or CTF, is a multimedial software-creator application developed by the software company Clickteam. The program allows users to build and test their own software using event-based programming languages they create themselves. Most famous games were made with Multimedia Fusion, including the Five Nights at Freddy's series. This is the program that was used by Michał Gdaniec to create his games and Mario Forever, as well as other MF users, to build and make subsequent fangames based on it.
 
