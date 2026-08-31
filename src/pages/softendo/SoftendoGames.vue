@@ -198,6 +198,7 @@ const filter_option = ref({
   name: "",
   type: "",
   software: "",
+  language: "",
   genres: {}
 });
 
@@ -209,6 +210,7 @@ function clearFilter() {
   filter_option.value.name = "";
   filter_option.value.type = "";
   filter_option.value.software = "";
+  filter_option.value.language = "";
   filter_option.value.genres = {};
 }
 
@@ -226,13 +228,18 @@ const filteredGames = computed(() => {
     const softwareMatch =
       filter_option.value.software == "" ||
       (Array.isArray(a.software) ? a.software.includes(filter_option.value.software) : a.software == filter_option.value.software);
+    const languageMatch =
+      filter_option.value.language == "" ||
+      (filter_option.value.language === "both"
+        ? Array.isArray(a.language) && a.language.includes("en") && a.language.includes("pl")
+        : (Array.isArray(a.language) ? a.language.includes(filter_option.value.language) : a.language == filter_option.value.language));
     const genreMatch =
       Object.keys(filter_option.value.genres).length === 0 ||
       (() => {
         const entryGenres = a.genre ? (Array.isArray(a.genre) ? a.genre : [a.genre]) : [];
         return matchTagStates(entryGenres, filter_option.value.genres);
       })();
-    return nameMatch && typeMatch && softwareMatch && genreMatch;
+    return nameMatch && typeMatch && softwareMatch && languageMatch && genreMatch;
   });
 });
 
@@ -451,6 +458,15 @@ const getGameImage = (game) => {
           <select v-model="filter_option.software">
             <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
             <option v-for="s in availableSoftwares" :key="s" :value="s">{{ getSoftwareLabel(s) }}</option>
+          </select>&nbsp;
+        </div>
+        <div class="inline-block language-filter">
+          {{ lan == "en" ? "Language" : "语言" }}
+          <select v-model="filter_option.language">
+            <option value="">{{ lan == "en" ? "All" : "全部" }}</option>
+            <option value="en">{{ lan == "en" ? "English" : "英语" }}</option>
+            <option value="pl">{{ lan == "en" ? "Polish" : "波兰语" }}</option>
+            <option value="both">{{ lan == "en" ? "Both" : "双语言" }}</option>
           </select>&nbsp;
         </div>
         <div class="visible-button" @click="openGenreModal">

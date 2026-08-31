@@ -2,7 +2,7 @@ This catalog lists all games outside of Mario Forever, Mario and Non Mario, that
 
 Due to them being made on older engines and older operating systems, some may not run properly or at all on your computer. As such, those usually require either an older computer or a virtual machine running an older operating system to properly run them, alongside any necessary drivers and/or settings.
 
-Each game is distinguished by Type (Mario, Non-Mario, Banesoft etc.), Engine (in what engine(s) the game was made) and Genre (what genre of videogame it belongs to, such as Puzzle, Find the Differences etc.) Some games share similar playstyles, and some are unfinished. Some games can also have multiple builds in the same engine, for example Super Mario Dark Dungeon's Flash builds, marked as (swf 1), (swf 2) and (swf 3).
+Each game is distinguished by Type (Mario, Non-Mario, Banesoft etc.), Engine (in what engine(s) the game was made) and Genre (what genre of videogame it belongs to, such as Puzzle, Find and Click, Shmup etc.) Some games share similar playstyles, and some are unfinished. Some games can also have multiple builds in the same engine, for example Super Mario Dark Dungeon's Flash builds, marked as (swf 1), (swf 2) and (swf 3).
 
 Within each game's listing, there exists downloads to specific builds of the game. Each build has its own color-code to distinguish the types available:
 - Blue: An installer for the game.

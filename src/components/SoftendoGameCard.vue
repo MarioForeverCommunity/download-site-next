@@ -37,6 +37,12 @@ const handleImageError = (event) => {
   event.target.parentElement.style.display = 'none';
 };
 
+const languageFlags = computed(() => {
+  if (!props.game.language) return [];
+  const langs = Array.isArray(props.game.language) ? props.game.language : [props.game.language];
+  return langs;
+});
+
 const getGameImageSrc = () => {
   return props.getGameImage ? props.getGameImage(props.game) : null;
 };
@@ -47,6 +53,10 @@ const getGameImageSrc = () => {
     <div class="first-line">
       <div class="game-name">
         <span class="game-name-link" @click="handleGameNameClick">{{ getSoftendoGameName(game) }}</span>
+      </div>
+      <div v-if="languageFlags.length > 0" class="language-flags">
+        <span v-if="languageFlags.includes('en')" class="flag-icon">🇬🇧</span>
+        <span v-if="languageFlags.includes('pl')" class="flag-icon">🇵🇱</span>
       </div>
     </div>
     <div class="body-line">
@@ -319,5 +329,18 @@ const getGameImageSrc = () => {
 
   body.dark .game-image {
     background-color: #2a2a2a;
+  }
+
+  .language-flags {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .flag-icon {
+    font-size: 1.1em;
+    line-height: 1;
   }
 </style>

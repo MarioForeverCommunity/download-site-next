@@ -369,3 +369,14 @@ export function getGenreLabel(genre, lan) {
   }
   return genre;
 }
+
+const LANGUAGE_LABELS = {
+  en: { zh: "英语", en: "English" },
+  pl: { zh: "波兰语", en: "Polish" }
+};
+
+export function getLanguageLabel(language, lan) {
+  if (!language) return "";
+  const langs = Array.isArray(language) ? language : [language];
+  return langs.map(l => LANGUAGE_LABELS[l]?.[lan] || l).join(", ");
+}

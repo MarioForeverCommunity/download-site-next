@@ -5,7 +5,7 @@ import { getName, getAuthorList, processFileNamesWithVolumes, toResourceDirectUr
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync, getDescriptionSync } from '../util/ImageUtil.js';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
-import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, isKliktopiaRepackage } from '../util/SoftendoUtil.js';
+import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, isKliktopiaRepackage, getLanguageLabel } from '../util/SoftendoUtil.js';
 import { getAssetFileUrl } from '../util/AssetUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import { getUseDirectLink } from '../util/Language.js';
@@ -971,6 +971,10 @@ const nextImage = () => {
           <div v-if="isSoftendo" class="software-info">
             <span class="software-label">{{ lan === 'zh' ? '制作软件' : 'Made with' }}: </span>
             <span class="software-value">{{ Array.isArray(getSoftwareLabel(game.software)) ? getSoftwareLabel(game.software).join(", ") : getSoftwareLabel(game.software) }}</span>
+            <span v-if="game.language" class="language-text">
+              <span class="software-label"> &middot; {{ lan === 'zh' ? '语言' : 'Language' }}: </span>
+              <span class="software-value">{{ getLanguageLabel(game.language, lan) }}</span>
+            </span>
           </div>
 
           <div v-if="isMwLevel && smwpVersion" class="smwp-version">
