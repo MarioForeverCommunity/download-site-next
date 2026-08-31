@@ -110,6 +110,16 @@ export const navTop = [
     "show_en" : true
   },
   {
+    "id" : "engines",
+    "link" : "./engines.html",
+    "option" : "引擎",
+    "option_alt" : "MF Engines",
+    "title" : "Mario Forever 制作模板（引擎）导航",
+    "title_alt" : "Mario Forever Engines Downloads",
+    "show_zh" : false,
+    "show_en" : true
+  },
+  {
     "id" : "mario-worker",
     "link" : "./mario-worker.html",
     "option" : "MW 资源导航",
