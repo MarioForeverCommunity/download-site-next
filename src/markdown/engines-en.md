@@ -67,17 +67,19 @@ Spectrum Engine (formerly Rainbow Engine Mod) adds new enemies, facilities, and 
 <AssetsEntry name="Spectrum Engine" variant="Ful MFA" /><AssetsEntry name="Spectrum Engine" variant="Level only MFA" />
 
 #### Super Mario Ultra Edition
-In 2020, Clickteam Fusion 2.5+ was updated to allow **sub-events** and **referencing Groups inside behaviors**. Against this background, Super Mario Ultra Edition, created by dasasdhba, was released. This engine was also built from scratch, and it makes good use of the structure and features of Clickteam Fusion 2.5+. The entire engine features rigorous collision detection and a well-organized system, providing plenty of interfaces for secondary development. However, using it requires a certain understanding of the engine itself. This engine does not focus on reproducing the original Mario Forever; rather, it aims to make creating, developing, and playing more comfortable in every aspect. Some Chinese fangames released since 2021 have been made with this engine.
+In 2020, Clickteam Fusion 2.5+ was released to allow sub-events and referencing Groups inside behaviors. Against this background, Super Mario Ultra Edition, created by dasasdhba, was released. This engine was also built from scratch, and it makes good use of the structure and features of Clickteam Fusion 2.5+. The entire engine features rigorous collision detection and a well-organized system, providing plenty of interfaces for secondary development. However, using it requires a certain understanding of the engine itself. This engine does not focus on reproducing the original Mario Forever; rather, it aims to make creating, developing, and playing more comfortable in every aspect. Some Chinese fangames released since 2021 have been made with this engine.
 
 <AssetsEntry name="Super Mario Ultra Edition" variant="Full" /><AssetsEntry name="Super Mario Ultra Edition" variant="Mod" />
 
 #### Factory Engine
-This is the engine used by Mario Forever Irrational Travel, a fangame of the DET Factory, based on Rainbow Engine with many optimizations.
+This is the engine used by <a href="https://download.marioforever.net/mf-games.html?game=mario-forever-irrational-travel-det-factory">Mario Forever Irrational Travel</a>, a fangame of DET Factory, based on Rainbow Engine with many optimizations.
 
 <AssetsEntry name="Factory Engine" />
 
 #### Other Engines
 This includes Mario Forever Engine by Dunami, Super Mario Ultra Engine by dasasdhba, Geography Engine Ultimate by MarioX7, and more. These engines are not commonly used.
+
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-forever/engines">Explore more MF engines</a>
 
 ## Godot Engine
 Godot is an open-source game engine capable of making both 2D and 3D games. Games are designed through a node-based architecture. Godot allows game developers to create games using multiple programming languages, such as C++, C#, and GDScript.
