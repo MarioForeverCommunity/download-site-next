@@ -432,10 +432,12 @@ const { floatingStyles } = useFloating(reference, floating,
             <option value="mwtool">MW 工具</option>
           </select>
         </div>
-        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-          <FilterIcon class="icon button" @click="clearFilter()" />
-          <template #popper>重置筛选</template>
-        </Tooltip>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <FilterIcon class="icon button" @click="clearFilter()" />
+            <template #popper>重置筛选</template>
+          </Tooltip>
+        </div>
         <div class="visible-button" @click="sortByName();">
           {{ lan == "en" ? "Name" : "名称" }}
           <span v-if="sort_option.field == 'name'">

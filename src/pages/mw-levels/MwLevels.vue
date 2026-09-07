@@ -8,7 +8,7 @@ import { readList } from "../../util/ReadList.js";
 import GameLine from "../../components/GameLine.vue";
 import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon } from "../../components/icons/Icons.js";
+import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon, RandomIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
@@ -445,6 +445,12 @@ function clearFilter() {
   selectedSmwpVer.value = "";
 }
 
+function openRandomGame() {
+  const list = filteredGames.value;
+  if (!list || list.length === 0) return;
+  selectedGameDetail.value = list[Math.floor(Math.random() * list.length)];
+}
+
 const showOnlyBundledSmwp = ref(false);
 
 const smwpVersionOptions = computed(() => {
@@ -681,10 +687,18 @@ const { floatingStyles } = useFloating(reference, floating,
           <input v-model="filter_option.withImages" type="checkbox" id="withImages">
           <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
-        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-          <FilterIcon class="icon button" @click="clearFilter()" />
-          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-        </Tooltip>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <FilterIcon class="icon button" @click="clearFilter()" />
+            <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+          </Tooltip>
+        </div>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <RandomIcon class="icon button" @click="openRandomGame()" />
+            <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
+          </Tooltip>
+        </div>
         <div class="inline-block display-mode-toggle" v-if="wideScreen">
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
             <div class="icon button" @click="toggleDisplayMode()">

@@ -9,7 +9,7 @@ import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
 import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js";
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
+import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, RandomIcon } from "../../components/icons/Icons.js";
 import axios from "axios";
 import Tooltip from "../../components/ToolTip.vue";
 import ButtonBackToTop from "../../components/ButtonBackToTop.vue";
@@ -212,6 +212,12 @@ function clearFilter() {
   filter_option.value.software = "";
   filter_option.value.language = "";
   filter_option.value.genres = {};
+}
+
+function openRandomGame() {
+  const list = filteredGames.value;
+  if (!list || list.length === 0) return;
+  selectedGameDetail.value = list[Math.floor(Math.random() * list.length)];
 }
 
 const filteredGames = computed(() => {
@@ -473,10 +479,18 @@ const getGameImage = (game) => {
           {{ lan == "en" ? "Genres" : "标签筛选" }}
           <span v-if="activeGenreCount > 0" class="tag-count-badge">{{ activeGenreCount }}</span>
         </div>
-        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-          <FilterIcon class="icon button" @click="clearFilter()" />
-          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-        </Tooltip>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <FilterIcon class="icon button" @click="clearFilter()" />
+            <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+          </Tooltip>
+        </div>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <RandomIcon class="icon button" @click="openRandomGame()" />
+            <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
+          </Tooltip>
+        </div>
         <div class="visible-button" @click="sortByName();">
           {{ lan == "en" ? "Name" : "名称" }}
           <span v-if="sort_option.field == 'game'">

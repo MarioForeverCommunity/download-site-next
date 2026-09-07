@@ -12,7 +12,7 @@ import { getAuthor, getName, getAuthorList } from "../../util/GameUtil.js";
 import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon } from "../../components/icons/Icons.js";
+import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon, RandomIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
@@ -502,6 +502,12 @@ function clearFilter() {
   filter_option.value.software = "";
   filter_option.value.tags = {};
   filter_option.value.withImages = false;
+}
+
+function openRandomGame() {
+  const list = filteredGames.value;
+  if (!list || list.length === 0) return;
+  selectedGameDetail.value = list[Math.floor(Math.random() * list.length)];
 }
 
 const showTagModal = ref(false);
@@ -1150,10 +1156,18 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <input v-model="filter_option.withImages" type="checkbox" id="withImages">
           <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
-        <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-          <FilterIcon class="icon button" @click="clearFilter()" />
-          <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-        </Tooltip>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <FilterIcon class="icon button" @click="clearFilter()" />
+            <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+          </Tooltip>
+        </div>
+        <div class="inline-block">
+          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+            <RandomIcon class="icon button" @click="openRandomGame()" />
+            <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
+          </Tooltip>
+        </div>
         <div class="inline-block display-mode-toggle" v-if="wideScreen">
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
             <ListIcon class="icon button" v-if="displayMode === 'card'" @click="toggleDisplayMode()" />
