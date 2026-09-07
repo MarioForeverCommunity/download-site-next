@@ -458,7 +458,7 @@ const smwpVersionOptions = computed(() => {
   const allVers = Object.keys(SmwpVersions)
     .map(v => v.replace(/^v/, ""))
     .filter(v => /^\d+\.\d+\.\d+/.test(v));
-  // 语义版本排序函数（去掉 -beta.X 后缀后比较）
+  // 语义版本排序函数（去掉 -beta.X 后缀后比较主版本号，相同时比较预发布后缀）
   function semverDesc(a, b) {
     const pa = a.replace(/-.*$/, '').split('.').map(Number);
     const pb = b.replace(/-.*$/, '').split('.').map(Number);
@@ -466,6 +466,10 @@ const smwpVersionOptions = computed(() => {
     for (let i = 0; i < len; ++i) {
       if ((pa[i]||0) !== (pb[i]||0)) return (pb[i]||0) - (pa[i]||0);
     }
+    // 数值部分相同：无预发布后缀 > 有预发布后缀；后缀编号大的在前（如 beta.2 > beta.1）
+    const sa = a.includes('-') ? Number(a.split('-')[1].split('.').pop()) : Infinity;
+    const sb = b.includes('-') ? Number(b.split('-')[1].split('.').pop()) : Infinity;
+    if (sa !== sb) return sb - sa;
     return 0;
   }
   // 主版本集合（去掉 -beta.X 后缀后取前两位）
