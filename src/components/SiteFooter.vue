@@ -2,8 +2,10 @@
 import { siteVersion } from '../config.js'
 import { getLanguage } from '../util/Language.js'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import ChangelogModal from './ChangelogModal.vue'
 
 const lan = ref(getLanguage())
+const showChangelog = ref(false)
 
 const buildTime = BUILD_TIME
 const formatBuildTime = (isoString) => {
@@ -48,6 +50,7 @@ onBeforeUnmount(() => {
     <template v-if="lan === 'zh'">
       <span><a target="_blank" href="https://status.marioforever.net/">网站状态</a></span>
       <span>网站版本：{{ siteVersion }}</span>
+      <span><a href="#" @click.prevent="showChangelog = true">更新履历</a></span>
       <span>构建时间：{{ formatBuildTime(buildTime) }}</span>
       <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
     </template>
@@ -55,11 +58,17 @@ onBeforeUnmount(() => {
       <div class="copyright-notice">This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo.</div>
       <div class="footer-links">
         <span>Site version: {{ siteVersion }}</span>
+        <span><a href="#" @click.prevent="showChangelog = true">Changelog</a></span>
         <span>Build time: {{ formatBuildTime(buildTime) }}</span>
         <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">Source code</a></span>
       </div>
     </template>
   </footer>
+  <ChangelogModal
+    :show="showChangelog"
+    :lan="lan"
+    @close="showChangelog = false"
+  />
 </template>
 
 <style scoped>
