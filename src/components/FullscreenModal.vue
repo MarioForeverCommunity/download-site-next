@@ -622,9 +622,13 @@ const downloadEntries = computed(() => {
     }
   }
 
-  for (const verRaw of props.game.ver) {
-    const verKey = Object.keys(verRaw)[0];
-    const ver = verRaw[verKey];
+  // 最新版本始终排到最前：多个最新版本（current: true）按 YAML 顺序排前，其余版本保持 YAML 顺序
+  const orderedVers = [
+    ...verMeta.filter(m => currentKeys.has(m.verKey)),
+    ...verMeta.filter(m => !currentKeys.has(m.verKey))
+  ];
+
+  for (const { verKey, ver } of orderedVers) {
     const versionKey = (props.lan === 'en' && ver.ver_alt) ? ver.ver_alt : verKey;
     const isCurrentVer = currentKeys.has(verKey) && !isSingleVersion.value;
     const currentVerSuffix = isCurrentVer ? (props.lan === 'zh' ? ' (最新)' : ' (latest)') : '';
