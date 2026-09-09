@@ -521,7 +521,7 @@ const getGameImage = () => {
       <div v-if="selectedSmwp != null" class="modal-bg" @click="selectedSmwp = null;">
         <div class="modal-content" @click.stop="">
           <div>
-            {{ lan == 'en' ? 'Download' : '下载' }} {{ selectedSmwp.smwp_ver === 'MW 4.4' ? 'Mario Worker 4.4' : `Super Mario Worker Project ${selectedSmwp.smwp_ver}` }}
+            {{ lan == 'en' ? 'Download' : '下载' }} {{ selectedSmwp.smwp_ver.startsWith('MW ') ? selectedSmwp.smwp_ver.replace('MW ', 'Mario Worker ') : `Super Mario Worker Project ${selectedSmwp.smwp_ver}` }}
           </div>
           <div v-if="fileSizeLoading || getSmwpFileSize()" class="file-size-info">
             <span v-if="fileSizeLoading" class="file-size-loading">{{ lan == 'en' ? 'Fetching file size...' : '获取文件大小中...' }}</span>

@@ -362,7 +362,7 @@ const SMWP_MW44_URL = "https://file.marioforever.net/Mario Worker/原版 Mario W
  */
 export function getMwLevelFileUrl(entry, fname) {
   const author = Array.isArray(entry.author) ? "合作作品" : entry.author
-  if (entry.smwp_ver === "MW 4.4") {
+  if (entry.smwp_ver === "MW 4.4" || entry.smwp_ver === "MW 4.0") {
     return `${MW_LEVEL_BASE_PATH}Mario Worker 4.4 作品/${author}/${fname}`
   }
   const folder = author === "合作作品" ? "合作作品" : `吧友作品/${author}`

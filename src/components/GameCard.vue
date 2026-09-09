@@ -142,14 +142,14 @@ const getHomepageUrl = () => {
               class="smwp-link"
               @click.prevent="emit('selectSmwp', game)"
             >
-              {{ game.smwp_ver === 'MW 4.4' ? 'MW 4.4' : `SMWP ${game.smwp_ver}` }}
+              {{ game.smwp_ver.startsWith('MW ') ? game.smwp_ver : `SMWP ${game.smwp_ver}` }}
             </a>
             <template #popper>
-              下载 {{ game.smwp_ver === 'MW 4.4' ? 'MW 4.4' : `SMWP ${game.smwp_ver}` }}
+              下载 {{ game.smwp_ver.startsWith('MW ') ? game.smwp_ver : `SMWP ${game.smwp_ver}` }}
             </template>
           </Tooltip>
           <template v-else>
-            {{ game.smwp_ver === 'MW 4.4' ? 'MW 4.4' : `SMWP ${game.smwp_ver}` }}
+            {{ game.smwp_ver.startsWith('MW ') ? game.smwp_ver : `SMWP ${game.smwp_ver}` }}
           </template>
         </template>
       </div>

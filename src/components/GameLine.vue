@@ -199,7 +199,7 @@ const getHomepageUrl = () => {
           <DownloadIcon class="icon button"></DownloadIcon>
         </a>
         <template #popper>
-          下载 {{ game.smwp_ver === 'MW 4.4' ? 'MW 4.4' : `SMWP ${game.smwp_ver}` }}
+          下载 {{ game.smwp_ver.startsWith('MW ') ? game.smwp_ver : `SMWP ${game.smwp_ver}` }}
         </template>
       </Tooltip>
     </div>
