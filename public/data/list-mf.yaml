@@ -1,4 +1,21 @@
 ---
+- game: World of Fire
+  game_alt:
+  author: HVMetal
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-09-09
+  source_url:
+  source_url_alt:
+  download_url: https://www.dropbox.com/scl/fi/hgrqd18b3pqc00nj6drk4/World-of-Fire.rar?rlkey=v96pdlh9gvek9ythzy6s0epvs&st=bjvuygru&dl=0
+  code:
+  download_url_alt:
+  file_name: World of Fire.rar
+  file_url:
 - game: Mario Forever Alternative Reality?
   game_alt:
   author: SupraXOCan
