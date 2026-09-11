@@ -11,15 +11,15 @@
 
   const imagesOriginal = [
     "/data/mf-index/title.webp",
-    "/data/mf-index/3-2.webp",
-    "/data/mf-index/3-4.webp",
-    "/data/mf-index/4-1.webp",
+    "/data/mf-index/World_3-2.webp",
+    "/data/mf-index/World_3-4.webp",
+    "/data/mf-index/World_4-1.webp",
     "/data/mf-index/6-3.webp",
     "/data/mf-index/8-3.webp",
     "/data/mf-index/8-4.webp",
-    "/data/mf-index/HC2-3.webp",
-    "/data/mf-index/HL-1.webp",
-    "/data/mf-index/LM-4.webp",
+    "/data/mf-index/Hardcore_2-3.webp",
+    "/data/mf-index/World_GRYo2_-1.webp",
+    "/data/mf-index/LostMap-4.webp",
   ]
 
   const isMobile = ref(false)
