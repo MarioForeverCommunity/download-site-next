@@ -53,6 +53,10 @@ version v.2.2:
 - level "One Last Challenge" renamed to "Abandoned Tower"
 - added Turbo_42 in credits - special thanks to you, bro, for playing to my game. ;)
 
+version v.2.2.1:
+- fixed awful bug in level 5-5 - now Mario can enter into the pipe before final boss battle
+- level Crazy Ships - 5: I forgot to say about that boss battle with Iggy Koopa: the difficulty is a bit increased: for now Iggy Koopa Shell shoots with his spikes, when its moves.
+
 SOUNDTRACKS:
 
 Stage 1 Map - Super Mario 3D Land - World 1/Special 1

@@ -1441,6 +1441,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.2.1:
+      ver_alt:
+      date: 2026-09-12
+      source_url: https://www.youtube.com/post/UgkxPM3JGfi0V_L0ber1RPTYIoG_cRTtrMzj
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/m7m23g4axqyhfpb/MARIO_FOREVER_-_ONE_DAY_TRIP_v.2.2.1.zip/file
+      code:
+      download_url_alt: https://drive.google.com/file/d/1DQErm3fCsQpxEhqWfNAeikSa4lIvC9co/view
+      file_name: MARIO FOREVER - ONE DAY TRIP v.2.2.1.zip
+      file_url:
   - v2.2:
       ver_alt:
       date: 2026-08-21
@@ -1448,7 +1458,7 @@
       source_url_alt:
       download_url: https://www.mediafire.com/file/n1a0v6ybsw5bakk/MARIO_FOREVER_-_ONE_DAY_TRIP_v.2.2.zip
       code:
-      download_url_alt: https://drive.google.com/file/d/1sHfInH6og8YgzMF1BnbkMQBfXLvcUP6c/view?usp=sharing
+      download_url_alt: https://drive.google.com/file/d/1sHfInH6og8YgzMF1BnbkMQBfXLvcUP6c/view
       file_name: MARIO FOREVER - ONE DAY TRIP v.2.2.zip
       file_url:
   - v2.1.0:
@@ -18362,7 +18372,7 @@
       ver_alt:
       date: 2018-03-11
       current: true
-      source_url: https://www.youtube.com/watch?v=7F1-ITO5-Jc
+      source_url: ~https://www.youtube.com/watch?v=7F1-ITO5-Jc
       source_url_alt:
       download_url: http://www.mediafire.com/file/4u1eugvcv4d0tuv/MFDD+World+2.exe
       code:
@@ -18373,7 +18383,7 @@
       ver_alt:
       date: 2017-09-14
       current: true
-      source_url: https://www.youtube.com/watch?v=VYLQg_20EeA
+      source_url: ~https://www.youtube.com/watch?v=VYLQg_20EeA
       source_url_alt:
       download_url: http://www.mediafire.com/file/qjo4u7tv8w9vhzh/World1-the+Waterland.exe
       code:
@@ -18384,7 +18394,7 @@
       ver_alt:
       date: 2017-09-14
       current: true
-      source_url: https://www.youtube.com/watch?v=NStbaYTA_Yw
+      source_url: ~https://www.youtube.com/watch?v=NStbaYTA_Yw
       source_url_alt:
       download_url: http://www.mediafire.com/file/6sfk39otp1ik84p/Daydream+Worlds-Skyland.exe
       code:
@@ -18395,7 +18405,7 @@
       ver_alt:
       date: 2017-08-13
       current: true
-      source_url: https://www.youtube.com/watch?v=YcOZM6IrZJc
+      source_url: ~https://www.youtube.com/watch?v=YcOZM6IrZJc
       source_url_alt:
       download_url: http://www.mediafire.com/file/as99ro3818t29zy/Mario_Forever_Daydream_World_8-.exe
       code:
