@@ -177,13 +177,13 @@ Mario Forever: Community Edition（简称 MF:CE）是基于原版 Mario Forever 
 
 ### Mario Forever World 9 / World 10 及其 Advance 版本
 - **难度**：中（World 10），中偏难（World 9），难（World 9 adv、World 10 adv）
-- **推荐理由**：百度永远的玛丽吧原吧主亲笔之作，开创了 Mario Forever 自制关卡的先河；经典 Mario Forever 风格，原创敌人和设计，制作精良；推荐在最新版 <a href="#mario-forever-remake">Mario Forever Remake 及 Mario Forever Advance Remake</a> 中游玩普通版和加难版。
+- **推荐理由**：百度永远的玛丽吧原吧主亲笔之作，开创了 Mario Forever 自制关卡的先河；经典 Mario Forever 风格，原创敌人和设计，制作精良；推荐在最新版 <a href="#" @click.prevent="currentTab = 'remake'">Mario Forever Remake 及 Mario Forever Advance Remake</a> 中游玩普通版和加难版。
 
 <MfGamesEntry name="Mario Forever World 9" /><MfGamesEntry name="Mario Forever World 10" />
 
 ### Underground World
 - **难度**：中偏难
-- **推荐理由**：最早将 Mario Worker 关卡复刻至 Multimedia Fusion 平台的作品；可选三种难度，适合不同水平的玩家。
+- **推荐理由**：最早将 Mario Worker 关卡复刻至 Multimedia Fusion 平台的作品；可选三种难度，适合不同水平的玩家。本作被收录在 <a href="#" @click.prevent="currentTab = 'remake'">Mario Forever Remake</a> v3.5 版本（Easy 版）、<a href="#" @click.prevent="currentTab = 'remake'">Mario Forever Advance Remake</a> v1.5 版本（Normal 版）和 <a href="#" @click.prevent="currentTab = 'ce'">Mario Forever: Community Edition</a> 的最新版本（全难度）。
 
 <MfGamesEntry name="Mario Forever World U" />
 
@@ -454,21 +454,21 @@ Mario Forever Block Party 是一个以马里奥元素为主的类似于“推箱
 
 本作是基于 Buziol Games 制作的游戏 Bod Blob 2 的完整版，另有同源但不同素材的游戏 Zelda Forever。
 
-<SoftendoEntry name="Mario Forever Block Party" />
+<SoftendoEntry name="Mario Forever Block Party" /><SoftendoEntry name="Zelda Forever" />
 
 ### Mario Forever Flash
 
 Mario Forever Flash 是一款质量较高的 Flash 马里奥同人游戏。游戏共 4 世界 17 关，规模约为 Mario Forever 的一半。游戏手感有异于 Mario Forever，且后期难度奇高，挑战性很强，通关并非一件易事。此外还有简化版的 Mario Forever Flash Easier。
 
-Mario Forever Flash 的实际作者是 Maurycy Zarzycki。除 Mario Forever Flash 外，还有与之相关的 Flash 游戏，如 Mario Super、Squraio 等。
+Mario Forever Flash 的实际作者是 Maurycy Zarzycki（Mauft）。除 Mario Forever Flash 外，还有与之相关的 Flash 游戏，如 Mario Super、Squario 等。
 
-Mario Forever Flash 已被复刻进 <a href="#" @click.prevent="currentTab = 'ce'">Mario Forever Community Edition</a>。
+Mario Forever Flash 和 Squario 已被复刻进 <a href="#" @click.prevent="currentTab = 'ce'">Mario Forever Community Edition</a> 的最新版本。
 
 游玩本作需使用 [Adobe Flash Player](https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/flash-player/) 或 [Ruffle](https://ruffle.rs/)。
 
 <a class="md-button" target="_blank" href="https://file.marioforever.net/Mario%20Forever/Softendo%20%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E4%B8%8B%E8%BD%BD/flash/swf/mario-forever-flash">下载更多 Mario Forever Flash 相关游戏</a>
 
-<SoftendoEntry name="Mario Forever Flash" />
+<SoftendoEntry name="Mario Forever Flash" /><SoftendoEntry name="Mario Super" /><SoftendoEntry name="Squario" />
 </div>
 
 ## 常见问题
