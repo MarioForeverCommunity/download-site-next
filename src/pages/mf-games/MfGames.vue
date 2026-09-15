@@ -1138,6 +1138,10 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           </div>
         </div>
         <div class="inline-block">
+          <input v-model="filter_option.withImages" type="checkbox" id="withImages">
+          <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
+        </div>
+        <div class="inline-block">
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
           <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
@@ -1151,10 +1155,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               </span>
             </template>
           </Tooltip>
-        </div>
-        <div class="inline-block">
-          <input v-model="filter_option.withImages" type="checkbox" id="withImages">
-          <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
         <div class="toolbar-buttons">
           <div class="inline-block">
