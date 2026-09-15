@@ -1141,7 +1141,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
           <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <InfoIcon class="icon button-shift" style="margin-left: 0.4em;"></InfoIcon>
+            <InfoIcon class="icon button-shift" style="margin-left: .3em;"></InfoIcon>
             <template #popper>
               <span v-if="lan == 'zh'" style="text-align: left; display: block;">
                 勾选此项后，所有包含多个版本的作品将在列表中全部展开，每个版本单独显示；取消勾选则将同一作品的所有版本折叠为一条。由于展开后条目数量增多，可能影响排序性能，建议结合筛选功能使用。
@@ -1377,7 +1377,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
               :code="selectedDownload.currentVer.data_code"
               :link="selectedDownload.currentVer.data_download_url"
               :lan="lan"
-              style="margin-left:2px;"
             />
           </template>
         </div>

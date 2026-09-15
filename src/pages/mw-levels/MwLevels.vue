@@ -903,7 +903,6 @@ const { floatingStyles } = useFloating(reference, floating,
               :code="selectedDownload.currentVer.data_code"
               :link="selectedDownload.currentVer.data_download_url"
               lan="zh"
-              style="margin-left:2px;"
             />
           </template>
         </div>
