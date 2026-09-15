@@ -1,5 +1,16 @@
 Mario Forever Traveling and Touring：版本合集
 
+Mario Forever Traveling and Touring Hardcore
+本作品作者：小胖有萌新
+加入：Hardcore
+封面，字体来自本人制作
+素材来自：MARIO FOREVER - DATABASE.mf2backup提供的
+敌人素材来自UE Mod Beta和WN提供
+个人主页：来自bilibili
+没有大地图。
+
+历史版本：
+8.31:
 Mario Forever Traveling and Touring World 14(单世界版本)
 本作品作者：小胖有萌新
 加入：World 14
@@ -10,8 +21,7 @@ Mario Forever Traveling and Touring World 14(单世界版本)
 个人主页：来自bilibili
 变化：关卡 标题位置调整，大地图加入存档。
 
-
-历史版本：
+8.27:
 Mario Forever Traveling and Touring World 15(单世界版本)
 本作品作者：小胖有萌新
 加入：World 15
