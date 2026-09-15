@@ -1045,7 +1045,10 @@ const { floatingStyles } = useFloating(reference, floating,
   }
 
   .toolbar-buttons {
-    margin-left: .3em;
+    margin-right: .3em;
+  }
+
+  .icon-container > :has(+ .toolbar-buttons) {
     margin-right: .3em;
   }
 
