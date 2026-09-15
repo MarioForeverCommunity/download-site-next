@@ -1790,7 +1790,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
 
   .input:hover, .input:focus {
     cursor: auto;
-    border-color: #008cff
+    border-color: #008cff;
   }
 
   .search-box {

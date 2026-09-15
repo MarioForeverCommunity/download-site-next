@@ -165,6 +165,13 @@ export function getTypeLabel(type) {
   return labels[type] || type;
 }
 
+export function getFullTypeLabel(type) {
+  const fullLabels = {
+    mff: "Mario Forever Flash"
+  };
+  return fullLabels[type] || getTypeLabel(type);
+}
+
 export function getTypeColor(type) {
   const colors = {
     mario: { bg: "#ff3330", border: "#b71c1c" },

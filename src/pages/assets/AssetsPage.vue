@@ -840,7 +840,7 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .input:hover, .input:focus {
     cursor: auto;
-    border-color: #008cff
+    border-color: #008cff;
   }
 
   .search-box {

@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { DownloadIcon } from "./icons/Icons.js";
-import { getTypeLabel, getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange } from "../util/SoftendoUtil.js";
+import { getTypeLabel, getFullTypeLabel, getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange } from "../util/SoftendoUtil.js";
 import Tooltip from "./ToolTip.vue";
 
 const props = defineProps({
@@ -24,7 +24,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(["showGameDetail"]);
+const emit = defineEmits(["showGameDetail", "showTooltip", "hideTooltip"]);
 
 const handleGameNameClick = () => {
   emit("showGameDetail", props.game);
@@ -65,7 +65,7 @@ const getGameImageSrc = () => {
           <span class="dot type-dot" :data-type="game.type">
             <span class="type-text">{{ getTypeLabel(game.type) }}</span>
           </span>
-          <template #popper>{{ getTypeLabel(game.type) }}</template>
+          <template #popper>{{ getFullTypeLabel(game.type) }}</template>
         </Tooltip>
         {{ yearRange.display }}
       </div>

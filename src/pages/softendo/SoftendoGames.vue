@@ -6,7 +6,7 @@ import { navTop } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
-import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
+import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getFullTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, RandomIcon } from "../../components/icons/Icons.js";
@@ -318,7 +318,7 @@ const availableTypes = computed(() => {
   }
   // Return array of { value, label } objects, sorted by label
   return Array.from(types)
-    .map(t => ({ value: t, label: getTypeLabel(t) }))
+    .map(t => ({ value: t, label: getFullTypeLabel(t) }))
     .sort((a, b) => a.label.localeCompare(b.label));
 });
 
@@ -547,6 +547,8 @@ const getGameImage = (game) => {
         :lan="lan"
         :get-game-image="getGameImage"
         @show-game-detail="(entry) => {selectedGameDetail = entry;}"
+        @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
+        @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
       />
     </div>
   </div>
@@ -832,7 +834,7 @@ const getGameImage = (game) => {
 
   .input:hover, .input:focus {
     cursor: auto;
-    border-color: #008cff
+    border-color: #008cff;
   }
 
   .search-box {
