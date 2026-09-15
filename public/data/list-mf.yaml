@@ -2743,7 +2743,7 @@
   type: international
   homepage_en: https://alexandrogames.altervista.org/
   wiki_zh_url:
-  wiki_en_url:
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_Android
   ver:
   - v3.3.1:
       ver_alt:
@@ -22450,7 +22450,7 @@
   author_alt:
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Syzxchulun%27s_Worlds
-  wiki_en_url:
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Syzxchulun%27s_World_10
   ver:
   ver_alt:
   date: 2013-08-05
@@ -22470,7 +22470,7 @@
   author_alt:
   type: chinese
   wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Syzxchulun%27s_Worlds
-  wiki_en_url:
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Syzxchulun%27s_World_9
   ver:
   - 单世界版:
       ver_alt: World 9
