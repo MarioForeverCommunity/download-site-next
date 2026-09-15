@@ -1175,7 +1175,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
           </Tooltip>
         </div>
-        <template v-if="!wideScreen || (wideScreen && displayMode === 'card')">
+        <div v-if="!wideScreen || (wideScreen && displayMode === 'card')" class="sort-container">
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
             <span v-if="sort_option.field == 'game'">
@@ -1207,7 +1207,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             </span>
           </div>
           <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
-        </template>
+        </div>
       </div>
     </div>
   </div>
@@ -1550,6 +1550,14 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
 
   .icon-container {
     padding: .25em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5em 0;
+  }
+
+  .sort-container {
+    flex-basis: max-content;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

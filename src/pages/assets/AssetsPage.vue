@@ -438,37 +438,39 @@ const { floatingStyles } = useFloating(reference, floating,
             <template #popper>重置筛选</template>
           </Tooltip>
         </div>
-        <div class="visible-button" @click="sortByName();">
-          {{ lan == "en" ? "Name" : "名称" }}
-          <span v-if="sort_option.field == 'name'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'name'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
+        <div class="sort-container">
+          <div class="visible-button" @click="sortByName();">
+            {{ lan == "en" ? "Name" : "名称" }}
+            <span v-if="sort_option.field == 'name'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'name'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByAuthor();">
+            {{ lan == "en" ? "Author" : "作者" }}
+            <span v-if="sort_option.field == 'author'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'author'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <div class="visible-button" @click="sortByDate();">
+            {{ lan == "en" ? "Date" : "日期" }}
+            <span v-if="sort_option.field == 'date'">
+              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
+              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+            </span>
+            <span v-if="sort_option.field != 'date'">
+              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+            </span>
+          </div>
+          <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredAssets.length} items` : `${filteredAssets.length} 个条目` }}</span>
         </div>
-        <div class="visible-button" @click="sortByAuthor();">
-          {{ lan == "en" ? "Author" : "作者" }}
-          <span v-if="sort_option.field == 'author'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'author'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <div class="visible-button" @click="sortByDate();">
-          {{ lan == "en" ? "Date" : "日期" }}
-          <span v-if="sort_option.field == 'date'">
-            <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-            <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
-          </span>
-          <span v-if="sort_option.field != 'date'">
-            <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
-          </span>
-        </div>
-        <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredAssets.length} items` : `${filteredAssets.length} 个条目` }}</span>
       </div>
     </div>
   </div>
@@ -623,6 +625,14 @@ const { floatingStyles } = useFloating(reference, floating,
 
   .icon-container {
     padding: .25em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5em 0;
+  }
+
+  .sort-container {
+    flex-basis: max-content;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
