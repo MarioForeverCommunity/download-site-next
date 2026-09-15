@@ -432,11 +432,13 @@ const { floatingStyles } = useFloating(reference, floating,
             <option value="mwtool">MW 工具</option>
           </select>
         </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <FilterIcon class="icon button" @click="clearFilter()" />
-            <template #popper>重置筛选</template>
-          </Tooltip>
+        <div class="toolbar-buttons">
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <FilterIcon class="icon button" @click="clearFilter()" />
+              <template #popper>重置筛选</template>
+            </Tooltip>
+          </div>
         </div>
         <div class="sort-container">
           <div class="visible-button" @click="sortByName();">
@@ -639,6 +641,11 @@ const { floatingStyles } = useFloating(reference, floating,
     gap: .5em 0;
   }
 
+  .toolbar-buttons {
+    margin-left: .3em;
+    margin-right: .3em;
+  }
+
   .filter-label {
     margin-right: .3em;
   }
@@ -712,6 +719,8 @@ const { floatingStyles } = useFloating(reference, floating,
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     display: inline-block;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .button:hover, .button:focus {

@@ -131,7 +131,7 @@ const getHomepageUrl = () => {
       </Tooltip>
       <Tooltip v-if="lan == 'en' && game.category == 'mf' && game.description_en">
         <InfoIcon class="icon button-shift"></InfoIcon>
-        <template #popper><span class="tooltip-left-align">{{ game.description_en }}</span></template>
+        <template #popper>{{ game.description_en }}</template>
       </Tooltip>
       <Tooltip v-if="game.category == 'mw' && game.description">
         <InfoIcon class="icon button-shift"></InfoIcon>
@@ -303,6 +303,8 @@ const getHomepageUrl = () => {
     border-radius: .25em;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .button:hover, .button:focus {

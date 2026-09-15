@@ -176,8 +176,8 @@ const getGameImageSrc = () => {
     border-radius: .25em;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
-    margin-left: -5px;
-    margin-right: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .button:hover, .button:focus {

@@ -479,17 +479,19 @@ const getGameImage = (game) => {
           {{ lan == "en" ? "Genres" : "标签筛选" }}
           <span v-if="activeGenreCount > 0" class="tag-count-badge">{{ activeGenreCount }}</span>
         </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <FilterIcon class="icon button" @click="clearFilter()" />
-            <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-          </Tooltip>
-        </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <RandomIcon class="icon button" @click="openRandomGame()" />
-            <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
-          </Tooltip>
+        <div class="toolbar-buttons">
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <FilterIcon class="icon button" @click="clearFilter()" />
+              <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+            </Tooltip>
+          </div>
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <RandomIcon class="icon button" @click="openRandomGame()" />
+              <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
+            </Tooltip>
+          </div>
         </div>
         <div class="sort-container">
           <div class="visible-button" @click="sortByName();">
@@ -682,6 +684,10 @@ const getGameImage = (game) => {
     gap: .5em 0;
   }
 
+  .toolbar-buttons {
+    margin-right: .3em;
+  }
+
   .filter-label {
     margin-right: .25em;
   }
@@ -742,6 +748,8 @@ const getGameImage = (game) => {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     display: inline-block;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .button:hover, .button:focus {

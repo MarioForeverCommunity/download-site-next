@@ -1156,24 +1156,26 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <input v-model="filter_option.withImages" type="checkbox" id="withImages">
           <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <FilterIcon class="icon button" @click="clearFilter()" />
-            <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-          </Tooltip>
-        </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <RandomIcon class="icon button" @click="openRandomGame()" />
-            <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
-          </Tooltip>
-        </div>
-        <div class="inline-block display-mode-toggle" v-if="wideScreen">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <ListIcon class="icon button" v-if="displayMode === 'card'" @click="toggleDisplayMode()" />
-            <GridIcon class="icon button" v-if="displayMode === 'line'" @click="toggleDisplayMode()" />
-            <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
-          </Tooltip>
+        <div class="toolbar-buttons">
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <FilterIcon class="icon button" @click="clearFilter()" />
+              <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+            </Tooltip>
+          </div>
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <RandomIcon class="icon button" @click="openRandomGame()" />
+              <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
+            </Tooltip>
+          </div>
+          <div class="inline-block display-mode-toggle" v-if="wideScreen">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <ListIcon class="icon button" v-if="displayMode === 'card'" @click="toggleDisplayMode()" />
+              <GridIcon class="icon button" v-if="displayMode === 'line'" @click="toggleDisplayMode()" />
+              <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
+            </Tooltip>
+          </div>
         </div>
         <div v-if="!wideScreen || (wideScreen && displayMode === 'card')" class="sort-container">
           <div class="visible-button" @click="sortByName();">
@@ -1564,6 +1566,11 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     gap: .5em 0;
   }
 
+  .toolbar-buttons {
+    margin-left: .3em;
+    margin-right: .3em;
+  }
+
   .filter-label {
     margin-right: .25em;
   }
@@ -1637,6 +1644,8 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     display: inline-block;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .button:hover, .button:focus {

@@ -691,26 +691,28 @@ const { floatingStyles } = useFloating(reference, floating,
           <input v-model="filter_option.withImages" type="checkbox" id="withImages">
           <label for="withImages">{{ lan == "en" ? "With images" : "有图片" }}</label>
         </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <FilterIcon class="icon button" @click="clearFilter()" />
-            <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
-          </Tooltip>
-        </div>
-        <div class="inline-block">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <RandomIcon class="icon button" @click="openRandomGame()" />
-            <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
-          </Tooltip>
-        </div>
-        <div class="inline-block display-mode-toggle" v-if="wideScreen">
-          <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <div class="icon button" @click="toggleDisplayMode()">
-              <ListIcon v-if="displayMode === 'card'" />
-              <GridIcon v-if="displayMode === 'line'" />
-            </div>
-            <template #popper>{{ displayMode === 'line' ? '切换到卡片' : '切换到列表' }}</template>
-          </Tooltip>
+        <div class="toolbar-buttons">
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <FilterIcon class="icon button" @click="clearFilter()" />
+              <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
+            </Tooltip>
+          </div>
+          <div class="inline-block">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <RandomIcon class="icon button" @click="openRandomGame()" />
+              <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
+            </Tooltip>
+          </div>
+          <div class="inline-block display-mode-toggle" v-if="wideScreen">
+            <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
+              <div class="icon button" @click="toggleDisplayMode()">
+                <ListIcon v-if="displayMode === 'card'" />
+                <GridIcon v-if="displayMode === 'line'" />
+              </div>
+              <template #popper>{{ displayMode === 'line' ? '切换到卡片' : '切换到列表' }}</template>
+            </Tooltip>
+          </div>
         </div>
         <div v-if="!wideScreen || (wideScreen && displayMode === 'card')" class="sort-container">
           <div class="visible-button" @click="sortByName();">
@@ -1042,6 +1044,11 @@ const { floatingStyles } = useFloating(reference, floating,
     gap: .5em 0;
   }
 
+  .toolbar-buttons {
+    margin-left: .3em;
+    margin-right: .3em;
+  }
+
   .filter-label {
     margin-right: .25em;
   }
@@ -1115,6 +1122,8 @@ const { floatingStyles } = useFloating(reference, floating,
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     display: inline-block;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .button:hover, .button:focus {
@@ -1333,62 +1342,6 @@ const { floatingStyles } = useFloating(reference, floating,
   select:hover, select:focus {
     cursor: pointer;
     border-color: #008cff
-  }
-
-  .tooltip {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltip .tooltiptext {
-    top:40px;
-    left:50%;
-    transform:translate(-50%, 0);
-    display:none;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    padding: .25em .75em;
-    width: max-content;
-  }
-
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-  }
-
-  .tooltiptext i {
-    position:absolute;
-    bottom:100%;
-    left:50%;
-    margin-left:-12px;
-    width:24px;
-    height:12px;
-    overflow:hidden;
-  }
-
-  .tooltiptext i::after {
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    left:50%;
-    transform:translate(-50%,50%) rotate(45deg);
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-
-  .tooltip:hover .tooltiptext {
-    display:block;
   }
 
   .button-shift {
