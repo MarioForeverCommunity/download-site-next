@@ -307,6 +307,10 @@ const getHomepageUrl = () => {
     margin-right: 0px;
   }
 
+  .game-version .button {
+    margin-left: .3em;
+  }
+
   .button:hover, .button:focus {
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px;
