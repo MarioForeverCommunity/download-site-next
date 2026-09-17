@@ -49,21 +49,21 @@
   path_alt: ultra-edition
   variants:
   - Full:
-      ver: "260226.1"
-      date: 2026-02-26
-      file_name: UE Full 260226.1ver.7z
+      ver: "260917.1"
+      date: 2026-09-17
+      file_name: UE Full 260917.1ver.7z
   - Single:
-      ver: "260226.1"
-      date: 2026-02-26
-      file_name: UE Single 260226.1ver.7z
+      ver: "260917.1"
+      date: 2026-09-17
+      file_name: UE Single 260917.1ver.7z
   - Beta Full:
-      ver: "260226.1"
-      date: 2026-02-26
-      file_name: UE Beta Full 260226.1ver.7z
+      ver: "260917.1"
+      date: 2026-09-17
+      file_name: UE Beta Full 260917.ver.7z
   - Beta Single:
-      ver: "260226.1"
-      date: 2026-02-26
-      file_name: UE Beta Single 260226.1ver.7z
+      ver: "260917.1"
+      date: 2026-09-17
+      file_name: UE Beta Single 260917.1ver.7z
   - Mod:
       ver: "260227.1"
       date: 2026-02-27
