@@ -1,6 +1,27 @@
 ---
+- game: World of Dreams
+  game_alt:
+  tag:
+  - Single Level
+  author: HVMetal
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-09-23
+  source_url:
+  source_url_alt:
+  download_url: https://www.dropbox.com/scl/fi/acn6tte2b09dn3b3f9qtm/World-of-Dreams.rar?rlkey=ur1wa51c08i16t0cktyn85dpx&st=t98k6cng&dl=0
+  code:
+  download_url_alt:
+  file_name: World of Dreams.rar
+  file_url:
 - game: World of Fire
   game_alt:
+  tag:
+  - Single Level
   author: HVMetal
   author_alt:
   type: international
