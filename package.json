@@ -10,7 +10,8 @@
     "lint": "eslint . --fix",
     "deploy": "bash deploy.sh",
     "generate-images": "node scripts/generate-image-index.js",
-    "generate-api": "node scripts/generate-api.js"
+    "generate-api": "node scripts/generate-api.js",
+    "monthly-report": "node scripts/generate-monthly-report.js"
   },
   "dependencies": {
     "@floating-ui/vue": "^2.0.1",

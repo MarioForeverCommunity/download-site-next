@@ -206,6 +206,11 @@ export const sourceName = [
     "desc_en" : "X / Twitter"
   },
   {
+    "domain" : "bilibili.com",
+    "desc_zh" : "B 站",
+    "desc_en" : "Bilibili"
+  },
+  {
     "domain" : "github.com",
     "desc_en" : "GitHub"
   }
