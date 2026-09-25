@@ -261,7 +261,11 @@ const pickLatestVersionInMonth = (entry, year, month) => {
   });
 };
 
-const getNewBadge = (entry, year, month) => {
+const getBadge = (entry, year, month) => {
+  const tags = Array.isArray(entry.tag) ? entry.tag : [];
+  if (tags.some((tag) => String(tag).trim().toLowerCase() === 'single level')) {
+    return '单关';
+  }
   const dates = entry.versions.map((v) => v.verObj.date).filter(Boolean);
   if (dates.length === 0) return '新作';
   const earliest = Math.min(...dates.map((d) => d.getTime()));
@@ -332,94 +336,143 @@ const getImagePath = (entry, category, verStr) => {
   return base + imageName;
 };
 
-// ---------- 输出组装 ----------
-
-const titleLine = (game, verStr, author, badge) => {
-  let line = `**${game}**`;
-  if (verStr) line += ` ${verStr}`;
-  if (author) line += ` by ${author}`;
-  if (badge) line += `（**${badge}**）`;
-  return line;
-};
+// ---------- 条目组装 ----------
 
 const missingImages = [];
 
-const imageLine = (entry, category, verStr) => {
+const getImageUrl = (entry, category, verStr) => {
   const path = getImagePath(entry, category, verStr);
   if (!path) {
     missingImages.push(`${category} / ${entry.game}`);
     return null;
   }
-  const url = encodeUrlPath(SITE_BASE_URL + path);
-  return `![${entry.game}](${url})`;
+  return encodeUrlPath(SITE_BASE_URL + path);
 };
 
-const sourceLinkLine = (sourceUrl) => {
+const sourceLink = (sourceUrl) => {
   const url = stripInvalidPrefix(sourceUrl);
   if (!url) return null;
   const desc = getSourceDesc(url);
   if (!desc) return null;
-  return `- **发布链接（${desc}）**：${url}`;
+  return { label: `发布链接（${desc}）`, url };
 };
 
-const resourceLinkLines = (links) => {
+const resourceLinks = (links) => {
   if (!links || links.length === 0) return [];
   if (links.length === 1) {
-    return [`- **下载链接（社区资源站）**：${encodeUrlPath(links[0].url)}`];
+    return [{ label: '下载链接（社区资源站）', url: encodeUrlPath(links[0].url) }];
   }
-  return links.map((link) => `- **下载链接（社区资源站 - ${link.name}）**：${encodeUrlPath(link.url)}`);
+  return links.map((link) => ({
+    label: `下载链接（社区资源站 - ${link.name}）`,
+    url: encodeUrlPath(link.url)
+  }));
 };
 
 const buildMfBlock = (entry, ver, year, month) => {
-  const badge = getNewBadge(entry, year, month);
-  const lines = [
-    titleLine(entry.game, ver.verStr, formatAuthor(entry), badge)
-  ];
-
-  const image = imageLine(entry, 'mf-games', ver.verStr);
-  if (image) lines.push(image);
-
-  const bullets = [];
+  const links = [];
+  // 仅国内作品输出发布链接
   if (entry.type !== 'international') {
-    const source = sourceLinkLine(ver.verObj.source_url);
-    if (source) bullets.push(source);
+    const source = sourceLink(ver.verObj.source_url);
+    if (source) links.push(source);
   }
 
   const resourceUrl = getMfResourceUrl(entry, ver.verObj);
   if (resourceUrl) {
-    bullets.push(...resourceLinkLines([{ name: null, url: resourceUrl }]));
+    links.push(...resourceLinks([{ name: null, url: resourceUrl }]));
   }
 
-  if (bullets.length > 0) lines.push(bullets.join('\n'));
-  return lines.join('\n\n');
+  return {
+    game: entry.game,
+    verStr: ver.verStr,
+    author: formatAuthor(entry),
+    badge: getBadge(entry, year, month),
+    image: getImageUrl(entry, 'mf-games', ver.verStr),
+    links
+  };
 };
 
 const buildMwBlock = (entry) => {
-  const lines = [titleLine(entry.game, '', formatAuthor(entry), '')];
+  const links = [];
+  const source = sourceLink(entry.source_url);
+  if (source) links.push(source);
 
-  const image = imageLine(entry, 'mw-levels', '');
-  if (image) lines.push(image);
-
-  const bullets = [];
-  const source = sourceLinkLine(entry.source_url);
-  if (source) bullets.push(source);
-
-  let links = [];
+  let resources = [];
   if (entry.file_url) {
-    links = [{ name: null, url: entry.file_url }];
+    resources = [{ name: null, url: entry.file_url }];
   } else if (Array.isArray(entry.file_name)) {
     const displayNames = processFileNamesWithVolumes(entry.file_name);
     entry.file_name.forEach((fn, idx) => {
       if (fn == null) return;
-      links.push({ name: displayNames[idx], url: getMwLevelFileUrl(entry, fn) });
+      resources.push({ name: displayNames[idx], url: getMwLevelFileUrl(entry, fn) });
     });
   } else if (entry.file_name) {
-    links = [{ name: null, url: getMwLevelFileUrl(entry, entry.file_name) }];
+    resources = [{ name: null, url: getMwLevelFileUrl(entry, entry.file_name) }];
   }
-  bullets.push(...resourceLinkLines(links));
+  links.push(...resourceLinks(resources));
 
-  if (bullets.length > 0) lines.push(bullets.join('\n'));
-  return lines.join('\n\n');
+  return {
+    game: entry.game,
+    verStr: '',
+    author: formatAuthor(entry),
+    badge: '',
+    image: getImageUrl(entry, 'mw-levels', ''),
+    links
+  };
+};
+
+// ---------- 渲染：markdown ----------
+
+const markdownTitle = (block) => {
+  let line = `**${block.game}**`;
+  if (block.verStr) line += ` ${block.verStr}`;
+  if (block.author) line += ` by ${block.author}`;
+  if (block.badge) line += `（**${block.badge}**）`;
+  return line;
+};
+
+const renderMarkdownBlock = (block) => {
+  const parts = [markdownTitle(block)];
+  if (block.image) {
+    parts.push(`![${block.game}](${block.image})`);
+  }
+  if (block.links.length > 0) {
+    parts.push(block.links.map((link) => `- **${link.label}**：${link.url}`).join('\n'));
+  }
+  return parts.join('\n\n');
+};
+
+// ---------- 渲染：Discuz! BBCode ----------
+
+const bbcodeTitle = (block) => {
+  let line = `[b]${block.game}[/b]`;
+  if (block.verStr) line += ` ${block.verStr}`;
+  if (block.author) line += ` by ${block.author}`;
+  if (block.badge) line += `（[b]${block.badge}[/b]）`;
+  return `[align=center]${line}[/align]`;
+};
+
+const renderBbcodeBlock = (block) => {
+  const parts = [bbcodeTitle(block)];
+  if (block.image) {
+    parts.push(`[align=center][img]${block.image}[/img][/align]`);
+  }
+  if (block.links.length > 0) {
+    const items = block.links
+      .map((link) => `[*][b]${link.label}[/b]：[url=${link.url}]${link.url}[/url]`)
+      .join('\n');
+    parts.push(`[list]${items}[/list]`);
+  }
+  return parts.join('\n');
+};
+
+const renderSections = (sections, renderBlock, renderTitle, separator = '\n\n') => {
+  const chunks = sections.map((section) => {
+    const body = section.blocks.length > 0
+      ? section.blocks.map(renderBlock).join(separator)
+      : '（本月无）';
+    return `${renderTitle(section.title)}${separator}${body}`;
+  });
+  return chunks.join(separator) + '\n';
 };
 
 // ---------- 主流程 ----------
@@ -473,14 +526,25 @@ const sections = [
   }
 ];
 
-const chunks = sections.map((section) => {
-  const body = section.blocks.length > 0 ? section.blocks.join('\n\n') : '（本月无）';
-  return `## ${section.title}\n\n${body}`;
-});
+const baseName = `monthly-report-${targetYear}-${String(targetMonth + 1).padStart(2, '0')}`;
+const markdownFile = join(rootDir, `${baseName}.md`);
+const bbcodeFile = join(rootDir, `${baseName}.bbcode`);
 
-const output = chunks.join('\n\n') + '\n';
-const outputFile = join(rootDir, `monthly-report-${targetYear}-${String(targetMonth + 1).padStart(2, '0')}.md`);
-writeFileSync(outputFile, output, 'utf8');
+writeFileSync(
+  markdownFile,
+  renderSections(sections, renderMarkdownBlock, (title) => `## ${title}`),
+  'utf8'
+);
+writeFileSync(
+  bbcodeFile,
+  renderSections(
+    sections,
+    renderBbcodeBlock,
+    (title) => `[align=center][size=4][b]${title}[/b][/size][/align]`,
+    '\n'
+  ),
+  'utf8'
+);
 
 console.log(`目标月份：${monthLabel}（今天 ${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}）`);
 console.log(`国内作品：${domestic.length}，国外作品：${international.length}，SMWP 作品：${mwInMonth.length}`);
@@ -488,4 +552,5 @@ if (missingImages.length > 0) {
   console.log(`\n以下作品缺少图片，未输出图片行（共 ${missingImages.length} 个）：`);
   missingImages.forEach((item) => console.log(`  - ${item}`));
 }
-console.log(`\n已写入：${outputFile}`);
+console.log(`\n已写入：${markdownFile}`);
+console.log(`已写入：${bbcodeFile}`);
