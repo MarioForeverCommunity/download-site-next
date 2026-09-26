@@ -144,6 +144,11 @@ Mario Worker Android is a Mario Forever level editor based on Mario Worker 1.0, 
 
 <a class="md-button" target="_blank" href="https://www.mediafire.com/file/peppr8pao5sxfxd/Mario_Worker_Android_v1.3.1.apk/file">Download Mario Worker Android v1.3.1</a><a class="md-button" target="_blank" href="https://alexandrogames.altervista.org/mario-worker-android/">Mario Worker Android website</a>
 
+### Mario Constructor Forever
+Mario Constructor Forever is a Mario Forever-like level editor built with GameMaker 7, with physics different to that of the original Mario Forever or Mario Worker 4.x, created by glider521al.
+
+<a class="md-button" target="_blank" href="https://file.marioforever.net/mario-worker/other-mw-programs/MarioConstructor1.7.zip">Download Mario Constructor Forever</a>
+
 ## Frequently Asked Questions
 
 **Q: How can I download levels for Mario Worker?**

@@ -11,14 +11,14 @@ This repository is the source code for [download.marioforever.net](https://downl
 
 This catalog would not exist without the efforts of many contributors in the Mario Forever community. We would like to sincerely thank:
 
-- [Fisjokas](https://www.youtube.com/@Tomek839839) - for providing numerous links and resources between 2022 and 2024 that greatly enriched the catalog and helped uncover many rare, valuable files.
-- [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for this catalog.
-- wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might otherwise have been lost.
+- [Fisjokas](https://www.youtube.com/@Tomek839839) - for providing numerous links and resources between 2022 and 2024 that greatly enriched the catalog and helped uncover many rare and valuable files.
+- [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for this catalog.
+- wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might have otherwise been lost.
 - SuperMarioFan01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the catalog.
 - Happy Mario 9 - for providing several Chinese fangames released in 2015.
 - Green Sweet and WSW - for collecting a number of fangame links during the early days of this site (2020–2021), which helped shape the foundation of the catalog.
 - JUE13 - for providing several repackaged versions of fangames.
-- TwoSpacesSG and Zik the Green - for providing numerous Softendo legacy games.
+- TwoSpacesSG and Zik the Green - for providing numerous Softendo legacy games and helping to improve the UX of the site.
 
 We are grateful to everyone listed above, as well as many other community members whose contributions, large or small, have helped preserve the history of Mario Forever fangames. If any contributor was unintentionally omitted, please forgive us - we thank you all the same.
 

@@ -4,6 +4,8 @@ Due to them being made on older engines and older operating systems, some may no
 
 Each game is distinguished by Type (Mario, Non-Mario, Banesoft etc.), Engine (in what engine(s) the game was made) and Genre (what genre of videogame it belongs to, such as Puzzle, Find and Click, Shmup etc.) Some games share similar playstyles, and some are unfinished. Some games can also have multiple builds in the same engine, for example Super Mario Dark Dungeon's Flash builds, marked as (swf 1), (swf 2) and (swf 3).
 
+While most of these games are in English, a handful of older ones are in Polish. There are some that are available in both and some that are only available in Polish.
+
 Within each game's listing, there exists downloads to specific builds of the game. Each build has its own color-code to distinguish the types available:
 - Blue: An installer for the game.
 - Orange: An installer + optional toolbar bundle for the game.
