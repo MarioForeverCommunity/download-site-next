@@ -470,15 +470,13 @@ const renderBbcodeBlock = (block) => {
 const renderBbcodeNote = (note) => `[b]注[/b]：${note}`;
 
 const renderSections = (sections, renderers, separator) => {
-  const chunks = sections.map((section) => {
-    const body = section.blocks.length > 0
-      ? section.blocks.map(renderers.block).join(separator)
-      : '（本月无）';
-    const note = section.note && section.blocks.length > 0
-      ? `${separator}${renderers.note(section.note)}`
-      : '';
-    return `${renderers.title(section.title)}${note}${separator}${body}`;
-  });
+  const chunks = sections
+    .filter((section) => section.blocks.length > 0)
+    .map((section) => {
+      const body = section.blocks.map(renderers.block).join(separator);
+      const note = section.note ? `${separator}${renderers.note(section.note)}` : '';
+      return `${renderers.title(section.title)}${note}${separator}${body}`;
+    });
   return chunks.join(separator) + '\n';
 };
 
