@@ -1,6 +1,6 @@
 This catalog aims at collecting and preserving Mario Forever fangames for players to easily find, download and play.
 
-If you find that a fangame is missing and know its information, or find dead or mismatched links, please [open an issue](https://github.com/MarioForeverCommunity/download-site-next/issues/new/choose) or [report to the maintainer (Newlife2017) via DM](discord://-/users/406048815460646912).
+If you find that a fangame is missing and know its information, or find dead or mismatched links, please¹ [open an issue](https://github.com/MarioForeverCommunity/download-site-next/issues/new/choose) or [report to the maintainer (Newlife2017) via DM](discord://-/users/406048815460646912).
 
 **This catalog is not meant for fangame recommendation.** This is only a continually expanding archive meant for fangame preservation and easy access, and as such, we don't set any quality bar on the fangames that appear on this list, so it is recommended that you do your own research on any fangame you choose before playing it. 
 
@@ -13,7 +13,7 @@ A removal of a certain fangame *only* occurs when and if:
 
 Some old versions of these fangames are available on the [Community File Hub](https://file.marioforever.net/mario-forever/games/). 
 
-If a game's author would like to have a specific version of their fangame, or the entire fangame, removed from the list, [please send a request](discord://-/users/406048815460646912).
+If a game's author would like to have a specific version of their fangame, or the entire fangame, removed from the list, please¹ send a request.
 
 <a href="#" id="open-credits">We sincerely thank these people for their contributions.</a>
 
@@ -28,7 +28,7 @@ If a game's author would like to have a specific version of their fangame, or th
     <li>Happy Mario 9 - for providing several Chinese fangames released in 2015.</li>
     <li>Green Sweet and WSW - for collecting a number of fangame links during the early days of this site (2020–2021), which helped shape the foundation of the catalog.</li>
     <li>JUE13 - for providing several repackaged versions of fangames.</li>
-    <li>TwoSpacesSG and Zik the Green - for providing numerous Softendo legacy games and helping to improve the UX of the site.</li>
+    <li>TwoSpacesSG and Zik the Green - for providing numerous Softendo legacy games and helping improve the UX of the site.</li>
   </ul>
   <p>We are grateful to everyone listed above, as well as many other community members whose contributions, large or small, have helped preserve the history of Mario Forever fangames. If any contributor was unintentionally omitted, please forgive us - we thank you all the same.</p>
 </div>
