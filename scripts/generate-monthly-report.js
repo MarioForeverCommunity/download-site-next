@@ -441,6 +441,8 @@ const renderMarkdownBlock = (block) => {
   return parts.join('\n\n');
 };
 
+const renderMarkdownNote = (note) => `**注**：${note}`;
+
 // ---------- 渲染：Discuz! BBCode ----------
 
 const bbcodeTitle = (block) => {
@@ -465,12 +467,17 @@ const renderBbcodeBlock = (block) => {
   return parts.join('\n');
 };
 
-const renderSections = (sections, renderBlock, renderTitle, separator = '\n\n') => {
+const renderBbcodeNote = (note) => `[b]注[/b]：${note}`;
+
+const renderSections = (sections, renderers, separator) => {
   const chunks = sections.map((section) => {
     const body = section.blocks.length > 0
-      ? section.blocks.map(renderBlock).join(separator)
+      ? section.blocks.map(renderers.block).join(separator)
       : '（本月无）';
-    return `${renderTitle(section.title)}${separator}${body}`;
+    const note = section.note && section.blocks.length > 0
+      ? `${separator}${renderers.note(section.note)}`
+      : '';
+    return `${renderers.title(section.title)}${note}${separator}${body}`;
   });
   return chunks.join(separator) + '\n';
 };
@@ -518,6 +525,7 @@ const sections = [
   },
   {
     title: `【${sectionMonth}国外Mario Forever作品】`,
+    note: '由于后续版本更新变化，本月报列出的国外作品社区资源站下载链接可能会在未来出现失效的情况，请访问作品目录站：https://download.marioforever.net/mf-games.html 获取最新链接。',
     blocks: international.map((item) => buildMfBlock(item.entry, item.ver, targetYear, targetMonth))
   },
   {
@@ -532,15 +540,22 @@ const bbcodeFile = join(rootDir, `${baseName}.bbcode`);
 
 writeFileSync(
   markdownFile,
-  renderSections(sections, renderMarkdownBlock, (title) => `## ${title}`),
+  renderSections(
+    sections,
+    { block: renderMarkdownBlock, title: (title) => `## ${title}`, note: renderMarkdownNote },
+    '\n\n'
+  ),
   'utf8'
 );
 writeFileSync(
   bbcodeFile,
   renderSections(
     sections,
-    renderBbcodeBlock,
-    (title) => `[align=center][size=4][b]${title}[/b][/size][/align]`,
+    {
+      block: renderBbcodeBlock,
+      title: (title) => `[align=center][size=4][b]${title}[/b][/size][/align]`,
+      note: renderBbcodeNote
+    },
     '\n'
   ),
   'utf8'
