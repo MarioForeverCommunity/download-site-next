@@ -1,4 +1,28 @@
 ---
+- game: PK!MF8 娱乐赛关卡集
+  game_alt: PK!MF8 Entertainment Collection
+  alias:
+  - PKMF8娱乐赛关卡集
+  - PKMF8娱乐赛整合
+  - PK!MF8娱乐赛整合
+  - PK!MF8娱乐赛关卡集
+  tag:
+  - PK!MF
+  author: PK!MF 组委会
+  author_alt: PK!MF OC
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-09-27
+  source_url: https://www.marioforever.net/thread-3956-1-1.html
+  source_url_alt:
+  download_url:
+  code:
+  download_url_alt:
+  file_name: PK!MF8_Entertainment_Collection.7z
+  file_url:
 - game: Mario Forever 2027
   game_alt:
   author: FbdFeelingZ
