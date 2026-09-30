@@ -179,12 +179,24 @@
       file_url:
 - game: Mario Forever Traveling and Touring
   game_alt:
+  alias:
+  - MFTT
   author: 小胖有萌新
   author_alt: XIAOPANG
   type: chinese
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v1.0:
+      ver_alt:
+      date: 2026-09-30
+      source_url: https://www.marioforever.net/thread-3959-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1tIBSoy76nCQaHopuXXNSkA
+      code: 9b4c
+      download_url_alt:
+      file_name: Mario Forever Traveling and Touring v1.0.7z
+      file_url:
   - Hardcore:
       ver_alt:
       date: 2026-09-15
@@ -770,9 +782,20 @@
   software: godot
   homepage_zh: https://happymario9.github.io/Mario-Forever-Happy-Mario-World-Reforged/
   homepage_en: https://happymario9.github.io/Mario-Forever-Happy-Mario-World-Reforged/
+  repo: https://github.com/happymario9/Mario-Forever-Happy-Mario-World-Reforged
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v1.0.0:
+      ver_alt:
+      date: 2026-09-30
+      source_url: https://www.marioforever.net/thread-3853-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1EOD7O3CZfJ8rFYbvH8a1ww?pwd=ght4
+      code: ght4
+      download_url_alt:
+      file_name: Mario Forever - Happy Mario World Reforged V1.0.zip
+      file_url:
   - v0.9.0:
       ver_alt:
       date: 2026-08-10
