@@ -3596,7 +3596,7 @@
   video_zh:
   - 通关录像（七地一天）: https://www.bilibili.com/video/BV1A9zCYPE3p/
   ver:
-  - v2.2.1b Windows:
+  - v2.2.2 Windows:
       ver_alt:
       date: 2026-09-30
       current: true
@@ -3607,7 +3607,7 @@
       download_url_alt: https://github.com/meteo-dream/mf-community-edition/releases/download/v2.2.2/Mario.Forever.Community.Edition.2.2.2.Windows.zip
       file_name: Mario Forever Community Edition 2.2.2 Windows.zip
       file_url:
-  - v2.2.1b Linux:
+  - v2.2.2 Linux:
       ver_alt:
       date: 2026-09-30
       current: true
