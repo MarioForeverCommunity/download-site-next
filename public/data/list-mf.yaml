@@ -1,4 +1,34 @@
 ---
+- game: "Mario Forever: Community Edition Android"
+  game_alt:
+  alias:
+  - MFCE
+  - MF:CE
+  - MF社区版
+  - MF安卓版
+  - 永远的马里奥安卓版
+  tag:
+  - Remake
+  author:
+  - Meteo Dream
+  - newlife2017
+  author_alt:
+  type: international
+  software: godot
+  wiki_zh_url: https://zh.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
+  wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
+  repo: https://github.com/KHwang9883/mf-community-edition/tree/port/android
+  ver:
+  - v2.2.2 Android:
+      ver_alt:
+      date: 2026-09-30
+      source_url: https://www.marioforever.net/thread-3943-1-1.html
+      source_url_alt: https://github.com/KHwang9883/mf-community-edition/releases/tag/v2.2.2
+      download_url: https://github.com/KHwang9883/mf-community-edition/releases/download/v2.2.2/Mario.Forever.Community.Edition.2.2.2.Android.apk
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 2.2.2 Android.apk
+      file_url:
 - game: PK!MF8 娱乐赛关卡集
   game_alt: PK!MF8 Entertainment Collection
   alias:
@@ -3568,11 +3598,32 @@
   ver:
   - v2.2.1b Windows:
       ver_alt:
-      date: 2026-08-22
+      date: 2026-09-30
       current: true
       source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
       source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
       download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      code:
+      download_url_alt: https://github.com/meteo-dream/mf-community-edition/releases/download/v2.2.2/Mario.Forever.Community.Edition.2.2.2.Windows.zip
+      file_name: Mario Forever Community Edition 2.2.2 Windows.zip
+      file_url:
+  - v2.2.1b Linux:
+      ver_alt:
+      date: 2026-09-30
+      current: true
+      source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
+      source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      code:
+      download_url_alt: https://github.com/meteo-dream/mf-community-edition/releases/download/v2.2.2/Mario.Forever.Community.Edition.2.2.2.Linux.zip
+      file_name: Mario Forever Community Edition 2.2.2 Linux.zip
+      file_url:
+  - v2.2.1b Windows:
+      ver_alt:
+      date: 2026-08-22
+      source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
+      source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520Community%2520Edition
       code:
       download_url_alt: https://github.com/meteo-dream/mf-community-edition/releases/download/v2.2.1/Mario.Forever.Community.Edition.2.2.1b.Windows.zip
       file_name: Mario Forever Community Edition 2.2.1b Windows.zip
@@ -3580,10 +3631,9 @@
   - v2.2.1b Linux:
       ver_alt:
       date: 2026-08-22
-      current: true
       source_url: https://marioforever.space/topic/64/mario-forever-community-edition-latest-version
       source_url_alt: https://www.youtube.com/watch?v=EZvw8VhmxYo
-      download_url: https://nx.wtf/s/aVtZ?path=Games%2FMario%20Forever%20-%20Community%20Edition
+      download_url: https://nx.wtf/s/aVtZ?path=Games%2FOld%2520Versions%2520%28Archive%29%2FMario%2520Forever%2520-%2520Community%2520Edition
       code:
       download_url_alt: https://github.com/meteo-dream/mf-community-edition/releases/download/v2.2.1/Mario.Forever.Community.Edition.2.2.1b.Linux.zip
       file_name: Mario Forever Community Edition 2.2.1b Linux.zip

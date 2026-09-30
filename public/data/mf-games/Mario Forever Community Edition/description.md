@@ -3,11 +3,12 @@
 Play the upgraded classic again!
 Mario Forever makes a return with a more polished look, flexible settings, and new custom elements! Created on Thunder Engine, Mario Forever - Community Edition aims to bring both the classic feel of the game and a lot of quality of life features and cosmetics, not seen before, to the game.
 
-Licensed under BSD 3-Clause License: https://github.com/meteo-dream/mf-community-edition
-Game website: https://mfce.rnx.su
+Licensed under a non-commercial license - see LICENSE.txt
+Source code: https://github.com/meteo-dream/mf-community-edition
+Game website: https://mfce.marioforever.space
 Other Mario Forever games made by the team: https://nx.wtf/s/aVtZ?path=Games
 Soundtrack: https://nx.wtf/s/aVtZ?path=Music
-Join Cloud Lounge Discord server: https://mfce.rnx.su/discord
+Join Cloud Lounge Discord server: https://mfce.marioforever.space/discord
 
 ## Installation
 
@@ -71,9 +72,82 @@ Software used: Godot Engine.
 
 # MFCE Update Change Log
 
+## Version 2.2.2
+
+Released on September 30th, 2026.
+
+### Additions:
+- Expert Mode:
+- - Added an optional **Master Challenge** mode, selectable from the second page of Expert Mode save pipes in the Save Game Room. It disables game over continues, nerfs 1-UP blocks and Progress Continue, and adds other restrictions, such as forcing to play by the Warpless rules.
+- Save Game Room:
+- - Added a **Super Achievements** board with new Kevin Mode mastery goals, including clearing Expert Mode warpless in Kevin Mode, all World U difficulties in Kevin Mode, all Advance Syzxchulun worlds in Kevin Mode, all World U hidden levels in Kevin Mode, and completing Expert Mode's Master Challenge.
+- Console commands:
+- - Added `seeingstars`, `windyday`, `thefish`, and `spikeroof` cheats.
+- - - These cheats take a quirk from some specific level and apply it to every single level, similar to `letthepartybegin`, `hotfeet`, etc.
+- - Added a `toast` command to preview achievement notification text.
+- Controls screen:
+- - Reorganized into submenus (Gameplay, Menu, etc).
+- - Added an in-menu **Auto Run** toggle, which is a shortcut to an already existing tweak.
+- - Added a **Gamepad Hints** option to force Xbox-style or PlayStation-style button icons (or leave on automatic detection).
+- The game now automatically pauses when the active controller is disconnected.
+- Menu and in-game input hints can show joypad button icons when playing with a controller.
+
+### Changes:
+- The first-time setup screen's recommended preset now toggles **Improvements in some extra levels** instead of **Revamped level design in extra levels**; the latter is no longer changed by presets and stays off by default there.
+- Completing a world on the map now transitions with a simple fade instead of a circle.
+- Default volume levels for new installs have been adjusted (Master at 50%, Sound and Music at 100% relative to Master).
+- Pressing the Menu Back key in Mario Forever Flash and Squario Worlds title screens now exits to the Save Room.
+- The Lost Map intro text is now positioned correctly and cycles faster.
+- The Save Game Room loads slightly faster now.
+- LiveSplit WebSocket server settings in the Tweaks menu have been moved to the **Miscellaneous** category.
+- Toad House graphics have been updated (credit to Bullex).
+- Piranha plants' moving speed has been reverted to before v2.2.0.
+- Coin sounds have been reverted to before v2.2.1.
+- Death theme in Starman Running has been changed to match the Lost Map's one.
+- Updated the music library to fix some memory issues and reduced the size.
+
+### Fixes:
+- Fixed achievement toast notifications not displaying reliably.
+- Fixed the custom mouse cursor tweak not applying properly.
+- Fixed Save Game Room warps to Otherworld and World U bonus pipes ignoring the crossfade transition tweak.
+- Fixed Human Laboratory and Lost Map pipe labels in the Save Game Room not using their intended colors.
+- Fixed Kevin Mode activation typing feeling overly restrictive when holding other keys.
+- Fixed the "World U Good Ending in Kevin Mode" achievement not unlocking correctly.
+- Fixed Expert Mode 8-4 boss fight issues, including Kevin stalling after the fight, a missing line in Bowser's firing graphics, and minor interpolation glitches.
+- Fixed Kevin having rendering order issues.
+- Fixed Human Lab 2's post-lava-run background shake.
+- Fixed main menu music from the Credits screen overlapping with the main menu after exiting Skin Test Room.
+- Fixed a visual glitch with the Super Star effect in Starman Running.
+- Fixed wrong pixels in the plushy sun graphic.
+- Fixed brief one-frame glitches on the main menu when pressing the F4 shortcut.
+- Fixed the Hammer power-up jittering while moving.
+- Fixed yellow Cheep Cheeps in World 7-2 swimming at the wrong speed compared to original Mario Forever.
+- Fixed coral background graphics in Lost Map levels 2 and 4.
+- Fixed Expert 2-2 enemies colliding with platforms and flying off in unintended directions.
+- Fixed Expert 6-4's boss arena having an invisible floor that blocked enemies.
+- Fixed Expert Mode title screen having glitched pause menu.
+- Fixed some ice blocks in Christmas Lab level 4 not melting properly when hit by fireballs.
+- Fixed World U-4 (the Lava section) minor visual inconsistencies and the `finish` console command in that section.
+- Fixed Retro Scroll Challenge making Christmas Lab level 4 impossible.
+- Fixed the `letthepartybegin` cheat not spawning Goomba clones during the Human Lab lava run.
+- Fixed blur transition visuals showing distorted pixels.
+- Fixed crossfade transitions not behaving correctly in some cases.
+- Fixed Frog Suit level complete sequences breaking when finishing underwater.
+- Fixed Ptooie spikes not killing Koopa shells.
+- Fixed the Progress Continue screen being pausable when it should not be.
+- Fixed yellow Cheep Cheeps briefly facing the wrong direction when a level loads.
+- Fixed flame ball launchers firing briefly off-screen during autoscroll sections.
+- Fixed cutscene skip inputs firing immediately after unpausing.
+- Fixed Stuntman clone stomping using the wrong sound.
+- Fixed message block choice prompts showing incorrect joypad hint text.
+- Fixed outdated F3/F4 shortcut descriptions in the Tweaks menu.
+- Fixed tweaks and item box joypad hint descriptions.
+
 ## Version 2.2.1
 
-Released on August 17th, 2026.
+Released on August 19th, 2026.
+
+Reuploaded on August 22nd, 2026.
 
 ### Additions:
 - The bundled Skin Editor has been completely overhauled, gaining new features and drastically improving on existing ones. Editing skins has never been this easy before!
@@ -143,6 +217,10 @@ Released on August 17th, 2026.
 - Fixed a bug where a suspended progress was not deleted after completing World U.
 - Fixed a bug where Syzxchulun's World 12-3 had no blur transition on the exit pipe.
 
+#### Reupload Changes:
+- Fixed the Skin Editor being flagged by antivirus software as false positive.
+- Updated the Skin Editor to v2.0.1, fixing a crash on startup with small screen resolutions.
+- Fixed the LICENSE.
 
 ## Version 2.2.0
 
