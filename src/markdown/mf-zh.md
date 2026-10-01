@@ -78,7 +78,7 @@
 
 ## 原版 Mario Forever
 
-Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游戏，关卡创作风格类似于马里奥初代（《Super Mario Bros.》，1985），在国内和国际均有一定的知名度。<a href="#" id="open-history">点击查看 Mario Forever 发展史介绍。</a>
+**Mario Forever** 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游戏，关卡创作风格类似于马里奥初代（《Super Mario Bros.》，1985），在国内和国际均有一定的知名度。<a href="#" id="open-history">点击查看 Mario Forever 发展史介绍。</a>
 
 <div id="history-content" style="display:none">
 <h2>Mario Forever 发展史介绍</h2>
@@ -129,7 +129,7 @@ Mario Forever 是一款由波兰人 Michael Gdaniec 制作的马里奥同人游�
 
 ## Mario Forever Remake 及 Mario Forever Advance Remake
 
-Mario Forever Remake 和 Mario Forever Advance Remake 是分别基于 Mario Forever 公认最好的版本 Mario Forever 4.4 和 Mario Forever Advance Edition 而创作的重制版，旨在为 Windows 7 以上系统的玩家提供一个流畅的游戏环境（原版 Mario Forever 4.4 在 Windows 7 以上系统一般会出现运行不流畅等问题），并修复原版中的 bug 和设计问题。Mario Forever Remake 和 Mario Forever Advance Remake 基本复现了 Mario Forever 和 Mario Forever Advance 的内容，是目前体验原版内容的最佳选择。其中，Mario Forever Remake 3.5 版已经由 Mario Forever 作者上传至 Softendo 官网。另外，作品中包含了 Syzxchulun's World 9, 10 及其 Advance 版本，以及 nmnmoooh 的 World U 的 Easy 和 Normal 难度。
+**Mario Forever Remake** 和 **Mario Forever Advance Remake** 是分别基于 Mario Forever 公认最好的版本 Mario Forever 4.4 和 Mario Forever Advance Edition 而创作的重制版，旨在为 Windows 7 以上系统的玩家提供一个流畅的游戏环境（原版 Mario Forever 4.4 在 Windows 7 以上系统一般会出现运行不流畅等问题），并修复原版中的 bug 和设计问题。Mario Forever Remake 和 Mario Forever Advance Remake 基本复现了 Mario Forever 和 Mario Forever Advance 的内容，是目前体验原版内容的最佳选择。其中，Mario Forever Remake 3.5 版已经由 Mario Forever 作者上传至 Softendo 官网。另外，作品中包含了 Syzxchulun's World 9, 10 及其 Advance 版本，以及 nmnmoooh 的 World U 的 Easy 和 Normal 难度。
 
 该项工程由 syzxchulun 发起，日渐形成一个强大的工作室来完成关卡的制作、修改和测试工作，代表着原版 Mario Forever 研究的最高水平。向他们精益求精、追求至善的精神致敬！
 
@@ -140,7 +140,7 @@ Mario Forever Remake 和 Mario Forever Advance Remake 是分别基于 Mario Fore
 
 ## Mario Forever: Community Edition
 
-Mario Forever: Community Edition（简称 MF:CE）是基于原版 Mario Forever 的全复刻作品。MF:CE 摒弃了原版的制作软件 Clickteam Fusion，而采用更加现代的 Godot 游戏引擎。MF:CE 不仅复刻了原版游戏的绝大部分内容，还增添了一些自定义功能与新的挑战，以及一些面向玩家的特性，并对游戏的美术表现进行了略微调整。MF:CE 还允许路易吉成为可玩角色。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
+**Mario Forever: Community Edition**（简称 MF:CE）是基于原版 Mario Forever 的全复刻作品。MF:CE 摒弃了原版的制作软件 Clickteam Fusion，而采用更加现代的 Godot 游戏引擎。MF:CE 不仅复刻了原版游戏的绝大部分内容，还增添了一些自定义功能与新的挑战，以及一些面向玩家的特性，并对游戏的美术表现进行了略微调整。MF:CE 还允许路易吉成为可玩角色。虽然因为引擎不同导致游戏手感不可避免的与原版有些小差别，但作为 Mario Forever 二十年的集大成者，MF:CE 值得新老玩家尝试。
 
 <MfGamesEntry name="Mario Forever: Community Edition" />
 </div>
@@ -156,7 +156,9 @@ Mario Forever: Community Edition（简称 MF:CE）是基于原版 Mario Forever 
 - **Super Mario Forever Android**：由 Alexandro Games 制作，不仅包含新旧两种不同画面风格（4.4 版之前 / 4.4 版之后），还移植了部分玩家创作的同人关卡内容。
 - **Mario Forever for Android**：由 Sanyario 移植的版本，基本保持原版内容，没有“夹带私货”，更适合希望体验原汁原味 Mario Forever 的玩家。
 
-<MfGamesEntry name="Super Mario Forever Android" /><MfGamesEntry name="Mario Forever for Android" />
+此外，**Mario Forever: Community Edition** 也已有第三方的 Android 移植版，针对手机平台进行了适配。
+
+<MfGamesEntry name="Mario Forever: Community Edition Android" /><MfGamesEntry name="Super Mario Forever Android" /><MfGamesEntry name="Mario Forever for Android" />
 
 虽然绝大多数 Mario Forever 同人作品目前仅提供电脑版本，但这并不代表它们无法在手机上运行。如今，通过 Wine 和 x86-to-ARM 转译技术运行 Windows 程序的“模拟器”日臻成熟，不少 Mario Forever 作品已经可以直接在手机上运行。相比重新开发手机版，使用模拟器的优势是覆盖作品范围更广，但也有部分作品运行效果不佳。
 
@@ -428,7 +430,7 @@ Godot 是一个功能强大、接口完善的游戏开发平台，使用 Godot �
 
 ## Mario Forever 周边游戏作品
 ### New Super Mario Forever
-New Super Mario Forever，亦习称 Mario Forever 2012，译作“新永远的超级马里奥”，国内亦有不规范译名“新超版永远的马里奥”。
+**New Super Mario Forever**，亦习称 Mario Forever 2012，译作“新永远的超级马里奥”，国内亦有不规范译名“新超版永远的马里奥”。
 
 本作是 Softendo 在 2012 年采用 Game Maker 8.1 制作的大型作品。由于制作时采用的编辑器不同，所以手感较原始 Mario Forever 也相对圆滑。
 
@@ -439,7 +441,7 @@ New Super Mario Forever，亦习称 Mario Forever 2012，译作“新永远的�
 <SoftendoEntry name="New Super Mario Forever" /><MfGamesEntry name="New Super Mario Forever 2012: Slightly-Fixed Edition" />
 
 ### Mario Forever Galaxy
-Mario Forever Galaxy 是一款以马里奥元素为主的太空射击游戏，在剧情上为 Mario Forever 的续作。
+**Mario Forever Galaxy** 是一款以马里奥元素为主的太空射击游戏，在剧情上为 Mario Forever 的续作。
 
 作为一款画面较为华丽、游戏内容庞大的射击游戏，本作在一定程度上得到了肯定与赞美，但同时也在游戏模式、游戏系统、难度方面有不足之处，且占用资源较多。
 
@@ -448,7 +450,7 @@ Mario Forever Galaxy 是一款以马里奥元素为主的太空射击游戏，�
 <SoftendoEntry name="Mario Forever Galaxy" />
 
 ### Mario Forever Block Party
-Mario Forever Block Party 是一个以马里奥元素为主的类似于“推箱子”的益智闯关游戏。
+**Mario Forever Block Party** 是一个以马里奥元素为主的类似于“推箱子”的益智闯关游戏。
 
 游戏中的任务更多地表现为“销毁箱子”，且游戏是在竖直平面上进行的，也就意味着有重力的影响。主线、支线、隐藏关卡总共约 100 关，关卡难度循序渐进，是一款较为优秀的作品。
 
@@ -457,8 +459,7 @@ Mario Forever Block Party 是一个以马里奥元素为主的类似于“推箱
 <SoftendoEntry name="Mario Forever Block Party" /><SoftendoEntry name="Zelda Forever" />
 
 ### Mario Forever Flash
-
-Mario Forever Flash 是一款质量较高的 Flash 马里奥同人游戏。游戏共 4 世界 17 关，规模约为 Mario Forever 的一半。游戏手感有异于 Mario Forever，且后期难度奇高，挑战性很强，通关并非一件易事。此外还有简化版的 Mario Forever Flash Easier。
+**Mario Forever Flash** 是一款质量较高的 Flash 马里奥同人游戏。游戏共 4 世界 17 关，规模约为 Mario Forever 的一半。游戏手感有异于 Mario Forever，且后期难度奇高，挑战性很强，通关并非一件易事。此外还有简化版的 Mario Forever Flash Easier。
 
 Mario Forever Flash 的实际作者是 Maurycy Zarzycki（Mauft）。除 Mario Forever Flash 外，还有与之相关的 Flash 游戏，如 Mario Super、Squario 等。
 
