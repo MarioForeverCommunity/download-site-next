@@ -12,7 +12,7 @@ This repository is the source code for [download.marioforever.net](https://downl
 This catalog would not exist without the efforts of many contributors in the Mario Forever community. We would like to sincerely thank:
 
 - [Fisjokas](https://www.youtube.com/@Tomek839839) - for providing numerous links and resources between 2022 and 2024 that greatly enriched the catalog and helped uncover many rare and valuable files.
-- [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for this catalog.
+- [Classic Yoshi 666](https://www.youtube.com/@ClassicYoshi666) - for preserving many works in his own archives, which served as an important foundation for this catalog.
 - wufeiling (aka 劝君更尽一碗翔) - for sharing several games that might have otherwise been lost.
 - SuperMarioFan01 and ChloePrime - for privately providing several scattered game files that helped fill gaps in the catalog.
 - Happy Mario 9 - for providing several Chinese fangames released in 2015.
