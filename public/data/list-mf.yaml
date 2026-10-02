@@ -1,4 +1,50 @@
 ---
+- game: 混沌归墟·隐秘的作者
+  game_alt:
+  tag:
+  - Single Level
+  author:
+  - 冻结的双重射手
+  - Dr.Chaos Kirby
+  - Jamie Crist Li
+  - TNT与爬行者
+  author_alt:
+  - Icy shooter
+  - Dr.Chaos Kirby
+  - Jamie Crist Li
+  - CreepTNT
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-10-02
+  source_url: https://www.marioforever.net/thread-3963-1-1.html
+  source_url_alt:
+  download_url: https://wwazi.lanzoue.com/b004jrm69e
+  code: CHAOS
+  download_url_alt:
+  file_name: 混沌试炼·隐秘的作者/
+  file_url:
+- game: 永远的马里奥：天姥山
+  game_alt: Mario Forever Tianmu Mountain
+  alias:
+  - MFTM
+  author: CO2.5
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver: v0.5
+  ver_alt:
+  date: 2026-10-02
+  source_url: https://www.marioforever.net/thread-3962-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1h1pYo2nvhRU6ue3c8j3yYg
+  code: MFTM
+  download_url_alt:
+  file_name: Mario Forever Tianmu Mountain v0.5.rar
+  file_url:
 - game: Mario Forever World 短
   game_alt:
   author: HTJ1026
