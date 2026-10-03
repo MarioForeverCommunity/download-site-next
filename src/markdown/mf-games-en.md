@@ -2,29 +2,30 @@ This catalog aims at collecting and preserving Mario Forever fangames for player
 
 **This catalog is not meant for fangame recommendation.** This is only a continually expanding archive meant for fangame preservation and convenient access, and as such, we don't set any quality bar on the fangames that appear on this list, so it is recommended that you do your own research on any fangame you choose before playing it. 
 
-A removal of a certain fangame *only* occurs when and if:
+The removal of a fangame *only* occurs when:
 - The creator of the fangame requests that their game be removed from the list, for any reason.
 - The fangame violates other creators' rights (e.g. the fangame is built from a decompiled version of another fangame, steals assets from other fangames, etc.)
 - The fangame contains viruses, malware or other types of harmful files that may damage the user's device.
 - The fangame contains inappropriate or illegal topics/themes.
 - The fangame has controversies surrounding it.
 
-Some old versions of these fangames are available on the [Community File Hub](https://file.marioforever.net/mario-forever/games/).
-
-The fangames are distinguished by:
-- Region (filters fangames made in China or internationally)
-- Platform (the operating system(s) the fangames play on)
-- Software (the game engine(s) the fangames are built on)
-- Tags (such as Puzzle, Collab, April Fools, Hardcore, Christmas etc. Also supports multi-tag selection.)
-
-If any of the following are true:
+If any of the following apply:
+- You find that a fangame meets any of the above criteria and hasn't been removed yet.
 - A fangame is missing from the list, whether yours or someone else's.
 - You find dead or mismatched links.
 - You find missing, incorrect or outdated information.
 - You are a fangame creator and would like to have your fangame or a specific version of it removed from the list for any reason.
 - Or you have other important concerns.
 
-Please [open an issue on the site's GitHub](https://github.com/MarioForeverCommunity/download-site-next/issues/new/choose) or [report to the maintainer (Newlife2017) via DM on Discord](discord://-/users/406048815460646912).
+Please [open an issue on the site's GitHub](https://github.com/MarioForeverCommunity/download-site-next/issues/new/choose) or [report to the maintainer (Newlife2017) via DM on Discord](discord://-/users/406048815460646912). Any necessary removal, addition or correction will be done as soon as possible.
+
+The fangames are distinguished by:
+- Region (filters fangames made in China or internationally)
+- Platform (the operating system(s) the fangames play on)
+- Software (the game engine(s) the fangames are built on)
+- Tags (such as Puzzle, Collab, April Fools, Hardcore, Christmas etc. Multi-tag selection is also supported.)
+
+Some old versions of these fangames are available on the [Community File Hub](https://file.marioforever.net/mario-forever/games/).
 
 <a href="#" id="open-credits">We sincerely thank these people for their contributions.</a>
 
