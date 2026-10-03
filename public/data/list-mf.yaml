@@ -1153,6 +1153,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.0 世界1~4 UE重置:
+      ver_alt: v2.0 World 1~4 UE ver.
+      date: 2026-10-03
+      source_url: https://www.marioforever.net/thread-3966-1-1.html
+      source_url_alt:
+      download_url: https://pan.baidu.com/s/1cE6z3OMDmloa0Sw_Preuhg
+      code: 8hmw
+      download_url_alt:
+      file_name: Mario Forever 2022 XTGZ v2.0 世界1-4(UE重置).rar
+      file_url:
   - v3.0 12-4 单关版:
       ver_alt: v3.0 12-4 Single Level
       date: 2026-08-28
@@ -1164,7 +1174,6 @@
       file_name: Mario Forever 2022 XTGZ v3.0 12-4单关版.rar
       file_url:
   - v2.0:
-      current: true
       ver_alt:
       date: 2026-04-19
       source_url: https://www.marioforever.net/thread-3838-1-1.html
