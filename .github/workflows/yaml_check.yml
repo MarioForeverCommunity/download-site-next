@@ -6,8 +6,8 @@ on:
     paths:
       - public/data/list-mf.yaml
       - public/data/list-mw.yaml
-  push: 
-    branches: [ main, next ]
+  push:
+    branches: [ main ]
     paths:
       - public/data/list-mf.yaml
       - public/data/list-mw.yaml
@@ -29,4 +29,4 @@ jobs:
     - name: Validate yml files
       run: |
         python ./scripts/check_yaml.py
-  
+
