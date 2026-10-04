@@ -330,15 +330,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2026-08-23
-  source_url: https://www.bilibili.com/video/BV1Xq8t61EtC/
-  source_url_alt:
-  download_url: https://qfile.qq.com/q/knoXcmCqKA
-  code:
-  download_url_alt:
-  file_name: DEADLY LEVEL(WELLCOME BACK!).rar
-  file_url:
+  - Remake:
+      ver_alt:
+      date: 2026-10-04
+      source_url: https://www.bilibili.com/video/BV1Xq8t61EtC/
+      source_url_alt:
+      download_url: https://qfile.qq.com/q/bmFK16QPbG
+      code:
+      download_url_alt:
+      file_name: DEADLY LEVEL (WEILCOME BACK)(REMAKE).exe
+      file_url:
+  - 初版:
+      ver_alt: Initial release
+      date: 2026-08-23
+      source_url: https://www.bilibili.com/video/BV1Xq8t61EtC/
+      source_url_alt:
+      download_url: https://qfile.qq.com/q/knoXcmCqKA
+      code:
+      download_url_alt:
+      file_name: DEADLY LEVEL(WELLCOME BACK!).rar
+      file_url:
 - game: WN-MASKER'S ADVENTURE
   game_alt:
   tag:
