@@ -44,7 +44,7 @@ If a game or version is missing, some information is incorrect, or you would lik
 
 ## Guide for Editing the Lists
 
-This repository contains **four types of lists**: Mario Forever games, Super Mario Worker Project levels, development assets, and Softendo games. Since the field structures differ slightly between them, please read the section for each list carefully before editing.
+This repository contains **four types of lists**: Mario Forever games, Super Mario Worker Project levels, Mario Forever Assets, and Softendo games. Since the field structures differ slightly between them, please read the section for each list carefully before editing.
 
 ### Mario Forever Game List
 
@@ -370,7 +370,7 @@ The API base URL is `https://download.marioforever.net/api/`, with the following
 | `/api/index.json` | Manifest listing all endpoints and the generation time |
 | `/api/mf.json` | Mario Forever fangames |
 | `/api/mw.json` | Super Mario Worker Project levels |
-| `/api/assets.json` | Development assets |
+| `/api/assets.json` | Mario Forever Assets |
 | `/api/softendo.json` | Softendo / Buziol Games |
 | `/api/original-mf.json` | All original Mario Forever versions |
 
@@ -385,6 +385,6 @@ See the [API documentation](API.md) for the full field reference and usage examp
 
 ## Help Maintain and Further Develop
 
-Programmers are welcome to help improve this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To keep the live site stable, all changes other than list updates should be committed to the `next` branch of this repository.
+Programmers are welcome to help improve this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To keep the live site stable, all changes other than list, data and documentation updates should be committed to the `next` branch of this repository.
 
 This project is open source under the MIT license. You are free to modify and deploy it within the scope of the license.

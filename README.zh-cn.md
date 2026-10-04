@@ -380,10 +380,10 @@ const games = await fetch('https://download.marioforever.net/api/mf.json').then(
 console.log(games.length)
 ```
 
-完整的字段说明与调用示例请查阅 [API 文档](API.md)。
+完整的字段说明与调用示例请查阅 [API 文档](API.zh-cn.md)。
 
 ## 帮助维护、二次开发
 
-欢迎有能力的编程者通过 [pull request](https://github.com/MarioForeverCommunity/download-site-next/pulls) 方式协助完善本项目。为了保证上线网站的稳定性，所有列表更新之外的更改请提交至本项目的 `next` 分支。
+欢迎有能力的编程者通过 [pull request](https://github.com/MarioForeverCommunity/download-site-next/pulls) 方式协助完善本项目。为了保证上线网站的稳定性，除数据和文档更新外，所有更改请提交至本项目的 `next` 分支。
 
 本项目使用 MIT 协议开源。你可以在协议允许的范围内进行修改和部署。

@@ -1,33 +1,35 @@
-# API 文档
+# API Documentation
 
-download.marioforever.net 提供一套**静态 JSON API**，包含 Mario Forever 同人作品、Super Mario Worker Project 作品、创作资源、Softendo 游戏与原版 Mario Forever 的完整数据，包括各项参数、资源站下载链接、作品图片路径与作品描述内容。
+**English** | [简体中文](API.zh-cn.md)
 
-API 在站点构建时由 `scripts/generate-api.js` 从 `public/data/` 下的 YAML 数据生成，随站点一起以静态文件形式部署。因此它**没有后端服务**，也不存在速率限制、鉴权或查询参数——你只需用任意 HTTP 客户端 GET 对应的 JSON 文件，再在本地做筛选。
+download.marioforever.net provides a **static JSON API** with complete data for Mario Forever fangames, Super Mario Worker Project levels, Mario Forever Assets, Softendo games, and original Mario Forever versions, including parameters, Community File Hub download links, image paths, and description content.
 
-## 快速开始
+The API is generated at site build time by `scripts/generate-api.js` from the YAML data under `public/data/`, and is deployed as static files along with the site. Therefore it has **no backend service**, and there are no rate limits, authentication, or query parameters — simply GET the corresponding JSON file with any HTTP client, then filter locally.
 
-### 基址
+## Quick Start
+
+### Base URL
 
 ```
 https://download.marioforever.net/api/
 ```
 
-本地开发时（`bun run dev`）为 `http://localhost:5173/api/`。
+In local development (`bun run dev`), it is `http://localhost:5173/api/`.
 
-### 端点一览
+### Endpoint Overview
 
-| 端点 | 内容 | 条目数 | 顶层类型 |
+| Endpoint | Content | Entries | Top-level type |
 | --- | --- | --- | --- |
-| `/api/index.json` | 清单：列出所有端点及其条目数、生成时间 | — | 对象 |
-| `/api/mf.json` | Mario Forever 同人作品 | ~600 | 数组 |
-| `/api/mw.json` | Super Mario Worker Project 作品 | ~425 | 数组 |
-| `/api/assets.json` | 创作资源（引擎、拓展、素材、特效、工具） | ~76 | 数组 |
-| `/api/softendo.json` | Softendo / Buziol Games 游戏 | ~70 | 数组 |
-| `/api/original-mf.json` | 原版 Mario Forever 全版本 | ~43 | 数组 |
+| `/api/index.json` | Manifest: lists all endpoints with their entry counts and generation time | — | Object |
+| `/api/mf.json` | Mario Forever fangames | ~600 | Array |
+| `/api/mw.json` | Super Mario Worker Project levels | ~425 | Array |
+| `/api/assets.json` | Mario Forever Assets (engines, addons, sprites, effects, tools) | ~76 | Array |
+| `/api/softendo.json` | Softendo / Buziol Games games | ~70 | Array |
+| `/api/original-mf.json` | All original Mario Forever versions | ~43 | Array |
 
-除 `index.json` 外，每个端点的顶层都是一个**数组**，可直接遍历。
+Except for `index.json`, the top level of every endpoint is an **array** that can be iterated directly.
 
-### 最简调用
+### Minimal Example
 
 ```bash
 curl https://download.marioforever.net/api/mf.json
@@ -45,75 +47,75 @@ games = requests.get('https://download.marioforever.net/api/mf.json').json()
 print(len(games))
 ```
 
-### 先读清单
+### Read the Manifest First
 
-`index.json` 用于发现端点与检查数据新鲜度，适合做缓存判断。除 `generatedAt` 与 `endpoints` 外，还包含 `name`（API 名称）与 `notes`（对数据字段的说明）：
+`index.json` is used to discover endpoints and check data freshness, making it suitable for cache validation. Besides `generatedAt` and `endpoints`, it also contains `name` (the API name) and `notes` (descriptions of the data fields):
 
 ```javascript
 const manifest = await fetch('https://download.marioforever.net/api/index.json').then(r => r.json())
 // manifest.name          -> "download.marioforever.net static API"
 // manifest.generatedAt   -> "2026-08-12T05:58:21.797Z"
 // manifest.endpoints     -> [{ id, path, file, count, category }, ...]
-// manifest.notes         -> [ ...字段说明 ]
+// manifest.notes         -> [ ...field notes ]
 
 for (const ep of manifest.endpoints) {
   console.log(ep.id, ep.count, ep.path)
 }
 ```
 
-## 通用约定
+## General Conventions
 
-阅读各端点字段前，先了解以下贯穿全部数据的约定。
+Before reading the fields of each endpoint, familiarize yourself with the following conventions that apply across all data.
 
-### 下载链接对象
+### Download Link Objects
 
-所有下载链接都统一为**链接对象**，包含文件名与来源：
+All download links are unified into **link objects** containing the file name and its source:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `fileName` | 字符串 \| null | 在资源站中的原始文件名 |
-| `zh` | 字符串 \| null | 社区资源站（中文路径）链接 |
-| `en` | 字符串 \| null | 社区资源站（英文路径）链接 |
+| `fileName` | String \| null | The original file name on the Community File Hub |
+| `zh` | String \| null | Community File Hub link (Chinese path) |
+| `en` | String \| null | Community File Hub link (English path) |
 
-需要注意：
+Note that:
 
-- `zh` 与 `en` 指向**同一份文件**，只是资源站的目录命名不同（中文站用中文目录名）。按用户界面语言择一即可。
-- MW 作品（`mw.json`）**没有 `en`**，因为 SMWP 作品只有中文资源站路径。
-- 所有端点的链接在生成时都**不做 URL 编码**：`fileName` 含中文与空格时会原样拼接，多数 HTTP 客户端与浏览器会自动处理；若你的客户端不处理，请自行 `encodeURI()`。
+- `zh` and `en` point to **the same file**; only the directory naming of the Community File Hub differs (the Chinese site uses Chinese directory names). Pick one based on the user interface language.
+- MW levels (`mw.json`) have **no `en`**, because SMWP works only have Chinese Community File Hub paths.
+- Links on all endpoints are **not URL-encoded** at generation time: when `fileName` contains Chinese characters or spaces, they are concatenated as-is. Most HTTP clients and browsers handle this automatically; if yours does not, apply `encodeURI()` yourself.
 
-一个健壮的取链接写法：
+A robust way to pick a link:
 
 ```javascript
-// 按语言选择资源站链接
+// Pick the Community File Hub link by language
 function pickUrl(item, lan = 'zh') {
   return (lan === 'en' ? item.en : item.zh) || item.zh || null
 }
 ```
 
-### 失效链接标记
+### Expired Link Flags
 
-作者提供的发布链接（`source`）与官方下载链接（`download`）可能已失效。数据中不会删除它们，而是用布尔字段标注：
+The author's release links (`source`) and official download links (`download`) may have expired. Instead of removing them, the data marks them with boolean fields:
 
 ```json
 "source":   { "url": "https://...", "urlAlt": null, "invalid": false, "invalidAlt": false },
 "download": { "url": "https://...", "urlAlt": null, "code": "abcd", "invalid": true, "invalidAlt": false }
 ```
 
-- `url` / `urlAlt`：`source` 的 `urlAlt` 为另一语言的发布链接；`download` 的 `urlAlt` 为备用下载链接——中英文页面均会展示 `url` 与 `urlAlt`，但国内作品（MF `type: chinese`）在英文页面会交换两者展示顺序（`urlAlt` 在前），国外作品顺序不变
-- `invalid` / `invalidAlt`：对应链接是否已失效，展示时建议置灰或标注
-- `download.code`：网盘提取码/密码（若需要）
+- `url` / `urlAlt`: for `source`, `urlAlt` is the release link in the other language; for `download`, `urlAlt` is an alternative download link — both `url` and `urlAlt` are shown on the Chinese and English pages, but for games made by Chinese community members (MF `type: chinese`), the English page swaps their display order (`urlAlt` first), while international games keep the original order
+- `invalid` / `invalidAlt`: whether the corresponding link has expired; consider graying it out or marking it when displaying
+- `download.code`: the password/extraction code for the cloud drive (if required)
 
-### 图片
+### Images
 
-`images` 对象给出该作品 `public/data/` 目录下的图片路径，均为**站点根相对路径**，需拼接站点域名后使用：
+The `images` object gives the image paths under the work's `public/data/` directory, all as **site-root-relative paths** that must be prefixed with the site domain:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `dir` | 字符串 | 该作品的数据目录名（可能为空） |
-| `all` | 字符串数组 | 目录下所有图片 |
-| `title` | 字符串 \| null | 标题图（`title.*`） |
-| `logo` | 字符串 \| null | Logo 图（`logo.*`） |
-| `showcase` | 字符串数组 | 截图（`showcase_*`），已按自然序排序 |
+| `dir` | String | The work's data directory name (may be empty) |
+| `all` | String array | All images in the directory |
+| `title` | String \| null | Title image (`title.*`) |
+| `logo` | String \| null | Logo image (`logo.*`) |
+| `showcase` | String array | Screenshots (`showcase_*`), sorted in natural order |
 
 ```javascript
 const BASE = 'https://download.marioforever.net'
@@ -121,14 +123,14 @@ const cover = game.images.title || game.images.logo || game.images.all[0]
 const src = cover ? BASE + cover : null   // "/data/mf-games/Fear the Eye/title.webp"
 ```
 
-### 描述
+### Descriptions
 
-作品描述有两个来源，用途不同：
+Work descriptions have two sources with different purposes:
 
-- **`inlineDescription`** — 列表中的一句话简短说明，直接内联在数据里。
-  - MF：`{ zh, en }` 对象
-  - MW / Assets：字符串或 `null`
-- **`description`** — 长篇 Markdown 详细介绍，**内容已内联**，无需再发请求。
+- **`inlineDescription`** — a one-sentence short description inlined in the data.
+  - MF: a `{ zh, en }` object
+  - MW / Assets: a string or `null`
+- **`description`** — a long-form Markdown introduction with **content already inlined**, no extra request needed.
 
 ```json
 "description": {
@@ -139,14 +141,14 @@ const src = cover ? BASE + cover : null   // "/data/mf-games/Fear the Eye/title.
 }
 ```
 
-| 字段 | 说明 |
+| Field | Description |
 | --- | --- |
-| `default` | `description.md` 的内容（语言中立，优先使用） |
-| `zh` | `description_zh.md` 的内容 |
-| `en` | `description_en.md` 的内容 |
-| `files` | 上述文件的源路径，供溯源 |
+| `default` | Content of `description.md` (language-neutral, use this first) |
+| `zh` | Content of `description_zh.md` |
+| `en` | Content of `description_en.md` |
+| `files` | Source paths of the above files, for tracing back |
 
-读取顺序建议 `default` → 当前语言 → 另一语言：
+Suggested reading order: `default` → current language → the other language:
 
 ```javascript
 function getDescription(item, lan = 'zh') {
@@ -155,79 +157,79 @@ function getDescription(item, lan = 'zh') {
 }
 ```
 
-得到的是 Markdown 源码，需自行渲染（本站使用 `markdown-it`）。
+What you get is Markdown source that you need to render yourself (this site uses `markdown-it`).
 
-### 日期
+### Dates
 
-所有日期均为 `YYYY-MM-DD` 格式的字符串（如 `"2026-08-12"`），可能为 `null`。可直接字符串比较排序，或 `new Date(str)` 解析。
+All dates are strings in `YYYY-MM-DD` format (e.g. `"2026-08-12"`) and may be `null`. They can be compared and sorted as strings directly, or parsed with `new Date(str)`.
 
-## 端点详解
+## Endpoint Reference
 
-### `/api/mf.json` — Mario Forever 同人作品
+### `/api/mf.json` — Mario Forever fangames
 
-顶层字段：
+Top-level fields:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `category` | 字符串 | 固定为 `"mf"` |
-| `name` | 字符串 | 作品原始名称 |
-| `nameAlt` | 字符串 \| null | 英文名/译名 |
-| `aliases` | 字符串数组 | 别名、缩写，便于搜索 |
-| `author` | 字符串数组 | 作者（始终为数组，即使只有一人） |
-| `authorAlt` | 字符串数组 \| null | 作者英文名 |
-| `firstAuthor` | 字符串 \| null | 用于构建资源站路径的主作者名 |
-| `type` | 字符串 | `chinese`（国内作品）/ `international`（国外作品） |
-| `software` | 字符串 | 制作软件，游戏级别：`mmf`/`godot`/`gamemaker`/`flash`/`other`；未指定时默认 `"mmf"` |
-| `tags` | 字符串数组 | 标签，如 `Single Level`、`Speedrun`、`Horror` |
-| `wiki` | 对象 | `{ zh, en }` Wiki 链接 |
-| `homepage` | 对象 | `{ zh, en, repo }` 主页 / 源码仓库链接 |
-| `inlineDescription` | 对象 | `{ zh, en }` 简短说明 |
-| `versions` | 数组 | 全部版本，见下 |
-| `currentVersion` | 字符串数组 | **当前（最新）版本名列表**，见下 |
-| `currentVersionAlt` | 字符串 \| null | 顶层 `ver_alt` 字段（作品首个版本对应的英文名/别名，通常与当前版本一致） |
-| `images` | 对象 | 见「图片」 |
-| `description` | 对象 | 见「描述」 |
+| `category` | String | Always `"mf"` |
+| `name` | String | The game's original name |
+| `nameAlt` | String \| null | English name/translation |
+| `aliases` | String array | Aliases and abbreviations, for search |
+| `author` | String array | Authors (always an array, even with a single author) |
+| `authorAlt` | String array \| null | Authors' English names |
+| `firstAuthor` | String \| null | The primary author name used to build Community File Hub paths |
+| `type` | String | `chinese` (games made by Chinese community members) / `international` (international games) |
+| `software` | String | Software used to create the game, game-level: `mmf`/`godot`/`gamemaker`/`flash`/`other`; defaults to `"mmf"` when unspecified |
+| `tags` | String array | Tags such as `Single Level`, `Speedrun`, `Horror` |
+| `wiki` | Object | `{ zh, en }` Wiki links |
+| `homepage` | Object | `{ zh, en, repo }` homepage / source code repository links |
+| `inlineDescription` | Object | `{ zh, en }` short description |
+| `versions` | Array | All versions, see below |
+| `currentVersion` | String array | **List of current (latest) version names**, see below |
+| `currentVersionAlt` | String \| null | Top-level `ver_alt` field (English name/alias of the game's first version, usually the same as the current version) |
+| `images` | Object | See "Images" |
+| `description` | Object | See "Descriptions" |
 
-`versions` 中每个版本：
+Each version in `versions`:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `version` | 字符串 | 版本名（可能为空字符串，表示单版本作品） |
-| `versionAlt` | 字符串 \| null | 版本英文名/别名 |
-| `date` | 字符串 \| null | 发布日期 |
-| `current` | 布尔 | 该版本是否为当前版本 |
-| `software` | 字符串 | 该版本的制作软件：显式指定则用之，否则回退到游戏级 `software`（最终未指定时为 `"mmf"`） |
-| `source` | 对象 | 发布链接，见「失效链接标记」 |
-| `download` | 对象 | 官方下载链接与提取码（含备用提取码 `codeAlt`） |
-| `dataDownload` | 对象 | 数据包（如音乐）的外部下载链接与提取码，见下 |
-| `resource` | 对象 | 游戏本体的链接对象 |
-| `dataResource` | 对象 | 数据包（如音乐）的链接对象 |
-| `repacker` | 字符串 \| null | 重打包者（若为重打包版本） |
+| `version` | String | Version name (may be an empty string, meaning a single-version game) |
+| `versionAlt` | String \| null | English version name/alias |
+| `date` | String \| null | Release date |
+| `current` | Boolean | Whether this version is the current version |
+| `software` | String | Software used to create this version: used if explicitly specified, otherwise falls back to the game-level `software` (`"mmf"` if ultimately unspecified) |
+| `source` | Object | Release link, see "Expired Link Flags" |
+| `download` | Object | Official download link and extraction code (including alternative code `codeAlt`) |
+| `dataDownload` | Object | External download link and extraction code for the data package (e.g. music), see below |
+| `resource` | Object | Link object for the game itself |
+| `dataResource` | Object | Link object for the data package (e.g. music) |
+| `repacker` | String \| null | The person who repackaged the files (if this is a repackaged version) |
 
-`dataDownload` 结构：`{ url, code, invalid }`，与 `download` 类似但无备用链接（仅对应数据包的 `data_download_url`/`data_code`）。注意它与 `dataResource`（资源站镜像）并存、来源不同。
+`dataDownload` structure: `{ url, code, invalid }`, similar to `download` but without alternative links (corresponding only to the data package's `data_download_url`/`data_code`). Note that it coexists with `dataResource` (the Community File Hub mirror) and comes from a different source.
 
-关于 **`currentVersion` 是数组**：一个作品可以同时有多个「当前版本」（例如同一作品的 Windows 版与 Android 版并列为最新）。因此该字段列出所有当前版本的名称：
+About **`currentVersion` being an array**: a game can have multiple current versions at the same time (e.g. a Windows build and an Android build are both the latest). This field therefore lists all current version names:
 
 ```javascript
-// 取出该作品的全部当前版本对象
+// Get all current version objects of the game
 const currents = game.versions.filter(v => v.current)
-// 或按名称
+// Or match by name
 const currents2 = game.versions.filter(v => game.currentVersion.includes(v.version))
 
-// 只要一个代表版本
+// Just one representative version
 const primary = game.versions.find(v => v.current) || game.versions[0]
 ```
 
-`current` 解析规则：
-- 存在显式 `current: true` 的版本时，这些版本为当前版本（支持多 current）。
-- 无任何显式 `current: true` 时，自动回退为日期最新的版本；但若该最新日期版本已显式 `current: false`，则不再自动标记（此时次新版本也不会被视为 current）。
+`current` resolution rules:
+- If versions with explicit `current: true` exist, those versions are the current ones (multiple current versions supported).
+- If no version has explicit `current: true`, it falls back to the version with the latest date; however, if that latest-dated version has explicit `current: false`, no automatic marking happens (and the second-newest version will not be treated as current either).
 
-无版本数据的条目 `currentVersion` 为空数组。
+Entries without version data have an empty `currentVersion` array.
 
-**国外作品（`international`）旧版本归档**：非当前版本（解析后 `current === false`）的 `resource` / `dataResource` 链接（`zh` / `en`）会在文件名前加入 `old-versions/` 指向归档路径（重打包版本与安卓 `.apk` 除外）；`fileName` 字段保留原始文件名。
+**Old-version archiving for international games (`international`)**: the `resource` / `dataResource` links (`zh` / `en`) of non-current versions (resolved `current === false`) get an `old-versions/` prefix before the file name, pointing to archive paths (except repackaged versions and Android `.apk` files); the `fileName` field keeps the original file name.
 
 <details>
-<summary>示例条目</summary>
+<summary>Example entry</summary>
 
 ```json
 {
@@ -277,31 +279,31 @@ const primary = game.versions.find(v => v.current) || game.versions[0]
 
 </details>
 
-### `/api/mw.json` — Super Mario Worker Project 作品
+### `/api/mw.json` — Super Mario Worker Project levels
 
-SMWP 作品只有中文数据，故链接对象**不含 `en`**，且无 `nameAlt`/`type` 等双语字段。
+SMWP works only have Chinese data, so link objects **do not contain `en`**, and there are no bilingual fields like `nameAlt`/`type`.
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `category` | 字符串 | 固定为 `"mw"` |
-| `name` | 字符串 | 作品名称 |
-| `aliases` | 字符串数组 | 别名 |
-| `author` | 字符串数组 | 作者（多作者即合作作品） |
-| `smwpVer` | 字符串 \| null | 作品使用的 SMWP 版本，如 `v1.7.12`、`MW 4.4` |
-| `date` | 字符串 \| null | 发布日期 |
-| `hasBgm` | 布尔 | 是否含自定义 BGM |
-| `hasBundledSmwp` | 布尔 | 是否已附带 SMWP 本体 |
-| `inlineDescription` | 字符串 \| null | 简短说明 |
-| `wiki` | 字符串 \| null | Wiki 链接 |
-| `homepage` | 字符串 \| null | 主页链接 |
-| `source` / `download` | 对象 | 发布链接 / 下载链接 |
-| `resource` | 数组 | 作品文件的链接对象**列表**（可能分卷，故为数组） |
-| `dataResource` | 数组 | 数据包文件的链接对象列表 |
-| `smwp` | 对象 \| null | 运行所需的 SMWP 本体下载 `{ zh }` |
-| `smwpData` | 对象 \| null | SMWP 音乐/数据包下载 `{ zh }` |
-| `images` / `description` | 对象 | 同通用约定 |
+| `category` | String | Always `"mw"` |
+| `name` | String | The work's name |
+| `aliases` | String array | Aliases |
+| `author` | String array | Authors (multiple authors mean a collaboration) |
+| `smwpVer` | String \| null | The SMWP version used by the work, e.g. `v1.7.12`, `MW 4.4` |
+| `date` | String \| null | Release date |
+| `hasBgm` | Boolean | Whether it contains custom BGM |
+| `hasBundledSmwp` | Boolean | Whether SMWP itself is bundled |
+| `inlineDescription` | String \| null | Short description |
+| `wiki` | String \| null | Wiki link |
+| `homepage` | String \| null | Homepage link |
+| `source` / `download` | Object | Release link / download link |
+| `resource` | Array | **List** of link objects for the work's files (may be split archives, hence an array) |
+| `dataResource` | Array | List of link objects for data package files |
+| `smwp` | Object \| null | SMWP download required to run the work `{ zh }` |
+| `smwpData` | Object \| null | SMWP music/data package download `{ zh }` |
+| `images` / `description` | Object | Same as the general conventions |
 
-`resource` 是数组而非单个对象，因为一个作品可能有多个文件（关卡文件 + 练习模式、分卷压缩包等）：
+`resource` is an array rather than a single object, because a work may have multiple files (a level file plus a practice mode, split archives, etc.):
 
 ```javascript
 for (const file of level.resource) {
@@ -309,10 +311,10 @@ for (const file of level.resource) {
 }
 ```
 
-`hasBundledSmwp` 为 `true` 时 `smwp` 为 `null`（作品自带引擎，无需另行下载）。
+When `hasBundledSmwp` is `true`, `smwp` is `null` (the work bundles the engine, no separate download needed).
 
 <details>
-<summary>示例条目</summary>
+<summary>Example entry</summary>
 
 ```json
 {
@@ -347,35 +349,35 @@ for (const file of level.resource) {
 
 </details>
 
-### `/api/assets.json` — 创作资源
+### `/api/assets.json` — Mario Forever Assets
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `category` | 字符串 | 固定为 `"assets"` |
-| `name` / `nameAlt` | 字符串 | 资源名称 |
-| `aliases` | 字符串数组 | 别名 |
-| `author` | 字符串数组 | 作者 |
-| `type` | 字符串 | `engine` 引擎 / `addon` 拓展 / `sprite` 素材 / `effect` 特效 / `tool` 工具 / `mwtool` MW 工具 |
-| `path` | 字符串 | 引擎类资源的子目录（仅 `type: engine`） |
-| `inlineDescription` | 字符串 \| null | 简短说明 |
-| `repo` | 字符串 \| null | 源码仓库 |
-| `variants` | 数组 | 变体/版本列表，见下 |
-| `currentVariant` | 字符串 \| null | 首个变体名 |
-| `currentVersion` | 字符串 \| null | 首个变体的版本号 |
-| `image` | 字符串 \| null | 资源配图路径（站点根相对） |
+| `category` | String | Always `"assets"` |
+| `name` / `nameAlt` | String | Asset name |
+| `aliases` | String array | Aliases |
+| `author` | String array | Authors |
+| `type` | String | `engine` engine / `addon` extension pack / `sprite` sprite / `effect` visual effect / `tool` tool / `mwtool` Mario Worker tool |
+| `path` | String | Subdirectory of engine-type assets (only `type: engine`) |
+| `inlineDescription` | String \| null | Short description |
+| `repo` | String \| null | Source code repository |
+| `variants` | Array | Variant/version list, see below |
+| `currentVariant` | String \| null | First variant name |
+| `currentVersion` | String \| null | Version number of the first variant |
+| `image` | String \| null | Asset image path (site-root-relative) |
 
-`variants` 中每项：
+Each item in `variants`:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `variant` | 字符串 \| null | 变体名（如「本体」「特效包」），单一版本时为 `null` |
-| `version` | 字符串 \| null | 版本号 |
-| `date` | 字符串 \| null | 发布日期 |
-| `source` / `download` | 对象 | 发布链接 / 下载链接 |
-| `resource` | 数组 | 链接对象列表（一个变体可含多个文件） |
+| `variant` | String \| null | Variant name (e.g. "core", "effects pack"), `null` for single-version assets |
+| `version` | String \| null | Version number |
+| `date` | String \| null | Release date |
+| `source` / `download` | Object | Release link / download link |
+| `resource` | Array | List of link objects (a variant may contain multiple files) |
 
 <details>
-<summary>示例条目</summary>
+<summary>Example entry</summary>
 
 ```json
 {
@@ -410,32 +412,32 @@ for (const file of level.resource) {
 
 ### `/api/softendo.json` — Softendo / Buziol Games
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `category` | 字符串 | 固定为 `"softendo"` |
-| `name` | 字符串 | 游戏名称 |
-| `aliases` | 字符串数组 | 别名 |
-| `type` | 字符串 | `mario` / `mff`（Mario Forever Flash）/ `flash` / `non-mario` / `banesoft` |
-| `software` | 字符串 \| 数组 | 制作软件，如 `gamemaker`、`flash`、`["flash","mmf"]` |
-| `genre` | 字符串数组 | 类型，如 `Puzzle`、`Shmup` |
-| `initialYear` | 数字 \| null | 首次发布年份 |
-| `isNsmf` | 布尔 | 是否为 New Super Mario Forever（使用特殊下载路径） |
-| `versions` | 数组 | 版本列表，见下 |
-| `currentVersion` | 字符串 \| null | 首个版本名 |
-| `years` | 数字数组 | 涉及的所有年份（升序） |
-| `image` | 字符串 \| null | 单张封面图（标题界面或 logo），文件名与游戏名相同，路径如 `/data/softendo/Sonic in Marioland.webp`；无 showcase |
+| `category` | String | Always `"softendo"` |
+| `name` | String | Game name |
+| `aliases` | String array | Aliases |
+| `type` | String | `mario` / `mff` (Mario Forever Flash) / `flash` / `non-mario` / `banesoft` |
+| `software` | String \| Array | Software used to create the game, e.g. `gamemaker`, `flash`, `["flash","mmf"]` |
+| `genre` | String array | Genres, e.g. `Puzzle`, `Shmup` |
+| `initialYear` | Number \| null | The year the game was first released |
+| `isNsmf` | Boolean | Whether it is a New Super Mario Forever game (uses special download paths) |
+| `versions` | Array | Version list, see below |
+| `currentVersion` | String \| null | First version name |
+| `years` | Number array | All years involved (ascending) |
+| `image` | String \| null | Single cover image (title screen or logo), file name same as the game name, path e.g. `/data/softendo/Sonic in Marioland.webp`; no showcase |
 
-`versions` 中每项：
+Each item in `versions`:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `version` | 字符串 | 版本名，如 `"2018"`、`"Lite 2011"` |
-| `year` | 数字 \| null | 发布年份 |
-| `installer` | 数组 | 安装版链接对象列表（通常 0 或 1 项） |
-| `portable` | 数组 | 绿色版链接对象列表 |
-| `selfextract` | 数组 | 自解压版链接对象列表 |
+| `version` | String | Version name, e.g. `"2018"`, `"Lite 2011"` |
+| `year` | Number \| null | Release year |
+| `installer` | Array | List of installer link objects (usually 0 or 1 item) |
+| `portable` | Array | List of portable link objects |
+| `selfextract` | Array | List of self-extracting link objects |
 
-`portable` / `selfextract` 的每项额外含 `kind` 字段，标明文件形态：`portable`、`exe`、`swf`、`zip`。Flash 类游戏常同时提供 `swf` 与 `exe`：
+Each item of `portable` / `selfextract` additionally carries a `kind` field indicating the file form: `portable`, `exe`, `swf`, `zip`. Flash games often provide both `swf` and `exe`:
 
 ```javascript
 for (const v of game.versions) {
@@ -445,22 +447,22 @@ for (const v of game.versions) {
 }
 ```
 
-三者统一为数组，可用同一套逻辑遍历；不存在对应形态时为空数组。
+All three are unified as arrays so the same logic can iterate them; they are empty arrays when a form does not exist.
 
-### `/api/original-mf.json` — 原版 Mario Forever
+### `/api/original-mf.json` — Original Mario Forever
 
-顶层直接是版本数组（无作品层级）：
+The top level is directly a version array (no game level):
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `version` | 字符串 | 版本名，如 `v4.4`、`Advance v4.41`、`The Lost Map` |
-| `date` | 字符串 \| null | 发布日期 |
-| `rating` | 字符串 \| null | 星级推荐度，如 `★★★★☆` |
-| `ratingScore` | 数字 \| null | 星级的数字化表示，1~10 |
-| `installer` | 对象 | 安装版，见下 |
-| `portable` | 对象 | 绿色版链接对象 |
+| `version` | String | Version name, e.g. `v4.4`, `Advance v4.41`, `The Lost Map` |
+| `date` | String \| null | Release date |
+| `rating` | String \| null | Star rating recommendation, e.g. `★★★★☆` |
+| `ratingScore` | Number \| null | Numeric representation of the star rating, 1–10 |
+| `installer` | Object | Installer, see below |
+| `portable` | Object | Portable link object |
 
-`ratingScore` 换算规则：`★` 计 2 分，`☆`（半星）计 1 分，满分 10。便于排序与比较：
+`ratingScore` conversion: `★` counts 2 points, `☆` (half star) counts 1, full score 10. This is convenient for sorting and comparison:
 
 | rating | score | | rating | score |
 | --- | --- | --- | --- | --- |
@@ -470,12 +472,12 @@ for (const v of game.versions) {
 | ★★ | 4 | | ★★★★☆ | 9 |
 | ★★☆ | 5 | | ★★★★★ | 10 |
 
-`installer` 在通用链接对象之外，额外含两个布尔标记：
+Beyond the common link object, `installer` carries two extra boolean flags:
 
-| 字段 | 类型 | 说明 |
+| Field | Type | Description |
 | --- | --- | --- |
-| `toolbar` | 布尔 | 安装程序是否捆绑 Mario Forever Toolbar（广告插件）。为 `true` 时建议提示用户在安装时取消勾选，或优先使用绿色版 |
-| `nsmf` | 布尔 | 是否使用 New Super Mario Forever 路径格式（影响 `installer` 的链接，不影响 `portable`） |
+| `toolbar` | Boolean | Whether the installer bundles the Mario Forever Toolbar (adware). When `true`, consider prompting users to uncheck it during installation, or prefer the portable version |
+| `nsmf` | Boolean | Whether the New Super Mario Forever path format is used (affects `installer` links, not `portable`) |
 
 ```json
 {
@@ -498,13 +500,13 @@ for (const v of game.versions) {
 }
 ```
 
-某些版本没有安装版或绿色版，此时 `fileName` 与两个链接均为 `null`，但对象结构保持完整，无需判空分支。
+Some versions have no installer or portable version; in that case `fileName` and both links are `null`, but the object structure remains complete — no null checks needed.
 
-## 使用示例
+## Usage Examples
 
-### 搜索作品
+### Search for Games
 
-名称、英文名与别名都应参与匹配：
+Name, English name, and aliases should all participate in matching:
 
 ```javascript
 const games = await fetch('https://download.marioforever.net/api/mf.json').then(r => r.json())
@@ -522,18 +524,18 @@ function search(list, query) {
 search(games, 'MFMP')
 ```
 
-### 按标签与类型筛选
+### Filter by Tag and Type
 
 ```javascript
-// 国内作品中的单关卡作品
+// Single-level games made by Chinese community members
 const singleLevels = games.filter(g =>
   g.type === 'chinese' && g.tags.includes('Single Level')
 )
 ```
 
-### 按发布日期排序
+### Sort by Release Date
 
-日期在版本层级，取其当前版本的日期：
+Dates live at the version level; take the date of each game's current version:
 
 ```javascript
 function latestDate(game) {
@@ -544,28 +546,28 @@ function latestDate(game) {
 const recent = [...games].sort((a, b) => latestDate(b).localeCompare(latestDate(a))).slice(0, 20)
 ```
 
-### 取某作品的全部下载方式
+### Collect All Download Options for a Game
 
 ```javascript
 function collectDownloads(game, lan = 'zh') {
   const out = []
   for (const v of game.versions) {
-    // 官方下载链接
+    // Official download link
     if (v.download.url && !v.download.invalid) {
-      out.push({ version: v.version, kind: '官方', url: v.download.url, code: v.download.code })
+      out.push({ version: v.version, kind: 'official', url: v.download.url, code: v.download.code })
     }
-    // 资源站
+    // Community File Hub
     for (const res of [v.resource, v.dataResource]) {
       if (!res.fileName) continue
       const site = lan === 'en' ? res.en : res.zh
-      if (site) out.push({ version: v.version, kind: '资源站', url: site })
+      if (site) out.push({ version: v.version, kind: 'Community File Hub', url: site })
     }
   }
   return out
 }
 ```
 
-### 统计某作者的作品
+### Count Works by Author
 
 ```javascript
 const byAuthor = new Map()
@@ -577,18 +579,18 @@ for (const g of games) {
 const top = [...byAuthor].sort((a, b) => b[1] - a[1]).slice(0, 10)
 ```
 
-### 合并多个端点
+### Merge Multiple Endpoints
 
 ```javascript
 const BASE = 'https://download.marioforever.net/api'
 const [mf, mw, assets] = await Promise.all(
   ['mf', 'mw', 'assets'].map(id => fetch(`${BASE}/${id}.json`).then(r => r.json()))
 )
-// 每条数据都带 category 字段，合并后仍可区分来源
+// Every entry carries a category field, so sources remain distinguishable after merging
 const all = [...mf, ...mw, ...assets]
 ```
 
-### Python 示例
+### Python Example
 
 ```python
 import requests
@@ -596,38 +598,38 @@ import requests
 BASE = 'https://download.marioforever.net/api'
 games = requests.get(f'{BASE}/mf.json').json()
 
-# 找出当前版本的资源站链接，并打印下载地址
+# Find the Community File Hub links of current versions and print the download URLs
 for g in games:
     for v in g['versions']:
         if not v['current']:
             continue
         res = v['resource']
         if res['zh']:
-            print(g['name'], v['version'] or '(单版本)', res['zh'])
+            print(g['name'], v['version'] or '(single version)', res['zh'])
 ```
 
-## 注意事项
+## Notes
 
-**缓存与更新** — API 随站点构建生成，数据更新频率与站点部署一致。建议客户端缓存并通过 `index.json` 的 `generatedAt` 判断是否需要刷新，避免反复拉取完整数据。
+**Caching and updates** — The API is generated at site build time, so the data update frequency matches site deployment. Clients are advised to cache the data and use `generatedAt` from `index.json` to decide whether to refresh, avoiding repeatedly fetching the full data.
 
-**文件体积** — `mf.json` 内联了全部描述文本，体积较大（数 MB）。服务端已启用 gzip/brotli 压缩，正常 HTTP 客户端会自动解压。若只需少量字段，请在获取后自行裁剪，或考虑仅在需要时加载。
+**File size** — `mf.json` inlines all description text and is large (several MB). The server has gzip/brotli compression enabled, and normal HTTP clients decompress automatically. If you only need a few fields, trim the data after fetching, or consider loading it only when needed.
 
-**没有查询参数** — 静态文件不支持 `?category=` 之类的服务端筛选，所有筛选、排序、分页都需在客户端完成。
+**No query parameters** — Static files do not support server-side filtering like `?category=`; all filtering, sorting, and pagination must be done client-side.
 
-**字段可能为 null** — 数据由社区协作维护，多数字段是可选的。请始终做空值判断，不要假定某字段一定存在。
+**Fields may be null** — The data is maintained collaboratively by the community, and most fields are optional. Always do null checks; do not assume a field always exists.
 
-**结构可能演进** — 本 API 目前未做版本化。若字段结构发生变化，会在仓库提交记录与本文档中说明。生产环境使用建议锁定自建副本，或关注仓库更新。
+**Structure may evolve** — This API is not versioned yet. If field structures change, it will be documented in the repository's commit history and this document. For production use, consider pinning your own copy, or watch for repository updates.
 
-**数据来源与许可** — 数据来自 `public/data/` 下的 YAML 列表，由 Mario Forever 社区共同维护。项目以 MIT 协议开源，欢迎在协议范围内使用；引用数据时请注明来源为 download.marioforever.net。
+**Data source and license** — The data comes from the YAML lists under `public/data/`, maintained jointly by the Mario Forever community. The project is open source under the MIT license; feel free to use it within the scope of the license. When citing the data, please attribute it to download.marioforever.net.
 
-## 本地生成
+## Local Generation
 
-API 由 `scripts/generate-api.js` 生成，输出到 `public/api/`：
+The API is generated by `scripts/generate-api.js` into `public/api/`:
 
 ```bash
 bun run generate-api
 ```
 
-`bun run build` 会自动执行该步骤，顺序为：生成图片索引 → 生成 API → Vite 构建 → 压缩产物。
+`bun run build` runs this step automatically, in the order: generate image index → generate API → Vite build → compress artifacts.
 
-如需新增字段或端点，请修改 `scripts/generate-api.js`。注意其中的下载链接构建逻辑镜像了 `src/util/` 下的 `GameUtil.js`、`SoftendoUtil.js`、`AssetUtil.js` 与 `src/components/OriginalMfTable.vue`，修改路径规则时请保持两侧一致。
+To add fields or endpoints, modify `scripts/generate-api.js`. Note that its download link building logic mirrors `GameUtil.js`, `SoftendoUtil.js`, and `AssetUtil.js` under `src/util/` as well as `src/components/OriginalMfTable.vue`; keep both sides consistent when changing path rules.
