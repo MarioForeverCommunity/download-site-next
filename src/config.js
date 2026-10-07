@@ -74,11 +74,13 @@ export const topBar = [
     "name" : "关注B站",
     "show_en" : false
   },
-  // {
-  //   "link" : "https://space.bilibili.com/2136191287",
-  //   "name" : "关注B站",
-  //   "show_en" : false
-  // },
+  {
+    "link" : "https://github.com/MarioForeverCommunity/download-site-next",
+    "name" : "Source Code",
+    "name_alt" : "Source Code",
+    "show_zh" : false,
+    "show_en" : true
+  },
 ]
 
 // navTop - Navigator entries.
