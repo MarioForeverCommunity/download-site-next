@@ -48,11 +48,11 @@ onBeforeUnmount(() => {
 <template>
   <footer>
     <template v-if="lan === 'zh'">
-      <span><a target="_blank" href="https://status.marioforever.net/">网站状态</a></span>
+      <span><a class="external-link" target="_blank" href="https://status.marioforever.net/">网站状态</a></span>
       <span>网站版本：{{ siteVersion }}</span>
       <span><a href="#" @click.prevent="showChangelog = true">更新履历</a></span>
       <span>构建时间：{{ formatBuildTime(buildTime) }}</span>
-      <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
+      <span><a class="external-link" target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
     </template>
     <template v-else>
       <div class="copyright-notice">This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo.</div>
@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
         <span>Site version: {{ siteVersion }}</span>
         <span><a href="#" @click.prevent="showChangelog = true">Changelog</a></span>
         <span>Build time: {{ formatBuildTime(buildTime) }}</span>
-        <span><a target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">Source code</a></span>
+        <span><a class="external-link" target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">Source code</a></span>
       </div>
     </template>
   </footer>
@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
   * {
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   footer {
@@ -120,5 +120,10 @@ onBeforeUnmount(() => {
 
   a {
     color: rgb(170, 170, 170)
+  }
+
+  a.external-link::after {
+    content: " ↗";
+    font-size: .75em;
   }
 </style>

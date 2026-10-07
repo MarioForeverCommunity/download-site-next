@@ -153,7 +153,7 @@ const getHomepageUrl = () => {
     <div class="game-author">
       <span v-if="typeof getDisplayAuthorList() == 'string'">
         <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
-          <a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">
+          <a class="external-link" :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">
             {{ getDisplayAuthorList() }}
           </a>
         </template>
@@ -165,7 +165,7 @@ const getHomepageUrl = () => {
         <span v-for="(author, authorindex) in getDisplayAuthorList()" :key="author + authorindex">
           <br v-if="authorindex != 0" />
           <template v-if="getAuthorFolderURL(game, author, lan)">
-            <a :href="getAuthorFolderURL(game, author, lan)" target="_blank">
+            <a class="external-link" :href="getAuthorFolderURL(game, author, lan)" target="_blank">
               {{ author }}
             </a>
           </template>
@@ -337,6 +337,11 @@ const getHomepageUrl = () => {
   .game-author a:hover {
     color: inherit;
     text-decoration: underline;
+  }
+
+  a.external-link::after {
+    content: " ↗";
+    font-size: .75em;
   }
 
   .game-name-link {
