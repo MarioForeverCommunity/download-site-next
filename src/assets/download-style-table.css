@@ -3,7 +3,7 @@
   box-sizing: border-box;
   padding: 10px 10px;
   margin: 3px auto;
-  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   font-feature-settings: normal;
   font-kerning: auto;
   font-optical-sizing: auto;

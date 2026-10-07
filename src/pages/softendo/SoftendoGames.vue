@@ -657,7 +657,7 @@ const getGameImage = (game) => {
   .hidden-container {
     width: 100vw;
     margin-top: -10px;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   .filter-container {
@@ -699,7 +699,7 @@ const getGameImage = (game) => {
     box-sizing: border-box;
     padding: 10px 20px;
     margin: 20px auto;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   @media (max-width: 800px) {
@@ -887,7 +887,7 @@ const getGameImage = (game) => {
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
     z-index: 1002;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   /* Tag Count Badge */
@@ -943,7 +943,7 @@ const getGameImage = (game) => {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   .tag-modal-header {

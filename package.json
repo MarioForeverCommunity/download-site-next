@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^2.0.1",
+    "@fontsource/inter": "^5.3.0",
     "axios": "^1.20.0",
     "js-cookie": "^3.0.8",
     "js-yaml": "^5.4.1",

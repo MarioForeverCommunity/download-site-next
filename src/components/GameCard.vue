@@ -306,7 +306,7 @@ const getHomepageUrl = () => {
     padding: 1em;
     width: 100%;
     height: 100%;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
     font-feature-settings: normal;
     font-kerning: auto;
     font-optical-sizing: auto;

@@ -1,0 +1,6 @@
+/* Inter 字体（@fontsource/inter），由各入口 main.js 全局引入 */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/400-italic.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";

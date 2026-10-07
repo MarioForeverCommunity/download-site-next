@@ -1014,7 +1014,7 @@ const { floatingStyles } = useFloating(reference, floating,
   .hidden-container {
     width: 100vw;
     margin-top: -10px;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   .filter-container {
@@ -1060,7 +1060,7 @@ const { floatingStyles } = useFloating(reference, floating,
     box-sizing: border-box;
     padding: 10px 20px;
     margin: 20px auto;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
     font-feature-settings: normal;
     font-kerning: auto;
     font-optical-sizing: auto;
@@ -1237,7 +1237,7 @@ const { floatingStyles } = useFloating(reference, floating,
     padding: 1em;
     border-radius: .5em;
     overflow-y: auto;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   .download {
@@ -1359,7 +1359,7 @@ const { floatingStyles } = useFloating(reference, floating,
     max-width: calc(min(800px, 90vw));
     padding: .25em .75em;
     z-index: 1002;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
 </style>

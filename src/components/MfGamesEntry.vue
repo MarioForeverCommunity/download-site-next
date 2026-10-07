@@ -659,7 +659,7 @@ body.dark .entry-gallery {
   max-width: calc(min(800px, 90vw));
   padding: .25em .75em;
   z-index: 1002;
-  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
 }
 
 .modal-bg {
@@ -694,7 +694,7 @@ body.dark .entry-gallery {
   padding: 1em;
   border-radius: .5em;
   overflow-y: auto;
-  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
 }
 
 .download {

@@ -1287,7 +1287,7 @@ const nextImage = () => {
     position: relative;
     display: flex;
     flex-direction: column;
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
   }
 
   .close-button {
@@ -1758,7 +1758,7 @@ const nextImage = () => {
   }
 
   .preview-caption {
-    font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+    font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
     text-align: center;
     padding: 8px 0 4px;
     color: #333;

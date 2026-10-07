@@ -211,7 +211,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 * {
-  font-family: Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+  font-family: Inter, Helvetica, Arial, "Microsoft YaHei", "PingFang SC", "WenQuanYi Micro Hei", Tahoma, sans-serif;
 }
 
 /* 深色模式适配 */
