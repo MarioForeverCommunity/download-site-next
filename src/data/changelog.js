@@ -5,6 +5,47 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "2.5.3",
+    date: "2026-10-07",
+    features: [
+      "全站启用 Inter 字体",
+      "非彩色文本外链右侧显示 ↗ 图标，便于区分外部链接",
+      "Softendo 页的类型筛选与卡片圆点提示中，MFF 类型显示全称「Mario Forever Flash」"
+    ],
+    features_en: [
+      "Applied the Inter font across the whole site",
+      "External links shown as plain text now display a ↗ icon, making them easier to tell apart",
+      "Added a Source Code link to the top bar",
+      "The MFF type in the type filter and card dot tooltip on the Softendo page now shows its full name, Mario Forever Flash"
+    ],
+    improvements: [
+      "筛选栏中的排序控件换行时作为整体显示，不再被拆分到多行",
+      "统一各页面图标按钮间距，工具栏按钮组换行到行首时自动省去左侧边距",
+      "列表视图中 MW 版本下载按钮增加左边距",
+      "更新中英文说明文档的内容与措辞"
+    ],
+    improvements_en: [
+      "Sort controls in the filter bars now wrap as a whole unit instead of being split across lines",
+      "Unified icon button spacing; the toolbar button group now sits flush with the line start when wrapped",
+      "Added a left margin to the MW version download button in the list view",
+      "Updated the content and wording of the Chinese and English documentation"
+    ],
+    fixes: [
+      "修复 MW 4.0 作品的资源站路径与显示，现与 MW 4.4 同等处理"
+    ],
+    fixes_en: [
+      "Fixed the File Hub path and display for Mario Worker 4.0 levels, now treated the same as Mario Worker 4.4"
+    ],
+    misc: [
+      "新增月报专栏生成脚本，支持输出 Markdown 与 Discuz BBCode 格式",
+      "新增英文版 API 文档"
+    ],
+    misc_en: [
+      "Added a monthly report generator script that outputs both Markdown and Discuz BBCode",
+      "Added the English API documentation"
+    ]
+  },
+  {
     version: "2.5.2",
     date: "2026-09-09",
     features: [
