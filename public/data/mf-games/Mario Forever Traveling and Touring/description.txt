@@ -1,5 +1,17 @@
 Mario Forever Traveling and Touring：版本合集
 
+10.7:
+Mario Forever Traveling and Touring World 9
+本作品作者：小胖有萌新
+加入：World 9
+封面，字体和大地图来自本人制作
+变化:大地图改为国外风
+敌人素材来自UE Mod Beta和WN提供
+个人主页：来自bilibili
+
+
+历史版本：
+2026：
 9.30:
 Mario Forever Traveling and Touring v1.0
 本作品作者：小胖有萌新
@@ -12,8 +24,6 @@ Mario Forever Traveling and Touring v1.0
 敌人素材来自UE Mod Beta和WN提供
 个人主页：来自bilibili
 
-
-历史版本：
 9.15:
 Mario Forever Traveling and Touring Hardcore
 本作品作者：小胖有萌新
