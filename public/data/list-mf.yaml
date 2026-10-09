@@ -1,4 +1,21 @@
 ---
+- game: "Mario Forever: Horoscope Worlds Series"
+  game_alt:
+  author: Mario Tube
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-10-09
+  source_url: https://www.youtube.com/watch?v=76RSfM-aJSE
+  source_url_alt:
+  download_url: https://www.mediafire.com/file/0q9lno82fdopjeq/Mario+Forever+Horoscope+Worlds+Series.zip/file
+  code:
+  download_url_alt:
+  file_name: Mario Forever Horoscope Worlds Series.zip
+  file_url:
 - game: Chaoz Fantasy
   game_alt:
   author: Dr.Chaos Kirby
