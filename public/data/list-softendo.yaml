@@ -9,23 +9,23 @@
   language:
   - en
   ver:
-  - "2018":
+  - '2018':
       year: 2018
       installer: Mario Forever Block Party (2018).exe
       portable: Mario Forever Block Party (2018).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Mario Forever Block Party (2011, with toolbar).exe
       portable: Mario Forever Block Party (2011).zip
-  - "May 2009":
+  - 'May 2009':
       year: 2009
       installer: Mario Forever Block Party (May 2009).exe
       portable: Mario Forever Block Party (May 2009).zip
-  - "Apr 2009":
+  - 'Apr 2009':
       year: 2009
       installer: Mario Forever Block Party (Apr 2009).exe
       portable: Mario Forever Block Party (Apr 2009).zip
-  - "2008":
+  - '2008':
       year: 2008
       installer: Mario Forever Block Party (2008).exe
       portable: Mario Forever Block Party (2008).zip
@@ -40,31 +40,31 @@
   language:
   - en
   ver:
-  - "2011 ver, 2017 re-release":
+  - '2011 ver, 2017 re-release':
       year: 2017
       installer: Mario Forever Galaxy (2011 version, 2017 re-release).exe
       portable: Mario Forever Galaxy (2011 version, 2017 re-release).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Mario Forever Galaxy (2011, with toolbar).exe
       portable: Mario Forever Galaxy (2011).zip
-  - "Lite 2011":
+  - 'Lite 2011':
       year: 2011
       installer: Mario Forever Galaxy Lite (2011, with toolbar).exe
       portable: Mario Forever Galaxy Lite (2011).zip
-  - "2009":
+  - '2009':
       year: 2009
       installer: Mario Forever Galaxy (2009).exe
       portable: Mario Forever Galaxy (2009).zip
-  - "Lite 2009":
+  - 'Lite 2009':
       year: 2009
       installer: Mario Forever Galaxy Lite (2009).exe
       portable: Mario Forever Galaxy Lite (2009).zip
-  - "Oct 2008":
+  - 'Oct 2008':
       year: 2008
       installer: Mario Forever Galaxy (Oct 2008).exe
       portable: Mario Forever Galaxy (Oct 2008).zip
-  - "Aug 2008":
+  - 'Aug 2008':
       year: 2008
       installer: Mario Forever Galaxy (Aug 2008).exe
       portable: Mario Forever Galaxy (Aug 2008).zip
@@ -90,11 +90,11 @@
   language:
   - en
   ver:
-  - "2017 re-release":
+  - '2017 re-release':
       year: 2017
       installer: Mario Online (2017 re-release).exe
       portable: Mario Online (2017 re-release).zip
-  - "Original":
+  - 'Original':
       year: 2009
       installer: Mario Online.exe
       portable: Mario Online.zip
@@ -110,38 +110,38 @@
   - en
   - pl
   ver:
-  - "2016-08-12 Pack":
+  - '2016-08-12 Pack':
       year: 2016
       installer: Super Mario Forever Pack (2016-08-12).exe
       portable: Super Mario Forever Pack (2016-08-12).zip
-  - "2016-02-11 Pack":
+  - '2016-02-11 Pack':
       year: 2016
       installer: Super Mario Forever Pack (2016-02-11).exe
       portable: Super Mario Forever Pack (2016-02-11).zip
-  - "2015-03-03":
+  - '2015-03-03':
       year: 2015
       installer: New Super Mario Forever (2015-03-03).exe
       portable: New Super Mario Forever (2015-03-03).zip
-  - "2013-07-24":
+  - '2013-07-24':
       year: 2013
       installer: New Super Mario Forever (2013-07-24).exe
       portable: New Super Mario Forever (2013-07-24).zip
-  - "2013-07-09":
+  - '2013-07-09':
       year: 2013
       installer: New Super Mario Forever (2013-07-09).exe
       portable: New Super Mario Forever (2013-07-09).zip
-  - "2013-03-04":
+  - '2013-03-04':
       year: 2013
       installer: New Super Mario Forever (2013-03-04).exe
       portable: New Super Mario Forever (2013-03-04).zip
-  - "2012-12-29":
+  - '2012-12-29':
       year: 2012
       installer: New Super Mario Forever (2012-12-29).exe
       portable: New Super Mario Forever (2012-12-29).7z
-  - "2012-12-28":
+  - '2012-12-28':
       year: 2012
       portable: New Super Mario Forever (2012-12-28).zip
-  - "2012-12-21":
+  - '2012-12-21':
       year: 2012
       installer: New Super Mario Forever (2012-12-21).exe
       portable: New Super Mario Forever (2012-12-21).zip
@@ -195,12 +195,12 @@
   language:
   - en
   ver:
-  - "2011":
+  - '2011':
       year: 2011
       installer: Mario Forever Flash (2011, with toolbar).exe
       portable:
         exe: Mario Forever Flash (2011).exe
-  - "2009":
+  - '2009':
       year: 2009
       installer: Mario Forever Flash (2009).exe
       portable:
@@ -267,12 +267,12 @@
   language:
   - en
   ver:
-  - "Original":
+  - 'Original':
       year: 2009
       installer: Squario.exe
       portable:
         swf: Squario 1.swf
-  - "Easier":
+  - 'Easier':
       year: 2009
       portable:
         swf: Squario无限生命版.swf
@@ -333,12 +333,12 @@
   language:
   - en
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Super Mario Bombastic (2017).exe
       portable:
         zip: Super Mario Bombastic (2017).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario Bombastic (2011, with toolbar).exe
       portable:
@@ -379,12 +379,12 @@
   language:
   - en
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Super Mario Castle 2 (2017).exe
       portable:
         zip: Super Mario Castle 2 (2017).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario Castle 2 (2011, with toolbar).exe
       portable:
@@ -397,12 +397,12 @@
   language:
   - en
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Super Mario Coins (2017).exe
       portable:
         zip: Super Mario Coins (2017).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario Coins (2011, with toolbar).exe
       portable:
@@ -417,12 +417,12 @@
   language:
   - en
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Super Mario Dark Dungeon (2017).exe
       portable:
         zip: Super Mario Dark Dungeon (2017).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario Dark Dungeon (2011, with toolbar).exe
       portable:
@@ -438,17 +438,17 @@
   language:
   - en
   ver:
-  - "2017 re-release":
+  - '2017 re-release':
       year: 2017
       installer: Super Mario Starshine Finder.exe
       portable:
         zip: Super Mario Starshine Finder.zip
-  - "2011-07-22":
+  - '2011-07-22':
       year: 2011
       installer: Super Mario Galaxy the Star Finder (2) (with toolbar).exe
       portable:
         exe: Super Mario Galaxy The Star Finder (2).exe
-  - "2011-07-01":
+  - '2011-07-01':
       year: 2011
       installer: Super Mario Galaxy the Star Finder (with toolbar).exe
       portable:
@@ -535,17 +535,17 @@
   - en
   - pl
   ver:
-  - "2003 ver, 2017 re-release":
+  - '2003 ver, 2017 re-release':
       year: 2017
       installer: Super Mario Shooten (2003 version, 2017 re-release) (English).exe
       portable:
         zip: Super Mario Shooten (2003 version, 2017 re-release) (English).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario Shooten (with toolbar).exe
       portable:
         exe: Super Mario Shooten (2011).exe
-  - "2003":
+  - '2003':
       year: 2003
       installer: Super Mario Shooten (2003) (Polish).exe
       portable:
@@ -567,12 +567,12 @@
   language:
   - en
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Super Mario The Curibo Shoe (2017).exe
       portable:
         zip: Super Mario The Curibo Shoe (2017).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario The Curibo Shoe (2011, with toolbar).exe
       portable:
@@ -587,17 +587,17 @@
   - en
   - pl
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Super Mario The Tag Play (2017) (Polish).exe
       portable:
         zip: Super Mario The Tag Play (2017) (Polish).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Super Mario The Tag Play (2011, with toolbar).exe
       portable:
         exe: Super Mario The Tag Play (2011).exe
-  - "2006":
+  - '2006':
       year: 2006
       installer: Super Mario The Tag Play (2006).exe
       portable:
@@ -622,15 +622,15 @@
   language:
   - en
   ver:
-  - "2011 ver, 2017 re-release":
+  - '2011 ver, 2017 re-release':
       year: 2017
       installer: Arcade Sniper (2011 version, 2017 re-release).exe
       portable: Arcade Sniper (2011 version, 2017 re-release).zip
-  - "2009 ver, 2013 re-release":
+  - '2009 ver, 2013 re-release':
       year: 2013
       installer: Arcade Sniper (2009 version, 2013 re-release).exe
       portable: Arcade Sniper (2009 version, 2013 re-release).zip
-  - "2009":
+  - '2009':
       year: 2009
       installer: Arcade Sniper (2009).exe
       portable: Arcade Sniper (2009).zip
@@ -686,11 +686,11 @@
   language:
   - en
   ver:
-  - "2011 ver, 2017 re-release":
+  - '2011 ver, 2017 re-release':
       year: 2017
       installer: Dragon Ball Arcade (2011 version, 2017 re-release).exe
       portable: Dragon Ball Arcade (2011 version, 2017 re-release).zip
-  - "2009":
+  - '2009':
       year: 2009
       installer: Dragon Ball Arcade (2009).exe
       portable: Dragon Ball Arcade (2009).zip
@@ -808,10 +808,10 @@
   - en
   - pl
   ver:
-  - "2006":
+  - '2006':
       year: 2006
       portable: Ninja with the Real Balls (2006).zip
-  - "2004":
+  - '2004':
       year: 2004
       selfextract: Ninja Jonder Deluxe (2004).exe
       portable: Ninja Jonder Deluxe (2004).zip
@@ -825,7 +825,7 @@
   - en
   - pl
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Obliterator (2017).exe
       portable: Obliterator (2017).zip
@@ -854,11 +854,11 @@
   - en
   - pl
   ver:
-  - "2005":
+  - '2005':
       year: 2005
       installer: Stargrade (2005).exe
       portable: Stargrade (2005).zip
-  - "2003":
+  - '2003':
       year: 2003
       installer: Stargrade (2003).exe
       portable: Stargrade (2003).zip
@@ -898,14 +898,14 @@
   language:
   - en
   ver:
-  - "2017":
+  - '2017':
       year: 2017
       installer: Urbagility 2 (2017).exe
       portable: Urbagility 2 (2017).zip
-  - "2006 fixed":
+  - '2006 fixed':
       year: 2006
       portable: Urbagility 2 (2006) (fixed).zip
-  - "2006":
+  - '2006':
       year: 2006
       installer: Urbagility 2 (2006).exe
       portable: Urbagility 2 (2006).zip
@@ -920,15 +920,15 @@
   language:
   - en
   ver:
-  - "2011 ver, 2017 re-release":
+  - '2011 ver, 2017 re-release':
       year: 2017
       installer: Zelda Forever (2011 version, 2017 re-release).exe
       portable: Zelda Forever (2011 version, 2017 re-release).zip
-  - "2011":
+  - '2011':
       year: 2011
       installer: Zelda Forever (2011).exe
       portable: Zelda Forever (2011).zip
-  - "2009":
+  - '2009':
       year: 2009
       installer: Zelda Forever (2009).exe
       portable: Zelda Forever (2009).zip
@@ -980,10 +980,10 @@
   language:
   - en
   ver:
-  - "2009":
+  - '2009':
       year: 2009
       installer: Super Mario Castle Buster (2009).exe
-  - "2008":
+  - '2008':
       year: 2008
       installer: Super Mario Castle Buster (2008).exe
       portable: Super Mario Castle Buster.zip
@@ -995,10 +995,10 @@
   language:
   - en
   ver:
-  - "Mar 2008":
+  - 'Mar 2008':
       year: 2008
       installer: Super Mario Crystals (18 Mar 2008).exe
-  - "Jan 2008":
+  - 'Jan 2008':
       year: 2008
       installer: Super Mario Crystals.exe
       portable: Super Mario Crystals.zip
@@ -1020,10 +1020,10 @@
   language:
   - en
   ver:
-  - "Mar 2008":
+  - 'Mar 2008':
       year: 2008
       installer: Super Mario Ice 2 (18 Mar 2008).exe
-  - "Jan 2008":
+  - 'Jan 2008':
       year: 2008
       installer: Super Mario Ice 2.exe
       portable: Super Mario Ice 2.zip
