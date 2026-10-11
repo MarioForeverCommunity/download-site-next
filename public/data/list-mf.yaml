@@ -158,15 +158,26 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2026-09-24
-  source_url: https://www.youtube.com/watch?v=rP9gKIOpubQ
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/c8ekt11zck1zamy/Mario_Forever_2027.zip/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever 2027.zip
-  file_url:
+  - 2026-10-06 ver.:
+      ver_alt:
+      date: 2026-10-06
+      source_url: https://www.youtube.com/watch?v=9iQGIb-b5lw
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/vusv80gi55a9thf/Mario_Forever_2027.rar/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever 2027.rar
+      file_url:
+  - 2026-09-24 ver.:
+      ver_alt:
+      date: 2026-09-24
+      source_url: https://www.youtube.com/watch?v=rP9gKIOpubQ
+      source_url_alt:
+      download_url: ~https://www.mediafire.com/file/c8ekt11zck1zamy/Mario_Forever_2027.zip/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever 2027.zip
+      file_url:
 - game: World of Dreams
   game_alt:
   tag:
