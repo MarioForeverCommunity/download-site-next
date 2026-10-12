@@ -273,12 +273,12 @@ export function getAuthorFolderURL(item, author, lan) {
     }
     return `https://file.marioforever.net/Mario Forever/安卓游戏/${encodeURIComponent(folder)}/`;
   }
-  // Mario Worker 作品：区分合作作品和 MW 4.4
+  // Mario Worker 作品：区分合作作品和 MW 4.4 / MW 4.0
   if (item.category === 'mw') {
     const folder = author || item.author;
     if (!folder) return null;
-    // MW 4.4 作品使用单独的目录
-    if (item.smwp_ver === 'MW 4.4') {
+    // MW 4.4 / MW 4.0 作品使用单独的目录
+    if (item.smwp_ver === 'MW 4.4' || item.smwp_ver === 'MW 4.0') {
       return `https://file.marioforever.net/Mario Worker/Mario Worker 4.4 作品/${encodeURIComponent(folder)}/`;
     }
     if (folder === '合作作品' || Array.isArray(folder)) {
