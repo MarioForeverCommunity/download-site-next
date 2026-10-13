@@ -5426,6 +5426,16 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v2.5.7:
+      ver_alt:
+      date: 2026-10-13
+      source_url: https://www.youtube.com/watch?v=CentNYAoTeA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/4z1a9pwc8g973i3/MFEWS_v2.5.7.zip/file
+      code:
+      download_url_alt:
+      file_name: MFEWS v2.5.7.zip
+      file_url:
   - v2.5.6:
       ver_alt:
       date: 2026-01-04
