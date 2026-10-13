@@ -116,6 +116,16 @@
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever:_Community_Edition
   repo: https://github.com/KHwang9883/mf-community-edition/tree/port/android
   ver:
+  - v2.2.2.1 Android:
+      ver_alt:
+      date: 2026-10-13
+      source_url: https://www.marioforever.net/thread-3943-1-1.html
+      source_url_alt: https://github.com/KHwang9883/mf-community-edition/releases/tag/v2.2.2.1
+      download_url: https://github.com/KHwang9883/mf-community-edition/releases/download/v2.2.2.1/Mario.Forever.Community.Edition.2.2.2.1.Android.apk
+      code:
+      download_url_alt:
+      file_name: Mario Forever Community Edition 2.2.2.1 Android.apk
+      file_url:
   - v2.2.2 Android:
       ver_alt:
       date: 2026-09-30
