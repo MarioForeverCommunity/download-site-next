@@ -1,4 +1,19 @@
 ---
+- name: Mario Forever Green Tea Engine
+  alias:
+  - MFGTE
+  - Godot4
+  author: 绿色的糖果
+  author_alt: Green Sweet
+  type: engine
+  description:
+  image:
+  source_url: https://www.marioforever.net/thread-3977-1-1.html
+  download_url:
+  code:
+  repo: https://github.com/GreenSweet233/Mario-Forever-Green-Tea-Engine
+  ver:
+  date: 2026-10-15
 - name: TileExporter
   author: 绿色的糖果
   type: addon
