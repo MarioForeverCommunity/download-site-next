@@ -1,4 +1,28 @@
 ---
+- game: 'New Super Mario Forever 2012: Slightly-Fixed Plus Edition'
+  game_alt:
+  alias:
+  - NSMF2012
+  tag:
+  - Mod
+  author: Zik The Green
+  author_alt:
+  type: international
+  software: gamemaker
+  wiki_zh_url:
+  wiki_en_url:
+  repo: https://github.com/zikthegreen/NSMF2012SlightlyFixedPlus
+  ver:
+  - v1.2:
+      ver_alt:
+      date: 2026-10-14
+      source_url: https://github.com/zikthegreen/NSMF2012SlightlyFixedPlus/releases/tag/Release
+      source_url_alt:
+      download_url: https://github.com/zikthegreen/NSMF2012SlightlyFixedPlus/releases/download/Release/NSMFSlightlyFixedPlus-v1.2.zip
+      code:
+      download_url_alt:
+      file_name: NSMFSlightlyFixedPlus-v1.2.zip
+      file_url:
 - game: 'Mario Forever: Horoscope Worlds Series'
   game_alt:
   author: Mario Tube
@@ -1988,6 +2012,8 @@
   file_url:
 - game: 'New Super Mario Forever 2012: Slightly-Fixed Edition'
   game_alt:
+  alias:
+  - NSMF2012
   tag:
   - Mod
   author: CST1229
