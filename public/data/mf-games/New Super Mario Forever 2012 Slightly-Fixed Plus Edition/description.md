@@ -1,7 +1,5 @@
 # New Super Mario Forever 2012: Slightly-Fixed Plus Edition
 
-![Logo](./src/nsmfsfe.png)
-
 This is the Plus Fork of CST1229's [New Super Mario Forever 2012: Slightly-Fixed Edition mod](https://github.com/CST1229/NSMF2012SlightlyFixed/). Built on version 1.1.1 (the latest version) of the mod, it contains most changes and improvements that version has upon the original game, while also adding many more. 
 
 The project files, for use with [GameMaker 8.2](https://gm82.cherry-treehouse.com), can be found in the source code.
@@ -10,7 +8,7 @@ The project files, for use with [GameMaker 8.2](https://gm82.cherry-treehouse.co
 
 ## Download
 
-[See the Releases page.](https://github.com/zikthegreen/NSMF2012SlightlyFixedPlus/releases/tag/Release).
+[See the Releases page.](https://github.com/zikthegreen/NSMF2012SlightlyFixedPlus/releases/tag/Release)
 
 ## Controls
 (Can be rebinded in the options.)
