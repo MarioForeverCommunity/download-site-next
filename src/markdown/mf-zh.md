@@ -438,7 +438,7 @@ Godot 是一个功能强大、接口完善的游戏开发平台，使用 Godot �
 
 推荐 **2012-12-29 版本**；另有国外网友制作的 Slightly-Fixed 版本，该版本修复了部分 bug。
 
-<SoftendoEntry name="New Super Mario Forever" /><MfGamesEntry name="New Super Mario Forever 2012: Slightly-Fixed Edition" />
+<SoftendoEntry name="New Super Mario Forever" /><MfGamesEntry name="New Super Mario Forever 2012: Slightly-Fixed Plus Edition" />
 
 ### Mario Forever Galaxy
 **Mario Forever Galaxy** 是一款以马里奥元素为主的太空射击游戏，在剧情上为 Mario Forever 的续作。
