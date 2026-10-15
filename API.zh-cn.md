@@ -598,7 +598,7 @@ import requests
 BASE = 'https://download.marioforever.net/api'
 games = requests.get(f'{BASE}/mf.json').json()
 
-# 找出当前版本的资源站链接，并打印下载地址
+# 找出当前版本的资源站链接，并打印下载链接
 for g in games:
     for v in g['versions']:
         if not v['current']:

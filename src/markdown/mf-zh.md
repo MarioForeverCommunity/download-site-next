@@ -93,7 +93,7 @@
 <p>各个版本的详细更新日志，请参见 <a href="https://zh.wiki.marioforever.net/wiki/%E6%B0%B8%E8%BF%9C%E7%9A%84%E9%A9%AC%E9%87%8C%E5%A5%A5" target="_blank">Wiki 页面</a>。</p>
 </div>
 
-为方便玩家下载，特提供第三方网盘备用地址。
+为方便玩家下载，特提供第三方网盘备用链接。
 
 <a class="md-button" target="_blank" href="https://yun.139.com/shareweb/#/w/i/2wFGsyjSZbX50">中国移动云盘 - 总集</a>
 <OriginalMfTable lan="zh" />

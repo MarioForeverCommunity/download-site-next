@@ -165,7 +165,7 @@ export const changelog = [
     fixes: [
       "修复多位作者顺序被打乱的问题",
       "修复 SMWP 四位版本号的匹配",
-      "修复 Softendo 部分游戏的下载地址"
+      "修复 Softendo 部分游戏的下载链接"
     ],
     fixes_en: [
       "Fixed the shuffled order of multiple authors",

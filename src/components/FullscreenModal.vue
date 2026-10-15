@@ -1039,7 +1039,7 @@ const nextImage = () => {
           </div>
 
           <div v-if="repoUrl" class="content-section">
-            <h3 class="section-title">{{ lan === 'zh' ? '开源地址' : 'Repository' }}</h3>
+            <h3 class="section-title">{{ lan === 'zh' ? '开源链接' : 'Repository' }}</h3>
             <ul class="repo-list">
               <li>
                 <a :href="repoUrl" target="_blank" class="repo-link">{{ repoUrl }}</a>
