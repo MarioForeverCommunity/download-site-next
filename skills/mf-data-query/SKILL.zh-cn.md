@@ -203,7 +203,6 @@ https://download.marioforever.net/api/{endpoint}.json
 **original-mf.json 关键规则：**
 - `installer` / `portable` 为单个对象；该版本不存在对应文件时 `zh` / `en` 为 null。
 - `installer.toolbar` 为 `true` 时，呈现安装版链接须注明捆绑工具栏（含广告插件 / with toolbar）。
-- 所有原版 MF 版本共用的备用下载地址：https://1812011858.share.123pan.cn/123pan/U3vrVv-VD0f?pwd=MAat# （提取码：MAat）
 
 ### assets.json（创作资源与引擎）
 

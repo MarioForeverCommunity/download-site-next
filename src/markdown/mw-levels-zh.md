@@ -4,9 +4,9 @@
 
 本页面现已收录一部分较为知名的 Mario Worker 4.4 作品，更多本页面暂未收录的 Mario Worker 4.4 作品请到 [社区资源站](https://file.marioforever.net/Mario%20Worker/Mario%20Worker%204.4%20%E4%BD%9C%E5%93%81) 下载。
 
-你也可以到 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载其他 Mario Worker 相关资源，同时本页面提供第三方网盘备用地址以备不时之需（**123 云盘下载需登录账号，请勿付费下载**）。
+你也可以到 [社区资源站](https://file.marioforever.net/Mario%20Worker/) 下载其他 Mario Worker 相关资源，同时本页面提供第三方网盘备用地址以备不时之需。
 
-<a class="md-button" target="_blank" href="https://yun.139.com/shareweb/#/w/i/2wFGTYdvGB5fz">中国移动云盘 - 总集</a><a class="md-button" target="_blank" href="https://1812011858.share.123pan.cn/123pan/U3vrVv-uruf?pwd=MAWO#">123 云盘 - 总集</a>
+<a class="md-button" target="_blank" href="https://yun.139.com/shareweb/#/w/i/2wFGTYdvGB5fz">中国移动云盘 - 总集</a>
 
 <div id="smwp-data-placement" style="display:none">
   <h3>SMWP 音乐包放置说明</h3>

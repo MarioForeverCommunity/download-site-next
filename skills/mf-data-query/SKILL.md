@@ -201,7 +201,6 @@ A flat list; every version is an entry:
 **Key rules for original-mf.json:**
 - `installer` / `portable` are single objects; `zh` / `en` are null when that file does not exist for the version.
 - When `installer.toolbar` is `true`, mention the bundled toolbar (含广告插件 / with toolbar) when presenting the installer link.
-- Backup download link for all original MF versions: https://1812011858.share.123pan.cn/123pan/U3vrVv-VD0f?pwd=MAat# (提取码: MAat)
 
 ### assets.json (Assets & Engines)
 
