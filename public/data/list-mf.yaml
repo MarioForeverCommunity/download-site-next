@@ -1,4 +1,23 @@
 ---
+- game: Mario Forever Number's Revenge World 3
+  game_alt:
+  alias:
+  - MFNR
+  author: CO2.5
+  author_alt:
+  type: chinese
+  wiki_zh_url:
+  wiki_en_url:
+  ver:
+  ver_alt:
+  date: 2026-10-18
+  source_url: https://www.marioforever.net/thread-3981-1-1.html
+  source_url_alt:
+  download_url: https://pan.baidu.com/s/1PwgV-bZdSnK-2P0Ot89RBA?pwd=MFNR
+  code: MFNR
+  download_url_alt:
+  file_name: MFNR World3.exe
+  file_url:
 - game: 'New Super Mario Forever 2012: Slightly-Fixed Plus Edition'
   game_alt:
   alias:
