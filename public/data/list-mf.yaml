@@ -13180,6 +13180,8 @@
   file_url:
 - game: 'Mario Forever: The Lost Worlds'
   game_alt:
+  alias:
+  - MFTLW
   author: Chahine
   author_alt:
   type: international
@@ -13187,12 +13189,22 @@
   wiki_zh_url:
   wiki_en_url: https://en.wiki.marioforever.net/wiki/Mario_Forever_The_Lost_Worlds
   ver:
+  - v0.1.7:
+      ver_alt:
+      date: 2026-10-25
+      source_url:
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      code:
+      download_url_alt:
+      file_name: MFTLW v0.1.7.zip
+      file_url:
   - v0.1.6:
       ver_alt:
       date: 2026-10-11
       source_url:
       source_url_alt:
-      download_url: https://www.mediafire.com/file/bfqgy9sr3qcy74m/MFTLW.zip/file
+      download_url:
       code:
       download_url_alt:
       file_name: MFTLW v0.1.6.zip
