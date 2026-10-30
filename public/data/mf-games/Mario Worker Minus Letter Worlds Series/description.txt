@@ -53,3 +53,11 @@ Engine by: Lyh and Szxychulun
 - The world consists of four (?) levels.
 - Two retro levels have been added in the game.
 - Some system bugfixes.
+
+9.) World -I - October 10, 2026
+- The world consists of three levels.
+- Further bugfixes.
+
+10.) World -J - October 30, 2026
+- The world consists of six levels.
+- More bugfixes.
