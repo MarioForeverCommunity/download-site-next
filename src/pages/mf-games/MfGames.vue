@@ -944,8 +944,24 @@ function getTooltipType(download) {
     return 'apk';
   }
 
+  const verKey = (download.currentVerStr || '').toLowerCase();
+  if (verKey.includes('linux') || fileName.includes('linux') ||
+      fileName.endsWith('.tar.xz') || fileName.endsWith('.tar.gz') || fileName.endsWith('.tgz')) {
+    return 'linux';
+  }
+  if (verKey.includes('macos') || fileName.includes('macos') ||
+      fileName.endsWith('.dmg')) {
+    return 'macos';
+  }
+
   // 默认为压缩包
   return 'archive';
+}
+
+// Java 版（.jar）作品不显示下载框提示
+function isJavaDownload(download) {
+  const fileName = download?.currentVer?.file_name?.toLowerCase();
+  return !!fileName && fileName.endsWith('.jar');
 }
 
 function getDownloadEntriesForView(game) {
@@ -1275,7 +1291,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
         <div class="download-title">
           {{ lan == 'en' ? "Download" : "下载" }} {{ getName(selectedDownload, lan) }} {{ lan == 'en' && selectedDownload.currentVerStrAlt ? selectedDownload.currentVerStrAlt : selectedDownload.currentVerStr }}
           <Tooltip
-            v-if="lan == 'zh'"
+            v-if="lan == 'zh' && !isJavaDownload(selectedDownload)"
             :in-card="false"
             @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
             @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
@@ -1302,6 +1318,16 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
                 <span v-else-if="getTooltipType(selectedDownload) === 'apk'" style="text-align: left; display: block;">
                   本作品为 .apk 文件，为安卓设备专用，电脑无法直接运行。<br>
                   请在安卓设备上安装后游玩。
+                </span>
+                <span v-else-if="getTooltipType(selectedDownload) === 'macos'" style="text-align: left; display: block;">
+                  本作品为 macOS 版，提供 .dmg 镜像文件。<br>
+                  双击 .dmg 文件挂载后，将游戏图标拖入「应用程序（Applications）」文件夹即可完成安装。<br>
+                  若首次打开提示“无法打开”，请在「系统设置 → 隐私与安全性」中点击“仍要打开”。
+                </span>
+                <span v-else-if="getTooltipType(selectedDownload) === 'linux'" style="text-align: left; display: block;">
+                  本作品为 Linux 版，提供可执行文件（或 .tar.gz / .tar.xz 压缩包，需先解压）。<br>
+                  请赋予执行权限后运行：chmod +x 文件名 && ./文件名<br>
+                  若双击无法启动，可右键选择「允许作为程序执行」，或在终端中进入文件所在目录执行。
                 </span>
                 <span v-else style="text-align: left; display: block;">
                   本作品以压缩包形式提供，需使用解压软件（如 7-Zip）解压。<br>
