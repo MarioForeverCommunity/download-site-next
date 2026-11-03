@@ -1,4 +1,29 @@
 ---
+- game: Mario Forever J2ME
+  game_alt:
+  alias:
+  - MFJ2ME
+  - Java
+  tag:
+  - Port
+  - AI Generated
+  author: TwoSpacesSG
+  author_alt:
+  type: international
+  wiki_zh_url:
+  wiki_en_url:
+  repo: https://github.com/TwoSpacesSG/assorted-slop
+  ver:
+  - v1.0.0:
+      ver_alt:
+      date: 2026-11-03
+      source_url:
+      source_url_alt:
+      download_url: https://github.com/TwoSpacesSG/assorted-slop/releases/download/release1/MarioForever.jar
+      code:
+      download_url_alt:
+      file_name: MarioForever.jar
+      file_url:
 - game: 'Mario Forever: World H13'
   game_alt:
   author: MrJalapeno
@@ -222,6 +247,7 @@
   - 永远的马里奥安卓版
   tag:
   - Remake
+  - Port
   author:
   - Meteo Dream
   - newlife2017
@@ -1054,6 +1080,8 @@
       file_url:
 - game: Mario Forever The Lost Map for Android
   game_alt:
+  tag:
+  - Port
   author: Sanyario
   author_alt:
   type: international
@@ -1074,6 +1102,7 @@
   game_alt:
   tag:
   - Minigame
+  - Port
   author: Sanyario
   author_alt:
   type: international
@@ -1614,6 +1643,7 @@
   game_alt:
   tag:
   - Single Level
+  - Port
   author: Sanyario
   author_alt:
   type: international
@@ -2223,6 +2253,8 @@
   - MFAndroid
   - MF安卓版
   - 永远的马里奥安卓版
+  tag:
+  - Port
   author: Sanyario
   author_alt:
   type: international
@@ -3239,6 +3271,8 @@
   - MFAndroid
   - MF安卓版
   - 永远的马里奥安卓版
+  tag:
+  - Port
   author: Alexandro Games
   author_alt:
   type: international
@@ -19903,6 +19937,8 @@
   - MFAndroid
   - MF安卓版
   - 永远的马里奥安卓版
+  tag:
+  - Port
   author: Alexandro Games
   author_alt:
   type: international
