@@ -1,4 +1,5 @@
 const TAG_ZH_MAP = {
+  "AI Generated": "AI 生成",
   "April Fools": "愚人节",
   "Christmas": "圣诞节",
   "Contest": "竞赛",
@@ -29,6 +30,7 @@ const TAG_ZH_MAP = {
   "Find and Click": "益智",
   "Minix": "Minix",
   "Platformer": "平台跳跃",
+  "Port": "移植",
   "Puzzle": "解谜",
   "Level Editor": "关卡编辑",
   "Vertical-scroll": "纵向滚屏",
@@ -37,6 +39,7 @@ const TAG_ZH_MAP = {
 // 固定标签颜色映射：text 为用户指定深色模式文字颜色
 // 浅色模式：text 加深确保白色背景可读，border 为中间色，bg 为浅色
 const TAG_COLOR_MAP = {
+  "AI Generated": { bg: "#eceff1", border: "#90a4ae", text: "#546e7a" },
   "April Fools":  { bg: "#e0f7fa", border: "#00bcd4", text: "#0097a7" },
   "Christmas":    { bg: "#fde3e4", border: "#e06068", text: "#c0303a" },
   "Collab":       { bg: "#ede3f7", border: "#a070d0", text: "#7848a8" },
@@ -69,6 +72,7 @@ const TAG_COLOR_MAP = {
   "Find and Click":   { bg: "#fde4fd", border: "#e050e8", text: "#b830c0" },
   "Minix":            { bg: "#fce4e4", border: "#d0706e", text: "#b84a48" },
   "Platformer":       { bg: "#dfe8f8", border: "#6080b8", text: "#406098" },
+  "Port":             { bg: "#e3f8e1", border: "#4cd964", text: "#1f9d3a" },
   "Puzzle":           { bg: "#f0e8f5", border: "#a088c0", text: "#7860a0" },
   "Level Editor":     { bg: "#dff5f0", border: "#60b8a8", text: "#409888" },
   "Vertical-scroll":  { bg: "#ede3f7", border: "#9078d0", text: "#6858b0" },
@@ -76,6 +80,7 @@ const TAG_COLOR_MAP = {
 
 // 深色模式：text/border 用指定颜色，bg 为深色柔和背景
 const TAG_COLOR_MAP_DARK = {
+  "AI Generated": { bg: "#263238", border: "#90a4ae", text: "#b0bec5" },
   "April Fools":  { bg: "#1a3a3a", border: "#00bcd4", text: "#4dd0e1" },
   "Christmas":    { bg: "#3a1818", border: "#FF4B52", text: "#FF4B52" },
   "Collab":       { bg: "#2a1a38", border: "#A981DE", text: "#A981DE" },
@@ -108,6 +113,7 @@ const TAG_COLOR_MAP_DARK = {
   "Find and Click":   { bg: "#301838", border: "#FF5AFA", text: "#FF5AFA" },
   "Minix":            { bg: "#3a2020", border: "#da6260", text: "#da6260" },
   "Platformer":       { bg: "#1e2838", border: "#7E9ED8", text: "#7E9ED8" },
+  "Port":             { bg: "#123018", border: "#4CD964", text: "#4CD964" },
   "Puzzle":           { bg: "#281830", border: "#B088C0", text: "#B088C0" },
   "Level Editor":     { bg: "#1a3030", border: "#83CCC2", text: "#83CCC2" },
   "Vertical-scroll":  { bg: "#2a1a38", border: "#9F8CE3", text: "#9F8CE3" },

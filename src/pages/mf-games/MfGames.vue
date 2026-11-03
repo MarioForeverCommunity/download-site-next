@@ -476,6 +476,9 @@ function detectPlatform(verKey, fileName) {
       fileLower.endsWith(".apk")) {
     return "Android";
   }
+  if (fileLower.endsWith(".jar")) {
+    return "J2ME";
+  }
   return "Windows";
 }
 
@@ -1119,6 +1122,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             <option value="Linux">Linux</option>
             <option value="macOS">macOS</option>
             <option value="Android">Android</option>
+            <option value="J2ME">J2ME</option>
           </select>&nbsp;
         </div>
         <div class="inline-block">
