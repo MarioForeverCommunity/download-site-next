@@ -1,6 +1,9 @@
 <script setup>
-// New-design counterparts of the legacy `<MfGamesEntry>` / `<AssetsEntry>` /
-// `<SoftendoEntry>` components: same props, same lookup, quieter presentation.
+// Embedded record preview for the documentation pages.
+//
+// Props match the legacy `<MfGamesEntry>` / `<AssetsEntry>` / `<SoftendoEntry>`
+// components so the markdown files stay untouched; only the presentation and the
+// lookup differ.
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import NxEntryPreview from "./NxEntryPreview.vue";
 import { getLanguage } from "../../util/Language.js";

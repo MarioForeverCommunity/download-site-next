@@ -23,7 +23,6 @@ import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
 import GlobalSettings from '../../components/GlobalSettings.vue';
-import DesignSwitch from '../../components/DesignSwitch.vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
@@ -1483,7 +1482,6 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
   <ButtonBackToTop />
   <ButtonDarkMode />
   <GlobalSettings />
-  <DesignSwitch current="legacy" variant="chip" />
 
   <SiteFooter />
 

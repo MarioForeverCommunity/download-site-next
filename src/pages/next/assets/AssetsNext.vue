@@ -2,13 +2,12 @@
 // Creation assets catalog — redesigned. Chinese-only, like the legacy page.
 import { ref, computed, onMounted } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
-import NxPageHead from "../../../components/next/NxPageHead.vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import { getDefaultSort } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { ensureAssetsList } from "../../../util/useAssetsList.js";
 import { useCatalog } from "../../../util/useCatalog.js";
-import { buildAssetRecords, yearOptions } from "../../../util/next/records.js";
+import { buildAssetRecords, makeFacet } from "../../../util/next/records.js";
 
 const lan = ref("zh");
 const pageId = "assets";
@@ -30,28 +29,24 @@ const SORT_MAP = {
 
 const initialSort = SORT_MAP[getDefaultSort().value] || { field: "date", asc: false };
 
-const typeFacet = {
-  key: "type",
-  label: "类型",
-  options: [
-    { value: "engine", label: "引擎" },
-    { value: "addon", label: "拓展" },
-    { value: "effect", label: "特效" },
-    { value: "sprite", label: "素材" },
-    { value: "tool", label: "工具" },
-    { value: "mwtool", label: "MW 工具" },
-  ],
-  test: (record, value) => record.assetType === value,
-};
-
-const yearFacet = computed(() => ({
-  key: "year",
-  label: "年份",
-  options: yearOptions(rawRecords.value),
-  test: (record, value) => record.date && String(record.date.getFullYear()) === value,
-}));
-
-const facets = computed(() => [typeFacet, yearFacet.value]);
+const facets = computed(() => [
+  makeFacet({
+    key: "type",
+    label: "类型",
+    getter: (record) => record.assetType,
+    options: {
+      records: rawRecords.value,
+      list: [
+        { value: "engine", label: "引擎" },
+        { value: "addon", label: "拓展" },
+        { value: "effect", label: "特效" },
+        { value: "sprite", label: "素材" },
+        { value: "tool", label: "工具" },
+        { value: "mwtool", label: "MW 工具" },
+      ],
+    },
+  }),
+]);
 
 const sorters = [
   { field: "name", compare: (a, b) => String(a.name).localeCompare(String(b.name)) },
@@ -61,24 +56,26 @@ const sorters = [
 
 const catalog = useCatalog({
   records: rawRecords,
-  searchFields: ["searchText"],
+  titleFields: ["titleSearch"],
+  authorFields: ["authorSearch"],
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
   tags: false,
+  labels: { year: "年份 ", range: "日期 " },
 });
 
 const stats = computed(() => {
-  if (loading.value) return [];
+  if (loading.value) return null;
   const byType = {};
   for (const record of rawRecords.value) {
     byType[record.assetType] = (byType[record.assetType] || 0) + 1;
   }
-  return [
-    { label: "收录条目", value: rawRecords.value.length },
-    { label: "引擎", value: byType.engine || 0 },
-    { label: "素材/特效", value: (byType.sprite || 0) + (byType.effect || 0) },
-  ];
+  return {
+    total: rawRecords.value.length,
+    engines: byType.engine || 0,
+    media: (byType.sprite || 0) + (byType.effect || 0),
+  };
 });
 
 onMounted(async () => {
@@ -101,12 +98,33 @@ document.title = title.value;
     :page-id="pageId"
     :lan="lan"
     :title="title"
+    :search="catalog"
   >
-    <NxPageHead
-      :title="title"
-      description="引擎、拓展、素材、特效与工具。按类型和年份筛选，点开任意一条查看变体与下载。"
-      :stats="stats"
-    />
+    <div class="nx-pagehead">
+      <div class="nx-pagehead-text">
+        <h1 class="nx-masthead">{{ title }}</h1>
+        <p class="nx-lede">
+          引擎、拓展、素材、特效与工具。按类型与日期收窄结果，点开任意一条查看变体与下载。
+        </p>
+      </div>
+      <div
+        v-if="stats"
+        class="nx-pagehead-stats"
+      >
+        <div class="nx-stat">
+          <span class="nx-stat-v nx-num">{{ stats.total }}</span>
+          <span class="nx-stat-l">收录条目</span>
+        </div>
+        <div class="nx-stat">
+          <span class="nx-stat-v nx-num">{{ stats.engines }}</span>
+          <span class="nx-stat-l">引擎</span>
+        </div>
+        <div class="nx-stat">
+          <span class="nx-stat-v nx-num">{{ stats.media }}</span>
+          <span class="nx-stat-l">素材 / 特效</span>
+        </div>
+      </div>
+    </div>
 
     <NxCatalog
       v-if="!loading"
@@ -114,22 +132,14 @@ document.title = title.value;
       :facets="facets"
       :sorters="sorters"
       :lan="lan"
-      placeholder="搜索资源、作者、别名…"
+      :show-tags="false"
       :columns="{ name: '资源', author: '作者', version: '版本', date: '日期' }"
     />
     <div
       v-else
-      class="nx-page nx-loading"
+      class="nx-loading"
     >
       正在载入创作资源…
     </div>
   </NxShell>
 </template>
-
-<style scoped>
-  .nx-loading {
-    padding: 40px 28px;
-    color: var(--nx-muted);
-    font-size: 13px;
-  }
-</style>

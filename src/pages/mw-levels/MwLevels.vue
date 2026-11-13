@@ -20,7 +20,6 @@ import { SmwpVersions } from "../../util/SmwpVersions.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
 import GlobalSettings from '../../components/GlobalSettings.vue';
-import DesignSwitch from '../../components/DesignSwitch.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
@@ -997,7 +996,6 @@ const { floatingStyles } = useFloating(reference, floating,
   <ButtonBackToTop />
   <ButtonDarkMode />
   <GlobalSettings />
-  <DesignSwitch current="legacy" variant="chip" />
 
   <SiteFooter />
 

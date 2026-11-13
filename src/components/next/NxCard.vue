@@ -72,13 +72,3 @@ const firstTag = computed(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-  .nx-card-author {
-    font-size: 12px;
-    color: var(--nx-muted);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-</style>

@@ -21,9 +21,11 @@ document.title = title.value;
     :lan="lan"
     :title="title"
   >
-    <div class="nx-doc">
-      <h1 class="nx-masthead">{{ title }}</h1>
-      <introEn />
+    <div class="nx-doc-wrap">
+      <div class="nx-doc">
+        <h1>{{ title }}</h1>
+        <introEn />
+      </div>
     </div>
   </NxShell>
 </template>

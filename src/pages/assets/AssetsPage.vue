@@ -15,7 +15,6 @@ import Tooltip from '../../components/ToolTip.vue';
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue';
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue';
 import GlobalSettings from '../../components/GlobalSettings.vue';
-import DesignSwitch from '../../components/DesignSwitch.vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { readList } from "../../util/ReadList.js";
 import { parseVer } from "../../util/Misc.js";
@@ -596,7 +595,6 @@ const { floatingStyles } = useFloating(reference, floating,
   <ButtonBackToTop />
   <ButtonDarkMode />
   <GlobalSettings />
-  <DesignSwitch current="legacy" variant="chip" />
 
   <SiteFooter />
 </template>

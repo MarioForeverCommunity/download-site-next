@@ -9,7 +9,6 @@ import { navTop } from "../../config.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import GlobalSettings from '../../components/GlobalSettings.vue'
-import DesignSwitch from '../../components/DesignSwitch.vue'
 import SiteFooter from '../../components/SiteFooter.vue'
 import MfGamesEntry from '../../components/MfGamesEntry.vue'
 import AssetsEntry from '../../components/AssetsEntry.vue'
@@ -177,7 +176,6 @@ watch(showHistory, (newVal) => {
   <ButtonBackToTop />
   <ButtonDarkMode />
   <GlobalSettings />
-  <DesignSwitch current="legacy" variant="chip" />
 
   <SiteFooter />
 </template>

@@ -8,36 +8,44 @@ export const changelog = [
     version: "2.6.0",
     date: "2026-11-13",
     features: [
-      "新增全新界面设计：更紧凑的列表、可切换的卡片视图、侧边栏详情抽屉与深色模式",
-      "旧版设计完整保留，浏览者可随时在新旧两套界面之间自由切换（切换入口位于旧版右下角与新版本顶栏右侧）",
-      "新增搜索栏即时筛选、密度切换（舒适 / 紧凑）与多选标签筛选（任一 / 同时 / 排除）",
-      "作品详情改为侧边抽屉，可在不离开列表的情况下逐个比较作品；每条记录都有可分享的直达链接",
-      "创作资源、MW 关卡与 Softendo 目录支持按类型、年份、版本等条件组合筛选"
+      "全新界面设计：白色主区域 + 灰色导航栏与常驻筛选面板，紧凑列表 / 卡片双视图，深浅色模式",
+      "搜索拆分为两栏：标题（含别名、文件名）与作者各自独立匹配，位于页面顶部",
+      "新增「发布时间」筛选：按年份或按日期区间（精确到日）二选一，提供今年 / 去年 / 近 30 天快捷项",
+      "制作软件、地区、平台、标签等筛选常驻展开在副侧边栏，标签支持任一 / 同时 / 排除三态",
+      "作品详情改为右侧滑出抽屉，可在不离开列表的情况下逐条对比；标题图与截图轮播完整展示",
+      "文档页中的作品条目可原地展开详情，无需跳转到作品目录页",
+      "更新履历改为侧边抽屉展示（位于导航栏底部与全局设置中）",
+      "全局设置新增「界面设计」项，新旧两套界面可在其中自由切换；新版界面另含密度切换与随机游戏按钮"
     ],
     features_en: [
-      "Added a completely new interface design: denser lists, an optional card view, a side-panel details drawer and dark mode",
-      "The legacy design is preserved in full; visitors can switch between the two interfaces at any time (the switcher sits at the bottom-right of the legacy design and in the top bar of the new one)",
-      "Added instant search, a comfort/compact density switch and multi-select tag filtering (any / all / exclude)",
-      "Game details now open in a side drawer so records can be compared without leaving the list; every record has a shareable direct link",
-      "The Assets, MW Levels and Softendo catalogs support combining filters such as type, year and version"
+      "A completely new interface: white content canvas with a grey navigation rail and a persistent filter sidebar, list/card views and dark mode",
+      "The search splits into two independent fields — titles (aliases, filenames included) and authors — placed at the top of the page",
+      "A new Release date filter: either by year or by an exact date range down to the day, with this year / last year / last 30 days shortcuts",
+      "Software, region, platform and tag filters now sit expanded in the side panel; tags support any / all / exclude states",
+      "Game details open in a right-side drawer so records can be compared without leaving the list; title images and the screenshot slider are shown in full",
+      "Embedded game previews in the documentation open their details in place, without navigating to the catalog",
+      "The changelog is now a side drawer (reachable from the rail footer and global settings)",
+      "Global settings gains an Interface design switcher between the two designs; the new interface also adds a density switch and a random game button"
     ],
     improvements: [
-      "列表页统一为一套行结构，作品名、作者、版本、日期与分类列对齐一致，长表格更易扫读",
-      "文档页改为窄栏阅读布局，原版 Mario Forever 版本表以紧凑表格呈现，并提供安装版 / 绿色版的直接下载链接",
-      "深色模式与浅色模式共用同一套设计令牌，两套界面共享明暗偏好设置"
+      "收窄作品列表的「作品」列，长文件名不再挤占元数据列",
+      "文档容器不再限制宽度，markdown 行距放宽至 1.75 倍",
+      "全站改回 Inter 字体（与旧版一致），不再引入新字体；界面内链接取消 hover 下划线",
+      "修复 vue3-carousel 分页圆点压在截图上的问题，分页改为在轨道下方正常排布"
     ],
     improvements_en: [
-      "Unified the list pages onto one row structure, aligning title, author, version, date and category so long tables scan cleanly",
-      "Documentation pages now use a narrow reading column; the original Mario Forever version table is a compact ledger with direct installer and portable downloads",
-      "Dark and light mode share one set of design tokens, and the light/dark preference is carried across both designs"
+      "Narrowed the title column so long filenames no longer crowd the metadata columns",
+      "Documentation containers are no longer width-capped, and markdown line height opens up to 1.75",
+      "Reverted to the Inter typeface used by the legacy design (no new fonts); link hover no longer underlines",
+      "Fixed the vue3-carousel pagination dots overlapping screenshots; pagination now sits below the track"
     ],
     misc: [
-      "新增 IBM Plex 字体用于新版界面的正文与数据标注",
-      "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试"
+      "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试",
+      "深浅色偏好与密度偏好在新旧两套界面间共享"
     ],
     misc_en: [
-      "Introduced IBM Plex typefaces for the new interface's text and data labels",
-      "The ?design=legacy or ?design=next URL parameter selects an interface, which is handy for sharing and debugging"
+      "The ?design=legacy or ?design=next URL parameter selects an interface, which is handy for sharing and debugging",
+      "The light/dark and density preferences are shared across both designs"
     ]
   },
   {

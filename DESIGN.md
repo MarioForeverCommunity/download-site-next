@@ -4,73 +4,93 @@
 
 ## 1. 如何切换
 
-| 位置 | 控件 | 说明 |
+| 位置 | 入口 | 说明 |
 | --- | --- | --- |
-| 旧版界面 | 右下角浮动的「新版界面」按钮 | 位于原有三个圆形按钮（返回顶部、深浅色、设置）上方，不遮挡它们 |
-| 新版界面 | 顶栏右侧的「旧版设计」链接 | 与语言切换、站外链接并列 |
+| 旧版界面 | 「全局设置」弹窗 →「界面设计」→ 切换到新版设计 | 与默认排序、直链开关同级 |
+| 新版界面 | 顶栏齿轮（全局设置）→「切换到旧版设计」 | 与密度、更新履历同级 |
 
-另外，任何页面都可以用 URL 参数直接指定：
+URL 参数可直接指定，写入 `design` cookie 后不再需要携带：
 
 ```
 /mf-games.html?design=next     # 新版
 /mf-games.html?design=legacy   # 旧版
 ```
 
-参数会写入 `design` cookie，之后访问不再需要带参数。可选别名：`new` / `modern` / `beta` → 新版，`old` / `classic` → 旧版。
-
-切换是**整页重载**：两套界面是各自独立的 Vue 根组件，重载是唯一可靠的交接方式，也能保证旧版的 OverlayScrollbars 等全局副作用被彻底清理。
+别名：`new` / `modern` / `beta` → 新版，`old` / `classic` → 旧版。切换为整页重载，保证两套界面的全局副作用（OverlayScrollbars 等）互不残留。
 
 ## 2. 默认设计
 
-`src/util/Design.js` 中的 `DEFAULT_DESIGN` 决定未指定时的默认界面。当前为 `NEXT_DESIGN`；改回 `LEGACY_DESIGN` 即可让旧版重新成为默认，而新版仍可通过 `?design=next` 访问。
+`src/util/Design.js` 的 `DEFAULT_DESIGN` 决定未指定时的默认界面，当前为 `NEXT_DESIGN`；改回 `LEGACY_DESIGN` 即可让旧版重新成为默认。
 
-## 3. 代码结构
+## 3. 界面结构
+
+```
+┌────────┬──────────────────────────────────────────────┐
+│ 左导航  │ 顶栏：标题搜索 | 作者搜索 | 筛选 随机 🌙 🌐 ⚙ │
+│ (灰)   ├──────────────────────────────────────────────┤
+│ 目录    │ 页头：标题 + 说明 + 统计                      │
+│ 站外    ├────────────┬─────────────────────────────────┤
+│        │ 筛选面板    │ 结果栏：计数 排序 筛选药丸 视图   │
+│        │ (浅灰,     │ ┌─────────────────────────────┐  │
+│        │  常驻展开) │ │ 记录行 / 卡片                │  │
+│        │            │ └─────────────────────────────┘  │
+│ 更新履历│            │                                   │
+└────────┴────────────┴─────────────────────────────────┘
+   右侧滑出：详情抽屉 / 更新履历抽屉 / 文档侧板
+```
+
+- **底色区分**：左导航 `#f5f4f1`、筛选面板 `#faf9f7`、主区域纯白。
+- **双搜索**：第一个匹配标题 / 别名 / 文件名，第二个只匹配作者，互不干扰。
+- **筛选常驻**：地区、平台 / 制作软件、分类标签（三态：任一 / 同时 / 排除）与发布时间都在副侧边栏展开，不做下拉。
+- **发布时间筛选**：「年份」与「日期区间」二选一；日期区间可精确到日（含起止），并提供今年 / 去年 / 近 30 天快捷项。二选一的原因：两者叠加会产生难以推理的语义，一个控件一个答案。
+- **详情抽屉**：可逐条对比、含标题图 + showcase 轮播（分页在轨道下方，不再压图）、版本切换、提取码一键复制、`?id=` 直达链接。
+- **文档页**：容器不限宽（仅正文行宽控制在约 78 字符），嵌入的作品条目支持**原地展开详情**，轮播与 title 截图完整保留，vue3-carousel 分页改为正常流布局。
+- **顶栏**：深浅色切换直接是图标按钮（右上角一次点击）；语言为下拉菜单；「随机游戏」恢复；齿轮内的全局设置含密度、更新履历（侧边抽屉）与设计切换。
+
+## 4. 代码结构
 
 ```
 src/util/Design.js              设计选择状态（URL → cookie → 默认）
-src/util/Theme.js               新版明暗主题与密度（localStorage 持久化）
-src/boot/entry.js               按当前设计挂载对应页面
-src/boot/legacy.js              旧版启动：原样保留的字体 / dark-mode.css / OverlayScrollbars
-src/boot/next.js                新版启动：IBM Plex 字体 + 新令牌 + 全局组件注册
+src/util/Theme.js               明暗主题与密度（localStorage）
+src/util/useCatalog.js          目录状态：双搜索 / 筛选 / 三态标签 / 日期区间 / 排序
+src/boot/{entry,legacy,next}.js 按设计挂载页面（legacy 动态加载，防样式泄漏）
 
-src/assets/next/base.css        新版全部设计令牌与基础样式（含深色主题）
-src/assets/next/fonts.css       IBM Plex 字体引入
+src/assets/next/base.css        新版全部令牌与样式（含深色主题、轮播修复）
+src/components/DesignSwitch.vue 切换控件（menu / row 两种形态）
+src/components/GlobalSettings.vue 旧版全局设置（新增界面设计行）
 
-src/components/DesignSwitch.vue 切换控件（chip / link 两种形态）
-src/components/DesignMfTable.vue 按当前设计渲染原版 MF 版本表
-
+src/components/next/            外壳 NxShell、筛选 NxFilterPane、列表 NxRow、
+                                卡片 NxCard、详情 NxDetail、更新履历 ChangelogDrawer、
+                                文档条目 NxEntry*、图标 NxIcon
 src/pages/next/<page>/          7 个页面的新版实现
-src/components/next/            新版共用组件（外壳、工具栏、列表行、卡片、抽屉…）
-src/util/next/records.js        统一记录模型：YAML → 四个目录共用的数据结构
-src/util/useCatalog.js          目录交互状态：搜索 / 筛选 / 标签 / 排序 / 视图
-src/util/next/useNamedRecord.js 文档页按名称解析单条记录
+src/util/next/records.js        统一记录模型（平台 / 软件判定与旧版、API 脚本一致）
 ```
 
 ### 关键约束
 
-- **旧版文件不做结构性修改**。旧版页面只在模板末尾新增 `<DesignSwitch>` 与对应的 import；`OriginalMfTable` 等旧组件原样保留。
-- **两套 CSS 必须隔离**。`bootLegacy` 通过动态 import 加载，`dark-mode.css`（作用于裸 `body` / `a` / `table`）不会进入新版的模块图；新版所有样式都限定在 `.nx-*` 类名或 `[data-nx-theme]` 之下。
-- **Markdown 是文案的唯一来源**。新版文档页复用 `src/markdown/*.md`，只通过 `docComponents.js` 把 `<MfGamesEntry>` / `<AssetsEntry>` / `<SoftendoEntry>` 映射到新版预览组件。`mf-zh.md` / `mf-en.md` 仅把 `OriginalMfTable` 的 import 换成设计感知的 `DesignMfTable`。
-- **记录模型是共享层**。`src/util/next/records.js` 中的平台 / 制作软件 / old-versions 归档规则必须与 `src/pages/mf-games/MfGames.vue` 及 `scripts/generate-api.js` 保持一致；修改任一侧时三处同步。
+- **旧版文件只做最小改动**：全局设置新增一行、页脚/changelog 原样保留。
+- **两套 CSS 隔离**：`dark-mode.css` 仅在 legacy 启动路径动态加载；新版样式全部限定在 `.nx-*` 或 `[data-nx-theme]` 之下。
+- **Markdown 是文案唯一来源**：`mf-zh.md` / `mf-en.md` 仅把版本表换成设计感知的 `DesignMfTable`，条目组件由 `docComponents.js` 映射到新版预览。
+- **字体只用 Inter**（旧版已随 `assets/fonts.css` 加载），不再引入任何新字体；小号数字用 tabular-nums 而非等宽字体。
+- **hover 不加下划线**：界面内链接靠颜色与背景区分；仅正文（`.nx-doc a`）保留下划线。
+- **记录模型是共享层**：`records.js` 的平台 / 制作软件 / old-versions 规则须与 `MfGames.vue`、`scripts/generate-api.js` 保持一致。
 
-## 4. 数据与链接兼容性
+## 5. 兼容性
 
-- 新版详情抽屉沿用 `?id=<record id>` 作为直达链接，同时识别旧版的 `?game=<slug>` 与 `?asset=<slug>`，因此从旧版复制出来的分享链接在新版中依然可用。
-- 下载链接规则、直链开关（`useDirectLink`）与文件大小查询全部沿用 `src/util/*` 现有实现，未做改动。
+- `?id=<record id>` 为新版直达链接，同时识别旧版 `?game=` / `?asset=` slug。
+- 下载链接规则、直链开关、文件大小查询全部沿用 `src/util/*`，未做改动。
 
-## 5. 设计说明
+## 6. 设计原则
 
-- 色彩：以纸白 / 石墨为底，**唯一的强调色是档案红**，只用于主操作、当前导航项与选中行；彩色仅用于承载数据含义的标签（国内 / 国外 / 最新 / 制作软件）。
-- 字体：正文与标题统一使用 IBM Plex Sans Variable，日期、版本号、文件名等记录型数据使用 IBM Plex Mono。
-- 布局：顶栏（品牌 + 站外链接 + 语言 + 设计切换）→ 左侧目录导航 → 页头（标题 / 说明 / 统计）→ 吸顶工具栏 → 记录列表 → 详情抽屉。
+- 强调色只有一个（档案红），用于主操作、当前导航与选中行；彩色只承载数据含义。
+- 一个字族（Inter）承担全部层次；标题用紧凑字距，数据列用等宽数字。
 - 动效克制：仅抽屉与弹层有过渡，并尊重 `prefers-reduced-motion`。
+- 对比度：正文、次要文字、按钮在明暗两套主题下均达到 WCAG AA（≥4.5:1）。
 
-## 6. 自查清单
+## 7. 自查清单
 
-改动新版后建议检查：
-
-1. `bun run lint`
-2. `bun run build`，随后 `bun run preview` 逐页打开 `?design=next` 与 `?design=legacy`
-3. 中英文切换后：列表、抽屉、文档页条目预览的字段是否都跟着变
-4. 375px / 768px / 1440px 三档宽度下是否出现横向滚动
-5. 深色模式下标签、下拉框、抽屉与文档表格的对比度
+1. `bun run lint`；`bun run build` 后 `bun run preview` 逐页检查 `?design=next` 与 `?design=legacy`
+2. 中英文切换后列表、抽屉、文档条目字段跟随变化
+3. 360 / 768 / 1440 / 1920px 无横向滚动
+4. 深色模式下标签、下拉、抽屉、文档表格对比度
+5. 年份 / 日期区间二选一的行为与快捷项

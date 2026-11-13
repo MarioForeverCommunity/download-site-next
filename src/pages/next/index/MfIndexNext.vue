@@ -1,10 +1,10 @@
 <script setup>
-// Mario Forever resource index — redesigned entry page.
+// Mario Forever resource index — redesigned.
 //
-// The prose is the same markdown the legacy page renders (mf-zh.md / mf-en.md),
-// so wording never forks between designs. Chrome differs: the version table is
-// the redesigned ledger, and the hidden blocks the docs link to
-// (`#history-content`, `#credits-content`) open in a side panel.
+// Prose is the same markdown the legacy page renders (mf-zh.md / mf-en.md), so
+// wording never forks between designs. The container is full-width; only the
+// text measure is capped, which lets the embedded record cards and carousels use
+// the whole canvas.
 import { ref, computed } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
 import NxDocPanels from "../../../components/next/NxDocPanels.vue";
@@ -41,9 +41,11 @@ document.title = title.value;
     @change-lan-zh="pageSetLanguageZh"
     @change-lan-en="pageSetLanguageEn"
   >
-    <div class="nx-doc">
-      <h1 class="nx-masthead">{{ title }}</h1>
-      <component :is="doc" />
+    <div class="nx-doc-wrap">
+      <div class="nx-doc">
+        <h1>{{ title }}</h1>
+        <component :is="doc" />
+      </div>
     </div>
     <NxDocPanels :lan="lan" />
   </NxShell>

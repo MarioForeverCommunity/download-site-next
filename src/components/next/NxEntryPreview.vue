@@ -1,12 +1,16 @@
 <script setup>
 // Inline record preview used inside the documentation pages.
 //
-// The legacy docs embed the full GameCard (with carousel, download modal, file
-// size probing) in the middle of prose, which fights the reading flow. Here the
-// preview is deliberately quiet: screenshot, name, author, one action. Anything
-// deeper belongs in the catalog drawer, and "查看完整记录" goes there.
-import { computed } from "vue";
+// Two things matter here and were missing from the first iteration:
+//  1. the title image and the full showcase slider come back, paginated in
+//     normal flow so the dots never sit on top of the artwork;
+//  2. "查看详情" opens the record's detail drawer *in place* — the visitor stays
+//     on the doc page instead of being bounced to the catalog.
+import { ref, computed, watch } from "vue";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
 import NxIcon from "./NxIcon.vue";
+import NxDetail from "./NxDetail.vue";
 import { formatIsoDate, assetTypeLabel, softwareLabel } from "../../util/next/records.js";
 
 const props = defineProps({
@@ -28,7 +32,23 @@ const props = defineProps({
   }
 });
 
-const images = computed(() => (props.record && props.record.images ? props.record.images.slice(0, 2) : []));
+const text = computed(() => (props.lan === "zh" ? {
+  download: "下载",
+  details: "查看详情",
+  loading: "载入中…",
+  notFound: "未找到该条目",
+  prev: "上一张",
+  next: "下一张",
+} : {
+  download: "Download",
+  details: "Details",
+  loading: "Loading…",
+  notFound: "Record not found",
+  prev: "Previous",
+  next: "Next",
+}));
+
+const gallery = computed(() => (props.record && props.record.images ? props.record.images : []));
 
 const subtitle = computed(() => {
   const record = props.record;
@@ -48,17 +68,26 @@ const primary = computed(() => {
   return list.find((item) => !item.dead) || null;
 });
 
-const catalogHref = computed(() => {
-  const record = props.record;
-  if (!record) return "#";
-  const params = new URLSearchParams();
-  params.set("design", "next");
-  params.set("id", record.id);
-  const page = record.kind === "mw" ? "mw-levels.html"
-    : record.kind === "asset" ? "assets.html"
-      : record.kind === "softendo" ? "softendo.html" : "mf-games.html";
-  return `${page}?${params.toString()}`;
+// ── in-place detail drawer ───────────────────────────────────
+const detailOpen = ref(false);
+const slideIndex = ref(0);
+const carouselRef = ref(null);
+
+watch(() => props.record, () => {
+  slideIndex.value = 0;
 });
+
+function prevSlide() {
+  if (carouselRef.value) carouselRef.value.prev();
+}
+
+function nextSlide() {
+  if (carouselRef.value) carouselRef.value.next();
+}
+
+function onUpdate(index) {
+  slideIndex.value = index;
+}
 </script>
 
 <template>
@@ -67,13 +96,13 @@ const catalogHref = computed(() => {
       v-if="loading"
       class="nx-entry-loading"
     >
-      {{ lan === "zh" ? "载入中…" : "Loading…" }}
+      {{ text.loading }}
     </div>
     <div
       v-else-if="!record"
       class="nx-entry-loading"
     >
-      {{ notFoundLabel || (lan === "zh" ? "未找到该条目" : "Record not found") }}
+      {{ notFoundLabel || text.notFound }}
     </div>
     <template v-else>
       <div class="nx-entry-head">
@@ -89,51 +118,119 @@ const catalogHref = computed(() => {
             target="_blank"
             rel="noopener"
           >
-            <NxIcon name="download" :size="13" />
-            {{ lan === "zh" ? "下载" : "Download" }}
+            <NxIcon
+              name="download"
+              :size="12"
+            />
+            {{ text.download }}
           </a>
-          <a
+          <button
+            type="button"
             class="nx-dl"
-            :href="catalogHref"
+            style="cursor:pointer;"
+            @click="detailOpen = true"
           >
-            <NxIcon name="list" :size="13" />
-            {{ lan === "zh" ? "详情" : "Details" }}
-          </a>
+            <NxIcon
+              name="info"
+              :size="12"
+            />
+            {{ text.details }}
+          </button>
         </div>
       </div>
+
       <div
         v-if="record.description"
         class="nx-entry-text"
       >{{ record.description }}</div>
+
+      <!-- one image: show it flat -->
       <div
-        v-if="images.length"
-        class="nx-entry-media"
-        :class="{ 'is-single': images.length === 1 }"
+        v-if="gallery.length === 1"
+        class="nx-entry-media is-single"
       >
         <img
-          v-for="img in images"
-          :key="img"
-          :src="img"
+          :src="gallery[0]"
           :alt="record.name"
           loading="lazy"
           decoding="async"
         />
       </div>
+
+      <!-- several images: full slider with pagination below the track -->
+      <template v-else-if="gallery.length > 1">
+        <div class="nx-carousel" style="margin-top: 10px;">
+          <Carousel
+            ref="carouselRef"
+            :items-to-show="1"
+            :wrap-around="true"
+            :mouse-drag="false"
+            :model-value="slideIndex"
+            @update:model-value="onUpdate"
+          >
+            <Slide
+              v-for="(img, index) in gallery"
+              :key="img + index"
+            >
+              <img
+                :src="img"
+                :alt="`${record.name} ${index + 1}`"
+                loading="lazy"
+                decoding="async"
+                style="width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--nx-fill);display:block;"
+              />
+            </Slide>
+            <template #addons>
+              <Navigation />
+            </template>
+          </Carousel>
+        </div>
+        <div class="nx-carousel-nav">
+          <div class="nx-carousel-dots">
+            <button
+              v-for="(img, index) in gallery"
+              :key="`dot-${img}-${index}`"
+              type="button"
+              class="nx-carousel-dot"
+              :class="{ on: index === slideIndex }"
+              :aria-label="`${index + 1}`"
+              @click="slideIndex = index"
+            />
+          </div>
+          <span
+            class="nx-num"
+            style="font-size:10.5px;color:var(--nx-faint);"
+          >{{ slideIndex + 1 }} / {{ gallery.length }}</span>
+          <div class="nx-carousel-arrows">
+            <button
+              type="button"
+              :aria-label="text.prev"
+              @click="prevSlide"
+            >
+              <NxIcon
+                name="chevronLeft"
+                :size="13"
+              />
+            </button>
+            <button
+              type="button"
+              :aria-label="text.next"
+              @click="nextSlide"
+            >
+              <NxIcon
+                name="chevronRight"
+                :size="13"
+              />
+            </button>
+          </div>
+        </div>
+      </template>
     </template>
+
+    <NxDetail
+      :record="detailOpen ? props.record : null"
+      :lan="lan"
+      @close="detailOpen = false"
+    />
   </div>
 </template>
-
-<style scoped>
-  .nx-entry-loading {
-    font-size: 13px;
-    color: var(--nx-muted);
-    padding: 4px 0;
-  }
-
-  .nx-entry-text {
-    margin-top: 8px;
-    font-size: 13px;
-    line-height: 1.58;
-    color: var(--nx-ink-2);
-  }
-</style>

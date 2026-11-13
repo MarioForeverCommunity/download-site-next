@@ -1,6 +1,11 @@
-// Boot path for the redesigned UI: new typefaces, new tokens, theme bootstrap.
+// Boot path for the redesigned UI.
+//
+// Typography: the new interface deliberately reuses Inter, which
+// `assets/fonts.css` already loads for every entry — no extra webfont, no second
+// family, no serif. The legacy stylesheet (dark-mode.css) is *not* imported here;
+// it styles bare body/a/table selectors and would leak into this UI.
 import { createApp } from "vue";
-import "../assets/next/fonts.css";
+import "../assets/fonts.css";
 import "../assets/next/base.css";
 import { initTheme, initDensity } from "../util/Theme.js";
 import { docComponents } from "../util/next/docComponents.js";
@@ -13,8 +18,7 @@ import { docComponents } from "../util/next/docComponents.js";
  */
 export function bootNext(App, options = {}) {
   // Swapping designs reloads the page, so clear any legacy-only body state
-  // rather than trusting the document to be clean. `dark` matters most: the
-  // legacy stylesheet keys off it and must not restyle the redesigned UI.
+  // rather than trusting the document to be clean.
   document.body.classList.add("nx-body");
   document.documentElement.classList.remove("modal-open");
 

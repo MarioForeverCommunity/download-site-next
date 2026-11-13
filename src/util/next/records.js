@@ -1,6 +1,6 @@
-import { getName, getAuthorList, getStrFromList, getDownloadEntries, getMfFileUrl, toResourceDirectUrl, getVideoDesc } from "../GameUtil.js";
+import { getName, getAuthorList, getDownloadEntries, toResourceDirectUrl, getVideoDesc } from "../GameUtil.js";
 import { getAssetResourceURLs } from "../AssetUtil.js";
-import { getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange, getTypeLabel, getLanguageLabel } from "../SoftendoUtil.js";
+import { getSoftendoGameName, getSoftendoYearRange, getTypeLabel, getLanguageLabel } from "../SoftendoUtil.js";
 import { getTagLabel } from "../TagUtil.js";
 import { getGameImageSync, getShowcaseImagesSync } from "../ImageUtil.js";
 import { getUseDirectLink } from "../Language.js";
@@ -87,7 +87,7 @@ export function formatIsoDate(date) {
   return `${y}-${m}-${day}`;
 }
 
-function slug(value) {
+function slugify(value) {
   return String(value || "")
     .toLowerCase()
     .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "-")
@@ -125,9 +125,25 @@ function shortNetdiskLabel(desc) {
   return desc.replace(/\s*\((提取码|密码|Code|已失效|Invalid|暂无法访问|Temporarily Unavailable)[^)]*\)/g, "").trim();
 }
 
+// The title image must be first in the gallery (it is the recognisable artwork),
+// followed by the showcase shots in natural order.
+function collectImages(entry, category, verKey) {
+  const probe = verKey ? { ...entry, currentVerStr: verKey } : entry;
+  const title = getGameImageSync(probe, category);
+  const showcases = getShowcaseImagesSync(probe, category).map((item) => item.url);
+  const images = [];
+  const seen = new Set();
+  for (const url of [title, ...showcases]) {
+    if (!url || seen.has(url)) continue;
+    seen.add(url);
+    images.push(url);
+  }
+  return { image: title || (images[0] || null), images };
+}
+
 // ── Mario Forever fangames ───────────────────────────────────
 
-function mfVersionRecords(entry, lan) {
+function mfVersions(entry, lan) {
   const versions = Array.isArray(entry.ver) ? entry.ver : [];
   return versions.map((verRaw) => {
     const verKey = Object.keys(verRaw)[0];
@@ -196,27 +212,21 @@ function mfVersionRecords(entry, lan) {
 
 export function buildMfRecords(entries, lan) {
   return entries.map((entry) => {
-    const versions = mfVersionRecords(entry, lan);
+    const versions = mfVersions(entry, lan);
     const currentVerStr = entry.currentVerStr || (versions[0] && versions[0].verKey) || "";
     const current = versions.find((v) => v.verKey === currentVerStr) || versions[0] || null;
     const names = authorNames(entry, lan);
     const rawNames = authorNames(entry, "zh");
-    const id = `mf::${entry.game}::${rawNames.join("|")}::${(entry.type || "")}`;
+    const id = `mf::${entry.game}::${rawNames.join("|")}::${entry.type || ""}`;
 
-    // Artwork is best-effort: the index resolves to null until it has loaded, and
-    // the row falls back to the empty-thumbnail treatment rather than blocking.
-    const probe = { ...entry, currentVerStr: current ? current.verKey : currentVerStr };
-    const image = getGameImageSync(probe, "mf-games");
-    const images = getShowcaseImagesSync(probe, "mf-games").map((item) => item.url);
+    const { image, images } = collectImages(entry, "mf-games", current ? current.verKey : currentVerStr);
 
     const description = lan === "zh"
       ? (entry.description_zh || entry.description || null)
       : (entry.description_en || entry.description_alt || entry.description || null);
 
-    const tags = (entry.tag ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag]) : []).map((tag) => ({
-      key: tag,
-      label: getTagLabel(tag, lan),
-    }));
+    const tagKeys = entry.tag ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag]) : [];
+    const tags = tagKeys.map((tag) => ({ key: tag, label: getTagLabel(tag, lan) }));
 
     return {
       id,
@@ -247,10 +257,11 @@ export function buildMfRecords(entries, lan) {
         wiki: (lan === "zh" ? entry.wiki_zh_url : entry.wiki_en_url) || null,
         video: collectVideos(entry, lan),
       },
-      searchText: [entry.game, entry.game_alt, authorText(entry, "zh"), authorText(entry, "en"), (entry.alias || []).join(" "), (entry.tag || []).join(" ")]
-        .filter(Boolean).join(" "),
+      // Filenames are searchable, matching the legacy filter behaviour.
+      titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
+        ...versions.map((v) => v.file)],
+      authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
       raw: entry,
-      current,
     };
   });
 }
@@ -271,8 +282,7 @@ function collectVideos(entry, lan) {
   });
 }
 
-// Expand a multi-version record into one record per version, mirroring the
-// legacy "expand all versions" switch.
+// Expand a multi-version record into one record per version.
 export function expandMfRecord(record) {
   if (!record || record.versions.length <= 1) return [record];
   return record.versions.map((version, index) => ({
@@ -280,7 +290,6 @@ export function expandMfRecord(record) {
     id: `${record.id}::${version.verKey}`,
     date: version.date,
     versionLabel: version.label,
-    versionCount: record.versions.length,
     platform: version.platform,
     software: version.software,
     downloads: version.downloads,
@@ -309,8 +318,7 @@ export function buildMwRecords(entries) {
 
     const netdisk = [];
     if (entry.currentVer && entry.currentVer.download_url) {
-      const probe = { ...entry, currentVer: entry.currentVer };
-      netdisk.push(...netdiskDownloads(probe, lan));
+      netdisk.push(...netdiskDownloads({ ...entry, currentVer: entry.currentVer }, lan));
     }
 
     const dataDownloads = (entry.data_file_urls || []).map((item, index) => ({
@@ -324,8 +332,8 @@ export function buildMwRecords(entries) {
     }));
     if (entry.currentVer && entry.currentVer.data_download_url) {
       dataDownloads.push({
-        label: lan === "zh" ? "网盘数据包" : "Netdisk data",
-        shortLabel: lan === "zh" ? "网盘" : "Netdisk",
+        label: "网盘数据包",
+        shortLabel: "网盘",
         url: entry.currentVer.data_download_url,
         code: entry.currentVer.data_code || null,
         dead: false,
@@ -334,12 +342,13 @@ export function buildMwRecords(entries) {
       });
     }
 
-    const image = getGameImageSync(entry, "mw-levels");
-    const images = getShowcaseImagesSync(entry, "mw-levels").map((item) => item.url);
+    const { image, images } = collectImages(entry, "mw-levels");
 
     const tags = [];
     if (entry.has_bundled_smwp) tags.push({ key: "BundledMW", label: "专用 MW" });
     if (entry.has_bgm) tags.push({ key: "BGM", label: "BGM" });
+
+    const allDownloads = [...downloads, ...netdisk];
 
     return {
       id: `mw::${entry.game}::${names.join("|")}`,
@@ -360,13 +369,13 @@ export function buildMwRecords(entries) {
       image,
       images,
       description: entry.description || null,
-      downloads: [...downloads, ...netdisk],
+      downloads: allDownloads,
       dataDownloads,
       versions: [{
         verKey: entry.smwp_ver || "",
         label: entry.smwp_ver || "",
         date: toDate(entry.date),
-        downloads: [...downloads, ...netdisk],
+        downloads: allDownloads,
         dataDownloads,
         current: true,
         platform: null,
@@ -388,8 +397,9 @@ export function buildMwRecords(entries) {
       smwpDataUrl: entry.smwp_data_url ? direct(entry.smwp_data_url) : null,
       bundled: !!entry.has_bundled_smwp,
       hasBgm: !!entry.has_bgm,
-      searchText: [entry.game, entry.game_alt, authorText(entry, "zh"), (entry.alias || []).join(" "), entry.file_name]
-        .filter(Boolean).join(" "),
+      titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
+        entry.file_name],
+      authorSearch: [authorText(entry, "zh")],
       raw: entry,
     };
   });
@@ -400,7 +410,8 @@ export function buildMwRecords(entries) {
 export function buildAssetRecords(entries, lan) {
   return entries.map((entry) => {
     const variant = entry.currentVer || {};
-    const variantKey = entry.currentVerStr || "";    const downloads = getAssetResourceURLs(entry, lan).map((item, index, arr) => ({
+    const variantKey = entry.currentVerStr || "";
+    const downloads = getAssetResourceURLs(entry, lan).map((item, index, arr) => ({
       label: item.name,
       shortLabel: arr.length > 1 ? `#${index + 1}` : "File Hub",
       url: direct(item.url),
@@ -410,11 +421,10 @@ export function buildAssetRecords(entries, lan) {
       kind: "filehub",
     }));
 
-    const netdisk = [];
     if (variant.download_url) {
-      netdisk.push({
-        label: `${lan === "zh" ? "网盘" : "Netdisk"}${variant.code ? ` (${lan === "zh" ? "提取码" : "Code"}: ${variant.code})` : ""}`,
-        shortLabel: lan === "zh" ? "网盘" : "Netdisk",
+      downloads.push({
+        label: `网盘${variant.code ? ` (提取码: ${variant.code})` : ""}`,
+        shortLabel: "网盘",
         url: variant.download_url,
         code: variant.code || null,
         dead: false,
@@ -423,9 +433,9 @@ export function buildAssetRecords(entries, lan) {
       });
     }
     if (variant.download_url_alt) {
-      netdisk.push({
-        label: `${lan === "zh" ? "备用网盘" : "Mirror"}${variant.code_alt ? ` (${lan === "zh" ? "提取码" : "Code"}: ${variant.code_alt})` : ""}`,
-        shortLabel: lan === "zh" ? "备用" : "Mirror",
+      downloads.push({
+        label: `备用网盘${variant.code_alt ? ` (提取码: ${variant.code_alt})` : ""}`,
+        shortLabel: "备用",
         url: variant.download_url_alt,
         code: variant.code_alt || null,
         dead: false,
@@ -452,17 +462,24 @@ export function buildAssetRecords(entries, lan) {
       platform: null,
       software: null,
       assetType: entry.type,
+      assetTypeLabel: assetTypeLabel(entry.type, lan),
       tags: [],
       image,
       images: image ? [image] : [],
       description: lan === "en" ? (entry.description_alt || entry.description || null) : (entry.description || null),
-      downloads: [...downloads, ...netdisk],
+      downloads,
       dataDownloads: [],
-      variants: (entry.ver || []).map((verRaw) => {
-        const key = Object.keys(verRaw)[0];
-        const obj = verRaw[key] || {};
-        return { key, label: (lan === "en" && obj.variant_alt) ? obj.variant_alt : key, ver: obj.ver || "", date: toDate(obj.date) };
-      }),
+      versions: [{
+        verKey: variantKey || (variant.ver || ""),
+        label: variant.ver || variantKey || "",
+        date: toDate(variant.date || entry.date),
+        downloads,
+        dataDownloads: [],
+        current: true,
+        platform: null,
+        software: null,
+        repacker: null,
+      }],
       links: {
         home: null,
         source: entry.source_url || null,
@@ -470,8 +487,8 @@ export function buildAssetRecords(entries, lan) {
         wiki: null,
         video: [],
       },
-      searchText: [entry.name, entry.name_alt, authorText(entry, "zh"), authorText(entry, "en"), (entry.alias || []).join(" "), entry.description, entry.description_alt]
-        .filter(Boolean).join(" "),
+      titleSearch: [entry.name, entry.name_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : [])],
+      authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
       raw: entry,
     };
   });
@@ -482,7 +499,6 @@ export function buildAssetRecords(entries, lan) {
 export function buildSoftendoRecords(entries, lan) {
   return entries.map((entry) => {
     const yearRange = getSoftendoYearRange(entry);
-    const image = getGameImageSync(entry, "softendo");
     const versions = (entry.ver || []).map((verRaw, index) => {
       const key = Object.keys(verRaw)[0];
       const ver = verRaw[key] || {};
@@ -528,6 +544,7 @@ export function buildSoftendoRecords(entries, lan) {
         year: ver.year || null,
         date: toDate(ver.date),
         downloads,
+        dataDownloads: [],
         current: index === 0,
         platform: null,
         software: null,
@@ -538,6 +555,7 @@ export function buildSoftendoRecords(entries, lan) {
     const current = versions[0] || { downloads: [] };
     const genres = entry.genre ? (Array.isArray(entry.genre) ? entry.genre : [entry.genre]) : [];
     const language = entry.language ? (Array.isArray(entry.language) ? entry.language : [entry.language]) : [];
+    const image = getGameImageSync(entry, "softendo");
 
     return {
       id: `softendo::${getSoftendoGameName(entry)}`,
@@ -567,41 +585,53 @@ export function buildSoftendoRecords(entries, lan) {
       dataDownloads: [],
       versions,
       links: { home: null, source: null, repo: null, wiki: null, video: [] },
-      searchText: [getSoftendoGameName(entry), (entry.alias || []).join(" "), getTypeLabel(entry.type), genres.join(" "),
-        Array.isArray(getSoftwareLabel(entry.software)) ? getSoftwareLabel(entry.software).join(" ") : getSoftwareLabel(entry.software)]
-        .filter(Boolean).join(" "),
+      titleSearch: [getSoftendoGameName(entry), ...(entry.alias || [])],
+      authorSearch: [getSoftendoGameName(entry)],
       raw: entry,
     };
   });
 }
 
-// ── facet option builders ────────────────────────────────────
-export function distinctOptions(records, getter, labeler = (v) => v) {
-  const seen = new Map();
+// ── facet helpers ────────────────────────────────────────────
+
+/**
+ * Build a single-choice facet with per-option counts, so the sidebar can show
+ * how many records each choice would leave.
+ */
+export function makeFacet({ key, label, options, getter }) {
+  const counts = new Map();
+  for (const record of options.records) {
+    const value = getter(record);
+    if (value == null) continue;
+    const values = Array.isArray(value) ? value : [value];
+    for (const item of values) {
+      counts.set(item, (counts.get(item) || 0) + 1);
+    }
+  }
+  return {
+    key,
+    label,
+    options: options.list.map((option) => ({
+      ...option,
+      count: counts.get(option.value) || 0,
+    })),
+    test: (record, value) => {
+      const recordValue = getter(record);
+      if (Array.isArray(recordValue)) return recordValue.includes(value);
+      return recordValue === value;
+    },
+  };
+}
+
+export function distinctValues(records, getter) {
+  const set = new Set();
   for (const record of records) {
     const value = getter(record);
-    if (!value) continue;
-    if (!seen.has(value)) seen.set(value, labeler(value));
+    if (value == null) continue;
+    const values = Array.isArray(value) ? value : [value];
+    for (const item of values) set.add(item);
   }
-  return Array.from(seen.entries())
-    .sort((a, b) => String(a[1]).localeCompare(String(b[1])))
-    .map(([value, label]) => ({ value, label }));
+  return Array.from(set);
 }
 
-export function yearOptions(records) {
-  const years = new Set();
-  for (const record of records) {
-    if (!record.date) continue;
-    years.add(record.date.getFullYear());
-  }
-  return Array.from(years)
-    .sort((a, b) => b - a)
-    .map((year) => ({ value: String(year), label: String(year) }));
-}
-
-export function slugForRecord(record) {
-  const names = record.authors && record.authors.length ? record.authors.join("-") : record.author;
-  return `${slug(record.name)}-${slug(names)}`;
-}
-
-export { getMfFileUrl, getStrFromList };
+export { slugify };

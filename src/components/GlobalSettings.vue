@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort } from '../util/Language.js';
+import DesignSwitch from './DesignSwitch.vue';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 
 const lan = ref(getLanguage());
@@ -85,6 +86,14 @@ function cancelSettings() {
             <input type="checkbox" v-model="tempUseDirectLink" />
             <span>{{ lan === 'zh' ? '资源站使用直链' : 'Use direct link for Community File Hub' }}</span>
           </label>
+          <div class="settings-item settings-item-design">
+            <span>{{ lan === 'zh' ? '界面设计' : 'Interface design' }}</span>
+            <DesignSwitch
+              current="legacy"
+              variant="row"
+              :label="lan === 'zh' ? '切换到新版设计' : 'Switch to new design'"
+            />
+          </div>
         </div>
         <div class="settings-footer">
           <button class="md-button md-button-secondary" @click="cancelSettings">{{ lan === 'zh' ? '取消' : 'Cancel' }}</button>
@@ -206,6 +215,17 @@ function cancelSettings() {
 
   .settings-item + .settings-item {
     margin-top: .9em;
+  }
+
+  /* Interface design row: label above the switch button */
+  .settings-item-design {
+    display: block;
+    cursor: default;
+  }
+
+  .settings-item-design > span {
+    display: block;
+    margin-bottom: .35em;
   }
 
   .settings-sort-select {

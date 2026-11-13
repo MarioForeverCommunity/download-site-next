@@ -3,36 +3,140 @@ import { ref, computed, watch } from "vue";
 /**
  * Catalog state for the redesigned list pages.
  *
- * Every catalog page (fangames, MW levels, assets, Softendo) has the same
- * interaction: a free-text query, a handful of single-select facets, one
- * tri-state tag filter, a sort field and a view density. Keeping that state
- * here means the four pages stay behavioural twins and the toolbar component
- * only has to describe *which* facets exist.
+ * Every catalog page (fangames, MW levels, assets, Softendo) shares one
+ * interaction model:
  *
- * Facets are declarative: `{ key, label, options: [{ value, label }], test: fn }`.
- * `test` receives the raw record and returns a boolean, so a facet can inspect
- * anything the adapter exposes without the engine knowing the domain. Pass
- * `facets` as a getter when the option labels depend on the current language.
+ *  - two independent text searches: title (titles, aliases, filenames) and
+ *    author;
+ *  - single-select facets and a tri-state tag filter, rendered as an always-open
+ *    secondary sidebar rather than hidden dropdowns;
+ *  - a date filter with two mutually exclusive modes: whole-year, or an exact
+ *    range down to the day. They are exclusive because combining them produces
+ *    ranges that are hard to reason about ("2021–2023 but also 2019-05-02");
+ *    one control, one answer.
+ *
+ * Facets are declarative: `{ key, label, options: [{ value, label, count }],
+ * test(record, value) }`. Passing `facets` as a getter keeps option labels in
+ * sync with the current language.
  */
 export function useCatalog({
   records,
-  searchFields,
+  titleFields,
+  authorFields,
   facets = [],
   sorters = [],
   defaultSort = null,
   tags = null,
-  initialQuery = "",
+  labels = {},
 }) {
   const resolveFacets = () => (typeof facets === "function" ? facets() : facets);
   const facetDefs = computed(resolveFacets);
 
-  const query = ref(initialQuery);
+  const query = ref("");
+  const authorQuery = ref("");
   const facetValues = ref({});
-  const sort = ref(defaultSort ? { field: defaultSort.field, asc: defaultSort.asc } : { field: null, asc: true });
-  const view = ref("list");
   const tagStates = ref({});
+  const view = ref("list");
+  const sort = ref(defaultSort ? { field: defaultSort.field, asc: defaultSort.asc } : { field: null, asc: true });
   const activeId = ref(null);
+  // Stable id so form labels in the filter pane can point at their inputs.
+  const uid = Math.random().toString(36).slice(2, 8);
 
+  // ── date filter ────────────────────────────────────────────
+  // mode: "year" | "range". Year picks a single whole year; range takes two
+  // ISO dates (inclusive). Only one mode is ever active.
+  const dateMode = ref("year");
+  const filterYear = ref("");
+  const rangeFrom = ref("");
+  const rangeTo = ref("");
+
+  // Labels are supplied by the page so the composable stays language-agnostic.
+  const yearLabel = computed(() => labels.year || "");
+  const rangeLabel = computed(() => labels.range || "");
+
+  function setDateMode(mode) {
+    if (mode === dateMode.value) return;
+    dateMode.value = mode;
+    // Clear the other mode so a hidden filter can never keep filtering.
+    if (mode === "year") {
+      rangeFrom.value = "";
+      rangeTo.value = "";
+    } else {
+      filterYear.value = "";
+    }
+  }
+
+  function setYear(value) {
+    filterYear.value = value || "";
+  }
+
+  function setRange(from, to) {
+    rangeFrom.value = from || "";
+    rangeTo.value = to || "";
+  }
+
+  function clearDate() {
+    filterYear.value = "";
+    rangeFrom.value = "";
+    rangeTo.value = "";
+  }
+
+  const hasYearFilter = computed(() => dateMode.value === "year" && !!filterYear.value);
+  const hasRangeFilter = computed(() => dateMode.value === "range" && (!!rangeFrom.value || !!rangeTo.value));
+  const hasDateFilter = computed(() => hasYearFilter.value || hasRangeFilter.value);
+
+  const yearOptions = computed(() => {
+    const years = new Set();
+    for (const record of records.value) {
+      if (record.date) years.add(String(record.date.getFullYear()));
+    }
+    return Array.from(years).sort((a, b) => Number(b) - Number(a));
+  });
+
+  const yearCounts = computed(() => {
+    const counts = new Map();
+    for (const record of records.value) {
+      if (!record.date) continue;
+      const year = String(record.date.getFullYear());
+      counts.set(year, (counts.get(year) || 0) + 1);
+    }
+    return counts;
+  });
+
+  // Earliest/latest dates present, so the range inputs can hint real bounds.
+  const dateBounds = computed(() => {
+    let min = null;
+    let max = null;
+    for (const record of records.value) {
+      const date = record.date;
+      if (!date) continue;
+      if (!min || date < min) min = date;
+      if (!max || date > max) max = date;
+    }
+    const iso = (date) => {
+      if (!date) return "";
+      const pad = (value) => String(value).padStart(2, "0");
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    };
+    return { min: iso(min), max: iso(max) };
+  });
+
+  function matchesDate(record) {
+    if (!hasDateFilter.value) return true;
+    if (!record.date) return false;
+    if (hasYearFilter.value) {
+      return String(record.date.getFullYear()) === filterYear.value;
+    }
+    // Compare calendar days, not instants: a record released at 23:00 on the
+    // "to" date must still match.
+    const pad = (value) => String(value).padStart(2, "0");
+    const day = `${record.date.getFullYear()}-${pad(record.date.getMonth() + 1)}-${pad(record.date.getDate())}`;
+    if (rangeFrom.value && day < rangeFrom.value) return false;
+    if (rangeTo.value && day > rangeTo.value) return false;
+    return true;
+  }
+
+  // ── facets / tags ──────────────────────────────────────────
   for (const facet of resolveFacets()) {
     facetValues.value[facet.key] = "";
   }
@@ -46,8 +150,7 @@ export function useCatalog({
         counts.set("Untagged", (counts.get("Untagged") || 0) + 1);
       }
       for (const tag of recordTags) {
-        const key = tag.key;
-        counts.set(key, (counts.get(key) || 0) + 1);
+        counts.set(tag.key, (counts.get(tag.key) || 0) + 1);
       }
     }
     return Array.from(counts.entries())
@@ -55,18 +158,35 @@ export function useCatalog({
       .map(([tag, count]) => ({ tag, count }));
   });
 
+  const activeTagCount = computed(() => Object.keys(tagStates.value).length);
+
   const activeFacets = computed(() => {
     const active = [];
     for (const facet of facetDefs.value) {
       const value = facetValues.value[facet.key];
       if (!value) continue;
       const option = facet.options.find((o) => o.value === value);
-      active.push({ key: facet.key, value, label: option ? option.label : value, facet });
+      active.push({
+        type: "facet",
+        key: facet.key,
+        value,
+        label: `${facet.label}: ${option ? option.label : value}`,
+      });
+    }
+    if (hasYearFilter.value) {
+      active.push({ type: "date", key: "date", label: `${yearLabel.value}${filterYear.value}` });
+    }
+    if (hasRangeFilter.value) {
+      const from = rangeFrom.value || "…";
+      const to = rangeTo.value || "…";
+      active.push({ type: "date", key: "date", label: `${rangeLabel.value}${from} – ${to}` });
+    }
+    for (const [tag, state] of Object.entries(tagStates.value)) {
+      const prefix = state === "not" ? "−" : state === "and" ? "+" : "";
+      active.push({ type: "tag", key: tag, state, label: `${prefix}${tag}` });
     }
     return active;
   });
-
-  const activeTagCount = computed(() => Object.keys(tagStates.value).length);
 
   function matchesTags(recordTags) {
     const states = tagStates.value;
@@ -82,8 +202,9 @@ export function useCatalog({
     return orOk && andOk && notOk;
   }
 
-  // Local copy of the shared normalisation rule (upper-case, strip punctuation)
-  // so a query like "phantomsmagoria" still finds "PHANTOM'SMAGORIA".
+  // ── search ─────────────────────────────────────────────────
+  // Same normalisation as the legacy site: upper-case, strip punctuation, so
+  // "phantomsmagoria" still finds "PHANTOM'SMAGORIA".
   function normalizedContains(haystack, needle) {
     const normalize = (s) => String(s).toUpperCase().replace(/[^\p{L}\p{N}]/gu, "");
     const n = normalize(needle);
@@ -91,8 +212,8 @@ export function useCatalog({
     return normalize(haystack).includes(n);
   }
 
-  function matchesQuery(record, needle) {
-    for (const getter of searchFields) {
+  function fieldsMatch(record, fields, needle) {
+    for (const getter of fields) {
       const value = typeof getter === "function" ? getter(record) : record[getter];
       if (value == null) continue;
       if (Array.isArray(value)) {
@@ -105,15 +226,18 @@ export function useCatalog({
   }
 
   const filtered = computed(() => {
-    const needle = query.value.trim();
+    const titleNeedle = query.value.trim();
+    const authorNeedle = authorQuery.value.trim();
     const activeFacetDefs = facetDefs.value.filter((f) => facetValues.value[f.key]);
 
     let list = records.value.filter((record) => {
-      if (needle && !matchesQuery(record, needle)) return false;
+      if (titleNeedle && !fieldsMatch(record, titleFields, titleNeedle)) return false;
+      if (authorNeedle && !fieldsMatch(record, authorFields, authorNeedle)) return false;
       for (const facet of activeFacetDefs) {
         if (!facet.test(record, facetValues.value[facet.key])) return false;
       }
       if (tags && !matchesTags(record.tags)) return false;
+      if (!matchesDate(record)) return false;
       return true;
     });
 
@@ -128,12 +252,17 @@ export function useCatalog({
     return list;
   });
 
-  function setFacet(key, value) {
-    facetValues.value = { ...facetValues.value, [key]: value };
-  }
-
+  // ── mutators ───────────────────────────────────────────────
   function setQuery(value) {
     query.value = value;
+  }
+
+  function setAuthorQuery(value) {
+    authorQuery.value = value;
+  }
+
+  function setFacet(key, value) {
+    facetValues.value = { ...facetValues.value, [key]: value };
   }
 
   function setView(value) {
@@ -145,15 +274,23 @@ export function useCatalog({
   }
 
   function setActive(id) {
-    activeId.value = id ?? null;
+    activeId.value = id == null ? null : id;
   }
 
   function clearAll() {
     query.value = "";
+    authorQuery.value = "";
     const cleared = {};
     for (const facet of facetDefs.value) cleared[facet.key] = "";
     facetValues.value = cleared;
     tagStates.value = {};
+    clearDate();
+  }
+
+  function clearFacets() {
+    const cleared = {};
+    for (const facet of facetDefs.value) cleared[facet.key] = "";
+    facetValues.value = cleared;
   }
 
   function toggleSort(field) {
@@ -181,14 +318,14 @@ export function useCatalog({
   }
 
   const isFiltered = computed(() => !!query.value.trim()
+    || !!authorQuery.value.trim()
     || activeFacets.value.length > 0
-    || Object.keys(tagStates.value).length > 0);
+    || hasDateFilter.value);
 
   const count = computed(() => filtered.value.length);
   const total = computed(() => records.value.length);
 
-  // Keep the open record valid when filters change (a filtered-out row must not
-  // stay open forever with stale content).
+  // A filtered-out record must not stay open with stale content.
   watch(filtered, (list) => {
     if (activeId.value == null) return;
     if (!list.some((record) => record.id === activeId.value)) {
@@ -197,30 +334,52 @@ export function useCatalog({
   });
 
   return {
+    uid,
+    // search
     query,
+    authorQuery,
+    setQuery,
+    setAuthorQuery,
+    // facets & tags
     facetValues,
     facetDefs,
-    sort,
-    view,
     tagStates,
     tagList,
     activeTagCount,
     activeFacets,
+    setFacet,
+    cycleTag,
+    clearTags,
+    clearFacets,
+    // date
+    dateMode,
+    filterYear,
+    rangeFrom,
+    rangeTo,
+    yearOptions,
+    yearCounts,
+    dateBounds,
+    hasDateFilter,
+    hasYearFilter,
+    hasRangeFilter,
+    setDateMode,
+    setYear,
+    setRange,
+    clearDate,
+    // sort / view / selection
+    sort,
+    toggleSort,
+    view,
+    setView,
+    toggleView,
+    activeId,
+    setActive,
+    // results
     filtered,
     count,
     total,
     isFiltered,
-    activeId,
-    // Unfiltered source, used by deep links so a shared URL always resolves.
     allRecords: records,
-    setFacet,
-    setQuery,
-    setView,
-    toggleView,
-    setActive,
     clearAll,
-    toggleSort,
-    cycleTag,
-    clearTags,
   };
 }

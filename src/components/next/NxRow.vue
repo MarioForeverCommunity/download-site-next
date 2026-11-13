@@ -1,5 +1,5 @@
 <script setup>
-// One catalog record in list density. The row is a button so the entire strip is
+// One catalog record in list density. The row is a button so the whole strip is
 // a hit target; links inside stop propagation so they still open in a new tab.
 import { computed } from "vue";
 import NxIcon from "./NxIcon.vue";
@@ -19,10 +19,6 @@ const props = defineProps({
   active: {
     type: Boolean,
     default: false
-  },
-  showTags: {
-    type: Boolean,
-    default: true
   }
 });
 
@@ -86,24 +82,19 @@ function openLinks(event) {
           v-if="record.nameAlt && record.nameAlt !== record.name"
           class="nx-row-sub"
         >{{ record.nameAlt }}</div>
-        <div
-          v-else-if="record.description"
-          class="nx-row-sub"
-        >{{ record.description }}</div>
       </div>
     </div>
 
-    <div class="nx-row-cell nx-row-author">
+    <div class="nx-cell">
       {{ record.author || "—" }}
     </div>
 
-    <div class="nx-row-cell nx-mono nx-row-version">
+    <div class="nx-cell nx-num">
       <template v-if="record.kind === 'softendo'">{{ record.yearLabel || "—" }}</template>
-      <template v-else-if="record.kind === 'asset'">{{ record.versionLabel || "—" }}</template>
       <template v-else>{{ record.versionLabel || "—" }}</template>
     </div>
 
-    <div class="nx-row-cell nx-mono nx-row-date">
+    <div class="nx-cell nx-num">
       <template v-if="record.kind === 'softendo'">
         {{ record.versionCount }} {{ lan === "zh" ? "版本" : "ver" }}
       </template>
@@ -112,10 +103,7 @@ function openLinks(event) {
       </template>
     </div>
 
-    <div
-      v-if="showTags"
-      class="nx-row-tags nx-row-tags-col"
-    >
+    <div class="nx-row-tags nx-row-tags-col">
       <span
         v-if="regionLabel"
         class="nx-dot"
@@ -143,7 +131,7 @@ function openLinks(event) {
         :aria-label="lan === 'zh' ? '直接下载' : 'Direct download'"
         @click="openLinks"
       >
-        <NxIcon name="download" :size="15" />
+        <NxIcon name="download" :size="14" />
       </a>
       <a
         v-if="record.links && record.links.source"
@@ -154,26 +142,8 @@ function openLinks(event) {
         :aria-label="lan === 'zh' ? '发布页' : 'Source post'"
         @click="openLinks"
       >
-        <NxIcon name="link" :size="15" />
+        <NxIcon name="link" :size="14" />
       </a>
-      <span class="nx-row-more">
-        <NxIcon name="chevronRight" :size="14" />
-      </span>
     </div>
   </div>
 </template>
-
-<style scoped>
-  .nx-row-more {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    color: var(--nx-faint);
-  }
-
-  .nx-row:hover .nx-row-more {
-    color: var(--nx-ink);
-  }
-</style>

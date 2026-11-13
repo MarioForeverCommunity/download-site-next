@@ -1,8 +1,0 @@
-/* Typefaces for the redesigned UI.
-   IBM Plex Sans (variable) carries both UI text and headings: its slightly
-   engineered voice suits a software archive, and its wide weight axis lets the
-   same family do mastheads and 12px metadata. IBM Plex Mono is reserved for
-   record data — dates, version strings, filenames — never for decoration. */
-@import "@fontsource-variable/ibm-plex-sans/wght.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";

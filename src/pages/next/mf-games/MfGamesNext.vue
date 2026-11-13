@@ -1,19 +1,18 @@
 <script setup>
 // Mario Forever fangames catalog — redesigned.
 //
-// Same data pipeline as the legacy page (YAML -> normalizeMfEntry), adapted into
-// the shared record model in util/next/records.js. The legacy page stays mounted
-// behind src/pages/mf-games/MfGames.vue and is one click away via DesignSwitch.
+// Same data pipeline as the legacy page (YAML -> ensureMfList -> adapter), and
+// the same platform/software rules, so the two designs can never disagree about
+// what a record is. Only presentation and the filter interaction differ.
 import { ref, computed, onMounted } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
-import NxPageHead from "../../../components/next/NxPageHead.vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { ensureMfList } from "../../../util/useMfList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
-import { buildMfRecords, expandMfRecord, yearOptions } from "../../../util/next/records.js";
+import { buildMfRecords, expandMfRecord, makeFacet } from "../../../util/next/records.js";
 
 const lan = ref(getLanguage());
 const pageId = "mf-games";
@@ -25,8 +24,6 @@ const rawRecords = ref([]);
 const loading = ref(true);
 const expandVersions = ref(false);
 
-// The visitor's global default sort (Global Settings) still decides the initial
-// ordering, exactly as on the legacy page.
 const SORT_MAP = {
   date_desc: { field: "date", asc: false },
   date_asc: { field: "date", asc: true },
@@ -41,49 +38,51 @@ const initialSort = SORT_MAP[getDefaultSort().value] || { field: "date", asc: fa
 const records = computed(() => {
   if (!expandVersions.value) return rawRecords.value;
   const expanded = [];
-  for (const record of rawRecords.value) {
-    expanded.push(...expandMfRecord(record));
-  }
+  for (const record of rawRecords.value) expanded.push(...expandMfRecord(record));
   return expanded;
 });
 
-const regionFacet = computed(() => ({
-  key: "region",
-  label: lan.value === "zh" ? "地区" : "Region",
-  options: [
-    { value: "chinese", label: lan.value === "zh" ? "国内" : "Chinese" },
-    { value: "international", label: lan.value === "zh" ? "国外" : "International" },
-  ],
-  test: (record, value) => record.region === value,
-}));
-
-const platformFacet = computed(() => ({
-  key: "platform",
-  label: lan.value === "zh" ? "平台" : "Platform",
-  options: ["Windows", "Linux", "macOS", "Android", "J2ME"].map((value) => ({ value, label: value })),
-  test: (record, value) => record.platform === value,
-}));
-
-const softwareFacet = computed(() => ({
-  key: "software",
-  label: lan.value === "zh" ? "制作软件" : "Software",
-  options: [
-    { value: "mmf", label: "Clickteam Fusion" },
-    { value: "godot", label: "Godot" },
-    { value: "gamemaker", label: "GameMaker" },
-    { value: "other", label: lan.value === "zh" ? "其他" : "Other" },
-  ],
-  test: (record, value) => record.software === value,
-}));
-
-const yearFacet = computed(() => ({
-  key: "year",
-  label: lan.value === "zh" ? "年份" : "Year",
-  options: yearOptions(records.value),
-  test: (record, value) => record.date && String(record.date.getFullYear()) === value,
-}));
-
-const facets = computed(() => [regionFacet.value, platformFacet.value, softwareFacet.value, yearFacet.value]);
+const facets = computed(() => {
+  const list = records.value;
+  const zh = lan.value === "zh";
+  return [
+    makeFacet({
+      key: "region",
+      label: zh ? "地区" : "Region",
+      getter: (record) => record.region,
+      options: {
+        records: list,
+        list: [
+          { value: "chinese", label: zh ? "国内" : "Chinese" },
+          { value: "international", label: zh ? "国外" : "International" },
+        ],
+      },
+    }),
+    makeFacet({
+      key: "platform",
+      label: zh ? "平台" : "Platform",
+      getter: (record) => record.platform,
+      options: {
+        records: list,
+        list: ["Windows", "Linux", "macOS", "Android", "J2ME"].map((value) => ({ value, label: value })),
+      },
+    }),
+    makeFacet({
+      key: "software",
+      label: zh ? "制作软件" : "Software",
+      getter: (record) => record.software,
+      options: {
+        records: list,
+        list: [
+          { value: "mmf", label: "Clickteam Fusion" },
+          { value: "godot", label: "Godot" },
+          { value: "gamemaker", label: "GameMaker" },
+          { value: "other", label: zh ? "其他" : "Other" },
+        ],
+      },
+    }),
+  ];
+});
 
 const sorters = [
   { field: "name", compare: (a, b) => String(a.name).localeCompare(String(b.name)) },
@@ -93,23 +92,30 @@ const sorters = [
 
 const catalog = useCatalog({
   records,
-  searchFields: ["searchText"],
-  // Getter so facet labels follow the UI language.
+  titleFields: ["titleSearch"],
+  authorFields: ["authorSearch"],
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
   tags: true,
+  labels: {
+    year: lan.value === "zh" ? "年份 " : "Year ",
+    range: lan.value === "zh" ? "日期 " : "Date ",
+  },
 });
 
 const stats = computed(() => {
   if (loading.value) return [];
   const years = rawRecords.value.filter((r) => r.date).map((r) => r.date.getFullYear());
   const range = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : "—";
-  return [
-    { label: lan.value === "zh" ? "收录作品" : "TITLES", value: rawRecords.value.length },
-    { label: lan.value === "zh" ? "年份跨度" : "YEARS", value: range },
-  ];
+  return { total: rawRecords.value.length, range };
 });
+
+const catalogRef = ref(null);
+
+function randomGame() {
+  if (catalogRef.value) catalogRef.value.randomRecord();
+}
 
 async function load(language) {
   loading.value = true;
@@ -148,19 +154,39 @@ document.title = title.value;
     :page-id="pageId"
     :lan="lan"
     :title="title"
+    :search="catalog"
+    show-random
     @change-lan-zh="pageSetLanguageZh"
     @change-lan-en="pageSetLanguageEn"
+    @random="randomGame"
   >
-    <NxPageHead
-      :title="title"
-      :description="lan === 'zh'
-        ? 'Mario Forever 同人作品的持续收录档案。按地区、平台、制作软件与标签筛选，点开任意一条查看版本与下载。'
-        : 'A growing archive of Mario Forever fangames. Filter by region, platform, engine and tag; open any record for versions and downloads.'"
-      :stats="stats"
-    />
+    <!-- page heading sits between topbar and content -->
+    <div class="nx-pagehead">
+      <div class="nx-pagehead-text">
+        <h1 class="nx-masthead">{{ title }}</h1>
+        <p class="nx-lede">
+          {{ lan === "zh"
+            ? "Mario Forever 同人作品的持续收录档案。用左侧条件收窄结果，点开任意一条查看版本、截图与下载。"
+            : "A growing archive of Mario Forever fangames. Narrow with the panel on the left; open any record for versions, screenshots and downloads." }}
+        </p>
+      </div>
+      <div
+        v-if="!loading"
+        class="nx-pagehead-stats"
+      >
+        <div class="nx-stat">
+          <span class="nx-stat-v nx-num">{{ stats.total }}</span>
+          <span class="nx-stat-l">{{ lan === "zh" ? "收录作品" : "titles" }}</span>
+        </div>
+        <div class="nx-stat">
+          <span class="nx-stat-v nx-num">{{ stats.range }}</span>
+          <span class="nx-stat-l">{{ lan === "zh" ? "年份跨度" : "years" }}</span>
+        </div>
+      </div>
+    </div>
 
-    <div class="nx-page" style="padding-bottom: 0;">
-      <label class="nx-expand">
+    <div class="nx-pagehead-options">
+      <label class="nx-inline-check">
         <input
           v-model="expandVersions"
           type="checkbox"
@@ -171,47 +197,24 @@ document.title = title.value;
 
     <NxCatalog
       v-if="!loading"
+      ref="catalogRef"
       :catalog="catalog"
       :facets="facets"
       :sorters="sorters"
       :lan="lan"
       :columns="{
-        name: lan === 'zh' ? '作品' : 'TITLE',
-        author: lan === 'zh' ? '作者' : 'AUTHOR',
-        version: lan === 'zh' ? '版本' : 'VERSION',
-        date: lan === 'zh' ? '日期' : 'DATE',
-        tags: lan === 'zh' ? '分类' : 'CLASS',
+        name: lan === 'zh' ? '作品' : 'Title',
+        author: lan === 'zh' ? '作者' : 'Author',
+        version: lan === 'zh' ? '版本' : 'Version',
+        date: lan === 'zh' ? '日期' : 'Date',
+        tags: lan === 'zh' ? '分类' : 'Class',
       }"
     />
     <div
       v-else
-      class="nx-page nx-loading"
+      class="nx-loading"
     >
       {{ lan === "zh" ? "正在载入作品目录…" : "Loading the catalog…" }}
     </div>
   </NxShell>
 </template>
-
-<style scoped>
-  .nx-expand {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 12.5px;
-    color: var(--nx-muted);
-    cursor: pointer;
-    user-select: none;
-    padding: 12px 0 4px;
-  }
-
-  .nx-expand input {
-    accent-color: var(--nx-accent);
-    cursor: pointer;
-  }
-
-  .nx-loading {
-    padding: 40px 28px;
-    color: var(--nx-muted);
-    font-size: 13px;
-  }
-</style>

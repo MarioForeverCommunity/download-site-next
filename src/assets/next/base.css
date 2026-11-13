@@ -1,137 +1,99 @@
 /* ─────────────────────────────────────────────────────────────
    Next design — tokens and primitives
    ─────────────────────────────────────────────────────────────
-   Direction: an inventory ledger, not a poster. The chrome is
-   deliberately colourless; the only saturated colours on screen are
-   data (region, tag, engine, "current version"). That way a reader
-   scanning 600 records reads colour as meaning, never as branding.
+   Structure borrowed from fangame-archive: a quiet left navigation rail, a
+   white content canvas, and a secondary filter pane that is *always open*
+   rather than hidden behind dropdowns. Density is the whole point of a
+   catalog, so the chrome stays flat and hairline-thin and the records carry
+   the weight.
 
-   One accent — archive stamp red — marks the single thing the page
-   wants you to do (download) and the current position (active nav,
-   selected record). Everything else is ink on paper.
+   Colour: the canvas is white, chrome is warm grey. One accent (brick red,
+   borrowed from the box art itself rather than any brand palette) marks the
+   active nav item, the primary download action and the selected row — nothing
+   else. Tag colours stay only where they encode data.
    ───────────────────────────────────────────────────────────── */
 
 :root {
-  /* paper & ink */
-  --nx-bg: #ebede9;
-  --nx-bg-deep: #e2e5e0;
-  --nx-panel: #ffffff;
-  --nx-panel-2: #f5f6f3;
-  --nx-ink: #15181a;
-  --nx-ink-2: #3d4348;
-  --nx-muted: #6b7278;
-  --nx-faint: #949a9f;
-  --nx-line: #d3d7d2;
-  --nx-line-soft: #e4e7e2;
+  /* canvas & chrome */
+  --nx-canvas: #ffffff;
+  --nx-rail: #f5f4f1;
+  --nx-pane: #faf9f7;
+  --nx-fill: #f6f5f2;
+  --nx-fill-2: #efeee9;
+  --nx-ink: #17181a;
+  --nx-ink-2: #3c3f42;
+  --nx-muted: #6d7176;
+  --nx-faint: #979ba0;
+  --nx-line: #e6e4df;
+  --nx-line-2: #d8d5cf;
 
-  /* accent: used for primary action, active nav, selection only */
-  --nx-accent: #9e1f2b;
-  --nx-accent-hover: #831721;
-  --nx-accent-soft: #f7e8e8;
+  /* accent */
+  --nx-accent: #b02a26;
+  --nx-accent-hover: #931f1c;
+  --nx-accent-soft: #fbeeed;
+  --nx-accent-border: #ecc6c3;
 
-  /* semantic data colours — these carry meaning, so they stay */
+  /* data colours (meaning, not decoration) */
   --nx-cn: #b3261e;
   --nx-intl: #1f5fa8;
   --nx-cur: #1c6b45;
   --nx-warn: #8a5a00;
-  --nx-warn-bg: #fbf1d9;
+  --nx-warn-bg: #fdf4e0;
+  --nx-warn-border: #f0e0b8;
 
   /* geometry */
-  --nx-r: 4px;
+  --nx-r: 5px;
   --nx-r-lg: 8px;
-  --nx-rail-w: 232px;
-  --nx-drawer-w: min(520px, 100vw);
-  --nx-shadow-1: 0 1px 2px rgba(21, 24, 26, 0.06);
-  --nx-shadow-2: 0 10px 30px rgba(21, 24, 26, 0.14);
-  --nx-shadow-3: -18px 0 48px rgba(21, 24, 26, 0.16);
+  --nx-rail-w: 208px;
+  --nx-pane-w: 236px;
+  --nx-drawer-w: min(600px, 100vw);
+  --nx-shadow-1: 0 1px 2px rgba(23, 24, 26, 0.06);
+  --nx-shadow-2: 0 12px 32px rgba(23, 24, 26, 0.13);
+  --nx-shadow-3: -20px 0 50px rgba(23, 24, 26, 0.17);
 
-  /* density (comfortable default, compact opt-in) */
-  --nx-row-h: 60px;
-  --nx-pad: 16px;
+  /* density */
+  --nx-row-h: 56px;
 
-  /* type */
-  --nx-sans: "IBM Plex Sans Variable", "IBM Plex Sans", "PingFang SC",
-    "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
-  --nx-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  /* type — one family. Inter, as the site already ships. */
+  --nx-sans: "Inter", "InterVariable", -apple-system, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --nx-num: "Inter", "InterVariable", -apple-system, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
 }
 
 :root[data-nx-density="compact"] {
-  --nx-row-h: 46px;
-  --nx-pad: 11px;
+  --nx-row-h: 42px;
 }
 
-/* ── dark theme ─────────────────────────────────────────────
-   Same contract as light: graphite paper, one warm accent for actions. Dark
-   mode is a genuine alternative reading condition, not an inverted poster, so
-   the data colours get re-tuned for contrast instead of being flipped. */
+/* ── dark theme ───────────────────────────────────────────── */
 :root[data-nx-theme="dark"] {
-  --nx-bg: #121417;
-  --nx-bg-deep: #0d0f11;
-  --nx-panel: #181b1f;
-  --nx-panel-2: #1e2227;
+  --nx-canvas: #16181a;
+  --nx-rail: #101214;
+  --nx-pane: #141618;
+  --nx-fill: #1d2023;
+  --nx-fill-2: #23272a;
   --nx-ink: #eceef0;
-  --nx-ink-2: #c3c8cd;
-  --nx-muted: #8d949b;
-  --nx-faint: #666d74;
-  --nx-line: #2a2f35;
-  --nx-line-soft: #23282d;
+  --nx-ink-2: #c2c7cc;
+  --nx-muted: #8b9197;
+  --nx-faint: #666c72;
+  --nx-line: #2a2e32;
+  --nx-line-2: #383d42;
 
-  --nx-accent: #d4586a;
-  --nx-accent-hover: #e2707f;
-  --nx-accent-soft: #2e1c20;
+  --nx-accent: #e06a60;
+  --nx-accent-hover: #ec8177;
+  --nx-accent-soft: #2c1c1b;
+  --nx-accent-border: #4a2d2a;
 
   --nx-cn: #ef7a72;
   --nx-intl: #7cb0ea;
   --nx-cur: #63c295;
   --nx-warn: #d9a94a;
-  --nx-warn-bg: #2b2415;
+  --nx-warn-bg: #2a2416;
+  --nx-warn-border: #3d341f;
 
   --nx-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --nx-shadow-2: 0 10px 30px rgba(0, 0, 0, 0.6);
-  --nx-shadow-3: -18px 0 48px rgba(0, 0, 0, 0.6);
-}
-
-:root[data-nx-theme="dark"] .nx-mast {
-  background: #0b0d0f;
-}
-
-:root[data-nx-theme="dark"] .nx-toolbar {
-  background: color-mix(in srgb, var(--nx-bg) 90%, black);
-}
-
-:root[data-nx-theme="dark"] .nx-dot-cn {
-  border-color: color-mix(in srgb, var(--nx-cn) 40%, #121417);
-  background: color-mix(in srgb, var(--nx-cn) 16%, #121417);
-}
-
-:root[data-nx-theme="dark"] .nx-dot-intl {
-  border-color: color-mix(in srgb, var(--nx-intl) 40%, #121417);
-  background: color-mix(in srgb, var(--nx-intl) 16%, #121417);
-}
-
-:root[data-nx-theme="dark"] .nx-dot-warn {
-  border-color: color-mix(in srgb, var(--nx-warn) 40%, #121417);
-  background: color-mix(in srgb, var(--nx-warn) 16%, #121417);
-}
-
-:root[data-nx-theme="dark"] .nx-btn.is-on {
-  background: var(--nx-ink);
-  border-color: var(--nx-ink);
-  color: #121417;
-}
-
-:root[data-nx-theme="dark"] .nx-more {
-  background: var(--nx-panel);
-  border-color: var(--nx-line);
-}
-
-:root[data-nx-theme="dark"] .nx-btn-primary,
-:root[data-nx-theme="dark"] .nx-dl.is-primary {
-  color: #121417;
-}
-
-:root[data-nx-theme="dark"] .nx-code[data-copied="1"] {
-  color: #121417;
+  --nx-shadow-2: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --nx-shadow-3: -20px 0 50px rgba(0, 0, 0, 0.65);
 }
 
 /* ── reset ─────────────────────────────────────────────────── */
@@ -143,20 +105,18 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
 }
 
 body.nx-body {
   margin: 0;
-  background: var(--nx-bg);
+  background: var(--nx-canvas);
   color: var(--nx-ink);
   font-family: var(--nx-sans);
-  font-size: 14px;
-  line-height: 1.55;
-  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv05", "cv08";
 }
 
 body.nx-body.nx-locked {
@@ -176,7 +136,7 @@ textarea {
 }
 
 a {
-  color: var(--nx-ink);
+  color: inherit;
   text-decoration: none;
 }
 
@@ -187,253 +147,186 @@ h4,
 p,
 ul,
 ol,
-figure {
+figure,
+dl,
+dd {
   margin: 0;
 }
 
 ul,
 ol {
   padding: 0;
+  list-style: none;
 }
 
-/* ── focus: always visible, never decorative ───────────────── */
+/* Underlines are reserved for prose. In dense UI they add noise and hurt
+   scanning, so links are signalled by colour and hover background instead. */
+.nx-root a:hover,
+.nx-doc a:hover {
+  text-decoration: none;
+}
+
+/* ── focus ────────────────────────────────────────────────── */
 .nx-root :focus-visible,
-body.nx-body a:focus-visible,
-body.nx-body button:focus-visible {
-  outline: 2px solid var(--nx-ink);
-  outline-offset: 2px;
-  border-radius: 2px;
+.nx-doc :focus-visible,
+body.nx-body button:focus-visible,
+body.nx-body input:focus-visible,
+body.nx-body select:focus-visible {
+  outline: 2px solid var(--nx-accent);
+  outline-offset: 1px;
+  border-radius: 3px;
 }
 
 /* ── type primitives ──────────────────────────────────────── */
-.nx-mono {
-  font-family: var(--nx-mono);
-  font-size: 0.86em;
-  letter-spacing: 0.01em;
+.nx-num {
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "cv05";
 }
 
 .nx-masthead {
-  font-size: clamp(24px, 2.6vw, 32px);
+  font-size: 19px;
   font-weight: 600;
-  letter-spacing: -0.021em;
-  line-height: 1.16;
-  text-wrap: balance;
+  letter-spacing: -0.014em;
+  line-height: 1.3;
+  color: var(--nx-ink);
 }
 
 .nx-lede {
-  font-size: 14.5px;
-  line-height: 1.62;
-  color: var(--nx-ink-2);
-  max-width: 68ch;
-}
-
-.nx-h2 {
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  line-height: 1.28;
-}
-
-.nx-h3 {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.006em;
-}
-
-.nx-label {
-  font-family: var(--nx-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--nx-muted);
+  max-width: 72ch;
 }
 
-.nx-meta {
-  font-family: var(--nx-mono);
-  font-size: 11.5px;
-  color: var(--nx-muted);
-  font-variant-numeric: tabular-nums;
+.nx-micro {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nx-faint);
 }
 
-/* ── shell ─────────────────────────────────────────────────── */
+/* ── shell: rail | main ───────────────────────────────────── */
 .nx-root {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-}
-
-.nx-mast {
-  background: var(--nx-ink);
-  color: #f3f4f1;
-  flex: none;
-}
-
-.nx-mast-inner {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 54px;
-  padding: 0 20px;
-  max-width: 1680px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.nx-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
-  flex: none;
-}
-
-.nx-brand img {
-  height: 30px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
-}
-
-.nx-brand-sep {
-  width: 1px;
-  height: 22px;
-  background: rgba(255, 255, 255, 0.22);
-  flex: none;
-}
-
-.nx-brand-page {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.72);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 34ch;
-}
-
-.nx-mast-spacer {
-  flex: 1;
-}
-
-.nx-mast-links {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.nx-mast-links::-webkit-scrollbar {
-  display: none;
-}
-
-.nx-mast-link {
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 12.5px;
-  padding: 6px 8px;
-  border-radius: var(--nx-r);
-  white-space: nowrap;
-  transition: color 0.12s ease, background 0.12s ease;
-}
-
-.nx-mast-link:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.nx-lang {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  border-radius: var(--nx-r);
-  overflow: hidden;
-  flex: none;
-}
-
-.nx-lang a {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-  padding: 4px 9px;
-  cursor: pointer;
-}
-
-.nx-lang a:hover {
-  color: #fff;
-}
-
-.nx-lang a.on {
-  /* fixed light pill on the always-dark masthead: the design tokens flip in
-     dark mode, so a literal white/near-black pair is used here. */
-  background: #ffffff;
-  color: #15181a;
-  font-weight: 500;
-}
-
-/* ── rail ─────────────────────────────────────────────────── */
-.nx-body-area {
-  flex: 1;
-  display: flex;
   align-items: stretch;
-  width: 100%;
-  max-width: 1680px;
-  margin: 0 auto;
+  background: var(--nx-canvas);
 }
 
 .nx-rail {
   width: var(--nx-rail-w);
   flex: none;
+  background: var(--nx-rail);
   border-right: 1px solid var(--nx-line);
-  padding: 18px 14px 40px;
+  padding: 12px 10px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   position: sticky;
   top: 0;
   align-self: flex-start;
-  max-height: 100vh;
+  height: 100vh;
   overflow-y: auto;
 }
 
-.nx-rail-group + .nx-rail-group {
-  margin-top: 22px;
+.nx-rail-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 6px 8px;
+}
+
+.nx-rail-brand img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.nx-rail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .nx-rail-title {
-  font-family: var(--nx-mono);
-  font-size: 10.5px;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 0.07em;
+  text-transform: uppercase;
   color: var(--nx-faint);
-  padding: 0 8px 7px;
+  padding: 0 7px 6px;
 }
 
-.nx-rail a {
+.nx-rail-item {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
-  padding: 7px 8px;
+  height: 29px;
+  padding: 0 7px;
   border-radius: var(--nx-r);
   color: var(--nx-ink-2);
-  font-size: 13.5px;
-  line-height: 1.3;
-  transition: background 0.12s ease, color 0.12s ease;
+  font-size: 12.5px;
+  line-height: 1.2;
+  transition: background-color 0.1s ease, color 0.1s ease;
 }
 
-.nx-rail a:hover {
-  background: var(--nx-panel);
+.nx-rail-item:hover {
+  background: var(--nx-canvas);
   color: var(--nx-ink);
 }
 
-.nx-rail a.on {
-  background: var(--nx-panel);
+.nx-rail-item.on {
+  background: var(--nx-canvas);
   color: var(--nx-ink);
   font-weight: 600;
-  box-shadow: inset 2px 0 0 var(--nx-accent);
+  box-shadow: var(--nx-shadow-1);
 }
 
-.nx-rail .nx-rail-note {
-  margin-left: auto;
-  font-family: var(--nx-mono);
-  font-size: 10.5px;
+.nx-rail-item.on .nx-rail-icon {
+  color: var(--nx-accent);
+}
+
+.nx-rail-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
   color: var(--nx-faint);
+  display: inline-flex;
+}
+
+.nx-rail-count {
+  margin-left: auto;
+  font-size: 10.5px;
+  color: var(--nx-muted);
+  background: var(--nx-fill-2);
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-rail-item.on .nx-rail-count {
+  background: var(--nx-accent-soft);
+  color: var(--nx-accent);
+}
+
+.nx-rail-foot {
+  margin-top: auto;
+  padding: 8px 7px 0;
+  border-top: 1px solid var(--nx-line);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11.5px;
+  color: var(--nx-muted);
+}
+
+.nx-rail-foot a {
+  color: var(--nx-muted);
+}
+
+.nx-rail-foot a:hover {
+  color: var(--nx-ink);
 }
 
 .nx-main {
@@ -443,56 +336,40 @@ body.nx-body button:focus-visible {
   flex-direction: column;
 }
 
-/* ── page header / doc ────────────────────────────────────── */
-.nx-page {
-  padding: 26px 28px 0;
-  width: 100%;
-  max-width: 1180px;
-}
-
-.nx-page-head {
+/* ── topbar: two searches + actions ───────────────────────── */
+.nx-topbar {
+  height: 50px;
+  flex: none;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  padding-bottom: 18px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
   border-bottom: 1px solid var(--nx-line);
-}
-
-.nx-page-head .nx-lede {
-  margin-top: 8px;
-}
-
-/* ── toolbar ──────────────────────────────────────────────── */
-.nx-toolbar {
+  background: var(--nx-canvas);
   position: sticky;
   top: 0;
   z-index: 40;
-  background: color-mix(in srgb, var(--nx-bg) 88%, white);
-  backdrop-filter: blur(9px);
-  border-bottom: 1px solid var(--nx-line);
-  padding: 9px 28px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
 }
 
 .nx-search {
   position: relative;
-  flex: 0 1 320px;
-  min-width: 180px;
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  max-width: 340px;
+  min-width: 0;
 }
 
 .nx-search input {
   width: 100%;
-  height: 32px;
-  padding: 0 30px 0 30px;
+  height: 30px;
+  padding: 0 26px 0 28px;
   border: 1px solid var(--nx-line);
+  background: var(--nx-fill);
   border-radius: var(--nx-r);
-  background: var(--nx-panel);
-  font-size: 13px;
-  transition: border-color 0.12s ease;
+  font-size: 12.5px;
+  outline: none;
+  transition: background-color 0.1s ease, border-color 0.1s ease;
 }
 
 .nx-search input::placeholder {
@@ -500,102 +377,1013 @@ body.nx-body button:focus-visible {
 }
 
 .nx-search input:focus {
-  border-color: var(--nx-ink-2);
-  outline: none;
+  background: var(--nx-canvas);
+  border-color: var(--nx-line-2);
+  box-shadow: 0 0 0 3px var(--nx-accent-soft);
 }
 
 .nx-search-icon {
   position: absolute;
-  left: 9px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 8px;
+  display: inline-flex;
   color: var(--nx-faint);
   pointer-events: none;
-  display: flex;
 }
 
 .nx-search-clear {
   position: absolute;
   right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
   border: 0;
-  background: none;
+  border-radius: 4px;
+  background: transparent;
   color: var(--nx-muted);
   cursor: pointer;
-  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
   line-height: 1;
-  padding: 5px 7px;
-  border-radius: 3px;
+  padding: 0;
 }
 
 .nx-search-clear:hover {
-  background: var(--nx-panel-2);
+  background: var(--nx-fill-2);
   color: var(--nx-ink);
 }
 
-.nx-select {
-  height: 32px;
-  border: 1px solid var(--nx-line);
+.nx-topbar-spacer {
+  flex: 1;
+}
+
+.nx-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+
+/* icon buttons in the topbar */
+.nx-icon-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
   border-radius: var(--nx-r);
-  background: var(--nx-panel);
-  font-size: 13px;
-  padding: 0 8px;
+  background: transparent;
   color: var(--nx-ink-2);
   cursor: pointer;
-  max-width: 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
 
-.nx-select:focus {
-  border-color: var(--nx-ink-2);
-  outline: none;
+.nx-icon-btn:hover {
+  background: var(--nx-fill);
+  border-color: var(--nx-line);
+  color: var(--nx-ink);
 }
 
-.nx-count {
-  font-family: var(--nx-mono);
-  font-size: 11.5px;
-  color: var(--nx-muted);
-  margin-left: 2px;
+.nx-icon-btn.is-on {
+  background: var(--nx-fill-2);
+  border-color: var(--nx-line-2);
+  color: var(--nx-ink);
+}
+
+/* language dropdown */
+.nx-lang {
+  position: relative;
+  flex: none;
+}
+
+.nx-lang-btn {
+  height: 30px;
+  padding: 0 7px 0 9px;
+  border: 1px solid var(--nx-line);
+  border-radius: var(--nx-r);
+  background: var(--nx-canvas);
+  color: var(--nx-ink-2);
+  font-size: 12.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nx-lang-btn:hover {
+  border-color: var(--nx-line-2);
+  color: var(--nx-ink);
+}
+
+.nx-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  min-width: 148px;
+  background: var(--nx-canvas);
+  border: 1px solid var(--nx-line);
+  border-radius: var(--nx-r-lg);
+  box-shadow: var(--nx-shadow-2);
+  padding: 4px;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+}
+
+.nx-menu button,
+.nx-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--nx-ink-2);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
   white-space: nowrap;
 }
 
-.nx-toolbar-spacer {
+.nx-menu button:hover,
+.nx-menu a:hover {
+  background: var(--nx-fill);
+  color: var(--nx-ink);
+}
+
+.nx-menu .on {
+  color: var(--nx-ink);
+  font-weight: 600;
+}
+
+.nx-menu-sep {
+  height: 1px;
+  background: var(--nx-line);
+  margin: 4px 2px;
+}
+
+/* ── page heading band (between topbar and content) ───────── */
+.nx-pagehead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 16px 0;
+  flex: none;
+}
+
+.nx-pagehead-text {
+  min-width: 0;
+}
+
+.nx-pagehead-text .nx-lede {
+  margin-top: 5px;
+}
+
+.nx-pagehead-stats {
+  display: flex;
+  gap: 22px;
+  flex: none;
+  padding-bottom: 2px;
+}
+
+.nx-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nx-stat-v {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--nx-ink);
+}
+
+.nx-stat-l {
+  font-size: 10.5px;
+  color: var(--nx-muted);
+}
+
+.nx-pagehead-options {
+  padding: 10px 16px 0;
+  flex: none;
+}
+
+.nx-inline-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--nx-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nx-inline-check input {
+  accent-color: var(--nx-accent);
+  cursor: pointer;
+}
+
+.nx-loading {
+  padding: 40px 16px;
+  color: var(--nx-muted);
+  font-size: 12.5px;
+}
+
+/* ── content: filterpane | results ───────────────────────── */
+.nx-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.nx-pane {
+  width: var(--nx-pane-w);
+  flex: none;
+  background: var(--nx-pane);
+  border-right: 1px solid var(--nx-line);
+  padding: 4px 12px 28px;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px);
+  position: sticky;
+  top: 50px;
+}
+
+.nx-pane-section {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--nx-line);
+}
+
+.nx-pane-section:last-child {
+  border-bottom: 0;
+}
+
+.nx-pane-section > h4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nx-muted);
+}
+
+.nx-pane-reset {
+  border: 0;
+  background: transparent;
+  color: var(--nx-accent);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nx-pane-reset:hover {
+  text-decoration: underline;
+}
+
+/* radio list (region / platform / software / tag groups) */
+.nx-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nx-check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 4px 5px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--nx-ink-2);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nx-check:hover {
+  background: var(--nx-canvas);
+  color: var(--nx-ink);
+}
+
+.nx-check.on {
+  background: var(--nx-canvas);
+  color: var(--nx-ink);
+  box-shadow: inset 0 0 0 1px var(--nx-line);
+  font-weight: 500;
+}
+
+.nx-check-box {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  border: 1.5px solid var(--nx-line-2);
+  border-radius: 3px;
+  background: var(--nx-canvas);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.nx-check.on .nx-check-box {
+  background: var(--nx-accent);
+  border-color: var(--nx-accent);
+}
+
+.nx-check-count {
+  margin-left: auto;
+  font-size: 10.5px;
+  color: var(--nx-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* tag chips with tri-state */
+.nx-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 168px;
+  overflow-y: auto;
+  padding-bottom: 2px;
+}
+
+.nx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 7px;
+  border: 1px solid var(--nx-line);
+  border-radius: 999px;
+  background: var(--nx-canvas);
+  color: var(--nx-ink-2);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nx-chip:hover {
+  border-color: var(--nx-line-2);
+  color: var(--nx-ink);
+}
+
+.nx-chip-n {
+  color: var(--nx-faint);
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-chip.on-or {
+  background: var(--nx-accent-soft);
+  border-color: var(--nx-accent-border);
+  color: var(--nx-accent);
+}
+
+.nx-chip.on-and {
+  background: #eef3fb;
+  border-color: #c3d5ee;
+  color: #1f5fa8;
+}
+
+.nx-chip.on-not {
+  background: var(--nx-fill-2);
+  border-color: var(--nx-line-2);
+  color: var(--nx-muted);
+  text-decoration: line-through;
+}
+
+:root[data-nx-theme="dark"] .nx-chip.on-and {
+  background: #17222f;
+  border-color: #2b3f57;
+  color: #7cb0ea;
+}
+
+.nx-chip.on-or .nx-chip-n {
+  color: var(--nx-accent);
+  opacity: 0.7;
+}
+
+/* date range */
+.nx-daterange {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-daterange-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nx-daterange-row label {
+  font-size: 11px;
+  color: var(--nx-muted);
+  width: 22px;
+  flex: none;
+}
+
+.nx-date {
+  flex: 1;
+  min-width: 0;
+  height: 27px;
+  padding: 0 6px;
+  border: 1px solid var(--nx-line);
+  border-radius: 4px;
+  background: var(--nx-canvas);
+  color: var(--nx-ink);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-date:focus {
+  border-color: var(--nx-accent);
+  outline: none;
+}
+
+.nx-daterange-hint {
+  font-size: 10.5px;
+  color: var(--nx-faint);
+  line-height: 1.45;
+}
+
+.nx-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.nx-quick button {
+  height: 21px;
+  padding: 0 7px;
+  border: 1px solid var(--nx-line);
+  border-radius: 999px;
+  background: var(--nx-canvas);
+  color: var(--nx-muted);
+  font-size: 10.5px;
+  cursor: pointer;
+}
+
+.nx-quick button:hover {
+  border-color: var(--nx-line-2);
+  color: var(--nx-ink);
+}
+
+/* segmented control for the year/date mode switch */
+.nx-seg {
+  display: flex;
+  border: 1px solid var(--nx-line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--nx-fill);
+  margin-bottom: 8px;
+}
+
+.nx-seg button {
+  flex: 1;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  color: var(--nx-muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.nx-seg button.on {
+  background: var(--nx-canvas);
+  color: var(--nx-ink);
+  font-weight: 500;
+  box-shadow: var(--nx-shadow-1);
+}
+
+/* ── results ──────────────────────────────────────────────── */
+.nx-results {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--nx-canvas);
+}
+
+.nx-results-bar {
+  height: 40px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--nx-line);
+  font-size: 12px;
+  color: var(--nx-muted);
+  position: sticky;
+  top: 50px;
+  background: var(--nx-canvas);
+  z-index: 20;
+}
+
+.nx-results-count b {
+  color: var(--nx-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-sort-field {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nx-sort-btn {
+  height: 24px;
+  padding: 0 7px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--nx-muted);
+  font-size: 11.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.nx-sort-btn:hover {
+  background: var(--nx-fill);
+  color: var(--nx-ink);
+}
+
+.nx-sort-btn.on {
+  color: var(--nx-ink);
+  font-weight: 600;
+}
+
+.nx-active-filters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.nx-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 21px;
+  padding: 0 4px 0 7px;
+  border: 1px solid var(--nx-line);
+  border-radius: 999px;
+  background: var(--nx-fill);
+  color: var(--nx-ink-2);
+  font-size: 10.5px;
+}
+
+.nx-filter-pill button {
+  border: 0;
+  background: transparent;
+  color: var(--nx-faint);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.nx-filter-pill button:hover {
+  color: var(--nx-ink);
+}
+
+/* ── list ─────────────────────────────────────────────────── */
+.nx-list {
   flex: 1;
   min-width: 0;
 }
 
-/* buttons */
+/* shared grid contract: title | author | version | date | class | actions
+   The title column is capped so long names cannot starve the metadata. */
+.nx-row {
+  --nx-cols: minmax(180px, 300px) minmax(90px, 150px) 104px 92px 132px 74px;
+  display: grid;
+  grid-template-columns: var(--nx-cols);
+  align-items: center;
+  gap: 12px;
+  padding: 7px 16px;
+  min-height: var(--nx-row-h);
+  border-bottom: 1px solid var(--nx-line);
+  cursor: pointer;
+  position: relative;
+  background: var(--nx-canvas);
+  text-align: left;
+  width: 100%;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  transition: background-color 0.08s ease;
+}
+
+.nx-row:hover {
+  background: var(--nx-fill);
+}
+
+.nx-row.is-active {
+  background: var(--nx-accent-soft);
+}
+
+.nx-row.is-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--nx-accent);
+}
+
+.nx-row-head {
+  min-height: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: var(--nx-pane);
+  border-bottom: 1px solid var(--nx-line);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--nx-muted);
+  cursor: default;
+  position: sticky;
+  top: 90px;
+  z-index: 10;
+}
+
+.nx-row-head:hover {
+  background: var(--nx-pane);
+}
+
+.nx-row-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.nx-thumb {
+  width: 52px;
+  height: 34px;
+  flex: none;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--nx-fill-2);
+  border: 1px solid var(--nx-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nx-thumb.is-empty::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--nx-line-2);
+}
+
+.nx-row-text {
+  min-width: 0;
+}
+
+.nx-row-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--nx-ink);
+}
+
+.nx-row-sub {
+  font-size: 11px;
+  color: var(--nx-muted);
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nx-cell {
+  font-size: 12px;
+  color: var(--nx-ink-2);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nx-cell.nx-num {
+  font-size: 11.5px;
+  color: var(--nx-muted);
+}
+
+.nx-row-tags {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nx-row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.nx-row-actions a,
+.nx-row-actions button {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--nx-faint);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nx-row-actions a:hover,
+.nx-row-actions button:hover {
+  background: var(--nx-fill-2);
+  color: var(--nx-accent);
+}
+
+.nx-row-actions svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* sort affordance in the header row */
+.nx-th {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+
+.nx-th:hover,
+.nx-th.on {
+  color: var(--nx-ink);
+}
+
+.nx-th-arrow {
+  font-size: 8px;
+  opacity: 0.55;
+}
+
+.nx-th.on .nx-th-arrow {
+  opacity: 1;
+  color: var(--nx-accent);
+}
+
+/* ── badges ───────────────────────────────────────────────── */
+.nx-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 84px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: var(--nx-fill);
+  color: var(--nx-muted);
+  border: 1px solid var(--nx-line);
+}
+
+.nx-dot {
+  display: inline-flex;
+  align-items: center;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid;
+}
+
+.nx-dot-cn {
+  color: var(--nx-cn);
+  border-color: color-mix(in srgb, var(--nx-cn) 30%, transparent);
+  background: color-mix(in srgb, var(--nx-cn) 7%, transparent);
+}
+
+.nx-dot-intl {
+  color: var(--nx-intl);
+  border-color: color-mix(in srgb, var(--nx-intl) 30%, transparent);
+  background: color-mix(in srgb, var(--nx-intl) 7%, transparent);
+}
+
+.nx-dot-cur {
+  color: var(--nx-cur);
+  border-color: color-mix(in srgb, var(--nx-cur) 30%, transparent);
+  background: color-mix(in srgb, var(--nx-cur) 7%, transparent);
+}
+
+.nx-dot-warn {
+  color: var(--nx-warn);
+  border-color: var(--nx-warn-border);
+  background: var(--nx-warn-bg);
+}
+
+.nx-dot-plain {
+  color: var(--nx-muted);
+  border-color: var(--nx-line);
+  background: var(--nx-fill);
+}
+
+/* ── cards ────────────────────────────────────────────────── */
+.nx-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+  gap: 12px;
+  padding: 14px 16px 40px;
+}
+
+:root[data-nx-density="compact"] .nx-cards {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 9px;
+  padding: 11px 14px 32px;
+}
+
+.nx-card {
+  background: var(--nx-canvas);
+  border: 1px solid var(--nx-line);
+  border-radius: var(--nx-r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: border-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.nx-card:hover {
+  border-color: var(--nx-line-2);
+  box-shadow: var(--nx-shadow-1);
+}
+
+.nx-card.is-active {
+  border-color: var(--nx-accent);
+  box-shadow: 0 0 0 3px var(--nx-accent-soft);
+}
+
+.nx-card-shot {
+  aspect-ratio: 16 / 10;
+  background: var(--nx-fill);
+  overflow: hidden;
+  position: relative;
+}
+
+.nx-card-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nx-card-body {
+  padding: 9px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.nx-card-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.32;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nx-card-author {
+  font-size: 11px;
+  color: var(--nx-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nx-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-size: 10.5px;
+  color: var(--nx-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── empty state ──────────────────────────────────────────── */
+.nx-empty {
+  padding: 60px 24px;
+  text-align: center;
+  color: var(--nx-muted);
+}
+
+.nx-empty-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--nx-ink);
+  margin-bottom: 4px;
+}
+
+.nx-empty p {
+  font-size: 12.5px;
+  margin-bottom: 12px;
+}
+
+.nx-empty button {
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--nx-line);
+  border-radius: var(--nx-r);
+  background: var(--nx-canvas);
+  color: var(--nx-ink-2);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.nx-empty button:hover {
+  border-color: var(--nx-line-2);
+  color: var(--nx-ink);
+}
+
+/* ── buttons ──────────────────────────────────────────────── */
 .nx-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  height: 32px;
-  padding: 0 12px;
+  gap: 5px;
+  height: 28px;
+  padding: 0 10px;
   border: 1px solid var(--nx-line);
   border-radius: var(--nx-r);
-  background: var(--nx-panel);
+  background: var(--nx-canvas);
   color: var(--nx-ink-2);
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
   white-space: nowrap;
-  transition: border-color 0.12s ease, background 0.12s ease, color 0.12s ease;
 }
 
 .nx-btn:hover {
-  border-color: var(--nx-ink-2);
+  border-color: var(--nx-line-2);
   color: var(--nx-ink);
-}
-
-.nx-btn.is-on {
-  background: var(--nx-ink);
-  border-color: var(--nx-ink);
-  color: #fff;
-}
-
-.nx-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
 }
 
 .nx-btn-primary {
@@ -611,389 +1399,14 @@ body.nx-body button:focus-visible {
   color: #fff;
 }
 
-.nx-btn-quiet {
-  border-color: transparent;
-  background: transparent;
-}
-
-.nx-btn-quiet:hover {
-  background: var(--nx-panel);
-  border-color: var(--nx-line);
-}
-
-.nx-icon-btn {
-  width: 32px;
-  padding: 0;
-}
-
-/* ── list ─────────────────────────────────────────────────── */
-.nx-list-wrap {
-  padding: 14px 28px 60px;
-  width: 100%;
-}
-
-.nx-list {
-  background: var(--nx-panel);
-  border: 1px solid var(--nx-line);
-  border-radius: var(--nx-r-lg);
-  overflow: hidden;
-}
-
-.nx-list-head {
-  display: grid;
-  align-items: center;
-  gap: 14px;
-  padding: 8px 14px;
-  border-bottom: 1px solid var(--nx-line);
-  background: var(--nx-panel-2);
-  font-family: var(--nx-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
-  color: var(--nx-muted);
-}
-
-.nx-sort {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  border: 0;
-  background: none;
-  padding: 2px 0;
-  font: inherit;
-  letter-spacing: inherit;
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-}
-
-.nx-sort:hover,
-.nx-sort.on {
-  color: var(--nx-ink);
-}
-
-.nx-sort .nx-sort-arrow {
-  opacity: 0.55;
-  font-size: 9px;
-}
-
-.nx-sort.on .nx-sort-arrow {
-  opacity: 1;
-}
-
-/* row: shared grid contract used by the header too
-   title | author | version | date | tags | actions */
-.nx-row {
-  --nx-cols: minmax(0, 1fr) 132px 122px 84px 158px 88px;
-  display: grid;
-  grid-template-columns: var(--nx-cols);
-  align-items: center;
-  gap: 14px;
-  padding: 8px 14px;
-  min-height: var(--nx-row-h);
-  border-bottom: 1px solid var(--nx-line-soft);
-  position: relative;
-  cursor: pointer;
-  background: transparent;
-  width: 100%;
-  text-align: left;
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  transition: background 0.1s ease;
-}
-
-.nx-row:last-child {
-  border-bottom: 0;
-}
-
-.nx-row:hover {
-  background: var(--nx-panel-2);
-}
-
-.nx-row.is-active {
-  background: var(--nx-accent-soft);
-}
-
-.nx-row.is-active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--nx-accent);
-}
-
-.nx-row-title {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  min-width: 0;
-}
-
-.nx-thumb {
-  width: 62px;
-  height: 40px;
-  flex: none;
-  border-radius: 3px;
-  overflow: hidden;
-  background: var(--nx-bg-deep);
-  border: 1px solid var(--nx-line-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nx-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.nx-thumb.is-empty::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--nx-line);
-}
-
-.nx-row-text {
-  min-width: 0;
-}
-
-.nx-row-name {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  line-height: 1.35;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.nx-row-sub {
-  font-size: 11.5px;
-  color: var(--nx-muted);
-  margin-top: 1px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.nx-row-cell {
-  font-size: 12.5px;
-  color: var(--nx-ink-2);
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.nx-row-cell.nx-mono {
-  font-size: 11.5px;
-  color: var(--nx-muted);
-}
-
-.nx-row-tags {
-  display: flex;
-  gap: 4px;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  align-items: center;
-}
-
-.nx-row-actions {
-  display: flex;
-  gap: 4px;
-  justify-content: flex-end;
-}
-
-.nx-row-actions a,
-.nx-row-actions button {
-  width: 26px;
-  height: 26px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--nx-muted);
-  cursor: pointer;
-}
-
-.nx-row-actions a:hover,
-.nx-row-actions button:hover {
-  color: var(--nx-ink);
-  border-color: var(--nx-line);
-  background: var(--nx-panel);
-}
-
-.nx-row-actions svg {
-  width: 15px;
-  height: 15px;
-}
-
-/* badges — colour means data, so keep them small and flat */
-.nx-tag {
-  display: inline-flex;
-  align-items: center;
-  height: 18px;
-  padding: 0 5px;
-  border-radius: 2px;
-  font-size: 10.5px;
-  font-weight: 500;
-  line-height: 1;
-  white-space: nowrap;
-  max-width: 92px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: var(--nx-panel-2);
-  color: var(--nx-muted);
-  border: 1px solid var(--nx-line-soft);
-}
-
-.nx-dot {
-  display: inline-flex;
-  align-items: center;
-  height: 17px;
-  padding: 0 4px;
-  font-family: var(--nx-mono);
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  border-radius: 2px;
-  line-height: 1;
-  border: 1px solid;
-  white-space: nowrap;
-}
-
-.nx-dot-cn {
-  color: var(--nx-cn);
-  border-color: color-mix(in srgb, var(--nx-cn) 32%, white);
-  background: color-mix(in srgb, var(--nx-cn) 8%, white);
-}
-
-.nx-dot-intl {
-  color: var(--nx-intl);
-  border-color: color-mix(in srgb, var(--nx-intl) 32%, white);
-  background: color-mix(in srgb, var(--nx-intl) 8%, white);
-}
-
-.nx-dot-warn {
-  color: var(--nx-warn);
-  border-color: color-mix(in srgb, var(--nx-warn) 34%, white);
-  background: color-mix(in srgb, var(--nx-warn) 9%, white);
-}
-
-.nx-dot-plain {
-  color: var(--nx-muted);
-  border-color: var(--nx-line);
-  background: var(--nx-panel);
-}
-
-/* ── empty state ──────────────────────────────────────────── */
-.nx-empty {
-  padding: 60px 24px;
-  text-align: center;
-  color: var(--nx-muted);
-}
-
-.nx-empty-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--nx-ink);
-  margin-bottom: 4px;
-}
-
-.nx-empty p {
-  font-size: 13px;
-  margin-bottom: 14px;
-}
-
-/* ── card view (density alternative) ──────────────────────── */
-.nx-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
-  gap: 12px;
-}
-
-.nx-card {
-  background: var(--nx-panel);
-  border: 1px solid var(--nx-line);
-  border-radius: var(--nx-r-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  text-align: left;
-  padding: 0;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease;
-}
-
-.nx-card:hover {
-  border-color: var(--nx-ink-2);
-  box-shadow: var(--nx-shadow-1);
-}
-
-.nx-card.is-active {
-  border-color: var(--nx-accent);
-}
-
-.nx-card-shot {
-  aspect-ratio: 16 / 10;
-  background: var(--nx-bg-deep);
-  overflow: hidden;
-  position: relative;
-}
-
-.nx-card-shot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.nx-card-body {
-  padding: 10px 12px 11px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 0;
-}
-
-.nx-card-name {
-  font-size: 13.5px;
-  font-weight: 600;
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.nx-card-meta {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  font-family: var(--nx-mono);
-  font-size: 10.5px;
-  color: var(--nx-muted);
-}
-
 /* ── drawer ───────────────────────────────────────────────── */
 .nx-scrim {
   position: fixed;
   inset: 0;
-  background: rgba(21, 24, 26, 0.32);
-  z-index: 60;
   border: 0;
   padding: 0;
+  background: rgba(23, 24, 26, 0.3);
+  z-index: 60;
   cursor: default;
 }
 
@@ -1003,7 +1416,7 @@ body.nx-body button:focus-visible {
   right: 0;
   bottom: 0;
   width: var(--nx-drawer-w);
-  background: var(--nx-panel);
+  background: var(--nx-canvas);
   z-index: 61;
   box-shadow: var(--nx-shadow-3);
   display: flex;
@@ -1012,7 +1425,7 @@ body.nx-body button:focus-visible {
 
 .nx-drawer-head {
   flex: none;
-  padding: 16px 20px 12px;
+  padding: 14px 18px 11px;
   border-bottom: 1px solid var(--nx-line);
   display: flex;
   align-items: flex-start;
@@ -1023,70 +1436,79 @@ body.nx-body button:focus-visible {
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 18px 20px 40px;
+  padding: 16px 18px 40px;
 }
 
 .nx-drawer-title {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: -0.016em;
-  line-height: 1.23;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+}
+
+.nx-drawer-sub {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--nx-muted);
+  margin-top: 3px;
 }
 
 .nx-close {
+  width: 28px;
+  height: 28px;
+  flex: none;
   border: 1px solid var(--nx-line);
-  background: var(--nx-panel);
-  width: 30px;
-  height: 30px;
   border-radius: var(--nx-r);
-  cursor: pointer;
+  background: var(--nx-canvas);
   color: var(--nx-ink-2);
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: none;
 }
 
 .nx-close:hover {
-  border-color: var(--nx-ink-2);
+  border-color: var(--nx-line-2);
   color: var(--nx-ink);
 }
 
 .nx-section + .nx-section {
-  margin-top: 22px;
-  padding-top: 20px;
-  border-top: 1px solid var(--nx-line-soft);
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--nx-line);
 }
 
 .nx-section-label {
-  font-family: var(--nx-mono);
   font-size: 10.5px;
-  letter-spacing: 0.07em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--nx-faint);
   margin-bottom: 8px;
 }
 
 .nx-facts {
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
-  gap: 6px 12px;
-  font-size: 13px;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 5px 12px;
+  font-size: 12.5px;
 }
 
 .nx-facts dt {
-  font-family: var(--nx-mono);
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--nx-muted);
-  padding-top: 2px;
 }
 
 .nx-facts dd {
-  margin: 0;
   color: var(--nx-ink-2);
   min-width: 0;
   overflow-wrap: anywhere;
 }
 
+/* screenshots: restored title image + showcase slider */
 .nx-shots {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1096,11 +1518,12 @@ body.nx-body button:focus-visible {
 .nx-shots button {
   padding: 0;
   border: 1px solid var(--nx-line);
-  border-radius: 3px;
+  border-radius: 4px;
   overflow: hidden;
-  background: var(--nx-bg-deep);
+  background: var(--nx-fill);
   cursor: zoom-in;
   aspect-ratio: 4 / 3;
+  display: block;
 }
 
 .nx-shots img {
@@ -1120,10 +1543,9 @@ body.nx-body button:focus-visible {
 
 .nx-shots.is-single img {
   object-fit: contain;
-  background: var(--nx-bg-deep);
 }
 
-/* version / download list */
+/* ── versions & downloads ─────────────────────────────────── */
 .nx-versions {
   border: 1px solid var(--nx-line);
   border-radius: var(--nx-r);
@@ -1131,13 +1553,9 @@ body.nx-body button:focus-visible {
 }
 
 .nx-version {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-  padding: 9px 11px;
-  border-bottom: 1px solid var(--nx-line-soft);
-  background: var(--nx-panel);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--nx-line);
+  background: var(--nx-canvas);
 }
 
 .nx-version:last-child {
@@ -1145,50 +1563,52 @@ body.nx-body button:focus-visible {
 }
 
 .nx-version.is-current {
-  background: var(--nx-panel-2);
+  background: var(--nx-pane);
 }
 
 .nx-version-name {
-  font-family: var(--nx-mono);
-  font-size: 12px;
-  color: var(--nx-ink);
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nx-ink);
+  font-variant-numeric: tabular-nums;
 }
 
 .nx-version-meta {
-  font-family: var(--nx-mono);
   font-size: 10.5px;
   color: var(--nx-muted);
   margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
 }
 
-.nx-version-links {
+.nx-dl-row {
   display: flex;
-  gap: 5px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 7px;
 }
 
 .nx-dl {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  height: 27px;
-  padding: 0 9px;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
   border: 1px solid var(--nx-line);
-  border-radius: 3px;
-  font-size: 12px;
+  border-radius: 4px;
+  background: var(--nx-canvas);
   color: var(--nx-ink-2);
-  background: var(--nx-panel);
+  font-size: 11.5px;
   white-space: nowrap;
   cursor: pointer;
 }
 
 .nx-dl:hover {
-  border-color: var(--nx-ink-2);
+  border-color: var(--nx-line-2);
   color: var(--nx-ink);
 }
 
@@ -1208,109 +1628,332 @@ body.nx-body button:focus-visible {
 .nx-dl.is-dead {
   color: var(--nx-faint);
   text-decoration: line-through;
+  pointer-events: none;
+}
+
+.nx-dl.is-warn {
+  border-color: var(--nx-warn-border);
+  color: var(--nx-warn);
 }
 
 .nx-code {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-family: var(--nx-mono);
-  font-size: 11px;
-  color: var(--nx-ink-2);
-  background: var(--nx-panel-2);
+  gap: 4px;
+  height: 22px;
+  padding: 0 6px;
   border: 1px solid var(--nx-line);
   border-radius: 3px;
-  padding: 3px 5px;
+  background: var(--nx-fill);
+  color: var(--nx-ink-2);
+  font-size: 10.5px;
   cursor: pointer;
+  font-variant-numeric: tabular-nums;
 }
 
 .nx-code:hover {
-  border-color: var(--nx-ink-2);
+  border-color: var(--nx-line-2);
 }
 
-/* ── doc pages (markdown) ─────────────────────────────────── */
+.nx-code[data-copied="1"] {
+  background: var(--nx-cur);
+  border-color: var(--nx-cur);
+  color: #fff;
+}
+
+.nx-code-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.nx-code-label {
+  font-size: 10.5px;
+  color: var(--nx-muted);
+}
+
+/* version picker inside the drawer */
+.nx-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 9px;
+}
+
+.nx-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 23px;
+  padding: 0 8px;
+  border: 1px solid var(--nx-line);
+  border-radius: 999px;
+  background: var(--nx-canvas);
+  color: var(--nx-ink-2);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.nx-pick:hover {
+  border-color: var(--nx-line-2);
+}
+
+.nx-pick.on {
+  background: var(--nx-ink);
+  border-color: var(--nx-ink);
+  color: var(--nx-canvas);
+}
+
+:root[data-nx-theme="dark"] .nx-pick.on {
+  color: #16181a;
+}
+
+.nx-pick-cur {
+  font-size: 9px;
+  opacity: 0.7;
+}
+
+/* ── carousel (vue3-carousel) ─────────────────────────────── */
+/* The library ships absolutely-positioned pagination dots that overflow the
+   slide track. Here the pagination is pulled back into normal flow and the
+   arrows are restyled to the design's own controls. */
+.nx-carousel :deep(.carousel) {
+  --vc-nav-background: var(--nx-canvas);
+  --vc-nav-color: var(--nx-ink-2);
+  --vc-nav-border-radius: 4px;
+  --vc-dot-width: 5px;
+  --vc-dot-height: 5px;
+  --vc-dot-color: var(--nx-line-2);
+  --vc-dot-background-color: var(--nx-line-2);
+  --vc-pgn-active-color: var(--nx-accent);
+  --vc-pgn-background-color: var(--nx-line);
+  --vc-pgn-active-background-color: var(--nx-accent);
+  --vc-pgn-width: 18px;
+  --vc-pgn-height: 3px;
+}
+
+.nx-carousel :deep(.carousel__track) {
+  gap: 4px;
+}
+
+.nx-carousel :deep(.carousel__slide) {
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--nx-fill);
+  border: 1px solid var(--nx-line);
+}
+
+.nx-carousel :deep(.carousel__prev),
+.nx-carousel :deep(.carousel__next) {
+  box-shadow: var(--nx-shadow-1);
+  border: 1px solid var(--nx-line);
+  width: 26px;
+  height: 26px;
+}
+
+.nx-carousel :deep(.carousel__prev) {
+  left: 6px;
+}
+
+.nx-carousel :deep(.carousel__next) {
+  right: 6px;
+}
+
+/* Pagination rendered OUTSIDE the carousel so it cannot overlap slides. */
+.nx-carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nx-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.nx-carousel-dot {
+  width: 16px;
+  height: 3px;
+  border: 0;
+  padding: 0;
+  border-radius: 2px;
+  background: var(--nx-line-2);
+  cursor: pointer;
+}
+
+.nx-carousel-dot.on {
+  background: var(--nx-accent);
+}
+
+.nx-carousel-arrows {
+  display: flex;
+  gap: 4px;
+  flex: none;
+}
+
+.nx-carousel-arrows button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--nx-line);
+  border-radius: 4px;
+  background: var(--nx-canvas);
+  color: var(--nx-ink-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-carousel-arrows button:hover {
+  border-color: var(--nx-line-2);
+  color: var(--nx-ink);
+}
+
+.nx-carousel-arrows button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ── notice ───────────────────────────────────────────────── */
+.nx-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid var(--nx-line);
+  border-radius: var(--nx-r);
+  background: var(--nx-fill);
+  color: var(--nx-ink-2);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.nx-note.is-warn {
+  background: var(--nx-warn-bg);
+  border-color: var(--nx-warn-border);
+  color: var(--nx-warn);
+}
+
+/* ── markdown documents ───────────────────────────────────── */
+.nx-doc-wrap {
+  width: 100%;
+  padding: 22px 28px 80px;
+}
+
 .nx-doc {
-  padding: 26px 28px 72px;
-  max-width: 900px;
-  font-size: 14.5px;
-  line-height: 1.68;
+  max-width: none;
+  font-size: 13.5px;
+  line-height: 1.75;
   color: var(--nx-ink-2);
 }
 
+/* Measure is capped for readability, but the container itself is full-width so
+   embedded record previews and screenshots can use the whole canvas. */
+.nx-doc > p,
+.nx-doc > ul,
+.nx-doc > ol,
+.nx-doc > h1,
+.nx-doc > h2,
+.nx-doc > h3,
+.nx-doc > h4 {
+  max-width: 78ch;
+}
+
 .nx-doc > * + * {
-  margin-top: 14px;
+  margin-top: 13px;
+}
+
+/* The markdown files ship scoped prose styles that set `line-height: 1.5em`
+   (attribute selector, injected after this sheet). Adding `html` to the
+   selector raises specificity above those and restores the looser leading the
+   reading column wants. */
+html .nx-doc p,
+html .nx-doc li,
+html .nx-doc dd {
+  line-height: 1.75;
+}
+
+html .nx-doc td {
+  line-height: 1.65;
 }
 
 .nx-doc h1 {
-  font-size: clamp(24px, 2.6vw, 31px);
+  font-size: 22px;
   font-weight: 600;
-  letter-spacing: -0.021em;
-  line-height: 1.15;
+  letter-spacing: -0.016em;
+  line-height: 1.25;
   color: var(--nx-ink);
-  margin-top: 0;
-  margin-bottom: 4px;
-  text-wrap: balance;
+  max-width: none;
 }
 
 .nx-doc h2 {
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.008em;
   color: var(--nx-ink);
   margin-top: 34px;
-  padding-top: 16px;
+  padding-top: 15px;
   border-top: 1px solid var(--nx-line);
-  line-height: 1.3;
+  line-height: 1.4;
+  max-width: none;
 }
 
 .nx-doc h3 {
-  font-size: 15.5px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--nx-ink);
   margin-top: 24px;
-  line-height: 1.35;
+  line-height: 1.5;
 }
 
 .nx-doc h4 {
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--nx-ink);
   margin-top: 18px;
+  letter-spacing: 0.01em;
 }
 
 .nx-doc p {
   margin: 0;
-  max-width: 72ch;
 }
 
 .nx-doc p + p {
-  margin-top: 12px;
+  margin-top: 11px;
 }
 
 .nx-doc ul,
 .nx-doc ol {
   padding-left: 20px;
   margin: 0;
+  list-style: revert;
 }
 
 .nx-doc li + li {
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
 .nx-doc li::marker {
   color: var(--nx-faint);
 }
 
+/* prose keeps underlines; only the dense UI drops them */
 .nx-doc a {
-  color: var(--nx-ink);
+  color: var(--nx-accent);
   text-decoration: underline;
-  text-decoration-color: var(--nx-line);
+  text-decoration-color: color-mix(in srgb, var(--nx-accent) 35%, transparent);
   text-underline-offset: 2px;
 }
 
 .nx-doc a:hover {
-  text-decoration-color: var(--nx-accent);
-  color: var(--nx-accent);
+  color: var(--nx-accent-hover);
+  text-decoration-color: currentColor;
 }
 
 .nx-doc strong {
@@ -1319,41 +1962,40 @@ body.nx-body button:focus-visible {
 }
 
 .nx-doc code {
-  font-family: var(--nx-mono);
-  font-size: 0.87em;
-  background: var(--nx-panel-2);
-  border: 1px solid var(--nx-line-soft);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--nx-fill);
+  border: 1px solid var(--nx-line);
   border-radius: 3px;
-  padding: 1px 4px;
+  padding: 0 3px;
 }
 
 .nx-doc table {
   border-collapse: collapse;
-  width: 100%;
-  max-width: 100%;
-  font-size: 13px;
-  background: var(--nx-panel);
+  font-size: 12.5px;
+  background: var(--nx-canvas);
   border: 1px solid var(--nx-line);
   display: block;
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .nx-doc thead th {
   text-align: left;
-  font-family: var(--nx-mono);
   font-size: 10.5px;
+  font-weight: 600;
   letter-spacing: 0.05em;
-  font-weight: 500;
+  text-transform: uppercase;
   color: var(--nx-muted);
-  background: var(--nx-panel-2);
+  background: var(--nx-pane);
   padding: 7px 10px;
   border-bottom: 1px solid var(--nx-line);
   white-space: nowrap;
 }
 
 .nx-doc td {
-  padding: 7px 10px;
-  border-bottom: 1px solid var(--nx-line-soft);
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--nx-line);
   vertical-align: top;
 }
 
@@ -1369,41 +2011,43 @@ body.nx-body button:focus-visible {
 .nx-doc .md-button {
   display: inline-flex;
   align-items: center;
-  height: 30px;
-  padding: 0 11px;
+  height: 28px;
+  padding: 0 10px;
   margin: 2px 6px 2px 0;
   border: 1px solid var(--nx-line);
   border-radius: var(--nx-r);
-  background: var(--nx-panel);
+  background: var(--nx-canvas);
   color: var(--nx-ink);
-  font-size: 13px;
+  font-size: 12px;
   text-decoration: none;
   vertical-align: middle;
 }
 
 .nx-doc .md-button:hover {
-  border-color: var(--nx-ink-2);
-  color: var(--nx-ink);
+  border-color: var(--nx-line-2);
+  color: var(--nx-accent);
+  text-decoration: none;
 }
 
 .nx-doc .foot-note {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--nx-muted);
-  border-top: 1px solid var(--nx-line-soft);
+  border-top: 1px solid var(--nx-line);
   padding-top: 12px;
   margin-top: 16px;
+  line-height: 1.65;
+  max-width: 78ch;
 }
 
 .nx-doc .last-update {
-  font-family: var(--nx-mono);
   font-size: 11.5px;
-  font-weight: 400 !important;
-  color: var(--nx-muted);
+  font-weight: 400;
+  color: var(--nx-faint);
+  font-variant-numeric: tabular-nums;
 }
 
-/* The markdown documents ship their own scoped tab styles (`.radio-inputs`,
-   compiled with a `[data-v-…]` attribute selector, injected after this sheet).
-   Doubling the class below outranks them without resorting to !important. */
+/* tab strip inside docs (markdown uses .radio-inputs).
+   Doubled class outranks the markdown files' scoped styles. */
 .nx-doc .radio-inputs.radio-inputs {
   display: flex;
   flex-wrap: wrap;
@@ -1413,10 +2057,10 @@ body.nx-body button:focus-visible {
   background: transparent;
   box-shadow: none;
   border-radius: 0;
-  margin: 18px 0 4px;
+  margin: 16px 0 20px;
   padding: 0;
   position: static;
-  font-size: 13.5px;
+  font-size: 12.5px;
   line-height: 1.3;
 }
 
@@ -1431,7 +2075,7 @@ body.nx-body button:focus-visible {
 
 .nx-doc .radio-inputs.radio-inputs .radio .radio-text {
   display: block;
-  padding: 8px 11px;
+  padding: 7px 10px;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
   color: var(--nx-muted);
@@ -1451,81 +2095,71 @@ body.nx-body button:focus-visible {
   border-bottom-color: var(--nx-accent);
 }
 
-.nx-doc .radio-inputs.radio-inputs .radio.checked {
-  background: transparent;
-}
-
-/* A tab strip is often immediately followed by an h2 inside a panel wrapper;
-   the h2's own top rule would double up with the strip's border. */
 .nx-doc .radio-inputs.radio-inputs + div > h2:first-child,
 .nx-doc .radio-inputs.radio-inputs + h2 {
-  margin-top: 18px;
+  margin-top: 16px;
   padding-top: 0;
   border-top: 0;
 }
 
-.nx-tabs button,
-.nx-tabs .radio {
-  border: 0;
-  background: none;
-  padding: 8px 12px;
-  font-size: 13.5px;
-  color: var(--nx-muted);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  line-height: 1.3;
+/* carousels embedded in markdown */
+.nx-doc .carousel {
+  --vc-pgn-active-color: var(--nx-accent);
+  --vc-pgn-background-color: var(--nx-line);
+  --vc-pgn-active-background-color: var(--nx-accent);
+  --vc-pgn-width: 18px;
+  --vc-pgn-height: 3px;
+  --vc-pgn-margin: 3px;
+  --vc-nav-background: var(--nx-canvas);
+  --vc-nav-color: var(--nx-ink-2);
+  --vc-nav-border-radius: 4px;
 }
 
-.nx-tabs button:hover,
-.nx-tabs .radio:hover {
-  color: var(--nx-ink);
+.nx-doc .carousel__slide {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--nx-line);
+  background: var(--nx-fill);
 }
 
-.nx-tabs button.on,
-.nx-tabs .radio.checked {
-  color: var(--nx-ink);
-  font-weight: 600;
-  border-bottom-color: var(--nx-accent);
+.nx-doc .carousel__pagination {
+  position: static;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  padding: 0;
 }
 
-.nx-tabs .radio-text {
-  display: block;
+.nx-doc .carousel__pagination-button {
+  width: 18px;
+  height: 3px;
+  margin: 0;
+  padding: 0;
+  border-radius: 2px;
 }
 
-/* embedded record previews inside docs */
+.nx-doc .carousel__pagination-button::after {
+  height: 3px;
+  border-radius: 2px;
+}
+
+.nx-doc .carousel__prev,
+.nx-doc .carousel__next {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--nx-line);
+  box-shadow: var(--nx-shadow-1);
+}
+
+/* embedded record previews in docs */
 .nx-entry {
-  margin: 14px 0;
+  margin: 12px 0;
   border: 1px solid var(--nx-line);
   border-radius: var(--nx-r-lg);
-  background: var(--nx-panel);
-  padding: 12px;
-}
-
-.nx-entry-media {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
-}
-
-.nx-entry-media img {
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid var(--nx-line-soft);
-  display: block;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.nx-entry-media.is-single {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.nx-entry-media.is-single img {
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  background: var(--nx-bg-deep);
+  background: var(--nx-canvas);
+  padding: 11px 12px;
+  max-width: 720px;
 }
 
 .nx-entry-head {
@@ -1535,16 +2169,17 @@ body.nx-body button:focus-visible {
 }
 
 .nx-entry-title {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: -0.008em;
-  line-height: 1.3;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  color: var(--nx-ink);
 }
 
 .nx-entry-desc {
-  font-size: 13px;
+  font-size: 11.5px;
   color: var(--nx-muted);
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .nx-entry-actions {
@@ -1554,50 +2189,51 @@ body.nx-body button:focus-visible {
   flex: none;
 }
 
-/* ── notices ──────────────────────────────────────────────── */
-.nx-note {
-  display: flex;
-  gap: 9px;
-  padding: 9px 12px;
-  border-radius: var(--nx-r);
-  font-size: 12.5px;
-  line-height: 1.5;
-  border: 1px solid var(--nx-line);
-  background: var(--nx-panel);
+.nx-entry-text {
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.6;
   color: var(--nx-ink-2);
 }
 
-.nx-note.is-warn {
-  background: var(--nx-warn-bg);
-  border-color: color-mix(in srgb, var(--nx-warn) 26%, white);
-  color: var(--nx-warn);
+.nx-entry-loading {
+  font-size: 12px;
+  color: var(--nx-muted);
+  padding: 3px 0;
 }
 
 /* ── footer ───────────────────────────────────────────────── */
 .nx-foot {
   border-top: 1px solid var(--nx-line);
-  padding: 18px 28px 30px;
+  padding: 14px 16px 26px;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 16px;
+  gap: 5px 14px;
   align-items: center;
-  font-size: 12px;
-  color: var(--nx-muted);
+  font-size: 11.5px;
+  color: var(--nx-faint);
+  background: var(--nx-canvas);
 }
 
 .nx-foot a {
-  color: var(--nx-muted);
-  text-decoration: underline;
-  text-decoration-color: var(--nx-line);
-  text-underline-offset: 2px;
+  color: var(--nx-faint);
 }
 
 .nx-foot a:hover {
   color: var(--nx-ink);
 }
 
-.nx-foot-spacer {
-  flex: 1;
+.nx-foot button {
+  border: 0;
+  background: transparent;
+  color: var(--nx-faint);
+  font-size: 11.5px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nx-foot button:hover {
+  color: var(--nx-ink);
 }
 
 /* ── lightbox ─────────────────────────────────────────────── */
@@ -1605,12 +2241,13 @@ body.nx-body button:focus-visible {
   position: fixed;
   inset: 0;
   z-index: 80;
-  background: rgba(12, 14, 15, 0.9);
+  background: rgba(12, 13, 14, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   cursor: zoom-out;
+  border: 0;
 }
 
 .nx-lightbox img {
@@ -1620,10 +2257,26 @@ body.nx-body button:focus-visible {
   border-radius: 3px;
 }
 
+/* Filled accent buttons flip to dark ink in dark mode: the lighter accent tint
+   only reaches 3.3:1 with white text, below AA for 11–12px labels. */
+:root[data-nx-theme="dark"] .nx-dl.is-primary,
+:root[data-nx-theme="dark"] .nx-btn-primary {
+  color: #16181a;
+}
+
+:root[data-nx-theme="dark"] .nx-dl.is-primary:hover,
+:root[data-nx-theme="dark"] .nx-btn-primary:hover {
+  color: #16181a;
+}
+
+:root[data-nx-theme="dark"] .nx-check.on .nx-check-box {
+  color: #16181a;
+}
+
 /* ── motion ───────────────────────────────────────────────── */
 .nx-fade-enter-active,
 .nx-fade-leave-active {
-  transition: opacity 0.16s ease;
+  transition: opacity 0.15s ease;
 }
 
 .nx-fade-enter-from,
@@ -1633,20 +2286,16 @@ body.nx-body button:focus-visible {
 
 .nx-slide-enter-active,
 .nx-slide-leave-active {
-  transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.22s ease;
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s ease;
 }
 
 .nx-slide-enter-from,
 .nx-slide-leave-to {
-  transform: translateX(24px);
+  transform: translateX(20px);
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .nx-fade-enter-active,
   .nx-fade-leave-active,
   .nx-slide-enter-active,
@@ -1663,51 +2312,121 @@ body.nx-body button:focus-visible {
 }
 
 /* ── responsive ───────────────────────────────────────────── */
-@media (max-width: 1180px) {
+@media (max-width: 1240px) {
   .nx-row {
-    --nx-cols: minmax(0, 1fr) 120px 92px 80px 84px;
+    --nx-cols: minmax(160px, 260px) minmax(80px, 130px) 96px 86px 76px;
   }
 
-  .nx-row-tags-col,
-  .nx-list-head .nx-row-tags-col {
+  .nx-row > .nx-row-tags-col,
+  .nx-row-head > .nx-row-tags-col {
     display: none;
   }
 }
 
-@media (max-width: 900px) {
-  .nx-rail {
-    display: none;
+@media (max-width: 1024px) {
+  :root {
+    --nx-rail-w: 176px;
+    --nx-pane-w: 212px;
   }
+}
 
-  .nx-page,
-  .nx-toolbar,
-  .nx-list-wrap,
-  .nx-doc,
-  .nx-foot {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .nx-page-head {
+@media (max-width: 860px) {
+  .nx-root {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
   }
-}
 
-@media (max-width: 720px) {
-  .nx-mast-links {
+  .nx-rail {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--nx-line);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .nx-rail-brand {
+    padding: 0;
+    flex: none;
+  }
+
+  .nx-rail-brand img {
+    height: 22px;
+  }
+
+  .nx-rail-group {
+    flex-direction: row;
+    gap: 2px;
+  }
+
+  .nx-rail-title,
+  .nx-rail-foot {
+    display: none;
+  }
+
+  .nx-rail-item {
+    height: 28px;
+    padding: 0 8px;
+  }
+
+  .nx-rail-count {
+    display: none;
+  }
+
+  .nx-topbar {
+    height: auto;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 6px;
+    position: static;
+  }
+
+  .nx-search {
+    flex: 1 1 calc(50% - 3px);
+    max-width: none;
+  }
+
+  .nx-topbar-spacer {
+    display: none;
+  }
+
+  .nx-content {
+    flex-direction: column;
+  }
+
+  .nx-pane {
+    width: 100%;
+    position: static;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid var(--nx-line);
+    padding: 4px 12px 10px;
+    display: none;
+  }
+
+  .nx-pane.is-open {
+    display: block;
+  }
+
+  .nx-results-bar {
+    position: static;
+    padding: 0 12px;
+  }
+
+  .nx-row-head {
     display: none;
   }
 
   .nx-row {
     --nx-cols: minmax(0, 1fr) auto;
-    display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "title actions";
-    align-items: center;
     gap: 8px;
-    padding: 9px 12px;
+    padding: 8px 12px;
     min-height: 0;
   }
 
@@ -1715,39 +2434,13 @@ body.nx-body button:focus-visible {
     grid-area: title;
   }
 
-  /* On narrow screens the row collapses to title + actions; the secondary
-     columns move under the title rather than disappearing, because the date and
-     version are how a visitor decides whether a record is relevant. */
-  .nx-row > .nx-row-author,
-  .nx-row > .nx-row-version,
-  .nx-row > .nx-row-date,
+  .nx-row > .nx-cell,
   .nx-row > .nx-row-tags-col {
     display: none;
   }
 
   .nx-row > .nx-row-actions {
     grid-area: actions;
-    position: static;
-    transform: none;
-    flex-direction: row;
-  }
-
-  .nx-row-actions .nx-row-more {
-    display: none;
-  }
-
-  /* Mobile rows lose the thumbnail to keep the title on one or two lines. */
-  .nx-row .nx-thumb {
-    width: 48px;
-    height: 32px;
-  }
-
-  .nx-list-head {
-    display: none;
-  }
-
-  .nx-list {
-    border-radius: var(--nx-r);
   }
 
   .nx-drawer {
@@ -1758,65 +2451,27 @@ body.nx-body button:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .nx-entry-media {
-    grid-template-columns: minmax(0, 1fr);
+  .nx-doc-wrap {
+    padding: 16px 14px 60px;
+  }
+
+  .nx-nav-toggle {
+    display: inline-flex;
   }
 }
 
+/* the mobile "filters" toggle only exists below 860px */
+.nx-nav-toggle {
+  display: none;
+}
+
 @media (max-width: 560px) {
-  .nx-page-head .nx-lede {
-    font-size: 13.5px;
-  }
-
-  .nx-toolbar {
-    padding: 8px 16px;
-    row-gap: 6px;
-  }
-
-  .nx-search {
-    flex: 1 1 100%;
-    min-width: 0;
-  }
-
-  /* Facets become a two-column grid so no control can push the row wider than
-     the viewport, and the count/actions wrap onto their own line. */
-  .nx-toolbar .nx-select {
-    flex: 1 1 calc(50% - 4px);
-    max-width: none;
-    min-width: 0;
-  }
-
-  .nx-toolbar .nx-tag-wrap {
-    flex: 1 1 calc(50% - 4px);
-  }
-
-  .nx-toolbar .nx-tag-wrap > .nx-btn {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .nx-toolbar-spacer {
-    display: none;
-  }
-
-  .nx-count {
-    margin-left: auto;
-  }
-
-  .nx-stats {
-    flex-wrap: wrap;
+  .nx-cards {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 10px 12px 32px;
   }
 
   .nx-masthead {
-    font-size: 23px;
-  }
-
-  .nx-tag-pop {
-    position: fixed;
-    left: 12px;
-    right: 12px;
-    width: auto;
-    top: auto;
-    bottom: 12px;
+    font-size: 17px;
   }
 }

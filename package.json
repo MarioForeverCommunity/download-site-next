@@ -15,8 +15,6 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^2.0.1",
-    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
-    "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
     "axios": "^1.21.0",
     "js-cookie": "^3.0.8",
