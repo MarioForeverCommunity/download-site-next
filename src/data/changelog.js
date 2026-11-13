@@ -35,13 +35,25 @@ export const changelog = [
       "收窄作品列表的「作品」列，长文件名不再挤占元数据列",
       "文档容器不再限制宽度，markdown 行距放宽至 1.75 倍",
       "全站改回 Inter 字体（与旧版一致），不再引入新字体；界面内链接取消 hover 下划线",
-      "修复 vue3-carousel 分页圆点压在截图上的问题，分页改为在轨道下方正常排布"
+      "修复 vue3-carousel 分页圆点压在截图上的问题，分页改为在轨道下方正常排布",
+      "作品名过长时换行显示而非省略号截断；多作者作品每行显示一位作者",
+      "作品详情抽屉补回原设计中的长描述（description.md / txt）",
+      "全局设置改为侧边抽屉，并加回「默认排序」与「资源站直链」选项",
+      "修复 MW 关卡列表缺少下载按钮的问题",
+      "修复「最新版本」标注在未显式标记 current 的作品上不显示的问题",
+      "列表与详情中的截图不再被裁切"
     ],
     improvements_en: [
       "Narrowed the title column so long filenames no longer crowd the metadata columns",
       "Documentation containers are no longer width-capped, and markdown line height opens up to 1.75",
       "Reverted to the Inter typeface used by the legacy design (no new fonts); link hover no longer underlines",
-      "Fixed the vue3-carousel pagination dots overlapping screenshots; pagination now sits below the track"
+      "Fixed the vue3-carousel pagination dots overlapping screenshots; pagination now sits below the track",
+      "Long game titles wrap instead of being cut with an ellipsis; multi-author records list one author per line",
+      "The details drawer restores the long description file (description.md / txt) the legacy modal showed",
+      "Global settings became a side drawer, with the default-sort and File Hub direct-link options restored",
+      "Fixed missing download buttons on the MW level catalog",
+      "Fixed the latest-version badge not appearing on records without an explicit current flag",
+      "Screenshots are no longer cropped in lists or details"
     ],
     misc: [
       "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试",

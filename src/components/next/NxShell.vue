@@ -12,10 +12,11 @@
 // than the catalog itself.
 import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import { navTop, topBar, siteVersion } from "../../config.js";
-import { NEXT_DESIGN } from "../../util/Design.js";
-import { getTheme, toggleTheme, getDensity, toggleDensity } from "../../util/Theme.js";
-import DesignSwitch from "../DesignSwitch.vue";
+
+import { getTheme, toggleTheme } from "../../util/Theme.js";
+
 import ChangelogDrawer from "./ChangelogDrawer.vue";
+import NxSettings from "./NxSettings.vue";
 import NxIcon from "./NxIcon.vue";
 
 const props = defineProps({
@@ -98,7 +99,6 @@ const text = computed(() => (displayLan.value === "zh" ? {
   legacy: "切换到旧版设计",
   light: "浅色模式",
   dark: "深色模式",
-  comfortable: "舒适模式",
   compact: "紧凑模式",
   catalogs: "目录",
   elsewhere: "站外",
@@ -113,7 +113,6 @@ const text = computed(() => (displayLan.value === "zh" ? {
   legacy: "Switch to legacy design",
   light: "Light mode",
   dark: "Dark mode",
-  comfortable: "Comfortable",
   compact: "Compact mode",
   catalogs: "Catalogs",
   elsewhere: "Elsewhere",
@@ -121,11 +120,11 @@ const text = computed(() => (displayLan.value === "zh" ? {
 }));
 
 const theme = getTheme();
-const density = getDensity();
 
 // ── menus ────────────────────────────────────────────────────
 const openMenu = ref(null); // 'lang' | 'settings' | null
 const showChangelog = ref(false);
+const settingsOpen = ref(false);
 const rootRef = ref(null);
 // Narrow screens collapse the rail into a toggleable panel.
 const railOpen = ref(false);
@@ -139,9 +138,16 @@ function closeMenus() {
 }
 
 function onDocClick(event) {
-  if (!rootRef.value || !rootRef.value.contains(event.target)) {
-    closeMenus();
-    railOpen.value = false;
+  // Clicking anywhere outside the topbar's menus closes them; clicking outside
+  // the (fixed) rail also collapses it on mobile. Both menu triggers must be
+  // excluded, otherwise the click that opens a menu immediately closes it.
+  const target = event.target;
+  const insideMenu = target.closest && target.closest(".nx-menu, .nx-menu-trigger, .nx-rail-toggle");
+  if (!insideMenu && openMenu.value) closeMenus();
+  if (railOpen.value) {
+    const insideRail = target.closest && target.closest(".nx-rail");
+    const isToggle = target.closest && target.closest(".nx-rail-toggle");
+    if (!insideRail && !isToggle) railOpen.value = false;
   }
 }
 
@@ -334,7 +340,7 @@ watch(showChangelog, (open) => {
           >
             <button
               type="button"
-              class="nx-lang-btn"
+              class="nx-lang-btn nx-menu-trigger"
               :aria-expanded="openMenu === 'lang'"
               :aria-label="text.language"
               @click="toggleMenu('lang')"
@@ -389,47 +395,20 @@ watch(showChangelog, (open) => {
             />
           </button>
 
-          <div class="nx-lang">
-            <button
-              type="button"
-              class="nx-icon-btn"
-              :class="{ 'is-on': openMenu === 'settings' }"
-              :aria-expanded="openMenu === 'settings'"
-              :aria-label="text.settings"
-              :title="text.settings"
-              @click="toggleMenu('settings')"
-            >
-              <NxIcon name="settingsDots" :size="16" />
-            </button>
-            <Transition name="nx-fade">
-              <div
-                v-if="openMenu === 'settings'"
-                class="nx-menu"
-                style="min-width: 216px;"
-              >
-                <button
-                  type="button"
-                  @click="toggleDensity()"
-                >
-                  <NxIcon name="rows" :size="14" />
-                  {{ density === "compact" ? text.comfortable : text.compact }}
-                </button>
-                <button
-                  type="button"
-                  @click="showChangelog = true; closeMenus()"
-                >
-                  <NxIcon name="info" :size="14" />
-                  {{ text.changelog }}
-                </button>
-                <div class="nx-menu-sep" />
-                <DesignSwitch
-                  :current="NEXT_DESIGN"
-                  variant="menu"
-                  :label="text.legacy"
-                />
-              </div>
-            </Transition>
-          </div>
+          <button
+            type="button"
+            class="nx-icon-btn"
+            :class="{ 'is-on': settingsOpen }"
+            :aria-expanded="settingsOpen"
+            :aria-label="text.settings"
+            :title="text.settings"
+            @click="settingsOpen = true"
+          >
+            <NxIcon
+              name="settingsDots"
+              :size="16"
+            />
+          </button>
         </div>
       </header>
 
@@ -440,6 +419,12 @@ watch(showChangelog, (open) => {
       :show="showChangelog"
       :lan="displayLan"
       @close="showChangelog = false"
+    />
+
+    <NxSettings
+      :show="settingsOpen"
+      :lan="displayLan"
+      @close="settingsOpen = false"
     />
   </div>
 </template>

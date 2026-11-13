@@ -68,41 +68,18 @@ export function isDarkTheme() {
   return theme.value === THEME_DARK;
 }
 
-// Density is a reading preference for long records: comfortable for browsing,
-// compact for scanning a 600-entry catalog.
-const DENSITY_KEY = "nxDensity";
-const density = ref("comfortable");
-
-function readDensity() {
-  try {
-    return localStorage.getItem(DENSITY_KEY) === "compact" ? "compact" : "comfortable";
-  } catch (_e) {
-    return "comfortable";
-  }
-}
-
-function applyDensity(value) {
-  density.value = value;
-  if (typeof document === "undefined") return;
-  document.documentElement.dataset.nxDensity = value;
-}
-
+// Density is fixed per view rather than user-toggled: a record list is for
+// scanning (compact) and a card grid is for browsing (comfortable), so exposing
+// a switch only let visitors pick the wrong one for the layout they were in.
+// `initDensity` is kept as the single place the attribute is set.
 export function initDensity() {
-  applyDensity(readDensity());
+  if (typeof document === "undefined") return;
+  document.documentElement.dataset.nxDensity = "list";
 }
 
-export function getDensity() {
-  return density;
-}
-
-export function toggleDensity() {
-  const next = density.value === "compact" ? "comfortable" : "compact";
-  applyDensity(next);
-  try {
-    localStorage.setItem(DENSITY_KEY, next);
-  } catch (_e) {
-    // Ignore.
-  }
+export function setViewDensity(view) {
+  if (typeof document === "undefined") return;
+  document.documentElement.dataset.nxDensity = view === "cards" ? "cards" : "list";
 }
 
 // Keep the DOM in sync when a theme is set from another component.

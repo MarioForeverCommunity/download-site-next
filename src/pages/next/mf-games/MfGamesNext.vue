@@ -61,7 +61,10 @@ const facets = computed(() => {
     makeFacet({
       key: "platform",
       label: zh ? "平台" : "Platform",
-      getter: (record) => record.platform,
+      // Platform lives on the version, not the record: match and count against
+      // every version so a Linux-only build is findable without expanding.
+      getter: (record) => record.platforms || [],
+      countFrom: (record) => record.platforms || [],
       options: {
         records: list,
         list: ["Windows", "Linux", "macOS", "Android", "J2ME"].map((value) => ({ value, label: value })),
@@ -70,7 +73,8 @@ const facets = computed(() => {
     makeFacet({
       key: "software",
       label: zh ? "制作软件" : "Software",
-      getter: (record) => record.software,
+      getter: (record) => record.softwares || [],
+      countFrom: (record) => record.softwares || [],
       options: {
         records: list,
         list: [
@@ -97,7 +101,7 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: true,
+  tags: { untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" },
   labels: {
     year: lan.value === "zh" ? "年份 " : "Year ",
     range: lan.value === "zh" ? "日期 " : "Date ",

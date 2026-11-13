@@ -67,7 +67,6 @@ const catalog = computed(() => props.catalog);
 const choiceFacets = computed(() => props.facets.filter((facet) => facet.kind !== "tags"));
 
 const tagList = computed(() => catalog.value.tagList.value);
-
 const tagState = (tag) => catalog.value.tagStates.value[tag] || null;
 
 const isRangeMode = computed(() => catalog.value.dateMode.value === "range");
@@ -110,6 +109,12 @@ function isFacetOn(key, value) {
 function facetCount(key) {
   return (catalog.value.facetValues.value[key] || []).length;
 }
+
+// Single-choice facets replace the selection instead of toggling it.
+function selectSingle(facet, value) {
+  const on = isFacetOn(facet.key, value);
+  catalog.value.setFacet(facet.key, on ? "" : value);
+}
 </script>
 
 <template>
@@ -117,7 +122,9 @@ function facetCount(key) {
     class="nx-pane"
     :aria-label="lan === 'zh' ? '筛选' : 'Filters'"
   >
-    <!-- single-choice facets: region, platform/engine, classification -->
+    <!-- single-choice facets: region, platform/engine, classification.
+         `as: "chips"` renders a compact pill list instead of a checkbox column —
+         used for long option sets such as MW versions. -->
     <section
       v-for="facet in choiceFacets"
       :key="facet.key"
@@ -133,8 +140,33 @@ function facetCount(key) {
         >{{ text.reset }}</button>
       </h4>
 
-      <div class="nx-checks">
+      <div
+        v-if="facet.as === 'chips'"
+        class="nx-chips"
+      >
         <button
+          v-for="option in facet.options"
+          :key="option.value"
+          type="button"
+          class="nx-chip"
+          :class="{ 'on-or': isFacetOn(facet.key, option.value) }"
+          :aria-pressed="isFacetOn(facet.key, option.value)"
+          @click="catalog.toggleFacet(facet.key, option.value)"
+        >
+          {{ option.label }}
+          <span
+            v-if="option.count != null"
+            class="nx-chip-n"
+          >{{ option.count }}</span>
+        </button>
+      </div>
+
+      <div
+        v-else
+        class="nx-checks"
+      >
+        <button
+          v-if="!facet.single"
           type="button"
           class="nx-check"
           :class="{ on: !facetCount(facet.key) }"
@@ -157,9 +189,18 @@ function facetCount(key) {
           type="button"
           class="nx-check"
           :class="{ on: isFacetOn(facet.key, option.value) }"
-          @click="catalog.toggleFacet(facet.key, option.value)"
+          @click="facet.single ? selectSingle(facet, option.value) : catalog.toggleFacet(facet.key, option.value)"
         >
-          <span class="nx-check-box">
+          <!-- single-choice facets use a radio dot, multi-select use a checkbox -->
+          <span
+            v-if="facet.single"
+            class="nx-radio"
+            :class="{ on: isFacetOn(facet.key, option.value) }"
+          />
+          <span
+            v-else
+            class="nx-check-box"
+          >
             <NxIcon
               v-if="isFacetOn(facet.key, option.value)"
               name="check"
@@ -285,10 +326,19 @@ function facetCount(key) {
           class="nx-chip"
           :class="tagState(item.tag) ? `on-${tagState(item.tag)}` : ''"
           :aria-pressed="!!tagState(item.tag)"
+          :data-tag="item.tag"
           :title="text.tagHint"
           @click="catalog.cycleTag(item.tag)"
         >
-          {{ item.tag }}
+          <span
+            v-if="tagState(item.tag) === 'and'"
+            class="nx-chip-mark"
+          >+</span>
+          <span
+            v-else-if="tagState(item.tag) === 'not'"
+            class="nx-chip-mark"
+          >−</span>
+          {{ item.label }}
           <span class="nx-chip-n">{{ item.count }}</span>
         </button>
       </div>

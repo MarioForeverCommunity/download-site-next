@@ -6,11 +6,14 @@
 // first iteration dropped: the title image plus the full showcase slider, with
 // pagination rendered in normal flow beneath the track instead of overlapping it.
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
+import axios from "axios";
+import MarkdownIt from "markdown-it";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import NxIcon from "./NxIcon.vue";
 import { formatIsoDate, softwareLabel } from "../../util/next/records.js";
 import { getTagColor } from "../../util/TagUtil.js";
+import { getDescriptionSync } from "../../util/ImageUtil.js";
 
 const props = defineProps({
   record: {
@@ -28,6 +31,40 @@ const emit = defineEmits(["close"]);
 const lightbox = ref(null);
 const activeVersion = ref(null);
 const slideIndex = ref(0);
+// The legacy full-screen modal rendered a per-record description file
+// (description.md / .txt from the data folder) on top of the YAML blurb. The
+// drawer restores it: without it, records whose write-up lives in a file showed
+// only a one-line summary.
+const md = new MarkdownIt({ breaks: true, linkify: true, html: false });
+const longDescription = ref("");
+const longDescriptionHtml = computed(() => (longDescription.value ? md.render(longDescription.value) : ""));
+
+async function loadLongDescription() {
+  longDescription.value = "";
+  const record = props.record;
+  if (!record || !record.raw) return;
+  const category = record.kind === "mw" ? "mw-levels" : "mf-games";
+  if (record.kind !== "mf" && record.kind !== "mw") return;
+
+  const url = getDescriptionSync(record.raw, category, props.lan);
+  if (!url) return;
+
+  try {
+    const response = await axios.get(url);
+    const body = typeof response.data === "string" ? response.data : "";
+    if (body && !body.trim().startsWith("<!DOCTYPE html>")) {
+      longDescription.value = body;
+    }
+  } catch (_e) {
+    longDescription.value = "";
+  }
+}
+
+watch(() => props.record, () => {
+  loadLongDescription();
+}, { immediate: true });
+
+// ── version picker ─────────────────────────────────────────
 const theme = ref(document.documentElement.dataset.nxTheme || "light");
 
 const isOpen = computed(() => props.record != null);
@@ -112,7 +149,7 @@ const text = computed(() => (props.lan === "zh"
 
 watch(() => props.record, (next) => {
   const versions = next && next.versions ? next.versions : [];
-  const current = versions.find((v) => v.current) || versions[0] || null;
+  const current = versions.find((v) => v.latest) || versions[0] || null;
   activeVersion.value = current ? current.verKey : null;
   lightbox.value = null;
   slideIndex.value = 0;
@@ -349,7 +386,7 @@ onBeforeUnmount(() => {
                   >
                     <button
                       type="button"
-                      style="display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;aspect-ratio:16/9;"
+                      style="display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;aspect-ratio:16/9;"
                       @click="lightbox = img"
                     >
                       <img
@@ -408,15 +445,24 @@ onBeforeUnmount(() => {
             </template>
           </div>
 
-          <!-- description -->
+          <!-- description: the YAML blurb, then the full write-up from the
+               record's description file (md/txt) when one exists -->
           <div
-            v-if="record.description"
+            v-if="record.description || longDescriptionHtml"
             class="nx-section"
           >
             <div class="nx-section-label">{{ text.about }}</div>
-            <p style="font-size:12.5px;line-height:1.65;color:var(--nx-ink-2);white-space:pre-wrap;">
+            <p
+              v-if="record.description"
+              style="font-size:12.5px;line-height:1.65;color:var(--nx-ink-2);white-space:pre-wrap;"
+            >
               {{ record.description }}
             </p>
+            <div
+              v-if="longDescriptionHtml"
+              class="nx-detail-md"
+              v-html="longDescriptionHtml"
+            />
           </div>
 
           <!-- facts -->
@@ -473,7 +519,7 @@ onBeforeUnmount(() => {
               >
                 {{ v.label || v.verKey }}
                 <span
-                  v-if="v.current"
+                  v-if="v.latest"
                   class="nx-pick-cur"
                 >{{ text.latest }}</span>
               </button>

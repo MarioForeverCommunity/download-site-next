@@ -53,9 +53,19 @@ const facets = computed(() => [
 ]);
 
 const sorters = [
-  { field: "name", compare: (a, b) => String(a.name).localeCompare(String(b.name)) },
+  {
+    field: "name",
+    // Variants of one asset share a name; compare the variant label as a
+    // tie-breaker so expanded rows keep a stable, sensible order.
+    compare: (a, b) => String(a.name).localeCompare(String(b.name))
+      || String(a.variantLabel || "").localeCompare(String(b.variantLabel || "")),
+  },
   { field: "author", compare: (a, b) => String(a.author).localeCompare(String(b.author)) },
-  { field: "date", compare: (a, b) => (a.date ? a.date.getTime() : 0) - (b.date ? b.date.getTime() : 0) },
+  {
+    field: "date",
+    compare: (a, b) => (a.date ? a.date.getTime() : 0) - (b.date ? b.date.getTime() : 0)
+      || String(a.name).localeCompare(String(b.name)),
+  },
 ];
 
 const catalog = useCatalog({

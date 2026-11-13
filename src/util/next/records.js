@@ -1,4 +1,4 @@
-import { getName, getAuthorList, getDownloadEntries, toResourceDirectUrl, getVideoDesc } from "../GameUtil.js";
+import { getName, getAuthorList, getDownloadEntries, toResourceDirectUrl, getVideoDesc, getMwLevelFileUrl, processFileNamesWithVolumes } from "../GameUtil.js";
 import { getAssetResourceURLs } from "../AssetUtil.js";
 import { getSoftendoGameName, getSoftendoYearRange, getTypeLabel, getLanguageLabel } from "../SoftendoUtil.js";
 import { getTagLabel } from "../TagUtil.js";
@@ -143,9 +143,18 @@ function collectImages(entry, category, verKey) {
 
 // ── Mario Forever fangames ───────────────────────────────────
 
+function cleanVersionLabel(value) {
+  // A version written as "-" (or an em dash) in the YAML is a placeholder for
+  // "no version", not a label; showing it as the version is confusing.
+  if (value == null) return "";
+  const text = String(value).trim();
+  if (!text || text === "-" || text === "—" || text === "–") return "";
+  return text;
+}
+
 function mfVersions(entry, lan) {
   const versions = Array.isArray(entry.ver) ? entry.ver : [];
-  return versions.map((verRaw) => {
+  const mapped = versions.map((verRaw) => {
     const verKey = Object.keys(verRaw)[0];
     const ver = verRaw[verKey] || {};
     const platform = detectPlatform(verKey, ver.file_name);
@@ -195,7 +204,7 @@ function mfVersions(entry, lan) {
 
     return {
       verKey,
-      label: (lan === "en" && ver.ver_alt) ? ver.ver_alt : verKey,
+      label: cleanVersionLabel((lan === "en" && ver.ver_alt) ? ver.ver_alt : verKey),
       date: toDate(ver.date),
       platform,
       software,
@@ -206,15 +215,52 @@ function mfVersions(entry, lan) {
       repackerAlt: ver.repacker_alt || null,
       current: ver.current === true,
       isApk: String(ver.file_name || "").toLowerCase().endsWith(".apk"),
+      // Raw flag, resolved into `latest` below.
+      explicitCurrent: ver.current === true,
     };
   });
+
+  // "Latest" resolution, matching the legacy catalog:
+  //  - any version explicitly marked `current: true` wins (several may be);
+  //  - otherwise the newest date is the latest (first one on a tie), regardless
+  //    of whether older versions carry `current: false` — that flag only opts a
+  //    version out of being *explicitly* current, it does not suppress the
+  //    date-based fallback. Without this, a catalog where every version is
+  //    written as `current: false` would show no "latest" badge at all.
+  const hasExplicit = mapped.some((v) => v.explicitCurrent);
+  const latestKeys = new Set();
+
+  if (hasExplicit) {
+    for (const version of mapped) {
+      if (version.explicitCurrent) latestKeys.add(version.verKey);
+    }
+  } else if (mapped.length > 0) {
+    let maxTime = -Infinity;
+    for (const version of mapped) {
+      const time = version.date ? version.date.getTime() : -Infinity;
+      if (time > maxTime) maxTime = time;
+    }
+    const first = mapped.find((version) => {
+      const time = version.date ? version.date.getTime() : -Infinity;
+      return time === maxTime;
+    });
+    if (first) latestKeys.add(first.verKey);
+  }
+
+  return mapped.map((version) => ({
+    ...version,
+    latest: latestKeys.has(version.verKey),
+  }));
 }
 
 export function buildMfRecords(entries, lan) {
   return entries.map((entry) => {
     const versions = mfVersions(entry, lan);
     const currentVerStr = entry.currentVerStr || (versions[0] && versions[0].verKey) || "";
-    const current = versions.find((v) => v.verKey === currentVerStr) || versions[0] || null;
+    // Prefer the resolved "latest" version as the one shown on the row.
+    const current = versions.find((v) => v.latest)
+      || versions.find((v) => v.verKey === currentVerStr)
+      || versions[0] || null;
     const names = authorNames(entry, lan);
     const rawNames = authorNames(entry, "zh");
     const id = `mf::${entry.game}::${rawNames.join("|")}::${entry.type || ""}`;
@@ -243,6 +289,11 @@ export function buildMfRecords(entries, lan) {
       region: entry.type || null,
       platform: current ? current.platform : null,
       software: current ? current.software : null,
+      // Filter inputs consider every version, not just the displayed one: a
+      // fangame may ship a Linux build that is not its current version, and the
+      // platform filter must still find it.
+      platforms: Array.from(new Set(versions.map((v) => v.platform).filter(Boolean))),
+      softwares: Array.from(new Set(versions.map((v) => v.software).filter(Boolean))),
       tags,
       image,
       images,
@@ -295,6 +346,7 @@ export function expandMfRecord(record) {
     downloads: version.downloads,
     dataDownloads: version.dataDownloads,
     current: version,
+    isLatestVersion: version.latest,
     expandedFrom: record,
     expandedIndex: index,
   }));
@@ -306,19 +358,56 @@ export function buildMwRecords(entries) {
   const lan = "zh";
   return entries.map((entry) => {
     const names = authorNames(entry, lan);
-    const downloads = (entry.file_urls || []).map((item, index) => ({
-      label: item.name,
-      shortLabel: entry.file_urls.length > 1 ? `#${index + 1}` : "File Hub",
-      url: direct(item.url),
+    // The raw YAML usually has only `file_name`; the File Hub URL is derived
+    // from it with the same helper the legacy page and the API script use.
+    // Reading `file_urls` alone left most records without a download button.
+    const fileNames = Array.isArray(entry.file_name)
+      ? entry.file_name.filter((n) => n != null)
+      : (entry.file_name ? [entry.file_name] : []);
+    const displayNames = fileNames.length > 1
+      ? processFileNamesWithVolumes(entry.file_name)
+      : fileNames.map((name) => String(name).split("/").pop());
+
+    const downloads = fileNames.map((fileName, index) => ({
+      label: fileNames.length > 1
+        ? `社区资源站 (${displayNames[index] || `#${index + 1}`})`
+        : "社区资源站",
+      shortLabel: fileNames.length > 1 ? `#${index + 1}` : "File Hub",
+      url: direct(getMwLevelFileUrl(entry, fileName)),
       code: null,
       dead: false,
       primary: index === 0,
       kind: "filehub",
     }));
 
+    // An explicit `file_url` overrides the derived link.
+    if (entry.file_url) {
+      downloads.unshift({
+        label: "社区资源站",
+        shortLabel: "File Hub",
+        url: direct(entry.file_url),
+        code: null,
+        dead: false,
+        primary: true,
+        kind: "filehub",
+      });
+      downloads.forEach((d, i) => { d.primary = i === 0; });
+    }
+
     const netdisk = [];
-    if (entry.currentVer && entry.currentVer.download_url) {
-      netdisk.push(...netdiskDownloads({ ...entry, currentVer: entry.currentVer }, lan));
+    if (entry.download_url) {
+      const code = entry.code || null;
+      const invalid = String(entry.download_url).startsWith("~");
+      const url = invalid ? entry.download_url.slice(1) : entry.download_url;
+      netdisk.push({
+        label: code ? `网盘 (提取码: ${code})` : "网盘",
+        shortLabel: "网盘",
+        url,
+        code,
+        dead: invalid,
+        primary: false,
+        kind: "netdisk",
+      });
     }
 
     const dataDownloads = (entry.data_file_urls || []).map((item, index) => ({
@@ -345,8 +434,10 @@ export function buildMwRecords(entries) {
     const { image, images } = collectImages(entry, "mw-levels");
 
     const tags = [];
-    if (entry.has_bundled_smwp) tags.push({ key: "BundledMW", label: "专用 MW" });
-    if (entry.has_bgm) tags.push({ key: "BGM", label: "BGM" });
+    // Runtime flags use the legacy design's own badge colours so the same
+    // record reads identically in both interfaces.
+    if (entry.has_bundled_smwp) tags.push({ key: "mw", label: "专用 MW", tone: "mw" });
+    if (entry.has_bgm) tags.push({ key: "bgm", label: "BGM", tone: "bgm" });
 
     const allDownloads = [...downloads, ...netdisk];
 
@@ -416,7 +507,9 @@ export function buildAssetRecords(entries, lan) {
     const variants = Array.isArray(entry.ver) && entry.ver.length > 0 ? entry.ver : null;
 
     if (!variants) {
-      out.push(buildAssetRecord(entry, entry.currentVer || {}, entry.currentVerStr || "", lan));
+      // Single-variant entry: `currentVerStr` holds the version string, not a
+      // variant name, so no variant label is produced.
+      out.push(buildAssetRecord(entry, entry.currentVer || {}, "", lan));
       continue;
     }
 
@@ -630,20 +723,30 @@ export function buildSoftendoRecords(entries, lan) {
 /**
  * Build a single-choice facet with per-option counts, so the sidebar can show
  * how many records each choice would leave.
+ *
+ * `getter` may return an array when a record qualifies for several values (a
+ * fangame can ship Windows and Linux builds). Pass `countFrom` when the count
+ * must consider every version of a record rather than only the currently shown
+ * one — otherwise a platform that only exists on a non-current version would
+ * report 0 while the filter still matched it.
  */
-export function makeFacet({ key, label, options, getter }) {
+export function makeFacet({ key, label, options, getter, countFrom, as, single }) {
   const counts = new Map();
+  const countGetter = countFrom || getter;
   for (const record of options.records) {
-    const value = getter(record);
+    const value = countGetter(record);
     if (value == null) continue;
     const values = Array.isArray(value) ? value : [value];
     for (const item of values) {
+      if (item == null) continue;
       counts.set(item, (counts.get(item) || 0) + 1);
     }
   }
   return {
     key,
     label,
+    as,
+    single,
     options: options.list.map((option) => ({
       ...option,
       count: counts.get(option.value) || 0,

@@ -30,13 +30,25 @@ const dateText = computed(() => formatIsoDate(props.record.date));
 
 // Every tag is shown, not just the first two: the class column is how a visitor
 // decides whether a record is relevant, so truncating it defeats the purpose.
-const tagPills = computed(() => props.record.tags.map((tag) => ({
-  ...tag,
-  style: (() => {
-    const colors = getTagColor(tag.key, theme.value === "dark");
-    return { color: colors.text, borderColor: colors.border, background: colors.bg };
-  })(),
-})));
+const tagPills = computed(() => props.record.tags.map((tag) => {
+  // Runtime flags (专用 MW / BGM) keep the legacy design's hues, but rendered as
+  // a tinted background with a strong border and dark text rather than a solid
+  // fill, so they sit beside content tags without shouting.
+  if (tag.tone === "mw") {
+    return {
+      ...tag,
+      style: { color: "#b45309", borderColor: "#f0a44a", background: "#fdf1e0" },
+    };
+  }
+  if (tag.tone === "bgm") {
+    return {
+      ...tag,
+      style: { color: "#a50036", borderColor: "#f0a0c0", background: "#fdeef4" },
+    };
+  }
+  const colors = getTagColor(tag.key, theme.value === "dark");
+  return { ...tag, style: { color: colors.text, borderColor: colors.border, background: colors.bg } };
+}));
 
 const regionLabel = computed(() => {
   const region = props.record.region;
@@ -50,6 +62,22 @@ const primaryDownload = computed(() => {
   return downloads.find((item) => !item.dead) || null;
 });
 
+// Only meaningful when the catalog is expanded per version; on a collapsed
+// multi-version row every version is "the record" and a badge would be noise.
+const isLatest = computed(() => props.record.isLatestVersion === true);
+
+// One author per line in list view; a comma-joined string hid collaborators.
+const displayAuthors = computed(() => {
+  const authors = props.record.authors;
+  if (Array.isArray(authors) && authors.length > 0) return authors;
+  return props.record.author ? [props.record.author] : [];
+});
+
+// Assets show the variant name only when the entry really has several variants.
+// An entry that merely specifies `ver` without `variant` keeps its version in
+// the version column and must not have it repeated beside the title.
+const showVariant = computed(() => props.record.kind === "asset" && !!props.record.variantLabel);
+
 function openLinks(event) {
   event.stopPropagation();
 }
@@ -58,7 +86,7 @@ function openLinks(event) {
 <template>
   <div
     class="nx-row"
-    :class="{ 'is-active': active }"
+    :class="{ 'is-active': active, 'is-softendo': record.kind === 'softendo' }"
     role="button"
     tabindex="0"
     @click="emit('open', record)"
@@ -79,7 +107,12 @@ function openLinks(event) {
         />
       </div>
       <div class="nx-row-text">
-        <div class="nx-row-name">{{ record.name }}</div>
+        <div class="nx-row-name">
+          {{ record.name }}<span
+            v-if="showVariant"
+            class="nx-row-variant"
+          > ({{ record.variantLabel }})</span>
+        </div>
         <div
           v-if="record.nameAlt && record.nameAlt !== record.name"
           class="nx-row-sub"
@@ -87,7 +120,19 @@ function openLinks(event) {
       </div>
     </div>
 
-    <div class="nx-cell">
+    <div
+      v-if="displayAuthors.length > 1"
+      class="nx-cell nx-cell-authors"
+    >
+      <span
+        v-for="(name, index) in displayAuthors"
+        :key="name + index"
+      >{{ name }}</span>
+    </div>
+    <div
+      v-else
+      class="nx-cell"
+    >
       {{ record.author || "—" }}
     </div>
 
@@ -96,16 +141,18 @@ function openLinks(event) {
       <template v-else>{{ record.versionLabel || "—" }}</template>
     </div>
 
-    <div class="nx-cell nx-num">
-      <template v-if="record.kind === 'softendo'">
-        {{ record.versionCount }} {{ lan === "zh" ? "版本" : "ver" }}
-      </template>
-      <template v-else>
-        {{ dateText || "—" }}
-      </template>
+    <div
+      v-if="record.kind !== 'softendo'"
+      class="nx-cell nx-num"
+    >
+      {{ dateText || "—" }}
     </div>
 
     <div class="nx-row-tags nx-row-tags-col">
+      <span
+        v-if="isLatest"
+        class="nx-dot nx-dot-cur"
+      >{{ lan === "zh" ? "最新" : "LATEST" }}</span>
       <span
         v-if="regionLabel"
         class="nx-dot"
@@ -145,6 +192,39 @@ function openLinks(event) {
         @click="openLinks"
       >
         <NxIcon name="link" :size="14" />
+      </a>
+      <a
+        v-if="record.links && record.links.repo"
+        :href="record.links.repo"
+        target="_blank"
+        rel="noopener"
+        :title="lan === 'zh' ? '源代码' : 'Repository'"
+        :aria-label="lan === 'zh' ? '源代码' : 'Repository'"
+        @click="openLinks"
+      >
+        <NxIcon name="github" :size="14" />
+      </a>
+      <a
+        v-if="record.links && record.links.wiki"
+        :href="record.links.wiki"
+        target="_blank"
+        rel="noopener"
+        title="Wiki"
+        aria-label="Wiki"
+        @click="openLinks"
+      >
+        <NxIcon name="info" :size="14" />
+      </a>
+      <a
+        v-if="record.links && record.links.home"
+        :href="record.links.home"
+        target="_blank"
+        rel="noopener"
+        :title="lan === 'zh' ? '主页' : 'Homepage'"
+        :aria-label="lan === 'zh' ? '主页' : 'Homepage'"
+        @click="openLinks"
+      >
+        <NxIcon name="home" :size="14" />
       </a>
     </div>
   </div>

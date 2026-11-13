@@ -52,7 +52,7 @@
   --nx-shadow-2: 0 12px 32px rgba(23, 24, 26, 0.13);
   --nx-shadow-3: -20px 0 50px rgba(23, 24, 26, 0.17);
 
-  /* density */
+  /* density — driven by the view, not a user switch */
   --nx-row-h: 56px;
 
   /* type — one family. Inter, as the site already ships. */
@@ -62,8 +62,10 @@
     "Microsoft YaHei", sans-serif;
 }
 
-:root[data-nx-density="compact"] {
-  --nx-row-h: 42px;
+/* List density is always compact (it is a scanning surface); the card grid is
+   always comfortable. The attribute is set from the active view. */
+:root[data-nx-density="cards"] {
+  --nx-row-h: 56px;
 }
 
 /* ── dark theme ───────────────────────────────────────────── */
@@ -377,9 +379,18 @@ body.nx-body select:focus-visible {
   margin-right: 6px;
 }
 
-/* rail toggle: only rendered below the breakpoint where the rail collapses */
-.nx-rail-toggle {
+/* rail toggle: hidden on desktop, only shown once the rail collapses.
+   Specificity is raised past `.nx-icon-btn` (which sets display:inline-flex)
+   because both are single-class selectors and the icon-button rule comes later
+   in the sheet. */
+.nx-icon-btn.nx-rail-toggle {
   display: none;
+}
+
+@media (max-width: 860px) {
+  .nx-icon-btn.nx-rail-toggle {
+    display: inline-flex;
+  }
 }
 
 .nx-search {
@@ -742,13 +753,37 @@ body.nx-body select:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
+/* Radio dot for single-choice facets, so one-of-many and many-of-many read
+   differently at a glance. */
+.nx-radio {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  border: 1.5px solid var(--nx-line-2);
+  border-radius: 50%;
+  background: var(--nx-canvas);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-radio.on {
+  border-color: var(--nx-accent);
+}
+
+.nx-radio.on::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nx-accent);
+}
+
 /* tag chips with tri-state */
 .nx-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  max-height: 168px;
-  overflow-y: auto;
   padding-bottom: 2px;
 }
 
@@ -779,23 +814,32 @@ body.nx-body select:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
+/* Tag tri-state: OR = green (include any), AND = blue (include all, "+"),
+   NOT = red (exclude, "−"). The colour and the marker both encode the state so
+   it survives greyscale and colour-vision differences. */
 .nx-chip.on-or {
-  background: var(--nx-accent-soft);
-  border-color: var(--nx-accent-border);
-  color: var(--nx-accent);
+  background: #eaf7ee;
+  border-color: #a8d8b8;
+  color: #1c6b45;
 }
 
 .nx-chip.on-and {
-  background: #eef3fb;
-  border-color: #c3d5ee;
+  background: #eaf2fd;
+  border-color: #b3cdea;
   color: #1f5fa8;
 }
 
 .nx-chip.on-not {
-  background: var(--nx-fill-2);
-  border-color: var(--nx-line-2);
-  color: var(--nx-muted);
-  text-decoration: line-through;
+  background: #fdecec;
+  border-color: #eeb8b8;
+  color: #b3261e;
+  text-decoration: none;
+}
+
+:root[data-nx-theme="dark"] .nx-chip.on-or {
+  background: #16281d;
+  border-color: #2c5138;
+  color: #63c295;
 }
 
 :root[data-nx-theme="dark"] .nx-chip.on-and {
@@ -804,8 +848,24 @@ body.nx-body select:focus-visible {
   color: #7cb0ea;
 }
 
-.nx-chip.on-or .nx-chip-n {
-  color: var(--nx-accent);
+:root[data-nx-theme="dark"] .nx-chip.on-not {
+  background: #2c1a1a;
+  border-color: #572c2c;
+  color: #ef7a72;
+}
+
+/* state marker: "+" for AND, "−" for NOT, nothing for OR */
+.nx-chip-mark {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  margin-right: 1px;
+}
+
+.nx-chip.on-or .nx-chip-n,
+.nx-chip.on-and .nx-chip-n,
+.nx-chip.on-not .nx-chip-n {
+  color: inherit;
   opacity: 0.7;
 }
 
@@ -1014,14 +1074,15 @@ body.nx-body select:focus-visible {
 }
 
 /* shared grid contract: title | author | version | date | class | actions
-   The class column is widest of the metadata columns because every tag must be
-   visible, and actions are pinned to the far right. */
+   Widths are budgeted so a 1440px viewport (996px of row width after the rail
+   and filter pane) still gives the title its full 400px: the metadata columns
+   are sized to their content rather than to the grid's leftover space. */
 .nx-row {
-  --nx-cols: minmax(200px, 340px) minmax(84px, 132px) 100px 88px minmax(140px, 1fr) 60px;
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px minmax(120px, 1fr) 132px;
   display: grid;
   grid-template-columns: var(--nx-cols);
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   padding: 7px 16px;
   min-height: var(--nx-row-h);
   border-bottom: 1px solid var(--nx-line);
@@ -1119,16 +1180,37 @@ body.nx-body select:focus-visible {
   font-weight: 600;
   letter-spacing: -0.005em;
   line-height: 1.35;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   color: var(--nx-ink);
+  /* Long titles wrap onto a second line instead of being cut with an ellipsis:
+     a truncated game name is not identifiable. */
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .nx-row-sub {
   font-size: 11px;
   color: var(--nx-muted);
   margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Multi-author records list one author per line so no name is hidden behind a
+   comma-separated string. */
+.nx-cell-authors {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+.nx-cell-authors > span {
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1146,6 +1228,21 @@ body.nx-body select:focus-visible {
 .nx-cell.nx-num {
   font-size: 11.5px;
   color: var(--nx-muted);
+}
+
+.nx-row-variant {
+  color: var(--nx-muted);
+  font-weight: 400;
+}
+
+/* Softendo records have no release date, so the date column is dropped and the
+   remaining columns re-flow without leaving a hole. */
+.nx-row.is-softendo {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr) 132px;
+}
+
+.nx-row.is-softendo .nx-cell:nth-child(4) {
+  display: none;
 }
 
 .nx-row-tags {
@@ -1290,11 +1387,6 @@ body.nx-body select:focus-visible {
   padding: 14px 16px 40px;
 }
 
-:root[data-nx-density="compact"] .nx-cards {
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 9px;
-  padding: 11px 14px 32px;
-}
 
 .nx-card {
   background: var(--nx-canvas);
@@ -1569,7 +1661,8 @@ body.nx-body select:focus-visible {
 .nx-shots img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--nx-fill);
   display: block;
 }
 
@@ -1756,33 +1849,40 @@ body.nx-body select:focus-visible {
 }
 
 /* ── carousel (vue3-carousel) ─────────────────────────────── */
-/* The library ships absolutely-positioned pagination dots that overflow the
-   slide track. Here the pagination is pulled back into normal flow and the
-   arrows are restyled to the design's own controls. */
+/* The library absolutely-positions its pagination inside the viewport, where it
+   overlaps the slides. Pagination is therefore rendered outside the carousel in
+   normal flow (see NxDetail / NxEntryPreview), and the track is configured to
+   show exactly one slide so the current image is centred with its neighbours
+   peeking in from either side rather than leaving empty gutters. */
 .nx-carousel :deep(.carousel) {
   --vc-nav-background: var(--nx-canvas);
   --vc-nav-color: var(--nx-ink-2);
   --vc-nav-border-radius: 4px;
-  --vc-dot-width: 5px;
-  --vc-dot-height: 5px;
-  --vc-dot-color: var(--nx-line-2);
-  --vc-dot-background-color: var(--nx-line-2);
-  --vc-pgn-active-color: var(--nx-accent);
-  --vc-pgn-background-color: var(--nx-line);
-  --vc-pgn-active-background-color: var(--nx-accent);
-  --vc-pgn-width: 18px;
-  --vc-pgn-height: 3px;
 }
 
+.nx-carousel .carousel__viewport,
+.nx-carousel :deep(.carousel__viewport) {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* slides butt against each other: no gutter, so prev/next connect visually */
 .nx-carousel :deep(.carousel__track) {
-  gap: 4px;
+  gap: 0;
+  margin: 0;
 }
 
 .nx-carousel :deep(.carousel__slide) {
-  border-radius: 4px;
+  padding: 0;
+  border-radius: 0;
   overflow: hidden;
   background: var(--nx-fill);
-  border: 1px solid var(--nx-line);
+  border: 0;
+}
+
+.nx-carousel :deep(.carousel__slide > *) {
+  width: 100%;
+  height: 100%;
 }
 
 .nx-carousel :deep(.carousel__prev),
@@ -1791,14 +1891,15 @@ body.nx-body select:focus-visible {
   border: 1px solid var(--nx-line);
   width: 26px;
   height: 26px;
+  background: var(--nx-canvas);
 }
 
 .nx-carousel :deep(.carousel__prev) {
-  left: 6px;
+  left: 8px;
 }
 
 .nx-carousel :deep(.carousel__next) {
-  right: 6px;
+  right: 8px;
 }
 
 /* Pagination rendered OUTSIDE the carousel so it cannot overlap slides. */
@@ -2076,7 +2177,6 @@ html .nx-doc td {
   padding-top: 12px;
   margin-top: 16px;
   line-height: 1.65;
-  max-width: 78ch;
 }
 
 .nx-doc .last-update {
@@ -2087,16 +2187,19 @@ html .nx-doc td {
 }
 
 /* tab strip inside docs (markdown uses .radio-inputs).
-   Doubled class outranks the markdown files' scoped styles. */
-.nx-doc .radio-inputs.radio-inputs {
+   The markdown files ship their own legacy pill styling (rounded container with
+   a full border and shadow). Doubled class + !important-free specificity resets
+   it to a plain underlined tab strip; the only rule that survives is the active
+   tab's bottom border, which is the underline the design wants. */
+html .nx-doc .radio-inputs.radio-inputs {
   display: flex;
   flex-wrap: wrap;
   gap: 0;
   border: 0;
   border-bottom: 1px solid var(--nx-line);
+  border-radius: 0;
   background: transparent;
   box-shadow: none;
-  border-radius: 0;
   margin: 16px 0 20px;
   padding: 0;
   position: static;
@@ -2104,50 +2207,64 @@ html .nx-doc td {
   line-height: 1.3;
 }
 
-.nx-doc .radio-inputs.radio-inputs .radio {
+html .nx-doc .radio-inputs.radio-inputs .radio {
   flex: 0 0 auto;
   text-align: left;
   border-radius: 0;
   margin: 0;
   background: transparent;
   box-shadow: none;
+  border: 0;
 }
 
-.nx-doc .radio-inputs.radio-inputs .radio .radio-text {
+html .nx-doc .radio-inputs.radio-inputs .radio .radio-text {
   display: block;
   padding: 7px 10px;
+  border: 0;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
   color: var(--nx-muted);
   font-weight: 400;
   cursor: pointer;
   white-space: nowrap;
+  background: transparent;
 }
 
-.nx-doc .radio-inputs.radio-inputs .radio:hover .radio-text {
+html .nx-doc .radio-inputs.radio-inputs .radio:hover .radio-text {
   color: var(--nx-ink);
   background: transparent;
 }
 
-.nx-doc .radio-inputs.radio-inputs .radio.checked .radio-text {
+html .nx-doc .radio-inputs.radio-inputs .radio.checked,
+html .nx-doc .radio-inputs.radio-inputs .radio.checked:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+html .nx-doc .radio-inputs.radio-inputs .radio.checked .radio-text {
   color: var(--nx-ink);
   font-weight: 600;
   border-bottom-color: var(--nx-accent);
 }
 
-.nx-doc .radio-inputs.radio-inputs + div > h2:first-child,
-.nx-doc .radio-inputs.radio-inputs + h2 {
+html .nx-doc .radio-inputs.radio-inputs + div > h2:first-child,
+html .nx-doc .radio-inputs.radio-inputs + h2 {
   margin-top: 16px;
   padding-top: 0;
   border-top: 0;
 }
 
-/* carousels embedded in markdown */
-.nx-doc .carousel {
+/* carousels embedded in markdown (index / mario-worker pages).
+   These use the library's <Pagination /> component, whose dots are absolutely
+   positioned inside the viewport and therefore collide with the slides. The
+   markdown files carry their own scoped rules for this, so the selectors below
+   are deliberately over-specific (html + repeated class) to win without
+   !important. */
+html .nx-doc .carousel {
   --vc-pgn-active-color: var(--nx-accent);
-  --vc-pgn-background-color: var(--nx-line);
+  --vc-pgn-background-color: var(--nx-line-2);
   --vc-pgn-active-background-color: var(--nx-accent);
-  --vc-pgn-width: 18px;
+  --vc-pgn-width: 16px;
   --vc-pgn-height: 3px;
   --vc-pgn-margin: 3px;
   --vc-nav-background: var(--nx-canvas);
@@ -2155,51 +2272,198 @@ html .nx-doc td {
   --vc-nav-border-radius: 4px;
 }
 
-.nx-doc .carousel__slide {
+html .nx-doc .carousel .carousel__track {
+  gap: 0;
+  margin: 0;
+}
+
+html .nx-doc .carousel .carousel__slide {
+  padding: 0;
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--nx-line);
   background: var(--nx-fill);
 }
 
-.nx-doc .carousel__pagination {
-  position: static;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 3px;
-  padding: 0;
+/* Markdown screenshots are shown whole: these are game screenshots whose edges
+   carry information, so cropping them loses content. */
+html .nx-doc .carousel .carousel__slide > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: var(--nx-fill);
 }
 
-.nx-doc .carousel__pagination-button {
-  width: 18px;
+/* pull pagination out of the viewport into normal flow below the track */
+html .nx-doc .carousel .carousel__pagination.carousel__pagination {
+  position: static;
+  inset: auto;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  height: auto;
+  line-height: 1;
+  transform: none;
+}
+
+html .nx-doc .carousel .carousel__pagination-button.carousel__pagination-button {
+  width: 16px;
   height: 3px;
   margin: 0;
   padding: 0;
   border-radius: 2px;
+  background: var(--nx-line-2);
+  border: 0;
+  position: static;
+  transform: none;
 }
 
-.nx-doc .carousel__pagination-button::after {
-  height: 3px;
-  border-radius: 2px;
+html .nx-doc .carousel .carousel__pagination-button.carousel__pagination-button::after {
+  display: none;
 }
 
-.nx-doc .carousel__prev,
-.nx-doc .carousel__next {
+html .nx-doc .carousel .carousel__pagination-button--active.carousel__pagination-button--active {
+  background: var(--nx-accent);
+}
+
+html .nx-doc .carousel .carousel__prev,
+html .nx-doc .carousel .carousel__next {
   width: 26px;
   height: 26px;
   border: 1px solid var(--nx-line);
   box-shadow: var(--nx-shadow-1);
+  background: var(--nx-canvas);
+  color: var(--nx-ink-2);
 }
 
-/* embedded record previews in docs */
+html .nx-doc .carousel .carousel__prev {
+  left: 8px;
+}
+
+html .nx-doc .carousel .carousel__next {
+  right: 8px;
+}
+
+/* Embedded record previews in docs.
+   Consecutive entries sit side by side on wide screens, as the legacy design
+   allowed. The container is *not* restyled: in the markdown a tab panel is a
+   bare <div> holding headings, paragraphs and cards together, so turning it
+   into a flex row would re-flow the whole document. Instead each entry is an
+   inline-block that only shrinks when it actually has an adjacent sibling
+   (the same technique the legacy stylesheet uses). */
+/* Entry cards are capped in height so a tall screenshot cannot push the prose
+   far down the page; the media area scrolls nothing and the image is never
+   cropped (object-fit: contain). */
 .nx-entry {
   margin: 12px 0;
   border: 1px solid var(--nx-line);
   border-radius: var(--nx-r-lg);
   background: var(--nx-canvas);
   padding: 11px 12px;
-  max-width: 720px;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: 100%;
+  line-height: 1.55;
+  font-size: 13px;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+/* Images are shown whole, centred inside their frame — never cropped. */
+.nx-entry-media img,
+.nx-entry-slide-img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  background: var(--nx-fill);
+}
+
+.nx-entry-media.is-single img {
+  max-height: 260px;
+}
+
+/* The slider keeps every slide at the same box so the track height is stable
+   while the image itself is letterboxed rather than cut. */
+.nx-entry .nx-carousel .carousel__slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: var(--nx-fill);
+}
+
+.nx-entry-slide-img {
+  height: 100%;
+  max-height: 100%;
+}
+
+/* Placeholder for records with no artwork: a translucent site logo. */
+.nx-entry-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: var(--nx-fill);
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.nx-entry-placeholder img {
+  width: 42%;
+  max-width: 220px;
+  height: auto;
+  opacity: 0.6;
+  object-fit: contain;
+}
+
+@media (min-width: 760px) {
+  .nx-doc .nx-entry:has(+ .nx-entry),
+  .nx-doc .nx-entry + .nx-entry {
+    width: calc(50% - 6px);
+  }
+
+  .nx-doc .nx-entry:has(+ .nx-entry) {
+    margin-right: 12px;
+  }
+
+  .nx-doc .nx-entry + .nx-entry {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* three-up when the column is wide enough */
+  .nx-doc .nx-entry:has(+ .nx-entry + .nx-entry),
+  .nx-doc .nx-entry:has(+ .nx-entry + .nx-entry) + .nx-entry,
+  .nx-doc .nx-entry:has(+ .nx-entry + .nx-entry) + .nx-entry + .nx-entry {
+    width: calc(33.333% - 8px);
+  }
+
+  .nx-doc .nx-entry:has(+ .nx-entry + .nx-entry),
+  .nx-doc .nx-entry:has(+ .nx-entry + .nx-entry) + .nx-entry {
+    margin-right: 12px;
+  }
+
+  .nx-doc .nx-entry:has(+ .nx-entry + .nx-entry) + .nx-entry + .nx-entry {
+    margin-right: 0;
+  }
+}
+
+/* On a phone a card always takes the full width. */
+@media (max-width: 759px) {
+  .nx-doc .nx-entry {
+    width: 100%;
+  }
+
+  .nx-doc .nx-entry + .nx-entry {
+    margin-top: 12px;
+  }
 }
 
 .nx-entry-head {
@@ -2342,6 +2606,50 @@ html .nx-doc td {
   color: #16181a;
 }
 
+/* Long-form description loaded from a record's description file. */
+.nx-detail-md {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--nx-ink-2);
+}
+
+.nx-detail-md > * + * {
+  margin-top: 8px;
+}
+
+.nx-detail-md h1,
+.nx-detail-md h2,
+.nx-detail-md h3,
+.nx-detail-md h4 {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--nx-ink);
+  margin-top: 12px;
+}
+
+.nx-detail-md ul,
+.nx-detail-md ol {
+  padding-left: 18px;
+  list-style: revert;
+}
+
+.nx-detail-md li + li {
+  margin-top: 3px;
+}
+
+.nx-detail-md a {
+  color: var(--nx-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.nx-detail-md img {
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--nx-line);
+}
+
 /* ── motion ───────────────────────────────────────────────── */
 .nx-fade-enter-active,
 .nx-fade-leave-active {
@@ -2381,11 +2689,10 @@ html .nx-doc td {
 }
 
 /* ── responsive ───────────────────────────────────────────── */
+/* Only the tag column is dropped below 1240px; the title column keeps its
+   400px ceiling and simply shrinks toward its floor, because the title is the
+   one column that must never be squeezed. */
 @media (max-width: 1240px) {
-  .nx-row {
-    --nx-cols: minmax(160px, 260px) minmax(80px, 130px) 96px 86px 76px;
-  }
-
   .nx-row > .nx-row-tags-col,
   .nx-row-head > .nx-row-tags-col {
     display: none;
@@ -2396,6 +2703,14 @@ html .nx-doc td {
   :root {
     --nx-rail-w: 176px;
     --nx-pane-w: 212px;
+  }
+
+  .nx-row {
+    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 78px 128px;
+  }
+
+  .nx-row.is-softendo {
+    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 128px;
   }
 }
 
@@ -2424,9 +2739,6 @@ html .nx-doc td {
     transform: translateX(0);
   }
 
-  .nx-rail-toggle {
-    display: inline-flex;
-  }
 
   .nx-topbar {
     min-height: auto;

@@ -144,9 +144,21 @@ function onUpdate(index) {
         class="nx-entry-text"
       >{{ record.description }}</div>
 
+      <!-- no artwork: translucent site logo stands in for it -->
+      <div
+        v-if="gallery.length === 0"
+        class="nx-entry-placeholder"
+      >
+        <img
+          :src="props.lan === 'zh' ? './images/logo_hd.png' : './images/logo2_hd.png'"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
+
       <!-- one image: show it flat -->
       <div
-        v-if="gallery.length === 1"
+        v-else-if="gallery.length === 1"
         class="nx-entry-media is-single"
       >
         <img
@@ -177,7 +189,7 @@ function onUpdate(index) {
                 :alt="`${record.name} ${index + 1}`"
                 loading="lazy"
                 decoding="async"
-                style="width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--nx-fill);display:block;"
+                class="nx-entry-slide-img"
               />
             </Slide>
             <template #addons>

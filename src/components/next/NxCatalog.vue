@@ -4,12 +4,13 @@
 // Every redesigned catalog page mounts this and supplies adapter-built records,
 // so sorting, filtering, view switching and the drawer behave identically across
 // fangames, MW levels, assets and Softendo.
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch, onBeforeUnmount } from "vue";
 import NxFilterPane from "./NxFilterPane.vue";
 import NxRow from "./NxRow.vue";
 import NxCard from "./NxCard.vue";
 import NxDetail from "./NxDetail.vue";
 import NxIcon from "./NxIcon.vue";
+import { setViewDensity } from "../../util/Theme.js";
 
 const props = defineProps({
   catalog: {
@@ -156,8 +157,17 @@ function legacySlugs(record) {
   return slugs;
 }
 
+let stopDensityWatch = null;
+
 onMounted(() => {
   readDeepLink();
+  // Density follows the view: a list is for scanning, a card grid for browsing.
+  setViewDensity(props.catalog.view.value);
+  stopDensityWatch = watch(() => props.catalog.view.value, (view) => setViewDensity(view));
+});
+
+onBeforeUnmount(() => {
+  if (stopDensityWatch) stopDensityWatch();
 });
 
 function sortArrow(field) {

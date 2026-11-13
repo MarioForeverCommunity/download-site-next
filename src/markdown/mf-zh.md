@@ -40,7 +40,7 @@
     isMobile.value = window.innerWidth <= 800
   }
 
-  const itemsToShow = computed(() => isMobile.value ? 1 : 2)
+  const itemsToShow = computed(() => 1)
 
   onMounted(() => {
     window.addEventListener("resize", updateIsMobile)
@@ -114,7 +114,7 @@
 
 ### 截图预览
 <Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
-  <Slide v-for="image in imagesOriginal" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
+  <Slide v-for="image in imagesOriginal" :key="image">
     <img :src="image" style="width: 100%; height: 100%;">
   </Slide>
   <template #addons>

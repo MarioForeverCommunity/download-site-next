@@ -53,6 +53,8 @@ const facets = computed(() => {
     makeFacet({
       key: "smwp",
       label: "MW 版本",
+      // Long option set rendered as pills, matching the year filter's shape.
+      as: "chips",
       getter: (record) => record.smwpVersion,
       options: {
         records: list,
@@ -93,8 +95,7 @@ const catalog = useCatalog({
   sorters,
   defaultSort: initialSort,
   tags: false,
-  // The MW page has no release-date filter (see the template), so no labels.
-  dateFilter: false,
+  labels: { year: "年份 ", range: "日期 " },
 });
 
 onMounted(async () => {
@@ -127,7 +128,6 @@ document.title = title.value;
       :lan="lan"
       show-random
       :show-tags="false"
-      :show-date="false"
       :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
     />
     <div

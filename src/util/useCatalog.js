@@ -156,18 +156,29 @@ export function useCatalog({
   const tagList = computed(() => {
     if (!tags) return [];
     const counts = new Map();
+    const labels = new Map();
+    // "Untagged" is a synthetic bucket rather than a YAML tag, so its display
+    // name comes from the page's localization, not the tag dictionary.
+    const untaggedLabel = typeof tags === "object" && tags.untaggedLabel
+      ? tags.untaggedLabel
+      : "Untagged";
+
     for (const record of records.value) {
       const recordTags = record.tags || [];
       if (recordTags.length === 0) {
         counts.set("Untagged", (counts.get("Untagged") || 0) + 1);
+        if (!labels.has("Untagged")) labels.set("Untagged", untaggedLabel);
       }
       for (const tag of recordTags) {
         counts.set(tag.key, (counts.get(tag.key) || 0) + 1);
+        // Display the localized label (records already carry it); the raw key
+        // stays the filter identity so toggling is language-independent.
+        if (!labels.has(tag.key)) labels.set(tag.key, tag.label || tag.key);
       }
     }
     return Array.from(counts.entries())
       .sort((a, b) => (a[0] === "Untagged" ? 1 : b[0] === "Untagged" ? -1 : a[0].localeCompare(b[0])))
-      .map(([tag, count]) => ({ tag, count }));
+      .map(([tag, count]) => ({ tag, label: labels.get(tag) || tag, count }));
   });
 
   const activeTagCount = computed(() => Object.keys(tagStates.value).length);
@@ -194,9 +205,10 @@ export function useCatalog({
       const to = rangeTo.value || "…";
       active.push({ type: "date", key: "date", label: `${rangeLabel.value}${from} – ${to}` });
     }
+    // Tag pills carry the same +/− markers as the chips themselves.
     for (const [tag, state] of Object.entries(tagStates.value)) {
-      const prefix = state === "not" ? "−" : state === "and" ? "+" : "";
-      active.push({ type: "tag", key: tag, state, label: `${prefix}${tag}` });
+      const marker = state === "not" ? "−" : state === "and" ? "+" : "";
+      active.push({ type: "tag", key: tag, state, label: `${marker}${tag}` });
     }
     return active;
   });

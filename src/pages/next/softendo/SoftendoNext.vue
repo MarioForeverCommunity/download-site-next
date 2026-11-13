@@ -20,9 +20,9 @@ const title = computed(() => (lan.value === "zh" ? pageEntry.title : pageEntry.t
 const rawRecords = ref([]);
 const loading = ref(true);
 
-// Softendo entries have year ranges rather than release dates, so sorting uses
-// the latest year in each range.
-const initialSort = { field: "date", asc: false };
+// Softendo entries have year ranges rather than release dates, so sorting
+// defaults to the latest year, which is expressed as a name-independent order.
+const initialSort = { field: "name", asc: true };
 
 const facets = computed(() => {
   const zh = lan.value === "zh";
@@ -45,12 +45,24 @@ const facets = computed(() => {
     makeFacet({
       key: "language",
       label: zh ? "语言" : "Language",
-      getter: (record) => record.language,
+      // A game either ships in one language or in both, so this is a
+      // single-choice facet rendered with radio dots rather than checkboxes.
+      single: true,
+      getter: (record) => {
+        const langs = record.language || [];
+        const hasEn = langs.includes("en");
+        const hasPl = langs.includes("pl");
+        if (hasEn && hasPl) return "both";
+        if (hasPl) return "pl";
+        if (hasEn) return "en";
+        return null;
+      },
       options: {
         records: rawRecords.value,
         list: [
           { value: "en", label: zh ? "英语" : "English" },
           { value: "pl", label: zh ? "波兰语" : "Polish" },
+          { value: "both", label: zh ? "双语言" : "Both" },
         ],
       },
     }),
@@ -59,7 +71,8 @@ const facets = computed(() => {
 
 const sorters = [
   { field: "name", compare: (a, b) => String(a.name).localeCompare(String(b.name)) },
-  { field: "date", compare: (a, b) => (a.latestYear || 0) - (b.latestYear || 0) },
+  // No date sorter: Softendo entries have no release date, only year ranges,
+  // which the "年份" column already shows.
 ];
 
 const catalog = useCatalog({
@@ -69,7 +82,7 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: true,
+  tags: { untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" },
   // Softendo entries carry year ranges rather than release dates, so the
   // release-date filter has nothing meaningful to filter on.
   dateFilter: false,
@@ -169,7 +182,6 @@ document.title = title.value;
         name: lan === 'zh' ? '游戏' : 'Game',
         author: lan === 'zh' ? '系列' : 'Series',
         version: lan === 'zh' ? '年份' : 'Years',
-        date: lan === 'zh' ? '版本数' : 'Count',
         tags: lan === 'zh' ? '类型' : 'Genres',
       }"
     />
