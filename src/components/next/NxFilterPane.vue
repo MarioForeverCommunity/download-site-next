@@ -3,10 +3,11 @@
 //
 // Filters are *always visible* next to the results instead of living in
 // dropdowns: on a catalog you narrow and re-narrow constantly, so each click
-// should cost one action, not two. Order follows how a visitor narrows —
-// region → platform/engine → classification → release date → tags — and the
-// date control is compact so a 14-year list cannot push everything else out of
-// reach.
+// should cost one action, not two.
+//
+// Facets are multi-select (values inside one facet are OR-ed) because narrowing
+// a large catalog is rarely a single choice. Tags stay tri-state because
+// "has any of" / "has all of" / "excludes" are genuinely different questions.
 import { computed } from "vue";
 import NxIcon from "./NxIcon.vue";
 
@@ -27,7 +28,9 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
-  open: {
+  // Pages without a meaningful release date (Softendo ships year ranges) hide
+  // the whole date section.
+  showDate: {
     type: Boolean,
     default: true
   }
@@ -45,7 +48,6 @@ const text = computed(() => (props.lan === "zh" ? {
   rangeHint: "包含起止日期，精确到日。",
   tagHint: "点击依次切换：任一 / 同时 / 排除",
   anyYear: "全部年份",
-  anyDate: "全部日期",
 } : {
   tags: "Tags",
   date: "Release date",
@@ -58,7 +60,6 @@ const text = computed(() => (props.lan === "zh" ? {
   rangeHint: "Inclusive, exact to the day.",
   tagHint: "Click to cycle: any / all / exclude",
   anyYear: "All years",
-  anyDate: "All dates",
 }));
 
 const catalog = computed(() => props.catalog);
@@ -102,20 +103,18 @@ function onToInput(event) {
   catalog.value.setRange(catalog.value.rangeFrom.value, event.target.value);
 }
 
-function onYearSelect(event) {
-  catalog.value.setYear(event.target.value);
+function isFacetOn(key, value) {
+  return (catalog.value.facetValues.value[key] || []).includes(value);
 }
 
-function selectFacet(facet, value) {
-  const current = catalog.value.facetValues.value[facet.key];
-  catalog.value.setFacet(facet.key, current === value ? "" : value);
+function facetCount(key) {
+  return (catalog.value.facetValues.value[key] || []).length;
 }
 </script>
 
 <template>
   <aside
     class="nx-pane"
-    :class="{ 'is-open': open }"
     :aria-label="lan === 'zh' ? '筛选' : 'Filters'"
   >
     <!-- single-choice facets: region, platform/engine, classification -->
@@ -127,10 +126,10 @@ function selectFacet(facet, value) {
       <h4>
         <span>{{ facet.label }}</span>
         <button
-          v-if="catalog.facetValues.value[facet.key]"
+          v-if="facetCount(facet.key)"
           type="button"
           class="nx-pane-reset"
-          @click="catalog.setFacet(facet.key, '')"
+          @click="catalog.clearFacet(facet.key)"
         >{{ text.reset }}</button>
       </h4>
 
@@ -138,12 +137,12 @@ function selectFacet(facet, value) {
         <button
           type="button"
           class="nx-check"
-          :class="{ on: !catalog.facetValues.value[facet.key] }"
-          @click="catalog.setFacet(facet.key, '')"
+          :class="{ on: !facetCount(facet.key) }"
+          @click="catalog.clearFacet(facet.key)"
         >
           <span class="nx-check-box">
             <NxIcon
-              v-if="!catalog.facetValues.value[facet.key]"
+              v-if="!facetCount(facet.key)"
               name="check"
               :size="10"
             />
@@ -157,12 +156,12 @@ function selectFacet(facet, value) {
           :key="option.value"
           type="button"
           class="nx-check"
-          :class="{ on: catalog.facetValues.value[facet.key] === option.value }"
-          @click="selectFacet(facet, option.value)"
+          :class="{ on: isFacetOn(facet.key, option.value) }"
+          @click="catalog.toggleFacet(facet.key, option.value)"
         >
           <span class="nx-check-box">
             <NxIcon
-              v-if="catalog.facetValues.value[facet.key] === option.value"
+              v-if="isFacetOn(facet.key, option.value)"
               name="check"
               :size="10"
             />
@@ -176,8 +175,11 @@ function selectFacet(facet, value) {
       </div>
     </section>
 
-    <!-- release date: year OR exact range, mutually exclusive -->
-    <section class="nx-pane-section">
+    <!-- release date: year(s) OR exact range, mutually exclusive -->
+    <section
+      v-if="showDate"
+      class="nx-pane-section"
+    >
       <h4>
         <span>{{ text.date }}</span>
         <button
@@ -201,23 +203,25 @@ function selectFacet(facet, value) {
         >{{ text.byRange }}</button>
       </div>
 
-      <!-- year mode: one compact select; a 14-row radio list would bury the
-           filters below it -->
-      <select
+      <!-- years as multi-select chips: a 14-row radio list would bury the
+           filters below it, and several years are often wanted at once -->
+      <div
         v-if="!isRangeMode"
-        class="nx-date"
-        style="width: 100%; height: 28px;"
-        :value="catalog.filterYear.value"
-        :aria-label="text.byYear"
-        @change="onYearSelect"
+        class="nx-chips"
       >
-        <option value="">{{ text.anyYear }}</option>
-        <option
+        <button
           v-for="year in catalog.yearOptions.value"
           :key="year"
-          :value="year"
-        >{{ year }}（{{ catalog.yearCounts.value.get(year) || 0 }}）</option>
-      </select>
+          type="button"
+          class="nx-chip"
+          :class="{ 'on-or': (catalog.filterYears.value || []).includes(year) }"
+          :aria-pressed="(catalog.filterYears.value || []).includes(year)"
+          @click="catalog.toggleYear(year)"
+        >
+          {{ year }}
+          <span class="nx-chip-n">{{ catalog.yearCounts.value.get(year) || 0 }}</span>
+        </button>
+      </div>
 
       <div
         v-else
@@ -259,8 +263,7 @@ function selectFacet(facet, value) {
       </div>
     </section>
 
-    <!-- tags: tri-state, because "any of" / "all of" / "excludes" are genuinely
-         different questions when narrowing a 600-record catalog -->
+    <!-- tags: tri-state -->
     <section
       v-if="showTags && tagList.length"
       class="nx-pane-section"
@@ -290,5 +293,8 @@ function selectFacet(facet, value) {
         </button>
       </div>
     </section>
+
+    <!-- page-specific extras (e.g. "list every version separately") -->
+    <slot name="extras" />
   </aside>
 </template>

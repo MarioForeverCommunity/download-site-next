@@ -1,8 +1,9 @@
 <script setup>
 // Mario Worker levels catalog — redesigned.
 //
-// Chinese-only, matching the legacy page (config.js `show_en: false`), so the
-// language control is hidden by the shell.
+// Chinese-only, matching the legacy page (config.js `show_en: false`).
+// No tag filter: MW entries carry only "专用 MW" / "BGM" runtime flags, which
+// the 运行要求 facet already expresses, so a second tag filter would duplicate it.
 import { ref, computed, onMounted } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
@@ -35,10 +36,17 @@ const initialSort = SORT_MAP[getDefaultSort().value] || { field: "date", asc: fa
 
 const facets = computed(() => {
   const list = rawRecords.value;
+  // Newest MW version first: the current editors are what visitors look for.
   const smwpValues = distinctValues(list, (record) => record.smwpVersion).sort((a, b) => {
-    if (a === "MW 4.4") return -1;
-    if (b === "MW 4.4") return 1;
-    return String(a).localeCompare(String(b), undefined, { numeric: true });
+    const rank = (value) => {
+      if (value === "MW 4.4") return 1;
+      if (value === "MW 4.0") return 0;
+      return 2;
+    };
+    const ra = rank(a);
+    const rb = rank(b);
+    if (ra !== rb) return rb - ra;
+    return String(b).localeCompare(String(a), undefined, { numeric: true });
   });
 
   return [
@@ -84,24 +92,10 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: true,
-  labels: { year: "年份 ", range: "日期 " },
+  tags: false,
+  // The MW page has no release-date filter (see the template), so no labels.
+  dateFilter: false,
 });
-
-const stats = computed(() => {
-  if (loading.value) return null;
-  const years = rawRecords.value.filter((r) => r.date).map((r) => r.date.getFullYear());
-  return {
-    total: rawRecords.value.length,
-    range: years.length ? `${Math.min(...years)}–${Math.max(...years)}` : "—",
-  };
-});
-
-const catalogRef = ref(null);
-
-function randomGame() {
-  if (catalogRef.value) catalogRef.value.randomRecord();
-}
 
 onMounted(async () => {
   try {
@@ -124,44 +118,16 @@ document.title = title.value;
     :lan="lan"
     :title="title"
     :search="catalog"
-    show-random
-    @random="randomGame"
   >
-    <div class="nx-pagehead">
-      <div class="nx-pagehead-text">
-        <h1 class="nx-masthead">{{ title }}</h1>
-        <p class="nx-lede">
-          Mario Worker 关卡作品目录。用左侧条件按 MW 版本、运行要求或日期收窄结果，点开任意一条查看下载与运行说明。
-        </p>
-      </div>
-      <div
-        v-if="stats"
-        class="nx-pagehead-stats"
-      >
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.total }}</span>
-          <span class="nx-stat-l">收录作品</span>
-        </div>
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.range }}</span>
-          <span class="nx-stat-l">年份跨度</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="nx-pagehead-options">
-      <p class="nx-note is-warn">
-        <span>游玩前需要先下载 Mario Worker，并尽量使用作品对应的版本；带「需替换 BGM」标记的作品请勿忘记放置音乐包。</span>
-      </p>
-    </div>
-
     <NxCatalog
       v-if="!loading"
-      ref="catalogRef"
       :catalog="catalog"
       :facets="facets"
       :sorters="sorters"
       :lan="lan"
+      show-random
+      :show-tags="false"
+      :show-date="false"
       :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
     />
     <div

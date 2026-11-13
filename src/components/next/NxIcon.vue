@@ -45,6 +45,11 @@ const PATHS = {
   globe: ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18", "M3 12h18", "M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"],
   swap: ["M4 8h13", "M14 5l3 3-3 3", "M20 16H7", "M10 13l-3 3 3 3"],
   settings: ["M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6", "M12 3v2", "M12 19v2", "M3 12h2", "M19 12h2", "M5.6 5.6L7 7", "M17 17l1.4 1.4", "M5.6 18.4L7 17", "M17 7l1.4-1.4"],
+  // four-dot "app grid" settings glyph, per review
+  settingsDots: ["M9 5h.01", "M15 5h.01", "M9 12h.01", "M15 12h.01", "M9 19h.01", "M15 19h.01"],
+  // dice — the random-record action
+  dice: ["M5 4h14v16H5z", "M9 8h.01", "M15 8h.01", "M12 12h.01", "M9 16h.01", "M15 16h.01"],
+  menu: ["M4 7h16", "M4 12h16", "M4 17h16"],
   calendar: ["M4 6h16v14H4z", "M4 10h16", "M8 3v4", "M16 3v4"],
 };
 

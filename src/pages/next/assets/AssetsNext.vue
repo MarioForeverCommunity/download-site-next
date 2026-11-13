@@ -1,5 +1,9 @@
 <script setup>
 // Creation assets catalog — redesigned. Chinese-only, like the legacy page.
+//
+// Every variant is its own row (no collapse option): variants are separately
+// downloadable builds, and hiding them behind a picker buried most of the
+// catalog.
 import { ref, computed, onMounted } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
@@ -65,19 +69,6 @@ const catalog = useCatalog({
   labels: { year: "年份 ", range: "日期 " },
 });
 
-const stats = computed(() => {
-  if (loading.value) return null;
-  const byType = {};
-  for (const record of rawRecords.value) {
-    byType[record.assetType] = (byType[record.assetType] || 0) + 1;
-  }
-  return {
-    total: rawRecords.value.length,
-    engines: byType.engine || 0,
-    media: (byType.sprite || 0) + (byType.effect || 0),
-  };
-});
-
 onMounted(async () => {
   try {
     const list = await ensureAssetsList();
@@ -100,32 +91,6 @@ document.title = title.value;
     :title="title"
     :search="catalog"
   >
-    <div class="nx-pagehead">
-      <div class="nx-pagehead-text">
-        <h1 class="nx-masthead">{{ title }}</h1>
-        <p class="nx-lede">
-          引擎、拓展、素材、特效与工具。按类型与日期收窄结果，点开任意一条查看变体与下载。
-        </p>
-      </div>
-      <div
-        v-if="stats"
-        class="nx-pagehead-stats"
-      >
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.total }}</span>
-          <span class="nx-stat-l">收录条目</span>
-        </div>
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.engines }}</span>
-          <span class="nx-stat-l">引擎</span>
-        </div>
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.media }}</span>
-          <span class="nx-stat-l">素材 / 特效</span>
-        </div>
-      </div>
-    </div>
-
     <NxCatalog
       v-if="!loading"
       :catalog="catalog"

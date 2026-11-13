@@ -407,91 +407,124 @@ export function buildMwRecords(entries) {
 
 // ── Creation assets ──────────────────────────────────────────
 
+// Assets are always expanded: one record per variant. Variants are separate
+// downloadable builds (e.g. "Full" vs "Mod"), so collapsing them behind a
+// picker hid most of the catalog behind one row.
 export function buildAssetRecords(entries, lan) {
-  return entries.map((entry) => {
-    const variant = entry.currentVer || {};
-    const variantKey = entry.currentVerStr || "";
-    const downloads = getAssetResourceURLs(entry, lan).map((item, index, arr) => ({
-      label: item.name,
-      shortLabel: arr.length > 1 ? `#${index + 1}` : "File Hub",
-      url: direct(item.url),
-      code: null,
+  const out = [];
+  for (const entry of entries) {
+    const variants = Array.isArray(entry.ver) && entry.ver.length > 0 ? entry.ver : null;
+
+    if (!variants) {
+      out.push(buildAssetRecord(entry, entry.currentVer || {}, entry.currentVerStr || "", lan));
+      continue;
+    }
+
+    for (const verRaw of variants) {
+      const verKey = Object.keys(verRaw)[0];
+      const verObj = verRaw[verKey] || {};
+      // Variant-level download fields inherit from the entry (the normalized
+      // list already did this, but a raw YAML entry needs it too).
+      const merged = {
+        ...verObj,
+        download_url: verObj.download_url ?? entry.download_url,
+        download_url_alt: verObj.download_url_alt ?? entry.download_url_alt,
+        code: verObj.code ?? entry.code,
+        code_alt: verObj.code_alt ?? entry.code_alt,
+        source_url: verObj.source_url ?? entry.source_url,
+        source_url_alt: verObj.source_url_alt ?? entry.source_url_alt,
+      };
+      out.push(buildAssetRecord(entry, merged, verKey, lan));
+    }
+  }
+  return out;
+}
+
+function buildAssetRecord(entry, variant, variantKey, lan) {
+  const downloads = getAssetResourceURLs({ ...entry, currentVer: variant }, lan).map((item, index, arr) => ({
+    label: item.name,
+    shortLabel: arr.length > 1 ? `#${index + 1}` : "File Hub",
+    url: direct(item.url),
+    code: null,
+    dead: false,
+    primary: index === 0,
+    kind: "filehub",
+  }));
+
+  if (variant.download_url) {
+    downloads.push({
+      label: `网盘${variant.code ? ` (提取码: ${variant.code})` : ""}`,
+      shortLabel: "网盘",
+      url: variant.download_url,
+      code: variant.code || null,
       dead: false,
-      primary: index === 0,
-      kind: "filehub",
-    }));
+      primary: false,
+      kind: "netdisk",
+    });
+  }
+  if (variant.download_url_alt) {
+    downloads.push({
+      label: `备用网盘${variant.code_alt ? ` (提取码: ${variant.code_alt})` : ""}`,
+      shortLabel: "备用",
+      url: variant.download_url_alt,
+      code: variant.code_alt || null,
+      dead: false,
+      primary: false,
+      kind: "netdisk",
+    });
+  }
 
-    if (variant.download_url) {
-      downloads.push({
-        label: `网盘${variant.code ? ` (提取码: ${variant.code})` : ""}`,
-        shortLabel: "网盘",
-        url: variant.download_url,
-        code: variant.code || null,
-        dead: false,
-        primary: false,
-        kind: "netdisk",
-      });
-    }
-    if (variant.download_url_alt) {
-      downloads.push({
-        label: `备用网盘${variant.code_alt ? ` (提取码: ${variant.code_alt})` : ""}`,
-        shortLabel: "备用",
-        url: variant.download_url_alt,
-        code: variant.code_alt || null,
-        dead: false,
-        primary: false,
-        kind: "netdisk",
-      });
-    }
+  const image = entry.image ? `/data/assets/${entry.image}` : null;
+  const variantLabel = variantKey
+    ? ((lan === "en" && variant.variant_alt) ? variant.variant_alt : variantKey)
+    : "";
 
-    const image = entry.image ? `/data/assets/${entry.image}` : null;
-
-    return {
-      id: `asset::${entry.name}::${variantKey}`,
-      kind: "asset",
-      name: getName(entry, lan),
-      nameZh: entry.name,
-      nameAlt: entry.name_alt || null,
-      author: authorText(entry, lan),
-      authors: authorNames(entry, lan),
-      authorZh: authorText(entry, "zh"),
+  return {
+    id: `asset::${entry.name}::${variantKey}`,
+    kind: "asset",
+    name: getName(entry, lan),
+    nameZh: entry.name,
+    nameAlt: entry.name_alt || null,
+    author: authorText(entry, lan),
+    authors: authorNames(entry, lan),
+    authorZh: authorText(entry, "zh"),
+    date: toDate(variant.date || entry.date),
+    versionLabel: variant.ver || variantLabel || "",
+    variantLabel,
+    versionCount: 1,
+    region: null,
+    platform: null,
+    software: null,
+    assetType: entry.type,
+    assetTypeLabel: assetTypeLabel(entry.type, lan),
+    tags: [],
+    image,
+    images: image ? [image] : [],
+    description: lan === "en" ? (entry.description_alt || entry.description || null) : (entry.description || null),
+    downloads,
+    dataDownloads: [],
+    versions: [{
+      verKey: variantKey || (variant.ver || ""),
+      label: variant.ver || variantLabel || "",
       date: toDate(variant.date || entry.date),
-      versionLabel: variant.ver || variantKey || "",
-      versionCount: entry.ver ? entry.ver.length : 1,
-      region: null,
-      platform: null,
-      software: null,
-      assetType: entry.type,
-      assetTypeLabel: assetTypeLabel(entry.type, lan),
-      tags: [],
-      image,
-      images: image ? [image] : [],
-      description: lan === "en" ? (entry.description_alt || entry.description || null) : (entry.description || null),
       downloads,
       dataDownloads: [],
-      versions: [{
-        verKey: variantKey || (variant.ver || ""),
-        label: variant.ver || variantKey || "",
-        date: toDate(variant.date || entry.date),
-        downloads,
-        dataDownloads: [],
-        current: true,
-        platform: null,
-        software: null,
-        repacker: null,
-      }],
-      links: {
-        home: null,
-        source: entry.source_url || null,
-        repo: entry.repo || null,
-        wiki: null,
-        video: [],
-      },
-      titleSearch: [entry.name, entry.name_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : [])],
-      authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
-      raw: entry,
-    };
-  });
+      current: true,
+      platform: null,
+      software: null,
+      repacker: null,
+    }],
+    links: {
+      home: null,
+      source: entry.source_url || null,
+      repo: entry.repo || null,
+      wiki: null,
+      video: [],
+    },
+    titleSearch: [entry.name, entry.name_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : [])],
+    authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
+    raw: entry,
+  };
 }
 
 // ── Softendo / Buziol games ──────────────────────────────────

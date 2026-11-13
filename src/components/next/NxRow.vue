@@ -28,7 +28,9 @@ const theme = getTheme();
 
 const dateText = computed(() => formatIsoDate(props.record.date));
 
-const pillTags = computed(() => props.record.tags.slice(0, 2).map((tag) => ({
+// Every tag is shown, not just the first two: the class column is how a visitor
+// decides whether a record is relevant, so truncating it defeats the purpose.
+const tagPills = computed(() => props.record.tags.map((tag) => ({
   ...tag,
   style: (() => {
     const colors = getTagColor(tag.key, theme.value === "dark");
@@ -110,7 +112,7 @@ function openLinks(event) {
         :class="record.region === 'chinese' ? 'nx-dot-cn' : 'nx-dot-intl'"
       >{{ regionLabel }}</span>
       <span
-        v-for="tag in pillTags"
+        v-for="tag in tagPills"
         :key="tag.key"
         class="nx-tag"
         :style="tag.style"

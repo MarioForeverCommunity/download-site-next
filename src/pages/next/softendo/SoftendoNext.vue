@@ -70,10 +70,9 @@ const catalog = useCatalog({
   sorters,
   defaultSort: initialSort,
   tags: true,
-  labels: {
-    year: lan.value === "zh" ? "年份 " : "Year ",
-    range: lan.value === "zh" ? "日期 " : "Date ",
-  },
+  // Softendo entries carry year ranges rather than release dates, so the
+  // release-date filter has nothing meaningful to filter on.
+  dateFilter: false,
 });
 
 const stats = computed(() => {
@@ -165,6 +164,7 @@ document.title = title.value;
       :facets="facets"
       :sorters="sorters"
       :lan="lan"
+      :show-date="false"
       :columns="{
         name: lan === 'zh' ? '游戏' : 'Game',
         author: lan === 'zh' ? '系列' : 'Series',

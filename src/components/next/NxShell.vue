@@ -2,9 +2,10 @@
 // App shell for the redesigned pages.
 //
 // Layout mirrors a catalog tool rather than a marketing page: a slim warm-grey
-// navigation rail, a white content canvas, a topbar carrying the two searches
-// and the global actions, and (per catalog page) a secondary filter pane next
-// to the results.
+// navigation rail (which also carries the footer, so the content column ends
+// where the records end), a white content canvas, a topbar holding the page
+// title, the two searches and the global actions, and a secondary filter pane
+// next to the results.
 //
 // The legacy design stays one click away, but the hand-off moved into "Global
 // settings" — a permanent topbar button advertising a second design was louder
@@ -15,7 +16,6 @@ import { NEXT_DESIGN } from "../../util/Design.js";
 import { getTheme, toggleTheme, getDensity, toggleDensity } from "../../util/Theme.js";
 import DesignSwitch from "../DesignSwitch.vue";
 import ChangelogDrawer from "./ChangelogDrawer.vue";
-import NxFooter from "./NxFooter.vue";
 import NxIcon from "./NxIcon.vue";
 
 const props = defineProps({
@@ -32,7 +32,7 @@ const props = defineProps({
     default: ""
   },
   // Catalog pages supply a search model; doc pages leave it out and the topbar
-  // shows only the global actions.
+  // shows only the page title and the global actions.
   search: {
     type: Object,
     default: null
@@ -40,18 +40,10 @@ const props = defineProps({
   showRandom: {
     type: Boolean,
     default: false
-  },
-  showFilterToggle: {
-    type: Boolean,
-    default: false
-  },
-  filterOpen: {
-    type: Boolean,
-    default: false
   }
 });
 
-const emit = defineEmits(["changeLanZh", "changeLanEn", "random", "toggleFilters"]);
+const emit = defineEmits(["changeLanZh", "changeLanEn", "random"]);
 
 const pageEntry = computed(() => navTop.find((item) => item.id === props.pageId) || null);
 
@@ -103,7 +95,6 @@ const text = computed(() => (displayLan.value === "zh" ? {
   settings: "全局设置",
   changelog: "更新履历",
   language: "语言",
-  filters: "筛选",
   legacy: "切换到旧版设计",
   light: "浅色模式",
   dark: "深色模式",
@@ -111,6 +102,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   compact: "紧凑模式",
   catalogs: "目录",
   elsewhere: "站外",
+  menu: "菜单",
 } : {
   search: "Search titles, aliases, filenames…",
   author: "Search authors…",
@@ -118,7 +110,6 @@ const text = computed(() => (displayLan.value === "zh" ? {
   settings: "Global settings",
   changelog: "Changelog",
   language: "Language",
-  filters: "Filters",
   legacy: "Switch to legacy design",
   light: "Light mode",
   dark: "Dark mode",
@@ -126,6 +117,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   compact: "Compact mode",
   catalogs: "Catalogs",
   elsewhere: "Elsewhere",
+  menu: "Menu",
 }));
 
 const theme = getTheme();
@@ -135,6 +127,8 @@ const density = getDensity();
 const openMenu = ref(null); // 'lang' | 'settings' | null
 const showChangelog = ref(false);
 const rootRef = ref(null);
+// Narrow screens collapse the rail into a toggleable panel.
+const railOpen = ref(false);
 
 function toggleMenu(name) {
   openMenu.value = openMenu.value === name ? null : name;
@@ -147,11 +141,14 @@ function closeMenus() {
 function onDocClick(event) {
   if (!rootRef.value || !rootRef.value.contains(event.target)) {
     closeMenus();
+    railOpen.value = false;
   }
 }
 
 function onKeydown(event) {
-  if (event.key === "Escape" && openMenu.value) closeMenus();
+  if (event.key !== "Escape") return;
+  if (openMenu.value) closeMenus();
+  else if (railOpen.value) railOpen.value = false;
 }
 
 const showLanguageMenu = computed(() => isBilingual.value);
@@ -163,6 +160,13 @@ function chooseLanguage(value) {
 }
 
 const languageLabel = computed(() => (displayLan.value === "zh" ? "中文" : "English"));
+
+// The page title sits in the topbar of the main area, per review.
+const pageTitle = computed(() => {
+  if (props.title) return props.title;
+  const entry = pageEntry.value;
+  return entry ? label(entry, "title") : "";
+});
 
 // The two searches are independent: one matches titles/aliases/filenames, the
 // other matches authors only.
@@ -195,8 +199,10 @@ watch(showChangelog, (open) => {
   <div
     ref="rootRef"
     class="nx-root"
+    :class="{ 'rail-open': railOpen }"
   >
-    <!-- left navigation rail -->
+    <!-- left navigation rail; on narrow screens it collapses behind the
+         topbar's menu button -->
     <aside class="nx-rail">
       <a
         class="nx-rail-brand"
@@ -238,19 +244,44 @@ watch(showChangelog, (open) => {
         </a>
       </nav>
 
+      <!-- footer lives in the rail so the content column ends with the records -->
       <div class="nx-rail-foot">
         <button
           type="button"
-          style="border:0;background:transparent;color:inherit;font-size:11.5px;text-align:left;padding:0;cursor:pointer;"
+          class="nx-rail-foot-link"
           @click="showChangelog = true"
         >{{ text.changelog }}</button>
-        <span>{{ siteVersion }}</span>
+        <a
+          class="nx-rail-foot-link"
+          href="https://github.com/MarioForeverCommunity/download-site-next"
+          target="_blank"
+          rel="noopener"
+        >{{ displayLan === "zh" ? "本站源码" : "Source code" }}</a>
+        <a
+          class="nx-rail-foot-link"
+          href="https://status.marioforever.net/"
+          target="_blank"
+          rel="noopener"
+        >{{ displayLan === "zh" ? "网站状态" : "Status" }}</a>
+        <span class="nx-rail-foot-meta">{{ siteVersion }}</span>
       </div>
     </aside>
 
     <div class="nx-main">
-      <!-- topbar: title search | author search | actions -->
+      <!-- topbar: page title | two searches | actions -->
       <header class="nx-topbar">
+        <button
+          type="button"
+          class="nx-icon-btn nx-rail-toggle"
+          :aria-label="text.menu"
+          :aria-expanded="railOpen"
+          @click.stop="railOpen = !railOpen"
+        >
+          <NxIcon name="menu" :size="16" />
+        </button>
+
+        <h1 class="nx-topbar-title">{{ pageTitle }}</h1>
+
         <div
           v-if="search"
           class="nx-search"
@@ -295,45 +326,8 @@ watch(showChangelog, (open) => {
 
         <span class="nx-topbar-spacer" />
 
+        <!-- order per review: language → theme → settings -->
         <div class="nx-actions">
-          <button
-            v-if="showFilterToggle"
-            type="button"
-            class="nx-icon-btn"
-            :aria-label="text.filters"
-            :title="text.filters"
-            :aria-expanded="filterOpen"
-            @click="emit('toggleFilters')"
-          >
-            <NxIcon name="filter" :size="15" />
-          </button>
-
-          <button
-            v-if="showRandom"
-            type="button"
-            class="nx-icon-btn"
-            :aria-label="text.random"
-            :title="text.random"
-            @click="emit('random')"
-          >
-            <NxIcon name="shuffle" :size="15" />
-          </button>
-
-          <!-- theme: always visible top-right, one click -->
-          <button
-            type="button"
-            class="nx-icon-btn"
-            :aria-label="theme === 'dark' ? text.light : text.dark"
-            :title="theme === 'dark' ? text.light : text.dark"
-            @click="toggleTheme()"
-          >
-            <NxIcon
-              :name="theme === 'dark' ? 'sun' : 'moon'"
-              :size="15"
-            />
-          </button>
-
-          <!-- language: dropdown, not an inline pair -->
           <div
             v-if="showLanguageMenu"
             class="nx-lang"
@@ -382,7 +376,19 @@ watch(showChangelog, (open) => {
             </Transition>
           </div>
 
-          <!-- global settings: theme, density, changelog, design hand-off -->
+          <button
+            type="button"
+            class="nx-icon-btn"
+            :aria-label="theme === 'dark' ? text.light : text.dark"
+            :title="theme === 'dark' ? text.light : text.dark"
+            @click="toggleTheme()"
+          >
+            <NxIcon
+              :name="theme === 'dark' ? 'sun' : 'moon'"
+              :size="15"
+            />
+          </button>
+
           <div class="nx-lang">
             <button
               type="button"
@@ -393,7 +399,7 @@ watch(showChangelog, (open) => {
               :title="text.settings"
               @click="toggleMenu('settings')"
             >
-              <NxIcon name="settings" :size="15" />
+              <NxIcon name="settingsDots" :size="16" />
             </button>
             <Transition name="nx-fade">
               <div
@@ -428,11 +434,6 @@ watch(showChangelog, (open) => {
       </header>
 
       <slot />
-
-      <NxFooter
-        :lan="displayLan"
-        @open-changelog="showChangelog = true"
-      />
     </div>
 
     <ChangelogDrawer

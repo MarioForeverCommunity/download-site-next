@@ -10,22 +10,26 @@ export const changelog = [
     features: [
       "全新界面设计：白色主区域 + 灰色导航栏与常驻筛选面板，紧凑列表 / 卡片双视图，深浅色模式",
       "搜索拆分为两栏：标题（含别名、文件名）与作者各自独立匹配，位于页面顶部",
-      "新增「发布时间」筛选：按年份或按日期区间（精确到日）二选一，提供今年 / 去年 / 近 30 天快捷项",
-      "制作软件、地区、平台、标签等筛选常驻展开在副侧边栏，标签支持任一 / 同时 / 排除三态",
+      "新增「发布时间」筛选：按年份（可多选）或按日期区间（精确到日）二选一，提供今年 / 去年 / 近 30 天快捷项",
+      "地区、平台、制作软件、年份、MW 版本等筛选均为多选，常驻展开在副侧边栏；标签支持任一 / 同时 / 排除三态",
       "作品详情改为右侧滑出抽屉，可在不离开列表的情况下逐条对比；标题图与截图轮播完整展示",
       "文档页中的作品条目可原地展开详情，无需跳转到作品目录页",
       "更新履历改为侧边抽屉展示（位于导航栏底部与全局设置中）",
-      "全局设置新增「界面设计」项，新旧两套界面可在其中自由切换；新版界面另含密度切换与随机游戏按钮"
+      "全局设置新增「界面设计」项，新旧两套界面可在其中自由切换；新版界面另含密度切换与随机游戏按钮",
+      "页面标题显示在主区域顶栏；页脚移入左侧导航栏；移动端导航栏收缩为菜单按钮展开",
+      "创作资源目录默认将每个 variant 单独列出，不提供合并选项"
     ],
     features_en: [
       "A completely new interface: white content canvas with a grey navigation rail and a persistent filter sidebar, list/card views and dark mode",
       "The search splits into two independent fields — titles (aliases, filenames included) and authors — placed at the top of the page",
-      "A new Release date filter: either by year or by an exact date range down to the day, with this year / last year / last 30 days shortcuts",
-      "Software, region, platform and tag filters now sit expanded in the side panel; tags support any / all / exclude states",
+      "A new Release date filter: multiple years or an exact date range down to the day, with this year / last year / last 30 days shortcuts",
+      "Region, platform, software, year and MW version filters are multi-select and stay expanded in the side panel; tags support any / all / exclude states",
       "Game details open in a right-side drawer so records can be compared without leaving the list; title images and the screenshot slider are shown in full",
       "Embedded game previews in the documentation open their details in place, without navigating to the catalog",
       "The changelog is now a side drawer (reachable from the rail footer and global settings)",
-      "Global settings gains an Interface design switcher between the two designs; the new interface also adds a density switch and a random game button"
+      "Global settings gains an Interface design switcher between the two designs; the new interface also adds a density switch and a random game button",
+      "The page title now sits in the main topbar; the footer moved into the left rail; on mobile the rail collapses behind a menu button",
+      "The creation assets catalog lists every variant as its own row, with no merge option"
     ],
     improvements: [
       "收窄作品列表的「作品」列，长文件名不再挤占元数据列",

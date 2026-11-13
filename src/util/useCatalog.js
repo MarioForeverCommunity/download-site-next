@@ -8,12 +8,15 @@ import { ref, computed, watch } from "vue";
  *
  *  - two independent text searches: title (titles, aliases, filenames) and
  *    author;
- *  - single-select facets and a tri-state tag filter, rendered as an always-open
- *    secondary sidebar rather than hidden dropdowns;
+ *  - multi-select facets and a tri-state tag filter, rendered as an always-open
+ *    secondary sidebar rather than hidden dropdowns. Facets are multi-select
+ *    because narrowing a 600-record catalog is rarely a single choice — you
+ *    often want "Windows or Linux" in one pass;
  *  - a date filter with two mutually exclusive modes: whole-year, or an exact
  *    range down to the day. They are exclusive because combining them produces
  *    ranges that are hard to reason about ("2021–2023 but also 2019-05-02");
- *    one control, one answer.
+ *    one control, one answer. Pages that have no meaningful release date
+ *    (Softendo ships year ranges) pass `dateFilter: false`.
  *
  * Facets are declarative: `{ key, label, options: [{ value, label, count }],
  * test(record, value) }`. Passing `facets` as a getter keeps option labels in
@@ -28,12 +31,14 @@ export function useCatalog({
   defaultSort = null,
   tags = null,
   labels = {},
+  dateFilter = true,
 }) {
   const resolveFacets = () => (typeof facets === "function" ? facets() : facets);
   const facetDefs = computed(resolveFacets);
 
   const query = ref("");
   const authorQuery = ref("");
+  // { facetKey: [value, ...] } — an empty array means "no restriction".
   const facetValues = ref({});
   const tagStates = ref({});
   const view = ref("list");
@@ -43,10 +48,10 @@ export function useCatalog({
   const uid = Math.random().toString(36).slice(2, 8);
 
   // ── date filter ────────────────────────────────────────────
-  // mode: "year" | "range". Year picks a single whole year; range takes two
+  // mode: "year" | "range". Year picks one or more whole years; range takes two
   // ISO dates (inclusive). Only one mode is ever active.
   const dateMode = ref("year");
-  const filterYear = ref("");
+  const filterYears = ref([]);
   const rangeFrom = ref("");
   const rangeTo = ref("");
 
@@ -62,12 +67,19 @@ export function useCatalog({
       rangeFrom.value = "";
       rangeTo.value = "";
     } else {
-      filterYear.value = "";
+      filterYears.value = [];
     }
   }
 
-  function setYear(value) {
-    filterYear.value = value || "";
+  function toggleYear(value) {
+    if (!value) {
+      filterYears.value = [];
+      return;
+    }
+    const set = new Set(filterYears.value);
+    if (set.has(value)) set.delete(value);
+    else set.add(value);
+    filterYears.value = Array.from(set);
   }
 
   function setRange(from, to) {
@@ -76,13 +88,13 @@ export function useCatalog({
   }
 
   function clearDate() {
-    filterYear.value = "";
+    filterYears.value = [];
     rangeFrom.value = "";
     rangeTo.value = "";
   }
 
-  const hasYearFilter = computed(() => dateMode.value === "year" && !!filterYear.value);
-  const hasRangeFilter = computed(() => dateMode.value === "range" && (!!rangeFrom.value || !!rangeTo.value));
+  const hasYearFilter = computed(() => dateFilter && dateMode.value === "year" && filterYears.value.length > 0);
+  const hasRangeFilter = computed(() => dateFilter && dateMode.value === "range" && (!!rangeFrom.value || !!rangeTo.value));
   const hasDateFilter = computed(() => hasYearFilter.value || hasRangeFilter.value);
 
   const yearOptions = computed(() => {
@@ -125,7 +137,7 @@ export function useCatalog({
     if (!hasDateFilter.value) return true;
     if (!record.date) return false;
     if (hasYearFilter.value) {
-      return String(record.date.getFullYear()) === filterYear.value;
+      return filterYears.value.includes(String(record.date.getFullYear()));
     }
     // Compare calendar days, not instants: a record released at 23:00 on the
     // "to" date must still match.
@@ -138,7 +150,7 @@ export function useCatalog({
 
   // ── facets / tags ──────────────────────────────────────────
   for (const facet of resolveFacets()) {
-    facetValues.value[facet.key] = "";
+    facetValues.value[facet.key] = [];
   }
 
   const tagList = computed(() => {
@@ -163,18 +175,19 @@ export function useCatalog({
   const activeFacets = computed(() => {
     const active = [];
     for (const facet of facetDefs.value) {
-      const value = facetValues.value[facet.key];
-      if (!value) continue;
-      const option = facet.options.find((o) => o.value === value);
-      active.push({
-        type: "facet",
-        key: facet.key,
-        value,
-        label: `${facet.label}: ${option ? option.label : value}`,
-      });
+      const values = facetValues.value[facet.key] || [];
+      for (const value of values) {
+        const option = facet.options.find((o) => o.value === value);
+        active.push({
+          type: "facet",
+          key: facet.key,
+          value,
+          label: `${facet.label}: ${option ? option.label : value}`,
+        });
+      }
     }
     if (hasYearFilter.value) {
-      active.push({ type: "date", key: "date", label: `${yearLabel.value}${filterYear.value}` });
+      active.push({ type: "date", key: "date", label: `${yearLabel.value}${filterYears.value.join(", ")}` });
     }
     if (hasRangeFilter.value) {
       const from = rangeFrom.value || "…";
@@ -228,13 +241,15 @@ export function useCatalog({
   const filtered = computed(() => {
     const titleNeedle = query.value.trim();
     const authorNeedle = authorQuery.value.trim();
-    const activeFacetDefs = facetDefs.value.filter((f) => facetValues.value[f.key]);
+    const activeFacetDefs = facetDefs.value.filter((f) => (facetValues.value[f.key] || []).length > 0);
 
     let list = records.value.filter((record) => {
       if (titleNeedle && !fieldsMatch(record, titleFields, titleNeedle)) return false;
       if (authorNeedle && !fieldsMatch(record, authorFields, authorNeedle)) return false;
       for (const facet of activeFacetDefs) {
-        if (!facet.test(record, facetValues.value[facet.key])) return false;
+        // Within one facet the selected values are OR-ed: "Windows or Linux".
+        const values = facetValues.value[facet.key];
+        if (!values.some((value) => facet.test(record, value))) return false;
       }
       if (tags && !matchesTags(record.tags)) return false;
       if (!matchesDate(record)) return false;
@@ -261,8 +276,20 @@ export function useCatalog({
     authorQuery.value = value;
   }
 
+  function toggleFacet(key, value) {
+    const current = facetValues.value[key] || [];
+    const set = new Set(current);
+    if (set.has(value)) set.delete(value);
+    else set.add(value);
+    facetValues.value = { ...facetValues.value, [key]: Array.from(set) };
+  }
+
   function setFacet(key, value) {
-    facetValues.value = { ...facetValues.value, [key]: value };
+    facetValues.value = { ...facetValues.value, [key]: value ? [value] : [] };
+  }
+
+  function clearFacet(key) {
+    facetValues.value = { ...facetValues.value, [key]: [] };
   }
 
   function setView(value) {
@@ -281,7 +308,7 @@ export function useCatalog({
     query.value = "";
     authorQuery.value = "";
     const cleared = {};
-    for (const facet of facetDefs.value) cleared[facet.key] = "";
+    for (const facet of facetDefs.value) cleared[facet.key] = [];
     facetValues.value = cleared;
     tagStates.value = {};
     clearDate();
@@ -289,7 +316,7 @@ export function useCatalog({
 
   function clearFacets() {
     const cleared = {};
-    for (const facet of facetDefs.value) cleared[facet.key] = "";
+    for (const facet of facetDefs.value) cleared[facet.key] = [];
     facetValues.value = cleared;
   }
 
@@ -347,13 +374,16 @@ export function useCatalog({
     tagList,
     activeTagCount,
     activeFacets,
+    toggleFacet,
     setFacet,
+    clearFacet,
     cycleTag,
     clearTags,
     clearFacets,
     // date
+    dateFilter,
     dateMode,
-    filterYear,
+    filterYears,
     rangeFrom,
     rangeTo,
     yearOptions,
@@ -363,7 +393,7 @@ export function useCatalog({
     hasYearFilter,
     hasRangeFilter,
     setDateMode,
-    setYear,
+    toggleYear,
     setRange,
     clearDate,
     // sort / view / selection

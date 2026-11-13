@@ -104,19 +104,6 @@ const catalog = useCatalog({
   },
 });
 
-const stats = computed(() => {
-  if (loading.value) return [];
-  const years = rawRecords.value.filter((r) => r.date).map((r) => r.date.getFullYear());
-  const range = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : "—";
-  return { total: rawRecords.value.length, range };
-});
-
-const catalogRef = ref(null);
-
-function randomGame() {
-  if (catalogRef.value) catalogRef.value.randomRecord();
-}
-
 async function load(language) {
   loading.value = true;
   try {
@@ -155,53 +142,16 @@ document.title = title.value;
     :lan="lan"
     :title="title"
     :search="catalog"
-    show-random
     @change-lan-zh="pageSetLanguageZh"
     @change-lan-en="pageSetLanguageEn"
-    @random="randomGame"
   >
-    <!-- page heading sits between topbar and content -->
-    <div class="nx-pagehead">
-      <div class="nx-pagehead-text">
-        <h1 class="nx-masthead">{{ title }}</h1>
-        <p class="nx-lede">
-          {{ lan === "zh"
-            ? "Mario Forever 同人作品的持续收录档案。用左侧条件收窄结果，点开任意一条查看版本、截图与下载。"
-            : "A growing archive of Mario Forever fangames. Narrow with the panel on the left; open any record for versions, screenshots and downloads." }}
-        </p>
-      </div>
-      <div
-        v-if="!loading"
-        class="nx-pagehead-stats"
-      >
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.total }}</span>
-          <span class="nx-stat-l">{{ lan === "zh" ? "收录作品" : "titles" }}</span>
-        </div>
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.range }}</span>
-          <span class="nx-stat-l">{{ lan === "zh" ? "年份跨度" : "years" }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="nx-pagehead-options">
-      <label class="nx-inline-check">
-        <input
-          v-model="expandVersions"
-          type="checkbox"
-        />
-        <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
-      </label>
-    </div>
-
     <NxCatalog
       v-if="!loading"
-      ref="catalogRef"
       :catalog="catalog"
       :facets="facets"
       :sorters="sorters"
       :lan="lan"
+      show-random
       :columns="{
         name: lan === 'zh' ? '作品' : 'Title',
         author: lan === 'zh' ? '作者' : 'Author',
@@ -209,7 +159,20 @@ document.title = title.value;
         date: lan === 'zh' ? '日期' : 'Date',
         tags: lan === 'zh' ? '分类' : 'Class',
       }"
-    />
+    >
+      <template #pane-extras>
+        <section class="nx-pane-section">
+          <h4><span>{{ lan === "zh" ? "版本展开" : "Versions" }}</span></h4>
+          <label class="nx-inline-check">
+            <input
+              v-model="expandVersions"
+              type="checkbox"
+            />
+            <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
+          </label>
+        </section>
+      </template>
+    </NxCatalog>
     <div
       v-else
       class="nx-loading"

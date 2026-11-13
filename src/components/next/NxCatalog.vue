@@ -4,7 +4,7 @@
 // Every redesigned catalog page mounts this and supplies adapter-built records,
 // so sorting, filtering, view switching and the drawer behave identically across
 // fangames, MW levels, assets and Softendo.
-import { computed, ref, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import NxFilterPane from "./NxFilterPane.vue";
 import NxRow from "./NxRow.vue";
 import NxCard from "./NxCard.vue";
@@ -32,7 +32,15 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
+  showRandom: {
+    type: Boolean,
+    default: false
+  },
   showTags: {
+    type: Boolean,
+    default: true
+  },
+  showDate: {
     type: Boolean,
     default: true
   },
@@ -54,7 +62,6 @@ const emit = defineEmits(["random"]);
 
 const text = computed(() => (props.lan === "zh" ? {
   count: (n, total, filtered) => (filtered ? `<b>${n}</b> / ${total} 条` : `<b>${n}</b> 条`),
-  sortBy: "排序",
   name: "作品",
   author: "作者",
   version: "版本",
@@ -66,9 +73,9 @@ const text = computed(() => (props.lan === "zh" ? {
   reset: "重置",
   cardView: "卡片视图",
   listView: "列表视图",
+  random: "随机游戏",
 } : {
   count: (n, total, filtered) => (filtered ? `<b>${n}</b> of ${total}` : `<b>${n}</b> records`),
-  sortBy: "Sort",
   name: "Title",
   author: "Author",
   version: "Version",
@@ -80,9 +87,8 @@ const text = computed(() => (props.lan === "zh" ? {
   reset: "Reset",
   cardView: "Card view",
   listView: "List view",
+  random: "Random game",
 }));
-
-const sideOpen = ref(false);
 
 const current = computed(() => {
   const id = props.catalog.activeId.value;
@@ -167,7 +173,7 @@ function columnLabel(key, fallback) {
 
 // Removing a single active filter from the pill row.
 function removeFilter(item) {
-  if (item.type === "facet") props.catalog.setFacet(item.key, "");
+  if (item.type === "facet") props.catalog.toggleFacet(item.key, item.value);
   else if (item.type === "date") props.catalog.clearDate();
   else if (item.type === "tag") props.catalog.cycleTag(item.key);
   else if (item.type === "search") {
@@ -176,7 +182,6 @@ function removeFilter(item) {
   }
 }
 
-// Search terms show up as removable pills alongside facet filters.
 const searchPills = computed(() => {
   const pills = [];
   if (props.catalog.query.value.trim()) {
@@ -208,11 +213,15 @@ defineExpose({ randomRecord, open });
       :facets="facets"
       :lan="lan"
       :show-tags="showTags"
-      :open="sideOpen"
-    />
+      :show-date="showDate"
+    >
+      <template #extras>
+        <slot name="pane-extras" />
+      </template>
+    </NxFilterPane>
 
     <div class="nx-results">
-      <!-- results bar: count, sorting, active filters, view switch -->
+      <!-- results bar: count, sorting, active filters, view + random -->
       <div class="nx-results-bar">
         <span
           class="nx-results-count"
@@ -243,7 +252,7 @@ defineExpose({ randomRecord, open });
         >
           <span
             v-for="(pill, index) in allPills"
-            :key="`${pill.type}-${pill.key}-${index}`"
+            :key="`${pill.type}-${pill.key}-${pill.value || ''}-${index}`"
             class="nx-filter-pill"
           >
             {{ pill.label }}
@@ -260,20 +269,35 @@ defineExpose({ randomRecord, open });
           >{{ text.reset }}</button>
         </div>
 
-        <button
-          v-if="showCards"
-          type="button"
-          class="nx-icon-btn"
-          style="margin-left:auto; width:26px; height:26px;"
-          :aria-label="catalog.view.value === 'cards' ? text.listView : text.cardView"
-          :title="catalog.view.value === 'cards' ? text.listView : text.cardView"
-          @click="catalog.toggleView()"
-        >
-          <NxIcon
-            :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
-            :size="14"
-          />
-        </button>
+        <!-- random sits immediately left of the view switch, per review -->
+        <div class="nx-results-actions">
+          <button
+            v-if="showRandom"
+            type="button"
+            class="nx-icon-btn"
+            :aria-label="text.random"
+            :title="text.random"
+            @click="randomRecord()"
+          >
+            <NxIcon
+              name="dice"
+              :size="15"
+            />
+          </button>
+          <button
+            v-if="showCards"
+            type="button"
+            class="nx-icon-btn"
+            :aria-label="catalog.view.value === 'cards' ? text.listView : text.cardView"
+            :title="catalog.view.value === 'cards' ? text.listView : text.cardView"
+            @click="catalog.toggleView()"
+          >
+            <NxIcon
+              :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
+              :size="14"
+            />
+          </button>
+        </div>
       </div>
 
       <div
