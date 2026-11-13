@@ -286,6 +286,9 @@ function onUpdate(index) {
     background: var(--nx-fill);
     /* every slide is the same 4:3 box, so the track height never jumps */
     aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .nx-entry-carousel :deep(.carousel__prev),
@@ -306,14 +309,17 @@ function onUpdate(index) {
     margin-right: 8px;
   }
 
-  /* images fill their slide, matching the legacy card's cover behaviour.
+  /* Images are fitted whole inside their slide and centred — never scaled up
+     and cropped. `max-*` rather than fixed size keeps small art at its natural
+     resolution instead of blurring it across the frame.
      The selector is deliberately heavy: the global stylesheet's
-     `html .nx-doc .carousel .carousel__slide > img` rule targets the markdown
-     carousels (contain) and would otherwise win here. */
+     `html .nx-doc .carousel .carousel__slide > img` rule also targets this img. */
   .nx-entry-carousel :deep(.carousel__slide) > .nx-entry-slide-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     object-position: center;
     display: block;
   }

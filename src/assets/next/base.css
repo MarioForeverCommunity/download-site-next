@@ -313,13 +313,34 @@ body.nx-body select:focus-visible {
   color: var(--nx-accent);
 }
 
-.nx-rail-foot {
+/* Site-level rail entries reuse the row style; the version/build line sits
+   below the separating rule. */
+.nx-rail-meta {
   margin-top: auto;
-  padding: 10px 7px 0;
+  padding-top: 10px;
   border-top: 1px solid var(--nx-line);
+}
+
+.nx-rail-meta .nx-rail-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.nx-rail-meta .nx-rail-item:hover {
+  background: var(--nx-canvas);
+  color: var(--nx-ink);
+}
+
+.nx-rail-foot {
+  padding: 8px 7px 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   font-size: 11.5px;
   color: var(--nx-muted);
 }
@@ -341,7 +362,6 @@ body.nx-body select:focus-visible {
 .nx-rail-foot-meta {
   color: var(--nx-faint);
   font-variant-numeric: tabular-nums;
-  margin-top: 2px;
 }
 
 .nx-main {
@@ -371,14 +391,16 @@ body.nx-body select:focus-visible {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--nx-ink);
-  /* A long page title wraps to a second line instead of being truncated: the
-     title is how a visitor confirms which catalog they are looking at. */
-  white-space: normal;
-  overflow-wrap: anywhere;
+  /* No forced wrap: the title keeps one line and shrinks/ellipsises only when
+     the topbar genuinely runs out of room. With the search fields hidden (doc
+     pages) it simply shows in full. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1.3;
   flex: 0 1 auto;
   min-width: 0;
-  max-width: 30ch;
+  max-width: none;
   margin-right: 6px;
 }
 
@@ -1716,6 +1738,20 @@ body.nx-body select:focus-visible {
   margin-top: 2px;
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
+  /* Inline metadata sits in a flex row so the file size never carries a stray
+     left margin when the date is absent. */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+}
+
+.nx-meta-inline.is-faint {
+  color: var(--nx-faint);
+}
+
+.nx-meta-inline.is-muted {
+  color: var(--nx-muted);
 }
 
 .nx-dl-row {

@@ -209,12 +209,21 @@ onMounted(async () => {
     display: flex;
     gap: 5px;
     justify-content: flex-start;
+    /* the buttons must not be squeezed by the grid row's line box, which was
+       clipping their bottom border */
+    align-items: center;
+    min-height: 24px;
   }
 
   .nx-dl-sm {
-    height: 24px;
+    /* min-height rather than height: a fixed height inside a grid row with a
+       taller line box let the bottom border be cut off */
+    height: auto;
+    min-height: 24px;
     padding: 0 7px;
     font-size: 11.5px;
+    line-height: 22px;
+    flex: none;
   }
 
   .nx-dl.is-warn {

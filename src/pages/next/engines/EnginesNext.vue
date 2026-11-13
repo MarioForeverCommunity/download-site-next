@@ -23,7 +23,6 @@ document.title = title.value;
   >
     <div class="nx-doc-wrap">
       <div class="nx-doc">
-        <h1>{{ title }}</h1>
         <introEn />
       </div>
     </div>

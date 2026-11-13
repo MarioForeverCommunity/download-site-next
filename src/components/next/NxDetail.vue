@@ -253,6 +253,14 @@ const versionLineLabel = computed(() => {
   return v.label || "";
 });
 
+// The runtime line names the editor: versions like "v1.7.12" get the "SMWP"
+// prefix, while values that already start with "MW" are left as written.
+const smwpDisplayVersion = computed(() => {
+  const raw = (props.record && props.record.smwpVersion) || "";
+  if (!raw) return "";
+  return /^mw/i.test(raw.trim()) ? raw : `SMWP ${raw}`;
+});
+
 const hasLinks = computed(() => {
   const links = props.record && props.record.links;
   if (!links) return false;
@@ -673,14 +681,17 @@ onBeforeUnmount(() => {
                   >{{ version.platform }}</span>
                 </div>
                 <div class="nx-version-meta">
-                  <span v-if="version.date">{{ formatIsoDate(version.date) }}</span>
+                  <span
+                    v-if="version.date"
+                    class="nx-meta-inline"
+                  >{{ formatIsoDate(version.date) }}</span>
                   <span
                     v-if="fileSizeLoading"
-                    style="margin-left:8px;color:var(--nx-faint);"
+                    class="nx-meta-inline is-faint"
                   >{{ text.fetchingSize }}</span>
                   <span
                     v-else-if="fileSizeText"
-                    style="margin-left:8px;color:var(--nx-muted);"
+                    class="nx-meta-inline is-muted"
                   >{{ fileSizeText }}</span>
                   <span
                     v-if="version.file"
@@ -785,7 +796,7 @@ onBeforeUnmount(() => {
           >
             <div class="nx-section-label">{{ text.runtime }}</div>
             <p style="font-size:12.5px;line-height:1.6;color:var(--nx-ink-2);">
-              {{ text.requires }} {{ record.smwpVersion }}
+              {{ text.requires }} {{ smwpDisplayVersion }}
               <template v-if="record.smwpUrl">
                 — <a
                   :href="record.smwpUrl"

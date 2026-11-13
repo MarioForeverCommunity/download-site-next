@@ -43,7 +43,6 @@ document.title = title.value;
   >
     <div class="nx-doc-wrap">
       <div class="nx-doc">
-        <h1>{{ title }}</h1>
         <component :is="doc" />
       </div>
     </div>

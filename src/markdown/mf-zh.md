@@ -2,8 +2,7 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
   import DownloadButton from "../components/ButtonDownload.vue"
   import OriginalMfTable from '../components/DesignMfTable.vue'
-  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-  import 'vue3-carousel/dist/carousel.css'
+  import NxGallery from '../components/next/NxGallery.vue'
 
   defineProps({
     lastUpdateZh: String
@@ -34,21 +33,13 @@
     { id: "softendo", label: "周边游戏作品" }
   ]
 
-  const isMobile = ref(false)
 
-  function updateIsMobile() {
-    isMobile.value = window.innerWidth <= 800
-  }
 
-  const itemsToShow = computed(() => 1)
 
   onMounted(() => {
-    window.addEventListener("resize", updateIsMobile)
-    updateIsMobile()
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener("resize", updateIsMobile)
   })
 </script>
 
@@ -113,15 +104,7 @@
 </div>
 
 ### 截图预览
-<Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
-  <Slide v-for="image in imagesOriginal" :key="image">
-    <img :src="image" style="width: 100%; height: 100%;">
-  </Slide>
-  <template #addons>
-    <Navigation />
-    <Pagination />
-  </template>
-</Carousel>
+<NxGallery :images="imagesOriginal" alt="Mario Forever" lan="zh" :max-height="480" :autoplay="3000" />
 
 </div>
 
@@ -564,20 +547,7 @@ Mario Forever Flash 和 Squario 已被复刻进 <a href="#" @click.prevent="curr
     background-color: #555;
   }
 
-:deep(.carousel__pagination) {
-  position: relative;
-  margin-top: 24px;
-}
 
-:deep(.carousel__pagination-button) {
-  width: 12px;
-}
 
-:deep(.carousel__prev) {
-  margin-left: 8px;
-}
 
-:deep(.carousel__next) {
-  margin-right: 8px;
-}
 </style>

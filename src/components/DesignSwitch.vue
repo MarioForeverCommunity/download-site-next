@@ -135,31 +135,35 @@ const SWAP_ICON = ["M4 8h13", "M14 5l3 3-3 3", "M20 16H7", "M10 13l-3 3 3 3"];
     justify-content: center;
     height: 34px;
     padding: 0 12px;
+    border: 1px solid #ccc;
     border-radius: .5em;
-    background-color: #008cff;
-    color: #ffffff;
+    background-color: #f6f6f6;
+    color: #333;
     font-size: 13px;
     margin-top: .9em;
-    transition: background-color .15s ease;
+    transition: background-color .15s ease, border-color .15s ease;
   }
 
   .design-switch.is-row:hover {
-    background-color: #30acff;
-    color: #ffffff;
+    background-color: #eeeeee;
+    border-color: #999;
+    color: #111;
     text-decoration: none;
   }
 
   .design-switch.is-row:active {
-    background-color: #007cdf;
+    background-color: #e2e2e2;
   }
 
   :global(body.dark) .design-switch.is-row {
-    background-color: #555;
-    color: #bbb;
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #ddd;
   }
 
   :global(body.dark) .design-switch.is-row:hover {
-    background-color: #30acff;
+    background-color: #444;
+    border-color: #777;
     color: #fff;
   }
 </style>

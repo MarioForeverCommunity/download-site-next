@@ -234,7 +234,9 @@ function mfVersions(entry, lan) {
       date: toDate(ver.date),
       platform,
       software,
-      file: ver.file_name || "",
+      // `old-versions/` is a URL path prefix applied by the link builder; the
+      // filename shown to the reader must not include it.
+      file: String(ver.file_name || "").replace(/^old-versions\//, ""),
       downloads,
       dataDownloads,
       repacker: ver.repacker || null,
@@ -681,14 +683,21 @@ export function buildSoftendoRecords(entries, lan) {
         const rawLabel = String(item.label || "").toLowerCase();
         const ext = String(item.url || "").split(".").pop().toLowerCase().split("?")[0];
         const match = (kw) => rawLabel === kw || rawLabel.startsWith(`${kw} `) || rawLabel.startsWith(`${kw}-`);
+        // rar belongs with zip/7z: all three are archives and share a colour.
         const portableTone = isKliktopiaRepackage(key)
           ? "kliktopia"
           : (match("exe") || ext === "exe") ? "exe"
             : (match("swf") || ext === "swf") ? "swf"
-              : (match("zip") || match("7z") || ext === "zip" || ext === "7z") ? "archive"
+              : (match("zip") || match("7z") || match("rar")
+                || ext === "zip" || ext === "7z" || ext === "rar") ? "archive"
                 : null;
+        // A label that is only the word "portable" is dropped: the button
+        // already says 绿色版 / Portable, so repeating it adds nothing.
+        const formatHint = item.label && !/^portable$/i.test(String(item.label).trim())
+          ? ` (${String(item.label).toUpperCase()})`
+          : "";
         downloads.push({
-          label: `${lan === "zh" ? "绿色版" : "Portable"}${item.label ? ` (${String(item.label).toUpperCase()})` : ""}`,
+          label: `${lan === "zh" ? "绿色版" : "Portable"}${formatHint}`,
           shortLabel: lan === "zh" ? "绿色版" : "Portable",
           url: direct(item.url),
           code: null,

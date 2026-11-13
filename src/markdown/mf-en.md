@@ -2,8 +2,7 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
   import DownloadButton from "../components/ButtonDownload.vue"
   import OriginalMfTable from '../components/DesignMfTable.vue'
-  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-  import 'vue3-carousel/dist/carousel.css'
+  import NxGallery from '../components/next/NxGallery.vue'
 
   defineProps({
     lastUpdateEn: String
@@ -22,21 +21,13 @@
     "/data/mf-index/LostMap-4.webp",
   ]
 
-  const isMobile = ref(false)
 
-  function updateIsMobile() {
-    isMobile.value = window.innerWidth <= 800
-  }
 
-  const itemsToShow = computed(() => 1)
 
   onMounted(() => {
-    window.addEventListener("resize", updateIsMobile)
-    updateIsMobile()
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener("resize", updateIsMobile)
   })
 </script>
 
@@ -72,15 +63,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 </div>
 
 ### Screenshots
-<Carousel :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
-  <Slide v-for="image in imagesOriginal" :key="image">
-    <img :src="image" style="width: 100%; height: 100%;">
-  </Slide>
-  <template #addons>
-    <Navigation />
-    <Pagination />
-  </template>
-</Carousel>
+<NxGallery :images="imagesOriginal" alt="Mario Forever" lan="en" :max-height="480" :autoplay="3000" />
 
 ## Download mods of original Mario Forever
 There are several known mods based on the original Mario Forever.
@@ -103,20 +86,7 @@ Additionally, some versions of Mario Forever contain links to `mariocoins.com` a
 To ease any remaining concerns, we provide a portable version of the game. This version has no bundled toolbar and has removed URL shortcuts and other irrelevant content. You may alternatively choose to play one of the fan-made recreated versions, such as Mario Forever Remake or Mario Forever: Community Edition, which are also malware-free.
 
 <style scoped>
-:deep(.carousel__pagination) {
-  position: relative;
-  margin-top: 24px;
-}
 
-:deep(.carousel__pagination-button) {
-  width: 12px;
-}
 
-:deep(.carousel__prev) {
-  margin-left: 8px;
-}
 
-:deep(.carousel__next) {
-  margin-right: 8px;
-}
 </style>

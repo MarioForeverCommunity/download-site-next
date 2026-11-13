@@ -88,14 +88,6 @@ const catalog = useCatalog({
   dateFilter: false,
 });
 
-const stats = computed(() => {
-  if (loading.value) return null;
-  return {
-    total: rawRecords.value.length,
-    versions: rawRecords.value.reduce((sum, record) => sum + record.versions.length, 0),
-  };
-});
-
 const catalogRef = ref(null);
 
 function randomGame() {
@@ -146,25 +138,6 @@ document.title = title.value;
     @change-lan-en="pageSetLanguageEn"
     @random="randomGame"
   >
-    <div class="nx-pagehead">
-      <div class="nx-pagehead-text">
-        <h1 class="nx-masthead">{{ title }}</h1>
-      </div>
-      <div
-        v-if="stats"
-        class="nx-pagehead-stats"
-      >
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.total }}</span>
-          <span class="nx-stat-l">{{ lan === "zh" ? "收录游戏" : "games" }}</span>
-        </div>
-        <div class="nx-stat">
-          <span class="nx-stat-v nx-num">{{ stats.versions }}</span>
-          <span class="nx-stat-l">{{ lan === "zh" ? "可下载版本" : "versions" }}</span>
-        </div>
-      </div>
-    </div>
-
     <NxCatalog
       v-if="!loading"
       ref="catalogRef"
