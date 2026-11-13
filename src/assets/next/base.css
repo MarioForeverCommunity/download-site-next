@@ -371,11 +371,14 @@ body.nx-body select:focus-visible {
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--nx-ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex: none;
-  max-width: 22ch;
+  /* A long page title wraps to a second line instead of being truncated: the
+     title is how a visitor confirms which catalog they are looking at. */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 30ch;
   margin-right: 6px;
 }
 
@@ -1733,13 +1736,27 @@ body.nx-body select:focus-visible {
   background: var(--nx-canvas);
   color: var(--nx-ink-2);
   font-size: 11.5px;
+  line-height: 1;
   white-space: nowrap;
   cursor: pointer;
+  /* Explicit box model: without it the inline-flex height and the border can
+     disagree across zoom levels, which reads as a broken/flickering outline. */
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-decoration: none;
+  /* keep the outline inside the border-radius instead of clipping it */
+  overflow: visible;
+}
+
+.nx-dl svg {
+  flex: none;
+  display: block;
 }
 
 .nx-dl:hover {
   border-color: var(--nx-line-2);
   color: var(--nx-ink);
+  text-decoration: none;
 }
 
 .nx-dl.is-primary {
@@ -1764,6 +1781,60 @@ body.nx-body select:focus-visible {
 .nx-dl.is-warn {
   border-color: var(--nx-warn-border);
   color: var(--nx-warn);
+}
+
+/* Softendo build colours, matching the legacy modal's scheme documented in
+   softendo-en.md: blue installer, orange installer+toolbar, green exe, purple
+   archive, red swf, pink self-extracting, turquoise Kliktopia repackage. */
+.nx-dl.nx-dl.is-tone-installer {
+  border-color: color-mix(in srgb, #1f6fd0 38%, var(--nx-line));
+  color: #1f6fd0;
+  background: color-mix(in srgb, #1f6fd0 6%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-toolbar {
+  border-color: color-mix(in srgb, #e67e22 45%, var(--nx-line));
+  color: #b35c00;
+  background: color-mix(in srgb, #e67e22 8%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-exe {
+  border-color: color-mix(in srgb, #00a83c 40%, var(--nx-line));
+  color: #007a2b;
+  background: color-mix(in srgb, #00d84f 7%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-archive {
+  border-color: color-mix(in srgb, #a43ecb 40%, var(--nx-line));
+  color: #8a2fb0;
+  background: color-mix(in srgb, #bd4de2 7%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-swf {
+  border-color: color-mix(in srgb, #e04a4a 40%, var(--nx-line));
+  color: #c22f2f;
+  background: color-mix(in srgb, #ff5b5b 7%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-kliktopia {
+  border-color: color-mix(in srgb, #2ba8a0 42%, var(--nx-line));
+  color: #1d7d77;
+  background: color-mix(in srgb, #40e0d0 8%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-selfextract {
+  border-color: color-mix(in srgb, #d81b60 40%, var(--nx-line));
+  color: #b8154f;
+  background: color-mix(in srgb, #d81b60 7%, var(--nx-canvas));
+}
+
+/* Inline extraction code inside the download button. */
+.nx-dl-code-inline {
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  font-variant-numeric: tabular-nums;
 }
 
 .nx-code {
@@ -1831,9 +1902,9 @@ body.nx-body select:focus-visible {
 }
 
 .nx-pick.on {
-  background: var(--nx-ink);
-  border-color: var(--nx-ink);
-  color: var(--nx-canvas);
+  background: var(--nx-accent);
+  border-color: var(--nx-accent);
+  color: #ffffff;
 }
 
 :root[data-nx-theme="dark"] .nx-pick.on {
@@ -1846,56 +1917,63 @@ body.nx-body select:focus-visible {
 }
 
 /* ── carousel (vue3-carousel) ─────────────────────────────── */
-/* The library absolutely-positions its pagination inside the viewport, where it
-   overlaps the slides. Pagination is therefore rendered outside the carousel in
-   normal flow (see NxDetail / NxEntryPreview), and the track is configured to
-   show exactly one slide so the current image is centred with its neighbours
-   peeking in from either side rather than leaving empty gutters. */
-.nx-carousel :deep(.carousel) {
+/* NOTE: these rules live in a global stylesheet, not a Vue SFC, so `:deep()`
+   is NOT available here — it would be emitted verbatim and ignored by the
+   browser. Plain descendant selectors are used instead.
+   The library absolutely-positions its pagination inside the viewport, where it
+   overlaps the slides, so pagination is rendered outside the carousel in normal
+   flow (see NxDetail / NxEntryPreview). */
+.nx-carousel .carousel {
   --vc-nav-background: var(--nx-canvas);
   --vc-nav-color: var(--nx-ink-2);
   --vc-nav-border-radius: 4px;
+  position: relative;
 }
 
-.nx-carousel .carousel__viewport,
-.nx-carousel :deep(.carousel__viewport) {
+.nx-carousel .carousel__viewport {
   border-radius: 4px;
   overflow: hidden;
 }
 
-/* slides butt against each other: no gutter, so prev/next connect visually */
-.nx-carousel :deep(.carousel__track) {
+/* slides butt against each other: no gutter, so prev/next connect visually
+   instead of leaving empty bands at the edges */
+.nx-carousel .carousel__track {
   gap: 0;
   margin: 0;
+  padding: 0;
 }
 
-.nx-carousel :deep(.carousel__slide) {
+.nx-carousel .carousel__slide {
   padding: 0;
   border-radius: 0;
   overflow: hidden;
   background: var(--nx-fill);
   border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nx-carousel :deep(.carousel__slide > *) {
+.nx-carousel .carousel__slide > * {
   width: 100%;
   height: 100%;
 }
 
-.nx-carousel :deep(.carousel__prev),
-.nx-carousel :deep(.carousel__next) {
+.nx-carousel .carousel__prev,
+.nx-carousel .carousel__next {
   box-shadow: var(--nx-shadow-1);
   border: 1px solid var(--nx-line);
   width: 26px;
   height: 26px;
   background: var(--nx-canvas);
+  color: var(--nx-ink-2);
 }
 
-.nx-carousel :deep(.carousel__prev) {
+.nx-carousel .carousel__prev {
   left: 8px;
 }
 
-.nx-carousel :deep(.carousel__next) {
+.nx-carousel .carousel__next {
   right: 8px;
 }
 
@@ -2028,6 +2106,7 @@ html .nx-doc td {
   line-height: 1.25;
   color: var(--nx-ink);
   max-width: none;
+  margin-bottom: 14px;
 }
 
 .nx-doc h2 {
@@ -2036,10 +2115,19 @@ html .nx-doc td {
   letter-spacing: -0.008em;
   color: var(--nx-ink);
   margin-top: 34px;
+  margin-bottom: 12px;
   padding-top: 15px;
   border-top: 1px solid var(--nx-line);
   line-height: 1.4;
   max-width: none;
+}
+
+.nx-doc h3 {
+  margin-bottom: 8px;
+}
+
+.nx-doc h4 {
+  margin-bottom: 6px;
 }
 
 .nx-doc h3 {
@@ -2374,8 +2462,9 @@ html .nx-doc .carousel .carousel__next {
 }
 
 /* Images are shown whole, centred inside their frame — never cropped. */
-.nx-entry-media img,
-.nx-entry-slide-img {
+/* Single-image entries show the whole picture; the multi-image slider styles
+   live in NxEntryPreview.vue (a Vue SFC, where :deep() actually works). */
+.nx-entry-media img {
   width: 100%;
   display: block;
   object-fit: contain;
@@ -2385,21 +2474,6 @@ html .nx-doc .carousel .carousel__next {
 
 .nx-entry-media.is-single img {
   max-height: 260px;
-}
-
-/* The slider keeps every slide at the same box so the track height is stable
-   while the image itself is letterboxed rather than cut. */
-.nx-entry .nx-carousel .carousel__slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 16 / 9;
-  background: var(--nx-fill);
-}
-
-.nx-entry-slide-img {
-  height: 100%;
-  max-height: 100%;
 }
 
 /* Placeholder for records with no artwork: a translucent site logo. */

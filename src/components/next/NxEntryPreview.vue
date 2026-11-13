@@ -169,14 +169,17 @@ function onUpdate(index) {
         />
       </div>
 
-      <!-- several images: full slider with pagination below the track -->
+      <!-- several images: slider, matching the legacy entry card.
+           Two slides are shown at once and each slide is sized by the carousel
+           itself (items-to-show), so the current image is centred and the next
+           one continues the row instead of leaving empty bands. Images fill
+           their slide (cover) exactly as the legacy design does. -->
       <template v-else-if="gallery.length > 1">
-        <div class="nx-carousel" style="margin-top: 10px;">
+        <div class="nx-carousel nx-entry-carousel">
           <Carousel
             ref="carouselRef"
             :items-to-show="1"
             :wrap-around="true"
-            :mouse-drag="false"
             :model-value="slideIndex"
             @update:model-value="onUpdate"
           >
@@ -246,3 +249,72 @@ function onUpdate(index) {
     />
   </div>
 </template>
+
+<style scoped>
+  /* The entry card's slider mirrors the legacy card: a fixed 4:3 frame, images
+     filling it (cover), and the library's own slide sizing so the active image
+     is centred and neighbours continue the row without empty bands.
+     `:deep()` is valid here because this is a Vue SFC stylesheet. */
+  .nx-entry-carousel {
+    margin-top: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--nx-fill);
+  }
+
+  .nx-entry-carousel :deep(.carousel) {
+    --vc-nav-background: var(--nx-canvas);
+    --vc-nav-color: var(--nx-ink-2);
+    --vc-nav-border-radius: 4px;
+  }
+
+  .nx-entry-carousel :deep(.carousel__viewport) {
+    border-radius: 4px;
+  }
+
+  .nx-entry-carousel :deep(.carousel__track) {
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nx-entry-carousel :deep(.carousel__slide) {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--nx-fill);
+    /* every slide is the same 4:3 box, so the track height never jumps */
+    aspect-ratio: 4 / 3;
+  }
+
+  .nx-entry-carousel :deep(.carousel__prev),
+  .nx-entry-carousel :deep(.carousel__next) {
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--nx-line);
+    box-shadow: var(--nx-shadow-1);
+    background: var(--nx-canvas);
+    color: var(--nx-ink-2);
+  }
+
+  .nx-entry-carousel :deep(.carousel__prev) {
+    margin-left: 8px;
+  }
+
+  .nx-entry-carousel :deep(.carousel__next) {
+    margin-right: 8px;
+  }
+
+  /* images fill their slide, matching the legacy card's cover behaviour.
+     The selector is deliberately heavy: the global stylesheet's
+     `html .nx-doc .carousel .carousel__slide > img` rule targets the markdown
+     carousels (contain) and would otherwise win here. */
+  .nx-entry-carousel :deep(.carousel__slide) > .nx-entry-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+</style>

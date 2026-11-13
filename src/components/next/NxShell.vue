@@ -46,6 +46,18 @@ const props = defineProps({
 
 const emit = defineEmits(["changeLanZh", "changeLanEn", "random"]);
 
+// The build timestamp was lost when the footer moved into the rail; restore it
+// alongside the version so the rail carries the same provenance as before.
+const buildTimeText = (() => {
+  try {
+    const date = new Date(BUILD_TIME);
+    const pad = (v) => String(v).padStart(2, "0");
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  } catch (_e) {
+    return "";
+  }
+})();
+
 const pageEntry = computed(() => navTop.find((item) => item.id === props.pageId) || null);
 
 const displayLan = computed(() => {
@@ -270,6 +282,7 @@ watch(showChangelog, (open) => {
           rel="noopener"
         >{{ displayLan === "zh" ? "网站状态" : "Status" }}</a>
         <span class="nx-rail-foot-meta">{{ siteVersion }}</span>
+        <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建" : "Built" }} {{ buildTimeText }}</span>
       </div>
     </aside>
 

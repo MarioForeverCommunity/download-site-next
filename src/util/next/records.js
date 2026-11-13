@@ -1,9 +1,10 @@
 import { getName, getAuthorList, getDownloadEntries, toResourceDirectUrl, getVideoDesc, getMwLevelFileUrl, processFileNamesWithVolumes } from "../GameUtil.js";
 import { getAssetResourceURLs } from "../AssetUtil.js";
-import { getSoftendoGameName, getSoftendoYearRange, getTypeLabel, getLanguageLabel } from "../SoftendoUtil.js";
+import { getSoftendoGameName, getSoftendoYearRange, getTypeLabel, getLanguageLabel, isKliktopiaRepackage } from "../SoftendoUtil.js";
 import { getTagLabel } from "../TagUtil.js";
 import { getGameImageSync, getShowcaseImagesSync } from "../ImageUtil.js";
 import { getUseDirectLink } from "../Language.js";
+import { downloadName } from "../../config.js";
 
 // ── shared helpers ────────────────────────────────────────────
 // The redesigned pages read the same YAML as the legacy pages, so platform and
@@ -108,9 +109,13 @@ function netdiskDownloads(record, lan) {
   const entries = getDownloadEntries(record, lan);
   return entries.map((item) => {
     const dead = /（已失效）|\(Invalid\)|（暂无法访问）|\(Temporarily Unavailable\)/.test(item.desc || "");
+    // Name the service from config.js's downloadName table rather than showing
+    // a generic "网盘" for every mirror.
+    const service = netdiskServiceName(item.url, lan);
     return {
       label: item.desc,
-      shortLabel: shortNetdiskLabel(item.desc),
+      shortLabel: service || shortNetdiskLabel(item.desc),
+      service,
       url: item.url,
       code: item.code || null,
       dead,
@@ -118,6 +123,24 @@ function netdiskDownloads(record, lan) {
       kind: "netdisk",
     };
   });
+}
+
+// Resolve a URL to the human name of its hosting service (config.js downloadName).
+export function netdiskServiceName(url, lan) {
+  if (!url) return null;
+  for (const entry of downloadName) {
+    const domain = entry.domain;
+    let matched;
+    try {
+      matched = typeof domain === "string" ? url.includes(domain) : domain.test(url);
+    } catch (_e) {
+      matched = false;
+    }
+    if (matched) {
+      return lan === "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
+    }
+  }
+  return null;
 }
 
 function shortNetdiskLabel(desc) {
@@ -403,8 +426,9 @@ export function buildMwRecords(entries) {
       const invalid = String(entry.download_url).startsWith("~");
       const url = invalid ? entry.download_url.slice(1) : entry.download_url;
       netdisk.push({
-        label: code ? `网盘 (提取码: ${code})` : "网盘",
-        shortLabel: "网盘",
+        label: `${netdiskServiceName(url, lan) || "网盘"}${code ? ` (提取码: ${code})` : ""}`,
+        shortLabel: netdiskServiceName(url, lan) || "网盘",
+        service: netdiskServiceName(url, lan),
         url,
         code,
         dead: invalid,
@@ -551,8 +575,9 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
 
   if (variant.download_url) {
     downloads.push({
-      label: `网盘${variant.code ? ` (提取码: ${variant.code})` : ""}`,
-      shortLabel: "网盘",
+      label: `${netdiskServiceName(variant.download_url, lan) || "网盘"}${variant.code ? ` (提取码: ${variant.code})` : ""}`,
+      shortLabel: netdiskServiceName(variant.download_url, lan) || "网盘",
+      service: netdiskServiceName(variant.download_url, lan),
       url: variant.download_url,
       code: variant.code || null,
       dead: false,
@@ -562,8 +587,9 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
   }
   if (variant.download_url_alt) {
     downloads.push({
-      label: `备用网盘${variant.code_alt ? ` (提取码: ${variant.code_alt})` : ""}`,
-      shortLabel: "备用",
+      label: `${netdiskServiceName(variant.download_url_alt, lan) || "备用网盘"}${variant.code_alt ? ` (提取码: ${variant.code_alt})` : ""}`,
+      shortLabel: netdiskServiceName(variant.download_url_alt, lan) || "备用",
+      service: netdiskServiceName(variant.download_url_alt, lan),
       url: variant.download_url_alt,
       code: variant.code_alt || null,
       dead: false,
@@ -649,6 +675,18 @@ export function buildSoftendoRecords(entries, lan) {
         });
       }
       for (const item of ver.portable_urls || []) {
+        // Colour follows the legacy modal's scheme (documented in
+        // softendo-en.md): green exe, purple archive, red swf, turquoise
+        // kliktopia repackage.
+        const rawLabel = String(item.label || "").toLowerCase();
+        const ext = String(item.url || "").split(".").pop().toLowerCase().split("?")[0];
+        const match = (kw) => rawLabel === kw || rawLabel.startsWith(`${kw} `) || rawLabel.startsWith(`${kw}-`);
+        const portableTone = isKliktopiaRepackage(key)
+          ? "kliktopia"
+          : (match("exe") || ext === "exe") ? "exe"
+            : (match("swf") || ext === "swf") ? "swf"
+              : (match("zip") || match("7z") || ext === "zip" || ext === "7z") ? "archive"
+                : null;
         downloads.push({
           label: `${lan === "zh" ? "绿色版" : "Portable"}${item.label ? ` (${String(item.label).toUpperCase()})` : ""}`,
           shortLabel: lan === "zh" ? "绿色版" : "Portable",
@@ -657,6 +695,7 @@ export function buildSoftendoRecords(entries, lan) {
           dead: false,
           primary: !ver.installer_url,
           kind: "portable",
+          tone: portableTone,
         });
       }
       for (const item of ver.selfextract_urls || []) {
@@ -666,6 +705,7 @@ export function buildSoftendoRecords(entries, lan) {
           url: direct(item.url),
           code: null,
           dead: false,
+          tone: "selfextract",
           primary: false,
           kind: "selfextract",
         });

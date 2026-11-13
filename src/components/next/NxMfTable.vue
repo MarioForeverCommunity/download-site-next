@@ -175,7 +175,7 @@ onMounted(async () => {
   }
 
   .nx-mf-actions-head {
-    text-align: right;
+    text-align: left;
   }
 
   .nx-mf-ver {
@@ -208,7 +208,7 @@ onMounted(async () => {
   .nx-mf-actions {
     display: flex;
     gap: 5px;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .nx-dl-sm {

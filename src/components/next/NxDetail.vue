@@ -14,6 +14,7 @@ import NxIcon from "./NxIcon.vue";
 import { formatIsoDate, softwareLabel } from "../../util/next/records.js";
 import { getTagColor } from "../../util/TagUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
+import { getFormattedFileSize } from "../../util/OpenListApi.js";
 
 const props = defineProps({
   record: {
@@ -98,6 +99,9 @@ const text = computed(() => (props.lan === "zh"
     repack: "重打包",
     code: "提取码",
     copy: "点击复制",
+    codeCopyHint: "点击下载并复制提取码",
+    copied: "提取码已复制",
+    fetchingSize: "正在获取文件大小…",
     requires: "本作品需要",
     downloadIt: "下载该版本",
     bgmNote: "需替换或使用自定义 BGM。",
@@ -136,6 +140,9 @@ const text = computed(() => (props.lan === "zh"
     repack: "REPACK",
     code: "Code",
     copy: "Click to copy",
+    codeCopyHint: "Download and copy code",
+    copied: "Code copied",
+    fetchingSize: "Fetching file size…",
     requires: "Requires",
     downloadIt: "download it",
     bgmNote: "Needs replaced or custom BGM.",
@@ -223,6 +230,29 @@ const hasDownloads = computed(() => {
   return (v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length);
 });
 
+// The "version" line is only meaningful when it carries information.
+//  - mf-games: platform alone is worth showing, so the row stays;
+//  - assets: an empty version row adds nothing, so it is hidden;
+//  - mw-levels: the SMWP version is already stated in the runtime section, so
+//    it must not be repeated here.
+const showVersionName = computed(() => {
+  const record = props.record;
+  const v = version.value;
+  if (!record || !v) return false;
+  if (v.label) return true;
+  if (record.kind === "mw") return false;
+  if (record.kind === "asset") return false;
+  return !!v.platform;
+});
+
+// The MW runtime block already prints the SMWP version; suppress the duplicate.
+const versionLineLabel = computed(() => {
+  const v = version.value;
+  if (!v) return "";
+  if (props.record && props.record.kind === "mw") return "";
+  return v.label || "";
+});
+
 const hasLinks = computed(() => {
   const links = props.record && props.record.links;
   if (!links) return false;
@@ -237,6 +267,104 @@ function copyCode(event, code) {
     setTimeout(() => { delete el.dataset.copied; }, 1600);
   });
 }
+
+// ── download buttons ───────────────────────────────────────
+// Softendo builds are colour-coded exactly as the legacy modal documents them
+// (softendo-en.md): blue installer, orange installer-with-toolbar, green exe,
+// purple archive, red swf, pink self-extracting, turquoise Kliktopia.
+const TONE_CLASS = {
+  exe: "is-tone-exe",
+  archive: "is-tone-archive",
+  swf: "is-tone-swf",
+  kliktopia: "is-tone-kliktopia",
+  selfextract: "is-tone-selfextract",
+  installer: "is-tone-installer",
+};
+
+function downloadToneClass(item) {
+  if (item.toolbar) return "is-tone-toolbar";
+  if (item.tone && TONE_CLASS[item.tone]) return TONE_CLASS[item.tone];
+  if (item.kind === "installer") return TONE_CLASS.installer;
+  return "";
+}
+
+// Clicking a download that carries an extraction code copies it, so the drawer
+// needs no separate copy button. The copy runs synchronously inside the click
+// handler (clipboard access requires a user gesture) and falls back to a
+// temporary selection when the async clipboard API is unavailable.
+const copiedCode = ref("");
+let copiedTimer = null;
+
+function writeClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+      return true;
+    } catch (_e) {
+      // fall through
+    }
+  }
+  return legacyCopy(text);
+}
+
+function legacyCopy(text) {
+  try {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.top = "-1000px";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(area);
+    return ok;
+  } catch (_e) {
+    return false;
+  }
+}
+
+function onDownloadClick(event, item) {
+  if (item.dead) {
+    event.preventDefault();
+    return;
+  }
+  if (!item.code) return;
+  // Copy the code, then let the link open as usual. The copy must happen inside
+  // the click handler's synchronous turn for the clipboard permission to hold.
+  writeClipboard(item.code);
+  copiedCode.value = item.code;
+  if (copiedTimer) clearTimeout(copiedTimer);
+  copiedTimer = setTimeout(() => { copiedCode.value = ""; }, 2400);
+}
+
+// ── file size (restored from the legacy modal) ─────────────
+const fileSizeText = ref("");
+const fileSizeLoading = ref(false);
+let fileSizeRequest = 0;
+
+async function fetchFileSize(record, version) {
+  fileSizeText.value = "";
+  if (!record || !version) return;
+  const url = (version.downloads || []).find((d) => !d.dead && d.url)?.url;
+  if (!url || !String(url).includes("file.marioforever.net")) return;
+
+  const request = ++fileSizeRequest;
+  fileSizeLoading.value = true;
+  try {
+    const size = await getFormattedFileSize(url);
+    if (request === fileSizeRequest && size) fileSizeText.value = size;
+  } catch (_e) {
+    // Silent: the size is a nicety, not a prerequisite for downloading.
+  } finally {
+    if (request === fileSizeRequest) fileSizeLoading.value = false;
+  }
+}
+
+watch([() => props.record, activeVersion], () => {
+  fetchFileSize(props.record, version.value);
+}, { immediate: false });
 
 function onKeydown(event) {
   if (event.key === "Escape") {
@@ -530,12 +658,11 @@ onBeforeUnmount(() => {
               class="nx-versions"
             >
               <div class="nx-version">
-                <div class="nx-version-name">
-                  <span v-if="version.label">{{ version.label }}</span>
-                  <span
-                    v-else
-                    style="color:var(--nx-muted);font-weight:400;"
-                  >{{ lan === "zh" ? "未标注版本" : "No version specified" }}</span>
+                <div
+                  v-if="showVersionName"
+                  class="nx-version-name"
+                >
+                  <span v-if="versionLineLabel">{{ versionLineLabel }}</span>
                   <span
                     v-if="version.repacker"
                     class="nx-dot nx-dot-warn"
@@ -548,6 +675,14 @@ onBeforeUnmount(() => {
                 <div class="nx-version-meta">
                   <span v-if="version.date">{{ formatIsoDate(version.date) }}</span>
                   <span
+                    v-if="fileSizeLoading"
+                    style="margin-left:8px;color:var(--nx-faint);"
+                  >{{ text.fetchingSize }}</span>
+                  <span
+                    v-else-if="fileSizeText"
+                    style="margin-left:8px;color:var(--nx-muted);"
+                  >{{ fileSizeText }}</span>
+                  <span
                     v-if="version.file"
                     style="display:block;"
                   >{{ version.file }}</span>
@@ -557,42 +692,43 @@ onBeforeUnmount(() => {
                   v-if="hasDownloads"
                   class="nx-dl-row"
                 >
+                  <!-- Each download is a link; when the target needs an
+                       extraction code the code is copied on click, so no
+                       separate copy button is needed. -->
                   <a
                     v-for="item in version.downloads"
                     :key="item.url + item.label"
                     class="nx-dl"
-                    :class="{ 'is-primary': item.primary, 'is-dead': item.dead, 'is-warn': item.toolbar }"
+                    :class="[
+                      downloadToneClass(item),
+                      { 'is-primary': item.primary && !item.tone, 'is-dead': item.dead, 'is-warn': item.toolbar },
+                    ]"
                     :href="item.dead ? undefined : item.url"
                     :aria-disabled="item.dead ? 'true' : undefined"
                     target="_blank"
                     rel="noopener"
+                    :title="item.code ? `${text.codeCopyHint}: ${item.code}` : item.label"
+                    @click="onDownloadClick($event, item)"
                   >
                     <NxIcon
                       name="download"
                       :size="12"
                     />
                     {{ item.label }}
+                    <span
+                      v-if="item.code"
+                      class="nx-dl-code-inline"
+                    >{{ item.code }}</span>
                   </a>
                 </div>
 
                 <div
-                  v-for="item in (version.downloads || []).filter((d) => d.code)"
-                  :key="`code-${item.url}`"
+                  v-if="copiedCode"
                   class="nx-code-row"
                 >
                   <span class="nx-code-label">{{ text.code }}</span>
-                  <button
-                    type="button"
-                    class="nx-code"
-                    :title="text.copy"
-                    @click="copyCode($event, item.code)"
-                  >
-                    {{ item.code }}
-                    <NxIcon
-                      name="copy"
-                      :size="10"
-                    />
-                  </button>
+                  <span class="nx-code">{{ copiedCode }}</span>
+                  <span style="font-size:10.5px;color:var(--nx-cur);">{{ text.copied }}</span>
                 </div>
               </div>
             </div>

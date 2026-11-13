@@ -41,7 +41,13 @@ export const changelog = [
       "全局设置改为侧边抽屉，并加回「默认排序」与「资源站直链」选项",
       "修复 MW 关卡列表缺少下载按钮的问题",
       "修复「最新版本」标注在未显式标记 current 的作品上不显示的问题",
-      "列表与详情中的截图不再被裁切"
+      "列表与详情中的截图不再被裁切",
+      "修复 Entry 卡片轮播：当前图片居中、相邻图片衔接显示、不再裁切",
+      "作品详情补回文件大小显示，并识别网盘类型（百度网盘、蓝奏云等）",
+      "提取码改为点击下载按钮即复制，不再单独提供复制按钮",
+      "Softendo 各版本下载按钮按原设计的配色方案着色（安装版蓝、绿色版绿/紫/红等）",
+      "版本选择的选中胶囊改用主题蓝色；原版 MF 表格下载列左对齐",
+      "左侧栏页脚补回构建时间；顶栏长标题换行显示而非省略"
     ],
     improvements_en: [
       "Narrowed the title column so long filenames no longer crowd the metadata columns",
@@ -53,7 +59,13 @@ export const changelog = [
       "Global settings became a side drawer, with the default-sort and File Hub direct-link options restored",
       "Fixed missing download buttons on the MW level catalog",
       "Fixed the latest-version badge not appearing on records without an explicit current flag",
-      "Screenshots are no longer cropped in lists or details"
+      "Screenshots are no longer cropped in lists or details",
+      "Fixed the entry-card slider: the current image is centred, neighbours connect, and images are no longer cropped",
+      "The details drawer shows file sizes again and names the netdisk host (Baidu, Lanzou, etc.)",
+      "Extraction codes are copied by clicking the download button instead of a separate copy control",
+      "Softendo build buttons use the legacy colour scheme (blue installer, green/purple/red portables, etc.)",
+      "The selected version pill uses the theme accent; the original-MF table's download column is left-aligned",
+      "The rail footer shows the build time again; long topbar titles wrap instead of truncating"
     ],
     misc: [
       "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试",

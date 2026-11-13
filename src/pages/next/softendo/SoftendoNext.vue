@@ -149,11 +149,6 @@ document.title = title.value;
     <div class="nx-pagehead">
       <div class="nx-pagehead-text">
         <h1 class="nx-masthead">{{ title }}</h1>
-        <p class="nx-lede">
-          {{ lan === "zh"
-            ? "Softendo（Buziol Games）与 Banesoft 相关游戏的存档目录，按系列与语言收窄结果，每个版本都提供安装版与绿色版。"
-            : "An archive of games from Softendo (Buziol Games) and Banesoft. Narrow by series and language; every version ships an installer and a portable build." }}
-        </p>
       </div>
       <div
         v-if="stats"
