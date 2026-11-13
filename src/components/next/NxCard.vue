@@ -5,6 +5,7 @@ import { computed } from "vue";
 import { formatIsoDate } from "../../util/next/records.js";
 import { getTagColor } from "../../util/TagUtil.js";
 import { getTheme } from "../../util/Theme.js";
+import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 
 const props = defineProps({
   record: {
@@ -57,6 +58,11 @@ const regionLabel = computed(() => {
         :alt="record.name"
         loading="lazy"
         decoding="async"
+      />
+      <NxLogoPlaceholder
+        v-else
+        :lan="lan"
+        variant="cover"
       />
     </div>
     <div class="nx-card-body">

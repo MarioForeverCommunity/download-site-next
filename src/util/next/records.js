@@ -205,6 +205,9 @@ function mfVersions(entry, lan) {
     return {
       verKey,
       label: cleanVersionLabel((lan === "en" && ver.ver_alt) ? ver.ver_alt : verKey),
+      // What the UI may print. `verKey` stays the identity (used for switching
+      // and for the id), but a version written as "-" has nothing to show.
+      displayLabel: cleanVersionLabel((lan === "en" && ver.ver_alt) ? ver.ver_alt : verKey),
       date: toDate(ver.date),
       platform,
       software,
@@ -340,7 +343,7 @@ export function expandMfRecord(record) {
     ...record,
     id: `${record.id}::${version.verKey}`,
     date: version.date,
-    versionLabel: version.label,
+    versionLabel: version.displayLabel || version.label,
     platform: version.platform,
     software: version.software,
     downloads: version.downloads,
@@ -451,7 +454,7 @@ export function buildMwRecords(entries) {
       authors: names,
       authorZh: names.join(", "),
       date: toDate(entry.date),
-      versionLabel: entry.smwp_ver || "",
+      versionLabel: cleanVersionLabel(entry.smwp_ver) || "",
       versionCount: 1,
       region: null,
       platform: null,
@@ -464,7 +467,8 @@ export function buildMwRecords(entries) {
       dataDownloads,
       versions: [{
         verKey: entry.smwp_ver || "",
-        label: entry.smwp_ver || "",
+        label: cleanVersionLabel(entry.smwp_ver) || "",
+        displayLabel: cleanVersionLabel(entry.smwp_ver) || "",
         date: toDate(entry.date),
         downloads: allDownloads,
         dataDownloads,
@@ -504,16 +508,17 @@ export function buildMwRecords(entries) {
 export function buildAssetRecords(entries, lan) {
   const out = [];
   for (const entry of entries) {
-    const variants = Array.isArray(entry.ver) && entry.ver.length > 0 ? entry.ver : null;
+    // Only an entry that actually declares `variants` has variant names. Every
+    // asset has `ver` (the version), so testing `ver` would treat the version
+    // string as a variant name — which is exactly the bug to avoid.
+    const hasVariants = Array.isArray(entry.variants) && entry.variants.length > 0;
 
-    if (!variants) {
-      // Single-variant entry: `currentVerStr` holds the version string, not a
-      // variant name, so no variant label is produced.
+    if (!hasVariants) {
       out.push(buildAssetRecord(entry, entry.currentVer || {}, "", lan));
       continue;
     }
 
-    for (const verRaw of variants) {
+    for (const verRaw of entry.variants) {
       const verKey = Object.keys(verRaw)[0];
       const verObj = verRaw[verKey] || {};
       // Variant-level download fields inherit from the entry (the normalized
@@ -582,7 +587,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     authors: authorNames(entry, lan),
     authorZh: authorText(entry, "zh"),
     date: toDate(variant.date || entry.date),
-    versionLabel: variant.ver || variantLabel || "",
+    versionLabel: cleanVersionLabel(variant.ver) || variantLabel || "",
     variantLabel,
     versionCount: 1,
     region: null,
@@ -598,7 +603,8 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     dataDownloads: [],
     versions: [{
       verKey: variantKey || (variant.ver || ""),
-      label: variant.ver || variantLabel || "",
+      label: cleanVersionLabel(variant.ver) || variantLabel || "",
+      displayLabel: cleanVersionLabel(variant.ver) || variantLabel || "",
       date: toDate(variant.date || entry.date),
       downloads,
       dataDownloads: [],
@@ -667,6 +673,7 @@ export function buildSoftendoRecords(entries, lan) {
       return {
         verKey: key,
         label: key,
+        displayLabel: key,
         year: ver.year || null,
         date: toDate(ver.date),
         downloads,

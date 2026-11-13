@@ -3,6 +3,7 @@
 // a hit target; links inside stop propagation so they still open in a new tab.
 import { computed } from "vue";
 import NxIcon from "./NxIcon.vue";
+import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 import { formatIsoDate } from "../../util/next/records.js";
 import { getTagColor } from "../../util/TagUtil.js";
 import { getTheme } from "../../util/Theme.js";
@@ -104,6 +105,11 @@ function openLinks(event) {
           :alt="record.name"
           loading="lazy"
           decoding="async"
+        />
+        <NxLogoPlaceholder
+          v-else
+          :lan="lan"
+          variant="thumb"
         />
       </div>
       <div class="nx-row-text">

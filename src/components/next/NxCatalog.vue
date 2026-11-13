@@ -370,7 +370,6 @@ defineExpose({ randomRecord, open });
           <span v-else>{{ columnLabel("author", text.author) }}</span>
 
           <span>{{ columnLabel("version", text.version) }}</span>
-
           <button
             v-if="availableSorts.includes('date')"
             type="button"

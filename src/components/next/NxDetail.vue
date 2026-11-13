@@ -517,7 +517,7 @@ onBeforeUnmount(() => {
                 :class="{ on: v.verKey === activeVersion }"
                 @click="activeVersion = v.verKey"
               >
-                {{ v.label || v.verKey }}
+                {{ v.displayLabel || v.label }}
                 <span
                   v-if="v.latest"
                   class="nx-pick-cur"
@@ -531,7 +531,11 @@ onBeforeUnmount(() => {
             >
               <div class="nx-version">
                 <div class="nx-version-name">
-                  <span>{{ version.label || "—" }}</span>
+                  <span v-if="version.label">{{ version.label }}</span>
+                  <span
+                    v-else
+                    style="color:var(--nx-muted);font-weight:400;"
+                  >{{ lan === "zh" ? "未标注版本" : "No version specified" }}</span>
                   <span
                     v-if="version.repacker"
                     class="nx-dot nx-dot-warn"

@@ -11,6 +11,7 @@ import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import NxIcon from "./NxIcon.vue";
 import NxDetail from "./NxDetail.vue";
+import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 import { formatIsoDate, assetTypeLabel, softwareLabel } from "../../util/next/records.js";
 
 const props = defineProps({
@@ -149,10 +150,9 @@ function onUpdate(index) {
         v-if="gallery.length === 0"
         class="nx-entry-placeholder"
       >
-        <img
-          :src="props.lan === 'zh' ? './images/logo_hd.png' : './images/logo2_hd.png'"
-          alt=""
-          aria-hidden="true"
+        <NxLogoPlaceholder
+          :lan="props.lan"
+          variant="cover"
         />
       </div>
 

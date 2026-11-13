@@ -1163,12 +1163,9 @@ body.nx-body select:focus-visible {
   display: block;
 }
 
-.nx-thumb.is-empty::after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--nx-line-2);
+/* Empty thumbnails render the site logo (NxLogoPlaceholder), so no dot. */
+.nx-thumb.is-empty {
+  background: var(--nx-fill);
 }
 
 .nx-row-text {
@@ -2085,16 +2082,18 @@ html .nx-doc td {
 }
 
 /* prose keeps underlines; only the dense UI drops them */
+/* Links are never underlined at rest anywhere in the new design — not in the
+   UI and not in prose. Colour carries the affordance; underline appears only
+   on hover so the target is still obvious once the pointer is on it. */
 .nx-doc a {
   color: var(--nx-accent);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--nx-accent) 35%, transparent);
-  text-underline-offset: 2px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
 .nx-doc a:hover {
   color: var(--nx-accent-hover);
-  text-decoration-color: currentColor;
+  border-bottom-color: currentColor;
 }
 
 .nx-doc strong {
@@ -2412,14 +2411,7 @@ html .nx-doc .carousel .carousel__next {
   background: var(--nx-fill);
   border-radius: 4px;
   margin-top: 10px;
-}
-
-.nx-entry-placeholder img {
-  width: 42%;
-  max-width: 220px;
-  height: auto;
-  opacity: 0.6;
-  object-fit: contain;
+  overflow: hidden;
 }
 
 @media (min-width: 760px) {
@@ -2640,8 +2632,12 @@ html .nx-doc .carousel .carousel__next {
 
 .nx-detail-md a {
   color: var(--nx-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.nx-detail-md a:hover {
+  border-bottom-color: currentColor;
 }
 
 .nx-detail-md img {

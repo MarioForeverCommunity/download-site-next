@@ -159,7 +159,11 @@ document.title = title.value;
       :columns="{
         name: lan === 'zh' ? '作品' : 'Title',
         author: lan === 'zh' ? '作者' : 'Author',
-        version: lan === 'zh' ? '版本' : 'Version',
+        // Collapsed rows show the newest version only, so the column is labelled
+        // accordingly; expanding every version makes it a plain version column.
+        version: lan === 'zh'
+          ? (expandVersions ? '版本' : '最新版本')
+          : (expandVersions ? 'Version' : 'Latest'),
         date: lan === 'zh' ? '日期' : 'Date',
         tags: lan === 'zh' ? '分类' : 'Class',
       }"
