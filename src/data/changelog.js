@@ -5,6 +5,42 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "2.6.0",
+    date: "2026-11-13",
+    features: [
+      "新增全新界面设计：更紧凑的列表、可切换的卡片视图、侧边栏详情抽屉与深色模式",
+      "旧版设计完整保留，浏览者可随时在新旧两套界面之间自由切换（切换入口位于旧版右下角与新版本顶栏右侧）",
+      "新增搜索栏即时筛选、密度切换（舒适 / 紧凑）与多选标签筛选（任一 / 同时 / 排除）",
+      "作品详情改为侧边抽屉，可在不离开列表的情况下逐个比较作品；每条记录都有可分享的直达链接",
+      "创作资源、MW 关卡与 Softendo 目录支持按类型、年份、版本等条件组合筛选"
+    ],
+    features_en: [
+      "Added a completely new interface design: denser lists, an optional card view, a side-panel details drawer and dark mode",
+      "The legacy design is preserved in full; visitors can switch between the two interfaces at any time (the switcher sits at the bottom-right of the legacy design and in the top bar of the new one)",
+      "Added instant search, a comfort/compact density switch and multi-select tag filtering (any / all / exclude)",
+      "Game details now open in a side drawer so records can be compared without leaving the list; every record has a shareable direct link",
+      "The Assets, MW Levels and Softendo catalogs support combining filters such as type, year and version"
+    ],
+    improvements: [
+      "列表页统一为一套行结构，作品名、作者、版本、日期与分类列对齐一致，长表格更易扫读",
+      "文档页改为窄栏阅读布局，原版 Mario Forever 版本表以紧凑表格呈现，并提供安装版 / 绿色版的直接下载链接",
+      "深色模式与浅色模式共用同一套设计令牌，两套界面共享明暗偏好设置"
+    ],
+    improvements_en: [
+      "Unified the list pages onto one row structure, aligning title, author, version, date and category so long tables scan cleanly",
+      "Documentation pages now use a narrow reading column; the original Mario Forever version table is a compact ledger with direct installer and portable downloads",
+      "Dark and light mode share one set of design tokens, and the light/dark preference is carried across both designs"
+    ],
+    misc: [
+      "新增 IBM Plex 字体用于新版界面的正文与数据标注",
+      "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试"
+    ],
+    misc_en: [
+      "Introduced IBM Plex typefaces for the new interface's text and data labels",
+      "The ?design=legacy or ?design=next URL parameter selects an interface, which is handy for sharing and debugging"
+    ]
+  },
+  {
     version: "2.5.3",
     date: "2026-10-07",
     features: [

@@ -15,6 +15,7 @@ import Tooltip from "../../components/ToolTip.vue";
 import ButtonBackToTop from "../../components/ButtonBackToTop.vue";
 import ButtonDarkMode from "../../components/ButtonDarkMode.vue";
 import GlobalSettings from "../../components/GlobalSettings.vue";
+import DesignSwitch from "../../components/DesignSwitch.vue";
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/OverlayScrollbarsUtil.js";
@@ -573,6 +574,7 @@ const getGameImage = (game) => {
   <ButtonBackToTop />
   <ButtonDarkMode />
   <GlobalSettings />
+  <DesignSwitch current="legacy" variant="chip" />
 
   <SiteFooter />
 

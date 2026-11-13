@@ -1,10 +1,10 @@
-import { createApp } from 'vue'
-import App from './Engines.vue'
-import 'overlayscrollbars/styles/overlayscrollbars.css';
-import { initOverlayScrollbars } from '../../util/OverlayScrollbarsUtil.js';
-import '../../assets/fonts.css';
-import '../../assets/dark-mode.css';
+import { isNextDesign } from "../../util/Design.js";
+import { startPage } from "../../boot/entry.js";
+import LegacyPage from "./Engines.vue";
 
-createApp(App).mount('#app')
-
-initOverlayScrollbars();
+if (isNextDesign()) {
+  const module = await import("../next/engines/EnginesNext.vue");
+  await startPage({ legacy: LegacyPage, next: module.default });
+} else {
+  await startPage({ legacy: LegacyPage });
+}

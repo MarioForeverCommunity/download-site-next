@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
   import DownloadButton from "../components/ButtonDownload.vue"
-  import OriginalMfTable from '../components/OriginalMfTable.vue'
+  import OriginalMfTable from '../components/DesignMfTable.vue'
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
   import 'vue3-carousel/dist/carousel.css'
 

@@ -7,6 +7,7 @@ import { navTop } from "../../config.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import GlobalSettings from '../../components/GlobalSettings.vue'
+import DesignSwitch from '../../components/DesignSwitch.vue'
 import SiteFooter from '../../components/SiteFooter.vue'
 import AssetsEntry from '../../components/AssetsEntry.vue'
 
@@ -41,6 +42,7 @@ document.title = titleEn
   <ButtonBackToTop />
   <ButtonDarkMode />
   <GlobalSettings />
+  <DesignSwitch current="legacy" variant="chip" />
 
   <SiteFooter />
 </template>
