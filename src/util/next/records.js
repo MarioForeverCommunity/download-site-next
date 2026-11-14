@@ -478,6 +478,9 @@ export function buildMwRecords(entries) {
       nameAlt: entry.game_alt || null,
       author: names.join(", "),
       authors: names,
+      // Lists and cards show one label for a multi-author level (the legacy
+      // design did the same); the details drawer still lists every author.
+      displayAuthor: names.length > 1 ? "合作作品" : names.join(", "),
       authorZh: names.join(", "),
       date: toDate(entry.date),
       versionLabel: cleanVersionLabel(entry.smwp_ver) || "",

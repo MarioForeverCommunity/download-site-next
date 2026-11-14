@@ -53,6 +53,8 @@ const PATHS = {
   calendar: ["M4 6h16v14H4z", "M4 10h16", "M8 3v4", "M16 3v4"],
   // clock with a counter-clockwise arrow: "changelog / history"
   history: ["M12 7v5l3 2", "M3.5 12a8.5 8.5 0 1 0 2.6-6.1", "M3 4v4h4"],
+  // claw hammer: a level editor, used for the MW catalogs
+  hammer: ["M14 5l5 5", "M16.5 2.5l5 5-2 2-5-5z", "M13.5 7.5L5 16l-2.5 3 3-2.5 8.5-8.5"],
 };
 
 const paths = computed(() => PATHS[props.name] || []);

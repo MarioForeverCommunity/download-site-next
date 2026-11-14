@@ -7,6 +7,7 @@
 import { ref, computed, onMounted } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
+import NxIcon from "../../../components/next/NxIcon.vue";
 import { getDefaultSort } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { readList } from "../../../util/ReadList.js";
@@ -133,14 +134,25 @@ document.title = title.value;
       <template #pane-extras>
         <section class="nx-pane-section">
           <h4><span>列表选项</span></h4>
-          <label class="nx-inline-check">
-            <input
-              :checked="catalog.onlyWithImage.value"
-              type="checkbox"
-              @change="catalog.onlyWithImage.value = $event.target.checked"
-            />
-            <span>仅显示有图片的作品</span>
-          </label>
+          <div class="nx-checks">
+            <button
+              type="button"
+              class="nx-check"
+              :class="{ on: catalog.onlyWithImage.value }"
+              :aria-pressed="catalog.onlyWithImage.value"
+              @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
+            >
+              <span
+                class="nx-check-box"
+                aria-hidden="true"
+              ><NxIcon
+                v-if="catalog.onlyWithImage.value"
+                name="check"
+                :size="9"
+              /></span>
+              <span>仅显示有图片的作品</span>
+            </button>
+          </div>
         </section>
       </template>
     </NxCatalog>

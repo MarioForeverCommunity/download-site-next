@@ -1337,6 +1337,24 @@ body.nx-body select:focus-visible {
   --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(132px, 1fr);
 }
 
+/* Catalogs that drop the download column (Softendo) lose one track as well;
+   the last remaining column absorbs the width so the table still fills. */
+.nx-row.is-no-actions {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px minmax(120px, 1fr);
+}
+
+.nx-row.is-softendo.is-no-actions {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr);
+}
+
+.nx-row.is-no-tags.is-no-actions {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr);
+}
+
+.nx-row.is-softendo.is-no-tags.is-no-actions {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px;
+}
+
 .nx-row.is-softendo .nx-cell:nth-child(4) {
   display: none;
 }
@@ -2904,6 +2922,16 @@ html .nx-doc .carousel .carousel__next {
   .nx-row.is-softendo.is-no-tags {
     --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px minmax(132px, 1fr);
   }
+
+  .nx-row.is-no-actions,
+  .nx-row.is-no-tags.is-no-actions {
+    --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr);
+  }
+
+  .nx-row.is-softendo.is-no-actions,
+  .nx-row.is-softendo.is-no-tags.is-no-actions {
+    --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -2928,6 +2956,16 @@ html .nx-doc .carousel .carousel__next {
   .nx-row.is-softendo,
   .nx-row.is-softendo.is-no-tags {
     --nx-cols: minmax(90px, 340px) minmax(56px, 90px) 68px minmax(104px, 1fr);
+  }
+
+  .nx-row.is-no-actions,
+  .nx-row.is-no-tags.is-no-actions {
+    --nx-cols: minmax(90px, 340px) minmax(56px, 90px) 68px 60px minmax(90px, 1fr);
+  }
+
+  .nx-row.is-softendo.is-no-actions,
+  .nx-row.is-softendo.is-no-tags.is-no-actions {
+    --nx-cols: minmax(90px, 340px) minmax(56px, 90px) 68px;
   }
 }
 

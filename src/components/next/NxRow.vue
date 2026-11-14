@@ -30,6 +30,10 @@ const props = defineProps({
   showDate: {
     type: Boolean,
     default: true
+  },
+  showActions: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -79,6 +83,9 @@ const isLatest = computed(() => props.record.isLatestVersion === true);
 
 // One author per line in list view; a comma-joined string hid collaborators.
 const displayAuthors = computed(() => {
+  // A record may supply its own list label (MW collaborations read 合作作品);
+  // the details drawer keeps printing every author instead.
+  if (props.record.displayAuthor) return [props.record.displayAuthor];
   const authors = props.record.authors;
   if (Array.isArray(authors) && authors.length > 0) return authors;
   return props.record.author ? [props.record.author] : [];
@@ -101,6 +108,7 @@ function openLinks(event) {
       'is-active': active,
       'is-softendo': record.kind === 'softendo' || !showDate,
       'is-no-tags': !showTags,
+      'is-no-actions': !showActions,
     }"
     role="button"
     tabindex="0"
@@ -153,7 +161,7 @@ function openLinks(event) {
       v-else
       class="nx-cell"
     >
-      {{ record.author || "—" }}
+      {{ displayAuthors[0] || "—" }}
     </div>
 
     <div class="nx-cell nx-num">
@@ -193,7 +201,10 @@ function openLinks(event) {
       >{{ record.versionCount }} {{ lan === "zh" ? "个版本" : "versions" }}</span>
     </div>
 
-    <div class="nx-row-actions">
+    <div
+      v-if="showActions"
+      class="nx-row-actions"
+    >
       <a
         v-if="primaryDownload"
         :href="primaryDownload.url"

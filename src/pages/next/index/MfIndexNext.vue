@@ -9,6 +9,7 @@ import { ref, computed } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
 import NxDocPanels from "../../../components/next/NxDocPanels.vue";
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../../util/Language.js";
+import { getMfDocLastUpdated } from "../../../util/next/docUpdated.js";
 import { navTop } from "../../../config.js";
 import indexZh from "../../../markdown/mf-zh.md";
 import indexEn from "../../../markdown/mf-en.md";
@@ -19,6 +20,11 @@ const pageEntry = navTop.find((item) => item.id === pageId);
 
 const title = computed(() => (lan.value === "zh" ? pageEntry.title : pageEntry.title_alt));
 const doc = computed(() => (lan.value === "zh" ? indexZh : indexEn));
+
+// The markdown prints a "Last updated" line when the page supplies the date;
+// it is derived from the newest commit touching the data and the document.
+const lastUpdate = ref({ zh: null, en: null });
+getMfDocLastUpdated().then((value) => { lastUpdate.value = value; });
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();
@@ -43,7 +49,11 @@ document.title = title.value;
   >
     <div class="nx-doc-wrap">
       <div class="nx-doc">
-        <component :is="doc" />
+        <component
+          :is="doc"
+          :last-update-zh="lastUpdate.zh"
+          :last-update-en="lastUpdate.en"
+        />
       </div>
     </div>
     <NxDocPanels :lan="lan" />

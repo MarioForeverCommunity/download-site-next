@@ -103,10 +103,10 @@ function label(item, key) {
 const NAV_ICONS = {
   index: "home",
   "mf-games": "list",
-  "mw-levels": "grid",
+  "mw-levels": "hammer",
   assets: "layers",
   engines: "package",
-  "mario-worker": "package",
+  "mario-worker": "hammer",
   softendo: "grid",
 };
 

@@ -45,6 +45,12 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
+  // Catalogs whose records have no per-row links (Softendo) drop the download
+  // column entirely rather than leaving an empty track.
+  showActions: {
+    type: Boolean,
+    default: true
+  },
   emptyTitle: {
     type: String,
     default: ""
@@ -76,7 +82,7 @@ const text = computed(() => (props.lan === "zh" ? {
   listView: "列表视图",
   random: "随机游戏",
 } : {
-  count: (n, total, filtered) => (filtered ? `<b>${n}</b> of ${total}` : `<b>${n}</b> records`),
+  count: (n, total, filtered) => (filtered ? `<b>${n}</b> / ${total} records` : `<b>${n}</b> records`),
   name: "Title",
   author: "Author",
   version: "Version",
@@ -337,6 +343,7 @@ defineExpose({ randomRecord, open });
           :active="record.id === catalog.activeId.value"
           :show-tags="showTags"
           :show-date="showDate"
+          :show-actions="showActions"
           @open="open"
         />
       </div>
@@ -347,7 +354,7 @@ defineExpose({ randomRecord, open });
       >
         <div
           class="nx-row nx-row-head"
-          :class="{ 'is-softendo': !showDate, 'is-no-tags': !showTags }"
+          :class="{ 'is-softendo': !showDate, 'is-no-tags': !showTags, 'is-no-actions': !showActions }"
         >
           <button
             type="button"
@@ -401,7 +408,7 @@ defineExpose({ randomRecord, open });
             v-if="showTags"
             class="nx-row-tags-col"
           >{{ columnLabel("tags", text.tags) }}</span>
-          <span />
+          <span v-if="showActions" />
         </div>
 
         <NxRow
@@ -412,6 +419,7 @@ defineExpose({ randomRecord, open });
           :active="record.id === catalog.activeId.value"
           :show-tags="showTags"
           :show-date="showDate"
+          :show-actions="showActions"
           @open="open"
         />
       </div>

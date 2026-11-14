@@ -46,7 +46,7 @@ const text = computed(() => (props.lan === "zh" ? {
   reset: "重置",
   all: "全部",
   rangeHint: "包含起止日期，精确到日。",
-  tagHint: "点击依次切换：任一 / 同时 / 排除",
+  tagHint: "点击切换状态：或 (OR) → 与 (+AND) → 非 (-NOT) → 关闭",
   anyYear: "全部年份",
 } : {
   tags: "Tags",
@@ -58,7 +58,7 @@ const text = computed(() => (props.lan === "zh" ? {
   reset: "Reset",
   all: "All",
   rangeHint: "Inclusive, exact to the day.",
-  tagHint: "Click to cycle: any / all / exclude",
+  tagHint: "Click to cycle: OR → AND (+) → NOT (-) → off",
   anyYear: "All years",
 }));
 

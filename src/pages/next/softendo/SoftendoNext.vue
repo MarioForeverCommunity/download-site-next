@@ -146,6 +146,7 @@ document.title = title.value;
       :sorters="sorters"
       :lan="lan"
       :show-date="false"
+      :show-actions="false"
       :columns="{
         name: lan === 'zh' ? '游戏' : 'Game',
         author: lan === 'zh' ? '系列' : 'Series',

@@ -39,6 +39,29 @@ const regionLabel = computed(() => {
   if (region === "international") return props.lan === "zh" ? "国外" : "INT";
   return null;
 });
+
+// Cards have no version column, so the identifying version has to appear in the
+// body. What counts as "the version" differs per catalog:
+//   assets - the variant name and its version ("Full", "0.10.7.1")
+//   mf     - every version separately listed: the row's own version
+//   mw     - the SMWP editor the level needs ("SMWP v1.7.12" / "MW 4.4")
+const versionText = computed(() => {
+  const r = props.record;
+  if (!r) return "";
+  if (r.kind === "asset") {
+    const parts = [];
+    if (r.variantLabel) parts.push(r.variantLabel);
+    if (r.versionLabel && r.versionLabel !== r.variantLabel) parts.push(r.versionLabel);
+    return parts.join(" \u00b7 ");
+  }
+  if (r.kind === "mw") {
+    const raw = r.smwpVersion || r.versionLabel || "";
+    if (!raw) return "";
+    // Values already naming the editor are left as written.
+    return /^mw\b/i.test(raw) ? raw : "SMWP " + raw;
+  }
+  return r.versionLabel || "";
+});
 </script>
 
 <template>
@@ -69,9 +92,9 @@ const regionLabel = computed(() => {
       <div class="nx-card-name">{{ record.name }}</div>
       <div class="nx-card-author-row">
         <span
-          v-if="record.author"
+          v-if="record.displayAuthor || record.author"
           class="nx-card-author"
-        >{{ record.author }}</span>
+        >{{ record.displayAuthor || record.author }}</span>
         <!-- region tag sits beside the author in card view, per review -->
         <span
           v-if="regionLabel"
@@ -79,6 +102,10 @@ const regionLabel = computed(() => {
           :class="record.region === 'chinese' ? 'nx-dot-cn' : 'nx-dot-intl'"
         >{{ regionLabel }}</span>
       </div>
+      <div
+        v-if="versionText"
+        class="nx-card-version"
+      >{{ versionText }}</div>
       <div class="nx-card-meta">
         <span v-if="metaDate">{{ metaDate }}</span>
         <span v-else-if="record.yearLabel">{{ record.yearLabel }}</span>
@@ -94,6 +121,16 @@ const regionLabel = computed(() => {
 </template>
 
 <style scoped>
+  .nx-card-version {
+    margin-top: 2px;
+    font-family: var(--nx-mono);
+    font-size: 10.5px;
+    color: var(--nx-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .nx-card-author-row {
     display: flex;
     align-items: center;

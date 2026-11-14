@@ -215,8 +215,13 @@ const facts = computed(() => {
   if (record.software) {
     rows.push({ label: t.madeWith, value: softwareLabel(record.software, props.lan) });
   }
-  if (record.platform) {
-    rows.push({ label: t.platform, value: record.platform });
+  // Every version's platform, not just the selected one: a fangame may ship a
+  // Windows build for its current version and a Linux build for an older one.
+  const platforms = (record.platforms && record.platforms.length)
+    ? record.platforms
+    : (record.platform ? [record.platform] : []);
+  if (platforms.length) {
+    rows.push({ label: t.platform, value: platforms.join(" · ") });
   }
   if (record.date) {
     // A fangame's YAML date is the last time its entry/version was updated,
@@ -492,26 +497,6 @@ onBeforeUnmount(() => {
               :lan="lan"
               aspect-ratio="16 / 9"
               @select="lightbox = $event"
-            />
-          </div>
-
-          <!-- description: the YAML blurb, then the full write-up from the
-               record's description file (md/txt) when one exists -->
-          <div
-            v-if="record.description || longDescriptionHtml"
-            class="nx-section"
-          >
-            <div class="nx-section-label">{{ text.about }}</div>
-            <p
-              v-if="record.description"
-              style="font-size:12.5px;line-height:1.65;color:var(--nx-ink-2);white-space:pre-wrap;"
-            >
-              {{ record.description }}
-            </p>
-            <div
-              v-if="longDescriptionHtml"
-              class="nx-detail-md"
-              v-html="longDescriptionHtml"
             />
           </div>
 
@@ -829,6 +814,26 @@ onBeforeUnmount(() => {
                 <span style="color:var(--nx-faint);font-size:10.5px;">{{ video.site }}</span>
               </li>
             </ul>
+          </div>
+
+          <!-- The write-up goes last: a long description would otherwise push
+               the downloads and facts below the fold of the drawer. -->
+          <div
+            v-if="record.description || longDescriptionHtml"
+            class="nx-section"
+          >
+            <div class="nx-section-label">{{ text.about }}</div>
+            <p
+              v-if="record.description"
+              style="font-size:12.5px;line-height:1.65;color:var(--nx-ink-2);white-space:pre-wrap;"
+            >
+              {{ record.description }}
+            </p>
+            <div
+              v-if="longDescriptionHtml"
+              class="nx-detail-md"
+              v-html="longDescriptionHtml"
+            />
           </div>
         </div>
       </aside>

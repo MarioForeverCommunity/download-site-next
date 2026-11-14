@@ -7,6 +7,7 @@
 import { ref, computed, onMounted } from "vue";
 import NxShell from "../../../components/next/NxShell.vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
+import NxIcon from "../../../components/next/NxIcon.vue";
 import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { ensureMfList } from "../../../util/useMfList.js";
@@ -171,21 +172,42 @@ document.title = title.value;
       <template #pane-extras>
         <section class="nx-pane-section">
           <h4><span>{{ lan === "zh" ? "列表选项" : "List options" }}</span></h4>
-          <label class="nx-inline-check">
-            <input
-              v-model="expandVersions"
-              type="checkbox"
-            />
-            <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
-          </label>
-          <label class="nx-inline-check">
-            <input
-              :checked="catalog.onlyWithImage.value"
-              type="checkbox"
-              @change="catalog.onlyWithImage.value = $event.target.checked"
-            />
-            <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with artwork" }}</span>
-          </label>
+          <div class="nx-checks">
+            <button
+              type="button"
+              class="nx-check"
+              :class="{ on: expandVersions }"
+              :aria-pressed="expandVersions"
+              @click="expandVersions = !expandVersions"
+            >
+              <span
+                class="nx-check-box"
+                aria-hidden="true"
+              ><NxIcon
+                v-if="expandVersions"
+                name="check"
+                :size="9"
+              /></span>
+              <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
+            </button>
+            <button
+              type="button"
+              class="nx-check"
+              :class="{ on: catalog.onlyWithImage.value }"
+              :aria-pressed="catalog.onlyWithImage.value"
+              @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
+            >
+              <span
+                class="nx-check-box"
+                aria-hidden="true"
+              ><NxIcon
+                v-if="catalog.onlyWithImage.value"
+                name="check"
+                :size="9"
+              /></span>
+              <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with artwork" }}</span>
+            </button>
+          </div>
         </section>
       </template>
     </NxCatalog>
