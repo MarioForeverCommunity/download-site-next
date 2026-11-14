@@ -114,14 +114,21 @@ function ratioFor(src) {
 // leave too little room to read the screenshot.
 const peekFraction = computed(() => (containerW.value < 640 ? 1 : props.peek));
 
-// Height of the slide band. With a maxHeight every slide is exactly that tall
-// and its width follows its own ratio, so no picture is ever letterboxed.
+// Height of the slide band. Every slide is exactly this tall and its width
+// follows its own ratio, so no picture is letterboxed inside its box.
+//
+// `maxHeight` is a cap, not a promise: a 4:3 screenshot at a 480px cap needs
+// 640px of width, which does not exist on a phone, and the picture was cropped.
+// The band is therefore also limited by the space actually available — the
+// container width divided by the active picture's ratio — so the whole frame is
+// always visible.
 const slideH = computed(() => {
   if (!containerW.value) return 0;
-  if (props.maxHeight) return props.maxHeight;
   const active = props.images[activeIndex.value];
-  const w = containerW.value * peekFraction.value;
-  return w / ratioFor(active);
+  const ratio = ratioFor(active) || 4 / 3;
+  const widthBound = (containerW.value * peekFraction.value) / ratio;
+  if (!props.maxHeight) return widthBound;
+  return Math.min(props.maxHeight, widthBound);
 });
 
 // A slide's box always matches its picture's ratio, so the picture fills it
@@ -186,13 +193,17 @@ const trackStyle = computed(() => {
 });
 
 const singleStyle = computed(() => {
-  const r = ratioFor(props.images[0]);
+  const r = ratioFor(props.images[0]) || 4 / 3;
   const base = { aspectRatio: String(r) };
   if (!props.maxHeight) return base;
+  // Same reasoning as slideH: cap the height, but never beyond what the width
+  // allows, or the picture is cropped on narrow screens.
+  const widthBound = containerW.value ? containerW.value / r : props.maxHeight;
+  const height = Math.min(props.maxHeight, widthBound);
   return {
     ...base,
-    maxHeight: `${props.maxHeight}px`,
-    maxWidth: `${Math.round(props.maxHeight * r)}px`,
+    maxHeight: `${Math.round(height)}px`,
+    maxWidth: `${Math.round(height * r)}px`,
     marginInline: "auto"
   };
 });
@@ -274,6 +285,81 @@ function prev() {
   restartAutoplay();
 }
 
+// Touch swiping. Pointer events cover finger, pen and mouse drag in one path, so
+// the gallery can be swiped on a phone and dragged on a desktop trackpad-less
+// device without a second code path.
+//
+// The gesture is only claimed once it is clearly horizontal: a mostly vertical
+// drag is the page scrolling, and stealing it would make the carousel feel like
+// it traps the page.
+let dragStartX = 0;
+let dragStartY = 0;
+let dragDx = 0;
+let dragging = false;
+let dragDecided = false;
+
+const SWIPE_THRESHOLD = 40;
+
+function onPointerDown(event) {
+  if (isSingle.value || count.value < 2) return;
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+  dragStartX = event.clientX;
+  dragStartY = event.clientY;
+  dragDx = 0;
+  dragging = true;
+  dragDecided = false;
+}
+
+function onPointerMove(event) {
+  if (!dragging) return;
+  const dx = event.clientX - dragStartX;
+  const dy = event.clientY - dragStartY;
+  dragDx = dx;
+
+  if (!dragDecided) {
+    // Wait until the gesture is long enough to have a direction.
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+    if (Math.abs(dy) > Math.abs(dx)) {
+      // Vertical intent: hand the gesture back to the page.
+      dragging = false;
+      return;
+    }
+    dragDecided = true;
+    if (event.target && event.target.setPointerCapture) {
+      try { event.target.setPointerCapture(event.pointerId); } catch { /* ignore */ }
+    }
+  }
+}
+
+// True right after a swipe, so the trailing click does not open the picture.
+let suppressClick = false;
+
+function onPointerUp() {
+  if (!dragging) return;
+  dragging = false;
+  const dx = dragDx;
+  dragDx = 0;
+  if (!dragDecided) return;
+  // Swipe left shows the next picture, swipe right the previous one.
+  if (dx <= -SWIPE_THRESHOLD) next();
+  else if (dx >= SWIPE_THRESHOLD) prev();
+  // A swipe ends with a click on whatever is under the finger; that click would
+  // open the lightbox. Swallow it once.
+  suppressClick = true;
+  setTimeout(() => { suppressClick = false; }, 350);
+}
+
+function onSlideClick(src) {
+  if (suppressClick) return;
+  emit("select", src);
+}
+
+function onPointerCancel() {
+  dragging = false;
+  dragDecided = false;
+  dragDx = 0;
+}
+
 function jumpTo(realIndex) {
   if (realIndex === activeIndex.value) return;
   snapTo(realIndex + 2);
@@ -340,6 +426,10 @@ onBeforeUnmount(() => {
       <div
         class="nx-gallery-viewport"
         :style="{ height: slideH ? `${slideH}px` : undefined }"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointercancel="onPointerCancel"
       >
         <div
           class="nx-gallery-track"
@@ -361,7 +451,7 @@ onBeforeUnmount(() => {
               decoding="async"
               :class="['nx-gallery-img', `is-${fit}`]"
               @load="onImgLoad"
-              @click="emit('select', slide.src)"
+              @click="onSlideClick(slide.src)"
             />
           </div>
         </div>
@@ -433,6 +523,11 @@ onBeforeUnmount(() => {
     overflow: hidden;
     border-radius: 4px;
     background: var(--nx-fill);
+    /* The gallery handles horizontal swipes itself; vertical panning must stay
+       with the page so the carousel does not trap scrolling. */
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .nx-gallery-track {

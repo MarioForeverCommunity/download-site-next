@@ -157,6 +157,10 @@ const repoUrl = computed(() => {
         </div>
       </div>
 
+      <!-- Description and artwork are independent. They used to share one
+           v-if / v-else-if chain, so any record with a description stopped at
+           the text branch and never rendered its image — which is why only the
+           entries that happen to have no description showed artwork. -->
       <div
         v-if="record.description"
         class="nx-entry-text"
@@ -165,11 +169,8 @@ const repoUrl = computed(() => {
       <!-- no artwork: no image block at all. A placeholder logo inside a card
            reads as a broken image; the catalog keeps its logo placeholder, but a
            card simply omits the media area. -->
-      <template v-else-if="gallery.length === 0" />
-
-      <!-- one image: show it flat -->
       <div
-        v-else-if="gallery.length === 1"
+        v-if="gallery.length === 1"
         class="nx-entry-media is-single"
       >
         <img
