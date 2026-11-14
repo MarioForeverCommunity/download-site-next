@@ -50,6 +50,8 @@ export function useCatalog({
   // ── date filter ────────────────────────────────────────────
   // mode: "year" | "range". Year picks one or more whole years; range takes two
   // ISO dates (inclusive). Only one mode is ever active.
+  // When on, only records that actually have artwork are listed.
+  const onlyWithImage = ref(false);
   const dateMode = ref("year");
   const filterYears = ref([]);
   const rangeFrom = ref("");
@@ -250,6 +252,13 @@ export function useCatalog({
     return false;
   }
 
+  // A record "has an image" when it carries at least one picture path.
+  function hasImage(record) {
+    if (!record) return false;
+    if (record.image) return true;
+    return Array.isArray(record.images) && record.images.some(Boolean);
+  }
+
   const filtered = computed(() => {
     const titleNeedle = query.value.trim();
     const authorNeedle = authorQuery.value.trim();
@@ -263,6 +272,7 @@ export function useCatalog({
         const values = facetValues.value[facet.key];
         if (!values.some((value) => facet.test(record, value))) return false;
       }
+      if (onlyWithImage.value && !hasImage(record)) return false;
       if (tags && !matchesTags(record.tags)) return false;
       if (!matchesDate(record)) return false;
       return true;
@@ -358,6 +368,7 @@ export function useCatalog({
 
   const isFiltered = computed(() => !!query.value.trim()
     || !!authorQuery.value.trim()
+    || onlyWithImage.value
     || activeFacets.value.length > 0
     || hasDateFilter.value);
 
@@ -393,6 +404,7 @@ export function useCatalog({
     clearTags,
     clearFacets,
     // date
+    onlyWithImage,
     dateFilter,
     dateMode,
     filterYears,

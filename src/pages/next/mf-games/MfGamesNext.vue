@@ -170,13 +170,21 @@ document.title = title.value;
     >
       <template #pane-extras>
         <section class="nx-pane-section">
-          <h4><span>{{ lan === "zh" ? "版本展开" : "Versions" }}</span></h4>
+          <h4><span>{{ lan === "zh" ? "列表选项" : "List options" }}</span></h4>
           <label class="nx-inline-check">
             <input
               v-model="expandVersions"
               type="checkbox"
             />
             <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
+          </label>
+          <label class="nx-inline-check">
+            <input
+              :checked="catalog.onlyWithImage.value"
+              type="checkbox"
+              @change="catalog.onlyWithImage.value = $event.target.checked"
+            />
+            <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with artwork" }}</span>
           </label>
         </section>
       </template>

@@ -315,10 +315,15 @@ body.nx-body select:focus-visible {
 
 /* Site-level rail entries reuse the row style; the version/build line sits
    below the separating rule. */
+/* The site-level group sits at the bottom of the rail. The separating rule goes
+   *below* this group (i.e. under 网站状态) so the version/build lines are the
+   only thing it divides off. */
 .nx-rail-meta {
   margin-top: auto;
   padding-top: 10px;
-  border-top: 1px solid var(--nx-line);
+  padding-bottom: 10px;
+  border-top: 0;
+  border-bottom: 1px solid var(--nx-line);
 }
 
 .nx-rail-meta .nx-rail-item {
@@ -343,6 +348,15 @@ body.nx-body select:focus-visible {
   gap: 3px;
   font-size: 11.5px;
   color: var(--nx-muted);
+}
+
+/* Legal line: small and allowed to wrap, but it still has to be readable —
+   --nx-faint fell below AA at this size, so it uses the muted tone. */
+.nx-rail-legal {
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--nx-ink-2);
 }
 
 .nx-rail-foot-link {
@@ -2297,18 +2311,19 @@ html .nx-doc td {
   height: 28px;
   padding: 0 10px;
   margin: 2px 6px 2px 0;
-  border: 1px solid var(--nx-line);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 45%, var(--nx-line));
   border-radius: var(--nx-r);
   background: var(--nx-canvas);
-  color: var(--nx-ink);
+  color: var(--nx-accent);
   font-size: 12px;
   text-decoration: none;
   vertical-align: middle;
 }
 
 .nx-doc .md-button:hover {
-  border-color: var(--nx-line-2);
-  color: var(--nx-accent);
+  border-color: var(--nx-accent);
+  background: color-mix(in srgb, var(--nx-accent) 7%, var(--nx-canvas));
+  color: var(--nx-accent-hover);
   text-decoration: none;
 }
 

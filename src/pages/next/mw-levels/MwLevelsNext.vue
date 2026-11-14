@@ -129,7 +129,21 @@ document.title = title.value;
       show-random
       :show-tags="false"
       :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
-    />
+    >
+      <template #pane-extras>
+        <section class="nx-pane-section">
+          <h4><span>列表选项</span></h4>
+          <label class="nx-inline-check">
+            <input
+              :checked="catalog.onlyWithImage.value"
+              type="checkbox"
+              @change="catalog.onlyWithImage.value = $event.target.checked"
+            />
+            <span>仅显示有图片的作品</span>
+          </label>
+        </section>
+      </template>
+    </NxCatalog>
     <div
       v-else
       class="nx-loading"

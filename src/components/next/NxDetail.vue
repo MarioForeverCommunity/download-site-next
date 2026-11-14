@@ -230,7 +230,17 @@ const facts = computed(() => {
 const hasDownloads = computed(() => {
   const v = version.value;
   if (!v) return false;
-  return (v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length);
+  return !!((v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length));
+});
+
+// The whole "versions & downloads" block is pointless for a record with nothing
+// to download — an asset that only links to a repository has no files here.
+const showVersionsSection = computed(() => {
+  const record = props.record;
+  if (!record) return false;
+  const versions = record.versions || [];
+  if (versions.length === 0) return false;
+  return versions.some((v) => (v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length));
 });
 
 // The "version" line is only meaningful when it carries information.
@@ -540,7 +550,7 @@ onBeforeUnmount(() => {
 
           <!-- versions & downloads -->
           <div
-            v-if="record.versions && record.versions.length"
+            v-if="showVersionsSection"
             class="nx-section"
           >
             <div class="nx-section-label">{{ text.versions }}</div>

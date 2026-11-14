@@ -79,48 +79,59 @@ let observer = null;
 const count = computed(() => props.images.length);
 const isSingle = computed(() => count.value <= 1);
 
-// Aspect ratio of the frame. The real screenshots in a set usually share one
-// ratio (often 4:3), so once an image has decoded its natural size is used;
-// the `aspectRatio` prop is only the initial guess before the first decode.
-const measuredRatio = ref(0);
-
-const ratio = computed(() => {
-  if (measuredRatio.value) return measuredRatio.value;
+// Fallback aspect ratio for slides whose picture has not decoded yet.
+const fallbackRatio = computed(() => {
   const match = String(props.aspectRatio || "").match(/([\d.]+)\s*\/\s*([\d.]+)/);
-  if (!match) return 16 / 9;
+  if (!match) return 4 / 3;
   const w = Number(match[1]);
   const h = Number(match[2]);
-  return w && h ? w / h : 16 / 9;
+  return w && h ? w / h : 4 / 3;
 });
 
-// Adopt the ratio of the first decoded picture.
+// Each picture's own aspect ratio, keyed by URL. Screenshot sets are often
+// mixed — a 4:3 game frame next to a 16:10 window shot — so sizing every slide
+// from one shared ratio letterboxed the odd ones out. Every slide is now sized
+// from its own picture, which keeps the row gapless at any ratio.
+const naturalRatios = ref({});
+
 function onImgLoad(event) {
   const img = event.target;
-  if (measuredRatio.value || !img.naturalWidth || !img.naturalHeight) return;
-  measuredRatio.value = img.naturalWidth / img.naturalHeight;
+  if (!img.naturalWidth || !img.naturalHeight) return;
+  // The raw prop value is carried on the element: `img.src` is already resolved
+  // to an absolute URL and would not match the key used by ratioFor().
+  const key = img.dataset.srcKey || img.getAttribute("src");
+  if (!key) return;
+  const next = img.naturalWidth / img.naturalHeight;
+  if (naturalRatios.value[key] === next) return;
+  naturalRatios.value = { ...naturalRatios.value, [key]: next };
 }
 
-// Two layouts:
-//   "peek"  – the active slide is centred with its neighbours peeking in on both
-//             sides. Used by the entry cards, which sit in a narrow column.
+function ratioFor(src) {
+  return naturalRatios.value[src] || fallbackRatio.value;
+}
+
 // On a phone the active slide takes the whole width: peeking neighbours would
 // leave too little room to read the screenshot.
 const peekFraction = computed(() => (containerW.value < 640 ? 1 : props.peek));
 
-// Slide width.
-//   With a maxHeight the slide is sized from that cap (width = height × ratio),
-//   so the active picture is exactly maxHeight tall and its neighbours peek in
-//   on both sides. Never wider than the viewport itself.
-//   Without a cap the slide takes `peek` of the viewport.
-const slideW = computed(() => {
+// Height of the slide band. With a maxHeight every slide is exactly that tall
+// and its width follows its own ratio, so no picture is ever letterboxed.
+const slideH = computed(() => {
   if (!containerW.value) return 0;
-  if (props.maxHeight) {
-    return Math.min(props.maxHeight * ratio.value, containerW.value);
-  }
-  return containerW.value * peekFraction.value;
+  if (props.maxHeight) return props.maxHeight;
+  const active = props.images[activeIndex.value];
+  const w = containerW.value * peekFraction.value;
+  return w / ratioFor(active);
 });
 
-const slideH = computed(() => (slideW.value ? slideW.value / ratio.value : 0));
+// A slide's box always matches its picture's ratio, so the picture fills it
+// exactly. The band height is fixed; the width follows the ratio and may exceed
+// the viewport (the overflow is clipped by the viewport, which is intended — the
+// neighbours are supposed to extend past the edges).
+function widthFor(src) {
+  if (!slideH.value) return 0;
+  return slideH.value * ratioFor(src);
+}
 
 // Slides rendered: [last clone, ...images, first clone] so both directions wrap.
 const slides = computed(() => {
@@ -139,23 +150,45 @@ const activeIndex = computed(() => {
   return ((pos.value - 1) % count.value + count.value) % count.value;
 });
 
+// Cumulative x offsets, since slides differ in width.
+const slideOffsets = computed(() => {
+  const list = slides.value;
+  const offsets = [];
+  let x = 0;
+  for (let i = 0; i < list.length; i++) {
+    offsets.push(x);
+    x += widthFor(list[i].src);
+  }
+  return offsets;
+});
+
+const trackWidth = computed(() => {
+  const list = slides.value;
+  if (!list.length) return 0;
+  return slideOffsets.value[list.length - 1] + widthFor(list[list.length - 1].src);
+});
+
 const trackStyle = computed(() => {
-  if (!slideW.value) return { opacity: 0 };
+  if (!slideH.value) return { opacity: 0 };
+  const current = slides.value[pos.value];
+  const activeW = widthFor(current ? current.src : props.images[0]);
   // Centre the active slide in the viewport; neighbours continue on both sides.
-  const offset = containerW.value / 2 - slideW.value / 2 - pos.value * slideW.value;
+  const offset = containerW.value / 2 - activeW / 2 - (slideOffsets.value[pos.value] || 0);
   return {
+    width: `${Math.round(trackWidth.value)}px`,
     transform: `translate3d(${offset}px, 0, 0)`,
     transition: noTransition.value ? "none" : `transform ${TRANSITION_MS}ms cubic-bezier(0.32, 0.72, 0, 1)`
   };
 });
 
 const singleStyle = computed(() => {
-  const base = { aspectRatio: String(ratio.value) };
+  const r = ratioFor(props.images[0]);
+  const base = { aspectRatio: String(r) };
   if (!props.maxHeight) return base;
   return {
     ...base,
     maxHeight: `${props.maxHeight}px`,
-    maxWidth: `${Math.round(props.maxHeight * ratio.value)}px`,
+    maxWidth: `${Math.round(props.maxHeight * r)}px`,
     marginInline: "auto"
   };
 });
@@ -267,6 +300,7 @@ onBeforeUnmount(() => {
     >
       <img
         :src="images[0]"
+        :data-src-key="images[0]"
         :alt="alt"
         loading="lazy"
         decoding="async"
@@ -291,10 +325,11 @@ onBeforeUnmount(() => {
             :key="`${slide.src}-${index}`"
             class="nx-gallery-slide"
             :class="{ 'is-active': index === pos }"
-            :style="{ width: slideW ? `${slideW}px` : '100%', height: slideH ? `${slideH}px` : undefined }"
+            :style="{ width: widthFor(slide.src) ? `${widthFor(slide.src)}px` : '100%', height: slideH ? `${slideH}px` : undefined }"
           >
             <img
               :src="slide.src"
+              :data-src-key="slide.src"
               :alt="`${alt} ${slide.real + 1}`"
               loading="lazy"
               decoding="async"
@@ -398,10 +433,17 @@ onBeforeUnmount(() => {
 
   /* Whole picture, scaled to fill the frame without cropping: small screenshots
      are enlarged so they do not leave grey bands around the artwork. */
+  /* The picture scales to the frame while preserving its aspect ratio. A small
+     screenshot is enlarged only until one dimension reaches the frame, so it
+     never sits as a tiny thumbnail in a 480px band, and a large one is reduced
+     to fit. `contain` on a 100% box achieves this without cropping. */
   .nx-gallery-img.is-contain {
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
+    object-position: center;
   }
 
   /* Fills the slide. */

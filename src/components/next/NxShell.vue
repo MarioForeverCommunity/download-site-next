@@ -263,15 +263,14 @@ watch(showChangelog, (open) => {
       </nav>
 
       <!-- Site-level entries use the same row style as the catalog and
-           external groups above; only the version/build line sits below the
-           rule. -->
+           external groups above. -->
       <nav class="nx-rail-group nx-rail-meta">
         <button
           type="button"
           class="nx-rail-item"
           @click="showChangelog = true"
         >
-          <span class="nx-rail-icon"><NxIcon name="info" :size="14" /></span>
+          <span class="nx-rail-icon"><NxIcon name="history" :size="14" /></span>
           <span>{{ text.changelog }}</span>
         </button>
         <a
@@ -283,20 +282,28 @@ watch(showChangelog, (open) => {
           <span class="nx-rail-icon"><NxIcon name="github" :size="14" /></span>
           <span>{{ displayLan === "zh" ? "本站源码" : "Source code" }}</span>
         </a>
+        <!-- The status page is a Chinese-only service, so the English rail
+             omits the entry rather than linking to a page in another language. -->
         <a
+          v-if="displayLan === 'zh'"
           class="nx-rail-item"
           href="https://status.marioforever.net/"
           target="_blank"
           rel="noopener"
         >
           <span class="nx-rail-icon"><NxIcon name="info" :size="14" /></span>
-          <span>{{ displayLan === "zh" ? "网站状态" : "Status" }}</span>
+          <span>网站状态</span>
         </a>
       </nav>
 
       <div class="nx-rail-foot">
+        <p class="nx-rail-legal">
+          {{ displayLan === "zh"
+            ? "本站非 Softendo / 任天堂官方网站，马里奥相关版权归任天堂所有。"
+            : "This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo." }}
+        </p>
         <span class="nx-rail-foot-meta">{{ siteVersion }}</span>
-        <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建" : "Built" }} {{ buildTimeText }}</span>
+        <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建于" : "Built" }} {{ buildTimeText }}</span>
       </div>
     </aside>
 

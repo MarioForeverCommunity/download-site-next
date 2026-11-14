@@ -51,6 +51,8 @@ const PATHS = {
   dice: ["M5 4h14v16H5z", "M9 8h.01", "M15 8h.01", "M12 12h.01", "M9 16h.01", "M15 16h.01"],
   menu: ["M4 7h16", "M4 12h16", "M4 17h16"],
   calendar: ["M4 6h16v14H4z", "M4 10h16", "M8 3v4", "M16 3v4"],
+  // clock with a counter-clockwise arrow: "changelog / history"
+  history: ["M12 7v5l3 2", "M3.5 12a8.5 8.5 0 1 0 2.6-6.1", "M3 4v4h4"],
 };
 
 const paths = computed(() => PATHS[props.name] || []);
