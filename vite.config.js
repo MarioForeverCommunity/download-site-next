@@ -4,13 +4,26 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { resolve } from 'path'
+import { execSync } from 'node:child_process'
 import viteCompression from 'vite-plugin-compression'
 import { constants } from 'zlib'
+
+// Full commit hash of the build, so the deployed site can link to exactly the
+// source it was built from. Falls back to an empty string when the build runs
+// outside a git checkout (e.g. a source archive).
+function readCommitHash() {
+  try {
+    return execSync('git rev-parse HEAD', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim()
+  } catch {
+    return ''
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
-    BUILD_TIME: JSON.stringify(new Date())
+    BUILD_TIME: JSON.stringify(new Date()),
+    COMMIT_HASH: JSON.stringify(readCommitHash())
   },
   plugins: [
     vue({

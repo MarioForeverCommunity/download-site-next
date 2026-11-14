@@ -58,6 +58,15 @@ const buildTimeText = (() => {
   }
 })();
 
+// Short commit hash of the build, linked to that exact commit on GitHub. The
+// full hash is injected at build time; the link needs the full one while the
+// label reads as the familiar seven characters.
+const commitHash = typeof COMMIT_HASH === "string" ? COMMIT_HASH : "";
+const commitShort = commitHash ? commitHash.slice(0, 7) : "";
+const commitUrl = commitHash
+  ? `https://github.com/MarioForeverCommunity/download-site-next/commit/${commitHash}`
+  : null;
+
 const pageEntry = computed(() => navTop.find((item) => item.id === props.pageId) || null);
 
 const displayLan = computed(() => {
@@ -102,7 +111,7 @@ const NAV_ICONS = {
 };
 
 const text = computed(() => (displayLan.value === "zh" ? {
-  search: "搜索标题、别名、文件名…",
+  search: "搜索标题…",
   author: "搜索作者…",
   random: "随机游戏",
   settings: "全局设置",
@@ -116,8 +125,8 @@ const text = computed(() => (displayLan.value === "zh" ? {
   elsewhere: "站外",
   menu: "菜单",
 } : {
-  search: "Search titles, aliases, filenames…",
-  author: "Search authors…",
+  search: "Search title…",
+  author: "Search author…",
   random: "Random game",
   settings: "Global settings",
   changelog: "Changelog",
@@ -180,9 +189,29 @@ function chooseLanguage(value) {
 const languageLabel = computed(() => (displayLan.value === "zh" ? "中文" : "English"));
 
 // The page title sits in the topbar of the main area, per review.
+//
+// On a phone the full English titles are long enough to wrap the topbar, which
+// pushed the language/theme/settings buttons onto a second line — and a dropdown
+// anchored to a button that is no longer at the right edge spilled off-screen.
+// Phones therefore use the sidebar's page name (`option` / `option_alt`), which
+// is the same short label the navigation already shows. Chinese titles are
+// already compact, and desktop always gets the full title.
+const isNarrow = ref(false);
+
+function updateNarrow() {
+  isNarrow.value = window.innerWidth <= 860;
+}
+
 const pageTitle = computed(() => {
-  if (props.title) return props.title;
   const entry = pageEntry.value;
+  // Phones + English: use the sidebar's page name, which is the compact label
+  // the navigation already shows. This has to win over a `title` prop too —
+  // some pages pass their full title explicitly, and that is what wrapped the
+  // topbar and pushed the action buttons off the right edge.
+  if (isNarrow.value && displayLan.value !== "zh" && entry) {
+    return label(entry, "option");
+  }
+  if (props.title) return props.title;
   return entry ? label(entry, "title") : "";
 });
 
@@ -201,11 +230,14 @@ const authorQuery = computed({
 onMounted(() => {
   document.addEventListener("click", onDocClick);
   document.addEventListener("keydown", onKeydown);
+  updateNarrow();
+  window.addEventListener("resize", updateNarrow);
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("click", onDocClick);
   document.removeEventListener("keydown", onKeydown);
+  window.removeEventListener("resize", updateNarrow);
 });
 
 watch(showChangelog, (open) => {
@@ -302,7 +334,17 @@ watch(showChangelog, (open) => {
             ? "本站非 Softendo / 任天堂官方网站，马里奥相关版权归任天堂所有。"
             : "This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo." }}
         </p>
-        <span class="nx-rail-foot-meta">{{ siteVersion }}</span>
+        <span class="nx-rail-foot-meta">
+          {{ siteVersion }}<template v-if="commitUrl">
+            (<a
+              class="nx-rail-commit"
+              :href="commitUrl"
+              target="_blank"
+              rel="noopener"
+              :title="displayLan === 'zh' ? '查看对应提交' : 'View the matching commit'"
+            >{{ commitShort }}</a>)
+          </template>
+        </span>
         <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建于" : "Built" }} {{ buildTimeText }}</span>
       </div>
     </aside>
@@ -380,8 +422,12 @@ watch(showChangelog, (open) => {
               @click="toggleMenu('lang')"
             >
               <NxIcon name="globe" :size="14" />
-              {{ languageLabel }}
-              <NxIcon name="chevronDown" :size="11" />
+              <span class="nx-lang-label">{{ languageLabel }}</span>
+              <NxIcon
+                class="nx-lang-caret"
+                name="chevronDown"
+                :size="11"
+              />
             </button>
             <Transition name="nx-fade">
               <div

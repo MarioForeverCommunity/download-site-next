@@ -129,41 +129,44 @@ const SWAP_ICON = ["M4 8h13", "M14 5l3 3-3 3", "M20 16H7", "M10 13l-3 3 3 3"];
     text-decoration: none;
   }
 
-  /* filled button inside the legacy Global Settings dialog */
+  /* Inside the legacy Global Settings dialog: follows that dialog's own button
+     language (`.md-button`) — accent fill, white label, same radius and
+     padding — so it reads as part of the legacy UI rather than a new control. */
   .design-switch.is-row {
-    width: 100%;
+    width: auto;
     justify-content: center;
-    height: 34px;
-    padding: 0 12px;
-    border: 1px solid #ccc;
-    border-radius: .5em;
-    background-color: #f6f6f6;
-    color: #333;
-    font-size: 13px;
-    margin-top: .9em;
-    transition: background-color .15s ease, border-color .15s ease;
+    height: auto;
+    padding: 5.5px 13.7px;
+    border: 0;
+    /* Fixed values rather than em: this element sets a smaller font-size, so an
+       em-based radius would not match the dialog's own buttons. */
+    border-radius: 7.2px;
+    background-color: #008cff;
+    color: #ffffff;
+    font-size: 12.6px;
+    margin: 0;
+    gap: .35em;
+    transition: background-color .15s ease;
   }
 
-  .design-switch.is-row:hover {
-    background-color: #eeeeee;
-    border-color: #999;
-    color: #111;
+  .design-switch.is-row:hover,
+  .design-switch.is-row:focus {
+    background-color: #30acff;
+    color: #ffffff;
     text-decoration: none;
   }
 
   .design-switch.is-row:active {
-    background-color: #e2e2e2;
+    background-color: #007cdf;
   }
 
   :global(body.dark) .design-switch.is-row {
-    background-color: #3a3a3a;
-    border-color: #555;
-    color: #ddd;
+    background-color: #008cff;
+    color: #ffffff;
   }
 
   :global(body.dark) .design-switch.is-row:hover {
-    background-color: #444;
-    border-color: #777;
-    color: #fff;
+    background-color: #30acff;
+    color: #ffffff;
   }
 </style>

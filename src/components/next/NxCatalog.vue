@@ -340,7 +340,10 @@ defineExpose({ randomRecord, open });
         v-else
         class="nx-list"
       >
-        <div class="nx-row nx-row-head">
+        <div
+          class="nx-row nx-row-head"
+          :class="{ 'is-softendo': !showDate }"
+        >
           <button
             type="button"
             class="nx-th"
@@ -370,20 +373,24 @@ defineExpose({ randomRecord, open });
           <span v-else>{{ columnLabel("author", text.author) }}</span>
 
           <span>{{ columnLabel("version", text.version) }}</span>
-          <button
-            v-if="availableSorts.includes('date')"
-            type="button"
-            class="nx-th"
-            :class="{ on: catalog.sort.value.field === 'date' }"
-            @click="catalog.toggleSort('date')"
-          >
-            {{ columnLabel("date", text.date) }}
-            <span
-              v-if="sortArrow('date')"
-              class="nx-th-arrow"
-            >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
-          </button>
-          <span v-else>{{ columnLabel("date", text.date) }}</span>
+          <!-- The date column is optional (the Softendo catalog has none), so its
+               header must not be rendered when the page hides it. -->
+          <template v-if="showDate">
+            <button
+              v-if="availableSorts.includes('date')"
+              type="button"
+              class="nx-th"
+              :class="{ on: catalog.sort.value.field === 'date' }"
+              @click="catalog.toggleSort('date')"
+            >
+              {{ columnLabel("date", text.date) }}
+              <span
+                v-if="sortArrow('date')"
+                class="nx-th-arrow"
+              >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
+            </button>
+            <span v-else>{{ columnLabel("date", text.date) }}</span>
+          </template>
 
           <span class="nx-row-tags-col">{{ columnLabel("tags", text.tags) }}</span>
           <span />

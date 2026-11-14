@@ -217,15 +217,32 @@ function cancelSettings() {
     margin-top: .9em;
   }
 
-  /* Interface design row: label above the switch button */
+  /* Interface design row: the label and the switch button share one line, with
+     the button on the right. It must be allowed to shrink so a long label never
+     pushes it past the dialog's edge. */
   .settings-item-design {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: .6em;
     cursor: default;
   }
 
   .settings-item-design > span {
-    display: block;
-    margin-bottom: .35em;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .settings-item-design > :deep(.design-switch),
+  .settings-item-design > .design-switch {
+    flex: 0 1 auto;
+    width: auto;
+    max-width: 62%;
+    min-width: 0;
+    margin-top: 0;
+    margin-left: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .settings-sort-select {
