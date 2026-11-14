@@ -332,6 +332,8 @@ defineExpose({ randomRecord, open });
           :record="record"
           :lan="lan"
           :active="record.id === catalog.activeId.value"
+          :show-tags="showTags"
+          :show-date="showDate"
           @open="open"
         />
       </div>
@@ -342,7 +344,7 @@ defineExpose({ randomRecord, open });
       >
         <div
           class="nx-row nx-row-head"
-          :class="{ 'is-softendo': !showDate }"
+          :class="{ 'is-softendo': !showDate, 'is-no-tags': !showTags }"
         >
           <button
             type="button"
@@ -392,7 +394,10 @@ defineExpose({ randomRecord, open });
             <span v-else>{{ columnLabel("date", text.date) }}</span>
           </template>
 
-          <span class="nx-row-tags-col">{{ columnLabel("tags", text.tags) }}</span>
+          <span
+            v-if="showTags"
+            class="nx-row-tags-col"
+          >{{ columnLabel("tags", text.tags) }}</span>
           <span />
         </div>
 
@@ -402,6 +407,8 @@ defineExpose({ randomRecord, open });
           :record="record"
           :lan="lan"
           :active="record.id === catalog.activeId.value"
+          :show-tags="showTags"
+          :show-date="showDate"
           @open="open"
         />
       </div>

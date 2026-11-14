@@ -20,6 +20,16 @@ const props = defineProps({
   active: {
     type: Boolean,
     default: false
+  },
+  // Mirrors the catalog's column switches so the row drops the same columns the
+  // header does; otherwise the trailing action column drifts left.
+  showTags: {
+    type: Boolean,
+    default: true
+  },
+  showDate: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -87,7 +97,11 @@ function openLinks(event) {
 <template>
   <div
     class="nx-row"
-    :class="{ 'is-active': active, 'is-softendo': record.kind === 'softendo' }"
+    :class="{
+      'is-active': active,
+      'is-softendo': record.kind === 'softendo' || !showDate,
+      'is-no-tags': !showTags,
+    }"
     role="button"
     tabindex="0"
     @click="emit('open', record)"
@@ -154,7 +168,10 @@ function openLinks(event) {
       {{ dateText || "—" }}
     </div>
 
-    <div class="nx-row-tags nx-row-tags-col">
+    <div
+      v-if="showTags"
+      class="nx-row-tags nx-row-tags-col"
+    >
       <span
         v-if="isLatest"
         class="nx-dot nx-dot-cur"

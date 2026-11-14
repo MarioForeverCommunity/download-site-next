@@ -1298,6 +1298,16 @@ body.nx-body select:focus-visible {
   --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr) 132px;
 }
 
+/* Catalogs without a class/tag column drop it from the template as well, so the
+   trailing action column still lands flush right. */
+.nx-row.is-no-tags {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px 132px;
+}
+
+.nx-row.is-softendo.is-no-tags {
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 132px;
+}
+
 .nx-row.is-softendo .nx-cell:nth-child(4) {
   display: none;
 }
@@ -2861,6 +2871,15 @@ html .nx-doc .carousel .carousel__next {
   .nx-row.is-softendo {
     --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 128px;
   }
+
+  /* Catalogs without a class column have one column fewer at this width too. */
+  .nx-row.is-no-tags {
+    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 78px 128px;
+  }
+
+  .nx-row.is-softendo.is-no-tags {
+    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 128px;
+  }
 }
 
 @media (max-width: 860px) {
@@ -2943,11 +2962,12 @@ html .nx-doc .carousel .carousel__next {
 
   /* The language button shows only the globe on phones: the current language's
      name took space the two search fields need, and the menu states it anyway. */
+  /* Same horizontal padding as desktop; only the label is hidden, so the
+     button keeps its comfortable hit area instead of shrinking to the icon. */
   .nx-lang-btn {
-    padding: 0;
-    width: 30px;
+    padding: 0 7px 0 9px;
     justify-content: center;
-    gap: 0;
+    gap: 4px;
   }
 
   /* Keep the caret: it is the affordance that says "this opens a menu". */
