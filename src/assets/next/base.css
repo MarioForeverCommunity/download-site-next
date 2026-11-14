@@ -407,6 +407,44 @@ body.nx-body select:focus-visible {
   flex-direction: column;
 }
 
+/* The wrapper around a page's content inside the shell. It is the transition
+   target: on a page change only this block cross-fades, while the rail and the
+   topbar — the stable frame of the interface — stay put. */
+.nx-content-slot {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nx-content-enter-active,
+.nx-content-leave-active {
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.nx-content-enter-from {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.nx-content-leave-to {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-content-enter-active,
+  .nx-content-leave-active {
+    transition: none;
+  }
+
+  .nx-content-enter-from,
+  .nx-content-leave-to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ── topbar: page title + two searches + actions ──────────── */
 .nx-topbar {
   min-height: 50px;

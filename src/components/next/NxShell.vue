@@ -526,7 +526,20 @@ watch(showChangelog, (open) => {
         </div>
       </header>
 
-      <slot />
+      <!-- Only the content area animates on a page change. The rail, the topbar
+           and the drawers belong to the shell and stay put, so a navigation
+           must not fade them (they are the one stable frame of reference). -->
+      <Transition
+        name="nx-content"
+        mode="out-in"
+      >
+        <div
+          :key="pageId"
+          class="nx-content-slot"
+        >
+          <slot />
+        </div>
+      </Transition>
     </div>
 
     <ChangelogDrawer
