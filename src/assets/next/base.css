@@ -1786,6 +1786,11 @@ body.nx-body select:focus-visible {
 
 .nx-drawer-body {
   flex: 1;
+  /* A flex child defaults to `min-height: auto`, which refuses to shrink below
+     its content — the body grew to the full content height, matched the drawer
+     exactly, and so never became scrollable (the changelog drawer could not be
+     scrolled at all). `min-height: 0` lets it shrink and overflow instead. */
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 16px 18px 40px;

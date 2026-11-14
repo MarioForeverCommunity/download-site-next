@@ -23,6 +23,8 @@ const SCROLLER_SELECTOR = ".nx-drawer-body, .nx-drawer, .nx-pane, .nx-rail";
 
 function scrollerFor(target) {
   if (!target || !target.closest) return null;
+  // `closest` only walks up to the scroll container; an event whose target is a
+  // child of that container (a list item, a paragraph) resolves to it correctly.
   return target.closest(SCROLLER_SELECTOR);
 }
 
