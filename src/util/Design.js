@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import Cookies from "js-cookie";
+import packageJson from "../../package.json";
 
 // Design variants of this site.
 //
@@ -12,8 +13,17 @@ import Cookies from "js-cookie";
 export const LEGACY_DESIGN = "legacy";
 export const NEXT_DESIGN = "next";
 
-// Change this one constant to ship the other design as the default.
-export const DEFAULT_DESIGN = NEXT_DESIGN;
+// The redesigned UI becomes the default once 3.0.0 ships as a stable release.
+// Prerelease builds of 3.0.0 itself (3.0.0-beta.x / 3.0.0-rc.x) keep the legacy
+// UI as the fallback; the new design stays reachable via `?design=next` or the
+// in-site switch in the meantime. Versions after 3.0.0 already treat the new
+// design as released, so their prereleases (3.0.1-beta.x, 3.1.0-rc.x, …) use it
+// as the default too.
+const [coreVersion, ...versionSuffix] = String(packageJson.version).split(/[-+]/);
+const [majorVersion, minorVersion, patchVersion] = coreVersion.split(".").map(Number);
+const isAfter300 = majorVersion > 3 || (majorVersion === 3 && (minorVersion > 0 || patchVersion > 0));
+const isStable300 = majorVersion === 3 && minorVersion === 0 && patchVersion === 0 && versionSuffix.length === 0;
+export const DEFAULT_DESIGN = isAfter300 || isStable300 ? NEXT_DESIGN : LEGACY_DESIGN;
 
 const DESIGN_VALUES = [LEGACY_DESIGN, NEXT_DESIGN];
 
