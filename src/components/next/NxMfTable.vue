@@ -158,7 +158,10 @@ onMounted(async () => {
 
   .nx-mf-row {
     display: grid;
-    grid-template-columns: 116px 100px 76px minmax(0, 1fr);
+    /* A fixed width shared by every row: each row is its own grid, so a
+       content-sized track would make long versions push the following columns
+       out of alignment. 132px fits the widest version string on one line. */
+    grid-template-columns: 132px 100px 76px minmax(0, 1fr);
     align-items: center;
     gap: 12px;
     padding: 7px 14px;
@@ -188,6 +191,8 @@ onMounted(async () => {
     font-size: 12.5px;
     font-weight: 500;
     color: var(--nx-ink);
+    /* a version is one token — "v7.02_31 Beta" must never break across lines */
+    white-space: nowrap;
   }
 
   .nx-mf-date {
