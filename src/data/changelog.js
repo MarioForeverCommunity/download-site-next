@@ -32,7 +32,9 @@ export const changelog = [
       "作品详情：发布页移入「版本与下载」并随版本切换，按钮标注来源站点，中英文分别优先显示主发布页 / 备用发布页；列表的发布页图标同样按版本与语言取链接",
       "勾选「每个版本单独列出」时，详情只展示该版本的下载与发布页，列表、卡片与详情优先使用对应版本的 title 截图，顶部显示版本号，日期标签改为「发布日期」",
       "MW 目录恢复发布页、MW 下载、音乐包与数据包按钮（改用与旧版一致的归一化数据）；MW 详情标题对多作者作品显示「合作作品」，信息区仍列出全部作者",
-      "MW「运行环境」的 SMWP 版本下载改为按钮，BGM 提示移至按钮下方；版本信息行只显示数值，不再出现「日期 / 文件名 / 文件大小」等文字标签"
+      "MW「运行环境」的 SMWP 版本下载改为按钮，BGM 提示移至按钮下方；版本信息行只显示数值，不再出现「日期 / 文件名 / 文件大小」等文字标签",
+      "MW 作品详情：「MW 版本」前加注 SMWP（MW 4.0 / 4.4 除外），不再显示「标签」一节；自带 MW 的作品，运行环境提示改为「本作品自带」",
+      "MF 作品详情（中文）恢复旧版下载弹框的「游玩说明」：按安装程序 / .exe / .apk / macOS / Linux / 压缩包给出运行提示，手机端另有对应说明"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
@@ -53,7 +55,9 @@ export const changelog = [
       "The release post moved into Versions & downloads and follows the selected version; buttons name the hosting site, the primary or alternate post leads according to the language, and the list icon uses the same per-version, per-language link",
       "With \"list every version separately\" on, the drawer shows only that build's downloads and release post, while list, cards and drawer prefer that version's title screenshot, the version number appears at the top and the date label becomes Released",
       "The MW catalog regains its release post, MW download, music pack and data package buttons by using the same normalised data as the legacy design; the drawer labels multi-author levels as a collaboration while the facts section still lists every author",
-      "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels"
+      "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels",
+      "MW details now prefix the MW version with SMWP (MW 4.0 / 4.4 excepted), no longer show the Tags section, and say the level \"Comes with\" its MW when one is bundled",
+      "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
@@ -66,7 +70,9 @@ export const changelog = [
       "修复桌面端详情抽屉打开时页面滚动条仍可见、可被拖动从而滚动背后列表的问题：抽屉展开期间隐藏页面滚动条并保留等宽留白，布局不会发生位移",
       "修复带 ?id= 的分享链接打开时不展开作品详情的问题：新版路由启动时替换地址会丢弃查询参数，现在只在真正切换页面时清理",
       "修复 Softendo 详情中自定义颜色下载按钮没有悬停反馈的问题：悬停时保持原色相并加深背景与边框",
-      "修复 MW 详情「版本与下载」按钮上方出现空白的问题：空的版本名与信息行不再占位"
+      "修复 MW 详情「版本与下载」按钮上方出现空白的问题：空的版本名与信息行不再占位",
+      "修复 MW「运行要求」筛选未纳入同时自带 MW 与需替换 BGM 的作品的问题：这两项要求现在可以同时命中",
+      "修复标题搜索无法匹配下载文件名的问题：文件名改按单个文件加入索引，多文件 / 分卷版本同样可搜"
     ],
     fixes_en: [
       "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
@@ -79,7 +85,9 @@ export const changelog = [
       "Fixed the page scrollbar staying visible beside an open detail drawer on desktop, where dragging its thumb still scrolled the catalog behind; the scrollbar is hidden while an overlay is open, with its width reserved so the layout does not shift",
       "Fixed shared ?id= links opening without the record's detail drawer: the redesigned router's startup URL normalisation dropped the query string, which is now kept unless the page really changes",
       "Fixed tone-coloured download buttons in Softendo details having no hover feedback: they now deepen their background and border while keeping their hue",
-      "Fixed the empty strip above the downloads in MW details: empty version-name and meta lines no longer take up space"
+      "Fixed the empty strip above the downloads in MW details: empty version-name and meta lines no longer take up space",
+      "Fixed the MW Runtime filter leaving out levels that both bundle their MW and need a custom BGM: the two requirements can now match together",
+      "Fixed the title search ignoring download file names: each file is indexed on its own, including multi-file and multi-volume builds"
     ],
     misc: [
       "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"

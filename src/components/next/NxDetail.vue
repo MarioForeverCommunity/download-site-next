@@ -33,6 +33,12 @@ const emit = defineEmits(["close"]);
 
 const lightbox = ref(null);
 const activeVersion = ref(null);
+// The legacy download modal tailored its help text to phones; the drawer keeps
+// that split so a reader on a phone is not told to run an .exe.
+const isMobile = ref(false);
+function updateIsMobile() {
+  isMobile.value = window.innerWidth <= 800;
+}
 // The legacy full-screen modal rendered a per-record description file
 // (description.md / .txt from the data folder) on top of the YAML blurb. The
 // drawer restores it: without it, records whose write-up lives in a file showed
@@ -107,6 +113,8 @@ const text = computed(() => (props.lan === "zh"
     codeCopyHint: "点击下载并复制提取码",
     copied: "提取码已复制",
     requires: "本作品需要",
+    bundled: "本作品自带",
+    playNote: "游玩说明",
     downloadIt: "下载该版本",
     bgmNote: "游玩本作品前，需替换或使用自定义 BGM。",
     musicPack: "SMWP 音乐包",
@@ -147,6 +155,8 @@ const text = computed(() => (props.lan === "zh"
     codeCopyHint: "Download and copy code",
     copied: "Code copied",
     requires: "Requires",
+    bundled: "Comes with",
+    playNote: "How to play",
     downloadIt: "download it",
     bgmNote: "Replace or use custom BGM before playing this level.",
     musicPack: "Music pack",
@@ -177,6 +187,79 @@ const version = computed(() => {
   if (versions.length === 0) return null;
   if (record.expandedFrom && record.current) return record.current;
   return versions.find((v) => v.verKey === activeVersion.value) || versions[0];
+});
+
+// ── MF play instructions ───────────────────────────────────
+// The legacy download modal explained what to do with the file it handed out
+// (its "?" tooltip). The drawer restores that text for Chinese readers and
+// follows the selected build; English pages omit it, as requested.
+const PLAY_NOTES_ZH = {
+  installer: [
+    "本作品以安装程序形式提供，需运行安装程序完成安装，建议选择非系统盘作为安装路径。",
+    "安装完成后，打开桌面快捷方式即可启动游戏。",
+  ],
+  exe: [
+    "本作品为可执行文件（.exe），可以直接打开运行。",
+    "建议将其放在一个独立文件夹中，避免与其他作品的文件混合存放，不要将文件放在桌面。",
+  ],
+  apk: [
+    "本作品为 .apk 文件，为安卓设备专用，电脑无法直接运行。",
+    "请在安卓设备上安装后游玩。",
+  ],
+  apkMobile: [
+    "本作品为 .apk 文件，可在安卓手机上直接安装运行。",
+    "安装前请确保设备允许安装“未知来源”的应用。",
+  ],
+  mobile: [
+    "您当前正在使用手机浏览本页面。本作品为电脑平台设计，通常无法在手机上直接运行。",
+    "如需游玩，请将下载的文件传输至电脑并在电脑上操作。",
+  ],
+  macos: [
+    "本作品为 macOS 版，提供 .dmg 镜像文件。",
+    "双击 .dmg 文件挂载后，将游戏图标拖入「应用程序（Applications）」文件夹即可完成安装。",
+    "若首次打开提示“无法打开”，请在「系统设置 → 隐私与安全性」中点击“仍要打开”。",
+  ],
+  linux: [
+    "本作品为 Linux 版，提供可执行文件（或 .tar.gz / .tar.xz 压缩包，需先解压）。",
+    "请赋予执行权限后运行：chmod +x 文件名 && ./文件名",
+    "若双击无法启动，可右键选择「允许作为程序执行」，或在终端中进入文件所在目录执行。",
+  ],
+  archive: [
+    "本作品以压缩包形式提供，需使用解压软件（如 7-Zip）解压。",
+    "请将所有文件解压至一个单独文件夹，避免与其他作品的文件混合存放，不要将文件放在桌面。",
+    "解压完成后，打开生成的 .exe 文件即可启动游戏。",
+  ],
+};
+
+// Same classification as the legacy modal's tooltip (MfGamesEntry.vue).
+function playTypeOf(files, verKey) {
+  const names = files.map((name) => String(name).toLowerCase());
+  if (names.some((name) => name.includes("install") || name.includes("setup") || name.includes("安装"))) {
+    return "installer";
+  }
+  if (names.some((name) => name.endsWith(".exe"))) return "exe";
+  if (names.some((name) => name.endsWith(".apk"))) return "apk";
+  const key = String(verKey || "").toLowerCase();
+  if (key.includes("linux") || names.some((name) => name.includes("linux")
+    || name.endsWith(".tar.xz") || name.endsWith(".tar.gz") || name.endsWith(".tgz"))) {
+    return "linux";
+  }
+  if (key.includes("macos") || names.some((name) => name.includes("macos") || name.endsWith(".dmg"))) {
+    return "macos";
+  }
+  return "archive";
+}
+
+const playNotes = computed(() => {
+  if (props.lan !== "zh" || !props.record || props.record.kind !== "mf") return [];
+  const v = version.value;
+  if (!v || !v.downloads || v.downloads.length === 0) return [];
+  const files = (v.files || []).filter(Boolean);
+  // Java builds (.jar) had no tooltip in the legacy design either.
+  if (files.some((name) => String(name).toLowerCase().endsWith(".jar"))) return [];
+  const type = playTypeOf(files, v.verKey);
+  if (isMobile.value) return type === "apk" ? PLAY_NOTES_ZH.apkMobile : PLAY_NOTES_ZH.mobile;
+  return PLAY_NOTES_ZH[type] || PLAY_NOTES_ZH.archive;
 });
 
 // Gallery = title image first, then every showcase shot. The adapter already
@@ -220,7 +303,7 @@ const facts = computed(() => {
     rows.push({ label: t.region, value: region });
   }
   if (record.kind === "mw" && record.versionLabel) {
-    rows.push({ label: t.mw, value: record.versionLabel });
+    rows.push({ label: t.mw, value: mwVersionLabel(record.versionLabel) });
   }
   if (record.software) {
     rows.push({ label: t.madeWith, value: softwareLabel(record.software, props.lan) });
@@ -311,12 +394,15 @@ const versionLineLabel = computed(() => {
 });
 
 // The runtime line names the editor: versions like "v1.7.12" get the "SMWP"
-// prefix, while values that already start with "MW" are left as written.
-const smwpDisplayVersion = computed(() => {
-  const raw = (props.record && props.record.smwpVersion) || "";
-  if (!raw) return "";
-  return /^mw/i.test(raw.trim()) ? raw : `SMWP ${raw}`;
-});
+// prefix, while values that already start with "MW" (the old MW 4.0 / 4.4
+// line) are left as written.
+function mwVersionLabel(raw) {
+  const text = String(raw || "").trim();
+  if (!text) return "";
+  return /^mw/i.test(text) ? text : `SMWP ${text}`;
+}
+
+const smwpDisplayVersion = computed(() => mwVersionLabel(props.record && props.record.smwpVersion));
 
 const hasLinks = computed(() => {
   const links = props.record && props.record.links;
@@ -523,6 +609,8 @@ let themeObserver = null;
 
 onMounted(() => {
   document.addEventListener("keydown", onKeydown);
+  updateIsMobile();
+  window.addEventListener("resize", updateIsMobile);
   theme.value = document.documentElement.dataset.nxTheme || "light";
   themeObserver = new MutationObserver(() => {
     theme.value = document.documentElement.dataset.nxTheme || "light";
@@ -532,6 +620,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
+  window.removeEventListener("resize", updateIsMobile);
   if (releaseBack) releaseBack();
   releaseScroll();
   if (themeObserver) {
@@ -638,9 +727,10 @@ onBeforeUnmount(() => {
             </dl>
           </div>
 
-          <!-- tags -->
+          <!-- tags: MW levels' badges (bundled MW / BGM) live in the runtime
+               block instead, so the section is hidden for them -->
           <div
-            v-if="tagColors.length"
+            v-if="tagColors.length && record.kind !== 'mw'"
             class="nx-section"
           >
             <div class="nx-section-label">{{ text.tags }}</div>
@@ -789,6 +879,19 @@ onBeforeUnmount(() => {
                   <span class="nx-code">{{ copiedCode }}</span>
                   <span style="font-size:10.5px;color:var(--nx-cur);">{{ text.copied }}</span>
                 </div>
+
+                <!-- Legacy download-modal help (Chinese only): what to do with
+                     the selected build's file once it is on disk. -->
+                <div
+                  v-if="playNotes.length"
+                  class="nx-play-note"
+                >
+                  <div
+                    class="nx-section-label"
+                    style="margin-bottom: 3px;"
+                  >{{ text.playNote }}</div>
+                  <p>{{ playNotes.join("\n") }}</p>
+                </div>
               </div>
 
               <!-- The data package shares the work's download frame, but keeps
@@ -864,7 +967,7 @@ onBeforeUnmount(() => {
           >
             <div class="nx-section-label">{{ text.runtime }}</div>
             <p style="font-size:12.5px;line-height:1.6;color:var(--nx-ink-2);">
-              {{ text.requires }} {{ smwpDisplayVersion }}
+              {{ record.bundled ? text.bundled : text.requires }} {{ smwpDisplayVersion }}
             </p>
             <div
               v-if="record.smwpUrl || record.smwpDataUrl"

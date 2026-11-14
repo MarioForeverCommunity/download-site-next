@@ -67,10 +67,12 @@ const facets = computed(() => {
     makeFacet({
       key: "runtime",
       label: "运行要求",
+      // The MW requirement and the BGM note are independent: a level can ship
+      // its own MW and still need a custom BGM, so it must surface under both.
       getter: (record) => {
-        if (record.bundled) return "bundled";
-        if (record.hasBgm) return "bgm";
-        return "download";
+        const values = [record.bundled ? "bundled" : "download"];
+        if (record.hasBgm) values.push("bgm");
+        return values;
       },
       options: {
         records: list,

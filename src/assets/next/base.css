@@ -2086,6 +2086,21 @@ body.nx-body select:focus-visible {
   margin-top: 0;
 }
 
+/* The legacy download-modal help text, restored in the MF drawer (Chinese
+   readers only): a quiet paragraph under the build's download buttons. */
+.nx-play-note {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.nx-play-note p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--nx-ink-2);
+  white-space: pre-line;
+}
+
 .nx-dl {
   display: inline-flex;
   align-items: center;

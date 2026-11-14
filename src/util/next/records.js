@@ -404,9 +404,10 @@ export function buildMfRecords(entries, lan) {
         wiki: (lan === "zh" ? entry.wiki_zh_url : entry.wiki_en_url) || null,
         video: collectVideos(entry, lan),
       },
-      // Filenames are searchable, matching the legacy filter behaviour.
+      // Filenames are searchable, matching the legacy filter behaviour. A build
+      // exposes `files` (an array — one file per volume), not a single `file`.
       titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
-        ...versions.map((v) => v.file)],
+        ...versions.flatMap((version) => version.files || [])],
       authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
       raw: entry,
     };
@@ -624,8 +625,10 @@ export function buildMwRecords(entries) {
       smwpDataUrl: entry.smwp_data_url ? direct(entry.smwp_data_url) : null,
       bundled: !!entry.has_bundled_smwp,
       hasBgm: !!entry.has_bgm,
+      // `file_name` may be a list (multi-file / multi-volume builds), so each
+      // name is indexed on its own instead of being stringified as one value.
       titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
-        entry.file_name],
+        ...(Array.isArray(entry.file_name) ? entry.file_name : entry.file_name ? [entry.file_name] : [])],
       authorSearch: [authorText(entry, "zh")],
       raw: entry,
     };
