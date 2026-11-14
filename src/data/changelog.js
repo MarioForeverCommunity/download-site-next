@@ -5,8 +5,8 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
-    version: "2.6.0",
-    date: "2026-11-13",
+    version: "3.0.0-beta.0",
+    date: "2026-11-14",
     features: [
       "全新界面设计：白色主区域 + 灰色导航栏与常驻筛选面板，紧凑列表 / 卡片双视图，深浅色模式",
       "搜索拆分为两栏：标题（含别名、文件名）与作者各自独立匹配，位于页面顶部",
@@ -17,7 +17,11 @@ export const changelog = [
       "更新履历改为侧边抽屉展示（位于导航栏底部与全局设置中）",
       "全局设置新增「界面设计」项，新旧两套界面可在其中自由切换；新版界面另含密度切换与随机游戏按钮",
       "页面标题显示在主区域顶栏；页脚移入左侧导航栏；移动端导航栏收缩为菜单按钮展开",
-      "创作资源目录默认将每个 variant 单独列出，不提供合并选项"
+      "创作资源目录默认将每个 variant 单独列出，不提供合并选项",
+      "新版界面改为单页应用：点击导航栏切换页面不再刷新文档，URL 与浏览器前进 / 后退保持同步，内容区有淡入过渡而导航栏与顶栏保持不动",
+      "各作品目录页新增「目录说明」抽屉：页面原有的说明文档可从顶栏按钮展开阅读，其中的致谢、音乐包放置说明等内容原地展开为卡片",
+      "目录页显示数据「最后更新」时间；结果栏横跨筛选栏上方，筛选面板与结果布局相应调整",
+      "移动端筛选面板改为右侧抽屉，左侧导航同样改为抽屉；展开时锁定页面滚动并由遮罩拦截点击"
     ],
     features_en: [
       "A completely new interface: white content canvas with a grey navigation rail and a persistent filter sidebar, list/card views and dark mode",
@@ -47,7 +51,12 @@ export const changelog = [
       "提取码改为点击下载按钮即复制，不再单独提供复制按钮",
       "Softendo 各版本下载按钮按原设计的配色方案着色（安装版蓝、绿色版绿/紫/红等）",
       "版本选择的选中胶囊改用主题蓝色；原版 MF 表格下载列左对齐",
-      "左侧栏页脚补回构建时间；顶栏长标题换行显示而非省略"
+      "左侧栏页脚补回构建时间；顶栏长标题换行显示而非省略",
+      "markdown 列表、表格、引用块补齐上下间距，不再紧贴前后段落",
+      "目录页「最后更新」左对齐显示在结果栏中，不再居中浮动",
+      "Softendo 目录的「系列」列支持排序，可按系列归组浏览",
+      "移动端中文版 Softendo 页使用侧栏短标题，避免顶栏标题过长挤占按钮",
+      "移动端抽屉与侧边栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮住筛选栏末尾与侧边栏底部的版本号、构建时间"
     ],
     improvements_en: [
       "Narrowed the title column so long filenames no longer crowd the metadata columns",
@@ -65,7 +74,12 @@ export const changelog = [
       "Extraction codes are copied by clicking the download button instead of a separate copy control",
       "Softendo build buttons use the legacy colour scheme (blue installer, green/purple/red portables, etc.)",
       "The selected version pill uses the theme accent; the original-MF table's download column is left-aligned",
-      "The rail footer shows the build time again; long topbar titles wrap instead of truncating"
+      "The rail footer shows the build time again; long topbar titles wrap instead of truncating",
+      "Markdown lists, tables and blockquotes gained the vertical spacing they were missing, no longer butting against the surrounding paragraphs",
+      "The catalog last-updated stamp is left-aligned in the results bar instead of floating in the middle",
+      "The Softendo catalog's Series column is sortable, so the catalog can be browsed grouped by series",
+      "The Chinese Softendo page uses the short sidebar title on phones, so the topbar title no longer crowds the action buttons",
+      "Phone drawers and the rail now size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers the end of the filter list or the version and build time in the rail footer"
     ],
     misc: [
       "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试",

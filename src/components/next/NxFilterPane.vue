@@ -24,6 +24,13 @@ const props = defineProps({
     type: String,
     required: true
   },
+  // Phone-only: the pane is a right-hand drawer and this says whether it is
+  // slid in. Applied on the pane's own root because a class passed from the
+  // parent is merged onto that element, which already carries `nx-pane`.
+  open: {
+    type: Boolean,
+    default: false
+  },
   showTags: {
     type: Boolean,
     default: true
@@ -120,6 +127,7 @@ function selectSingle(facet, value) {
 <template>
   <aside
     class="nx-pane"
+    :class="{ 'is-open': open }"
     :aria-label="lan === 'zh' ? '筛选' : 'Filters'"
   >
     <!-- single-choice facets: region, platform/engine, classification.

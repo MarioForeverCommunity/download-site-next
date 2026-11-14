@@ -4,8 +4,7 @@
 // Every variant is its own row (no collapse option): variants are separately
 // downloadable builds, and hiding them behind a picker buried most of the
 // catalog.
-import { ref, computed, onMounted } from "vue";
-import NxShell from "../../../components/next/NxShell.vue";
+import { ref, computed, onMounted, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import { getDefaultSort } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
@@ -14,6 +13,7 @@ import { useCatalog } from "../../../util/useCatalog.js";
 import { buildAssetRecords, makeFacet } from "../../../util/next/records.js";
 import assetsDoc from "../../../markdown/assets.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
+import { publishShell } from "../../../util/next/shellStore.js";
 
 const lan = ref("zh");
 const pageId = "assets";
@@ -99,33 +99,40 @@ document.title = title.value;
 const doc = computed(() => assetsDoc);
 const docUpdated = ref("");
 getCatalogLastUpdated("assets").then((v) => { docUpdated.value = v || ""; });
+
+// The app shell is rendered once by the SPA root; this page only publishes
+// the parts that differ (title, write-up, search model) plus its own controls.
+// A watchEffect keeps the shell in sync when the language changes or the
+// write-up's date arrives after the first render.
+watchEffect(() => {
+  publishShell({
+    pageId: "assets",
+    title: title.value,
+    lan: lan.value,
+    doc: doc.value,
+    docTitle: title.value,
+    docUpdated: docUpdated.value,
+    search: catalog,
+  });
+});
 </script>
 
 <template>
-  <NxShell
-    :page-id="pageId"
+
+  <NxCatalog
+    v-if="!loading"
+    :catalog="catalog"
+    :facets="facets"
+    :sorters="sorters"
     :lan="lan"
-    :title="title"
-    :doc="doc"
-    :doc-title="title"
-    :doc-updated="docUpdated"
-    :search="catalog"
+    :show-tags="false"
+    :columns="{ name: '资源', author: '作者', version: '版本', date: '日期' }"
+    :updated="docUpdated"
+  />
+  <div
+    v-else
+    class="nx-loading"
   >
-    <NxCatalog
-      v-if="!loading"
-      :catalog="catalog"
-      :facets="facets"
-      :sorters="sorters"
-      :lan="lan"
-      :show-tags="false"
-      :columns="{ name: '资源', author: '作者', version: '版本', date: '日期' }"
-      :updated="docUpdated"
-    />
-    <div
-      v-else
-      class="nx-loading"
-    >
-      正在载入创作资源…
-    </div>
-  </NxShell>
+    正在载入创作资源…
+  </div>
 </template>

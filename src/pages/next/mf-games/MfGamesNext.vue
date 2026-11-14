@@ -4,8 +4,7 @@
 // Same data pipeline as the legacy page (YAML -> ensureMfList -> adapter), and
 // the same platform/software rules, so the two designs can never disagree about
 // what a record is. Only presentation and the filter interaction differ.
-import { ref, computed, onMounted } from "vue";
-import NxShell from "../../../components/next/NxShell.vue";
+import { ref, computed, onMounted, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
 import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort } from "../../../util/Language.js";
@@ -17,6 +16,7 @@ import { buildMfRecords, expandMfRecord, makeFacet } from "../../../util/next/re
 import mfGamesZh from "../../../markdown/mf-games-zh.md";
 import mfGamesEn from "../../../markdown/mf-games-en.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
+import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
 
 const lan = ref(getLanguage());
 const pageId = "mf-games";
@@ -112,6 +112,14 @@ const catalog = useCatalog({
   },
 });
 
+// The dice button lives in the shell, so the page exposes a handler that reaches
+// its catalog instance.
+const catalogRef = ref(null);
+
+function randomGame() {
+  if (catalogRef.value) catalogRef.value.randomRecord();
+}
+
 async function load(language) {
   loading.value = true;
   try {
@@ -149,87 +157,99 @@ const docEn = mfGamesEn;
 const doc = computed(() => (lan.value === "zh" ? docZh : docEn));
 const docUpdated = ref("");
 getCatalogLastUpdated("mfGames").then((v) => { docUpdated.value = v || ""; });
+
+// The app shell is rendered once by the SPA root; this page only publishes
+// the parts that differ (title, write-up, search model) plus its own controls.
+// A watchEffect keeps the shell in sync when the language changes or the
+// write-up's date arrives after the first render.
+watchEffect(() => {
+  publishShell({
+    pageId: "mf-games",
+    title: title.value,
+    lan: lan.value,
+    doc: doc.value,
+    docTitle: title.value,
+    docUpdated: docUpdated.value,
+    search: catalog,
+    showRandom: true,
+  });
+});
+publishShellHandlers({
+  changeLanZh: pageSetLanguageZh,
+  changeLanEn: pageSetLanguageEn,
+  random: randomGame,
+});
 </script>
 
 <template>
-  <NxShell
-    :page-id="pageId"
+
+  <NxCatalog
+    ref="catalogRef"
+    v-if="!loading"
+    :catalog="catalog"
+    :facets="facets"
+    :sorters="sorters"
     :lan="lan"
-    :title="title"
-    :doc="doc"
-    :doc-title="title"
-    :doc-updated="docUpdated"
-    :search="catalog"
-    @change-lan-zh="pageSetLanguageZh"
-    @change-lan-en="pageSetLanguageEn"
+    show-random
+    :updated="docUpdated"
+    :columns="{
+      name: lan === 'zh' ? '作品' : 'Title',
+      author: lan === 'zh' ? '作者' : 'Author',
+      // Collapsed rows show the newest version only, so the column is labelled
+      // accordingly; expanding every version makes it a plain version column.
+      version: lan === 'zh'
+        ? (expandVersions ? '版本' : '最新版本')
+        : (expandVersions ? 'Version' : 'Latest'),
+      date: lan === 'zh' ? '日期' : 'Date',
+      tags: lan === 'zh' ? '分类' : 'Class',
+    }"
   >
-    <NxCatalog
-      v-if="!loading"
-      :catalog="catalog"
-      :facets="facets"
-      :sorters="sorters"
-      :lan="lan"
-      show-random
-      :updated="docUpdated"
-      :columns="{
-        name: lan === 'zh' ? '作品' : 'Title',
-        author: lan === 'zh' ? '作者' : 'Author',
-        // Collapsed rows show the newest version only, so the column is labelled
-        // accordingly; expanding every version makes it a plain version column.
-        version: lan === 'zh'
-          ? (expandVersions ? '版本' : '最新版本')
-          : (expandVersions ? 'Version' : 'Latest'),
-        date: lan === 'zh' ? '日期' : 'Date',
-        tags: lan === 'zh' ? '分类' : 'Class',
-      }"
-    >
-      <template #pane-extras>
-        <section class="nx-pane-section">
-          <h4><span>{{ lan === "zh" ? "列表选项" : "List options" }}</span></h4>
-          <div class="nx-checks">
-            <button
-              type="button"
-              class="nx-check"
-              :class="{ on: expandVersions }"
-              :aria-pressed="expandVersions"
-              @click="expandVersions = !expandVersions"
-            >
-              <span
-                class="nx-check-box"
-                aria-hidden="true"
-              ><NxIcon
-                v-if="expandVersions"
-                name="check"
-                :size="9"
-              /></span>
-              <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
-            </button>
-            <button
-              type="button"
-              class="nx-check"
-              :class="{ on: catalog.onlyWithImage.value }"
-              :aria-pressed="catalog.onlyWithImage.value"
-              @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
-            >
-              <span
-                class="nx-check-box"
-                aria-hidden="true"
-              ><NxIcon
-                v-if="catalog.onlyWithImage.value"
-                name="check"
-                :size="9"
-              /></span>
-              <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with artwork" }}</span>
-            </button>
-          </div>
-        </section>
-      </template>
-    </NxCatalog>
-    <div
-      v-else
-      class="nx-loading"
-    >
-      {{ lan === "zh" ? "正在载入作品目录…" : "Loading the catalog…" }}
-    </div>
-  </NxShell>
+    <template #pane-extras>
+      <section class="nx-pane-section">
+        <h4><span>{{ lan === "zh" ? "列表选项" : "List options" }}</span></h4>
+        <div class="nx-checks">
+          <button
+            type="button"
+            class="nx-check"
+            :class="{ on: expandVersions }"
+            :aria-pressed="expandVersions"
+            @click="expandVersions = !expandVersions"
+          >
+            <span
+              class="nx-check-box"
+              aria-hidden="true"
+            ><NxIcon
+              v-if="expandVersions"
+              name="check"
+              :size="9"
+            /></span>
+            <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
+          </button>
+          <button
+            type="button"
+            class="nx-check"
+            :class="{ on: catalog.onlyWithImage.value }"
+            :aria-pressed="catalog.onlyWithImage.value"
+            @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
+          >
+            <span
+              class="nx-check-box"
+              aria-hidden="true"
+            ><NxIcon
+              v-if="catalog.onlyWithImage.value"
+              name="check"
+              :size="9"
+            /></span>
+            <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with artwork" }}</span>
+          </button>
+        </div>
+      </section>
+    </template>
+  </NxCatalog>
+  <div
+    v-else
+    class="nx-loading"
+  >
+    {{ lan === "zh" ? "正在载入作品目录…" : "Loading the catalog…" }}
+  </div>
 </template>

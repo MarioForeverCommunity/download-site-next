@@ -4,13 +4,14 @@
 // Every redesigned catalog page mounts this and supplies adapter-built records,
 // so sorting, filtering, view switching and the drawer behave identically across
 // fangames, MW levels, assets and Softendo.
-import { computed, onMounted, watch, onBeforeUnmount } from "vue";
+import { computed, onMounted, watch, onBeforeUnmount, ref } from "vue";
 import NxFilterPane from "./NxFilterPane.vue";
 import NxRow from "./NxRow.vue";
 import NxCard from "./NxCard.vue";
 import NxDetail from "./NxDetail.vue";
 import NxIcon from "./NxIcon.vue";
 import { setViewDensity } from "../../util/Theme.js";
+import { lockScroll } from "../../util/next/scrollLock.js";
 
 const props = defineProps({
   catalog: {
@@ -216,6 +217,38 @@ const searchPills = computed(() => {
 
 const allPills = computed(() => [...searchPills.value, ...props.catalog.activeFacets.value]);
 
+// On a phone the filter pane becomes a right-hand drawer instead of a block
+// above the results: a full-width column of facets pushed the catalog itself
+// below the fold. The toggle lives in the results bar and is phone-only.
+const filtersOpen = ref(false);
+
+function toggleFilters() {
+  filtersOpen.value = !filtersOpen.value;
+}
+
+function closeFilters() {
+  filtersOpen.value = false;
+}
+
+function onFilterKeydown(event) {
+  if (event.key === "Escape" && filtersOpen.value) filtersOpen.value = false;
+}
+
+// While the filter drawer is open the page behind it must not scroll or take
+// pointer input: the scrim already covers the content, and this stops the wheel
+// from scrolling the catalog underneath.
+watch(filtersOpen, (open) => {
+  lockScroll(open);
+});
+
+onMounted(() => document.addEventListener("keydown", onFilterKeydown));
+onBeforeUnmount(() => {
+  document.removeEventListener("keydown", onFilterKeydown);
+  // A navigation can swap this component out while the drawer is open; without
+  // this the page would stay scroll-locked.
+  if (filtersOpen.value) lockScroll(false);
+});
+
 function randomRecord() {
   const list = props.catalog.filtered.value;
   if (!list.length) return;
@@ -229,218 +262,245 @@ defineExpose({ randomRecord, open });
 
 <template>
   <div class="nx-content">
-    <NxFilterPane
-      :catalog="catalog"
-      :facets="facets"
-      :lan="lan"
-      :show-tags="showTags"
-      :show-date="showDate"
-    >
-      <template #extras>
-        <slot name="pane-extras" />
-      </template>
-    </NxFilterPane>
+    <!-- results bar: count, sorting, active filters, view + random -->
+    <div class="nx-results-bar">
+      <span
+        class="nx-results-count"
+        v-html="text.count(catalog.count.value, catalog.total.value, catalog.isFiltered.value)"
+      />
 
-    <div class="nx-results">
-      <!-- results bar: count, sorting, active filters, view + random -->
-      <div class="nx-results-bar">
-        <span
-          class="nx-results-count"
-          v-html="text.count(catalog.count.value, catalog.total.value, catalog.isFiltered.value)"
-        />
-
-        <div class="nx-sort-field">
-          <button
-            v-for="field in availableSorts"
-            :key="field"
-            type="button"
-            class="nx-sort-btn"
-            :class="{ on: catalog.sort.value.field === field }"
-            @click="catalog.toggleSort(field)"
-          >
-            {{ columnLabel(field, field) }}
-            <span
-              v-if="sortArrow(field)"
-              class="nx-th-arrow"
-              style="font-size:8px;"
-            >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
-          </button>
-        </div>
-
-        <div
-          v-if="allPills.length"
-          class="nx-active-filters"
+      <div class="nx-sort-field">
+        <button
+          v-for="field in availableSorts"
+          :key="field"
+          type="button"
+          class="nx-sort-btn"
+          :class="{ on: catalog.sort.value.field === field }"
+          @click="catalog.toggleSort(field)"
         >
+          {{ columnLabel(field, field) }}
           <span
-            v-for="(pill, index) in allPills"
-            :key="`${pill.type}-${pill.key}-${pill.value || ''}-${index}`"
-            class="nx-filter-pill"
-          >
-            <span
-              class="nx-filter-pill-label"
-              :title="pill.label"
-            >{{ pill.label }}</span>
-            <button
-              type="button"
-              :aria-label="text.clear"
-              @click="removeFilter(pill)"
-            >×</button>
-          </span>
-          <button
-            type="button"
-            class="nx-sort-btn"
-            @click="catalog.clearAll()"
-          >{{ text.reset }}</button>
-        </div>
-
-        <!-- Last updated for the catalog's data, so the stamp is visible without
-             opening the description drawer or reading the topbar. -->
-        <span
-          v-if="updated"
-          class="nx-results-updated nx-num"
-        >{{ lan === "zh" ? "最后更新：" : "Last updated: " }}{{ updated }}</span>
-
-        <!-- random sits immediately left of the view switch, per review -->
-        <div class="nx-results-actions">
-          <button
-            v-if="showRandom"
-            type="button"
-            class="nx-icon-btn"
-            :aria-label="text.random"
-            :title="text.random"
-            @click="randomRecord()"
-          >
-            <NxIcon
-              name="dice"
-              :size="15"
-            />
-          </button>
-          <button
-            v-if="showCards"
-            type="button"
-            class="nx-icon-btn"
-            :aria-label="catalog.view.value === 'cards' ? text.listView : text.cardView"
-            :title="catalog.view.value === 'cards' ? text.listView : text.cardView"
-            @click="catalog.toggleView()"
-          >
-            <NxIcon
-              :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
-              :size="14"
-            />
-          </button>
-        </div>
+            v-if="sortArrow(field)"
+            class="nx-th-arrow"
+            style="font-size:8px;"
+          >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
+        </button>
       </div>
 
       <div
-        v-if="catalog.filtered.value.length === 0"
-        class="nx-empty"
+        v-if="allPills.length"
+        class="nx-active-filters"
       >
-        <div class="nx-empty-title">{{ emptyTitle || text.emptyTitle }}</div>
-        <p>{{ emptyHint || text.emptyHint }}</p>
+        <span
+          v-for="(pill, index) in allPills"
+          :key="`${pill.type}-${pill.key}-${pill.value || ''}-${index}`"
+          class="nx-filter-pill"
+        >
+          <span
+            class="nx-filter-pill-label"
+            :title="pill.label"
+          >{{ pill.label }}</span>
+          <button
+            type="button"
+            :aria-label="text.clear"
+            @click="removeFilter(pill)"
+          >×</button>
+        </span>
         <button
           type="button"
+          class="nx-sort-btn"
           @click="catalog.clearAll()"
-        >{{ text.clear }}</button>
+        >{{ text.reset }}</button>
       </div>
 
-      <div
-        v-else-if="catalog.view.value === 'cards' && showCards"
-        class="nx-cards"
-      >
-        <NxCard
-          v-for="record in catalog.filtered.value"
-          :key="record.id"
-          :record="record"
-          :lan="lan"
-          :active="record.id === catalog.activeId.value"
-          :show-tags="showTags"
-          :show-date="showDate"
-          :show-actions="showActions"
-          @open="open"
-        />
-      </div>
+      <!-- Last updated for the catalog's data, so the stamp is visible without
+               opening the description drawer or reading the topbar. -->
+      <span
+        v-if="updated"
+        class="nx-results-updated nx-num"
+      >{{ lan === "zh" ? "最后更新：" : "Last updated: " }}{{ updated }}</span>
 
-      <div
-        v-else
-        class="nx-list"
-      >
-        <div
-          class="nx-row nx-row-head"
-          :class="{ 'is-softendo': !showDate, 'is-no-tags': !showTags, 'is-no-actions': !showActions }"
+      <!-- random sits immediately left of the view switch, per review -->
+      <div class="nx-results-actions">
+        <!-- Phones only: opens the filter drawer. On desktop the pane is always
+             visible beside the results, so the button is hidden. -->
+        <button
+          type="button"
+          class="nx-icon-btn nx-filter-toggle"
+          :class="{ 'is-on': filtersOpen }"
+          :aria-expanded="filtersOpen"
+          :aria-label="text.filters"
+          :title="text.filters"
+          @click="toggleFilters()"
         >
-          <button
-            type="button"
-            class="nx-th"
-            :class="{ on: catalog.sort.value.field === 'name' }"
-            @click="catalog.toggleSort('name')"
-          >
-            {{ columnLabel("name", text.name) }}
-            <span
-              v-if="sortArrow('name')"
-              class="nx-th-arrow"
-            >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
-          </button>
-
-          <button
-            v-if="availableSorts.includes('author')"
-            type="button"
-            class="nx-th"
-            :class="{ on: catalog.sort.value.field === 'author' }"
-            @click="catalog.toggleSort('author')"
-          >
-            {{ columnLabel("author", text.author) }}
-            <span
-              v-if="sortArrow('author')"
-              class="nx-th-arrow"
-            >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
-          </button>
-          <span v-else>{{ columnLabel("author", text.author) }}</span>
-
-          <span>{{ columnLabel("version", text.version) }}</span>
-          <!-- The date column is optional (the Softendo catalog has none), so its
-               header must not be rendered when the page hides it. -->
-          <template v-if="showDate">
-            <button
-              v-if="availableSorts.includes('date')"
-              type="button"
-              class="nx-th"
-              :class="{ on: catalog.sort.value.field === 'date' }"
-              @click="catalog.toggleSort('date')"
-            >
-              {{ columnLabel("date", text.date) }}
-              <span
-                v-if="sortArrow('date')"
-                class="nx-th-arrow"
-              >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
-            </button>
-            <span v-else>{{ columnLabel("date", text.date) }}</span>
-          </template>
-
-          <span
-            v-if="showTags"
-            class="nx-row-tags-col"
-          >{{ columnLabel("tags", text.tags) }}</span>
-          <span v-if="showActions" />
-        </div>
-
-        <NxRow
-          v-for="record in catalog.filtered.value"
-          :key="record.id"
-          :record="record"
-          :lan="lan"
-          :active="record.id === catalog.activeId.value"
-          :show-tags="showTags"
-          :show-date="showDate"
-          :show-actions="showActions"
-          @open="open"
-        />
+          <NxIcon
+            name="filter"
+            :size="15"
+          />
+        </button>
+        <button
+          v-if="showRandom"
+          type="button"
+          class="nx-icon-btn"
+          :aria-label="text.random"
+          :title="text.random"
+          @click="randomRecord()"
+        >
+          <NxIcon
+            name="dice"
+            :size="15"
+          />
+        </button>
+        <button
+          v-if="showCards"
+          type="button"
+          class="nx-icon-btn"
+          :aria-label="catalog.view.value === 'cards' ? text.listView : text.cardView"
+          :title="catalog.view.value === 'cards' ? text.listView : text.cardView"
+          @click="catalog.toggleView()"
+        >
+          <NxIcon
+            :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
+            :size="14"
+          />
+        </button>
       </div>
     </div>
 
-    <NxDetail
-      :record="current"
-      :lan="lan"
-      @close="close"
-    />
+    <div class="nx-content-main">
+      <!-- Scrim behind the phone-only filter drawer -->
+      <button
+        v-if="filtersOpen"
+        type="button"
+        class="nx-scrim nx-filter-scrim"
+        :aria-label="text.close"
+        @click="closeFilters()"
+      />
+      <NxFilterPane
+        :open="filtersOpen"
+        :catalog="catalog"
+        :facets="facets"
+        :lan="lan"
+        :show-tags="showTags"
+        :show-date="showDate"
+      >
+        <template #extras>
+          <slot name="pane-extras" />
+        </template>
+      </NxFilterPane>
+
+      <div class="nx-results">
+        <div
+          v-if="catalog.filtered.value.length === 0"
+          class="nx-empty"
+        >
+          <div class="nx-empty-title">{{ emptyTitle || text.emptyTitle }}</div>
+          <p>{{ emptyHint || text.emptyHint }}</p>
+          <button
+            type="button"
+            @click="catalog.clearAll()"
+          >{{ text.clear }}</button>
+        </div>
+
+        <div
+          v-else-if="catalog.view.value === 'cards' && showCards"
+          class="nx-cards"
+        >
+          <NxCard
+            v-for="record in catalog.filtered.value"
+            :key="record.id"
+            :record="record"
+            :lan="lan"
+            :active="record.id === catalog.activeId.value"
+            :show-tags="showTags"
+            :show-date="showDate"
+            :show-actions="showActions"
+            @open="open"
+          />
+        </div>
+
+        <div
+          v-else
+          class="nx-list"
+        >
+          <div
+            class="nx-row nx-row-head"
+            :class="{ 'is-softendo': !showDate, 'is-no-tags': !showTags, 'is-no-actions': !showActions }"
+          >
+            <button
+              type="button"
+              class="nx-th"
+              :class="{ on: catalog.sort.value.field === 'name' }"
+              @click="catalog.toggleSort('name')"
+            >
+              {{ columnLabel("name", text.name) }}
+              <span
+                v-if="sortArrow('name')"
+                class="nx-th-arrow"
+              >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
+            </button>
+
+            <button
+              v-if="availableSorts.includes('author')"
+              type="button"
+              class="nx-th"
+              :class="{ on: catalog.sort.value.field === 'author' }"
+              @click="catalog.toggleSort('author')"
+            >
+              {{ columnLabel("author", text.author) }}
+              <span
+                v-if="sortArrow('author')"
+                class="nx-th-arrow"
+              >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
+            </button>
+            <span v-else>{{ columnLabel("author", text.author) }}</span>
+
+            <span>{{ columnLabel("version", text.version) }}</span>
+            <!-- The date column is optional (the Softendo catalog has none), so its
+               header must not be rendered when the page hides it. -->
+            <template v-if="showDate">
+              <button
+                v-if="availableSorts.includes('date')"
+                type="button"
+                class="nx-th"
+                :class="{ on: catalog.sort.value.field === 'date' }"
+                @click="catalog.toggleSort('date')"
+              >
+                {{ columnLabel("date", text.date) }}
+                <span
+                  v-if="sortArrow('date')"
+                  class="nx-th-arrow"
+                >{{ catalog.sort.value.asc ? "▲" : "▼" }}</span>
+              </button>
+              <span v-else>{{ columnLabel("date", text.date) }}</span>
+            </template>
+
+            <span
+              v-if="showTags"
+              class="nx-row-tags-col"
+            >{{ columnLabel("tags", text.tags) }}</span>
+            <span v-if="showActions" />
+          </div>
+
+          <NxRow
+            v-for="record in catalog.filtered.value"
+            :key="record.id"
+            :record="record"
+            :lan="lan"
+            :active="record.id === catalog.activeId.value"
+            :show-tags="showTags"
+            :show-date="showDate"
+            :show-actions="showActions"
+            @open="open"
+          />
+        </div>
+      </div>
+
+      <NxDetail
+        :record="current"
+        :lan="lan"
+        @close="close"
+      />
+    </div>
   </div>
 </template>

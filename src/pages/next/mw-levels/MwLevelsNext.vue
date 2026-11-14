@@ -4,8 +4,7 @@
 // Chinese-only, matching the legacy page (config.js `show_en: false`).
 // No tag filter: MW entries carry only "专用 MW" / "BGM" runtime flags, which
 // the 运行要求 facet already expresses, so a second tag filter would duplicate it.
-import { ref, computed, onMounted } from "vue";
-import NxShell from "../../../components/next/NxShell.vue";
+import { ref, computed, onMounted, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
 import { getDefaultSort } from "../../../util/Language.js";
@@ -16,6 +15,7 @@ import { useCatalog } from "../../../util/useCatalog.js";
 import { buildMwRecords, makeFacet, distinctValues } from "../../../util/next/records.js";
 import mwLevelsZh from "../../../markdown/mw-levels-zh.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
+import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
 
 const lan = ref("zh");
 const pageId = "mw-levels";
@@ -101,6 +101,14 @@ const catalog = useCatalog({
   labels: { year: "年份 ", range: "日期 " },
 });
 
+// The dice button lives in the shell, so the page exposes a handler that reaches
+// its catalog instance.
+const catalogRef = ref(null);
+
+function randomGame() {
+  if (catalogRef.value) catalogRef.value.randomRecord();
+}
+
 onMounted(async () => {
   try {
     const [list] = await Promise.all([readList("list-mw.yaml"), loadImageIndex().catch(() => null)]);
@@ -119,59 +127,71 @@ document.title = title.value;
 const doc = computed(() => mwLevelsZh);
 const docUpdated = ref("");
 getCatalogLastUpdated("mwLevels").then((v) => { docUpdated.value = v || ""; });
+
+// The app shell is rendered once by the SPA root; this page only publishes
+// the parts that differ (title, write-up, search model) plus its own controls.
+// A watchEffect keeps the shell in sync when the language changes or the
+// write-up's date arrives after the first render.
+watchEffect(() => {
+  publishShell({
+    pageId: "mw-levels",
+    title: title.value,
+    lan: lan.value,
+    doc: doc.value,
+    docTitle: title.value,
+    docUpdated: docUpdated.value,
+    search: catalog,
+    showRandom: true,
+  });
+});
+publishShellHandlers({
+  random: randomGame,
+});
 </script>
 
 <template>
-  <NxShell
-    :page-id="pageId"
+
+  <NxCatalog
+    ref="catalogRef"
+    v-if="!loading"
+    :catalog="catalog"
+    :facets="facets"
+    :sorters="sorters"
     :lan="lan"
-    :title="title"
-    :doc="doc"
-    :doc-title="title"
-    :doc-updated="docUpdated"
-    :search="catalog"
+    show-random
+    :show-tags="false"
+    :updated="docUpdated"
+    :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
   >
-    <NxCatalog
-      v-if="!loading"
-      :catalog="catalog"
-      :facets="facets"
-      :sorters="sorters"
-      :lan="lan"
-      show-random
-      :show-tags="false"
-      :updated="docUpdated"
-      :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
-    >
-      <template #pane-extras>
-        <section class="nx-pane-section">
-          <h4><span>列表选项</span></h4>
-          <div class="nx-checks">
-            <button
-              type="button"
-              class="nx-check"
-              :class="{ on: catalog.onlyWithImage.value }"
-              :aria-pressed="catalog.onlyWithImage.value"
-              @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
-            >
-              <span
-                class="nx-check-box"
-                aria-hidden="true"
-              ><NxIcon
-                v-if="catalog.onlyWithImage.value"
-                name="check"
-                :size="9"
-              /></span>
-              <span>仅显示有图片的作品</span>
-            </button>
-          </div>
-        </section>
-      </template>
-    </NxCatalog>
-    <div
-      v-else
-      class="nx-loading"
-    >
-      正在载入关卡目录…
-    </div>
-  </NxShell>
+    <template #pane-extras>
+      <section class="nx-pane-section">
+        <h4><span>列表选项</span></h4>
+        <div class="nx-checks">
+          <button
+            type="button"
+            class="nx-check"
+            :class="{ on: catalog.onlyWithImage.value }"
+            :aria-pressed="catalog.onlyWithImage.value"
+            @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
+          >
+            <span
+              class="nx-check-box"
+              aria-hidden="true"
+            ><NxIcon
+              v-if="catalog.onlyWithImage.value"
+              name="check"
+              :size="9"
+            /></span>
+            <span>仅显示有图片的作品</span>
+          </button>
+        </div>
+      </section>
+    </template>
+  </NxCatalog>
+  <div
+    v-else
+    class="nx-loading"
+  >
+    正在载入关卡目录…
+  </div>
 </template>

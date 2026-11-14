@@ -1,7 +1,6 @@
 <script setup>
 // Softendo / Buziol / Banesoft games catalog — redesigned.
-import { ref, computed, onMounted } from "vue";
-import NxShell from "../../../components/next/NxShell.vue";
+import { ref, computed, onMounted, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
@@ -13,6 +12,7 @@ import { normalizeSoftendoList } from "../../../util/SoftendoUtil.js";
 import softendoZh from "../../../markdown/softendo-zh.md";
 import softendoEn from "../../../markdown/softendo-en.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
+import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
 
 const lan = ref(getLanguage());
 const pageId = "softendo";
@@ -74,6 +74,10 @@ const facets = computed(() => {
 
 const sorters = [
   { field: "name", compare: (a, b) => String(a.name).localeCompare(String(b.name)) },
+  // The "系列" column shows `author` (the series a game belongs to), so the
+  // header can be made sortable with a matching comparator. Sorting by series
+  // groups the catalog by family, which is how visitors browse it.
+  { field: "author", compare: (a, b) => String(a.author || "").localeCompare(String(b.author || "")) },
   // No date sorter: Softendo entries have no release date, only year ranges,
   // which the "年份" column already shows.
 ];
@@ -135,44 +139,53 @@ const docEn = softendoEn;
 const doc = computed(() => (lan.value === "zh" ? docZh : docEn));
 const docUpdated = ref("");
 getCatalogLastUpdated("softendo").then((v) => { docUpdated.value = v || ""; });
+
+// The app shell is rendered once by the SPA root; this page only publishes
+// the parts that differ (title, write-up, search model) plus its own controls.
+// A watchEffect keeps the shell in sync when the language changes or the
+// write-up's date arrives after the first render.
+watchEffect(() => {
+  publishShell({
+    pageId: "softendo",
+    title: title.value,
+    lan: lan.value,
+    doc: doc.value,
+    docTitle: title.value,
+    docUpdated: docUpdated.value,
+    search: catalog,
+    showRandom: true,
+  });
+});
+publishShellHandlers({
+  changeLanZh: pageSetLanguageZh,
+  changeLanEn: pageSetLanguageEn,
+  random: randomGame,
+});
 </script>
 
 <template>
-  <NxShell
-    :page-id="pageId"
+
+  <NxCatalog
+    v-if="!loading"
+    ref="catalogRef"
+    :catalog="catalog"
+    :facets="facets"
+    :sorters="sorters"
     :lan="lan"
-    :title="title"
-    :doc="doc"
-    :doc-title="title"
-    :doc-updated="docUpdated"
-    :search="catalog"
-    show-random
-    @change-lan-zh="pageSetLanguageZh"
-    @change-lan-en="pageSetLanguageEn"
-    @random="randomGame"
+    :show-date="false"
+    :show-actions="false"
+    :columns="{
+      name: lan === 'zh' ? '游戏' : 'Game',
+      author: lan === 'zh' ? '系列' : 'Series',
+      version: lan === 'zh' ? '年份' : 'Years',
+      tags: lan === 'zh' ? '类型' : 'Genres',
+    }"
+    :updated="docUpdated"
+  />
+  <div
+    v-else
+    class="nx-loading"
   >
-    <NxCatalog
-      v-if="!loading"
-      ref="catalogRef"
-      :catalog="catalog"
-      :facets="facets"
-      :sorters="sorters"
-      :lan="lan"
-      :show-date="false"
-      :show-actions="false"
-      :columns="{
-        name: lan === 'zh' ? '游戏' : 'Game',
-        author: lan === 'zh' ? '系列' : 'Series',
-        version: lan === 'zh' ? '年份' : 'Years',
-        tags: lan === 'zh' ? '类型' : 'Genres',
-      }"
-      :updated="docUpdated"
-    />
-    <div
-      v-else
-      class="nx-loading"
-    >
-      {{ lan === "zh" ? "正在载入游戏目录…" : "Loading the catalog…" }}
-    </div>
-  </NxShell>
+    {{ lan === "zh" ? "正在载入游戏目录…" : "Loading the catalog…" }}
+  </div>
 </template>

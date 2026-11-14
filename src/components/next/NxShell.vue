@@ -19,6 +19,7 @@ import ChangelogDrawer from "./ChangelogDrawer.vue";
 import NxDocDrawer from "./NxDocDrawer.vue";
 import NxSettings from "./NxSettings.vue";
 import NxIcon from "./NxIcon.vue";
+import { lockScroll } from "../../util/next/scrollLock.js";
 
 const props = defineProps({
   pageId: {
@@ -168,6 +169,12 @@ const rootRef = ref(null);
 // Narrow screens collapse the rail into a toggleable panel.
 const railOpen = ref(false);
 
+// The rail becomes an off-canvas drawer on phones. While it is open the page
+// behind must not scroll, exactly like the other overlays.
+watch(railOpen, (open) => {
+  lockScroll(open);
+});
+
 function toggleMenu(name) {
   openMenu.value = openMenu.value === name ? null : name;
 }
@@ -229,6 +236,12 @@ const pageTitle = computed(() => {
   if (isNarrow.value && displayLan.value !== "zh" && entry) {
     return label(entry, "option");
   }
+  // The Softendo catalog is the one page whose Chinese title is long enough to
+  // crowd the phone topbar (the others are already short), so it uses the
+  // sidebar name there too.
+  if (isNarrow.value && entry && entry.id === "softendo") {
+    return label(entry, "option");
+  }
   if (props.title) return props.title;
   return entry ? label(entry, "title") : "";
 });
@@ -269,6 +282,18 @@ watch(showChangelog, (open) => {
     class="nx-root"
     :class="{ 'rail-open': railOpen }"
   >
+    <!-- Scrim for the phone-only rail drawer: covers the page, dims it and
+         takes the clicks that would otherwise reach the content behind. -->
+    <Transition name="nx-fade">
+      <button
+        v-if="railOpen"
+        type="button"
+        class="nx-scrim nx-rail-scrim"
+        :aria-label="text.menu"
+        @click="railOpen = false"
+      />
+    </Transition>
+
     <!-- left navigation rail; on narrow screens it collapses behind the
          topbar's menu button -->
     <aside class="nx-rail">
@@ -526,20 +551,10 @@ watch(showChangelog, (open) => {
         </div>
       </header>
 
-      <!-- Only the content area animates on a page change. The rail, the topbar
-           and the drawers belong to the shell and stay put, so a navigation
-           must not fade them (they are the one stable frame of reference). -->
-      <Transition
-        name="nx-content"
-        mode="out-in"
-      >
-        <div
-          :key="pageId"
-          class="nx-content-slot"
-        >
-          <slot />
-        </div>
-      </Transition>
+      <!-- The page body. The SPA root owns the transition around it (see
+           boot/NxApp.vue); the shell itself — rail, topbar, drawers — is
+           mounted once and must never animate on a page change. -->
+      <slot />
     </div>
 
     <ChangelogDrawer

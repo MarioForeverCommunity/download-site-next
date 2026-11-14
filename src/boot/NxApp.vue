@@ -1,26 +1,60 @@
 <script setup>
 // Root component for the redesigned UI.
 //
-// Every entry HTML mounts this once; it renders whichever page component the
-// router currently points at. Navigating between catalog pages therefore swaps
-// one dynamic component instead of reloading the document, while the URL and the
-// back/forward buttons keep working.
+// Every entry HTML mounts this once. It renders the app shell (rail + topbar)
+// permanently and swaps only the page body inside it, so a navigation animates
+// the content area while the sidebar and title bar stay perfectly still.
 //
-// Each page component still owns its own NxShell, so exactly one rail/topbar is
-// on screen at a time — the shell is part of the page, not of this root.
-//
-// The cross-fade lives inside NxShell (on the content slot only), not here: the
-// rail and topbar are the stable frame of the interface and must not flash on
-// every navigation.
+// Pages publish what the shell needs (title, write-up, search model) through
+// util/next/shellStore.js from their setup.
 import { currentComponent, currentPageId } from "../util/next/router.js";
+import { shellConfig, shellHandlers } from "../util/next/shellStore.js";
+import NxShell from "../components/next/NxShell.vue";
+
+const handlers = shellHandlers();
+
+function onRandom() {
+  if (typeof handlers.random === "function") handlers.random();
+}
+
+function onLanZh() {
+  if (typeof handlers.changeLanZh === "function") handlers.changeLanZh();
+}
+
+function onLanEn() {
+  if (typeof handlers.changeLanEn === "function") handlers.changeLanEn();
+}
 </script>
 
 <template>
-  <!-- `:key` forces a fresh instance per page: filter state, scroll position and
-       open drawers must not survive a navigation. -->
-  <component
-    :is="currentComponent"
-    v-if="currentComponent"
-    :key="currentPageId"
-  />
+  <NxShell
+    :page-id="shellConfig.pageId"
+    :lan="shellConfig.lan"
+    :title="shellConfig.title"
+    :doc="shellConfig.doc"
+    :doc-title="shellConfig.docTitle"
+    :doc-updated="shellConfig.docUpdated"
+    :search="shellConfig.search"
+    :show-random="shellConfig.showRandom"
+    @change-lan-zh="onLanZh"
+    @change-lan-en="onLanEn"
+    @random="onRandom"
+  >
+    <!-- Only this block animates. `:key` gives each page a fresh instance so
+         filter state, scroll position and open drawers never leak across. -->
+    <Transition
+      name="nx-content"
+      mode="out-in"
+    >
+      <div
+        :key="currentPageId"
+        class="nx-page-body"
+      >
+        <component
+          :is="currentComponent"
+          v-if="currentComponent"
+        />
+      </div>
+    </Transition>
+  </NxShell>
 </template>

@@ -131,6 +131,14 @@ body.nx-body.nx-locked {
   scrollbar-gutter: stable;
 }
 
+/* The scrolling element in this layout is the document itself, so hiding the
+   overflow on <body> alone still let the wheel scroll the page behind an open
+   drawer. Locking the root closes that gap. */
+html:has(body.nx-locked) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 img {
   max-width: 100%;
 }
@@ -216,7 +224,11 @@ body.nx-body select:focus-visible {
 
 /* ── shell: rail | main ───────────────────────────────────── */
 .nx-root {
+  /* dvh, not vh: on a phone vh is the height *including* the browser's bottom
+     bar, so a full-height layout ran underneath it and its last rows — the
+     filter pane's tail, the rail footer — were hidden until the bar collapsed. */
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: stretch;
   background: var(--nx-canvas);
@@ -235,6 +247,7 @@ body.nx-body select:focus-visible {
   top: 0;
   align-self: flex-start;
   height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
 }
 
@@ -407,10 +420,10 @@ body.nx-body select:focus-visible {
   flex-direction: column;
 }
 
-/* The wrapper around a page's content inside the shell. It is the transition
-   target: on a page change only this block cross-fades, while the rail and the
-   topbar — the stable frame of the interface — stay put. */
-.nx-content-slot {
+/* The wrapper around a page's body inside the shell. The SPA root animates this
+   block on a page change; the rail, topbar and drawers belong to the shell and
+   stay perfectly still. */
+.nx-page-body {
   flex: 1;
   min-height: 0;
   display: flex;
@@ -443,6 +456,23 @@ body.nx-body select:focus-visible {
     opacity: 1;
     transform: none;
   }
+}
+
+/* The filter toggle only exists on phones, where the pane is a drawer. The
+   double class beats `.nx-icon-btn`'s own `display: inline-flex`. */
+.nx-icon-btn.nx-filter-toggle {
+  display: none;
+}
+
+.nx-filter-scrim {
+  display: none;
+}
+
+/* The rail drawer's scrim only exists on phones. It sits below the rail (z 90)
+   but above the page, so the rail stays clickable while the content behind is
+   dimmed and inert. */
+.nx-rail-scrim {
+  display: none;
 }
 
 /* ── topbar: page title + two searches + actions ──────────── */
@@ -740,7 +770,19 @@ body.nx-body select:focus-visible {
 }
 
 /* ── content: filterpane | results ───────────────────────── */
+/* The content area stacks the results bar above the filter pane + results row,
+   so the bar (record count, sort, last-updated, view controls) spans the full
+   width instead of being confined to the results column. */
 .nx-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Filter pane | results, side by side below the bar. */
+.nx-content-main {
   flex: 1;
   min-height: 0;
   display: flex;
@@ -754,9 +796,12 @@ body.nx-body select:focus-visible {
   border-right: 1px solid var(--nx-line);
   padding: 4px 12px 28px;
   overflow-y: auto;
-  max-height: calc(100vh - 50px);
+  /* The results bar is a sibling above this pane, so the sticky offset is the
+     topbar height only — the bar is not overlapped. */
+  max-height: calc(100vh - 50px - 40px);
+  max-height: calc(100dvh - 50px - 40px);
   position: sticky;
-  top: 50px;
+  top: 90px;
 }
 
 .nx-pane-section {
@@ -1109,10 +1154,11 @@ body.nx-body select:focus-visible {
   min-height: 24px;
 }
 
-/* Catalog data stamp, kept visually quiet beside the filters and actions. */
+/* Catalog data stamp. Left-aligned with the sort buttons it sits beside: a
+   centred stamp floated in the middle of the bar with no relationship to
+   anything, and right-aligning it would compete with the view controls. */
 .nx-results-updated {
   flex: 0 0 auto;
-  margin-left: auto;
   font-size: 10.5px;
   color: var(--nx-faint);
   white-space: nowrap;
@@ -3077,11 +3123,15 @@ html .nx-doc .carousel .carousel__next {
     bottom: 0;
     width: 244px;
     height: 100vh;
+    height: 100dvh;
     z-index: 90;
     transform: translateX(-100%);
     transition: transform 0.2s ease;
     overflow-y: auto;
     box-shadow: var(--nx-shadow-3);
+    /* Clear the home indicator / bottom browser bar so the rail footer is not
+       the part that ends up underneath it. */
+    padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   }
 
   .nx-root.rail-open .nx-rail {
@@ -3163,13 +3213,50 @@ html .nx-doc .carousel .carousel__next {
     flex-direction: column;
   }
 
+  /* Filters become a right-hand drawer on a phone: the pane no longer pushes
+     the catalog down, and it stops short of full width so the results stay
+     partly visible behind it. */
   .nx-pane {
-    width: 100%;
-    position: static;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(84vw, 320px);
     max-height: none;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 95;
     border-right: 0;
-    border-bottom: 1px solid var(--nx-line);
-    padding: 4px 12px 10px;
+    border-left: 1px solid var(--nx-line);
+    border-bottom: 0;
+    padding: 12px 14px 28px;
+    /* Clear the home indicator / bottom browser bar; the facet list used to end
+       underneath it, hiding the page-level list options at the bottom. */
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    box-shadow: var(--nx-shadow-3);
+    transform: translateX(100%);
+    transition: transform 0.2s ease;
+    visibility: hidden;
+  }
+
+  .nx-pane.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .nx-icon-btn.nx-filter-toggle {
+    display: inline-flex;
+  }
+
+  .nx-filter-scrim {
+    display: block;
+  }
+
+  .nx-rail-scrim {
+    display: block;
+    z-index: 85;
   }
 
   /* On a phone the bar goes static and its pills own the second line. */

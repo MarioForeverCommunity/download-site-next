@@ -60,6 +60,10 @@ src/util/Design.js              设计选择状态（URL → cookie → 默认�
 src/util/Theme.js               明暗主题与密度（localStorage）
 src/util/useCatalog.js          目录状态：双搜索 / 筛选 / 三态标签 / 日期区间 / 排序
 src/boot/{entry,legacy,next}.js 按设计挂载页面（legacy 动态加载，防样式泄漏）
+src/boot/NxApp.vue              SPA 根组件：常驻外壳 + 内容区过渡
+src/util/next/router.js         前端软路由（pushState / popstate / 链接拦截）
+src/util/next/shellStore.js     页面 → 外壳的配置发布（标题 / 说明 / 搜索模型）
+src/util/next/scrollLock.js     共享滚动锁（固定 body + 滚动条补偿）
 
 src/assets/next/base.css        新版全部令牌与样式（含深色主题、轮播修复）
 src/components/DesignSwitch.vue 切换控件（menu / row 两种形态）
@@ -67,19 +71,37 @@ src/components/GlobalSettings.vue 旧版全局设置（新增界面设计行）
 
 src/components/next/            外壳 NxShell、筛选 NxFilterPane、列表 NxRow、
                                 卡片 NxCard、详情 NxDetail、更新履历 ChangelogDrawer、
-                                文档条目 NxEntry*、图标 NxIcon
-src/pages/next/<page>/          7 个页面的新版实现
+                                目录说明 NxDocDrawer、文档条目 NxEntry*、图标 NxIcon
+src/pages/next/<page>/          7 个页面的新版实现（只渲染内容，不再包裹外壳）
 src/util/next/records.js        统一记录模型（平台 / 软件判定与旧版、API 脚本一致）
+src/util/next/docUpdated.js     构建期注入的「最后更新」日期（无运行时网络请求）
 ```
+
+### 新版是单页应用
+
+7 个入口 HTML 各自挂载同一个 `NxApp`，它常驻渲染 `NxShell`（导航栏 + 顶栏 + 抽屉），
+只有顶栏以下的内容区随路由切换：
+
+- **路由**：`router.js` 拦截站内指向已知入口的 `<a>`，用 `history.pushState` 更新 URL 并
+  切换页面组件；`popstate` 处理前进/后退。外链、`target`、`download`、修饰键点击和
+  同文档锚点一律交给浏览器。
+- **页面 → 外壳**：页面不再渲染 `NxShell`，而是在 `watchEffect` 里调用 `publishShell()`
+  发布 `pageId / title / lan / doc / search / showRandom`。发布时会先重置为默认值，
+  因此文档页不会残留上一页的搜索框或「目录说明」按钮。
+- **过渡**：只有内容区（`.nx-page-body`）做 160ms 交叉淡入，导航栏与顶栏全程不动。
+- **滚动锁**：任何抽屉展开时固定 `body` 并补偿滚动条宽度，同时阻止滚轮与脚本滚动。
 
 ### 关键约束
 
-- **旧版文件只做最小改动**：全局设置新增一行、页脚/changelog 原样保留。
+- **旧版文件只做最小改动**：全局设置新增一行、页脚/changelog 原样保留；旧版不加载
+  路由，仍是每页真实跳转。
 - **两套 CSS 隔离**：`dark-mode.css` 仅在 legacy 启动路径动态加载；新版样式全部限定在 `.nx-*` 或 `[data-nx-theme]` 之下。
 - **Markdown 是文案唯一来源**：`mf-zh.md` / `mf-en.md` 仅把版本表换成设计感知的 `DesignMfTable`，条目组件由 `docComponents.js` 映射到新版预览。
 - **字体只用 Inter**（旧版已随 `assets/fonts.css` 加载），不再引入任何新字体；小号数字用 tabular-nums 而非等宽字体。
-- **hover 不加下划线**：界面内链接靠颜色与背景区分；仅正文（`.nx-doc a`）保留下划线。
+- **hover 不加下划线**：界面内链接靠颜色与背景区分，正文链接同样默认无下划线，仅 hover 时出现。
 - **记录模型是共享层**：`records.js` 的平台 / 制作软件 / old-versions 规则须与 `MfGames.vue`、`scripts/generate-api.js` 保持一致。
+- **构建期常量**：`BUILD_TIME` / `COMMIT_HASH` / `DOC_UPDATED` 由 `vite.config.js` 注入，
+  避免运行时请求 GitHub API（未认证时会 403）。
 
 ## 5. 兼容性
 
@@ -90,7 +112,7 @@ src/util/next/records.js        统一记录模型（平台 / 软件判定与旧
 
 - 强调色只有一个（档案红），用于主操作、当前导航与选中行；彩色只承载数据含义。
 - 一个字族（Inter）承担全部层次；标题用紧凑字距，数据列用等宽数字。
-- 动效克制：仅抽屉与弹层有过渡，并尊重 `prefers-reduced-motion`。
+- 动效克制：只有抽屉、弹层与页面内容区有过渡，导航栏与顶栏从不参与动画，并尊重 `prefers-reduced-motion`。
 - 对比度：正文、次要文字、按钮在明暗两套主题下均达到 WCAG AA（≥4.5:1）。
 
 ## 7. 自查清单
@@ -100,3 +122,8 @@ src/util/next/records.js        统一记录模型（平台 / 软件判定与旧
 3. 360 / 768 / 1440 / 1920px 无横向滚动
 4. 深色模式下标签、下拉、抽屉、文档表格对比度
 5. 年份 / 日期区间二选一的行为与快捷项
+6. 新版：点击导航栏切换页面不刷新文档，URL 与前进/后退同步；内容区有过渡而导航栏、顶栏不动
+7. 新版：进入文档页后搜索框与「目录说明」按钮消失，返回目录页后恢复
+8. 移动端：左侧导航与右侧筛选均为抽屉，展开时页面锁定滚动、遮罩拦截点击，关闭后恢复原滚动位置
+9. 目录页「最后更新」在结果栏中可见且左对齐；结果栏横跨筛选栏上方
+10. Softendo 的「系列」列可排序；卡片视图显示 variant / 版本 / SMWP 版本
