@@ -1967,6 +1967,17 @@ body.nx-body select:focus-visible {
   text-decoration: underline;
 }
 
+/* A domestic work's link is a button (it runs a search instead of opening a
+   URL), so it needs the browser's button chrome stripped. */
+button.nx-author-link {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
 /* screenshots: restored title image + showcase slider */
 .nx-shots {
   display: grid;

@@ -629,7 +629,11 @@ export function buildMwRecords(entries) {
       // name is indexed on its own instead of being stringified as one value.
       titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
         ...(Array.isArray(entry.file_name) ? entry.file_name : entry.file_name ? [entry.file_name] : [])],
-      authorSearch: [authorText(entry, "zh")],
+      // Multi-author levels are labelled 合作作品 everywhere in the UI, so the
+      // author search accepts that label in addition to the names themselves.
+      authorSearch: names.length > 1
+        ? [authorText(entry, "zh"), "合作作品"]
+        : [authorText(entry, "zh")],
       raw: entry,
     };
   });

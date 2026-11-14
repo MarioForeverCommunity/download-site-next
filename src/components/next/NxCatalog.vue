@@ -122,6 +122,15 @@ function close() {
   updateUrl(null);
 }
 
+// "See all works" for a domestic MF author: no File Hub folder exists, so the
+// author search box takes the first author's name (and the title query is
+// cleared, otherwise it would keep narrowing the results).
+function searchAuthor(name) {
+  props.catalog.setQuery("");
+  props.catalog.setAuthorQuery(name);
+  close();
+}
+
 function updateUrl(record) {
   if (typeof window === "undefined") return;
   const url = new URL(window.location.href);
@@ -540,6 +549,7 @@ defineExpose({ randomRecord, open });
         :record="current"
         :lan="lan"
         @close="close"
+        @search-author="searchAuthor"
       />
     </div>
   </div>

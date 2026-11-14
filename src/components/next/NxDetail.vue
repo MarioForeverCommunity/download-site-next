@@ -30,7 +30,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "searchAuthor"]);
 
 const lightbox = ref(null);
 const activeVersion = ref(null);
@@ -95,6 +95,7 @@ const text = computed(() => (props.lan === "zh"
     videos: "相关视频",
     author: "作者",
     authorWorks: "查看该作者的全部作品",
+    authorFolder: "浏览作者资源站目录",
     region: "地区",
     madeWith: "制作软件",
     platform: "平台",
@@ -138,6 +139,7 @@ const text = computed(() => (props.lan === "zh"
     videos: "Videos",
     author: "Author",
     authorWorks: "View all their works",
+    authorFolder: "Open the author's folder (File Hub)",
     region: "Region",
     madeWith: "Made with",
     platform: "Platform",
@@ -313,7 +315,13 @@ const facts = computed(() => {
     // formal name, matching the filter labels and card tooltip.
     const series = record.softendoType || (record.raw && record.raw.type);
     rows.push({ label: t.series, value: series ? getFullTypeLabel(series) : "" });
-    rows.push({ label: t.madeWith, value: Array.isArray(record.software) ? record.software.join(", ") : softwareLabel(record.software, props.lan) });
+    // A game can list several makers (e.g. flash + mmf); each is shown by its
+    // full name rather than the YAML slug.
+    const softwareValues = Array.isArray(record.software) ? record.software : record.software ? [record.software] : [];
+    rows.push({
+      label: t.madeWith,
+      value: softwareValues.map((item) => softwareLabel(item, props.lan)).join(", "),
+    });
     if (record.languageLabel) rows.push({ label: t.language, value: record.languageLabel });
     rows.push({ label: t.years, value: record.yearLabel });
     return rows;
@@ -327,7 +335,20 @@ const facts = computed(() => {
     return rows;
   }
 
-  rows.push({ label: t.author, value: record.author, href: authorFolderHref(record, props.lan) });
+  // "See all their works" runs the author search; the File Hub folder, where one
+  // exists, is offered as a second link. A multi-author MW level is labelled
+  // 合作作品 throughout the catalog, so its link searches that label instead of
+  // a single name (MF works keep the first author).
+  const firstAuthor = (record.authors && record.authors[0]) || record.author;
+  const isMwCollab = record.kind === "mw" && record.authors && record.authors.length > 1;
+  rows.push({
+    label: t.author,
+    value: record.author,
+    href: authorFolderHref(record, props.lan),
+    authorQuery: record.kind === "mf" || record.kind === "mw"
+      ? (isMwCollab ? "合作作品" : firstAuthor)
+      : null,
+  });
   if (record.kind === "mf") {
     const region = record.region === "chinese" ? t.chinese
       : record.region === "international" ? t.international : "—";
@@ -768,13 +789,19 @@ onBeforeUnmount(() => {
                 <dt>{{ fact.label }}</dt>
                 <dd>
                   {{ fact.value || "—" }}
+                  <button
+                    v-if="fact.authorQuery"
+                    type="button"
+                    class="nx-author-link"
+                    @click="emit('searchAuthor', fact.authorQuery)"
+                  >{{ text.authorWorks }}</button>
                   <a
                     v-if="fact.href"
                     class="nx-author-link"
                     :href="fact.href"
                     target="_blank"
                     rel="noopener"
-                  >{{ text.authorWorks }}</a>
+                  >{{ text.authorFolder }}</a>
                 </dd>
               </template>
             </dl>

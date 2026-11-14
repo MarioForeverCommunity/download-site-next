@@ -35,7 +35,8 @@ export const changelog = [
       "MW「运行环境」的 SMWP 版本下载改为按钮，BGM 提示移至按钮下方；版本信息行只显示数值，不再出现「日期 / 文件名 / 文件大小」等文字标签",
       "MW 作品详情：「MW 版本」前加注 SMWP（MW 4.0 / 4.4 除外），不再显示「标签」一节；自带 MW 的作品，运行环境提示改为「本作品自带」",
       "MF 作品详情（中文）恢复旧版下载弹框的「游玩说明」：按安装程序 / .exe / .apk / macOS / Linux / 压缩包给出运行提示，手机端另有对应说明",
-      "作品详情：作者信息旁新增「查看该作者的全部作品」链接，国外 MF、安卓版与 MW 作品可直达资源站中该作者的目录（多作者 MW 作品进入「合作作品」目录）"
+      "作品详情：作者信息旁新增「查看该作者的全部作品」，点击后用第一作者名筛选目录（国内 MF 作品由此也能查看同作者作品）；有资源站作者目录的作品另提供「浏览作者资源站目录」链接，MW 多作者作品则改为筛选「合作作品」",
+      "MW 目录的作者搜索支持「合作作品」，输入该词即可一次筛出全部多作者关卡"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
@@ -59,7 +60,8 @@ export const changelog = [
       "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels",
       "MW details now prefix the MW version with SMWP (MW 4.0 / 4.4 excepted), no longer show the Tags section, and say the level \"Comes with\" its MW when one is bundled",
       "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint",
-      "Detail drawers link the author to their File Hub folder with \"View all their works\" for international MF works, Android builds and MW levels (multi-author levels open the collaboration folder)"
+      "Detail drawers offer \"View all their works\" beside the author, filtering the catalog by the first author's name (now including domestic MF works); records with a File Hub author folder also link \"Open the author's folder (File Hub)\", while multi-author MW levels filter the collaboration label instead",
+      "The MW catalog's author search accepts 合作作品, listing every multi-author level in one step"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
@@ -74,7 +76,8 @@ export const changelog = [
       "修复 Softendo 详情中自定义颜色下载按钮没有悬停反馈的问题：悬停时保持原色相并加深背景与边框",
       "修复 MW 详情「版本与下载」按钮上方出现空白的问题：空的版本名与信息行不再占位",
       "修复 MW「运行要求」筛选未纳入同时自带 MW 与需替换 BGM 的作品的问题：这两项要求现在可以同时命中",
-      "修复标题搜索无法匹配下载文件名的问题：文件名改按单个文件加入索引，多文件 / 分卷版本同样可搜"
+      "修复标题搜索无法匹配下载文件名的问题：文件名改按单个文件加入索引，多文件 / 分卷版本同样可搜",
+      "修复 Softendo 详情在作品同时使用多个制作软件时显示原始标识的问题：现改为显示软件全称（如 Flash, Clickteam Fusion）"
     ],
     fixes_en: [
       "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
@@ -89,7 +92,8 @@ export const changelog = [
       "Fixed tone-coloured download buttons in Softendo details having no hover feedback: they now deepen their background and border while keeping their hue",
       "Fixed the empty strip above the downloads in MW details: empty version-name and meta lines no longer take up space",
       "Fixed the MW Runtime filter leaving out levels that both bundle their MW and need a custom BGM: the two requirements can now match together",
-      "Fixed the title search ignoring download file names: each file is indexed on its own, including multi-file and multi-volume builds"
+      "Fixed the title search ignoring download file names: each file is indexed on its own, including multi-file and multi-volume builds",
+      "Fixed Softendo details showing raw slugs when a game lists several makers; the full names are now shown (e.g. Flash, Clickteam Fusion)"
     ],
     misc: [
       "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"
