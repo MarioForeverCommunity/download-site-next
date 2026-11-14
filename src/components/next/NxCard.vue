@@ -98,8 +98,15 @@ const versionText = computed(() => {
     <div class="nx-card-body">
       <div class="nx-card-name">{{ record.name }}</div>
       <div class="nx-card-author-row">
+        <!-- Softendo's "author" line is its series: shown with the same tinted
+             type dot as the list. -->
         <span
-          v-if="record.displayAuthor || record.author"
+          v-if="record.kind === 'softendo' && record.softendoType"
+          class="nx-dot"
+          :class="`nx-type-${record.softendoType}`"
+        >{{ record.displayAuthor || record.author }}</span>
+        <span
+          v-else-if="record.displayAuthor || record.author"
           class="nx-card-author"
         >{{ record.displayAuthor || record.author }}</span>
         <!-- region tag sits beside the author in card view, per review -->

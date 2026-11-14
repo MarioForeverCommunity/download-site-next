@@ -178,7 +178,14 @@ function openLinks(event) {
       v-else
       class="nx-cell"
     >
-      {{ displayAuthors[0] || "—" }}
+      <!-- Softendo's "series" column is really its type, marked the way the
+           legacy catalog did: a tinted dot carrying the name. -->
+      <span
+        v-if="record.kind === 'softendo' && record.softendoType"
+        class="nx-dot"
+        :class="`nx-type-${record.softendoType}`"
+      >{{ displayAuthors[0] }}</span>
+      <template v-else>{{ displayAuthors[0] || "—" }}</template>
     </div>
 
     <div class="nx-cell nx-num">

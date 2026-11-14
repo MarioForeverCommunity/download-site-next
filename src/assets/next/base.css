@@ -1630,6 +1630,15 @@ body.nx-body select:focus-visible {
 .nx-type-tool { --nx-type: #64748b; }
 .nx-type-mwtool { --nx-type: #f59e0b; }
 
+/* Softendo series (its "类型" column) use the same marker, keeping the legacy
+   catalog's hues: red Mario, orange MFF, purple Flash, blue non-Mario, green
+   Banesoft. */
+.nx-type-mario { --nx-type: #ef4444; }
+.nx-type-mff { --nx-type: #f59e0b; }
+.nx-type-flash { --nx-type: #a855f7; }
+.nx-type-non-mario { --nx-type: #3b82f6; }
+.nx-type-banesoft { --nx-type: #22c55e; }
+
 .nx-dot[class*="nx-type-"] {
   color: var(--nx-type);
   border-color: color-mix(in srgb, var(--nx-type) 30%, transparent);

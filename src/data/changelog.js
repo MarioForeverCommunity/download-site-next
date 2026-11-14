@@ -24,20 +24,22 @@ export const changelog = [
       "列表 / 卡片视图的选择会被记住，切换目录、刷新页面或在新旧版界面之间切换后保持",
       "全局设置中的默认排序与资源站直链开关改为即时生效，无需刷新页面",
       "MW 关卡目录恢复「标记」列；卡片与详情抽屉中的「专用 MW / BGM」标记改用与列表一致的配色",
-      "创作资源目录恢复「类型」列：以彩色标识区分引擎 / 拓展 / 特效 / 素材 / 工具 / MW 工具，列表与卡片同步显示，卡片中标识位于日期右侧"
+      "创作资源目录恢复「类型」列：以彩色标识区分引擎 / 拓展 / 特效 / 素材 / 工具 / MW 工具，列表与卡片同步显示，卡片中标识位于日期右侧",
+      "Softendo 目录的「系列」列改用彩色标识（Mario / MFF / Flash / Non-Mario / Banesoft），列表与卡片一致"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
       "Catalog list: the Chinese interface no longer shows the English secondary title; on phones the author, version and date collapse into one small line under the title (MW versions carry the SMWP prefix); the \"N versions\" badge is gone once every version is listed separately",
       "Catalog list and card images are now 4:3; the card slider supports touch swiping and scales to the container so the current picture is always fully visible",
       "The rail is wider: 244px on desktop (was 208px), matching the phone drawer, and 208px in the 861-1024px range (was 176px)",
-      "The Chinese rail uses the new logo with \"作品目录站 / Download Portal\" beside it; at the narrowest rail the mark shrinks instead of squeezing the wording",
+      "The logo now appears with \"Download Portal\" beside it; at the narrowest rail the mark shrinks instead of squeezing the wording",
       "The original MF download table's rating uses the site accent colour, and the installer and portable buttons gain a hover tint",
       "MW records without artwork now use the MarioWorker mark as their placeholder, drawn larger inside the tile",
       "The chosen list/card view is remembered across catalogs, reloads and the two interface designs",
       "The default sort and the File Hub direct-link switch in Global settings now apply immediately, without reloading the page",
-      "The MW levels catalog shows its 标记 column again, and the 专用 MW / BGM pills in cards and the detail drawer now use the same colours as the list",
-      "The assets catalog shows its 类型 column again, with a coloured marker per type (engine, addon, effect, sprite, tool, MW tool) in both the list and cards; on cards the marker sits to the right of the date"
+      "The MW levels catalog shows its Mark column again, and the bundled-MW / BGM pills in cards and the detail drawer now use the same colours as the list",
+      "The assets catalog shows its Type column again, with a coloured marker per type (engine, addon, effect, sprite, tool, MW tool) in both the list and cards; on cards the marker sits to the right of the date",
+      "The Softendo catalog's Series column now uses the same coloured markers (Mario / MFF / Flash / Non-Mario / Banesoft) in the list and on cards"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
@@ -61,7 +63,7 @@ export const changelog = [
       "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"
     ],
     misc_en: [
-      "Full names in the English rail labels (e.g. Mario Forever Community File Hub, Cloud Lounge Discord Server); the Chinese Bilibili and Douyin entries now spell out Mario Forever"
+      "Full names in the English rail labels (e.g. Mario Forever Community File Hub, Cloud Lounge Discord Server)"
     ]
   },
   {
