@@ -14,6 +14,7 @@ import { formatIsoDate, softwareLabel } from "../../util/next/records.js";
 import { getTagColor } from "../../util/TagUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { getFormattedFileSize } from "../../util/OpenListApi.js";
+import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 
 const props = defineProps({
   record: {
@@ -113,7 +114,7 @@ const text = computed(() => (props.lan === "zh"
   }
   : {
     screenshots: "Screenshots",
-    about: "About",
+    about: "Description",
     details: "Details",
     tags: "Tags",
     versions: "Versions & downloads",
@@ -403,7 +404,7 @@ function onKeydown(event) {
 }
 
 watch(isOpen, (open) => {
-  document.body.classList.toggle("nx-locked", open);
+  lockScroll(open);
 });
 
 // Theme changes must recolour the tag chips while the drawer is open.
@@ -420,7 +421,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
-  document.body.classList.remove("nx-locked");
+  releaseScroll();
   if (themeObserver) {
     themeObserver.disconnect();
     themeObserver = null;

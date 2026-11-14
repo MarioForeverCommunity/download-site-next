@@ -33,3 +33,9 @@ export async function getMfDocLastUpdated() {
 export async function getMwDocLastUpdated() {
   return formatDate(UPDATED.mw);
 }
+
+// Catalog pages: the newest of the catalog's YAML data and its write-up, so the
+// stamp reflects "when did the content behind this table last change".
+export async function getCatalogLastUpdated(key) {
+  return formatDate(UPDATED[key]);
+}

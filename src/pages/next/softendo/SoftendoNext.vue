@@ -10,6 +10,9 @@ import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildSoftendoRecords, makeFacet } from "../../../util/next/records.js";
 import { normalizeSoftendoList } from "../../../util/SoftendoUtil.js";
+import softendoZh from "../../../markdown/softendo-zh.md";
+import softendoEn from "../../../markdown/softendo-en.md";
+import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 
 const lan = ref(getLanguage());
 const pageId = "softendo";
@@ -125,6 +128,13 @@ function pageSetLanguageEn() {
 }
 
 document.title = title.value;
+
+// The catalog's own write-up, opened from the topbar; null hides the button.
+const docZh = softendoZh;
+const docEn = softendoEn;
+const doc = computed(() => (lan.value === "zh" ? docZh : docEn));
+const docUpdated = ref("");
+getCatalogLastUpdated("softendo").then((v) => { docUpdated.value = v || ""; });
 </script>
 
 <template>
@@ -132,6 +142,9 @@ document.title = title.value;
     :page-id="pageId"
     :lan="lan"
     :title="title"
+    :doc="doc"
+    :doc-title="title"
+    :doc-updated="docUpdated"
     :search="catalog"
     show-random
     @change-lan-zh="pageSetLanguageZh"
@@ -153,6 +166,7 @@ document.title = title.value;
         version: lan === 'zh' ? '年份' : 'Years',
         tags: lan === 'zh' ? '类型' : 'Genres',
       }"
+      :updated="docUpdated"
     />
     <div
       v-else

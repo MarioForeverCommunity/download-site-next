@@ -10,6 +10,7 @@ import { getDefaultSort, setDefaultSort, getUseDirectLink } from "../../util/Lan
 import { NEXT_DESIGN } from "../../util/Design.js";
 import DesignSwitch from "../DesignSwitch.vue";
 import NxIcon from "./NxIcon.vue";
+import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 
 const props = defineProps({
   show: {
@@ -68,7 +69,7 @@ const tempSort = ref("date_desc");
 const tempDirect = ref(false);
 
 watch(() => props.show, (open) => {
-  document.body.classList.toggle("nx-locked", open);
+  lockScroll(open);
   if (open) {
     tempSort.value = defaultSort.value;
     tempDirect.value = useDirectLink.value;
@@ -89,7 +90,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
-  document.body.classList.remove("nx-locked");
+  releaseScroll();
 });
 </script>
 

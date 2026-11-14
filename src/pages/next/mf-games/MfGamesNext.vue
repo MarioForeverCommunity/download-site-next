@@ -14,6 +14,9 @@ import { ensureMfList } from "../../../util/useMfList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildMfRecords, expandMfRecord, makeFacet } from "../../../util/next/records.js";
+import mfGamesZh from "../../../markdown/mf-games-zh.md";
+import mfGamesEn from "../../../markdown/mf-games-en.md";
+import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 
 const lan = ref(getLanguage());
 const pageId = "mf-games";
@@ -139,6 +142,13 @@ function pageSetLanguageEn() {
 }
 
 document.title = title.value;
+
+// The catalog's own write-up, opened from the topbar; null hides the button.
+const docZh = mfGamesZh;
+const docEn = mfGamesEn;
+const doc = computed(() => (lan.value === "zh" ? docZh : docEn));
+const docUpdated = ref("");
+getCatalogLastUpdated("mfGames").then((v) => { docUpdated.value = v || ""; });
 </script>
 
 <template>
@@ -146,6 +156,9 @@ document.title = title.value;
     :page-id="pageId"
     :lan="lan"
     :title="title"
+    :doc="doc"
+    :doc-title="title"
+    :doc-updated="docUpdated"
     :search="catalog"
     @change-lan-zh="pageSetLanguageZh"
     @change-lan-en="pageSetLanguageEn"
@@ -157,6 +170,7 @@ document.title = title.value;
       :sorters="sorters"
       :lan="lan"
       show-random
+      :updated="docUpdated"
       :columns="{
         name: lan === 'zh' ? '作品' : 'Title',
         author: lan === 'zh' ? '作者' : 'Author',

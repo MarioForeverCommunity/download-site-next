@@ -44,7 +44,12 @@ function docUpdatedDates() {
   return {
     mfZh: newest('public/data/list-original-mf.yaml', 'src/markdown/mf-zh.md'),
     mfEn: newest('public/data/list-original-mf.yaml', 'src/markdown/mf-en.md'),
-    mw: newest('public/data/list-mw.yaml', 'src/markdown/mw-en.md')
+    mw: newest('public/data/list-mw.yaml', 'src/markdown/mw-en.md'),
+    // Catalog pages: data + their own write-up.
+    mfGames: newest('public/data/list-mf.yaml', 'src/markdown/mf-games-zh.md', 'src/markdown/mf-games-en.md'),
+    mwLevels: newest('public/data/list-mw.yaml', 'src/markdown/mw-levels-zh.md'),
+    assets: newest('public/data/list-assets.yaml', 'src/markdown/assets.md'),
+    softendo: newest('public/data/list-softendo.yaml', 'src/markdown/softendo-zh.md', 'src/markdown/softendo-en.md')
   }
 }
 

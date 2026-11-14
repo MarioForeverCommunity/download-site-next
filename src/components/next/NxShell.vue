@@ -16,6 +16,7 @@ import { navTop, topBar, siteVersion } from "../../config.js";
 import { getTheme, toggleTheme } from "../../util/Theme.js";
 
 import ChangelogDrawer from "./ChangelogDrawer.vue";
+import NxDocDrawer from "./NxDocDrawer.vue";
 import NxSettings from "./NxSettings.vue";
 import NxIcon from "./NxIcon.vue";
 
@@ -37,6 +38,20 @@ const props = defineProps({
   search: {
     type: Object,
     default: null
+  },
+  // Catalog write-up shown in a side drawer from a topbar button: the pages own
+  // their markdown, the shell only presents it.
+  doc: {
+    type: Object,
+    default: null
+  },
+  docTitle: {
+    type: String,
+    default: ""
+  },
+  docUpdated: {
+    type: String,
+    default: ""
   },
   showRandom: {
     type: Boolean,
@@ -116,6 +131,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   random: "随机游戏",
   settings: "全局设置",
   changelog: "更新履历",
+  about: "目录说明",
   language: "语言",
   legacy: "切换到旧版设计",
   light: "浅色模式",
@@ -130,6 +146,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   random: "Random game",
   settings: "Global settings",
   changelog: "Changelog",
+  about: "About this catalog",
   language: "Language",
   legacy: "Switch to legacy design",
   light: "Light mode",
@@ -146,6 +163,7 @@ const theme = getTheme();
 const openMenu = ref(null); // 'lang' | 'settings' | null
 const showChangelog = ref(false);
 const settingsOpen = ref(false);
+const docOpen = ref(false);
 const rootRef = ref(null);
 // Narrow screens collapse the rail into a toggleable panel.
 const railOpen = ref(false);
@@ -408,8 +426,24 @@ watch(showChangelog, (open) => {
 
         <span class="nx-topbar-spacer" />
 
-        <!-- order per review: language → theme → settings -->
+        <!-- order per review: about → language → theme → settings -->
         <div class="nx-actions">
+          <button
+            v-if="doc"
+            type="button"
+            class="nx-icon-btn"
+            :class="{ 'is-on': docOpen }"
+            :aria-expanded="docOpen"
+            :aria-label="text.about"
+            :title="text.about"
+            @click="docOpen = true"
+          >
+            <NxIcon
+              name="info"
+              :size="15"
+            />
+          </button>
+
           <div
             v-if="showLanguageMenu"
             class="nx-lang"
@@ -499,6 +533,15 @@ watch(showChangelog, (open) => {
       :show="showChangelog"
       :lan="displayLan"
       @close="showChangelog = false"
+    />
+
+    <NxDocDrawer
+      :show="docOpen"
+      :lan="displayLan"
+      :title="docTitle || pageTitle"
+      :doc="doc"
+      :updated="docUpdated"
+      @close="docOpen = false"
     />
 
     <NxSettings

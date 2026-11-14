@@ -43,7 +43,9 @@ const regionLabel = computed(() => {
 // Cards have no version column, so the identifying version has to appear in the
 // body. What counts as "the version" differs per catalog:
 //   assets - the variant name and its version ("Full", "0.10.7.1")
-//   mf     - every version separately listed: the row's own version
+//   mf     - only when every version is listed separately: the row's own
+//            version. Collapsed rows show the newest build only, so a version
+//            line there would just repeat the title's implicit "latest".
 //   mw     - the SMWP editor the level needs ("SMWP v1.7.12" / "MW 4.4")
 const versionText = computed(() => {
   const r = props.record;
@@ -60,6 +62,9 @@ const versionText = computed(() => {
     // Values already naming the editor are left as written.
     return /^mw\b/i.test(raw) ? raw : "SMWP " + raw;
   }
+  // `expandedFrom` is only set on rows produced by expandMfRecord, i.e. when the
+  // "list every version separately" option is on.
+  if (!r.expandedFrom) return "";
   return r.versionLabel || "";
 });
 </script>

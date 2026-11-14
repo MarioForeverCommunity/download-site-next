@@ -6,6 +6,7 @@ import { watch, onMounted, onBeforeUnmount } from "vue";
 import { changelog } from "../../data/changelog.js";
 import { siteVersion } from "../../config.js";
 import NxIcon from "./NxIcon.vue";
+import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 
 const props = defineProps({
   show: {
@@ -53,10 +54,11 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
+  releaseScroll();
 });
 
 watch(() => props.show, (open) => {
-  document.body.classList.toggle("nx-locked", open);
+  lockScroll(open);
 });
 </script>
 

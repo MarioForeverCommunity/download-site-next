@@ -14,6 +14,8 @@ import { readList } from "../../../util/ReadList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildMwRecords, makeFacet, distinctValues } from "../../../util/next/records.js";
+import mwLevelsZh from "../../../markdown/mw-levels-zh.md";
+import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 
 const lan = ref("zh");
 const pageId = "mw-levels";
@@ -112,6 +114,11 @@ onMounted(async () => {
 });
 
 document.title = title.value;
+
+// The catalog's own write-up, opened from the topbar; null hides the button.
+const doc = computed(() => mwLevelsZh);
+const docUpdated = ref("");
+getCatalogLastUpdated("mwLevels").then((v) => { docUpdated.value = v || ""; });
 </script>
 
 <template>
@@ -119,6 +126,9 @@ document.title = title.value;
     :page-id="pageId"
     :lan="lan"
     :title="title"
+    :doc="doc"
+    :doc-title="title"
+    :doc-updated="docUpdated"
     :search="catalog"
   >
     <NxCatalog
@@ -129,6 +139,7 @@ document.title = title.value;
       :lan="lan"
       show-random
       :show-tags="false"
+      :updated="docUpdated"
       :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
     >
       <template #pane-extras>

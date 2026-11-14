@@ -123,7 +123,12 @@ body.nx-body {
 }
 
 body.nx-body.nx-locked {
+  /* Locking the page must not reflow the viewport: without the reserved
+     gutter, hiding the scrollbar widens the layout box by the scrollbar width
+     and every fixed-position overlay (drawers, scrims) is laid out against the
+     old width, leaving it visibly offset. */
   overflow: hidden;
+  scrollbar-gutter: stable;
 }
 
 img {
@@ -1053,14 +1058,26 @@ body.nx-body select:focus-visible {
 }
 
 /* The record count is a single unbreakable unit; a squeezing pill must not
-   wrap "431 / 431 条" across two lines. */
+   wrap "431 / 431 条" across two lines.
+   Deliberately inline-block, not inline-flex: a flex container discards the
+   whitespace text nodes between its items, which silently removed the space
+   between the number and its unit ("624records"). */
 .nx-results-count {
   flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
+  display: inline-block;
+  vertical-align: middle;
   white-space: nowrap;
-  line-height: 1.4;
+  line-height: 24px;
+  min-height: 24px;
+}
+
+/* Catalog data stamp, kept visually quiet beside the filters and actions. */
+.nx-results-updated {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 10.5px;
+  color: var(--nx-faint);
+  white-space: nowrap;
 }
 
 .nx-results-count b {
@@ -3127,8 +3144,12 @@ html .nx-doc .carousel .carousel__next {
     grid-area: actions;
   }
 
+  /* 100% of the fixed-position containing block, not 100vw: vw includes the
+     scrollbar, so a 100vw drawer anchored right:0 hung ~20px off the left edge
+     of a phone screen. */
   .nx-drawer {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
   }
 
   .nx-shots {

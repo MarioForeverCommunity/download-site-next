@@ -62,6 +62,11 @@ const props = defineProps({
   columns: {
     type: Object,
     default: () => ({})
+  },
+  // The catalog data's last update, rendered in the results bar.
+  updated: {
+    type: String,
+    default: ""
   }
 });
 
@@ -287,6 +292,13 @@ defineExpose({ randomRecord, open });
             @click="catalog.clearAll()"
           >{{ text.reset }}</button>
         </div>
+
+        <!-- Last updated for the catalog's data, so the stamp is visible without
+             opening the description drawer or reading the topbar. -->
+        <span
+          v-if="updated"
+          class="nx-results-updated nx-num"
+        >{{ lan === "zh" ? "最后更新：" : "Last updated: " }}{{ updated }}</span>
 
         <!-- random sits immediately left of the view switch, per review -->
         <div class="nx-results-actions">
