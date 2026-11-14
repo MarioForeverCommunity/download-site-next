@@ -444,10 +444,11 @@ watch(showChangelog, (open) => {
       </nav>
 
       <div class="nx-rail-foot">
-        <p class="nx-rail-legal">
-          {{ displayLan === "zh"
-            ? "本站非 Softendo / 任天堂官方网站，马里奥相关版权归任天堂所有。"
-            : "This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo." }}
+        <p
+          v-if="displayLan !== 'zh'"
+          class="nx-rail-legal"
+        >
+          This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo.
         </p>
         <span class="nx-rail-foot-meta">
           {{ siteVersion }}<template v-if="commitUrl">

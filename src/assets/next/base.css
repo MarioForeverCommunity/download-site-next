@@ -1954,6 +1954,19 @@ body.nx-body select:focus-visible {
   overflow-wrap: anywhere;
 }
 
+/* "See all their works" beside the author: quiet enough not to compete with
+   the name, but clearly a link on hover. */
+.nx-author-link {
+  margin-left: 6px;
+  color: var(--nx-cur);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.nx-author-link:hover {
+  text-decoration: underline;
+}
+
 /* screenshots: restored title image + showcase slider */
 .nx-shots {
   display: grid;

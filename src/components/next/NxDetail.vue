@@ -13,6 +13,7 @@ import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, softwareLabel, sourceServiceName } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
 import { getFullTypeLabel } from "../../util/SoftendoUtil.js";
+import { getAuthorFolderURL } from "../../util/GameUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
@@ -93,6 +94,7 @@ const text = computed(() => (props.lan === "zh"
     links: "相关链接",
     videos: "相关视频",
     author: "作者",
+    authorWorks: "查看该作者的全部作品",
     region: "地区",
     madeWith: "制作软件",
     platform: "平台",
@@ -135,6 +137,7 @@ const text = computed(() => (props.lan === "zh"
     links: "Links",
     videos: "Videos",
     author: "Author",
+    authorWorks: "View all their works",
     region: "Region",
     madeWith: "Made with",
     platform: "Platform",
@@ -271,6 +274,34 @@ const tagColors = computed(() => (props.record ? props.record.tags.map((tag) => 
   colors: getTagPillColor(tag, theme.value === "dark"),
 })) : []));
 
+// The legacy catalog linked an author's name to their folder on the File Hub,
+// but only where such a folder exists: international MF works, Android builds
+// and MW levels. The helper mirrors that decision by handing
+// `getAuthorFolderURL` a minimal legacy-shaped item, so the folder rules stay in
+// one place.
+function authorFolderHref(record, lan) {
+  const raw = (record && record.raw) || {};
+  const author = (record.authors && record.authors[0]) || record.author || "";
+
+  if (record.kind === "mw") {
+    const folder = record.authors && record.authors.length > 1 ? "合作作品" : author;
+    return getAuthorFolderURL({ category: "mw", smwp_ver: raw.smwp_ver, author: folder }, folder, lan);
+  }
+  if (record.kind !== "mf") return null;
+
+  // Like the legacy modal, the Android branch follows the displayed build.
+  const selected = version.value;
+  const item = {
+    type: raw.type,
+    author_alias: raw.author_alias,
+    // Only used as the "is this an Android build?" probe.
+    currentVer: selected && selected.isApk
+      ? { file_name: (selected.files && selected.files[0]) || "" }
+      : null,
+  };
+  return getAuthorFolderURL(item, author, lan);
+}
+
 const facts = computed(() => {
   const record = props.record;
   if (!record) return [];
@@ -296,7 +327,7 @@ const facts = computed(() => {
     return rows;
   }
 
-  rows.push({ label: t.author, value: record.author });
+  rows.push({ label: t.author, value: record.author, href: authorFolderHref(record, props.lan) });
   if (record.kind === "mf") {
     const region = record.region === "chinese" ? t.chinese
       : record.region === "international" ? t.international : "—";
@@ -722,7 +753,16 @@ onBeforeUnmount(() => {
                 :key="fact.label"
               >
                 <dt>{{ fact.label }}</dt>
-                <dd>{{ fact.value || "—" }}</dd>
+                <dd>
+                  {{ fact.value || "—" }}
+                  <a
+                    v-if="fact.href"
+                    class="nx-author-link"
+                    :href="fact.href"
+                    target="_blank"
+                    rel="noopener"
+                  >{{ text.authorWorks }}</a>
+                </dd>
               </template>
             </dl>
           </div>

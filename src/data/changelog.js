@@ -34,7 +34,8 @@ export const changelog = [
       "MW 目录恢复发布页、MW 下载、音乐包与数据包按钮（改用与旧版一致的归一化数据）；MW 详情标题对多作者作品显示「合作作品」，信息区仍列出全部作者",
       "MW「运行环境」的 SMWP 版本下载改为按钮，BGM 提示移至按钮下方；版本信息行只显示数值，不再出现「日期 / 文件名 / 文件大小」等文字标签",
       "MW 作品详情：「MW 版本」前加注 SMWP（MW 4.0 / 4.4 除外），不再显示「标签」一节；自带 MW 的作品，运行环境提示改为「本作品自带」",
-      "MF 作品详情（中文）恢复旧版下载弹框的「游玩说明」：按安装程序 / .exe / .apk / macOS / Linux / 压缩包给出运行提示，手机端另有对应说明"
+      "MF 作品详情（中文）恢复旧版下载弹框的「游玩说明」：按安装程序 / .exe / .apk / macOS / Linux / 压缩包给出运行提示，手机端另有对应说明",
+      "作品详情：作者信息旁新增「查看该作者的全部作品」链接，国外 MF、安卓版与 MW 作品可直达资源站中该作者的目录（多作者 MW 作品进入「合作作品」目录）"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
@@ -57,7 +58,8 @@ export const changelog = [
       "The MW catalog regains its release post, MW download, music pack and data package buttons by using the same normalised data as the legacy design; the drawer labels multi-author levels as a collaboration while the facts section still lists every author",
       "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels",
       "MW details now prefix the MW version with SMWP (MW 4.0 / 4.4 excepted), no longer show the Tags section, and say the level \"Comes with\" its MW when one is bundled",
-      "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint"
+      "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint",
+      "Detail drawers link the author to their File Hub folder with \"View all their works\" for international MF works, Android builds and MW levels (multi-author levels open the collaboration folder)"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
