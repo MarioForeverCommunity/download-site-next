@@ -1,48 +1,74 @@
 // Page-scroll locking shared by every overlay (details, changelog, settings,
 // catalog write-up, the phone filter drawer and the phone rail drawer).
 //
-// Two things have to be true while an overlay is open:
+// While an overlay is open the page behind must not scroll — from the wheel,
+// touch, keyboard, or by scroll chaining when the overlay's own content reaches
+// its end. The viewport must also not reflow: hiding the scrollbar widens the
+// layout box, so its width is reserved as body padding.
 //
-//  1. The page behind must not scroll — from the wheel, touch, or keyboard.
-//  2. The viewport must not reflow. Hiding the scrollbar widens the layout box
-//     by its width, and fixed-position overlays are anchored to the viewport, so
-//     a full-bleed drawer would sit visibly off-centre. The scrollbar width is
-//     reserved as body padding instead.
-//
-// Deliberately *not* used: pinning the body with `position: fixed`. That is the
-// usual recipe, but this layout keeps the rail and the topbar `position: sticky`
-// against the document scroller; pinning the body takes the document scroller
-// away and offsets the body by the scroll position, so both bars jumped upwards
-// out of view whenever an overlay opened after scrolling. `overflow: hidden` on
-// the root keeps the document scroller (and therefore the sticky elements) in
-// place, and the wheel/touch listeners below cover what it does not block.
+// Deliberately *not* used: pinning the body with `position: fixed`, and
+// `overflow: hidden` on the root. This layout keeps the rail and the topbar
+// `position: sticky` against the document scroller; both of those take that
+// scroller away, which dropped the two bars out of view by exactly the scroll
+// offset whenever an overlay opened. Scrolling is blocked with listeners
+// instead, which leave the scroller intact.
 let lockCount = 0;
 let savedScrollY = 0;
 let savedPaddingRight = "";
 
+// The scrollable element an event should scroll, if any. Overlays put their
+// scroll on an inner container (`.nx-drawer-body`), so matching only the overlay
+// shell would always report "not scrollable" and let the chain through.
+const SCROLLER_SELECTOR = ".nx-drawer-body, .nx-drawer, .nx-pane, .nx-rail";
+
+function scrollerFor(target) {
+  if (!target || !target.closest) return null;
+  return target.closest(SCROLLER_SELECTOR);
+}
+
+// True when `scroller` can still move in the direction of `delta` (positive =
+// content scrolls down). At an edge, the gesture must be consumed rather than
+// passed on to the document.
+function canScrollFurther(scroller, delta) {
+  if (!scroller) return false;
+  const max = scroller.scrollHeight - scroller.clientHeight;
+  if (max <= 1) return false;
+  if (delta < 0) return scroller.scrollTop > 0;
+  return scroller.scrollTop < max - 1;
+}
+
 function blockWheel(event) {
-  // Let the overlay's own scrollable content keep scrolling.
-  const target = event.target;
-  if (target && target.closest) {
-    const scroller = target.closest(".nx-drawer, .nx-pane, .nx-rail, .nx-detail");
-    if (scroller) {
-      const canScroll = scroller.scrollHeight > scroller.clientHeight;
-      if (canScroll) return;
-    }
-  }
+  const scroller = scrollerFor(event.target);
+  if (canScrollFurther(scroller, event.deltaY)) return;
   event.preventDefault();
 }
 
 function blockTouchMove(event) {
-  const target = event.target;
-  if (target && target.closest) {
-    const scroller = target.closest(".nx-drawer, .nx-pane, .nx-rail, .nx-detail");
-    if (scroller) {
-      const canScroll = scroller.scrollHeight > scroller.clientHeight;
-      if (canScroll) return;
-    }
-  }
+  const scroller = scrollerFor(event.target);
+  // Touch deltas come from the gesture, not the event; use the last known
+  // direction so an edge swipe is still consumed.
+  if (canScrollFurther(scroller, lastTouchDelta)) return;
   if (event.cancelable) event.preventDefault();
+}
+
+// Track the vertical direction of the current touch gesture.
+let lastTouchY = null;
+let lastTouchDelta = 0;
+
+function onTouchStart(event) {
+  const t = event.touches && event.touches[0];
+  lastTouchY = t ? t.clientY : null;
+  lastTouchDelta = 0;
+}
+
+function onTouchMove(event) {
+  const t = event.touches && event.touches[0];
+  if (t && lastTouchY != null) {
+    // Finger moving up scrolls content down, so invert for a scroll delta.
+    lastTouchDelta = lastTouchY - t.clientY;
+    lastTouchY = t.clientY;
+  }
+  blockTouchMove(event);
 }
 
 // Keys that scroll the document.
@@ -67,7 +93,8 @@ function applyLock() {
 
   root.classList.add("nx-locked");
   window.addEventListener("wheel", blockWheel, { passive: false });
-  window.addEventListener("touchmove", blockTouchMove, { passive: false });
+  window.addEventListener("touchstart", onTouchStart, { passive: true });
+  window.addEventListener("touchmove", onTouchMove, { passive: false });
   window.addEventListener("keydown", blockKeys, { capture: true });
 }
 
@@ -77,8 +104,11 @@ function removeLock() {
   root.classList.remove("nx-locked");
   body.style.paddingRight = savedPaddingRight;
   window.removeEventListener("wheel", blockWheel);
-  window.removeEventListener("touchmove", blockTouchMove);
+  window.removeEventListener("touchstart", onTouchStart);
+  window.removeEventListener("touchmove", onTouchMove);
   window.removeEventListener("keydown", blockKeys, { capture: true });
+  lastTouchY = null;
+  lastTouchDelta = 0;
   // The lock never moved the page, so the reading position is untouched; this
   // is only a safety net for engines that scrolled anyway.
   if (Math.abs((window.scrollY || 0) - savedScrollY) > 1) {
