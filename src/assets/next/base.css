@@ -1330,8 +1330,10 @@ body.nx-body select:focus-visible {
 }
 
 .nx-thumb {
-  width: 52px;
-  height: 34px;
+  /* 4:3, matching the card view and the screenshots themselves: a 52x34 box was
+     wider than the artwork and cropped it. */
+  width: 48px;
+  height: 36px;
   flex: none;
   border-radius: 3px;
   overflow: hidden;
@@ -1629,7 +1631,7 @@ body.nx-body select:focus-visible {
 }
 
 .nx-card-shot {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   background: var(--nx-fill);
   overflow: hidden;
   position: relative;
