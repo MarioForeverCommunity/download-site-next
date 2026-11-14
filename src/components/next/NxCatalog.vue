@@ -132,6 +132,32 @@ function updateUrl(record) {
   window.history.replaceState({}, "", url.toString());
 }
 
+// The URL must stop naming the record as soon as its drawer is gone, whichever
+// way it went away.
+//
+// Clearing it in `close()` alone was not enough: the drawer's back guard undoes
+// its sentinel with `history.back()` when it closes, and that restores the entry
+// that was current when the record was opened — an entry that still carries the
+// `?id=` written at open time (or the one a shared link brought in). The back
+// then landed on a URL naming a record whose drawer had just closed, so the
+// parameter has to be cleared again on the entry the pop returns to.
+function clearDeepLink() {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has("id") && !url.searchParams.has("game") && !url.searchParams.has("asset")) return;
+  updateUrl(null);
+}
+
+function onPopState() {
+  if (props.catalog.activeId.value == null) clearDeepLink();
+}
+
+// A record can also disappear from the drawer without `close()` being called —
+// a filter change that hides it resets `activeId` from the catalog store.
+watch(() => props.catalog.activeId.value, (id) => {
+  if (id == null) clearDeepLink();
+});
+
 // ?id= for the new design, and the legacy ?game= / ?asset= slugs, so a link
 // copied from either interface keeps working after switching.
 function readDeepLink() {
@@ -177,10 +203,14 @@ onMounted(() => {
   // Density follows the view: a list is for scanning, a card grid for browsing.
   setViewDensity(props.catalog.view.value);
   stopDensityWatch = watch(() => props.catalog.view.value, (view) => setViewDensity(view));
+  // Closing the drawer pops its back-guard sentinel; the entry it restores is
+  // the one whose deep link has to be cleaned up (see clearDeepLink).
+  window.addEventListener("popstate", onPopState);
 });
 
 onBeforeUnmount(() => {
   if (stopDensityWatch) stopDensityWatch();
+  window.removeEventListener("popstate", onPopState);
 });
 
 function sortArrow(field) {

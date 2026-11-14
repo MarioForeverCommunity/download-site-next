@@ -20,10 +20,14 @@ export const changelog = [
       "Catalog list and card images are now 4:3; the card slider supports touch swiping and scales to the container so the current picture is always fully visible"
     ],
     fixes: [
-      "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字"
+      "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
+      "修复窄屏侧栏抽屉打开时切换页面偶尔被弹回原页面的问题：抽屉收起与路由跳转争用同一条浏览器历史记录，目标页打开后随即被撤销",
+      "修复收回作品详情后地址栏仍保留 ?id= 参数的问题：关闭抽屉时的历史回退会恢复打开时写入的地址"
     ],
     fixes_en: [
-      "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text"
+      "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
+      "Fixed pages occasionally bouncing back to the one being left when switching tabs from the phone rail drawer: closing the drawer and the route change raced over the same history entry, so the new page was opened and then undone right away",
+      "Fixed the ?id= parameter staying in the address bar after closing a record's detail drawer: unwinding the drawer's history entry restored the address written when it opened"
     ],
     misc: [],
     misc_en: []

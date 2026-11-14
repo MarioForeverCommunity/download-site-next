@@ -53,9 +53,16 @@ export function pushBackGuard(onBack) {
   };
 }
 
-// Drop the guard without touching history (used when the overlay is closed by a
-// back press that already popped the sentinel).
-export function releaseBackGuard() {
+// Drop the guard without touching history. The sentinel entry is left in place
+// for whoever takes over from here.
+//
+// Two callers: the back-press path, where the sentinel is already gone; and the
+// in-app navigation path, where the router replaces the sentinel with the page
+// it opens. The latter must not call the release function above — unwinding the
+// sentinel with `history.back()` raced the navigation (when the target page
+// module was already cached the new entry was pushed first, the back press then
+// popped it, and the browser bounced to the page being left).
+export function abandonBackGuard() {
   activeToken = null;
   activeClose = null;
 }
@@ -70,7 +77,7 @@ if (typeof window !== "undefined") {
     if (!activeClose) return;
     const close = activeClose;
     // The sentinel is already gone; just close the overlay.
-    releaseBackGuard();
+    abandonBackGuard();
     close();
   });
 }

@@ -52,6 +52,22 @@ export function pageIdForCurrentUrl() {
 }
 
 /**
+ * The page id a link points at, or `null` when the link leaves the SPA.
+ *
+ * @param {string} href - raw href (resolved against the current document)
+ */
+export function pageIdForHref(href) {
+  let url;
+  try {
+    url = new URL(href, window.location.href);
+  } catch {
+    return null;
+  }
+  if (url.origin !== window.location.origin) return null;
+  return pageIdFromPath(url.pathname);
+}
+
+/**
  * @param {string} pageId - id from ROUTES
  * @param {object} [options]
  * @param {boolean} [options.replace] - replace the history entry instead of pushing
@@ -64,10 +80,17 @@ export async function navigateTo(pageId, options = {}) {
   currentComponent.value = markRaw(module.default);
   currentPageId.value = pageId;
 
-  if (!options.replace && !booting) {
-    window.history.pushState({ nxPageId: pageId }, "", new URL(route.href, window.location.href).href);
-  } else if (options.replace) {
+  // A back-guard sentinel is the entry we may be sitting on: an overlay closed
+  // itself for this navigation and deliberately left the entry in place (see
+  // backGuard.abandonBackGuard). Replacing it with the new page keeps history
+  // free of a second copy of the page being left, so "back" behaves like a
+  // normal tab switch instead of needing two presses.
+  const overSentinel = !!(window.history.state && window.history.state.nxOverlay);
+
+  if (options.replace || overSentinel) {
     window.history.replaceState({ nxPageId: pageId }, "", new URL(route.href, window.location.href).href);
+  } else if (!booting) {
+    window.history.pushState({ nxPageId: pageId }, "", new URL(route.href, window.location.href).href);
   }
 
   // A new page starts at the top, the way a reload would.

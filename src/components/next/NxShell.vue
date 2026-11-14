@@ -20,7 +20,8 @@ import NxDocDrawer from "./NxDocDrawer.vue";
 import NxSettings from "./NxSettings.vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll } from "../../util/next/scrollLock.js";
-import { pushBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard, abandonBackGuard } from "../../util/next/backGuard.js";
+import { pageIdForHref } from "../../util/next/router.js";
 
 const props = defineProps({
   pageId: {
@@ -230,10 +231,27 @@ function onKeydown(event) {
 // want to see. Without this the panel stayed open over the page they had just
 // navigated to. Links that open in a new tab are left alone — the current page
 // is not going anywhere.
+//
+// A same-document link (the catalog tabs, the brand link) has to drop the back
+// guard without unwinding it: the router replaces the sentinel entry with the
+// new page, and calling `history.back()` here raced that navigation — when the
+// target module was already cached the new entry landed first, the back press
+// popped it, and the browser bounced to the page being left.
+//
+// Re-selecting the tab that is already open is not a navigation — the router
+// only scrolls to the top — so that path keeps the normal unwind and leaves no
+// stray entry in history.
 function onRailClick(event) {
   if (!railOpen.value) return;
-  const link = event.target.closest ? event.target.closest("a[target='_blank']") : null;
-  if (link) return;
+  const anchor = event.target.closest ? event.target.closest("a[href]") : null;
+  if (anchor && anchor.target === "_blank") return;
+  if (anchor) {
+    const targetId = pageIdForHref(anchor.getAttribute("href"));
+    if (targetId && targetId !== props.pageId) {
+      abandonBackGuard();
+      releaseBack = null;
+    }
+  }
   railOpen.value = false;
 }
 
