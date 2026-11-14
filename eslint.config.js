@@ -22,7 +22,9 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.es2022,
-        BUILD_TIME: 'readonly'
+        BUILD_TIME: 'readonly',
+        COMMIT_HASH: 'readonly',
+        DOC_UPDATED: 'readonly'
       }
     },
     rules: {

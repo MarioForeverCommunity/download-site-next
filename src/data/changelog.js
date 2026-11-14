@@ -5,6 +5,72 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-beta.1",
+    date: "2026-11-15",
+    features: [],
+    features_en: [],
+    improvements: [
+      "抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容；抽屉内滚动不再带动主区域"
+    ],
+    improvements_en: [
+      "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it"
+    ],
+    fixes: [],
+    fixes_en: [],
+    misc: [],
+    misc_en: []
+  },
+  {
+    version: "3.0.0-beta.0",
+    date: "2026-11-14",
+    features: [
+      "全新界面设计：白色主区域 + 灰色导航栏与常驻筛选面板，紧凑列表 / 卡片双视图，深浅色模式",
+      "搜索拆分为标题（含别名、文件名）与作者两栏，各自独立匹配",
+      "新增「发布时间」筛选：按年份多选或按日期区间（精确到日）二选一，附今年 / 去年 / 近 30 天快捷项",
+      "地区、平台、制作软件、年份、MW 版本等筛选均为多选；标签支持任一 / 同时 / 排除三态",
+      "作品详情改为右侧抽屉，可逐条对比而不离开列表；文档页中的作品条目可原地展开",
+      "页面标题显示在顶栏，页脚移入左侧导航栏；全局设置可在新旧两套界面间切换",
+      "新版界面改为单页应用：切换页面不再刷新文档，URL 与浏览器前进 / 后退保持同步，内容区有淡入过渡而导航栏与顶栏保持不动",
+      "各作品目录页新增「目录说明」抽屉，页面原有的说明文档可从顶栏按钮展开阅读，其中的致谢、音乐包放置说明等内容原地展开为卡片",
+      "移动端筛选面板与导航栏均改为抽屉，选择导航项后自动收起；抽屉、全屏弹窗与图片预览支持 Android 返回键关闭",
+      "目录页显示数据「最后更新」，结果栏横跨筛选栏上方；Softendo 目录的「系列」列支持排序"
+    ],
+    features_en: [
+      "A completely new interface: white content canvas with a grey navigation rail and a persistent filter sidebar, list/card views and dark mode",
+      "The search splits into two independent fields — titles (aliases and filenames included) and authors",
+      "A new Release date filter: multiple years or an exact date range down to the day, with this year / last year / last 30 days shortcuts",
+      "Region, platform, software, year and MW version filters are multi-select; tags support any / all / exclude states",
+      "Game details open in a right-side drawer so records can be compared without leaving the list; embedded previews in the documentation expand in place",
+      "The page title sits in the topbar and the footer moved into the left rail; global settings switch between the two designs",
+      "The new interface is a single-page app: switching pages no longer reloads the document, the URL stays in sync with the back/forward buttons, and the content area fades while the rail and topbar stay still",
+      "Each catalog page gains an About drawer where the page's own write-up opens from a topbar button, and blocks it links to (credits, the data-package note) expand in place as cards",
+      "On phones the filter pane and the navigation rail both became drawers that close after choosing an entry; drawers, full-screen dialogs and the image viewer close on the Android back button",
+      "Catalog pages show when their data was last updated, and the results bar spans the full width above the filter pane; the Softendo catalog's Series column is sortable"
+    ],
+    improvements: [],
+    improvements_en: [],
+    fixes: [
+      "J2ME 版本的作品现在能正确识别",
+      "下载提示补充 Java、Linux、macOS 版本的说明，Java 版不再显示无关的压缩包提示",
+      "新增「AI 生成」「移植」两个标签",
+      "MW 4.0 作品的作者链接改用 Mario Worker 4.4 的资源站目录"
+    ],
+    fixes_en: [
+      "J2ME builds are now detected correctly",
+      "Download tooltips explain the Java, Linux and macOS builds; Java versions no longer show an unrelated archive hint",
+      "Added the AI Generated and Port tags",
+      "Mario Worker 4.0 author links now point at the Mario Worker 4.4 File Hub folder"
+    ],
+    misc: [
+      "移除 123 网盘链接，「备用地址」统一改称「备用链接」",
+      "移动端中文版 Softendo 页使用侧栏短标题"
+    ],
+    misc_en: [
+      "Removed 123pan links and renamed the secondary-address wording to secondary link throughout",
+      "The Chinese Softendo page uses the short sidebar title on phones"
+    ]
+  },
+  {
     version: "2.5.3",
     date: "2026-10-07",
     features: [

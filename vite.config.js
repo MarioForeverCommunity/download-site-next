@@ -4,13 +4,61 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { resolve } from 'path'
+import { execSync } from 'node:child_process'
 import viteCompression from 'vite-plugin-compression'
 import { constants } from 'zlib'
+
+// Full commit hash of the build, so the deployed site can link to exactly the
+// source it was built from. Falls back to an empty string when the build runs
+// outside a git checkout (e.g. a source archive).
+function readCommitHash() {
+  try {
+    return execSync('git rev-parse HEAD', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim()
+  } catch {
+    return ''
+  }
+}
+
+// "Last updated" dates for the documentation pages, taken from the newest commit
+// touching each tracked file. Reading them at build time keeps the pages working
+// offline and immune to the GitHub API's rate limits, which a runtime request
+// was hitting (403 -> the line silently disappeared).
+function lastCommitDate(path) {
+  try {
+    const iso = execSync(`git log -1 --format=%cI -- "${path}"`, {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore']
+    }).trim()
+    return iso || null
+  } catch {
+    return null
+  }
+}
+
+function docUpdatedDates() {
+  const newest = (...paths) => {
+    const dates = paths.map(lastCommitDate).filter(Boolean)
+    if (dates.length === 0) return null
+    return dates.reduce((a, b) => (new Date(a) > new Date(b) ? a : b))
+  }
+  return {
+    mfZh: newest('public/data/list-original-mf.yaml', 'src/markdown/mf-zh.md'),
+    mfEn: newest('public/data/list-original-mf.yaml', 'src/markdown/mf-en.md'),
+    mw: newest('public/data/list-mw.yaml', 'src/markdown/mw-en.md'),
+    // Catalog pages: data + their own write-up.
+    mfGames: newest('public/data/list-mf.yaml', 'src/markdown/mf-games-zh.md', 'src/markdown/mf-games-en.md'),
+    mwLevels: newest('public/data/list-mw.yaml', 'src/markdown/mw-levels-zh.md'),
+    assets: newest('public/data/list-assets.yaml', 'src/markdown/assets.md'),
+    softendo: newest('public/data/list-softendo.yaml', 'src/markdown/softendo-zh.md', 'src/markdown/softendo-en.md')
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
-    BUILD_TIME: JSON.stringify(new Date())
+    BUILD_TIME: JSON.stringify(new Date()),
+    COMMIT_HASH: JSON.stringify(readCommitHash()),
+    DOC_UPDATED: JSON.stringify(docUpdatedDates())
   },
   plugins: [
     vue({

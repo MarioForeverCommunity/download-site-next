@@ -1,0 +1,197 @@
+<script setup>
+// Mario Worker levels catalog — redesigned.
+//
+// Chinese-only, matching the legacy page (config.js `show_en: false`).
+// No tag filter: MW entries carry only "专用 MW" / "BGM" runtime flags, which
+// the 运行要求 facet already expresses, so a second tag filter would duplicate it.
+import { ref, computed, onMounted, watchEffect } from "vue";
+import NxCatalog from "../../../components/next/NxCatalog.vue";
+import NxIcon from "../../../components/next/NxIcon.vue";
+import { getDefaultSort } from "../../../util/Language.js";
+import { navTop } from "../../../config.js";
+import { readList } from "../../../util/ReadList.js";
+import { loadImageIndex } from "../../../util/ImageUtil.js";
+import { useCatalog } from "../../../util/useCatalog.js";
+import { buildMwRecords, makeFacet, distinctValues } from "../../../util/next/records.js";
+import mwLevelsZh from "../../../markdown/mw-levels-zh.md";
+import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
+import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
+
+const lan = ref("zh");
+const pageId = "mw-levels";
+const pageEntry = navTop.find((item) => item.id === pageId);
+
+const title = computed(() => pageEntry.title);
+
+const rawRecords = ref([]);
+const loading = ref(true);
+
+const SORT_MAP = {
+  date_desc: { field: "date", asc: false },
+  date_asc: { field: "date", asc: true },
+  name_asc: { field: "name", asc: true },
+  name_desc: { field: "name", asc: false },
+  author_asc: { field: "author", asc: true },
+  author_desc: { field: "author", asc: false },
+};
+
+const initialSort = SORT_MAP[getDefaultSort().value] || { field: "date", asc: false };
+
+const facets = computed(() => {
+  const list = rawRecords.value;
+  // Newest MW version first: the current editors are what visitors look for.
+  const smwpValues = distinctValues(list, (record) => record.smwpVersion).sort((a, b) => {
+    const rank = (value) => {
+      if (value === "MW 4.4") return 1;
+      if (value === "MW 4.0") return 0;
+      return 2;
+    };
+    const ra = rank(a);
+    const rb = rank(b);
+    if (ra !== rb) return rb - ra;
+    return String(b).localeCompare(String(a), undefined, { numeric: true });
+  });
+
+  return [
+    makeFacet({
+      key: "smwp",
+      label: "MW 版本",
+      // Long option set rendered as pills, matching the year filter's shape.
+      as: "chips",
+      getter: (record) => record.smwpVersion,
+      options: {
+        records: list,
+        list: smwpValues.map((value) => ({ value, label: value })),
+      },
+    }),
+    makeFacet({
+      key: "runtime",
+      label: "运行要求",
+      getter: (record) => {
+        if (record.bundled) return "bundled";
+        if (record.hasBgm) return "bgm";
+        return "download";
+      },
+      options: {
+        records: list,
+        list: [
+          { value: "bundled", label: "自带 MW" },
+          { value: "download", label: "需下载 MW" },
+          { value: "bgm", label: "需替换 BGM" },
+        ],
+      },
+    }),
+  ];
+});
+
+const sorters = [
+  { field: "name", compare: (a, b) => String(a.name).localeCompare(String(b.name)) },
+  { field: "author", compare: (a, b) => String(a.author).localeCompare(String(b.author)) },
+  { field: "date", compare: (a, b) => (a.date ? a.date.getTime() : 0) - (b.date ? b.date.getTime() : 0) },
+];
+
+const catalog = useCatalog({
+  records: rawRecords,
+  titleFields: ["titleSearch"],
+  authorFields: ["authorSearch"],
+  facets: () => facets.value,
+  sorters,
+  defaultSort: initialSort,
+  tags: false,
+  labels: { year: "年份 ", range: "日期 " },
+});
+
+// The dice button lives in the shell, so the page exposes a handler that reaches
+// its catalog instance.
+const catalogRef = ref(null);
+
+function randomGame() {
+  if (catalogRef.value) catalogRef.value.randomRecord();
+}
+
+onMounted(async () => {
+  try {
+    const [list] = await Promise.all([readList("list-mw.yaml"), loadImageIndex().catch(() => null)]);
+    rawRecords.value = buildMwRecords(list);
+  } catch (error) {
+    console.error("Failed to load MW catalog:", error);
+    rawRecords.value = [];
+  } finally {
+    loading.value = false;
+  }
+});
+
+document.title = title.value;
+
+// The catalog's own write-up, opened from the topbar; null hides the button.
+const doc = computed(() => mwLevelsZh);
+const docUpdated = ref("");
+getCatalogLastUpdated("mwLevels").then((v) => { docUpdated.value = v || ""; });
+
+// The app shell is rendered once by the SPA root; this page only publishes
+// the parts that differ (title, write-up, search model) plus its own controls.
+// A watchEffect keeps the shell in sync when the language changes or the
+// write-up's date arrives after the first render.
+watchEffect(() => {
+  publishShell({
+    pageId: "mw-levels",
+    title: title.value,
+    lan: lan.value,
+    doc: doc.value,
+    docTitle: title.value,
+    docUpdated: docUpdated.value,
+    search: catalog,
+    showRandom: true,
+  });
+});
+publishShellHandlers({
+  random: randomGame,
+});
+</script>
+
+<template>
+
+  <NxCatalog
+    ref="catalogRef"
+    v-if="!loading"
+    :catalog="catalog"
+    :facets="facets"
+    :sorters="sorters"
+    :lan="lan"
+    show-random
+    :show-tags="false"
+    :updated="docUpdated"
+    :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
+  >
+    <template #pane-extras>
+      <section class="nx-pane-section">
+        <h4><span>列表选项</span></h4>
+        <div class="nx-checks">
+          <button
+            type="button"
+            class="nx-check"
+            :class="{ on: catalog.onlyWithImage.value }"
+            :aria-pressed="catalog.onlyWithImage.value"
+            @click="catalog.onlyWithImage.value = !catalog.onlyWithImage.value"
+          >
+            <span
+              class="nx-check-box"
+              aria-hidden="true"
+            ><NxIcon
+              v-if="catalog.onlyWithImage.value"
+              name="check"
+              :size="9"
+            /></span>
+            <span>仅显示有图片的作品</span>
+          </button>
+        </div>
+      </section>
+    </template>
+  </NxCatalog>
+  <div
+    v-else
+    class="nx-loading"
+  >
+    正在载入关卡目录…
+  </div>
+</template>

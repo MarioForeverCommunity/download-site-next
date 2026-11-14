@@ -8,11 +8,11 @@
 
 <a class="md-button" target="_blank" href="https://yun.139.com/shareweb/#/w/i/2wFGTYdvGB5fz">中国移动云盘 - 总集</a>
 
+本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
+
+欢迎加入 Mario Worker QQ 群，群号：140130677
+
 <div id="smwp-data-placement" style="display:none">
   <h3>SMWP 音乐包放置说明</h3>
   <p>下载音乐包，将其解压缩并把其中的 Data 文件夹存放至 SMWP 主程序（如 SuperMarioWorkerProject_v1.x.x.exe）所在的目录（默认为 Super Mario Worker Project 目录）。如已有音乐包，请确保 Data 文件夹存放在 SMWP 主程序所在的目录。</p>
 </div>
-
-本页面所有资源均免费提供，不得倒卖或用于营利，违者必究！
-
-欢迎加入 Mario Worker QQ 群，群号：140130677

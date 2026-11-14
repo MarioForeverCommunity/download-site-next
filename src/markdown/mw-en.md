@@ -1,7 +1,6 @@
 <script setup>
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-  import 'vue3-carousel/dist/carousel.css'
+  import NxGallery from '../components/next/NxGallery.vue'
 
   defineProps({
       lastUpdate: String
@@ -48,21 +47,13 @@
     { id: "smwp", label: "Super Mario Worker Project" }
   ]
 
-  const isMobile = ref(false)
 
-  function updateIsMobile() {
-    isMobile.value = window.innerWidth <= 800
-  }
 
-  const itemsToShow = computed(() => isMobile.value ? 1 : 2)
 
   onMounted(() => {
-    window.addEventListener("resize", updateIsMobile)
-    updateIsMobile()
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener("resize", updateIsMobile)
   })
 </script>
 
@@ -118,15 +109,7 @@ Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4
     </span>
   </a>
 </div>
-<Carousel :key="currentTab" :autoplay="3000" :wrap-around="true" :items-to-show="itemsToShow">
-  <Slide v-for="image in currentImages" :key="image" :style="isMobile ? '' : 'width: 50%; aspect-ratio: 4/3;'">
-    <img :src="image" style="width: 100%; height: 100%;">
-  </Slide>
-  <template #addons>
-    <Navigation />
-    <Pagination />
-  </template>
-</Carousel>
+<NxGallery :key="currentTab" :images="currentImages" alt="Mario Worker" lan="en" :max-height="480" :autoplay="3000" />
 
 ## Other Mario Worker variants
 ### Mario Worker 2
@@ -243,20 +226,7 @@ Mario Constructor Forever is a Mario Forever-like level editor built with GameMa
     background-color: #555;
   }
 
-  :deep(.carousel__pagination) {
-    position: relative;
-    margin-top: 24px;
-  }
 
-  :deep(.carousel__pagination-button) {
-    width: 12px;
-  }
 
-  :deep(.carousel__prev) {
-    margin-left: 8px;
-  }
 
-  :deep(.carousel__next) {
-    margin-right: 8px;
-  }
 </style>

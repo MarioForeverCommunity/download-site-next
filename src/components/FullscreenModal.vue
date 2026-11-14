@@ -439,9 +439,12 @@ const downloadEntries = computed(() => {
           // flash/mff 类型显示格式标签 (如 "绿色版 EXE")
           let portableName;
           if (props.game.type === 'flash' || props.game.type === 'mff') {
+            // Only append a format hint when the label carries one; a bare
+            // "Portable" word would just repeat the button's own name.
+            const labelIsPortable = !p.label || /^portable$/i.test(String(p.label).trim());
             portableName = props.lan === 'zh'
-              ? `绿色版 (${p.label || 'Portable'})`
-              : `Portable (${p.label || 'Portable'})`;
+              ? (labelIsPortable ? '绿色版' : `绿色版 (${p.label})`)
+              : (labelIsPortable ? 'Portable' : `Portable (${p.label})`);
           } else {
             portableName = props.lan === 'zh' ? '绿色版' : 'Portable';
           }
@@ -455,7 +458,7 @@ const downloadEntries = computed(() => {
             ? 'kliktopia'
             : (labelMatch('exe') || extMatch('exe')) ? 'exe'
               : (labelMatch('swf') || extMatch('swf')) ? 'swf'
-                : (labelMatch('zip') || labelMatch('7z') || extMatch('zip') || extMatch('7z')) ? 'archive'
+                : (labelMatch('zip') || labelMatch('7z') || labelMatch('rar') || extMatch('zip') || extMatch('7z') || extMatch('rar')) ? 'archive'
                   : null;
           entries.push({
             version: props.lan === 'zh' ? `${portableName} (${verKey})` : `${portableName} (${verKey})`,
