@@ -88,7 +88,15 @@ export async function navigateTo(pageId, options = {}) {
   const overSentinel = !!(window.history.state && window.history.state.nxOverlay);
 
   if (options.replace || overSentinel) {
-    window.history.replaceState({ nxPageId: pageId }, "", new URL(route.href, window.location.href).href);
+    const target = new URL(route.href, window.location.href);
+    // Boot and popstate both land on the entry the address bar already names,
+    // so its query string must survive the normalisation: dropping it erased a
+    // shared `?id=` deep link (and `?design=`) before the page could read it.
+    // A real navigation to another entry still starts with a clean URL.
+    if (pageIdFromPath(window.location.pathname) === pageId) {
+      target.search = window.location.search;
+    }
+    window.history.replaceState({ nxPageId: pageId }, "", target.href);
   } else if (!booting) {
     window.history.pushState({ nxPageId: pageId }, "", new URL(route.href, window.location.href).href);
   }

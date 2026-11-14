@@ -9,7 +9,7 @@ import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
 import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
-import { readList } from "../../../util/ReadList.js";
+import { ensureMwList } from "../../../util/useMwList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildMwRecords, makeFacet, distinctValues } from "../../../util/next/records.js";
@@ -111,7 +111,7 @@ function randomGame() {
 
 async function load() {
   try {
-    const [list] = await Promise.all([readList("list-mw.yaml"), loadImageIndex().catch(() => null)]);
+    const [list] = await Promise.all([ensureMwList(), loadImageIndex().catch(() => null)]);
     rawRecords.value = buildMwRecords(list);
   } catch (error) {
     console.error("Failed to load MW catalog:", error);

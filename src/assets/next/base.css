@@ -2038,12 +2038,38 @@ body.nx-body select:focus-visible {
   gap: 0 8px;
 }
 
-.nx-meta-inline.is-faint {
+.nx-meta-key {
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nx-ink);
+  margin-right: 8px;
+}
+
+/* One entry per file: the size sits 8px after its own name, while files are
+   separated by a faint dot. */
+.nx-file-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.nx-file-pair {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.nx-file-sep {
   color: var(--nx-faint);
 }
 
-.nx-meta-inline.is-muted {
-  color: var(--nx-muted);
+.nx-data-line {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
 }
 
 .nx-dl-row {
@@ -2051,6 +2077,13 @@ body.nx-body select:focus-visible {
   flex-wrap: wrap;
   gap: 4px;
   margin-top: 7px;
+}
+
+/* When the version name and meta line are both absent (MW records), the
+   buttons are the first thing in the version box: drop the separation margin so
+   the box does not open with an empty strip. */
+.nx-version > .nx-dl-row:first-child {
+  margin-top: 0;
 }
 
 .nx-dl {
@@ -2154,6 +2187,45 @@ body.nx-body select:focus-visible {
   border-color: color-mix(in srgb, #d81b60 40%, var(--nx-line));
   color: #b8154f;
   background: color-mix(in srgb, #d81b60 7%, var(--nx-canvas));
+}
+
+/* Tone-coloured buttons keep their hue on hover. The generic .nx-dl:hover only
+   shifts border and text toward the neutral palette, which never showed here
+   because the tone rules above are more specific, so these buttons had no hover
+   feedback at all. */
+.nx-dl.nx-dl.is-tone-installer:hover {
+  border-color: color-mix(in srgb, #1f6fd0 58%, var(--nx-line));
+  background: color-mix(in srgb, #1f6fd0 13%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-toolbar:hover {
+  border-color: color-mix(in srgb, #e67e22 62%, var(--nx-line));
+  background: color-mix(in srgb, #e67e22 15%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-exe:hover {
+  border-color: color-mix(in srgb, #00a83c 58%, var(--nx-line));
+  background: color-mix(in srgb, #00d84f 14%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-archive:hover {
+  border-color: color-mix(in srgb, #a43ecb 58%, var(--nx-line));
+  background: color-mix(in srgb, #bd4de2 14%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-swf:hover {
+  border-color: color-mix(in srgb, #e04a4a 58%, var(--nx-line));
+  background: color-mix(in srgb, #ff5b5b 14%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-kliktopia:hover {
+  border-color: color-mix(in srgb, #2ba8a0 60%, var(--nx-line));
+  background: color-mix(in srgb, #40e0d0 15%, var(--nx-canvas));
+}
+
+.nx-dl.nx-dl.is-tone-selfextract:hover {
+  border-color: color-mix(in srgb, #d81b60 58%, var(--nx-line));
+  background: color-mix(in srgb, #d81b60 14%, var(--nx-canvas));
 }
 
 /* Inline extraction code inside the download button. */

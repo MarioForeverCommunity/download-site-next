@@ -4,7 +4,7 @@ import { getSoftendoGameName, getSoftendoYearRange, getTypeLabel, getLanguageLab
 import { getTagLabel } from "../TagUtil.js";
 import { getGameImageSync, getShowcaseImagesSync } from "../ImageUtil.js";
 import { getUseDirectLink } from "../Language.js";
-import { downloadName } from "../../config.js";
+import { downloadName, sourceName } from "../../config.js";
 
 // ── shared helpers ────────────────────────────────────────────
 // The redesigned pages read the same YAML as the legacy pages, so platform and
@@ -143,6 +143,46 @@ export function netdiskServiceName(url, lan) {
   return null;
 }
 
+// Same lookup for a release post, using config.js's `sourceName` table.
+export function sourceServiceName(url, lan) {
+  if (!url) return null;
+  for (const entry of sourceName) {
+    const domain = entry.domain;
+    let matched;
+    try {
+      matched = typeof domain === "string" ? url.includes(domain) : domain.test(url);
+    } catch (_e) {
+      matched = false;
+    }
+    if (matched) {
+      return lan === "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
+    }
+  }
+  return null;
+}
+
+// Fall back to the URL's own host, so a mirror missing from config.js still
+// names where the file comes from.
+function urlHostname(url) {
+  try {
+    return new URL(url).hostname;
+  } catch (_e) {
+    return null;
+  }
+}
+
+// The last path segment of a link built from a known file name (assets and
+// Softendo use their own base paths, so this is the file name itself).
+function fileNameFromUrl(url) {
+  if (!url) return "";
+  try {
+    const path = decodeURIComponent(new URL(url).pathname);
+    return path.split("/").filter(Boolean).pop() || "";
+  } catch (_e) {
+    return "";
+  }
+}
+
 function shortNetdiskLabel(desc) {
   if (!desc) return "";
   return desc.replace(/\s*\((提取码|密码|Code|已失效|Invalid|暂无法访问|Temporarily Unavailable)[^)]*\)/g, "").trim();
@@ -193,11 +233,20 @@ function mfVersions(entry, lan) {
     const fileKey = lan === "zh" ? "file_url_zh" : "file_url_en";
     const dataKey = lan === "zh" ? "data_file_url_zh" : "data_file_url_en";
     const downloads = [];
+    // Each File Hub button carries the file it points at, so the drawer can pair
+    // every file name with its own size.
+    const fileNames = (Array.isArray(ver.file_name) ? ver.file_name : ver.file_name ? [ver.file_name] : [])
+      .filter(Boolean)
+      .map((name) => String(name).replace(/^old-versions\//, ""));
+    const dataFileNames = (Array.isArray(ver.data_file_name) ? ver.data_file_name : ver.data_file_name ? [ver.data_file_name] : [])
+      .filter(Boolean)
+      .map((name) => String(name).replace(/^old-versions\//, ""));
 
     if (ver[fileKey]) {
       downloads.push({
         label: lan === "zh" ? "社区资源站" : "Community File Hub",
         shortLabel: "File Hub",
+        file: fileNames[0] || "",
         url: direct(ver[fileKey]),
         code: null,
         dead: false,
@@ -214,6 +263,7 @@ function mfVersions(entry, lan) {
       dataDownloads.push({
         label: lan === "zh" ? "社区资源站" : "Community File Hub",
         shortLabel: "File Hub",
+        file: dataFileNames[0] || "",
         url: direct(ver[dataKey]),
         code: null,
         dead: false,
@@ -222,9 +272,13 @@ function mfVersions(entry, lan) {
       });
     }
     if (ver.data_download_url) {
+      // The link's label is its hosting service, like the download buttons: the
+      // "data package" context comes from the section it sits in.
+      const service = netdiskServiceName(ver.data_download_url, lan) || urlHostname(ver.data_download_url);
       dataDownloads.push({
-        label: lan === "zh" ? "网盘数据包" : "Netdisk data",
-        shortLabel: lan === "zh" ? "网盘" : "Netdisk",
+        label: service || (lan === "zh" ? "网盘数据包" : "Netdisk data"),
+        shortLabel: service || (lan === "zh" ? "网盘" : "Netdisk"),
+        service,
         url: ver.data_download_url,
         code: ver.data_code || null,
         dead: false,
@@ -242,9 +296,15 @@ function mfVersions(entry, lan) {
       date: toDate(ver.date),
       platform,
       software,
+      // The release post belongs to the build, not the entry: each version may
+      // point at its own thread. Both the primary and the alternate post are
+      // kept, so the drawer can list them in the reader's language order.
+      source: ver.source_url || null,
+      sourceAlt: ver.source_url_alt || null,
       // `old-versions/` is a URL path prefix applied by the link builder; the
-      // filename shown to the reader must not include it.
-      file: String(ver.file_name || "").replace(/^old-versions\//, ""),
+      // file names shown to the reader must not include it.
+      files: fileNames,
+      dataFiles: dataFileNames,
       downloads,
       dataDownloads,
       repacker: ver.repacker || null,
@@ -372,23 +432,38 @@ function collectVideos(entry, lan) {
 // Expand a multi-version record into one record per version.
 export function expandMfRecord(record) {
   if (!record || record.versions.length <= 1) return [record];
-  return record.versions.map((version, index) => ({
-    ...record,
-    id: `${record.id}::${version.verKey}`,
-    date: version.date,
-    versionLabel: version.displayLabel || version.label,
-    platform: version.platform,
-    software: version.software,
-    downloads: version.downloads,
-    dataDownloads: version.dataDownloads,
-    current: version,
-    isLatestVersion: version.latest,
-    // Every version now has its own row, so the "N versions" badge would only
-    // repeat what the rest of the list already shows.
-    versionCount: 1,
-    expandedFrom: record,
-    expandedIndex: index,
-  }));
+  return record.versions.map((version, index) => {
+    // Each row represents one build, so it prefers that build's own title
+    // screenshot (`title_<version>.*`); collectImages falls back to the shared
+    // title when the artwork folder has no version-specific file.
+    const { image, images } = collectImages(record.raw, "mf-games", version.verKey);
+    return {
+      ...record,
+      id: `${record.id}::${version.verKey}`,
+      date: version.date,
+      versionLabel: version.displayLabel || version.label,
+      platform: version.platform,
+      software: version.software,
+      downloads: version.downloads,
+      dataDownloads: version.dataDownloads,
+      // The release post is version-scoped, so the row's link icon must point at
+      // this build's thread instead of the record's first version.
+      links: {
+        ...record.links,
+        source: version.source || null,
+        sourceAlt: version.sourceAlt || null,
+      },
+      image,
+      images,
+      current: version,
+      isLatestVersion: version.latest,
+      // Every version now has its own row, so the "N versions" badge would only
+      // repeat what the rest of the list already shows.
+      versionCount: 1,
+      expandedFrom: record,
+      expandedIndex: index,
+    };
+  });
 }
 
 // ── Mario Worker levels ──────────────────────────────────────
@@ -412,6 +487,7 @@ export function buildMwRecords(entries) {
         ? `社区资源站 (${displayNames[index] || `#${index + 1}`})`
         : "社区资源站",
       shortLabel: fileNames.length > 1 ? `#${index + 1}` : "File Hub",
+      file: String(fileName).split("/").pop(),
       url: direct(getMwLevelFileUrl(entry, fileName)),
       code: null,
       dead: false,
@@ -450,9 +526,14 @@ export function buildMwRecords(entries) {
       });
     }
 
+    const dataFileNames = (Array.isArray(entry.data_file_name) ? entry.data_file_name : entry.data_file_name ? [entry.data_file_name] : [])
+      .filter(Boolean)
+      .map((name) => String(name).split("/").pop());
+
     const dataDownloads = (entry.data_file_urls || []).map((item, index) => ({
       label: item.name,
       shortLabel: entry.data_file_urls.length > 1 ? `#${index + 1}` : "File Hub",
+      file: dataFileNames[index] || "",
       url: direct(item.url),
       code: null,
       dead: false,
@@ -460,9 +541,13 @@ export function buildMwRecords(entries) {
       kind: "filehub",
     }));
     if (entry.currentVer && entry.currentVer.data_download_url) {
+      // Same as the MF builder: name the hosting service instead of a generic
+      // "netdisk data" label.
+      const service = netdiskServiceName(entry.currentVer.data_download_url, lan) || urlHostname(entry.currentVer.data_download_url);
       dataDownloads.push({
-        label: "网盘数据包",
-        shortLabel: "网盘",
+        label: service || "网盘数据包",
+        shortLabel: service || "网盘",
+        service,
         url: entry.currentVer.data_download_url,
         code: entry.currentVer.data_code || null,
         dead: false,
@@ -510,8 +595,14 @@ export function buildMwRecords(entries) {
         label: cleanVersionLabel(entry.smwp_ver) || "",
         displayLabel: cleanVersionLabel(entry.smwp_ver) || "",
         date: toDate(entry.date),
+        // MW records have no date/version line in the drawer, but do show the
+        // level's own file name(s) and the data package's file name(s).
+        files: fileNames.map((name) => String(name).split("/").pop()),
+        dataFiles: dataFileNames,
         downloads: allDownloads,
         dataDownloads,
+        source: entry.currentVer ? entry.currentVer.source_url || null : null,
+        sourceAlt: entry.currentVer ? entry.currentVer.source_url_alt || null : null,
         current: true,
         platform: null,
         software: null,
@@ -520,6 +611,7 @@ export function buildMwRecords(entries) {
       links: {
         home: entry.homepage || null,
         source: entry.currentVer ? entry.currentVer.source_url || null : null,
+        sourceAlt: entry.currentVer ? entry.currentVer.source_url_alt || null : null,
         repo: entry.repo || null,
         wiki: entry.wiki_zh_url || null,
         video: (entry.video || []).map((item) => {
@@ -579,9 +671,15 @@ export function buildAssetRecords(entries, lan) {
 }
 
 function buildAssetRecord(entry, variant, variantKey, lan) {
+  // One file name per File Hub link, so the drawer can pair each name with its
+  // own size just like the game catalogs do.
+  const assetFileNames = (Array.isArray(variant.file_name) ? variant.file_name : variant.file_name ? [variant.file_name] : [])
+    .filter((name) => name != null)
+    .map((name) => String(name).split("/").pop());
   const downloads = getAssetResourceURLs({ ...entry, currentVer: variant }, lan).map((item, index, arr) => ({
     label: item.name,
     shortLabel: arr.length > 1 ? `#${index + 1}` : "File Hub",
+    file: assetFileNames[index] || fileNameFromUrl(item.url),
     url: direct(item.url),
     code: null,
     dead: false,
@@ -650,6 +748,8 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
       date: toDate(variant.date || entry.date),
       downloads,
       dataDownloads: [],
+      source: variant.source_url || null,
+      sourceAlt: variant.source_url_alt || null,
       current: true,
       platform: null,
       software: null,
@@ -658,6 +758,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     links: {
       home: null,
       source: entry.source_url || null,
+      sourceAlt: entry.source_url_alt || null,
       repo: entry.repo || null,
       wiki: null,
       video: [],
@@ -682,6 +783,7 @@ export function buildSoftendoRecords(entries, lan) {
         downloads.push({
           label: `${lan === "zh" ? "安装版" : "Installer"}${toolbar ? (lan === "zh" ? "（含广告插件）" : " (with toolbar)") : ""}`,
           shortLabel: lan === "zh" ? "安装版" : "Installer",
+          file: fileNameFromUrl(ver.installer_url),
           url: direct(ver.installer_url),
           code: null,
           dead: false,
@@ -713,6 +815,7 @@ export function buildSoftendoRecords(entries, lan) {
         downloads.push({
           label: `${lan === "zh" ? "绿色版" : "Portable"}${formatHint}`,
           shortLabel: lan === "zh" ? "绿色版" : "Portable",
+          file: fileNameFromUrl(item.url),
           url: direct(item.url),
           code: null,
           dead: false,
@@ -725,6 +828,7 @@ export function buildSoftendoRecords(entries, lan) {
         downloads.push({
           label: lan === "zh" ? "自解压" : "Self-extracting",
           shortLabel: lan === "zh" ? "自解压" : "Self-ex",
+          file: fileNameFromUrl(item.url),
           url: direct(item.url),
           code: null,
           dead: false,
@@ -741,6 +845,8 @@ export function buildSoftendoRecords(entries, lan) {
         date: toDate(ver.date),
         downloads,
         dataDownloads: [],
+        source: null,
+        sourceAlt: null,
         current: index === 0,
         platform: null,
         software: null,

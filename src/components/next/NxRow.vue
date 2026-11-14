@@ -63,6 +63,15 @@ const primaryDownload = computed(() => {
   return downloads.find((item) => !item.dead) || null;
 });
 
+// The release post follows the reader's language: English prefers the alternate
+// post (usually the English-language thread) and Chinese the primary one.
+const sourceLink = computed(() => {
+  const links = props.record.links;
+  if (!links) return null;
+  if (props.lan === "en") return links.sourceAlt || links.source || null;
+  return links.source || null;
+});
+
 // Only meaningful when the catalog is expanded per version; on a collapsed
 // multi-version row every version is "the record" and a badge would be noise.
 const isLatest = computed(() => props.record.isLatestVersion === true);
@@ -248,12 +257,12 @@ function openLinks(event) {
         <NxIcon name="download" :size="14" />
       </a>
       <a
-        v-if="record.links && record.links.source"
-        :href="record.links.source"
+        v-if="sourceLink"
+        :href="sourceLink"
         target="_blank"
         rel="noopener"
-        :title="lan === 'zh' ? '发布页' : 'Source post'"
-        :aria-label="lan === 'zh' ? '发布页' : 'Source post'"
+        :title="lan === 'zh' ? '发布页' : 'Source'"
+        :aria-label="lan === 'zh' ? '发布页' : 'Source'"
         @click="openLinks"
       >
         <NxIcon name="link" :size="14" />

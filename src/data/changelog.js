@@ -25,7 +25,12 @@ export const changelog = [
       "全局设置中的默认排序与资源站直链开关改为即时生效，无需刷新页面",
       "MW 关卡目录恢复「标记」列；卡片与详情抽屉中的「专用 MW / BGM」标记改用与列表一致的配色",
       "创作资源目录恢复「类型」列：以彩色标识区分引擎 / 拓展 / 特效 / 素材 / 工具 / MW 工具，列表与卡片同步显示，卡片中标识位于日期右侧",
-      "Softendo 目录的「系列」列改用彩色标识（Mario / MFF / Flash / Non-Mario / Banesoft），列表与卡片一致"
+      "Softendo 目录的「系列」列改用彩色标识（Mario / MFF / Flash / Non-Mario / Banesoft），列表与卡片一致",
+      "作品详情：「版本与下载」与「数据包」合并为同一外框，文件名后逐个标注文件大小，MF、MW、创作资源与 Softendo 保持一致",
+      "作品详情：发布页移入「版本与下载」并随版本切换，按钮标注来源站点，中英文分别优先显示主发布页 / 备用发布页；列表的发布页图标同样按版本与语言取链接",
+      "勾选「每个版本单独列出」时，详情只展示该版本的下载与发布页，列表、卡片与详情优先使用对应版本的 title 截图，顶部显示版本号，日期标签改为「发布日期」",
+      "MW 目录恢复发布页、MW 下载、音乐包与数据包按钮（改用与旧版一致的归一化数据）；MW 详情标题对多作者作品显示「合作作品」，信息区仍列出全部作者",
+      "MW「运行环境」的 SMWP 版本下载改为按钮，BGM 提示移至按钮下方；版本信息行只显示数值，不再出现「日期 / 文件名 / 文件大小」等文字标签"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
@@ -39,7 +44,12 @@ export const changelog = [
       "The default sort and the File Hub direct-link switch in Global settings now apply immediately, without reloading the page",
       "The MW levels catalog shows its Mark column again, and the bundled-MW / BGM pills in cards and the detail drawer now use the same colours as the list",
       "The assets catalog shows its Type column again, with a coloured marker per type (engine, addon, effect, sprite, tool, MW tool) in both the list and cards; on cards the marker sits to the right of the date",
-      "The Softendo catalog's Series column now uses the same coloured markers (Mario / MFF / Flash / Non-Mario / Banesoft) in the list and on cards"
+      "The Softendo catalog's Series column now uses the same coloured markers (Mario / MFF / Flash / Non-Mario / Banesoft) in the list and on cards",
+      "The detail drawer's Versions & downloads and Data package blocks share one frame, with each file name followed by its own size across MF, MW, assets and Softendo",
+      "The release post moved into Versions & downloads and follows the selected version; buttons name the hosting site, the primary or alternate post leads according to the language, and the list icon uses the same per-version, per-language link",
+      "With \"list every version separately\" on, the drawer shows only that build's downloads and release post, while list, cards and drawer prefer that version's title screenshot, the version number appears at the top and the date label becomes Released",
+      "The MW catalog regains its release post, MW download, music pack and data package buttons by using the same normalised data as the legacy design; the drawer labels multi-author levels as a collaboration while the facts section still lists every author",
+      "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
@@ -49,7 +59,10 @@ export const changelog = [
       "修复原版 MF 下载表格把 3.5 星显示成 3 星的问题：末尾的半星现在以较淡的主题色单独显示",
       "修复作品详情中下载按钮重复显示提取码的问题，并在提取码徽标前标注「提取码 / Code」",
       "修复 MW 工具类创作资源的占位图：改用 MarioWorker 标识",
-      "修复桌面端详情抽屉打开时页面滚动条仍可见、可被拖动从而滚动背后列表的问题：抽屉展开期间隐藏页面滚动条并保留等宽留白，布局不会发生位移"
+      "修复桌面端详情抽屉打开时页面滚动条仍可见、可被拖动从而滚动背后列表的问题：抽屉展开期间隐藏页面滚动条并保留等宽留白，布局不会发生位移",
+      "修复带 ?id= 的分享链接打开时不展开作品详情的问题：新版路由启动时替换地址会丢弃查询参数，现在只在真正切换页面时清理",
+      "修复 Softendo 详情中自定义颜色下载按钮没有悬停反馈的问题：悬停时保持原色相并加深背景与边框",
+      "修复 MW 详情「版本与下载」按钮上方出现空白的问题：空的版本名与信息行不再占位"
     ],
     fixes_en: [
       "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
@@ -59,7 +72,10 @@ export const changelog = [
       "Fixed the original MF download table rendering a 3.5-star rating as 3 stars: the trailing half star is now drawn in a lighter shade of the accent colour",
       "Fixed download buttons in the detail drawer showing the extraction code twice, and labelled the code badge with 提取码 / Code",
       "Fixed the placeholder for MW-tool assets: they now use the MarioWorker mark",
-      "Fixed the page scrollbar staying visible beside an open detail drawer on desktop, where dragging its thumb still scrolled the catalog behind; the scrollbar is hidden while an overlay is open, with its width reserved so the layout does not shift"
+      "Fixed the page scrollbar staying visible beside an open detail drawer on desktop, where dragging its thumb still scrolled the catalog behind; the scrollbar is hidden while an overlay is open, with its width reserved so the layout does not shift",
+      "Fixed shared ?id= links opening without the record's detail drawer: the redesigned router's startup URL normalisation dropped the query string, which is now kept unless the page really changes",
+      "Fixed tone-coloured download buttons in Softendo details having no hover feedback: they now deepen their background and border while keeping their hue",
+      "Fixed the empty strip above the downloads in MW details: empty version-name and meta lines no longer take up space"
     ],
     misc: [
       "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"

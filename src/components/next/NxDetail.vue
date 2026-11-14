@@ -10,10 +10,10 @@ import axios from "axios";
 import MarkdownIt from "markdown-it";
 import NxIcon from "./NxIcon.vue";
 import NxGallery from "./NxGallery.vue";
-import { formatIsoDate, softwareLabel } from "../../util/next/records.js";
+import { formatIsoDate, softwareLabel, sourceServiceName } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
-import { getFormattedFileSize } from "../../util/OpenListApi.js";
+import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
 
@@ -70,6 +70,10 @@ const theme = ref(document.documentElement.dataset.nxTheme || "light");
 
 const isOpen = computed(() => props.record != null);
 
+// Rows produced by expandMfRecord describe exactly one build: the drawer must
+// then show that build only, instead of offering the other versions again.
+const isExpandedVersion = computed(() => !!(props.record && props.record.expandedFrom));
+
 const text = computed(() => (props.lan === "zh"
   ? {
     screenshots: "截图",
@@ -99,14 +103,12 @@ const text = computed(() => (props.lan === "zh"
     latest: "最新",
     repack: "重打包",
     code: "提取码",
-    copy: "点击复制",
     codeCopyHint: "点击下载并复制提取码",
     copied: "提取码已复制",
-    fetchingSize: "正在获取文件大小…",
     requires: "本作品需要",
     downloadIt: "下载该版本",
-    bgmNote: "需替换或使用自定义 BGM。",
-    musicPack: "音乐包",
+    bgmNote: "游玩本作品前，需替换或使用自定义 BGM。",
+    musicPack: "SMWP 音乐包",
     source: "发布页",
     homepage: "主页",
     repo: "源代码",
@@ -141,15 +143,13 @@ const text = computed(() => (props.lan === "zh"
     latest: "latest",
     repack: "REPACK",
     code: "Code",
-    copy: "Click to copy",
     codeCopyHint: "Download and copy code",
     copied: "Code copied",
-    fetchingSize: "Fetching file size…",
     requires: "Requires",
     downloadIt: "download it",
-    bgmNote: "Needs replaced or custom BGM.",
+    bgmNote: "Replace or use custom BGM before playing this level.",
     musicPack: "Music pack",
-    source: "Source post",
+    source: "Source",
     homepage: "Homepage",
     repo: "Repository",
     download: "Download",
@@ -158,7 +158,9 @@ const text = computed(() => (props.lan === "zh"
 
 watch(() => props.record, (next) => {
   const versions = next && next.versions ? next.versions : [];
-  const current = versions.find((v) => v.latest) || versions[0] || null;
+  const current = next && next.expandedFrom && next.current
+    ? next.current
+    : (versions.find((v) => v.latest) || versions[0] || null);
   activeVersion.value = current ? current.verKey : null;
   lightbox.value = null;  if (next) {
     requestAnimationFrame(() => {
@@ -169,8 +171,10 @@ watch(() => props.record, (next) => {
 }, { immediate: true });
 
 const version = computed(() => {
-  const versions = props.record && props.record.versions ? props.record.versions : [];
+  const record = props.record;
+  const versions = record && record.versions ? record.versions : [];
   if (versions.length === 0) return null;
+  if (record.expandedFrom && record.current) return record.current;
   return versions.find((v) => v.verKey === activeVersion.value) || versions[0];
 });
 
@@ -219,16 +223,20 @@ const facts = computed(() => {
   }
   // Every version's platform, not just the selected one: a fangame may ship a
   // Windows build for its current version and a Linux build for an older one.
-  const platforms = (record.platforms && record.platforms.length)
-    ? record.platforms
-    : (record.platform ? [record.platform] : []);
+  // An expanded row is a single build, so it states that build's platform only.
+  const platforms = isExpandedVersion.value
+    ? (record.platform ? [record.platform] : [])
+    : ((record.platforms && record.platforms.length)
+      ? record.platforms
+      : (record.platform ? [record.platform] : []));
   if (platforms.length) {
     rows.push({ label: t.platform, value: platforms.join(" · ") });
   }
   if (record.date) {
     // A fangame's YAML date is the last time its entry/version was updated,
-    // while an MW level's date is its release date.
-    const dateLabel = record.kind === "mw" ? t.released : t.updated;
+    // while an MW level's date is its release date. A row that lists one build
+    // on its own shows that build's release date instead.
+    const dateLabel = record.kind === "mw" || isExpandedVersion.value ? t.released : t.updated;
     rows.push({ label: dateLabel, value: formatIsoDate(record.date) });
   }
   return rows;
@@ -240,6 +248,29 @@ const hasDownloads = computed(() => {
   return !!((v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length));
 });
 
+// The release posts are version-scoped, so they sit beside that version's
+// download buttons rather than in the record-level links section. Both the
+// primary and the alternate post are shown, the reader's language first.
+const versionSources = computed(() => {
+  const v = version.value;
+  if (!v) return [];
+  const ordered = props.lan === "en" ? [v.sourceAlt, v.source] : [v.source, v.sourceAlt];
+  const seen = new Set();
+  const links = [];
+  for (const url of ordered) {
+    if (!url || seen.has(url)) continue;
+    seen.add(url);
+    // Name the site the post lives on (config.js `sourceName`), as the download
+    // buttons already do for their mirrors.
+    const service = sourceServiceName(url, props.lan);
+    const label = service
+      ? (props.lan === "en" ? `${text.value.source} (${service})` : `${text.value.source}（${service}）`)
+      : text.value.source;
+    links.push({ url, label });
+  }
+  return links;
+});
+
 // The whole "versions & downloads" block is pointless for a record with nothing
 // to download — an asset that only links to a repository has no files here.
 const showVersionsSection = computed(() => {
@@ -247,7 +278,7 @@ const showVersionsSection = computed(() => {
   if (!record) return false;
   const versions = record.versions || [];
   if (versions.length === 0) return false;
-  return versions.some((v) => (v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length));
+  return versions.some((v) => (v.downloads && v.downloads.length) || (v.dataDownloads && v.dataDownloads.length) || v.source || v.sourceAlt);
 });
 
 // The "version" line is only meaningful when it carries information.
@@ -259,8 +290,10 @@ const showVersionName = computed(() => {
   const record = props.record;
   const v = version.value;
   if (!record || !v) return false;
-  if (v.label) return true;
+  // An MW record's version is already stated in the drawer header and its
+  // runtime block, so this line would render empty.
   if (record.kind === "mw") return false;
+  if (v.label) return true;
   if (record.kind === "asset") return false;
   return !!v.platform;
 });
@@ -284,17 +317,12 @@ const smwpDisplayVersion = computed(() => {
 const hasLinks = computed(() => {
   const links = props.record && props.record.links;
   if (!links) return false;
-  return !!(links.source || links.home || links.repo || links.wiki);
+  return !!(links.home || links.repo || links.wiki);
 });
 
-function copyCode(event, code) {
-  if (!code) return;
-  navigator.clipboard.writeText(code).then(() => {
-    const el = event.currentTarget;
-    el.dataset.copied = "1";
-    setTimeout(() => { delete el.dataset.copied; }, 1600);
-  });
-}
+// Data-package downloads of the selected version. They keep their own box in the
+// drawer because a data package is a different thing from the level/game file.
+const dataDownloads = computed(() => (version.value && version.value.dataDownloads) || []);
 
 // ── download buttons ───────────────────────────────────────
 // Softendo builds are colour-coded exactly as the legacy modal documents them
@@ -368,30 +396,92 @@ function onDownloadClick(event, item) {
 }
 
 // ── file size (restored from the legacy modal) ─────────────
-const fileSizeText = ref("");
-const fileSizeLoading = ref(false);
-let fileSizeRequest = 0;
+// Sizes of the selected version's downloads and data packages, keyed by URL
+// (only the File Hub exposes a size; netdisk mirrors have no public metadata).
+const downloadSizeMap = ref({});
+const downloadSizeLoading = ref(false);
+let downloadSizeRequest = 0;
+const dataSizeMap = ref({});
+const dataSizeLoading = ref(false);
+let dataSizeRequest = 0;
 
-async function fetchFileSize(record, version) {
-  fileSizeText.value = "";
-  if (!record || !version) return;
-  const url = (version.downloads || []).find((d) => !d.dead && d.url)?.url;
-  if (!url || !String(url).includes("file.marioforever.net")) return;
+async function fetchDownloadSizes(version) {
+  downloadSizeMap.value = {};
+  downloadSizeLoading.value = false;
+  const urls = ((version && version.downloads) || [])
+    .map((item) => item.url)
+    .filter((url) => url && String(url).includes("file.marioforever.net"));
+  if (urls.length === 0) return;
 
-  const request = ++fileSizeRequest;
-  fileSizeLoading.value = true;
+  const request = ++downloadSizeRequest;
+  downloadSizeLoading.value = true;
   try {
-    const size = await getFormattedFileSize(url);
-    if (request === fileSizeRequest && size) fileSizeText.value = size;
+    const sizes = await batchFetchFileSizes(urls);
+    if (request === downloadSizeRequest) downloadSizeMap.value = sizes;
   } catch (_e) {
-    // Silent: the size is a nicety, not a prerequisite for downloading.
+    // Silent: sizes are a nicety, not a prerequisite for downloading.
   } finally {
-    if (request === fileSizeRequest) fileSizeLoading.value = false;
+    if (request === downloadSizeRequest) downloadSizeLoading.value = false;
   }
 }
 
+async function fetchDataSizes(version) {
+  dataSizeMap.value = {};
+  dataSizeLoading.value = false;
+  const urls = ((version && version.dataDownloads) || [])
+    .map((item) => item.url)
+    .filter((url) => url && String(url).includes("file.marioforever.net"));
+  if (urls.length === 0) return;
+
+  const request = ++dataSizeRequest;
+  dataSizeLoading.value = true;
+  try {
+    const sizes = await batchFetchFileSizes(urls);
+    if (request === dataSizeRequest) dataSizeMap.value = sizes;
+  } catch (_e) {
+    // Silent for the same reason as above.
+  } finally {
+    if (request === dataSizeRequest) dataSizeLoading.value = false;
+  }
+}
+
+// Names and sizes are paired per file, so a multi-file build reads
+// "file A 1 MB · file B 2 MB" instead of a list of names followed by a list of
+// sizes whose order the reader has to work out.
+function fileSizePairs(downloads, sizeMap, loading) {
+  return (downloads || [])
+    .filter((item) => item.file)
+    .map((item) => ({
+      key: `${item.url}::${item.file}`,
+      name: item.file,
+      size: loading ? "" : (sizeMap[item.url] || ""),
+    }));
+}
+
+const versionFilePairs = computed(() => fileSizePairs(
+  version.value && version.value.downloads,
+  downloadSizeMap.value,
+  downloadSizeLoading.value,
+));
+
+const dataFilePairs = computed(() => fileSizePairs(
+  dataDownloads.value,
+  dataSizeMap.value,
+  dataSizeLoading.value,
+));
+
+// The meta line only exists when it has something to say; hiding an empty one
+// keeps the download buttons from being pushed down.
+const showVersionMeta = computed(() => {
+  const v = version.value;
+  if (!v) return false;
+  const hasDate = props.record && props.record.kind !== "mw" && !!v.date;
+  return !!(hasDate || versionFilePairs.value.length);
+});
+
 watch([() => props.record, activeVersion], () => {
-  fetchFileSize(props.record, version.value);
+  fetchDownloadSizes(version.value);
+  fetchDataSizes(version.value);
 }, { immediate: false });
 
 function onKeydown(event) {
@@ -476,7 +566,15 @@ onBeforeUnmount(() => {
             >{{ record.assetTypeLabel }}</div>
             <h2 class="nx-drawer-title">{{ record.name }}</h2>
             <div class="nx-drawer-sub">
-              <span>{{ record.author }}</span>
+              <!-- A multi-author level is labelled 合作作品 here like it is in the
+                   list; the facts section below still names every author. -->
+              <span>{{ record.displayAuthor || record.author }}</span>
+              <!-- A row listing one build at a time has no version picker below,
+                   so the build it stands for is stated here. -->
+              <template v-if="isExpandedVersion && record.versionLabel">
+                <span>·</span>
+                <span class="nx-num">{{ record.versionLabel }}</span>
+              </template>
               <template v-if="record.date">
                 <span>·</span>
                 <span class="nx-num">{{ formatIsoDate(record.date) }}</span>
@@ -560,7 +658,7 @@ onBeforeUnmount(() => {
             <div class="nx-section-label">{{ text.versions }}</div>
 
             <div
-              v-if="record.versions.length > 1"
+              v-if="record.versions.length > 1 && !isExpandedVersion"
               class="nx-picker"
             >
               <button
@@ -598,27 +696,39 @@ onBeforeUnmount(() => {
                     class="nx-dot nx-dot-plain"
                   >{{ version.platform }}</span>
                 </div>
-                <div class="nx-version-meta">
+                <div
+                  v-if="showVersionMeta"
+                  class="nx-version-meta"
+                >
+                  <!-- Values only: the position in the line already says what each
+                       one is (date, file name, file size). An MW level has no date
+                       here because the drawer header and runtime block carry it. -->
+                  <span v-if="version.date && record.kind !== 'mw'">{{ formatIsoDate(version.date) }}</span>
                   <span
-                    v-if="version.date"
-                    class="nx-meta-inline"
-                  >{{ formatIsoDate(version.date) }}</span>
-                  <span
-                    v-if="fileSizeLoading"
-                    class="nx-meta-inline is-faint"
-                  >{{ text.fetchingSize }}</span>
-                  <span
-                    v-else-if="fileSizeText"
-                    class="nx-meta-inline is-muted"
-                  >{{ fileSizeText }}</span>
-                  <span
-                    v-if="version.file"
-                    style="display:block;"
-                  >{{ version.file }}</span>
+                    v-if="versionFilePairs.length"
+                    class="nx-file-list"
+                  >
+                    <template
+                      v-for="(item, index) in versionFilePairs"
+                      :key="item.key"
+                    >
+                      <span
+                        v-if="index > 0"
+                        class="nx-file-sep"
+                      >·</span>
+                      <span class="nx-file-pair">
+                        <span>{{ item.name }}</span>
+                        <span
+                          v-if="item.size"
+                          class="nx-file-size"
+                        >{{ item.size }}</span>
+                      </span>
+                    </template>
+                  </span>
                 </div>
 
                 <div
-                  v-if="hasDownloads"
+                  v-if="hasDownloads || versionSources.length"
                   class="nx-dl-row"
                 >
                   <!-- Each download is a link; when the target needs an
@@ -649,6 +759,22 @@ onBeforeUnmount(() => {
                       class="nx-dl-code-inline"
                     >{{ text.code }} {{ item.code }}</span>
                   </a>
+                  <!-- The release posts belong to this build, so they trail its
+                       download buttons. -->
+                  <a
+                    v-for="link in versionSources"
+                    :key="link.url"
+                    class="nx-dl"
+                    :href="link.url"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <NxIcon
+                      name="link"
+                      :size="12"
+                    />
+                    {{ link.label }}
+                  </a>
                 </div>
 
                 <div
@@ -660,51 +786,71 @@ onBeforeUnmount(() => {
                   <span style="font-size:10.5px;color:var(--nx-cur);">{{ text.copied }}</span>
                 </div>
               </div>
-            </div>
 
-            <template
-              v-if="version && version.dataDownloads && version.dataDownloads.length"
-            >
+              <!-- The data package shares the work's download frame, but keeps
+                   its own name/size line so the two are not confused. -->
               <div
-                class="nx-section-label"
-                style="margin-top: 12px;"
-              >{{ text.data }}</div>
-              <div class="nx-dl-row" style="margin-top: 0;">
-                <a
-                  v-for="item in version.dataDownloads"
-                  :key="`data-${item.url}`"
-                  class="nx-dl"
-                  :href="item.url"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <NxIcon
-                    name="download"
-                    :size="12"
-                  />
-                  {{ item.label }}
-                </a>
-              </div>
-              <div
-                v-for="item in version.dataDownloads.filter((d) => d.code)"
-                :key="`datacode-${item.url}`"
-                class="nx-code-row"
+                v-if="dataDownloads.length"
+                class="nx-version"
               >
-                <span class="nx-code-label">{{ text.code }}</span>
-                <button
-                  type="button"
-                  class="nx-code"
-                  :title="text.copy"
-                  @click="copyCode($event, item.code)"
+                <div
+                  v-if="dataDownloads.length"
+                  class="nx-version-meta"
                 >
-                  {{ item.code }}
-                  <NxIcon
-                    name="copy"
-                    :size="10"
-                  />
-                </button>
+                  <span class="nx-data-line">
+                    <span class="nx-meta-key">{{ text.data }}</span>
+                    <span
+                      v-if="dataFilePairs.length"
+                      class="nx-file-list"
+                    >
+                      <template
+                        v-for="(item, index) in dataFilePairs"
+                        :key="item.key"
+                      >
+                        <span
+                          v-if="index > 0"
+                          class="nx-file-sep"
+                        >·</span>
+                        <span class="nx-file-pair">
+                          <span>{{ item.name }}</span>
+                          <span
+                            v-if="item.size"
+                            class="nx-file-size"
+                          >{{ item.size }}</span>
+                        </span>
+                      </template>
+                    </span>
+                  </span>
+                </div>
+                <div class="nx-dl-row">
+                  <a
+                    v-for="item in dataDownloads"
+                    :key="`data-${item.url}`"
+                    class="nx-dl"
+                    :class="{
+                      'is-primary': item.kind === 'filehub' && !item.tone,
+                      'is-dead': item.dead,
+                    }"
+                    :href="item.dead ? undefined : item.url"
+                    :aria-disabled="item.dead ? 'true' : undefined"
+                    target="_blank"
+                    rel="noopener"
+                    :title="item.code ? `${text.codeCopyHint}: ${item.code}` : item.label"
+                    @click="onDownloadClick($event, item)"
+                  >
+                    <NxIcon
+                      name="download"
+                      :size="12"
+                    />
+                    {{ item.label }}
+                    <span
+                      v-if="item.code"
+                      class="nx-dl-code-inline"
+                    >{{ text.code }} {{ item.code }}</span>
+                  </a>
+                </div>
               </div>
-            </template>
+            </div>
           </div>
 
           <!-- MW runtime note -->
@@ -715,23 +861,27 @@ onBeforeUnmount(() => {
             <div class="nx-section-label">{{ text.runtime }}</div>
             <p style="font-size:12.5px;line-height:1.6;color:var(--nx-ink-2);">
               {{ text.requires }} {{ smwpDisplayVersion }}
-              <template v-if="record.smwpUrl">
-                — <a
-                  :href="record.smwpUrl"
-                  target="_blank"
-                  rel="noopener"
-                  style="color:var(--nx-accent);"
-                >{{ text.downloadIt }}</a>
-              </template>
-              <template v-if="record.hasBgm">
-                <br>{{ text.bgmNote }}
-              </template>
             </p>
             <div
-              v-if="record.smwpDataUrl"
+              v-if="record.smwpUrl || record.smwpDataUrl"
               class="nx-dl-row"
             >
               <a
+                v-if="record.smwpUrl"
+                class="nx-dl"
+                :href="record.smwpUrl"
+                target="_blank"
+                rel="noopener"
+                :title="text.downloadIt"
+              >
+                <NxIcon
+                  name="download"
+                  :size="12"
+                />
+                {{ smwpDisplayVersion }}
+              </a>
+              <a
+                v-if="record.smwpDataUrl"
                 class="nx-dl"
                 :href="record.smwpDataUrl"
                 target="_blank"
@@ -744,6 +894,12 @@ onBeforeUnmount(() => {
                 {{ text.musicPack }}
               </a>
             </div>
+            <!-- The BGM warning is about the level itself, so it follows the
+                 SMWP downloads instead of reading as one of them. -->
+            <p
+              v-if="record.hasBgm"
+              style="font-size:12px;line-height:1.6;color:var(--nx-muted);margin-top:6px;"
+            >{{ text.bgmNote }}</p>
           </div>
 
           <!-- links -->
@@ -753,19 +909,6 @@ onBeforeUnmount(() => {
           >
             <div class="nx-section-label">{{ text.links }}</div>
             <div class="nx-dl-row" style="margin-top:0;">
-              <a
-                v-if="record.links.source"
-                class="nx-dl"
-                :href="record.links.source"
-                target="_blank"
-                rel="noopener"
-              >
-                <NxIcon
-                  name="link"
-                  :size="12"
-                />
-                {{ text.source }}
-              </a>
               <a
                 v-if="record.links.home"
                 class="nx-dl"
