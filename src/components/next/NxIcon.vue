@@ -27,6 +27,7 @@ const PATHS = {
   info: ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18", "M12 11v5", "M12 8h.01"],
   close: ["M6 6l12 12", "M18 6L6 18"],
   chevronDown: ["M6 9l6 6 6-6"],
+  arrowUp: ["M12 19V5", "M6 11l6-6 6 6"],
   chevronRight: ["M9 6l6 6-6 6"],
   chevronLeft: ["M15 6l-6 6 6 6"],
   list: ["M8 6h13", "M8 12h13", "M8 18h13", "M3 6h.01", "M3 12h.01", "M3 18h.01"],

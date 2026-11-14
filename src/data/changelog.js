@@ -7,33 +7,43 @@ export const changelog = [
   {
     version: "3.0.0-beta.1",
     date: "2026-11-15",
-    features: [],
-    features_en: [],
+    features: [
+      "新版界面新增右下角「回到顶部」按钮：页面滚动后出现，点击平滑回到顶部，遮罩与抽屉打开时不干扰操作"
+    ],
+    features_en: [
+      "A back-to-top button in the bottom-right corner of the redesigned UI: it appears once the page is scrolled and returns smoothly to the top, staying out of the way while overlays are open"
+    ],
     improvements: [
       "抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容；抽屉内滚动不再带动主区域",
       "作品列表：中文界面不再显示英文副标题；移动端把作者、版本、日期合并为标题下的小字（MW 版本带 SMWP 前缀）；勾选「每个版本单独列出」时不再重复显示「N 个版本」",
       "作品列表与卡片视图的图片统一为 4:3，卡片轮播支持触控左右滑动，并按容器宽度缩放以完整显示当前图片",
       "侧边栏加宽：桌面端由 208px 调整为 244px，与移动端抽屉一致；861–1024px 区间由 176px 调整为 208px",
-      "中文版侧边栏换用新版 Logo，并在 Logo 旁显示「作品目录站 / Download Portal」；侧栏较窄时缩小 Logo 而不挤压文字"
+      "中文版侧边栏换用新版 Logo，并在 Logo 旁显示「作品目录站 / Download Portal」；侧栏较窄时缩小 Logo 而不挤压文字",
+      "原版 MF 下载表格的推荐度改用站点主题色，安装版 / 绿色版按钮增加悬停底色",
+      "MW 作品的占位图改用 MarioWorker 标识，并放大占位图在缩略图中的比例"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
       "Catalog list: the Chinese interface no longer shows the English secondary title; on phones the author, version and date collapse into one small line under the title (MW versions carry the SMWP prefix); the \"N versions\" badge is gone once every version is listed separately",
       "Catalog list and card images are now 4:3; the card slider supports touch swiping and scales to the container so the current picture is always fully visible",
       "The rail is wider: 244px on desktop (was 208px), matching the phone drawer, and 208px in the 861-1024px range (was 176px)",
-      "The Chinese rail uses the new logo with \"作品目录站 / Download Portal\" beside it; at the narrowest rail the mark shrinks instead of squeezing the wording"
+      "The Chinese rail uses the new logo with \"作品目录站 / Download Portal\" beside it; at the narrowest rail the mark shrinks instead of squeezing the wording",
+      "The original MF download table's rating uses the site accent colour, and the installer and portable buttons gain a hover tint",
+      "MW records without artwork now use the MarioWorker mark as their placeholder, drawn larger inside the tile"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
       "修复窄屏侧栏抽屉打开时切换页面偶尔被弹回原页面的问题：抽屉收起与路由跳转争用同一条浏览器历史记录，目标页打开后随即被撤销",
       "修复收回作品详情后地址栏仍保留 ?id= 参数的问题：关闭抽屉时的历史回退会恢复打开时写入的地址",
-      "修复新版各页「最后更新」在数据更新后不刷新的问题：改为与旧版一致，运行时查询 GitHub 最新提交，数据单独部署、不重新构建时也能显示正确日期"
+      "修复新版各页「最后更新」在数据更新后不刷新的问题：改为与旧版一致，运行时查询 GitHub 最新提交，数据单独部署、不重新构建时也能显示正确日期",
+      "修复原版 MF 下载表格把 3.5 星显示成 3 星的问题：末尾的半星现在以较淡的主题色单独显示"
     ],
     fixes_en: [
       "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
       "Fixed pages occasionally bouncing back to the one being left when switching tabs from the phone rail drawer: closing the drawer and the route change raced over the same history entry, so the new page was opened and then undone right away",
       "Fixed the ?id= parameter staying in the address bar after closing a record's detail drawer: unwinding the drawer's history entry restored the address written when it opened",
-      "Fixed the redesigned pages showing a stale \"Last updated\" date after data-only deployments: the newest GitHub commit is now queried at runtime, like the legacy design"
+      "Fixed the redesigned pages showing a stale \"Last updated\" date after data-only deployments: the newest GitHub commit is now queried at runtime, like the legacy design",
+      "Fixed the original MF download table rendering a 3.5-star rating as 3 stars: the trailing half star is now drawn in a lighter shade of the accent colour"
     ],
     misc: [
       "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"

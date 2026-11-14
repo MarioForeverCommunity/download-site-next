@@ -90,6 +90,7 @@ const versionText = computed(() => {
       <NxLogoPlaceholder
         v-else
         :lan="lan"
+        :kind="record.kind"
         variant="cover"
       />
     </div>

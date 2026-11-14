@@ -310,17 +310,33 @@ const authorQuery = computed({
   set: (value) => { if (props.search) props.search.setAuthorQuery(value); },
 });
 
+// ── back to top ──────────────────────────────────────────────
+// Long catalogs and write-ups mean a lot of scrolling. The shell owns the
+// button, so every redesigned page gets it without duplicating the listener.
+const showBackToTop = ref(false);
+
+function updateBackToTop() {
+  showBackToTop.value = window.scrollY > 300;
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 onMounted(() => {
   document.addEventListener("click", onDocClick);
   document.addEventListener("keydown", onKeydown);
   updateNarrow();
   window.addEventListener("resize", updateNarrow);
+  window.addEventListener("scroll", updateBackToTop, { passive: true });
+  updateBackToTop();
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("click", onDocClick);
   document.removeEventListener("keydown", onKeydown);
   window.removeEventListener("resize", updateNarrow);
+  window.removeEventListener("scroll", updateBackToTop);
 });
 
 watch(showChangelog, (open) => {
@@ -633,5 +649,21 @@ watch(showChangelog, (open) => {
       :lan="displayLan"
       @close="settingsOpen = false"
     />
+
+    <Transition name="nx-fade">
+      <button
+        v-if="showBackToTop"
+        type="button"
+        class="nx-to-top"
+        :aria-label="displayLan === 'zh' ? '回到顶部' : 'Back to top'"
+        :title="displayLan === 'zh' ? '回到顶部' : 'Back to top'"
+        @click="scrollToTop"
+      >
+        <NxIcon
+          name="arrowUp"
+          :size="16"
+        />
+      </button>
+    </Transition>
   </div>
 </template>

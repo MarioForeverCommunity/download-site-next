@@ -156,6 +156,7 @@ function openLinks(event) {
         <NxLogoPlaceholder
           v-else
           :lan="lan"
+          :kind="record.kind"
           variant="thumb"
         />
       </div>

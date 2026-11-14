@@ -11,6 +11,12 @@ const props = defineProps({
     type: String,
     default: "zh"
   },
+  // Record kind ("mf" | "mw" | …): Mario Worker levels get their own mark, since
+  // a Mario Forever logo on a MW level reads as the wrong product.
+  kind: {
+    type: String,
+    default: ""
+  },
   // "thumb" | "cover" — controls how much of the box the logo fills
   variant: {
     type: String,
@@ -18,13 +24,16 @@ const props = defineProps({
   }
 });
 
-const src = computed(() => (props.lan === "zh" ? "./images/logo_hd.png" : "./images/logo2_hd.png"));
+const src = computed(() => {
+  if (props.kind === "mw") return "./images/marioworker.png";
+  return props.lan === "zh" ? "./images/logo_hd.png" : "./images/logo2_hd.png";
+});
 </script>
 
 <template>
   <div
     class="nx-logo-ph"
-    :class="`is-${variant}`"
+    :class="[`is-${variant}`, { 'is-mw': kind === 'mw' }]"
   >
     <img
       :src="src"
@@ -55,14 +64,24 @@ const src = computed(() => (props.lan === "zh" ? "./images/logo_hd.png" : "./ima
 
   /* small row thumbnail: the logo is the whole tile */
   .nx-logo-ph.is-thumb img {
-    width: 74%;
+    width: 80%;
     height: auto;
   }
 
   /* card / gallery tile */
   .nx-logo-ph.is-cover img {
-    width: 42%;
+    width: 68%;
     max-width: 220px;
     height: auto;
+  }
+
+  /* The Mario Worker mark is a wide wordmark: at the generic logo share of the
+     tile it collapsed into a hairline, so it fills more of the box. */
+  .nx-logo-ph.is-mw.is-thumb img {
+    width: 90%;
+  }
+
+  .nx-logo-ph.is-mw.is-cover img {
+    width: 80%;
   }
 </style>

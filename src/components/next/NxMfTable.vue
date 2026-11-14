@@ -38,7 +38,10 @@ const versions = ref([]);
 const rows = computed(() => versions.value.map((version) => {
   const marks = String(version.rating || "").replace(/[^★☆]/g, "");
   const filled = marks.split("").filter((c) => c === "★").length;
-  return { ...version, filled };
+  // A trailing hollow mark is a half star, so "★★★☆" (3.5) must not collapse
+  // into the same meter as "★★★" (3).
+  const half = marks.includes("☆");
+  return { ...version, filled, half };
 }));
 
 function formatDate(value) {
@@ -110,7 +113,10 @@ onMounted(async () => {
             v-for="n in 5"
             :key="n"
             class="nx-mf-star"
-            :class="{ on: n <= version.filled }"
+            :class="{
+              on: n <= version.filled,
+              half: version.half && n === version.filled + 1
+            }"
           >★</span>
         </span>
         <span class="nx-mf-actions">
@@ -140,13 +146,6 @@ onMounted(async () => {
         </span>
       </div>
     </div>
-
-    <p class="nx-mf-note">
-      <NxIcon name="warning" :size="13" />
-      <span>{{ lan === "zh"
-        ? "标为「含广告插件」的安装版会捆绑 Mario Forever Toolbar，安装时请取消勾选，或改用绿色版。"
-        : "Installers marked with adware bundle the Mario Forever Toolbar. Uncheck it during setup, or use the portable build." }}</span>
-    </p>
   </div>
 </template>
 
@@ -208,11 +207,14 @@ onMounted(async () => {
   }
 
   .nx-mf-star.on {
-    color: #a9781a;
+    color: var(--nx-accent);
   }
 
-  :root[data-nx-theme="dark"] .nx-mf-star.on {
-    color: #d9a94a;
+  /* Half star: the accent at reduced strength, so 3.5 reads as one step lighter
+     than a full star without looking like an empty one. */
+  .nx-mf-star.half {
+    color: var(--nx-accent);
+    opacity: 0.35;
   }
 
   .nx-mf-actions {
@@ -241,6 +243,10 @@ onMounted(async () => {
     color: var(--nx-warn);
   }
 
+  .nx-dl.is-warn:hover {
+    background: color-mix(in srgb, var(--nx-warn) 9%, var(--nx-canvas));
+  }
+
   /* A plain installer is blue, a portable build green: on a dense ledger the
      colour is the quickest way to tell the two apart. An installer that bundles
      the toolbar keeps its warning colour, so that case is excluded. */
@@ -252,6 +258,7 @@ onMounted(async () => {
   .nx-dl-installer:not(.is-warn):hover {
     border-color: #1f6fd0;
     color: #17539b;
+    background: color-mix(in srgb, #1f6fd0 10%, var(--nx-canvas));
   }
 
   .nx-dl-portable {
@@ -262,6 +269,7 @@ onMounted(async () => {
   .nx-dl-portable:hover {
     border-color: #00a83c;
     color: #005e21;
+    background: color-mix(in srgb, #00a83c 10%, var(--nx-canvas));
   }
 
   :root[data-nx-theme="dark"] .nx-dl-installer:not(.is-warn) {
@@ -269,19 +277,17 @@ onMounted(async () => {
     color: #7cb0ea;
   }
 
+  :root[data-nx-theme="dark"] .nx-dl-installer:not(.is-warn):hover {
+    background: color-mix(in srgb, #7cb0ea 15%, var(--nx-canvas));
+  }
+
   :root[data-nx-theme="dark"] .nx-dl-portable {
     border-color: color-mix(in srgb, #63c295 45%, var(--nx-line));
     color: #63c295;
   }
 
-  .nx-mf-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-    margin-top: 9px;
-    font-size: 11.5px;
-    color: var(--nx-muted);
-    line-height: 1.5;
+  :root[data-nx-theme="dark"] .nx-dl-portable:hover {
+    background: color-mix(in srgb, #63c295 15%, var(--nx-canvas));
   }
 
   @media (max-width: 720px) {
