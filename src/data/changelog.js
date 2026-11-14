@@ -5,6 +5,22 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-beta.1",
+    date: "2026-11-15",
+    features: [],
+    features_en: [],
+    improvements: [
+      "抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容；抽屉内滚动不再带动主区域"
+    ],
+    improvements_en: [
+      "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it"
+    ],
+    fixes: [],
+    fixes_en: [],
+    misc: [],
+    misc_en: []
+  },
+  {
     version: "3.0.0-beta.0",
     date: "2026-11-14",
     features: [
@@ -13,10 +29,11 @@ export const changelog = [
       "新增「发布时间」筛选：按年份多选或按日期区间（精确到日）二选一，附今年 / 去年 / 近 30 天快捷项",
       "地区、平台、制作软件、年份、MW 版本等筛选均为多选；标签支持任一 / 同时 / 排除三态",
       "作品详情改为右侧抽屉，可逐条对比而不离开列表；文档页中的作品条目可原地展开",
-      "新版界面改为单页应用：切换页面不再刷新文档，URL 与前进 / 后退保持同步，内容区有淡入过渡",
-      "各作品目录页新增「目录说明」抽屉，其中的致谢、音乐包放置说明等内容原地展开为卡片",
-      "移动端筛选面板与导航栏均改为抽屉，展开时锁定页面滚动并由遮罩拦截点击；选择导航项后自动收起",
-      "页面标题显示在顶栏，页脚移入左侧导航栏；全局设置可在新旧两套界面间切换"
+      "页面标题显示在顶栏，页脚移入左侧导航栏；全局设置可在新旧两套界面间切换",
+      "新版界面改为单页应用：切换页面不再刷新文档，URL 与浏览器前进 / 后退保持同步，内容区有淡入过渡而导航栏与顶栏保持不动",
+      "各作品目录页新增「目录说明」抽屉，页面原有的说明文档可从顶栏按钮展开阅读，其中的致谢、音乐包放置说明等内容原地展开为卡片",
+      "移动端筛选面板与导航栏均改为抽屉，选择导航项后自动收起；抽屉、全屏弹窗与图片预览支持 Android 返回键关闭",
+      "目录页显示数据「最后更新」，结果栏横跨筛选栏上方；Softendo 目录的「系列」列支持排序"
     ],
     features_en: [
       "A completely new interface: white content canvas with a grey navigation rail and a persistent filter sidebar, list/card views and dark mode",
@@ -24,40 +41,33 @@ export const changelog = [
       "A new Release date filter: multiple years or an exact date range down to the day, with this year / last year / last 30 days shortcuts",
       "Region, platform, software, year and MW version filters are multi-select; tags support any / all / exclude states",
       "Game details open in a right-side drawer so records can be compared without leaving the list; embedded previews in the documentation expand in place",
-      "The new interface is a single-page app: switching pages no longer reloads the document, the URL stays in sync with the back/forward buttons, and the content area fades in",
-      "Each catalog page gains an About drawer, where blocks it links to (credits, the data-package note) expand in place as cards",
-      "On phones the filter pane and the navigation rail both became drawers that lock page scrolling and take input through a scrim; choosing a rail entry closes it",
-      "The page title sits in the topbar and the footer moved into the left rail; global settings switch between the two designs"
+      "The page title sits in the topbar and the footer moved into the left rail; global settings switch between the two designs",
+      "The new interface is a single-page app: switching pages no longer reloads the document, the URL stays in sync with the back/forward buttons, and the content area fades while the rail and topbar stay still",
+      "Each catalog page gains an About drawer where the page's own write-up opens from a topbar button, and blocks it links to (credits, the data-package note) expand in place as cards",
+      "On phones the filter pane and the navigation rail both became drawers that close after choosing an entry; drawers, full-screen dialogs and the image viewer close on the Android back button",
+      "Catalog pages show when their data was last updated, and the results bar spans the full width above the filter pane; the Softendo catalog's Series column is sortable"
     ],
-    improvements: [
-      "作品列表列宽与详情排版整体收紧，长标题换行显示，多作者作品每行显示一位作者",
-      "全站统一 Inter 字体与主题强调色，链接默认不加下划线",
-      "截图不再被裁切，详情抽屉补回长描述、文件大小与网盘类型，提取码点击下载即复制",
-      "原版 MF 表格与 Softendo 下载按钮按原设计配色着色；版本选择胶囊改用主题蓝",
-      "侧栏页脚补回构建时间与提交哈希；顶栏长标题换行而非省略",
-      "目录页显示数据「最后更新」，结果栏横跨筛选栏上方",
-      "markdown 列表、表格、引用块补齐上下间距",
-      "移动端抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容",
-      "移动端抽屉、全屏弹窗与图片预览支持 Android 返回键关闭，返回键不再直接离开页面"
+    improvements: [],
+    improvements_en: [],
+    fixes: [
+      "J2ME 版本的作品现在能正确识别",
+      "下载提示补充 Java、Linux、macOS 版本的说明，Java 版不再显示无关的压缩包提示",
+      "新增「AI 生成」「移植」两个标签",
+      "MW 4.0 作品的作者链接改用 Mario Worker 4.4 的资源站目录"
     ],
-    improvements_en: [
-      "Tighter column widths and detail typography; long titles wrap and multi-author records list one author per line",
-      "Unified Inter typography and accent colour; links are no longer underlined by default",
-      "Screenshots are no longer cropped; the details drawer restores the long description, file size and netdisk host, and extraction codes copy on download",
-      "The original-MF table and Softendo build buttons follow the legacy colour scheme; the selected version pill uses the theme accent",
-      "The rail footer shows the build time and commit hash again; long topbar titles wrap instead of truncating",
-      "Catalog pages show when their data was last updated, and the results bar spans the full width above the filter pane",
-      "Markdown lists, tables and blockquotes gained the vertical spacing they were missing",
-      "Phone drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content",
-      "Drawers, full-screen dialogs and the image viewer close on the Android back button instead of leaving the page"
+    fixes_en: [
+      "J2ME builds are now detected correctly",
+      "Download tooltips explain the Java, Linux and macOS builds; Java versions no longer show an unrelated archive hint",
+      "Added the AI Generated and Port tags",
+      "Mario Worker 4.0 author links now point at the Mario Worker 4.4 File Hub folder"
     ],
     misc: [
-      "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试",
-      "深浅色偏好与密度偏好在新旧两套界面间共享"
+      "移除 123 网盘链接，「备用地址」统一改称「备用链接」",
+      "移动端中文版 Softendo 页使用侧栏短标题"
     ],
     misc_en: [
-      "The ?design=legacy or ?design=next URL parameter selects an interface, which is handy for sharing and debugging",
-      "The light/dark and density preferences are shared across both designs"
+      "Removed 123pan links and renamed the secondary-address wording to secondary link throughout",
+      "The Chinese Softendo page uses the short sidebar title on phones"
     ]
   },
   {
