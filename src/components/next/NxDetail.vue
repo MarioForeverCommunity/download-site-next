@@ -579,11 +579,16 @@ function fileSizePairs(downloads, sizeMap, loading) {
     }));
 }
 
-const versionFilePairs = computed(() => fileSizePairs(
-  version.value && version.value.downloads,
-  downloadSizeMap.value,
-  downloadSizeLoading.value,
-));
+// Softendo builds have several differently-packaged links per version, so a
+// per-file name/size line only added noise there; that catalogue omits it.
+const versionFilePairs = computed(() => {
+  if (props.record && props.record.kind === "softendo") return [];
+  return fileSizePairs(
+    version.value && version.value.downloads,
+    downloadSizeMap.value,
+    downloadSizeLoading.value,
+  );
+});
 
 const dataFilePairs = computed(() => fileSizePairs(
   dataDownloads.value,
@@ -601,6 +606,14 @@ const showVersionMeta = computed(() => {
 });
 
 watch([() => props.record, activeVersion], () => {
+  // Nothing asks for sizes on a Softendo record, so do not query them either.
+  if (props.record && props.record.kind === "softendo") {
+    downloadSizeMap.value = {};
+    dataSizeMap.value = {};
+    downloadSizeLoading.value = false;
+    dataSizeLoading.value = false;
+    return;
+  }
   fetchDownloadSizes(version.value);
   fetchDataSizes(version.value);
 }, { immediate: false });
