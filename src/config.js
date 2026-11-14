@@ -30,14 +30,14 @@ export const topBar = [
     "link" : "https://discord.com/invite/pfnbfwRhUH",
     "name" : "MF Discord",
     "name_alt" : "MF Discord",
-    "name_new_en": "Mario Forever Café",
+    "name_new_en": "Mario Forever Café Discord Server",
     "show_zh" : false,
     "show_en" : true
   },
   {
     "link" : "https://discord.gg/VwgV6GmwXv",
     "name" : "Cloud Lounge",
-    "name_alt" : "Cloud Lounge",
+    "name_alt" : "Cloud Lounge Discord Server",
     "show_zh" : false,
     "show_en" : true
   },
@@ -52,7 +52,7 @@ export const topBar = [
     "name" : "资源站",
     "name_new_zh": "Mario Forever 社区资源站",
     "name_alt" : "File Hub",
-    "name_new_en": "Community File Hub",
+    "name_new_en": "Mario Forever Community File Hub",
     "show_en" : true
   },
   {
@@ -84,12 +84,12 @@ export const topBar = [
   {
     "link" : "https://space.bilibili.com/2136191287",
     "name" : "关注B站",
-    "name_new_zh": "关注 MF 社区 B 站账号",
+    "name_new_zh": "关注 Mario Forever 社区 B 站账号",
     "show_en" : false
   },
   {
     "link" : "https://www.iesdouyin.com/share/user/MS4wLjABAAAA3TG0EnFZ-ygxUqXw839P7T6Mewh5_KNbaSFviJUtHzwQbx4aTaX3q3RLvqIHPE6_",
-    "name_new_zh": "关注 MF 社区抖音平台账号",
+    "name_new_zh": "关注 Mario Forever 社区抖音账号",
     "show_en" : false
   },
   {

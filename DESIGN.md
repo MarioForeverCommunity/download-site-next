@@ -100,8 +100,8 @@ src/util/next/docUpdated.js     构建期注入的「最后更新」日期（无
 - **字体只用 Inter**（旧版已随 `assets/fonts.css` 加载），不再引入任何新字体；小号数字用 tabular-nums 而非等宽字体。
 - **hover 不加下划线**：界面内链接靠颜色与背景区分，正文链接同样默认无下划线，仅 hover 时出现。
 - **记录模型是共享层**：`records.js` 的平台 / 制作软件 / old-versions 规则须与 `MfGames.vue`、`scripts/generate-api.js` 保持一致。
-- **构建期常量**：`BUILD_TIME` / `COMMIT_HASH` / `DOC_UPDATED` 由 `vite.config.js` 注入，
-  避免运行时请求 GitHub API（未认证时会 403）。
+- **构建期常量**：`BUILD_TIME` / `COMMIT_HASH` 由 `vite.config.js` 注入；
+  「最后更新」日期与旧版一致，在运行时向 GitHub 提交接口查询（数据文件单独部署、不重新构建时也能反映最新提交）。
 
 ## 5. 兼容性
 

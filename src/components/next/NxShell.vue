@@ -153,7 +153,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   dark: "深色模式",
   compact: "紧凑模式",
   catalogs: "目录",
-  elsewhere: "站外",
+  elsewhere: "社区站点",
   menu: "菜单",
 } : {
   search: "Search title…",
@@ -168,7 +168,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   dark: "Dark mode",
   compact: "Compact mode",
   catalogs: "Catalogs",
-  elsewhere: "Elsewhere",
+  elsewhere: "Links",
   menu: "Menu",
 }));
 
@@ -358,9 +358,10 @@ watch(showChangelog, (open) => {
         :aria-label="displayLan === 'zh' ? 'Mario Forever 资源站首页' : 'Mario Forever archive home'"
       >
         <img
-          :src="displayLan === 'zh' ? './images/logo_hd.png' : './images/logo2_hd.png'"
+          :src="displayLan === 'zh' ? './images/logo_new.png' : './images/logo2_hd.png'"
           alt="Mario Forever"
         />
+        <span class="nx-rail-brand-text">{{ displayLan === "zh" ? "作品目录站" : "Download Portal" }}</span>
       </a>
 
       <nav class="nx-rail-group">

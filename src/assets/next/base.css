@@ -45,7 +45,7 @@
   /* geometry */
   --nx-r: 5px;
   --nx-r-lg: 8px;
-  --nx-rail-w: 208px;
+  --nx-rail-w: 244px;
   --nx-pane-w: 236px;
   --nx-drawer-w: min(600px, 100vw);
   --nx-shadow-1: 0 1px 2px rgba(23, 24, 26, 0.06);
@@ -253,12 +253,28 @@ body.nx-body select:focus-visible {
   align-items: center;
   gap: 9px;
   padding: 4px 6px 8px;
+  min-width: 0;
 }
 
 .nx-rail-brand img {
   height: 26px;
   width: auto;
   display: block;
+  /* At the narrowest rail the mark gives up width so the wording next to it
+     never wraps or gets clipped. */
+  flex: 0 1 auto;
+  min-width: 0;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.nx-rail-brand-text {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--nx-ink-2);
 }
 
 .nx-rail-group {
@@ -3091,7 +3107,7 @@ html .nx-doc .carousel .carousel__next {
 
 @media (max-width: 1024px) {
   :root {
-    --nx-rail-w: 176px;
+    --nx-rail-w: 208px;
     --nx-pane-w: 212px;
   }
 
