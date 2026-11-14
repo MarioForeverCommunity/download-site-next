@@ -107,6 +107,8 @@ const navEntries = computed(() => navTop.filter((item) => {
 }));
 
 const externalLinks = computed(() => topBar.filter((item) => {
+  // `show_new: false` means the entry is hidden in the redesigned UI only.
+  if (item.show_new === false) return false;
   if (item.show_zh === false && displayLan.value === "zh") return false;
   if (item.show_en === false && displayLan.value === "en") return false;
   return true;
@@ -115,6 +117,16 @@ const externalLinks = computed(() => topBar.filter((item) => {
 function label(item, key) {
   if (displayLan.value === "zh") return item[key];
   return item[`${key}_alt`] || item[key];
+}
+
+// Rail-only wording. `name_new_zh` / `name_new_en` describe the same destination
+// in the redesigned UI, so they take precedence over the shared `name` there.
+// The legacy design ignores these fields entirely.
+function newLabel(item) {
+  const zh = displayLan.value === "zh";
+  const specific = zh ? item.name_new_zh : item.name_new_en;
+  if (specific) return specific;
+  return label(item, "name");
 }
 
 const NAV_ICONS = {
@@ -351,14 +363,14 @@ watch(showChangelog, (open) => {
       <nav class="nx-rail-group">
         <div class="nx-rail-title">{{ text.elsewhere }}</div>
         <a
-          v-for="item in externalLinks.slice(0, 6)"
+          v-for="item in externalLinks"
           :key="item.link"
           class="nx-rail-item"
           :href="item.link"
           target="_blank"
           rel="noopener"
         >
-          <span>{{ label(item, "name") }}</span>
+          <span>{{ newLabel(item) }}</span>
         </a>
       </nav>
 
