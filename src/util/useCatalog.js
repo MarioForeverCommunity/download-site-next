@@ -200,17 +200,25 @@ export function useCatalog({
       }
     }
     if (hasYearFilter.value) {
-      active.push({ type: "date", key: "date", label: `${yearLabel.value}${filterYears.value.join(", ")}` });
+      // Selecting many years (up to every year in the catalog) produced a pill
+      // listing each of them, which overflowed the results bar. A large
+      // selection is summarised as its range instead.
+      const yearsAsc = filterYears.value.map(Number).sort((a, b) => a - b);
+      const summary = yearsAsc.length > 4
+        ? `${yearsAsc[0]}–${yearsAsc[yearsAsc.length - 1]}`
+        : yearsAsc.join(", ");
+      active.push({ type: "date", key: "date", label: `${yearLabel.value}${summary}` });
     }
     if (hasRangeFilter.value) {
       const from = rangeFrom.value || "…";
       const to = rangeTo.value || "…";
       active.push({ type: "date", key: "date", label: `${rangeLabel.value}${from} – ${to}` });
     }
-    // Tag pills carry the same +/− markers as the chips themselves.
+    // Tag pills carry the same +/− markers as the chips themselves, with the
+    // same breathing room between marker and name.
     for (const [tag, state] of Object.entries(tagStates.value)) {
       const marker = state === "not" ? "−" : state === "and" ? "+" : "";
-      active.push({ type: "tag", key: tag, state, label: `${marker}${tag}` });
+      active.push({ type: "tag", key: tag, state, label: marker ? `${marker} ${tag}` : tag });
     }
     return active;
   });

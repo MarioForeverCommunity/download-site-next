@@ -265,7 +265,10 @@ defineExpose({ randomRecord, open });
             :key="`${pill.type}-${pill.key}-${pill.value || ''}-${index}`"
             class="nx-filter-pill"
           >
-            {{ pill.label }}
+            <span
+              class="nx-filter-pill-label"
+              :title="pill.label"
+            >{{ pill.label }}</span>
             <button
               type="button"
               :aria-label="text.clear"

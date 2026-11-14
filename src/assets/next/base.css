@@ -364,10 +364,10 @@ body.nx-body select:focus-visible {
 .nx-rail-commit {
   margin-left: 1px;
   color: var(--nx-muted);
-  /* Monospaced serif: the hash reads as a citation while its glyphs stay
-     unambiguous at this small size. */
-  font-family: "Courier New", Courier, "Nimbus Mono PS", monospace;
-  font-size: 10.5px;
+  /* Same face as the build time on the line below — a different font made the
+     hash look like a separate control rather than part of the version stamp. */
+  font-family: inherit;
+  font-size: inherit;
   text-decoration: none;
 }
 
@@ -1033,12 +1033,16 @@ body.nx-body select:focus-visible {
 }
 
 .nx-results-bar {
-  height: 40px;
+  /* Never a hard 40px: when several filters are active the pills wrap onto a
+     second line and the bar grows instead of letting them spill out. The bar
+     is still exactly 40px high with no active filters. */
+  min-height: 40px;
   flex: none;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 0 16px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 5px 16px;
   border-bottom: 1px solid var(--nx-line);
   font-size: 12px;
   color: var(--nx-muted);
@@ -1046,6 +1050,17 @@ body.nx-body select:focus-visible {
   top: 50px;
   background: var(--nx-canvas);
   z-index: 20;
+}
+
+/* The record count is a single unbreakable unit; a squeezing pill must not
+   wrap "431 / 431 条" across two lines. */
+.nx-results-count {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  white-space: nowrap;
+  line-height: 1.4;
 }
 
 .nx-results-count b {
@@ -1089,6 +1104,7 @@ body.nx-body select:focus-visible {
   align-items: center;
   gap: 4px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 /* random + view switch, pushed to the far right of the results bar */
@@ -1111,6 +1127,17 @@ body.nx-body select:focus-visible {
   background: var(--nx-fill);
   color: var(--nx-ink-2);
   font-size: 10.5px;
+  /* A pill may hold a long value (a date range, a long tag name); it must
+     shrink and ellipsise rather than push past the bar's edge. */
+  min-width: 0;
+  max-width: 100%;
+}
+
+.nx-filter-pill-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .nx-filter-pill button {
@@ -1295,18 +1322,19 @@ body.nx-body select:focus-visible {
 /* Softendo records have no release date, so the date column is dropped and the
    remaining columns re-flow without leaving a hole. */
 .nx-row.is-softendo {
-  --nx-cols: minmax(240px, 1fr) minmax(72px, 108px) 88px minmax(120px, 1fr) 132px;
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr) 132px;
 }
 
 /* Catalogs without a class/tag column drop it from the template as well. The
-   title column takes the freed width, while the action track stays a fixed
-   132px so its buttons remain flush with the row's right edge. */
+   title keeps its 400px ceiling (it is the one column that must not swallow
+   the row); the slack goes to the action track, whose buttons are
+   right-aligned, so they stay flush with the row's right edge. */
 .nx-row.is-no-tags {
-  --nx-cols: minmax(240px, 1fr) minmax(72px, 108px) 88px 82px 132px;
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px minmax(132px, 1fr);
 }
 
 .nx-row.is-softendo.is-no-tags {
-  --nx-cols: minmax(240px, 1fr) minmax(72px, 108px) 88px 132px;
+  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(132px, 1fr);
 }
 
 .nx-row.is-softendo .nx-cell:nth-child(4) {
@@ -1320,6 +1348,10 @@ body.nx-body select:focus-visible {
   flex-wrap: wrap;
   overflow: visible;
   row-gap: 2px;
+  /* Grid items default to min-width: auto, so a run of tags could demand more
+     than its track and push the row past its right edge. Shrinking to zero lets
+     the pills wrap instead. */
+  min-width: 0;
 }
 
 .nx-row-actions {
@@ -2860,18 +2892,17 @@ html .nx-doc .carousel .carousel__next {
     display: none;
   }
 
-  /* The title column absorbs whatever width is left; every other track is
-     fixed, so the last (action) column always ends at the row's right edge.
-     Two competing minmax tracks here would let the title grow to 400px and
-     squeeze the action column away from that edge. */
+  /* Same contract as the default template: the title keeps its ceiling and the
+     action track absorbs the slack (its buttons are right-aligned), so actions
+     stay flush right without letting the title swallow the row. */
   .nx-row,
   .nx-row.is-no-tags {
-    --nx-cols: minmax(160px, 1fr) minmax(72px, 108px) 88px 82px 132px;
+    --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px 82px minmax(132px, 1fr);
   }
 
   .nx-row.is-softendo,
   .nx-row.is-softendo.is-no-tags {
-    --nx-cols: minmax(160px, 1fr) minmax(72px, 108px) 88px 132px;
+    --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px minmax(132px, 1fr);
   }
 }
 
@@ -2883,20 +2914,20 @@ html .nx-doc .carousel .carousel__next {
 
   /* At 861-1024px the rail and filter pane are both still visible, leaving only
      ~480px for the table. Fixed column floors plus a 10px gap overflowed that,
-     so the tracks are tightened and the gap halved here. The title keeps a
-     flexible 1fr and the action track stays fixed to remain flush right. */
+     so the tracks are tightened and the gap halved here. The title keeps its
+     ceiling and the action track absorbs the slack to stay flush right. */
   .nx-row {
     gap: 5px;
   }
 
   .nx-row,
   .nx-row.is-no-tags {
-    --nx-cols: minmax(90px, 1fr) minmax(56px, 90px) 68px 60px 104px;
+    --nx-cols: minmax(90px, 340px) minmax(56px, 90px) 68px 60px minmax(104px, 1fr);
   }
 
   .nx-row.is-softendo,
   .nx-row.is-softendo.is-no-tags {
-    --nx-cols: minmax(90px, 1fr) minmax(56px, 90px) 68px 104px;
+    --nx-cols: minmax(90px, 340px) minmax(56px, 90px) 68px minmax(104px, 1fr);
   }
 }
 
@@ -3010,29 +3041,11 @@ html .nx-doc .carousel .carousel__next {
     padding: 4px 12px 10px;
   }
 
-  /* The results bar is a fixed 40px row on desktop. On a phone the active filter
-     pills wrap, so a fixed height clipped them and the row overflowed; let it
-     grow and wrap instead. */
+  /* On a phone the bar goes static and its pills own the second line. */
   .nx-results-bar {
     position: static;
     padding: 8px 12px;
-    height: auto;
-    min-height: 40px;
-    flex-wrap: wrap;
-    /* Centre every item on the line: the count is an 18px text node while the
-       sort buttons are 24px and the view switch 30px. Top-aligning them made
-       the record count sit a few pixels above the sort labels. */
-    align-items: center;
     gap: 6px;
-  }
-
-  .nx-results-count {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    min-height: 24px;
-    white-space: nowrap;
-    line-height: 1.4;
   }
 
   .nx-active-filters {
@@ -3048,8 +3061,6 @@ html .nx-doc .carousel .carousel__next {
 
   .nx-filter-pill {
     max-width: 100%;
-    min-width: 0;
-    overflow-wrap: anywhere;
   }
 
   .nx-row-head {
