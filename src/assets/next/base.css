@@ -2145,6 +2145,9 @@ html .nx-doc td {
   margin-bottom: 14px;
 }
 
+/* Headings carry no horizontal rule: in this documentation the h2s are a
+   continuous series of sections, not separate documents, so a line above each
+   one read as a stray <hr> between paragraphs. Spacing alone separates them. */
 .nx-doc h2 {
   font-size: 16px;
   font-weight: 600;
@@ -2152,31 +2155,17 @@ html .nx-doc td {
   color: var(--nx-ink);
   margin-top: 34px;
   margin-bottom: 12px;
-  padding-top: 15px;
-  border-top: 1px solid var(--nx-line);
+  padding-top: 0;
+  border-top: 0;
   line-height: 1.4;
   max-width: none;
 }
 
-/* The rule above an h2 is a section separator, so it must not appear when the
-   heading is the first thing in its container — that read as a stray <hr> plus
-   leading blank space at the top of the English pages. Markdown content is
-   wrapped in `.markdown-body`, so the check targets that wrapper too. */
+/* The first heading in a document needs no extra leading space either. */
 .nx-doc > h2:first-child,
 .nx-doc .markdown-body > h2:first-child,
 .nx-doc > *:first-child > h2:first-child {
   margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
-}
-
-/* A heading that immediately follows an embedded entry card needs no rule: the
-   card already separates the sections. */
-.nx-doc .nx-entry + h2,
-.nx-doc .markdown-body > .nx-entry + h2 {
-  margin-top: 22px;
-  padding-top: 0;
-  border-top: 0;
 }
 
 .nx-doc h3 {
@@ -2291,6 +2280,15 @@ html .nx-doc td {
 .nx-doc img {
   border-radius: var(--nx-r);
   border: 1px solid var(--nx-line);
+}
+
+/* Entry-card artwork sits in its own filler frame; a hairline border on top of
+   that frame reads as a double outline, so it is removed there. */
+.nx-doc .nx-entry img,
+.nx-doc .nx-entry-gallery img,
+.nx-doc .nx-entry-media img {
+  border: 0;
+  border-radius: 0;
 }
 
 .nx-doc .md-button {
@@ -2514,8 +2512,8 @@ html .nx-doc .carousel .carousel__next {
   width: 100%;
   line-height: 1.55;
   font-size: 13px;
-  max-height: 500px;
-  overflow: hidden;
+  /* No height cap and no clipping: the card's own gallery bounds its own size,
+     and a max-height here used to cut off the pagination strip. */
 }
 
 /* Images are shown whole, centred inside their frame — never cropped. */
@@ -2531,18 +2529,6 @@ html .nx-doc .carousel .carousel__next {
 
 .nx-entry-media.is-single img {
   max-height: 260px;
-}
-
-/* Placeholder for records with no artwork: a translucent site logo. */
-.nx-entry-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 16 / 9;
-  background: var(--nx-fill);
-  border-radius: 4px;
-  margin-top: 10px;
-  overflow: hidden;
 }
 
 @media (min-width: 760px) {

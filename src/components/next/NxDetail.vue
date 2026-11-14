@@ -8,9 +8,8 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import axios from "axios";
 import MarkdownIt from "markdown-it";
-import { Carousel, Slide, Navigation } from "vue3-carousel";
-import "vue3-carousel/dist/carousel.css";
 import NxIcon from "./NxIcon.vue";
+import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, softwareLabel } from "../../util/next/records.js";
 import { getTagColor } from "../../util/TagUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
@@ -31,7 +30,6 @@ const emit = defineEmits(["close"]);
 
 const lightbox = ref(null);
 const activeVersion = ref(null);
-const slideIndex = ref(0);
 // The legacy full-screen modal rendered a per-record description file
 // (description.md / .txt from the data folder) on top of the YAML blurb. The
 // drawer restores it: without it, records whose write-up lives in a file showed
@@ -160,9 +158,7 @@ watch(() => props.record, (next) => {
   const versions = next && next.versions ? next.versions : [];
   const current = versions.find((v) => v.latest) || versions[0] || null;
   activeVersion.value = current ? current.verKey : null;
-  lightbox.value = null;
-  slideIndex.value = 0;
-  if (next) {
+  lightbox.value = null;  if (next) {
     requestAnimationFrame(() => {
       const body = document.querySelector(".nx-drawer-body");
       if (body) body.scrollTop = 0;
@@ -391,25 +387,6 @@ function onKeydown(event) {
   }
 }
 
-// The carousel keeps its own index; mirror it so the custom dots stay in sync.
-function onSlideUpdate(index) {
-  slideIndex.value = index;
-}
-
-function goTo(index) {
-  slideIndex.value = index;
-}
-
-const carouselRef = ref(null);
-
-function prevSlide() {
-  if (carouselRef.value) carouselRef.value.prev();
-}
-
-function nextSlide() {
-  if (carouselRef.value) carouselRef.value.next();
-}
-
 watch(isOpen, (open) => {
   document.body.classList.toggle("nx-locked", open);
 });
@@ -497,95 +474,15 @@ onBeforeUnmount(() => {
           >
             <div class="nx-section-label">{{ text.screenshots }}</div>
 
-            <div
-              v-if="gallery.length === 1"
-              class="nx-shots is-single"
-            >
-              <button
-                type="button"
-                @click="lightbox = gallery[0]"
-              >
-                <img
-                  :src="gallery[0]"
-                  :alt="record.name"
-                  loading="lazy"
-                />
-              </button>
-            </div>
-
-            <template v-else>
-              <div class="nx-carousel">
-                <Carousel
-                  ref="carouselRef"
-                  :items-to-show="1"
-                  :wrap-around="true"
-                  :mouse-drag="false"
-                  :model-value="slideIndex"
-                  @update:model-value="onSlideUpdate"
-                >
-                  <Slide
-                    v-for="(img, index) in gallery"
-                    :key="img + index"
-                  >
-                    <button
-                      type="button"
-                      style="display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;aspect-ratio:16/9;"
-                      @click="lightbox = img"
-                    >
-                      <img
-                        :src="img"
-                        :alt="`${record.name} ${index + 1}`"
-                        loading="lazy"
-                        style="width:100%;height:100%;object-fit:contain;background:var(--nx-fill);"
-                      />
-                    </button>
-                  </Slide>
-                  <template #addons>
-                    <Navigation />
-                  </template>
-                </Carousel>
-              </div>
-
-              <!-- pagination in normal flow: cannot overlap the slides -->
-              <div class="nx-carousel-nav">
-                <div class="nx-carousel-dots">
-                  <button
-                    v-for="(img, index) in gallery"
-                    :key="`dot-${img}-${index}`"
-                    type="button"
-                    class="nx-carousel-dot"
-                    :class="{ on: index === slideIndex }"
-                    :aria-label="`${index + 1}`"
-                    @click="goTo(index)"
-                  />
-                </div>
-                <span class="nx-num" style="font-size:10.5px;color:var(--nx-faint);">
-                  {{ slideIndex + 1 }} / {{ gallery.length }}
-                </span>
-                <div class="nx-carousel-arrows">
-                  <button
-                    type="button"
-                    :aria-label="lan === 'zh' ? '上一张' : 'Previous'"
-                    @click="prevSlide"
-                  >
-                    <NxIcon
-                      name="chevronLeft"
-                      :size="13"
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    :aria-label="lan === 'zh' ? '下一张' : 'Next'"
-                    @click="nextSlide"
-                  >
-                    <NxIcon
-                      name="chevronRight"
-                      :size="13"
-                    />
-                  </button>
-                </div>
-              </div>
-            </template>
+            <!-- one shared gallery component, so the drawer, the entry cards
+                 and the documentation pages cannot drift apart -->
+            <NxGallery
+              :images="gallery"
+              :alt="record.name"
+              :lan="lan"
+              aspect-ratio="16 / 9"
+              @select="lightbox = $event"
+            />
           </div>
 
           <!-- description: the YAML blurb, then the full write-up from the

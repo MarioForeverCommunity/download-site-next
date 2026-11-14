@@ -72,13 +72,18 @@ async function resolveMf(props, lan) {
   const match = chosen.versions.find((v) => v.verKey === desired || v.label === desired);
   if (!match) return chosen;
 
+  // The requested version must lead the list, because the preview's primary
+  // download button reads `versions[0]`. Leaving the list in its original order
+  // made the button point at the newest build instead of the pinned one.
+  const rest = chosen.versions.filter((v) => v !== match);
   return {
     ...chosen,
     date: match.date,
     versionLabel: match.label,
     downloads: match.downloads,
     dataDownloads: match.dataDownloads,
-    versions: props.ver ? [match] : chosen.versions,
+    // `<... ver="x" />` locks to that version; `defaultVer` only preselects it.
+    versions: props.ver ? [match] : [match, ...rest],
   };
 }
 
@@ -90,23 +95,41 @@ async function resolveAsset(props, lan) {
   if (found.length === 0) return null;
   const entry = found[0];
 
-  let source = entry;
-  if (props.variant || props.ver) {
-    const variant = resolveVariantRaw(entry, props.variant, props.ver);
-    if (variant) {
-      const verKey = Object.keys(variant)[0];
-      const verObj = variant[verKey] || {};
-      source = {
-        ...entry,
-        currentVer: { ...verObj },
-        currentVerStr: verKey,
-        _variantName: verKey,
-        ver: [variant],
-      };
-    }
+  if (!props.variant && !props.ver) {
+    return buildAssetRecords([entry], lan)[0] || null;
   }
 
-  return buildAssetRecords([source], lan)[0] || null;
+  // Narrow the entry to the requested variant/version before building records,
+  // so the preview's primary download points at that build rather than at
+  // whichever variant happens to sort first.
+  const variant = resolveVariantRaw(entry, props.variant, props.ver);
+  if (variant) {
+    const verKey = Object.keys(variant)[0];
+    const verObj = variant[verKey] || {};
+    const source = {
+      ...entry,
+      currentVer: { ...verObj },
+      currentVerStr: verKey,
+      _variantName: verKey,
+      ver: [variant],
+      variants: [variant],
+    };
+    const narrowed = buildAssetRecords([source], lan);
+    if (narrowed.length) return narrowed[0];
+  }
+
+  // Fall back to the entry's own variants, but put the requested one first so
+  // the card still shows the intended build when the exact match fails.
+  const records = buildAssetRecords([entry], lan);
+  if (props.variant) {
+    const wanted = String(props.variant).trim().toLowerCase();
+    const idx = records.findIndex((r) => String(r.variantLabel || "").trim().toLowerCase() === wanted);
+    if (idx > 0) {
+      const [hit] = records.splice(idx, 1);
+      records.unshift(hit);
+    }
+  }
+  return records[0] || null;
 }
 
 async function resolveSoftendo(props, lan) {
