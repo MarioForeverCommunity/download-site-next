@@ -1295,17 +1295,18 @@ body.nx-body select:focus-visible {
 /* Softendo records have no release date, so the date column is dropped and the
    remaining columns re-flow without leaving a hole. */
 .nx-row.is-softendo {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr) 132px;
+  --nx-cols: minmax(240px, 1fr) minmax(72px, 108px) 88px minmax(120px, 1fr) 132px;
 }
 
-/* Catalogs without a class/tag column drop it from the template as well, so the
-   trailing action column still lands flush right. */
+/* Catalogs without a class/tag column drop it from the template as well. The
+   title column takes the freed width, while the action track stays a fixed
+   132px so its buttons remain flush with the row's right edge. */
 .nx-row.is-no-tags {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px 132px;
+  --nx-cols: minmax(240px, 1fr) minmax(72px, 108px) 88px 82px 132px;
 }
 
 .nx-row.is-softendo.is-no-tags {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 132px;
+  --nx-cols: minmax(240px, 1fr) minmax(72px, 108px) 88px 132px;
 }
 
 .nx-row.is-softendo .nx-cell:nth-child(4) {
@@ -2850,11 +2851,27 @@ html .nx-doc .carousel .carousel__next {
 /* ── responsive ───────────────────────────────────────────── */
 /* Only the tag column is dropped below 1240px; the title column keeps its
    400px ceiling and simply shrinks toward its floor, because the title is the
-   one column that must never be squeezed. */
+   one column that must never be squeezed. Hiding the tag cell leaves the grid
+   one item short, so the template is replaced with a five-track one whose last
+   track absorbs the leftover width and keeps the action buttons flush right. */
 @media (max-width: 1240px) {
   .nx-row > .nx-row-tags-col,
   .nx-row-head > .nx-row-tags-col {
     display: none;
+  }
+
+  /* The title column absorbs whatever width is left; every other track is
+     fixed, so the last (action) column always ends at the row's right edge.
+     Two competing minmax tracks here would let the title grow to 400px and
+     squeeze the action column away from that edge. */
+  .nx-row,
+  .nx-row.is-no-tags {
+    --nx-cols: minmax(160px, 1fr) minmax(72px, 108px) 88px 82px 132px;
+  }
+
+  .nx-row.is-softendo,
+  .nx-row.is-softendo.is-no-tags {
+    --nx-cols: minmax(160px, 1fr) minmax(72px, 108px) 88px 132px;
   }
 }
 
@@ -2864,21 +2881,22 @@ html .nx-doc .carousel .carousel__next {
     --nx-pane-w: 212px;
   }
 
+  /* At 861-1024px the rail and filter pane are both still visible, leaving only
+     ~480px for the table. Fixed column floors plus a 10px gap overflowed that,
+     so the tracks are tightened and the gap halved here. The title keeps a
+     flexible 1fr and the action track stays fixed to remain flush right. */
   .nx-row {
-    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 78px 128px;
+    gap: 5px;
   }
 
-  .nx-row.is-softendo {
-    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 128px;
-  }
-
-  /* Catalogs without a class column have one column fewer at this width too. */
+  .nx-row,
   .nx-row.is-no-tags {
-    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 78px 128px;
+    --nx-cols: minmax(90px, 1fr) minmax(56px, 90px) 68px 60px 104px;
   }
 
+  .nx-row.is-softendo,
   .nx-row.is-softendo.is-no-tags {
-    --nx-cols: minmax(200px, 340px) minmax(72px, 108px) 84px 128px;
+    --nx-cols: minmax(90px, 1fr) minmax(56px, 90px) 68px 104px;
   }
 }
 
@@ -3001,12 +3019,20 @@ html .nx-doc .carousel .carousel__next {
     height: auto;
     min-height: 40px;
     flex-wrap: wrap;
-    align-items: flex-start;
+    /* Centre every item on the line: the count is an 18px text node while the
+       sort buttons are 24px and the view switch 30px. Top-aligning them made
+       the record count sit a few pixels above the sort labels. */
+    align-items: center;
     gap: 6px;
   }
 
   .nx-results-count {
     flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    white-space: nowrap;
+    line-height: 1.4;
   }
 
   .nx-active-filters {
