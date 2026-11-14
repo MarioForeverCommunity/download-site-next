@@ -7,7 +7,7 @@ import { navTop } from "../../../config.js";
 import { readList } from "../../../util/ReadList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
-import { buildSoftendoRecords, makeFacet } from "../../../util/next/records.js";
+import { buildSoftendoRecords, makeFacet, softwareLabel } from "../../../util/next/records.js";
 import { normalizeSoftendoList } from "../../../util/SoftendoUtil.js";
 import softendoZh from "../../../markdown/softendo-zh.md";
 import softendoEn from "../../../markdown/softendo-en.md";
@@ -43,6 +43,23 @@ const facets = computed(() => {
           { value: "non-mario", label: "Non-Mario" },
           { value: "banesoft", label: "Banesoft" },
         ],
+      },
+    }),
+    makeFacet({
+      key: "software",
+      label: zh ? "制作软件" : "Made with",
+      // A game can list several makers (a title shipped as both an exe and a
+      // swf, for instance), so this is a multi-choice facet.
+      getter: (record) => {
+        if (!record.software) return null;
+        return Array.isArray(record.software) ? record.software : [record.software];
+      },
+      options: {
+        records: rawRecords.value,
+        list: ["flash", "mmf", "gamemaker", "other"].map((value) => ({
+          value,
+          label: softwareLabel(value, lan.value),
+        })),
       },
     }),
     makeFacet({

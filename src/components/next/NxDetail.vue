@@ -12,6 +12,7 @@ import NxIcon from "./NxIcon.vue";
 import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, softwareLabel, sourceServiceName } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
+import { getFullTypeLabel } from "../../util/SoftendoUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
@@ -194,7 +195,10 @@ const facts = computed(() => {
   const rows = [];
 
   if (record.kind === "softendo") {
-    rows.push({ label: t.series, value: record.raw && record.raw.type });
+    // The YAML `type` is a slug (mff / flash …); the drawer shows the series'
+    // formal name, matching the filter labels and card tooltip.
+    const series = record.softendoType || (record.raw && record.raw.type);
+    rows.push({ label: t.series, value: series ? getFullTypeLabel(series) : "" });
     rows.push({ label: t.madeWith, value: Array.isArray(record.software) ? record.software.join(", ") : softwareLabel(record.software, props.lan) });
     if (record.languageLabel) rows.push({ label: t.language, value: record.languageLabel });
     rows.push({ label: t.years, value: record.yearLabel });
