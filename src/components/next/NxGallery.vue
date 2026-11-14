@@ -69,7 +69,7 @@ const TRANSITION_MS = 320;
 
 const containerRef = ref(null);
 const containerW = ref(0);
-const pos = ref(1);
+const pos = ref(2);
 const noTransition = ref(false);
 
 let snapTimer = null;
@@ -133,21 +133,25 @@ function widthFor(src) {
   return slideH.value * ratioFor(src);
 }
 
-// Slides rendered: [last clone, ...images, first clone] so both directions wrap.
+// Slides rendered: [2nd-last clone, last clone, ...images, first clone, 2nd
+// clone] — two clones on each end. The wrap positions (1 and count+2) then have
+// neighbours on both sides: a single-clone track left a grey gap where the next
+// picture should be for the whole wrap animation, until the snap brought the
+// real slides in.
 const slides = computed(() => {
-  if (isSingle.value) return props.images.map((src, index) => ({ src, real: index }));
-  const last = props.images[count.value - 1];
-  const first = props.images[0];
-  const list = [{ src: last, real: count.value - 1, clone: true }];
+  const n = count.value;
+  if (n <= 1) return props.images.map((src, index) => ({ src, real: index }));
+  const cloneOf = (i) => ({ src: props.images[i], real: i, clone: true });
+  const list = [cloneOf((n - 2) % n), cloneOf(n - 1)];
   props.images.forEach((src, index) => list.push({ src, real: index }));
-  list.push({ src: first, real: 0, clone: true });
+  list.push(cloneOf(0), cloneOf(1 % n));
   return list;
 });
 
 // The active real index, tolerating the transient clone positions.
 const activeIndex = computed(() => {
   if (count.value === 0) return 0;
-  return ((pos.value - 1) % count.value + count.value) % count.value;
+  return ((pos.value - 2) % count.value + count.value) % count.value;
 });
 
 // Cumulative x offsets, since slides differ in width.
@@ -200,13 +204,26 @@ const text = computed(() => (props.lan === "zh"
 // Move to a track position. Wrapping is handled on transitionend: after
 // sliding onto a clone the track is snapped (without animation) onto the real
 // slide, so the loop is seamless in both directions.
+//
+// Positions outside [1, count+2] are refused. The wrap clones are only ever
+// reached deliberately (that is the wrap); a burst of clicks used to walk the
+// track past them, where the offset lookup failed and the strip slid into
+// blank space with no state left able to bring it back.
 function goTo(nextPos) {
-  if (isSingle.value) return;
+  if (isSingle.value || count.value < 2) return;
+  // Real slides occupy [2, count+1]; 1 and count+2 are the wrap positions.
+  // Anything beyond is refused — the extra clones at 0 and count+3 exist only
+  // as neighbours, never as targets.
+  if (nextPos < 1 || nextPos > count.value + 2) return;
   clearSnap();
   // Make sure transitions are enabled *before* the position changes, otherwise
   // the browser coalesces both style writes into one frame and the slide jumps.
   noTransition.value = false;
   pos.value = nextPos;
+  // transitionend can be lost (a retargeted transition never reports its end,
+  // background tabs throttle): resolve any pending wrap the same way once the
+  // slide time is up, so the carousel cannot get stranded on a clone.
+  snapTimer = setTimeout(resolveWrap, TRANSITION_MS + 40);
 }
 
 function clearSnap() {
@@ -216,13 +233,22 @@ function clearSnap() {
   }
 }
 
-function onTransitionEnd(event) {
-  if (event.propertyName !== "transform") return;
-  if (pos.value === count.value + 1) {
-    snapTo(1);
-  } else if (pos.value === 0) {
-    snapTo(count.value);
+// Parked on a wrap clone? Land on the identical real slide without animating:
+// the picture and its position are the same, only the track offset differs.
+function resolveWrap() {
+  if (pos.value === count.value + 2) {
+    snapTo(2);
+  } else if (pos.value === 1) {
+    snapTo(count.value + 1);
   }
+}
+
+function onTransitionEnd(event) {
+  // transitionend bubbles from the slides' children; only the track's own
+  // transform matters here.
+  if (event.target !== event.currentTarget) return;
+  if (event.propertyName !== "transform") return;
+  resolveWrap();
 }
 
 // Jump without animating (used for wrapping and for dot clicks).
@@ -250,7 +276,7 @@ function prev() {
 
 function jumpTo(realIndex) {
   if (realIndex === activeIndex.value) return;
-  snapTo(realIndex + 1);
+  snapTo(realIndex + 2);
   restartAutoplay();
 }
 
@@ -266,7 +292,7 @@ function onResize() {
 }
 
 watch(() => props.images, () => {
-  snapTo(1);
+  snapTo(2);
   restartAutoplay();
 });
 
@@ -331,7 +357,7 @@ onBeforeUnmount(() => {
               :src="slide.src"
               :data-src-key="slide.src"
               :alt="`${alt} ${slide.real + 1}`"
-              loading="lazy"
+              :loading="slide.clone ? 'eager' : 'lazy'"
               decoding="async"
               :class="['nx-gallery-img', `is-${fit}`]"
               @load="onImgLoad"
