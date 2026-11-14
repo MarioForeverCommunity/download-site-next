@@ -1384,6 +1384,13 @@ body.nx-body select:focus-visible {
   white-space: nowrap;
 }
 
+/* On a phone the author/version/date cells are hidden, so the same values are
+   reprinted in a line that shares the alternate-name styling. Hidden by default
+   because the columns already carry them on wider screens. */
+.nx-row-meta {
+  display: none;
+}
+
 /* Multi-author records list one author per line so no name is hidden behind a
    comma-separated string. */
 .nx-cell-authors {
@@ -3309,6 +3316,11 @@ html .nx-doc .carousel .carousel__next {
   .nx-row > .nx-cell,
   .nx-row > .nx-row-tags-col {
     display: none;
+  }
+
+  /* The metadata that the cells above used to carry, reprinted as small text. */
+  .nx-row-meta {
+    display: block;
   }
 
   .nx-row > .nx-row-actions {

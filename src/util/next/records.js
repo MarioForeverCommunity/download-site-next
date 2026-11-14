@@ -375,6 +375,9 @@ export function expandMfRecord(record) {
     dataDownloads: version.dataDownloads,
     current: version,
     isLatestVersion: version.latest,
+    // Every version now has its own row, so the "N versions" badge would only
+    // repeat what the rest of the list already shows.
+    versionCount: 1,
     expandedFrom: record,
     expandedIndex: index,
   }));

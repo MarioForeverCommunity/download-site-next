@@ -96,6 +96,31 @@ const displayAuthors = computed(() => {
 // the version column and must not have it repeated beside the title.
 const showVariant = computed(() => props.record.kind === "asset" && !!props.record.variantLabel);
 
+// The alternate name is an aid for the English view (a transliteration or an
+// English title); in Chinese it only repeats information the reader already has.
+const showNameAlt = computed(() => props.lan !== "zh"
+  && props.record.nameAlt && props.record.nameAlt !== props.record.name);
+
+// The list drops its metadata columns on a phone, so the same values are
+// reprinted as one small line under the title. MW records name the editor the
+// level requires ("SMWP 1.7.12"), matching the card view.
+const versionText = computed(() => {
+  const r = props.record;
+  if (r.kind === "softendo") return r.yearLabel || "";
+  const raw = r.versionLabel || "";
+  if (r.kind !== "mw" || !raw) return raw;
+  return /^mw\b/i.test(raw) ? raw : "SMWP " + raw;
+});
+
+const mobileMeta = computed(() => {
+  const parts = [];
+  const authors = displayAuthors.value.join(", ");
+  if (authors) parts.push(authors);
+  if (versionText.value) parts.push(versionText.value);
+  if (props.record.kind !== "softendo" && dateText.value) parts.push(dateText.value);
+  return parts.join(" \u00b7 ");
+});
+
 function openLinks(event) {
   event.stopPropagation();
 }
@@ -142,9 +167,13 @@ function openLinks(event) {
           > ({{ record.variantLabel }})</span>
         </div>
         <div
-          v-if="record.nameAlt && record.nameAlt !== record.name"
+          v-if="showNameAlt"
           class="nx-row-sub"
         >{{ record.nameAlt }}</div>
+        <div
+          v-if="mobileMeta"
+          class="nx-row-sub nx-row-meta"
+        >{{ mobileMeta }}</div>
       </div>
     </div>
 

@@ -10,13 +10,21 @@ export const changelog = [
     features: [],
     features_en: [],
     improvements: [
-      "抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容；抽屉内滚动不再带动主区域"
+      "抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容；抽屉内滚动不再带动主区域",
+      "作品列表：中文界面不再显示英文副标题；移动端把作者、版本、日期合并为标题下的小字（MW 版本带 SMWP 前缀）；勾选「每个版本单独列出」时不再重复显示「N 个版本」",
+      "作品列表与卡片视图的图片统一为 4:3，卡片轮播支持触控左右滑动，并按容器宽度缩放以完整显示当前图片"
     ],
     improvements_en: [
-      "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it"
+      "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
+      "Catalog list: the Chinese interface no longer shows the English secondary title; on phones the author, version and date collapse into one small line under the title (MW versions carry the SMWP prefix); the \"N versions\" badge is gone once every version is listed separately",
+      "Catalog list and card images are now 4:3; the card slider supports touch swiping and scales to the container so the current picture is always fully visible"
     ],
-    fixes: [],
-    fixes_en: [],
+    fixes: [
+      "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字"
+    ],
+    fixes_en: [
+      "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text"
+    ],
     misc: [],
     misc_en: []
   },
