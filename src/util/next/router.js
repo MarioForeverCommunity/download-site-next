@@ -94,8 +94,6 @@ function handleableLink(event, anchor) {
     return false;
   }
   if (url.origin !== window.location.origin) return false;
-  // A different query/hash on the same page is not a page change.
-  if (url.pathname === window.location.pathname) return false;
   return pageIdFromPath(url.pathname) !== null;
 }
 
@@ -105,7 +103,22 @@ function onClick(event) {
   const url = new URL(anchor.getAttribute("href"), window.location.href);
   const pageId = pageIdFromPath(url.pathname);
   if (!pageId) return;
+
+  // Always take over the click. Clicking the tab you are already on must not
+  // fall through to the browser: that performs a real document load, which is
+  // exactly what this router exists to avoid.
+  //
+  // Exception: an in-page anchor on the same document (`page.html#section`) is a
+  // scroll, not a navigation — let the browser handle it.
+  if (url.hash && url.pathname === window.location.pathname) return;
+
   event.preventDefault();
+  if (pageId === currentPageId.value) {
+    // Already here: keep the URL/history untouched and just return to the top,
+    // the way re-selecting a tab behaves.
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
   navigateTo(pageId);
 }
 
