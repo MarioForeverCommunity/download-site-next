@@ -131,8 +131,18 @@ body.nx-body {
    util/next/scrollLock.js, which leave the scroller intact. */
 html.nx-locked {
   overscroll-behavior: none;
-  /* Keep the layout box from widening if an engine does hide the scrollbar. */
-  scrollbar-gutter: stable;
+  /* Hide the document scrollbar while an overlay is open. A classic Windows
+     scrollbar is painted *outside* `position: fixed` overlays, so the page
+     behind an open drawer kept a grabbable thumb at the window edge — the
+     listeners in util/next/scrollLock.js block wheel, touch and keys, but not a
+     scrollbar drag. The width lost to the hidden scrollbar is reserved as body
+     padding by scrollLock.js, so the layout still does not reflow. */
+  scrollbar-width: none;
+}
+
+html.nx-locked::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 img {

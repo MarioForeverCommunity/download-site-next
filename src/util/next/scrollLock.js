@@ -90,10 +90,15 @@ function applyLock() {
   savedScrollY = window.scrollY || window.pageYOffset || 0;
   savedPaddingRight = body.style.paddingRight;
 
-  const gap = window.innerWidth - root.clientWidth;
-  if (gap > 0) body.style.paddingRight = `${gap}px`;
-
+  // `html.nx-locked` hides the scrollbar (see assets/next/base.css). On desktop
+  // engines with a classic scrollbar that widens the layout box, so the width
+  // lost is reserved as body padding. Measuring after the class is applied
+  // keeps this correct whether or not the engine keeps the gutter reserved.
+  const widthBefore = root.clientWidth;
   root.classList.add("nx-locked");
+  const grown = root.clientWidth - widthBefore;
+  if (grown > 0) body.style.paddingRight = `${grown}px`;
+
   window.addEventListener("wheel", blockWheel, { passive: false });
   window.addEventListener("touchstart", onTouchStart, { passive: true });
   window.addEventListener("touchmove", onTouchMove, { passive: false });

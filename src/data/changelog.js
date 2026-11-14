@@ -48,7 +48,8 @@ export const changelog = [
       "修复新版各页「最后更新」在数据更新后不刷新的问题：改为与旧版一致，运行时查询 GitHub 最新提交，数据单独部署、不重新构建时也能显示正确日期",
       "修复原版 MF 下载表格把 3.5 星显示成 3 星的问题：末尾的半星现在以较淡的主题色单独显示",
       "修复作品详情中下载按钮重复显示提取码的问题，并在提取码徽标前标注「提取码 / Code」",
-      "修复 MW 工具类创作资源的占位图：改用 MarioWorker 标识"
+      "修复 MW 工具类创作资源的占位图：改用 MarioWorker 标识",
+      "修复桌面端详情抽屉打开时页面滚动条仍可见、可被拖动从而滚动背后列表的问题：抽屉展开期间隐藏页面滚动条并保留等宽留白，布局不会发生位移"
     ],
     fixes_en: [
       "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
@@ -57,7 +58,8 @@ export const changelog = [
       "Fixed the redesigned pages showing a stale \"Last updated\" date after data-only deployments: the newest GitHub commit is now queried at runtime, like the legacy design",
       "Fixed the original MF download table rendering a 3.5-star rating as 3 stars: the trailing half star is now drawn in a lighter shade of the accent colour",
       "Fixed download buttons in the detail drawer showing the extraction code twice, and labelled the code badge with 提取码 / Code",
-      "Fixed the placeholder for MW-tool assets: they now use the MarioWorker mark"
+      "Fixed the placeholder for MW-tool assets: they now use the MarioWorker mark",
+      "Fixed the page scrollbar staying visible beside an open detail drawer on desktop, where dragging its thumb still scrolled the catalog behind; the scrollbar is hidden while an overlay is open, with its width reserved so the layout does not shift"
     ],
     misc: [
       "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"
