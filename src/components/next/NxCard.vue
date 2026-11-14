@@ -3,7 +3,7 @@
 // This is the browsing mode; the list is the scanning mode.
 import { computed } from "vue";
 import { formatIsoDate } from "../../util/next/records.js";
-import { getTagColor } from "../../util/TagUtil.js";
+import { getTagPillColor } from "../../util/TagUtil.js";
 import { getTheme } from "../../util/Theme.js";
 import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 
@@ -29,7 +29,7 @@ const theme = getTheme();
 const metaDate = computed(() => formatIsoDate(props.record.date));
 
 const tagPills = computed(() => props.record.tags.map((tag) => {
-  const colors = getTagColor(tag.key, theme.value === "dark");
+  const colors = getTagPillColor(tag, theme.value === "dark");
   return { ...tag, style: { color: colors.text, borderColor: colors.border, background: colors.bg } };
 }));
 
@@ -91,6 +91,7 @@ const versionText = computed(() => {
         v-else
         :lan="lan"
         :kind="record.kind"
+        :asset-type="record.assetType"
         variant="cover"
       />
     </div>
@@ -115,6 +116,11 @@ const versionText = computed(() => {
       <div class="nx-card-meta">
         <span v-if="metaDate">{{ metaDate }}</span>
         <span v-else-if="record.yearLabel">{{ record.yearLabel }}</span>
+        <span
+          v-if="record.assetType"
+          class="nx-dot"
+          :class="`nx-type-${record.assetType}`"
+        >{{ record.assetTypeLabel }}</span>
         <span
           v-for="tag in tagPills"
           :key="tag.key"

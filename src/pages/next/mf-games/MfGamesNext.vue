@@ -4,10 +4,10 @@
 // Same data pipeline as the legacy page (YAML -> ensureMfList -> adapter), and
 // the same platform/software rules, so the two designs can never disagree about
 // what a record is. Only presentation and the filter interaction differ.
-import { ref, computed, onMounted, watchEffect } from "vue";
+import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
-import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort } from "../../../util/Language.js";
+import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { ensureMfList } from "../../../util/useMfList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
@@ -136,6 +136,10 @@ async function load(language) {
 onMounted(() => {
   load(lan.value);
 });
+
+// The settings drawer can flip the File Hub direct-link switch while this page is
+// open; records bake their download URLs, so rebuild them to apply it at once.
+watch(getUseDirectLink(), () => load(lan.value));
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();

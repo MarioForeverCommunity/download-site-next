@@ -129,6 +129,20 @@ export function getTagColor(tag, isDark) {
   return map[tag] || fallback;
 }
 
+// Runtime flags (the MW catalog's 专用 MW / BGM) are not content tags: they keep
+// the legacy design's own hues, drawn as a tinted pill rather than a solid fill.
+const TONE_TAG_COLOR_MAP = {
+  mw: { bg: "#fdf1e0", border: "#f0a44a", text: "#b45309" },
+  bgm: { bg: "#fdeef4", border: "#f0a0c0", text: "#a50036" },
+};
+
+// Colours for a record's tag pill, shared by the list and card views so the same
+// flag never reads as two different things.
+export function getTagPillColor(tag, isDark) {
+  if (tag && TONE_TAG_COLOR_MAP[tag.tone]) return TONE_TAG_COLOR_MAP[tag.tone];
+  return getTagColor(tag ? tag.key : "", isDark);
+}
+
 export function getTagLabel(tag, lan) {
   if (lan === "zh" && TAG_ZH_MAP[tag]) {
     return TAG_ZH_MAP[tag];

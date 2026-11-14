@@ -5,7 +5,7 @@ import { computed } from "vue";
 import NxIcon from "./NxIcon.vue";
 import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 import { formatIsoDate } from "../../util/next/records.js";
-import { getTagColor } from "../../util/TagUtil.js";
+import { getTagPillColor } from "../../util/TagUtil.js";
 import { getTheme } from "../../util/Theme.js";
 
 const props = defineProps({
@@ -45,23 +45,9 @@ const dateText = computed(() => formatIsoDate(props.record.date));
 
 // Every tag is shown, not just the first two: the class column is how a visitor
 // decides whether a record is relevant, so truncating it defeats the purpose.
+// `getTagPillColor` also covers the runtime flags, so the card view agrees.
 const tagPills = computed(() => props.record.tags.map((tag) => {
-  // Runtime flags (专用 MW / BGM) keep the legacy design's hues, but rendered as
-  // a tinted background with a strong border and dark text rather than a solid
-  // fill, so they sit beside content tags without shouting.
-  if (tag.tone === "mw") {
-    return {
-      ...tag,
-      style: { color: "#b45309", borderColor: "#f0a44a", background: "#fdf1e0" },
-    };
-  }
-  if (tag.tone === "bgm") {
-    return {
-      ...tag,
-      style: { color: "#a50036", borderColor: "#f0a0c0", background: "#fdeef4" },
-    };
-  }
-  const colors = getTagColor(tag.key, theme.value === "dark");
+  const colors = getTagPillColor(tag, theme.value === "dark");
   return { ...tag, style: { color: colors.text, borderColor: colors.border, background: colors.bg } };
 }));
 
@@ -157,6 +143,7 @@ function openLinks(event) {
           v-else
           :lan="lan"
           :kind="record.kind"
+          :asset-type="record.assetType"
           variant="thumb"
         />
       </div>
@@ -210,6 +197,13 @@ function openLinks(event) {
       v-if="showTags"
       class="nx-row-tags nx-row-tags-col"
     >
+      <!-- Asset catalogs fill this column with the record's type, marked the way
+           the legacy design did it: a tinted dot carrying the type name. -->
+      <span
+        v-if="record.assetType"
+        class="nx-dot"
+        :class="`nx-type-${record.assetType}`"
+      >{{ record.assetTypeLabel }}</span>
       <span
         v-if="isLatest"
         class="nx-dot nx-dot-cur"

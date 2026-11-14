@@ -113,7 +113,7 @@ function netdiskDownloads(record, lan) {
     // a generic "网盘" for every mirror.
     const service = netdiskServiceName(item.url, lan);
     return {
-      label: item.desc,
+      label: withoutCode(item.desc),
       shortLabel: service || shortNetdiskLabel(item.desc),
       service,
       url: item.url,
@@ -146,6 +146,14 @@ export function netdiskServiceName(url, lan) {
 function shortNetdiskLabel(desc) {
   if (!desc) return "";
   return desc.replace(/\s*\((提取码|密码|Code|已失效|Invalid|暂无法访问|Temporarily Unavailable)[^)]*\)/g, "").trim();
+}
+
+// A download label must not repeat its extraction code: the detail drawer prints
+// the code in its own badge (and copies it on click), so a suffix here showed the
+// same code twice on one button.
+function withoutCode(desc) {
+  if (!desc) return "";
+  return desc.replace(/\s*\((提取码|密码|Code)\s*[:：][^)]*\)/g, "").trim();
 }
 
 // The title image must be first in the gallery (it is the recognisable artwork),
@@ -431,7 +439,7 @@ export function buildMwRecords(entries) {
       const invalid = String(entry.download_url).startsWith("~");
       const url = invalid ? entry.download_url.slice(1) : entry.download_url;
       netdisk.push({
-        label: `${netdiskServiceName(url, lan) || "网盘"}${code ? ` (提取码: ${code})` : ""}`,
+        label: netdiskServiceName(url, lan) || "网盘",
         shortLabel: netdiskServiceName(url, lan) || "网盘",
         service: netdiskServiceName(url, lan),
         url,
@@ -583,7 +591,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
 
   if (variant.download_url) {
     downloads.push({
-      label: `${netdiskServiceName(variant.download_url, lan) || "网盘"}${variant.code ? ` (提取码: ${variant.code})` : ""}`,
+      label: netdiskServiceName(variant.download_url, lan) || "网盘",
       shortLabel: netdiskServiceName(variant.download_url, lan) || "网盘",
       service: netdiskServiceName(variant.download_url, lan),
       url: variant.download_url,
@@ -595,7 +603,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
   }
   if (variant.download_url_alt) {
     downloads.push({
-      label: `${netdiskServiceName(variant.download_url_alt, lan) || "备用网盘"}${variant.code_alt ? ` (提取码: ${variant.code_alt})` : ""}`,
+      label: netdiskServiceName(variant.download_url_alt, lan) || "备用网盘",
       shortLabel: netdiskServiceName(variant.download_url_alt, lan) || "备用",
       service: netdiskServiceName(variant.download_url_alt, lan),
       url: variant.download_url_alt,

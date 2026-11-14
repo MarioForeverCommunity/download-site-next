@@ -1,4 +1,5 @@
 import { ref, computed, watch } from "vue";
+import { getDefaultSort, getDisplayMode, setDisplayModeCard, setDisplayModeLine } from "./Language.js";
 
 /**
  * Catalog state for the redesigned list pages.
@@ -41,8 +42,21 @@ export function useCatalog({
   // { facetKey: [value, ...] } — an empty array means "no restriction".
   const facetValues = ref({});
   const tagStates = ref({});
-  const view = ref("list");
+  // "list" | "cards". Starts from the remembered choice (the legacy design's
+  // `displayMode` cookie), so switching catalogs or reloading keeps the view.
+  const view = ref(getDisplayMode() === "card" ? "cards" : "list");
   const sort = ref(defaultSort ? { field: defaultSort.field, asc: defaultSort.asc } : { field: null, asc: true });
+
+  // The settings drawer can change the global default sort while a catalog is
+  // open. Apply it at once instead of on the next page load, skipping fields this
+  // catalog does not offer (Softendo has no date sorter).
+  watch(getDefaultSort(), (value) => {
+    const match = /^(name|author|date)_(asc|desc)$/.exec(String(value || ""));
+    if (!match) return;
+    const field = match[1];
+    if (!sorters.some((sorter) => sorter.field === field)) return;
+    sort.value = { field, asc: match[2] === "asc" };
+  });
   const activeId = ref(null);
   // Stable id so form labels in the filter pane can point at their inputs.
   const uid = Math.random().toString(36).slice(2, 8);
@@ -324,6 +338,10 @@ export function useCatalog({
 
   function setView(value) {
     view.value = value === "cards" ? "cards" : "list";
+    // Remembered across catalogs and page reloads through the same cookie the
+    // legacy design uses, so both interfaces open with the visitor's own choice.
+    if (view.value === "cards") setDisplayModeCard();
+    else setDisplayModeLine();
   }
 
   function toggleView() {

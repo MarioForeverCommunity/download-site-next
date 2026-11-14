@@ -11,7 +11,7 @@ import MarkdownIt from "markdown-it";
 import NxIcon from "./NxIcon.vue";
 import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, softwareLabel } from "../../util/next/records.js";
-import { getTagColor } from "../../util/TagUtil.js";
+import { getTagPillColor } from "../../util/TagUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { getFormattedFileSize } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
@@ -180,7 +180,7 @@ const gallery = computed(() => (props.record && props.record.images ? props.reco
 
 const tagColors = computed(() => (props.record ? props.record.tags.map((tag) => ({
   ...tag,
-  colors: getTagColor(tag.key, theme.value === "dark"),
+  colors: getTagPillColor(tag, theme.value === "dark"),
 })) : []));
 
 const facts = computed(() => {
@@ -647,7 +647,7 @@ onBeforeUnmount(() => {
                     <span
                       v-if="item.code"
                       class="nx-dl-code-inline"
-                    >{{ item.code }}</span>
+                    >{{ text.code }} {{ item.code }}</span>
                   </a>
                 </div>
 

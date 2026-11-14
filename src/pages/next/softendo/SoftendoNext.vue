@@ -1,8 +1,8 @@
 <script setup>
 // Softendo / Buziol / Banesoft games catalog — redesigned.
-import { ref, computed, onMounted, watchEffect } from "vue";
+import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
-import { getLanguage, setLanguageZh, setLanguageEn } from "../../../util/Language.js";
+import { getLanguage, setLanguageZh, setLanguageEn, getUseDirectLink } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { readList } from "../../../util/ReadList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
@@ -118,6 +118,10 @@ async function load(language) {
 onMounted(() => {
   load(lan.value);
 });
+
+// The settings drawer can flip the File Hub direct-link switch while this page is
+// open; records bake their download URLs, so rebuild them to apply it at once.
+watch(getUseDirectLink(), () => load(lan.value));
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();

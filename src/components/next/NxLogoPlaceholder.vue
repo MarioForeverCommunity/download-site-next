@@ -11,9 +11,14 @@ const props = defineProps({
     type: String,
     default: "zh"
   },
-  // Record kind ("mf" | "mw" | …): Mario Worker levels get their own mark, since
-  // a Mario Forever logo on a MW level reads as the wrong product.
+  // Record kind ("mf" | "mw" | …) and, for assets, the asset type. Mario Worker
+  // levels and MW tools get their own mark, since a Mario Forever logo on them
+  // reads as the wrong product.
   kind: {
+    type: String,
+    default: ""
+  },
+  assetType: {
     type: String,
     default: ""
   },
@@ -24,8 +29,11 @@ const props = defineProps({
   }
 });
 
+const isWorkerMark = computed(() => props.kind === "mw"
+  || (props.kind === "asset" && props.assetType === "mwtool"));
+
 const src = computed(() => {
-  if (props.kind === "mw") return "./images/marioworker.png";
+  if (isWorkerMark.value) return "./images/marioworker.png";
   return props.lan === "zh" ? "./images/logo_hd.png" : "./images/logo2_hd.png";
 });
 </script>
@@ -33,7 +41,7 @@ const src = computed(() => {
 <template>
   <div
     class="nx-logo-ph"
-    :class="[`is-${variant}`, { 'is-mw': kind === 'mw' }]"
+    :class="[`is-${variant}`, { 'is-mw': isWorkerMark }]"
   >
     <img
       :src="src"

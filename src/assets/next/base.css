@@ -1621,6 +1621,21 @@ body.nx-body select:focus-visible {
   background: var(--nx-fill);
 }
 
+/* Asset types keep the legacy catalog's dot marker, recoloured into this
+   design's tinted-dot pattern: the hue carries the type, the fill stays quiet. */
+.nx-type-engine { --nx-type: #a855f7; }
+.nx-type-addon { --nx-type: #3b82f6; }
+.nx-type-effect { --nx-type: #06b6d4; }
+.nx-type-sprite { --nx-type: #22c55e; }
+.nx-type-tool { --nx-type: #64748b; }
+.nx-type-mwtool { --nx-type: #f59e0b; }
+
+.nx-dot[class*="nx-type-"] {
+  color: var(--nx-type);
+  border-color: color-mix(in srgb, var(--nx-type) 30%, transparent);
+  background: color-mix(in srgb, var(--nx-type) 7%, transparent);
+}
+
 /* ── cards ────────────────────────────────────────────────── */
 .nx-cards {
   display: grid;

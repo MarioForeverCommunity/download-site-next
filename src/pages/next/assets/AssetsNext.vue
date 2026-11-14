@@ -4,9 +4,9 @@
 // Every variant is its own row (no collapse option): variants are separately
 // downloadable builds, and hiding them behind a picker buried most of the
 // catalog.
-import { ref, computed, onMounted, watchEffect } from "vue";
+import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
-import { getDefaultSort } from "../../../util/Language.js";
+import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { ensureAssetsList } from "../../../util/useAssetsList.js";
 import { useCatalog } from "../../../util/useCatalog.js";
@@ -81,7 +81,7 @@ const catalog = useCatalog({
   labels: { year: "年份 ", range: "日期 " },
 });
 
-onMounted(async () => {
+async function load() {
   try {
     const list = await ensureAssetsList();
     rawRecords.value = buildAssetRecords(list, "zh");
@@ -91,7 +91,13 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
-});
+}
+
+onMounted(load);
+
+// The settings drawer can flip the File Hub direct-link switch while this page is
+// open; records bake their download URLs, so rebuild them to apply it at once.
+watch(getUseDirectLink(), load);
 
 document.title = title.value;
 
@@ -125,8 +131,7 @@ watchEffect(() => {
     :facets="facets"
     :sorters="sorters"
     :lan="lan"
-    :show-tags="false"
-    :columns="{ name: '资源', author: '作者', version: '版本', date: '日期' }"
+    :columns="{ name: '资源', author: '作者', version: '版本', date: '日期', tags: '类型' }"
     :updated="docUpdated"
   />
   <div

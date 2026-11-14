@@ -4,10 +4,10 @@
 // Chinese-only, matching the legacy page (config.js `show_en: false`).
 // No tag filter: MW entries carry only "专用 MW" / "BGM" runtime flags, which
 // the 运行要求 facet already expresses, so a second tag filter would duplicate it.
-import { ref, computed, onMounted, watchEffect } from "vue";
+import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
-import { getDefaultSort } from "../../../util/Language.js";
+import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop } from "../../../config.js";
 import { readList } from "../../../util/ReadList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
@@ -109,7 +109,7 @@ function randomGame() {
   if (catalogRef.value) catalogRef.value.randomRecord();
 }
 
-onMounted(async () => {
+async function load() {
   try {
     const [list] = await Promise.all([readList("list-mw.yaml"), loadImageIndex().catch(() => null)]);
     rawRecords.value = buildMwRecords(list);
@@ -119,7 +119,13 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
-});
+}
+
+onMounted(load);
+
+// The settings drawer can flip the File Hub direct-link switch while this page is
+// open; records bake their download URLs, so rebuild them to apply it at once.
+watch(getUseDirectLink(), load);
 
 document.title = title.value;
 
@@ -159,7 +165,6 @@ publishShellHandlers({
     :sorters="sorters"
     :lan="lan"
     show-random
-    :show-tags="false"
     :updated="docUpdated"
     :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
   >
