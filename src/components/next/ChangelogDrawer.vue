@@ -198,10 +198,24 @@ watch(() => props.show, (open) => {
     background: color-mix(in srgb, var(--nx-cur) 7%, transparent);
   }
 
-  .nx-cl-pill.is-fixes {
+  /* Improvements read as blue, fixes as orange, and anything uncategorised
+     stays grey — the same meaning-carrying palette used elsewhere. */
+  .nx-cl-pill.is-improvements {
     color: var(--nx-intl);
     border-color: color-mix(in srgb, var(--nx-intl) 28%, transparent);
     background: color-mix(in srgb, var(--nx-intl) 7%, transparent);
+  }
+
+  .nx-cl-pill.is-fixes {
+    color: var(--nx-warn);
+    border-color: color-mix(in srgb, var(--nx-warn) 32%, transparent);
+    background: color-mix(in srgb, var(--nx-warn) 8%, transparent);
+  }
+
+  .nx-cl-pill.is-misc {
+    color: var(--nx-muted);
+    border-color: var(--nx-line);
+    background: var(--nx-fill);
   }
 
   .nx-cl-list {
