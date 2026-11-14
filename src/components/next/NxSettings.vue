@@ -11,6 +11,7 @@ import { NEXT_DESIGN } from "../../util/Design.js";
 import DesignSwitch from "../DesignSwitch.vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
+import { pushBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   show: {
@@ -68,8 +69,17 @@ const useDirectLink = getUseDirectLink();
 const tempSort = ref("date_desc");
 const tempDirect = ref(false);
 
+// The Android back button closes the drawer instead of leaving the page.
+let releaseBack = null;
+
 watch(() => props.show, (open) => {
   lockScroll(open);
+  if (open) {
+    releaseBack = pushBackGuard(() => emit("close"));
+  } else if (releaseBack) {
+    releaseBack();
+    releaseBack = null;
+  }
   if (open) {
     tempSort.value = defaultSort.value;
     tempDirect.value = useDirectLink.value;

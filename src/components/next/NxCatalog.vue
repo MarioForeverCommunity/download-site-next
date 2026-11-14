@@ -12,6 +12,7 @@ import NxDetail from "./NxDetail.vue";
 import NxIcon from "./NxIcon.vue";
 import { setViewDensity } from "../../util/Theme.js";
 import { lockScroll } from "../../util/next/scrollLock.js";
+import { pushBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   catalog: {
@@ -237,8 +238,17 @@ function onFilterKeydown(event) {
 // While the filter drawer is open the page behind it must not scroll or take
 // pointer input: the scrim already covers the content, and this stops the wheel
 // from scrolling the catalog underneath.
+// The Android back button closes the filter drawer instead of leaving the page.
+let releaseBack = null;
+
 watch(filtersOpen, (open) => {
   lockScroll(open);
+  if (open) {
+    releaseBack = pushBackGuard(closeFilters);
+  } else if (releaseBack) {
+    releaseBack();
+    releaseBack = null;
+  }
 });
 
 onMounted(() => document.addEventListener("keydown", onFilterKeydown));

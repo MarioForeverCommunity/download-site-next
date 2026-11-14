@@ -5,8 +5,9 @@
 // The markdown still marks those blocks up exactly as before; clicking the
 // triggering link opens them here in a side panel instead of a modal, so the
 // prose stays where it was and the reading position is preserved.
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import NxIcon from "./NxIcon.vue";
+import { pushBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   lan: {
@@ -57,6 +58,18 @@ function onKeydown(event) {
   if (event.key === "Escape") open.value = false;
 }
 
+// The Android back button closes the panel instead of leaving the page.
+let releaseBack = null;
+
+watch(open, (isOpen) => {
+  if (isOpen) {
+    releaseBack = pushBackGuard(() => { open.value = false; });
+  } else if (releaseBack) {
+    releaseBack();
+    releaseBack = null;
+  }
+});
+
 onMounted(() => {
   document.addEventListener("click", onClick);
   document.addEventListener("keydown", onKeydown);
@@ -65,6 +78,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener("click", onClick);
   document.removeEventListener("keydown", onKeydown);
+  if (releaseBack) releaseBack();
 });
 </script>
 

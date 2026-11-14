@@ -8,6 +8,7 @@
 import { ref, watch, nextTick, onMounted, onBeforeUnmount } from "vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
+import { pushBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   show: {
@@ -100,23 +101,27 @@ function onKeydown(event) {
   if (event.key === "Escape" && props.show) emit("close");
 }
 
-function onPopState() {
-  if (props.show) emit("close");
-}
+// The Android back button closes the drawer instead of leaving the page.
+let releaseBack = null;
 
 watch(() => props.show, (open) => {
   if (typeof document === "undefined") return;
   lockScroll(open);
+  if (open) {
+    releaseBack = pushBackGuard(() => emit("close"));
+  } else if (releaseBack) {
+    releaseBack();
+    releaseBack = null;
+  }
 });
 
 onMounted(() => {
   document.addEventListener("keydown", onKeydown);
-  window.addEventListener("popstate", onPopState);
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
-  window.removeEventListener("popstate", onPopState);
+  if (releaseBack) releaseBack();
   releaseScroll();
 });
 </script>

@@ -20,6 +20,7 @@ import NxDocDrawer from "./NxDocDrawer.vue";
 import NxSettings from "./NxSettings.vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll } from "../../util/next/scrollLock.js";
+import { pushBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   pageId: {
@@ -171,8 +172,17 @@ const railOpen = ref(false);
 
 // The rail becomes an off-canvas drawer on phones. While it is open the page
 // behind must not scroll, exactly like the other overlays.
+// The Android back button closes the rail drawer instead of leaving the page.
+let releaseBack = null;
+
 watch(railOpen, (open) => {
   lockScroll(open);
+  if (open) {
+    releaseBack = pushBackGuard(() => { railOpen.value = false; });
+  } else if (releaseBack) {
+    releaseBack();
+    releaseBack = null;
+  }
 });
 
 function toggleMenu(name) {
@@ -201,6 +211,18 @@ function onKeydown(event) {
   if (event.key !== "Escape") return;
   if (openMenu.value) closeMenus();
   else if (railOpen.value) railOpen.value = false;
+}
+
+// On a phone the rail is a drawer, so choosing anything in it must close the
+// drawer: the visitor has made their choice and the page behind is what they
+// want to see. Without this the panel stayed open over the page they had just
+// navigated to. Links that open in a new tab are left alone — the current page
+// is not going anywhere.
+function onRailClick(event) {
+  if (!railOpen.value) return;
+  const link = event.target.closest ? event.target.closest("a[target='_blank']") : null;
+  if (link) return;
+  railOpen.value = false;
 }
 
 const showLanguageMenu = computed(() => isBilingual.value);
@@ -296,7 +318,10 @@ watch(showChangelog, (open) => {
 
     <!-- left navigation rail; on narrow screens it collapses behind the
          topbar's menu button -->
-    <aside class="nx-rail">
+    <aside
+      class="nx-rail"
+      @click="onRailClick"
+    >
       <a
         class="nx-rail-brand"
         href="./"

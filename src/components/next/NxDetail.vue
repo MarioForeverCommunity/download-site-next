@@ -15,6 +15,7 @@ import { getTagColor } from "../../util/TagUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { getFormattedFileSize } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
+import { pushBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   record: {
@@ -403,8 +404,24 @@ function onKeydown(event) {
   }
 }
 
+// The Android back button closes the drawer — or the image lightbox first, when
+// one is open, so it behaves like Escape does here.
+let releaseBack = null;
+
 watch(isOpen, (open) => {
   lockScroll(open);
+  if (open) {
+    releaseBack = pushBackGuard(() => {
+      if (lightbox.value) {
+        lightbox.value = null;
+        return;
+      }
+      emit("close");
+    });
+  } else if (releaseBack) {
+    releaseBack();
+    releaseBack = null;
+  }
 });
 
 // Theme changes must recolour the tag chips while the drawer is open.
@@ -421,6 +438,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
+  if (releaseBack) releaseBack();
   releaseScroll();
   if (themeObserver) {
     themeObserver.disconnect();

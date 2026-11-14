@@ -15,7 +15,7 @@ export const changelog = [
       "作品详情改为右侧抽屉，可逐条对比而不离开列表；文档页中的作品条目可原地展开",
       "新版界面改为单页应用：切换页面不再刷新文档，URL 与前进 / 后退保持同步，内容区有淡入过渡",
       "各作品目录页新增「目录说明」抽屉，其中的致谢、音乐包放置说明等内容原地展开为卡片",
-      "移动端筛选面板与导航栏均改为抽屉，展开时锁定页面滚动并由遮罩拦截点击",
+      "移动端筛选面板与导航栏均改为抽屉，展开时锁定页面滚动并由遮罩拦截点击；选择导航项后自动收起",
       "页面标题显示在顶栏，页脚移入左侧导航栏；全局设置可在新旧两套界面间切换"
     ],
     features_en: [
@@ -26,7 +26,7 @@ export const changelog = [
       "Game details open in a right-side drawer so records can be compared without leaving the list; embedded previews in the documentation expand in place",
       "The new interface is a single-page app: switching pages no longer reloads the document, the URL stays in sync with the back/forward buttons, and the content area fades in",
       "Each catalog page gains an About drawer, where blocks it links to (credits, the data-package note) expand in place as cards",
-      "On phones the filter pane and the navigation rail both became drawers that lock page scrolling and take input through a scrim",
+      "On phones the filter pane and the navigation rail both became drawers that lock page scrolling and take input through a scrim; choosing a rail entry closes it",
       "The page title sits in the topbar and the footer moved into the left rail; global settings switch between the two designs"
     ],
     improvements: [
@@ -37,7 +37,8 @@ export const changelog = [
       "侧栏页脚补回构建时间与提交哈希；顶栏长标题换行而非省略",
       "目录页显示数据「最后更新」，结果栏横跨筛选栏上方",
       "markdown 列表、表格、引用块补齐上下间距",
-      "移动端抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容"
+      "移动端抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容",
+      "移动端抽屉、全屏弹窗与图片预览支持 Android 返回键关闭，返回键不再直接离开页面"
     ],
     improvements_en: [
       "Tighter column widths and detail typography; long titles wrap and multi-author records list one author per line",
@@ -47,7 +48,8 @@ export const changelog = [
       "The rail footer shows the build time and commit hash again; long topbar titles wrap instead of truncating",
       "Catalog pages show when their data was last updated, and the results bar spans the full width above the filter pane",
       "Markdown lists, tables and blockquotes gained the vertical spacing they were missing",
-      "Phone drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content"
+      "Phone drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content",
+      "Drawers, full-screen dialogs and the image viewer close on the Android back button instead of leaving the page"
     ],
     misc: [
       "通过 ?design=legacy 或 ?design=next 参数可指定界面设计，便于分享与调试",
