@@ -116,7 +116,7 @@ onMounted(async () => {
         <span class="nx-mf-actions">
           <a
             v-if="urlFor(version, 'installer')"
-            class="nx-dl nx-dl-sm"
+            class="nx-dl nx-dl-sm nx-dl-installer"
             :class="{ 'is-warn': version.toolbar }"
             :href="directUrl(version, 'installer')"
             target="_blank"
@@ -129,7 +129,7 @@ onMounted(async () => {
           </a>
           <a
             v-if="urlFor(version, 'portable')"
-            class="nx-dl nx-dl-sm"
+            class="nx-dl nx-dl-sm nx-dl-portable"
             :href="directUrl(version, 'portable')"
             target="_blank"
             rel="noopener"
@@ -151,6 +151,11 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+  .nx-mf-table {
+    /* breathing room between the preceding paragraph and the version ledger */
+    margin-top: 20px;
+  }
+
   .nx-mf-row {
     display: grid;
     grid-template-columns: 116px 100px 76px minmax(0, 1fr);
@@ -229,6 +234,39 @@ onMounted(async () => {
   .nx-dl.is-warn {
     border-color: color-mix(in srgb, var(--nx-warn) 45%, var(--nx-line));
     color: var(--nx-warn);
+  }
+
+  /* A plain installer is blue, a portable build green: on a dense ledger the
+     colour is the quickest way to tell the two apart. An installer that bundles
+     the toolbar keeps its warning colour, so that case is excluded. */
+  .nx-dl-installer:not(.is-warn) {
+    border-color: color-mix(in srgb, #1f6fd0 42%, var(--nx-line));
+    color: #1f6fd0;
+  }
+
+  .nx-dl-installer:not(.is-warn):hover {
+    border-color: #1f6fd0;
+    color: #17539b;
+  }
+
+  .nx-dl-portable {
+    border-color: color-mix(in srgb, #00a83c 42%, var(--nx-line));
+    color: #007a2b;
+  }
+
+  .nx-dl-portable:hover {
+    border-color: #00a83c;
+    color: #005e21;
+  }
+
+  :root[data-nx-theme="dark"] .nx-dl-installer:not(.is-warn) {
+    border-color: color-mix(in srgb, #7cb0ea 45%, var(--nx-line));
+    color: #7cb0ea;
+  }
+
+  :root[data-nx-theme="dark"] .nx-dl-portable {
+    border-color: color-mix(in srgb, #63c295 45%, var(--nx-line));
+    color: #63c295;
   }
 
   .nx-mf-note {

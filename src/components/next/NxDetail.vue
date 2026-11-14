@@ -86,6 +86,7 @@ const text = computed(() => (props.lan === "zh"
     madeWith: "制作软件",
     platform: "平台",
     released: "发布日期",
+    updated: "更新日期",
     type: "类型",
     series: "系列",
     language: "语言",
@@ -127,6 +128,7 @@ const text = computed(() => (props.lan === "zh"
     madeWith: "Made with",
     platform: "Platform",
     released: "Released",
+    updated: "Updated",
     type: "Type",
     series: "Series",
     language: "Language",
@@ -220,7 +222,12 @@ const facts = computed(() => {
   if (record.platform) {
     rows.push({ label: t.platform, value: record.platform });
   }
-  if (record.date) rows.push({ label: t.released, value: formatIsoDate(record.date) });
+  if (record.date) {
+    // A fangame's YAML date is the last time its entry/version was updated,
+    // while an MW level's date is its release date.
+    const dateLabel = record.kind === "mw" ? t.released : t.updated;
+    rows.push({ label: dateLabel, value: formatIsoDate(record.date) });
+  }
   return rows;
 });
 

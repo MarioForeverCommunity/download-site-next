@@ -2158,6 +2158,27 @@ html .nx-doc td {
   max-width: none;
 }
 
+/* The rule above an h2 is a section separator, so it must not appear when the
+   heading is the first thing in its container — that read as a stray <hr> plus
+   leading blank space at the top of the English pages. Markdown content is
+   wrapped in `.markdown-body`, so the check targets that wrapper too. */
+.nx-doc > h2:first-child,
+.nx-doc .markdown-body > h2:first-child,
+.nx-doc > *:first-child > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* A heading that immediately follows an embedded entry card needs no rule: the
+   card already separates the sections. */
+.nx-doc .nx-entry + h2,
+.nx-doc .markdown-body > .nx-entry + h2 {
+  margin-top: 22px;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .nx-doc h3 {
   margin-bottom: 8px;
 }

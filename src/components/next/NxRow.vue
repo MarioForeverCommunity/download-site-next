@@ -173,7 +173,7 @@ function openLinks(event) {
       <span
         v-if="record.versionCount > 1"
         class="nx-tag"
-      >{{ record.versionCount }} {{ lan === "zh" ? "个版本" : "v" }}</span>
+      >{{ record.versionCount }} {{ lan === "zh" ? "个版本" : "versions" }}</span>
     </div>
 
     <div class="nx-row-actions">

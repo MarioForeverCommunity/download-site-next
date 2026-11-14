@@ -6,11 +6,10 @@
 //     normal flow so the dots never sit on top of the artwork;
 //  2. "查看详情" opens the record's detail drawer *in place* — the visitor stays
 //     on the doc page instead of being bounced to the catalog.
-import { ref, computed, watch } from "vue";
-import { Carousel, Slide, Navigation } from "vue3-carousel";
-import "vue3-carousel/dist/carousel.css";
+import { ref, computed } from "vue";
 import NxIcon from "./NxIcon.vue";
 import NxDetail from "./NxDetail.vue";
+import NxGallery from "./NxGallery.vue";
 import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 import { formatIsoDate, assetTypeLabel, softwareLabel } from "../../util/next/records.js";
 
@@ -71,24 +70,7 @@ const primary = computed(() => {
 
 // ── in-place detail drawer ───────────────────────────────────
 const detailOpen = ref(false);
-const slideIndex = ref(0);
-const carouselRef = ref(null);
 
-watch(() => props.record, () => {
-  slideIndex.value = 0;
-});
-
-function prevSlide() {
-  if (carouselRef.value) carouselRef.value.prev();
-}
-
-function nextSlide() {
-  if (carouselRef.value) carouselRef.value.next();
-}
-
-function onUpdate(index) {
-  slideIndex.value = index;
-}
 </script>
 
 <template>
@@ -169,79 +151,22 @@ function onUpdate(index) {
         />
       </div>
 
-      <!-- several images: slider, matching the legacy entry card.
-           Two slides are shown at once and each slide is sized by the carousel
-           itself (items-to-show), so the current image is centred and the next
-           one continues the row instead of leaving empty bands. Images fill
-           their slide (cover) exactly as the legacy design does. -->
-      <template v-else-if="gallery.length > 1">
-        <div class="nx-carousel nx-entry-carousel">
-          <Carousel
-            ref="carouselRef"
-            :items-to-show="1"
-            :wrap-around="true"
-            :model-value="slideIndex"
-            @update:model-value="onUpdate"
-          >
-            <Slide
-              v-for="(img, index) in gallery"
-              :key="img + index"
-            >
-              <img
-                :src="img"
-                :alt="`${record.name} ${index + 1}`"
-                loading="lazy"
-                decoding="async"
-                class="nx-entry-slide-img"
-              />
-            </Slide>
-            <template #addons>
-              <Navigation />
-            </template>
-          </Carousel>
-        </div>
-        <div class="nx-carousel-nav">
-          <div class="nx-carousel-dots">
-            <button
-              v-for="(img, index) in gallery"
-              :key="`dot-${img}-${index}`"
-              type="button"
-              class="nx-carousel-dot"
-              :class="{ on: index === slideIndex }"
-              :aria-label="`${index + 1}`"
-              @click="slideIndex = index"
-            />
-          </div>
-          <span
-            class="nx-num"
-            style="font-size:10.5px;color:var(--nx-faint);"
-          >{{ slideIndex + 1 }} / {{ gallery.length }}</span>
-          <div class="nx-carousel-arrows">
-            <button
-              type="button"
-              :aria-label="text.prev"
-              @click="prevSlide"
-            >
-              <NxIcon
-                name="chevronLeft"
-                :size="13"
-              />
-            </button>
-            <button
-              type="button"
-              :aria-label="text.next"
-              @click="nextSlide"
-            >
-              <NxIcon
-                name="chevronRight"
-                :size="13"
-              />
-            </button>
-          </div>
-        </div>
-      </template>
-    </template>
+      <!-- several images: the shared gallery, so the entry card, the docs and
+           the drawer cannot drift apart in sizing or pagination -->
+      <div
+        v-else-if="gallery.length > 1"
+        class="nx-entry-gallery"
+      >
+        <NxGallery
+          :images="gallery"
+          :alt="record.name"
+          :lan="lan"
+          fit="contain"
+          aspect-ratio="4 / 3"
+        />
+      </div>
 
+    </template>
     <NxDetail
       :record="detailOpen ? props.record : null"
       :lan="lan"
@@ -251,76 +176,21 @@ function onUpdate(index) {
 </template>
 
 <style scoped>
-  /* The entry card's slider mirrors the legacy card: a fixed 4:3 frame, images
-     filling it (cover), and the library's own slide sizing so the active image
-     is centred and neighbours continue the row without empty bands.
-     `:deep()` is valid here because this is a Vue SFC stylesheet. */
-  .nx-entry-carousel {
-    margin-top: 10px;
-    border-radius: 4px;
-    overflow: hidden;
-    background: var(--nx-fill);
-  }
-
-  .nx-entry-carousel :deep(.carousel) {
-    --vc-nav-background: var(--nx-canvas);
-    --vc-nav-color: var(--nx-ink-2);
-    --vc-nav-border-radius: 4px;
-  }
-
-  .nx-entry-carousel :deep(.carousel__viewport) {
-    border-radius: 4px;
-  }
-
-  .nx-entry-carousel :deep(.carousel__track) {
-    gap: 0;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nx-entry-carousel :deep(.carousel__slide) {
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    overflow: hidden;
-    background: var(--nx-fill);
-    /* every slide is the same 4:3 box, so the track height never jumps */
-    aspect-ratio: 4 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nx-entry-carousel :deep(.carousel__prev),
-  .nx-entry-carousel :deep(.carousel__next) {
-    width: 26px;
-    height: 26px;
-    border: 1px solid var(--nx-line);
-    box-shadow: var(--nx-shadow-1);
-    background: var(--nx-canvas);
-    color: var(--nx-ink-2);
-  }
-
-  .nx-entry-carousel :deep(.carousel__prev) {
-    margin-left: 8px;
-  }
-
-  .nx-entry-carousel :deep(.carousel__next) {
-    margin-right: 8px;
-  }
-
-  /* Images are fitted whole inside their slide and centred — never scaled up
-     and cropped. `max-*` rather than fixed size keeps small art at its natural
-     resolution instead of blurring it across the frame.
-     The selector is deliberately heavy: the global stylesheet's
-     `html .nx-doc .carousel .carousel__slide > img` rule also targets this img. */
-  .nx-entry-carousel :deep(.carousel__slide) > .nx-entry-slide-img {
+  /* The multi-image slider is NxGallery; only the single-image frame is styled
+     here. Images are fitted whole and centred, never scaled past their natural
+     size. */
+  .nx-entry-media.is-single img {
     width: auto;
     height: auto;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 260px;
     object-fit: contain;
     object-position: center;
     display: block;
+    margin: 0 auto;
+  }
+
+  .nx-entry-gallery {
+    margin-top: 10px;
   }
 </style>
