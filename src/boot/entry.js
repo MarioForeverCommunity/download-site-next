@@ -14,14 +14,15 @@ import { isNextDesign } from "../util/Design.js";
 /**
  * @param {object} pages
  * @param {object} pages.legacy - Vue component for the original design
- * @param {object} [pages.next] - Vue component for the redesigned UI; when
- *   omitted the visitor stays on the legacy page regardless of preference.
+ * @param {string} [pages.pageId] - which entry this HTML is; the redesigned UI
+ *   uses it as the initial route (it can then navigate client-side without a
+ *   reload). The legacy design does not need it.
  * @returns {Promise<"legacy"|"next">} the design that was mounted
  */
-export async function startPage({ legacy, next }) {
-  if (next && isNextDesign()) {
+export async function startPage({ legacy, pageId }) {
+  if (isNextDesign()) {
     const { bootNext } = await import("./next.js");
-    bootNext(next);
+    await bootNext({ pageId });
     return "next";
   }
   const { bootLegacy } = await import("./legacy.js");

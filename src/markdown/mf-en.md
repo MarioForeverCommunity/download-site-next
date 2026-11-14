@@ -21,9 +21,6 @@
     "/data/mf-index/LostMap-4.webp",
   ]
 
-
-
-
   onMounted(() => {
   })
 
@@ -84,9 +81,3 @@ That said, there is a legitimate security concern raised by researchers. Accordi
 **Important note:** None of the versions offered on this site contains any of those malicious payloads identified by Cyble. All hosted installers have been reviewed and are considered safe. Some versions' installers do bundle the "Mario Forever Toolbar," but you can opt not to install it during setup.  
 Additionally, some versions of Mario Forever contain links to `mariocoins.com` and `broshome.com`. These domains are no longer owned by their original owners and have been taken over by unrelated parties. They may redirect to untrusted or potentially unsafe content. In certain versions, these links can be accessed via in-game options (such as "Get Secrets" or "Get Coins") or through URL shortcuts created by the installer. **It is strongly recommended not to open these links.**   
 To ease any remaining concerns, we provide a portable version of the game. This version has no bundled toolbar and has removed URL shortcuts and other irrelevant content. You may alternatively choose to play one of the fan-made recreated versions, such as Mario Forever Remake or Mario Forever: Community Edition, which are also malware-free.
-
-<style scoped>
-
-
-
-</style>
