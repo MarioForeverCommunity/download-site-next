@@ -56,14 +56,17 @@ async function resolveMf(props, lan) {
   if (matches.length === 0) return null;
 
   // Prefer a candidate with artwork, then the newest one — the same rule the
-  // legacy entry components use to pick between same-named records.
+  // legacy entry components use to pick between same-named records. The count
+  // covers the title image *and* the showcase shots: two records can both have
+  // a title image while only one has screenshots, and picking by title alone
+  // resolved a doc reference to the wrong author's work of the same name.
   const records = buildMfRecords(matches, lan);
   const scored = records.map((item) => ({
     item,
-    hasImage: item.image ? 1 : 0,
+    imageCount: Array.isArray(item.images) ? item.images.length : (item.image ? 1 : 0),
     time: item.date ? item.date.getTime() : -1,
   }));
-  scored.sort((a, b) => (b.hasImage - a.hasImage) || (b.time - a.time));
+  scored.sort((a, b) => (b.imageCount - a.imageCount) || (b.time - a.time));
   const chosen = scored[0].item;
 
   const desired = props.ver || props.defaultVer;
