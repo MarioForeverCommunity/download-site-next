@@ -1,0 +1,57 @@
+	Greetings user, Thank you for downloading "New Super 
+Mario Forever"!
+
+It's the first MF project created by Mario Tube.
+
+==============================================================
+*Before starting*
+
+Q. Who are you?
+	
+	A. Hello! It's-a me! Mario Tube! Okie Dokie! Like you, I love the Super Mario series too. Over time I wanted to create a MF game and thanks to TheMarioVariable I suceeded and I'm happy to share it with you!
+==============================================================
+
+Q. What do I expect from this game?
+	
+	A. Well, in this game, the Mushroom Kingdom has been besieged by the feared Bowser and he has kidnapped princess Peach; our hero Mario must save her from Bowser's evil plans and restore peace, hope and quiet to the kingdom.
+==============================================================
+
+Q. What is the content of this game?
+	
+	A. New Super Mario Forever offers you 8 worlds with 4 levels each, for a total of 32 levels full of pitfalls and fun! Watch out for some Hammer Brothers blocking your way!
+==============================================================
+
+Did I hear it right? Have you never played Mario Forever and don't know what our plumer's skills are? Don't worry! It's simplier than you might think: 
+
+1. At first, you end up with 3 pipes. It's not a level, but a place where you choose the save slot to enter; 
+
+2. At the beginning of the level, you can control Mario left, right and jump. As you can see, Mario is in the Status of "Mario" (small), so he has few skills, even if he can pass in the smallest spaces. As soon as Mario takes a mushroom or other power-up, Mario enters in the Status of "Super Mario". He will be able to crouch down and break the blocks of the wall;
+
+3. Start launching the game and explore until you will know all the mechanics.
+
+=========================[CREDITS]============================
+
+- Nintendo (graphics, sounds, music)
+
+- Buziol Games/Softendo (graphics, sounds, programming, level design)
+
+- TheMarioVariable (assistance)
+
+=======================[CHANGELOGS]===========================
+
+- v1.0 (August 31, 2021)
+Initial release: Worlds from 1 to 8 included.
+
+==============================================================
+Subscribe to Mario Tube on YouTube 
+
+https://www.youtube.com/channel/UCd4W-2y5U5HOJumC12SXnzQ
+
+==============================================================
+
+Thank you again and have fun!
+
+
+
+
+
