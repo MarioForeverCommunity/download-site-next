@@ -145,7 +145,7 @@ const getHomepageUrl = () => {
         <ImageIcon class="icon image-icon"></ImageIcon>
         <template #popper>
           <div class="image-preview">
-            <img :src="getImageUrl()" :alt="getName(game, lan)" />
+            <img :data-src="getImageUrl()" :alt="getName(game, lan)" />
           </div>
         </template>
       </Tooltip>

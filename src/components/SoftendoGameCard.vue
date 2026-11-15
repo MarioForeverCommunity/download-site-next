@@ -72,7 +72,13 @@ const getGameImageSrc = () => {
     </div>
     <slot name="gallery">
       <div class="game-image" v-if="getGameImageSrc()">
-        <img :src="getGameImageSrc()" :alt="getSoftendoGameName(game)" @error="handleImageError" />
+        <img
+          :src="getGameImageSrc()"
+          :alt="getSoftendoGameName(game)"
+          loading="lazy"
+          decoding="async"
+          @error="handleImageError"
+        />
       </div>
     </slot>
     <div class="last-line-padding">

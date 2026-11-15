@@ -358,6 +358,7 @@ const getGameImage = () => {
               :src="gallery[0]"
               :alt="getName(level, lan)"
               class="entry-image"
+              loading="lazy"
               decoding="async"
             />
           </div>
@@ -375,6 +376,7 @@ const getGameImage = () => {
                   :src="img"
                   :alt="getName(level, lan)"
                   class="entry-image"
+                  loading="lazy"
                   decoding="async"
                 />
               </Slide>

@@ -158,7 +158,13 @@ const getAssetDescription = (asset) => {
       <p v-if="asset.description">{{ getAssetDescription(asset) }}</p>
     </div>
     <div class="asset-image" v-if="getAssetImage()">
-      <img :src="getAssetImage()" :alt="getName(asset, 'zh')" @error="handleImageError" />
+      <img
+        :src="getAssetImage()"
+        :alt="getName(asset, 'zh')"
+        loading="lazy"
+        decoding="async"
+        @error="handleImageError"
+      />
     </div>
     <div class="last-line-padding">
       &nbsp;

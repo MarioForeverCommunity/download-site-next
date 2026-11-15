@@ -214,6 +214,7 @@ const getGameImage = () => {
               :src="gallery[0]"
               :alt="getSoftendoGameName(game)"
               class="entry-image"
+              loading="lazy"
               decoding="async"
             />
           </div>

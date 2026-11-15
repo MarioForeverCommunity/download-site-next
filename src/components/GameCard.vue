@@ -180,7 +180,13 @@ const getHomepageUrl = () => {
     </div>
     <slot name="gallery">
       <div class="game-image" v-if="getGameImage()">
-        <img :src="getGameImage()" :alt="getName(game, lan)" @error="handleImageError" />
+        <img
+          :src="getGameImage()"
+          :alt="getName(game, lan)"
+          loading="lazy"
+          decoding="async"
+          @error="handleImageError"
+        />
       </div>
     </slot>
     <div class="last-line-padding">
