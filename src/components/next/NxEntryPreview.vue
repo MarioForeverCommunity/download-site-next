@@ -130,7 +130,11 @@ const repoUrl = computed(() => {
     <template v-else>
       <div class="nx-entry-head">
         <div style="min-width: 0;">
-          <div class="nx-entry-title">{{ record.name }}</div>
+          <button
+            type="button"
+            class="nx-entry-title"
+            @click="detailOpen = true"
+          >{{ record.name }}</button>
           <div class="nx-entry-desc">{{ subtitle }}</div>
         </div>
         <div class="nx-entry-actions">

@@ -1328,6 +1328,12 @@ body.nx-body select:focus-visible {
   background: var(--nx-fill);
 }
 
+/* The row is the hit target for the detail drawer, so the title picks up the
+   accent on hover and the whole strip reads as one link. */
+.nx-row:hover .nx-row-name {
+  color: var(--nx-accent);
+}
+
 .nx-row.is-active {
   background: var(--nx-accent-soft);
 }
@@ -1695,6 +1701,10 @@ body.nx-body select:focus-visible {
 .nx-card:hover {
   border-color: var(--nx-line-2);
   box-shadow: var(--nx-shadow-1);
+}
+
+.nx-card:hover .nx-card-name {
+  color: var(--nx-accent);
 }
 
 .nx-card.is-active {
@@ -3039,12 +3049,26 @@ html .nx-doc .carousel .carousel__next {
   gap: 12px;
 }
 
+/* The title is a button so the whole entry card can open its detail drawer from
+   the most obvious target, not only the Details button. Reset to plain text. */
 .nx-entry-title {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.005em;
   line-height: 1.35;
+  text-align: left;
   color: var(--nx-ink);
+  cursor: pointer;
+}
+
+.nx-entry-title:hover {
+  color: var(--nx-accent);
 }
 
 .nx-entry-desc {
