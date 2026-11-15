@@ -445,6 +445,12 @@ export function expandMfRecord(record) {
       versionLabel: version.displayLabel || version.label,
       platform: version.platform,
       software: version.software,
+      // An expanded row is a single build, so the faceted values must be that
+      // build's too. Keeping the record-wide union made a Windows filter match
+      // the Linux row of the same game (and vice versa) once versions were
+      // listed separately.
+      platforms: version.platform ? [version.platform] : [],
+      softwares: version.software ? [version.software] : [],
       downloads: version.downloads,
       dataDownloads: version.dataDownloads,
       // The release post is version-scoped, so the row's link icon must point at
