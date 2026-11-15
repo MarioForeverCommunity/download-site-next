@@ -196,6 +196,7 @@ publishShellHandlers({
     :lan="lan"
     show-random
     :updated="docUpdated"
+    :hide-version="!expandVersions"
     :columns="{
       name: lan === 'zh' ? '作品' : 'Title',
       author: lan === 'zh' ? '作者' : 'Author',

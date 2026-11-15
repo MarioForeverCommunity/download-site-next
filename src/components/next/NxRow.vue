@@ -34,6 +34,14 @@ const props = defineProps({
   showActions: {
     type: Boolean,
     default: true
+  },
+  // MF catalogs roll every version into one row, so the phone meta line would
+  // repeat the newest build's version under every title; the page hides it until
+  // "list every version separately" is on, when each row is its own version.
+  // MW and assets always carry a meaningful version and never set this.
+  hideVersion: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -111,7 +119,7 @@ const mobileMeta = computed(() => {
   const parts = [];
   const authors = displayAuthors.value.join(", ");
   if (authors) parts.push(authors);
-  if (versionText.value) parts.push(versionText.value);
+  if (versionText.value && !props.hideVersion) parts.push(versionText.value);
   if (props.record.kind !== "softendo" && dateText.value) parts.push(dateText.value);
   return parts.join(" \u00b7 ");
 });

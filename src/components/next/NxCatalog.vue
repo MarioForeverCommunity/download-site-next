@@ -69,6 +69,12 @@ const props = defineProps({
   updated: {
     type: String,
     default: ""
+  },
+  // MF catalogs pass this while their versions are collapsed: the phone meta
+  // line then shows the author and date only (see NxRow's `hideVersion`).
+  hideVersion: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -560,6 +566,7 @@ defineExpose({ randomRecord, open });
             :show-tags="showTags"
             :show-date="showDate"
             :show-actions="showActions"
+            :hide-version="hideVersion"
             @open="open"
           />
         </div>
