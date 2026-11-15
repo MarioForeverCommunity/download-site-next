@@ -55,7 +55,7 @@ export async function getMfDocLastUpdated() {
 }
 
 export async function getMwDocLastUpdated() {
-  return newestOf(["public/data/list-mw.yaml", "src/markdown/mw-en.md"]);
+  return newestOf(["src/markdown/mw-en.md"]);
 }
 
 // Catalog pages: the newest of the catalog's YAML data and its write-up, so the
@@ -64,7 +64,7 @@ const CATALOG_FILES = {
   mfGames: ["public/data/list-mf.yaml", "src/markdown/mf-games-zh.md", "src/markdown/mf-games-en.md"],
   mwLevels: ["public/data/list-mw.yaml", "src/markdown/mw-levels-zh.md"],
   assets: ["public/data/list-assets.yaml", "src/markdown/assets.md"],
-  softendo: ["public/data/list-softendo.yaml", "src/markdown/softendo-zh.md", "src/markdown/softendo-en.md"],
+  softendo: ["public/data/list-softendo.yaml"],
 };
 
 export async function getCatalogLastUpdated(key) {
