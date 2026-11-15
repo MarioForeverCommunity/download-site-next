@@ -20763,16 +20763,27 @@
   type: chinese
   wiki_zh_url:
   wiki_en_url:
-  ver: 二世界版
-  ver_alt: 2 worlds version
-  date: 2016-07-27
-  source_url: https://archive.marioforever.net/post/4696321415.html
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1eShWVIU
-  code:
-  download_url_alt:
-  file_name: Mario Travels Around The World（二世界版）.exe
-  file_url:
+  ver:
+  - 二世界版:
+      ver_alt: 2 worlds version
+      date: 2016-07-27
+      source_url: https://archive.marioforever.net/post/4696321415.html
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1eShWVIU
+      code:
+      download_url_alt:
+      file_name: Mario Travels Around The World（二世界版）.exe
+      file_url:
+  - （上）:
+      ver_alt: 1 world version
+      date: 2015-08-09
+      source_url: https://tieba.baidu.com/p/3959508082
+      source_url_alt:
+      download_url: http://pan.baidu.com/s/1dEoCAEd
+      code:
+      download_url_alt:
+      file_name: 马里奥的世界之旅（上）.exe
+      file_url:
 - game: Mario Eternity
   game_alt:
   tag:
@@ -21420,23 +21431,6 @@
   code: wsxw
   download_url_alt:
   file_name: PKMF 1st Collection.exe
-  file_url:
-- game: 马里奥的世界之旅（上）
-  game_alt: Mario Travels Around The World
-  author: 刘明浩666666
-  author_alt: LMH666666
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt: 1 world version
-  date: 2015-08-09
-  source_url: https://tieba.baidu.com/p/3959508082
-  source_url_alt:
-  download_url: http://pan.baidu.com/s/1dEoCAEd
-  code:
-  download_url_alt:
-  file_name: 马里奥的世界之旅（上）.exe
   file_url:
 - game: Mario Forever Another World 2015
   game_alt:
