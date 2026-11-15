@@ -5,6 +5,36 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-beta.2",
+    date: "2026-11-15",
+    improvements: [
+      "移动端顶栏与作品目录的结果栏改为随页面滚动固定：浏览长列表时搜索框、排序与视图切换始终可用；结果栏紧贴顶栏下方，两者互不重叠",
+      "界面设计与全局设置改为浏览器本地存储：设计模式、语言、列表 / 卡片视图、默认排序与资源站直链开关在关闭浏览器后依然保持，站点更新改变默认值时也不会覆盖访客已做的选择",
+      "MF 作品列表未展开全部版本时，移动端标题下的小字不再显示版本号；勾选「每个版本单独列出」后恢复显示",
+      "作品目录的列表与卡片标题在悬停时改用主题色，提示整行 / 整张卡片都可以打开详情",
+      "旧版界面的作品目录（MF、MW、创作资源、Softendo）卡片与文档页作品卡片改用图片懒加载，列表模式下的悬停预览图也只在悬停时请求：封面随滚动进入可视区域或悬停时才加载，长目录不再一次性加载全部图片"
+    ],
+    improvements_en: [
+      "On phones the topbar and the catalog's results bar stay pinned while the page scrolls, so the searches, sorting and the view switch remain reachable through long lists; the results bar sits directly under the topbar without overlapping it",
+      "The interface design and global settings now live in local storage: design, language, list/card view, default sort and the File Hub direct-link switch survive browser restarts, and a later release that changes a default no longer overrides a choice a visitor already made",
+      "With MF versions collapsed, the small line under a phone row no longer repeats the version number; it returns once \"list every version separately\" is on",
+      "Catalog list and card titles take the accent colour on hover, signalling that the whole row or card opens the record",
+      "The legacy design's catalog cards (MF, MW, assets, Softendo), documentation entry cards and the list view's hover preview now lazy-load their artwork: covers are requested as they scroll into view or when the tooltip opens, so long catalogs no longer fetch every image at once"
+    ],
+    fixes: [
+      "修复桌面端窄屏下侧栏长链接换行后行高未随之增加、与相邻条目上下间距过紧的问题"
+    ],
+    fixes_en: [
+      "Fixed long rail labels wrapping onto a second line on narrow desktops without the row growing, which left the text cramped against the rows above and below"
+    ],
+    misc: [
+      "补齐了绝大部分 Mario Forever 作品的图片"
+    ],
+    misc_en: [
+      "Added screenshots for the vast majority of Mario Forever fangames"
+    ]
+  },
+  {
     version: "3.0.0-beta.1",
     date: "2026-11-15",
     features: [
