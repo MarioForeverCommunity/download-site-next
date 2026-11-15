@@ -3,7 +3,7 @@ import { ref, getCurrentInstance } from 'vue'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
 import introEn from '../../markdown/engines-en.md'
-import { navTop } from "../../config.js"
+import { navTop, setPageTitle } from "../../config.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import GlobalSettings from '../../components/GlobalSettings.vue'
@@ -21,7 +21,7 @@ const pageId = "engines"
 
 const titleEn = navTop.find(item => item.id === pageId).title_alt
 
-document.title = titleEn
+setPageTitle(titleEn, "en")
 
 </script>
 

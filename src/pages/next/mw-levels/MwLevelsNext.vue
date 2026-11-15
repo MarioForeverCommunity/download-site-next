@@ -8,7 +8,7 @@ import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
 import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
-import { navTop } from "../../../config.js";
+import { navTop, setPageTitle } from "../../../config.js";
 import { ensureMwList } from "../../../util/useMwList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
@@ -129,7 +129,7 @@ onMounted(load);
 // open; records bake their download URLs, so rebuild them to apply it at once.
 watch(getUseDirectLink(), load);
 
-document.title = title.value;
+setPageTitle(title.value, "zh");
 
 // The catalog's own write-up, opened from the topbar; null hides the button.
 const doc = computed(() => mwLevelsZh);

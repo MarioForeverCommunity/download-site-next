@@ -2,7 +2,7 @@
 // Mario Forever engines documentation — redesigned (English only, as before).
 import { ref, computed, watchEffect } from "vue";
 import { getLanguage } from "../../../util/Language.js";
-import { navTop } from "../../../config.js";
+import { navTop, setPageTitle } from "../../../config.js";
 import introEn from "../../../markdown/engines-en.md";
 import { publishShell } from "../../../util/next/shellStore.js";
 
@@ -12,7 +12,7 @@ const pageEntry = navTop.find((item) => item.id === pageId);
 
 const title = computed(() => pageEntry.title_alt);
 
-document.title = title.value;
+setPageTitle(title.value, "en");
 
 // The app shell is rendered once by the SPA root; this page only publishes
 // the parts that differ (title, write-up, search model) plus its own controls.

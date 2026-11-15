@@ -3,7 +3,7 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn, getDisplayMode, setDisplayModeLine, setDisplayModeCard } from "../../util/Language.js";
 import SiteFooter from '../../components/SiteFooter.vue';
-import { navTop } from "../../config.js";
+import { navTop, setPageTitle } from "../../config.js";
 import { readList } from "../../util/ReadList.js";
 import GameLine from "../../components/GameLine.vue";
 import GameCard from '../../components/GameCard.vue';
@@ -39,6 +39,8 @@ const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : ur
 const pageId = "mw-levels"
 
 const titleZh = navTop.find(item => item.id === pageId).title;
+
+setPageTitle(titleZh, "zh");
 
 const games = ref([]);
 

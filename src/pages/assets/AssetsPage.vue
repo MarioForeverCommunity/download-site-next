@@ -21,7 +21,7 @@ import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { readList } from "../../util/ReadList.js";
 import { parseVer } from "../../util/Misc.js";
 import introContent from '../../markdown/assets.md';
-import { navTop } from "../../config.js";
+import { navTop, setPageTitle } from "../../config.js";
 import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
@@ -38,6 +38,8 @@ const resourceUrl = (url) => useDirectLink.value ? toResourceDirectUrl(url) : ur
 const pageId = "assets"
 
 const titleZh = navTop.find(item => item.id === pageId).title;
+
+setPageTitle(titleZh, "zh");
 
 const assets = ref([]);
 

@@ -9,7 +9,7 @@ import { ref, computed, watchEffect } from "vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../../util/Language.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
-import { siteVersion } from "../../../config.js";
+import { siteVersion, setPageTitle } from "../../../config.js";
 
 const lan = ref(getLanguage());
 
@@ -192,16 +192,16 @@ const apiDocUrl = computed(() => (
 
 const footer = computed(() => `${text.value.footer} · ${siteVersion}`);
 
-document.title = text.value.title;
+setPageTitle(text.value.title, lan.value);
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();
-  document.title = text.value.title;
+  setPageTitle(text.value.title, "zh");
 }
 
 function pageSetLanguageEn() {
   lan.value = setLanguageEn();
-  document.title = text.value.title;
+  setPageTitle(text.value.title, "en");
 }
 
 // The app shell is rendered once by the SPA root; this page only publishes the

@@ -3,9 +3,9 @@ import { ref, getCurrentInstance, onMounted, onBeforeUnmount, watch } from 'vue'
 import axios from 'axios'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
+import { navTop, setPageTitle } from "../../config.js"
 import indexZh from '../../markdown/mf-zh.md'
 import indexEn from '../../markdown/mf-en.md'
-import { navTop } from "../../config.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import GlobalSettings from '../../components/GlobalSettings.vue'
@@ -92,11 +92,11 @@ const pageId = "index"
 const titleZh = navTop.find(item => item.id === pageId).title
 const titleEn = navTop.find(item => item.id === pageId).title_alt
 
-document.title = lan.value == "zh" ? titleZh : titleEn
+setPageTitle(lan.value == "zh" ? titleZh : titleEn, lan.value)
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh()
-  document.title = titleZh
+  setPageTitle(titleZh, "zh")
   if (allDatesLoaded.value) {
     updateLastUpdate()
   }
@@ -104,7 +104,7 @@ function pageSetLanguageZh() {
 
 function pageSetLanguageEn() {
   lan.value = setLanguageEn()
-  document.title = titleEn
+  setPageTitle(titleEn, "en")
   if (allDatesLoaded.value) {
     updateLastUpdate()
   }

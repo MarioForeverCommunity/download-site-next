@@ -2,7 +2,7 @@
 import { ref, computed, watch } from "vue";
 import DownloadHeader from "../../components/HeaderNav.vue";
 import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort } from "../../util/Language.js";
-import { navTop } from "../../config.js";
+import { navTop, setPageTitle } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
@@ -31,7 +31,7 @@ const pageId = "softendo";
 // Change title.
 const titleZh = navTop.find((item) => item.id === pageId).title;
 const titleEn = navTop.find((item) => item.id === pageId).title_alt;
-document.title = lan.value == "zh" ? titleZh : titleEn;
+setPageTitle(lan.value == "zh" ? titleZh : titleEn, lan.value);
 
 // Fetch game list.
 const games = ref([]);
@@ -257,13 +257,13 @@ const { page, pageCount, paged: pagedGames, setPage } = usePagination(filteredGa
 // Language changes.
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();
-  document.title = titleZh;
+  setPageTitle(titleZh, "zh");
   loadGamesList();
 }
 
 function pageSetLanguageEn() {
   lan.value = setLanguageEn();
-  document.title = titleEn;
+  setPageTitle(titleEn, "en");
   loadGamesList();
 }
 

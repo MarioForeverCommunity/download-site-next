@@ -3,6 +3,23 @@ import packageJson from '../package.json';
 // version - Version of the website.
 export const siteVersion = `v${packageJson.version}`;
 
+// 站点名称，用于浏览器标签页标题
+const SITE_NAME = {
+  zh: "Mario Forever 作品目录站",
+  en: "Mario Forever Download Portal",
+};
+
+/**
+ * 设置浏览器标签页标题：页面名称 | 站点名称。
+ *
+ * @param {string} name - 页面名称（navTop 中的 title / title_alt）
+ * @param {string} lan - 界面语言，"zh" 或 "en"
+ */
+export function setPageTitle(name, lan) {
+  const site = lan === "zh" ? SITE_NAME.zh : SITE_NAME.en;
+  document.title = `${name} | ${site}`;
+}
+
 // topBar - Top bar entries
 // `link` is link of the entry.
 // `name` is name in Chinese.
@@ -37,7 +54,8 @@ export const topBar = [
   {
     "link" : "https://discord.gg/VwgV6GmwXv",
     "name" : "Cloud Lounge",
-    "name_alt" : "Cloud Lounge Discord Server",
+    "name_alt" : "Cloud Lounge",
+    "name_new_en": "Cloud Lounge Discord Server",
     "show_zh" : false,
     "show_en" : true
   },

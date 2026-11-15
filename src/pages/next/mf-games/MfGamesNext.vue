@@ -8,7 +8,7 @@ import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
 import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
-import { navTop } from "../../../config.js";
+import { navTop, setPageTitle } from "../../../config.js";
 import { ensureMfList } from "../../../util/useMfList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
@@ -143,17 +143,17 @@ watch(getUseDirectLink(), () => load(lan.value));
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();
-  document.title = pageEntry.title;
+  setPageTitle(pageEntry.title, "zh");
   load("zh");
 }
 
 function pageSetLanguageEn() {
   lan.value = setLanguageEn();
-  document.title = pageEntry.title_alt;
+  setPageTitle(pageEntry.title_alt, "en");
   load("en");
 }
 
-document.title = title.value;
+setPageTitle(title.value, lan.value);
 
 // The catalog's own write-up, opened from the topbar; null hides the button.
 const docZh = mfGamesZh;

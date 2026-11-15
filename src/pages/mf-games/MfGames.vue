@@ -17,6 +17,7 @@ import introEn from '../../markdown/mf-games-en.md';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon, RandomIcon } from "../../components/icons/Icons.js";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
+import { setPageTitle } from "../../config.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import { getTagLabel, getTagColor, matchTagStates, nextTagState } from "../../util/TagUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -70,7 +71,7 @@ onBeforeUnmount(() => {
 const titleZh = navTop.find(item => item.id === pageId).title;
 const titleEn = navTop.find(item => item.id === pageId).title_alt;
 
-document.title = lan.value == "zh" ? titleZh : titleEn;
+setPageTitle(lan.value == "zh" ? titleZh : titleEn, lan.value);
 
 // Fetch game list.
 
@@ -799,7 +800,7 @@ const { page, pageCount, paged: pagedGames, setPage } = usePagination(filteredGa
 
 function pageSetLanguageZh() {
   lan.value =  setLanguageZh();
-  document.title=titleZh;
+  setPageTitle(titleZh, "zh");
   if (allDatesLoaded.value) {
     updateLastUpdate();
   }
@@ -807,7 +808,7 @@ function pageSetLanguageZh() {
 
 function pageSetLanguageEn() {
   lan.value =  setLanguageEn();
-  document.title=titleEn;
+  setPageTitle(titleEn, "en");
   if (allDatesLoaded.value) {
     updateLastUpdate();
   }

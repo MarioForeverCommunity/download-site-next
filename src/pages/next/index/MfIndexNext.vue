@@ -9,7 +9,7 @@ import { ref, computed, watchEffect } from "vue";
 import NxDocPanels from "../../../components/next/NxDocPanels.vue";
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../../util/Language.js";
 import { getMfDocLastUpdated } from "../../../util/next/docUpdated.js";
-import { navTop } from "../../../config.js";
+import { navTop, setPageTitle } from "../../../config.js";
 import indexZh from "../../../markdown/mf-zh.md";
 import indexEn from "../../../markdown/mf-en.md";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
@@ -28,15 +28,15 @@ getMfDocLastUpdated().then((value) => { lastUpdate.value = value; });
 
 function pageSetLanguageZh() {
   lan.value = setLanguageZh();
-  document.title = pageEntry.title;
+  setPageTitle(pageEntry.title, "zh");
 }
 
 function pageSetLanguageEn() {
   lan.value = setLanguageEn();
-  document.title = pageEntry.title_alt;
+  setPageTitle(pageEntry.title_alt, "en");
 }
 
-document.title = title.value;
+setPageTitle(title.value, lan.value);
 
 // The app shell is rendered once by the SPA root; this page only publishes
 // the parts that differ (title, write-up, search model) plus its own controls.
