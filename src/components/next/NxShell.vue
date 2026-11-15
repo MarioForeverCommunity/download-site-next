@@ -492,7 +492,7 @@ watch(showChangelog, (open) => {
             >{{ commitShort }}</a>)
           </template>
         </span>
-        <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建于" : "Built" }} {{ buildTimeText }}</span>
+        <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建于" : "Last built" }} {{ buildTimeText }}</span>
       </div>
     </aside>
 

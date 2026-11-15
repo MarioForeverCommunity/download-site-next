@@ -8,6 +8,8 @@ import { readList } from "../../util/ReadList.js";
 import GameLine from "../../components/GameLine.vue";
 import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
+import PageBar from '../../components/PageBar.vue';
+import { usePagination } from '../../util/usePagination.js';
 import { getAuthor, getName, getAuthorList } from "../../util/GameUtil.js";
 import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
@@ -790,6 +792,9 @@ const filteredGames = computed(() => {
   }
 });
 
+// Page size comes from the shared global setting (see GlobalSettings).
+const { page, pageCount, paged: pagedGames, setPage } = usePagination(filteredGames);
+
 // Language changes.
 
 function pageSetLanguageZh() {
@@ -1245,7 +1250,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     @sort-by-date="sortByDate();"
   />
   <div v-if="wideScreen && displayMode === 'line'">
-    <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
+    <div v-for="(game, idx) in pagedGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
       <GameLine
         :game="game"
         :lan="lan"
@@ -1261,7 +1266,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
     </div>
   </div>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
-    <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
+    <div v-for="(game, idx) in pagedGames" :key="game.game + '|' + getStrFromList(game.author) + '|' + (game.type || '') + '|' + (game.currentVerStr || '') + '|' + (game.currentVer.date?.toISOString?.() || '') + '|' + idx">
       <GameCard
         :game="game"
         :lan="lan"
@@ -1276,6 +1281,13 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
       />
     </div>
   </div>
+
+  <PageBar
+    :page="page"
+    :page-count="pageCount"
+    :lan="lan"
+    @change="setPage"
+  />
 
   <Transition name="modal">
     <div v-if="showCredits" class="modal-bg" @click="showCredits = false;">

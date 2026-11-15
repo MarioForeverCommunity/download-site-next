@@ -216,6 +216,7 @@ const repoUrl = computed(() => {
           fit="contain"
           aspect-ratio="4 / 3"
           :max-height="480"
+          :autoplay="3000"
         />
       </div>
 

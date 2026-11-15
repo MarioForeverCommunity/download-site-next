@@ -1,5 +1,5 @@
 import { ref, computed, watch } from "vue";
-import { getDefaultSort, getDisplayMode, setDisplayModeCard, setDisplayModeLine } from "./Language.js";
+import { getDefaultSort, getDisplayMode, getPageSize, setDisplayModeCard, setDisplayModeLine } from "./Language.js";
 
 /**
  * Catalog state for the redesigned list pages.
@@ -58,6 +58,11 @@ export function useCatalog({
     sort.value = { field, asc: match[2] === "asc" };
   });
   const activeId = ref(null);
+  // Pagination: the page size is a global preference (settings drawer), 0 means
+  // "show everything". The page index is per-catalog state; any filter or sort
+  // change starts over from the first page (see the `filtered` watcher).
+  const pageSize = getPageSize();
+  const page = ref(1);
   // Stable id so form labels in the filter pane can point at their inputs.
   const uid = Math.random().toString(36).slice(2, 8);
 
@@ -401,11 +406,50 @@ export function useCatalog({
   const count = computed(() => filtered.value.length);
   const total = computed(() => records.value.length);
 
+  // ── pagination ─────────────────────────────────────────────
+  const pageCount = computed(() => {
+    if (!pageSize.value) return 1;
+    return Math.max(1, Math.ceil(count.value / pageSize.value));
+  });
+
+  const pageRecords = computed(() => {
+    if (!pageSize.value) return filtered.value;
+    const start = (page.value - 1) * pageSize.value;
+    return filtered.value.slice(start, start + pageSize.value);
+  });
+
+  // The page a record sits on, so an opened record can be kept in view.
+  function pageOfRecord(list, id) {
+    if (!pageSize.value) return 1;
+    const index = list.findIndex((record) => record.id === id);
+    return index < 0 ? 1 : Math.floor(index / pageSize.value) + 1;
+  }
+
+  function setPage(value) {
+    const next = Math.floor(Number(value) || 1);
+    page.value = Math.min(Math.max(1, next), pageCount.value);
+  }
+
+  // A larger page size can leave the index past the end of the list.
+  watch(pageSize, () => {
+    page.value = Math.min(page.value, pageCount.value);
+  });
+
+  // Deep links and the random button can open a record from any page; showing
+  // its page makes the highlighted row findable in the list behind the drawer.
+  watch(activeId, (id) => {
+    if (id == null) return;
+    page.value = pageOfRecord(filtered.value, id);
+  });
+
   // A filtered-out record must not stay open with stale content.
   watch(filtered, (list) => {
+    page.value = 1;
     if (activeId.value == null) return;
     if (!list.some((record) => record.id === activeId.value)) {
       activeId.value = null;
+    } else {
+      page.value = pageOfRecord(list, activeId.value);
     }
   });
 
@@ -456,6 +500,10 @@ export function useCatalog({
     setActive,
     // results
     filtered,
+    pageRecords,
+    page,
+    pageCount,
+    setPage,
     count,
     total,
     isFiltered,

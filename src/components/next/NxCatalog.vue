@@ -94,6 +94,9 @@ const text = computed(() => (props.lan === "zh" ? {
   cardView: "卡片视图",
   listView: "列表视图",
   random: "随机游戏",
+  pages: "分页",
+  prevPage: "上一页",
+  nextPage: "下一页",
 } : {
   count: (n, total, filtered) => (filtered ? `<b>${n}</b> / ${total} records` : `<b>${n}</b> records`),
   name: "Title",
@@ -108,6 +111,9 @@ const text = computed(() => (props.lan === "zh" ? {
   cardView: "Card view",
   listView: "List view",
   random: "Random game",
+  pages: "Pagination",
+  prevPage: "Previous page",
+  nextPage: "Next page",
 }));
 
 const current = computed(() => {
@@ -332,6 +338,30 @@ function randomRecord() {
   emit("random", record);
 }
 
+// Page buttons: first and last are always reachable, with a window around the
+// current page and an ellipsis where the sequence skips.
+const pageItems = computed(() => {
+  const total = props.catalog.pageCount.value;
+  const current = props.catalog.page.value;
+  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);
+  const start = Math.max(2, Math.min(current - 1, total - 4));
+  const end = Math.min(total - 1, Math.max(current + 1, 5));
+  const items = [1];
+  if (start > 2) items.push("…");
+  for (let value = start; value <= end; value++) items.push(value);
+  if (end < total - 1) items.push("…");
+  items.push(total);
+  return items;
+});
+
+function goPage(value) {
+  if (!Number.isFinite(value)) return;
+  props.catalog.setPage(value);
+  // The controls sit under the list, so a new page would otherwise open below
+  // the fold with the previous page's last rows in view.
+  if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+}
+
 defineExpose({ randomRecord, open });
 </script>
 
@@ -482,7 +512,7 @@ defineExpose({ randomRecord, open });
           class="nx-cards"
         >
           <NxCard
-            v-for="record in catalog.filtered.value"
+            v-for="record in catalog.pageRecords.value"
             :key="record.id"
             :record="record"
             :lan="lan"
@@ -558,7 +588,7 @@ defineExpose({ randomRecord, open });
           </div>
 
           <NxRow
-            v-for="record in catalog.filtered.value"
+            v-for="record in catalog.pageRecords.value"
             :key="record.id"
             :record="record"
             :lan="lan"
@@ -570,6 +600,59 @@ defineExpose({ randomRecord, open });
             @open="open"
           />
         </div>
+
+        <!-- Pagination sits under the results, so the first rows stay on screen
+             while paging. Hidden when everything fits on one page. -->
+        <nav
+          v-if="catalog.pageCount.value > 1"
+          class="nx-pages"
+          :aria-label="text.pages"
+        >
+          <button
+            type="button"
+            class="nx-page-btn"
+            :disabled="catalog.page.value === 1"
+            :aria-label="text.prevPage"
+            @click="goPage(catalog.page.value - 1)"
+          >
+            <NxIcon
+              name="chevronLeft"
+              :size="13"
+            />
+          </button>
+
+          <template
+            v-for="(item, index) in pageItems"
+            :key="`page-${index}-${item}`"
+          >
+            <span
+              v-if="item === '…'"
+              class="nx-page-gap"
+              aria-hidden="true"
+            >…</span>
+            <button
+              v-else
+              type="button"
+              class="nx-page-btn nx-num"
+              :class="{ on: item === catalog.page.value }"
+              :aria-current="item === catalog.page.value ? 'page' : undefined"
+              @click="goPage(item)"
+            >{{ item }}</button>
+          </template>
+
+          <button
+            type="button"
+            class="nx-page-btn"
+            :disabled="catalog.page.value === catalog.pageCount.value"
+            :aria-label="text.nextPage"
+            @click="goPage(catalog.page.value + 1)"
+          >
+            <NxIcon
+              name="chevronRight"
+              :size="13"
+            />
+          </button>
+        </nav>
       </div>
 
       <NxDetail

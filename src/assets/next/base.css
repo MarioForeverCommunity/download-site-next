@@ -1762,6 +1762,68 @@ body.nx-body select:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
+/* ── pagination ───────────────────────────────────────────── */
+/* Centred under the results so the control belongs to the list rather than to
+   one view. The card grid already pads its bottom, hence the smaller top gap. */
+.nx-pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 12px 16px 36px;
+}
+
+.nx-page-btn {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--nx-muted);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nx-page-btn:hover:not(:disabled):not(.on) {
+  background: var(--nx-fill);
+  color: var(--nx-ink);
+}
+
+/* The active page is a filled accent chip, like the primary buttons: the light
+   theme's brand blue is too bright for white text, so it uses the darker step
+   of the same hue (see .nx-btn-primary); dark mode can use the accent directly
+   with dark ink. */
+.nx-page-btn.on {
+  border-color: #0068c4;
+  background: #0068c4;
+  color: #fff;
+  font-weight: 600;
+}
+
+:root[data-nx-theme="dark"] .nx-page-btn.on {
+  border-color: var(--nx-accent);
+  background: var(--nx-accent);
+  color: #16181a;
+}
+
+.nx-page-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.nx-page-gap {
+  width: 18px;
+  text-align: center;
+  color: var(--nx-faint);
+  font-size: 11.5px;
+}
+
 /* ── empty state ──────────────────────────────────────────── */
 .nx-empty {
   padding: 60px 24px;
@@ -3528,6 +3590,10 @@ html .nx-doc .carousel .carousel__next {
   .nx-results-actions {
     order: 3;
     margin-left: auto;
+  }
+
+  .nx-pages {
+    padding: 10px 12px calc(28px + env(safe-area-inset-bottom, 0px));
   }
 
   .nx-filter-pill {

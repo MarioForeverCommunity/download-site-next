@@ -5,6 +5,8 @@ import DownloadHeader from '../../components/HeaderNav.vue';
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js";
 import SiteFooter from '../../components/SiteFooter.vue';
 import AssetCard from '../../components/AssetCard.vue';
+import PageBar from '../../components/PageBar.vue';
+import { usePagination } from '../../util/usePagination.js';
 import { getName, getAuthor, getDownloadEntries, toResourceDirectUrl } from "../../util/GameUtil.js";
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js";
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
@@ -293,6 +295,9 @@ const filteredAssets = computed(() => {
   return expanded;
 });
 
+// Page size comes from the shared global setting (see GlobalSettings).
+const { page, pageCount, paged: pagedAssets, setPage } = usePagination(filteredAssets);
+
 const wideScreen = ref(window.innerWidth > 800);
 
 function updateWideScreen() {
@@ -478,7 +483,7 @@ const { floatingStyles } = useFloating(reference, floating,
   </div>
 
   <div class="card-container">
-    <div v-for="(asset, idx) in filteredAssets" :key="asset.name + '|' + getStrFromList(asset.author) + '|' + idx">
+    <div v-for="(asset, idx) in pagedAssets" :key="asset.name + '|' + getStrFromList(asset.author) + '|' + idx">
       <AssetCard
         :asset="asset"
         :get-asset-image="getAssetImage"
@@ -490,6 +495,13 @@ const { floatingStyles } = useFloating(reference, floating,
       />
     </div>
   </div>
+
+  <PageBar
+    :page="page"
+    :page-count="pageCount"
+    :lan="lan"
+    @change="setPage"
+  />
 
   <Transition name="modal">
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">

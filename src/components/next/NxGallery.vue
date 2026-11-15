@@ -549,7 +549,6 @@ onBeforeUnmount(() => {
   .nx-gallery-img {
     display: block;
     object-position: center;
-    cursor: zoom-in;
   }
 
   /* Whole picture, scaled to fill the frame without cropping: small screenshots

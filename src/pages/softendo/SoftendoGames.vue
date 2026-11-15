@@ -6,6 +6,8 @@ import { navTop } from "../../config.js";
 import SiteFooter from "../../components/SiteFooter.vue";
 import { readList } from "../../util/ReadList.js";
 import SoftendoGameCard from "../../components/SoftendoGameCard.vue";
+import PageBar from "../../components/PageBar.vue";
+import { usePagination } from "../../util/usePagination.js";
 import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getFullTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js";
@@ -248,6 +250,9 @@ const filteredGames = computed(() => {
     return nameMatch && typeMatch && softwareMatch && languageMatch && genreMatch;
   });
 });
+
+// Page size comes from the shared global setting (see GlobalSettings).
+const { page, pageCount, paged: pagedGames, setPage } = usePagination(filteredGames);
 
 // Language changes.
 function pageSetLanguageZh() {
@@ -541,7 +546,7 @@ const getGameImage = (game) => {
   </div>
 
   <div class="card-container">
-    <div v-for="(game, idx) in filteredGames" :key="getSoftendoGameName(game) + '|' + (game.type || '') + '|' + idx">
+    <div v-for="(game, idx) in pagedGames" :key="getSoftendoGameName(game) + '|' + (game.type || '') + '|' + idx">
       <SoftendoGameCard
         :game="game"
         :lan="lan"
@@ -552,6 +557,13 @@ const getGameImage = (game) => {
       />
     </div>
   </div>
+
+  <PageBar
+    :page="page"
+    :page-count="pageCount"
+    :lan="lan"
+    @change="setPage"
+  />
 
   <FullscreenModal
     :show="selectedGameDetail != null"

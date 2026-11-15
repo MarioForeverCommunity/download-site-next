@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort } from '../util/Language.js';
+import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort, getPageSize, setPageSize } from '../util/Language.js';
 import DesignSwitch from './DesignSwitch.vue';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 
@@ -8,10 +8,12 @@ const lan = ref(getLanguage());
 const showSettings = ref(false);
 const useDirectLink = getUseDirectLink();
 const defaultSort = getDefaultSort();
+const pageSize = getPageSize();
 
 // 临时值：弹框内编辑，确定后提交，取消则丢弃
 const tempUseDirectLink = ref(false);
 const tempDefaultSort = ref('date_desc');
+const tempPageSize = ref(50);
 
 const sortOptions = [
   { value: "name_asc", labelZh: "名称正序", labelEn: "Name (A to Z)" },
@@ -20,6 +22,15 @@ const sortOptions = [
   { value: "author_desc", labelZh: "作者倒序", labelEn: "Author (Z to A)" },
   { value: "date_asc", labelZh: "日期正序", labelEn: "Date (oldest first)" },
   { value: "date_desc", labelZh: "日期倒序", labelEn: "Date (newest first)" },
+];
+
+// 与新版设计的全局设置共用同一项（localStorage 的 pageSize），0 表示全部显示
+const pageSizeOptions = [
+  { value: 25, labelZh: "25 条", labelEn: "25" },
+  { value: 50, labelZh: "50 条", labelEn: "50" },
+  { value: 100, labelZh: "100 条", labelEn: "100" },
+  { value: 200, labelZh: "200 条", labelEn: "200" },
+  { value: 0, labelZh: "全部显示", labelEn: "Show all" },
 ];
 
 // 监听语言切换事件
@@ -43,6 +54,7 @@ function toggleSettings() {
   if (showSettings.value) {
     tempUseDirectLink.value = useDirectLink.value;
     tempDefaultSort.value = defaultSort.value;
+    tempPageSize.value = pageSize.value;
     disableScroll();
   } else {
     enableScroll();
@@ -52,6 +64,7 @@ function toggleSettings() {
 function confirmSettings() {
   useDirectLink.value = tempUseDirectLink.value;
   setDefaultSort(tempDefaultSort.value);
+  setPageSize(tempPageSize.value);
   showSettings.value = false;
   enableScroll();
 }
@@ -78,6 +91,14 @@ function cancelSettings() {
             <span>{{ lan === 'zh' ? '默认排序' : 'Default Sort' }}</span>
             <select v-model="tempDefaultSort" class="settings-sort-select">
               <option v-for="opt in sortOptions" :key="opt.value" :value="opt.value">
+                {{ lan === 'zh' ? opt.labelZh : opt.labelEn }}
+              </option>
+            </select>
+          </div>
+          <div class="settings-item">
+            <span>{{ lan === 'zh' ? '每页显示条数' : 'Records per page' }}</span>
+            <select v-model="tempPageSize" class="settings-sort-select">
+              <option v-for="opt in pageSizeOptions" :key="opt.value" :value="opt.value">
                 {{ lan === 'zh' ? opt.labelZh : opt.labelEn }}
               </option>
             </select>

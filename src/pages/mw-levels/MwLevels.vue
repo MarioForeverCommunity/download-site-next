@@ -8,6 +8,8 @@ import { readList } from "../../util/ReadList.js";
 import GameLine from "../../components/GameLine.vue";
 import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
+import PageBar from '../../components/PageBar.vue';
+import { usePagination } from '../../util/usePagination.js';
 import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon, RandomIcon } from "../../components/icons/Icons.js";
 import introZh from '../../markdown/mw-levels-zh.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
@@ -544,6 +546,9 @@ const filteredGames = computed(() => {
   return result;
 });
 
+// Page size comes from the shared global setting (see GlobalSettings).
+const { page, pageCount, paged: pagedGames, setPage } = usePagination(filteredGames);
+
 // Get last update date.
 
 const lastUpdate = ref(null);
@@ -762,7 +767,7 @@ const { floatingStyles } = useFloating(reference, floating,
     @sort-by-date="sortByDate();"
   />
   <template v-if="wideScreen && displayMode === 'line'">
-    <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + idx">
+    <div v-for="(game, idx) in pagedGames" :key="game.game + '|' + idx">
       <GameLine
         :game="game"
         lan="zh"
@@ -779,7 +784,7 @@ const { floatingStyles } = useFloating(reference, floating,
     </div>
   </template>
   <div v-if="(wideScreen && displayMode === 'card') || !wideScreen" class="card-container">
-    <div v-for="(game, idx) in filteredGames" :key="game.game + '|' + idx">
+    <div v-for="(game, idx) in pagedGames" :key="game.game + '|' + idx">
       <GameCard
         :game="game"
         lan="zh"
@@ -795,6 +800,13 @@ const { floatingStyles } = useFloating(reference, floating,
       />
     </div>
   </div>
+
+  <PageBar
+    :page="page"
+    :page-count="pageCount"
+    lan="zh"
+    @change="setPage"
+  />
 
   <Transition name="modal">
     <div v-if="selectedDownload != null" class="modal-bg" @click="selectedDownload = null;">

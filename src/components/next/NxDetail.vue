@@ -771,6 +771,7 @@ onBeforeUnmount(() => {
               :alt="record.name"
               :lan="lan"
               aspect-ratio="16 / 9"
+              :autoplay="3000"
               @select="lightbox = $event"
             />
           </div>

@@ -107,3 +107,25 @@ export function getDefaultSort() {
 export function setDefaultSort(value) {
   defaultSort.value = value;
 }
+
+// 作品目录每页显示的记录数（0 表示全部显示），新版设计的目录页共用，缺省 50 条
+const PAGE_SIZE_VALUES = [25, 50, 100, 200, 0];
+const savedPageSize = readSetting("pageSize");
+const pageSize = ref(
+  savedPageSize != null && PAGE_SIZE_VALUES.includes(Number(savedPageSize))
+    ? Number(savedPageSize)
+    : 50
+);
+
+watch(pageSize, (value) => {
+  writeSetting("pageSize", value);
+});
+
+export function getPageSize() {
+  return pageSize;
+}
+
+export function setPageSize(value) {
+  const size = Number(value);
+  pageSize.value = PAGE_SIZE_VALUES.includes(size) ? size : 50;
+}
