@@ -269,7 +269,7 @@ export function getAuthorFolderURL(item, author, lan) {
       return null;
     }
     if (lan == "en") {
-      return `https://file.marioforever.net/mobile-fangames/${encodeURIComponent(folder)}/`;
+      return `https://file.marioforever.net/mario-forever/games/mobile-fangames/${encodeURIComponent(folder)}/`;
     }
     return `https://file.marioforever.net/Mario Forever/安卓游戏/${encodeURIComponent(folder)}/`;
   }
