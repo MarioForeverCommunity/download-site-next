@@ -22199,7 +22199,7 @@
   download_url_alt:
   file_name: 疯狂的斜眼番外篇.exe
   file_url:
-- game: 'Ture World 1 : The Dark Seasons'
+- game: 'Ture World 1: The Dark Seasons'
   game_alt:
   author: '826944805'
   author_alt:
@@ -22782,8 +22782,11 @@
   download_url_alt:
   file_name: 1-1.exe
   file_url:
-- game: New World
+- game: New Adventure
   game_alt:
+  alias:
+  - New Advanture
+  - New World
   author: dodoufatch
   author_alt:
   type: chinese
@@ -22809,6 +22812,16 @@
       code:
       download_url_alt:
       file_name: New World BETA 1.1.zip
+      file_url:
+  - World 1:
+      ver_alt:
+      date: 2014-01-30
+      source_url: https://tieba.baidu.com/p/2840324802
+      source_url_alt:
+      download_url: http://pan.baidu.com/share/link?shareid=3765196079&uk=1646269869
+      code:
+      download_url_alt:
+      file_name: New Advanture World 1.zip
       file_url:
 - game: Mario Forever World 12
   game_alt:
@@ -22940,25 +22953,6 @@
       download_url_alt: https://pan.baidu.com/s/1zMiBe
       file_name: Mario Forever U-1.rar
       file_url:
-- game: New Advanture World 1
-  game_alt:
-  alias:
-  - NA1
-  author: dodoufatch
-  author_alt:
-  type: chinese
-  wiki_zh_url:
-  wiki_en_url:
-  ver:
-  ver_alt:
-  date: 2014-01-30
-  source_url: https://tieba.baidu.com/p/2840324802
-  source_url_alt:
-  download_url: http://pan.baidu.com/share/link?shareid=3765196079&uk=1646269869
-  code:
-  download_url_alt:
-  file_name: New Advanture World 1.zip
-  file_url:
 - game: Mario Forever 2
   game_alt:
   author: Youras
@@ -23105,7 +23099,7 @@
   download_url_alt:
   file_name: 安装MF WSW World 1.0.0.5.exe
   file_url:
-- game: Humen Lab World 2
+- game: Human Lab World 2
   game_alt:
   author: dodoufatch
   author_alt:
