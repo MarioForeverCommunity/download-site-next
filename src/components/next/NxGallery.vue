@@ -71,9 +71,16 @@ const containerRef = ref(null);
 const containerW = ref(0);
 const pos = ref(2);
 const noTransition = ref(false);
+// The transform transition is armed only around a deliberate move (goTo).
+// Layout changes — the first transform application, images decoding at their
+// natural ratios, a container resize — must land instantly: animating them
+// made the strip slide in from the track origin (the wrap clones of the last
+// picture) the moment the drawer opened, looking like "last -> first".
+const animating = ref(false);
 
 let snapTimer = null;
 let autoplayTimer = null;
+let animateTimer = null;
 let observer = null;
 
 const count = computed(() => props.images.length);
@@ -188,7 +195,11 @@ const trackStyle = computed(() => {
   return {
     width: `${Math.round(trackWidth.value)}px`,
     transform: `translate3d(${offset}px, 0, 0)`,
-    transition: noTransition.value ? "none" : `transform ${TRANSITION_MS}ms cubic-bezier(0.32, 0.72, 0, 1)`
+    // Only a deliberate move animates; any other offset change (first layout,
+    // decoded ratios, resize) must land instantly — see `animating` above.
+    transition: (animating.value && !noTransition.value)
+      ? `transform ${TRANSITION_MS}ms cubic-bezier(0.32, 0.72, 0, 1)`
+      : "none"
   };
 });
 
@@ -227,14 +238,19 @@ function goTo(nextPos) {
   // as neighbours, never as targets.
   if (nextPos < 1 || nextPos > count.value + 2) return;
   clearSnap();
+  clearAnimate();
   // Make sure transitions are enabled *before* the position changes, otherwise
   // the browser coalesces both style writes into one frame and the slide jumps.
   noTransition.value = false;
+  animating.value = true;
   pos.value = nextPos;
   // transitionend can be lost (a retargeted transition never reports its end,
   // background tabs throttle): resolve any pending wrap the same way once the
   // slide time is up, so the carousel cannot get stranded on a clone.
   snapTimer = setTimeout(resolveWrap, TRANSITION_MS + 40);
+  // The animation window is bounded even without transitionend, so a layout
+  // change right after a move still lands instantly.
+  animateTimer = setTimeout(() => { animating.value = false; }, TRANSITION_MS + 40);
 }
 
 function clearSnap() {
@@ -242,6 +258,14 @@ function clearSnap() {
     clearTimeout(snapTimer);
     snapTimer = null;
   }
+}
+
+function clearAnimate() {
+  if (animateTimer) {
+    clearTimeout(animateTimer);
+    animateTimer = null;
+  }
+  animating.value = false;
 }
 
 // Parked on a wrap clone? Land on the identical real slide without animating:
@@ -265,6 +289,7 @@ function onTransitionEnd(event) {
 // Jump without animating (used for wrapping and for dot clicks).
 function snapTo(nextPos) {
   clearSnap();
+  clearAnimate();
   noTransition.value = true;
   pos.value = nextPos;
   // Re-enable transitions on a later frame so the snap itself is not animated.
@@ -395,6 +420,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   clearSnap();
+  clearAnimate();
   if (autoplayTimer) clearInterval(autoplayTimer);
   if (observer) observer.disconnect();
 });
