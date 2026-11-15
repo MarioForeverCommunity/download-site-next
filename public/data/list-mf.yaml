@@ -17296,7 +17296,9 @@
   file_url:
 - game: 'Mario Forever: Paradise World'
   game_alt:
-  author: Shadow_78
+  author:
+  - Shadow_78
+  - Karol_Pik
   author_alt:
   type: international
   wiki_zh_url:

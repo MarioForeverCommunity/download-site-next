@@ -14,3 +14,4 @@ public/data/image-index.json
 public/api/*
 monthly-report-*
 __pycache__
+scripts/capture-game-screenshot.py
