@@ -412,6 +412,15 @@ watch(showChangelog, (open) => {
       <!-- Site-level entries use the same row style as the catalog and
            external groups above. -->
       <nav class="nx-rail-group nx-rail-meta">
+        <a
+          class="nx-rail-item"
+          :class="{ on: pageId === 'about' }"
+          href="./about.html"
+          :aria-current="pageId === 'about' ? 'page' : undefined"
+        >
+          <span class="nx-rail-icon"><NxIcon name="mail" :size="14" /></span>
+          <span>{{ displayLan === "zh" ? "关于本站" : "About & Contact" }}</span>
+        </a>
         <button
           type="button"
           class="nx-rail-item"

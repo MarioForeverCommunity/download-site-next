@@ -77,6 +77,7 @@ export default defineConfig({
         "mario-worker": resolve(".", "mario-worker.html"),
         softendo: resolve(".", "softendo.html"),
         engines: resolve(".", "engines.html"),
+        about: resolve(".", "about.html"),
       },
       output: {
         chunkFileNames: "js/[name]-[hash].js",

@@ -26,7 +26,8 @@ const ROUTES = {
   assets: { href: "./assets.html", load: () => import("../../pages/next/assets/AssetsNext.vue") },
   engines: { href: "./engines.html", load: () => import("../../pages/next/engines/EnginesNext.vue") },
   "mario-worker": { href: "./mario-worker.html", load: () => import("../../pages/next/mario-worker/MwIndexNext.vue") },
-  softendo: { href: "./softendo.html", load: () => import("../../pages/next/softendo/SoftendoNext.vue") }
+  softendo: { href: "./softendo.html", load: () => import("../../pages/next/softendo/SoftendoNext.vue") },
+  about: { href: "./about.html", load: () => import("../../pages/next/about/AboutNext.vue") }
 };
 
 export const currentPageId = ref("");

@@ -36,7 +36,8 @@ export const changelog = [
       "MW 作品详情：「MW 版本」前加注 SMWP（MW 4.0 / 4.4 除外），不再显示「标签」一节；自带 MW 的作品，运行环境提示改为「本作品自带」",
       "MF 作品详情（中文）恢复旧版下载弹框的「游玩说明」：按安装程序 / .exe / .apk / macOS / Linux / 压缩包给出运行提示，手机端另有对应说明",
       "作品详情：作者信息旁新增「查看该作者的全部作品」，点击后用第一作者名筛选目录（国内 MF 作品由此也能查看同作者作品）；有资源站作者目录的作品另提供「浏览作者资源站目录」链接，MW 多作者作品则改为筛选「合作作品」",
-      "MW 目录的作者搜索支持「合作作品」，输入该词即可一次筛出全部多作者关卡"
+      "MW 目录的作者搜索支持「合作作品」，输入该词即可一次筛出全部多作者关卡",
+      "侧边栏底部新增「关于本站」页面"
     ],
     improvements_en: [
       "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
@@ -61,7 +62,8 @@ export const changelog = [
       "MW details now prefix the MW version with SMWP (MW 4.0 / 4.4 excepted), no longer show the Tags section, and say the level \"Comes with\" its MW when one is bundled",
       "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint",
       "Detail drawers offer \"View all their works\" beside the author, filtering the catalog by the first author's name (now including domestic MF works); records with a File Hub author folder also link \"Open the author's folder (File Hub)\", while multi-author MW levels filter the collaboration label instead",
-      "The MW catalog's author search accepts 合作作品, listing every multi-author level in one step"
+      "The MW catalog's author search accepts 合作作品, listing every multi-author level in one step",
+      "A new About & Contact page at the bottom of the rail"
     ],
     fixes: [
       "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",

@@ -382,6 +382,16 @@ body.nx-body select:focus-visible {
   color: var(--nx-ink);
 }
 
+/* The reset above outranks `.nx-rail-item.on` on equal specificity and comes
+   later in the sheet, so the active page in this group lost its selected
+   background and weight. Restore the shared active row style here. */
+.nx-rail-meta .nx-rail-item.on {
+  background: var(--nx-canvas);
+  color: var(--nx-ink);
+  font-weight: 600;
+  box-shadow: var(--nx-shadow-1);
+}
+
 .nx-rail-foot {
   padding: 8px 7px 0;
   display: flex;

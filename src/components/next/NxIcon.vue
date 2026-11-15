@@ -57,6 +57,8 @@ const PATHS = {
   // Upright hammer (head horizontal at the top, handle straight down), used for
   // the MW / level-editor catalogs.
   hammer: ["M7 4h10v4H7z", "M11 8h2v12h-2z"],
+  // Envelope — the About & Contact entry.
+  mail: ["M4 6h16v12H4z", "M4 7l8 6 8-6"],
 };
 
 const paths = computed(() => PATHS[props.name] || []);
