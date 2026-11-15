@@ -1,11 +1,32 @@
 import { ref, watch } from "vue";
-import Cookies from "js-cookie";
+
+// Global settings outlive the browser session, like the theme and the design
+// choice (see Theme.js / Design.js): a cookie written without `expires` is
+// dropped when the browser closes, so these choices live in localStorage and
+// keep applying after later site releases change the built-in defaults.
+function readSetting(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (_e) {
+    // Private mode / disabled storage: behave as if nothing was saved.
+    return null;
+  }
+}
+
+function writeSetting(key, value) {
+  try {
+    localStorage.setItem(key, String(value));
+  } catch (_e) {
+    // Ignore: the choice still applies for this page view.
+  }
+}
 
 export function getLanguage() {
-  if (Cookies.get("language") == "zh") {
+  const saved = readSetting("language");
+  if (saved == "zh") {
     return "zh";
   }
-  if (Cookies.get("language") == "en") {
+  if (saved == "en") {
     return "en";
   }
   for (const lan of navigator.languages) {
@@ -19,7 +40,7 @@ export function getLanguage() {
 }
 
 export function setLanguageZh() {
-  Cookies.set("language", "zh");
+  writeSetting("language", "zh");
   // 派发语言切换事件
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('language-changed'));
@@ -29,7 +50,7 @@ export function setLanguageZh() {
 }
 
 export function setLanguageEn() {
-  Cookies.set("language", "en");
+  writeSetting("language", "en");
   // 派发语言切换事件
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('language-changed'));
@@ -39,42 +60,44 @@ export function setLanguageEn() {
 }
 
 export function getDisplayMode() {
-  if (Cookies.get("displayMode") == "line") {
+  const saved = readSetting("displayMode");
+  if (saved == "line") {
     return "line";
   }
-  if (Cookies.get("displayMode") == "card") {
+  if (saved == "card") {
     return "card";
   }
   return "line";
 }
 
 export function setDisplayModeLine() {
-  Cookies.set("displayMode", "line");
+  writeSetting("displayMode", "line");
   return "line";
 }
 
 export function setDisplayModeCard() {
-  Cookies.set("displayMode", "card");
+  writeSetting("displayMode", "card");
   return "card";
 }
 
-// 资源站直链开关（全局共享状态，cookie 持久化）
-const useDirectLink = ref(Cookies.get("useDirectLink") === "true");
+// 资源站直链开关（全局共享状态，localStorage 持久化）
+const useDirectLink = ref(readSetting("useDirectLink") === "true");
 
 watch(useDirectLink, (value) => {
-  Cookies.set("useDirectLink", String(value));
+  writeSetting("useDirectLink", value);
 });
 
 export function getUseDirectLink() {
   return useDirectLink;
 }
 
-// 全局默认排序（全局共享状态，cookie 持久化），缺省值为日期倒序
+// 全局默认排序（全局共享状态，localStorage 持久化），缺省值为日期倒序
 const DEFAULT_SORT_VALUES = ["name_asc", "name_desc", "author_asc", "author_desc", "date_asc", "date_desc"];
-const defaultSort = ref(DEFAULT_SORT_VALUES.includes(Cookies.get("defaultSort")) ? Cookies.get("defaultSort") : "date_desc");
+const savedDefaultSort = readSetting("defaultSort");
+const defaultSort = ref(DEFAULT_SORT_VALUES.includes(savedDefaultSort) ? savedDefaultSort : "date_desc");
 
 watch(defaultSort, (value) => {
-  Cookies.set("defaultSort", value);
+  writeSetting("defaultSort", value);
 });
 
 export function getDefaultSort() {

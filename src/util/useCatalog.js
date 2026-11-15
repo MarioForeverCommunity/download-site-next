@@ -42,8 +42,8 @@ export function useCatalog({
   // { facetKey: [value, ...] } — an empty array means "no restriction".
   const facetValues = ref({});
   const tagStates = ref({});
-  // "list" | "cards". Starts from the remembered choice (the legacy design's
-  // `displayMode` cookie), so switching catalogs or reloading keeps the view.
+  // "list" | "cards". Starts from the remembered choice (the shared
+  // `displayMode` setting), so switching catalogs or reloading keeps the view.
   const view = ref(getDisplayMode() === "card" ? "cards" : "list");
   const sort = ref(defaultSort ? { field: defaultSort.field, asc: defaultSort.asc } : { field: null, asc: true });
 
@@ -338,8 +338,8 @@ export function useCatalog({
 
   function setView(value) {
     view.value = value === "cards" ? "cards" : "list";
-    // Remembered across catalogs and page reloads through the same cookie the
-    // legacy design uses, so both interfaces open with the visitor's own choice.
+    // Remembered across catalogs, reloads and browser restarts through the
+    // shared setting both designs read, so each visitor keeps their own view.
     if (view.value === "cards") setDisplayModeCard();
     else setDisplayModeLine();
   }

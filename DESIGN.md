@@ -9,7 +9,7 @@
 | 旧版界面 | 「全局设置」弹窗 →「界面设计」→ 切换到新版设计 | 与默认排序、直链开关同级 |
 | 新版界面 | 顶栏齿轮（全局设置）→「切换到旧版设计」 | 与密度、更新履历同级 |
 
-URL 参数可直接指定，写入 `design` cookie 后不再需要携带：
+URL 参数可直接指定，写入浏览器本地存储（`design` 键）后不再需要携带：
 
 ```
 /mf-games.html?design=next     # 新版
@@ -56,7 +56,7 @@ URL 参数可直接指定，写入 `design` cookie 后不再需要携带：
 ## 4. 代码结构
 
 ```
-src/util/Design.js              设计选择状态（URL → cookie → 默认）
+src/util/Design.js              设计选择状态（URL → localStorage → 默认）
 src/util/Theme.js               明暗主题与密度（localStorage）
 src/util/useCatalog.js          目录状态：双搜索 / 筛选 / 三态标签 / 日期区间 / 排序
 src/boot/{entry,legacy,next}.js 按设计挂载页面（legacy 动态加载，防样式泄漏）

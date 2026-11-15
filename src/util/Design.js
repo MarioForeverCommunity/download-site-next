@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import Cookies from "js-cookie";
 import packageJson from "../../package.json";
 
 // Design variants of this site.
@@ -9,7 +8,12 @@ import packageJson from "../../package.json";
 // the same entry HTML files; only the page shell differs.
 //
 // Resolution order: `?design=` URL parameter (persisted, so a shared link opens
-// in the design it was copied from) -> `design` cookie -> DEFAULT_DESIGN.
+// in the design it was copied from) -> stored choice -> DEFAULT_DESIGN.
+//
+// The choice lives in localStorage under the same `design` key, mirroring the
+// theme (`darkMode`, see Theme.js): a cookie would only live for the browser
+// session and could silently flip a visitor onto another design when a release
+// changes the default.
 export const LEGACY_DESIGN = "legacy";
 export const NEXT_DESIGN = "next";
 
@@ -55,17 +59,32 @@ function readUrlDesign() {
   }
 }
 
-function readCookieDesign() {
-  return normalizeDesign(Cookies.get("design"));
+const STORAGE_KEY = "design";
+
+function readStoredDesign() {
+  try {
+    return normalizeDesign(localStorage.getItem(STORAGE_KEY));
+  } catch (_e) {
+    // Private mode / disabled storage: fall back to the default design.
+    return null;
+  }
+}
+
+function storeDesign(value) {
+  try {
+    localStorage.setItem(STORAGE_KEY, value);
+  } catch (_e) {
+    // Ignore: the choice still applies for this page view.
+  }
 }
 
 function readInitialDesign() {
   const fromUrl = readUrlDesign();
   if (fromUrl) {
-    Cookies.set("design", fromUrl);
+    storeDesign(fromUrl);
     return fromUrl;
   }
-  return readCookieDesign() || DEFAULT_DESIGN;
+  return readStoredDesign() || DEFAULT_DESIGN;
 }
 
 const design = ref(readInitialDesign());
@@ -84,7 +103,7 @@ export function setDesign(value) {
     return resolved;
   }
   design.value = resolved;
-  Cookies.set("design", resolved);
+  storeDesign(resolved);
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("design-changed", { detail: { design: resolved } }));
   }
