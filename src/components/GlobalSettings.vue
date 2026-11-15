@@ -108,7 +108,7 @@ function cancelSettings() {
             <span>{{ lan === 'zh' ? '资源站使用直链' : 'Use direct link for Community File Hub' }}</span>
           </label>
           <div class="settings-item settings-item-design">
-            <span>{{ lan === 'zh' ? '界面设计' : 'Interface design' }}</span>
+            <span>{{ lan === 'zh' ? '界面设计' : 'Interface' }}</span>
             <DesignSwitch
               current="legacy"
               variant="row"

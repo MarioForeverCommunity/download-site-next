@@ -67,7 +67,7 @@ const text = computed(() => (props.lan === "zh" ? {
   ],
   direct: "Use direct links for the File Hub",
   directHint: "Download links point straight at the file, skipping the File Hub preview",
-  design: "Interface design",
+  design: "Interface",
   legacy: "Switch to legacy design",
   close: "Close",
   sorts: [
