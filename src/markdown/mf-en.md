@@ -40,7 +40,7 @@ Suitable for the vast majority of Windows PCs. Runs better on some modern comput
 
 <MfGamesEntry name="Mario Forever Remake (PAL)" /><MfGamesEntry name="Mario Forever Remake" /><MfGamesEntry name="Mario Forever Advance Remake" />
 
-## Download original Mario Forever
+## Download the original Mario Forever
 For those seeking the most authentic and original experience. Versions 4.4 and earlier may not run smoothly on Windows 7 or newer (due to their usage of the Standard render mode running at 50 FPS). Versions 5.0 and later are generally unsatisfactory; try them only if you're curious.
 
 Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wiki/Mario_Forever).
@@ -62,7 +62,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 ### Screenshots
 <NxGallery :images="imagesOriginal" alt="Mario Forever" lan="en" :max-height="480" :autoplay="3000" />
 
-## Download mods of original Mario Forever
+## Download mods of the original Mario Forever
 There are several known mods based on the original Mario Forever.
 
 <MfGamesEntry name="Mario Forever v1.16.1 Mod" /><MfGamesEntry name="Mario Forever v4.4 Fixed Speedrun Edition" />
