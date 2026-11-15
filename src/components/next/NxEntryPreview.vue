@@ -11,6 +11,8 @@ import NxIcon from "./NxIcon.vue";
 import NxDetail from "./NxDetail.vue";
 import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, assetTypeLabel } from "../../util/next/records.js";
+import { navigateTo } from "../../util/next/router.js";
+import { abandonBackGuard } from "../../util/next/backGuard.js";
 
 const props = defineProps({
   record: {
@@ -84,6 +86,22 @@ const primary = computed(() => {
 
 // ── in-place detail drawer ───────────────────────────────────
 const detailOpen = ref(false);
+
+// A documentation page embeds this preview without a catalog, so the drawer's
+// "View all their works" has nothing to filter in place. It hands the author to
+// the catalog that owns the record instead, which picks the name up from the
+// query string (see NxCatalog.readDeepLink).
+//
+// The drawer's back-guard sentinel must be abandoned rather than unwound: the
+// router replaces that entry with the new page, and calling `history.back()`
+// here would race the navigation and bounce the visitor back (the same hazard
+// the rail's cross-page links handle).
+function searchAuthor(name) {
+  if (!name) return;
+  const pageId = props.record && props.record.kind === "mw" ? "mw-levels" : "mf-games";
+  abandonBackGuard();
+  navigateTo(pageId, { query: { author: name } });
+}
 
 // Assets with a repository get a source-code button on the card itself; MF and
 // MW cards keep their existing actions.
@@ -202,6 +220,7 @@ const repoUrl = computed(() => {
       :record="detailOpen ? props.record : null"
       :lan="lan"
       @close="detailOpen = false"
+      @search-author="searchAuthor"
     />
   </div>
 </template>

@@ -167,12 +167,32 @@ watch(() => props.catalog.activeId.value, (id) => {
   if (id == null) clearDeepLink();
 });
 
+// An author query can arrive from the URL (a doc card's "View all their works").
+// Removing the author pill, resetting the filters or clearing the search box
+// must drop the parameter too, otherwise the filter would come back on the next
+// reload — including after the back-guard's `history.back()` restores the entry
+// that carried it.
+watch(() => props.catalog.authorQuery.value, (value) => {
+  if (typeof window === "undefined") return;
+  if (String(value).trim()) return;
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has("author")) return;
+  url.searchParams.delete("author");
+  window.history.replaceState({}, "", url.toString());
+});
+
 // ?id= for the new design, and the legacy ?game= / ?asset= slugs, so a link
 // copied from either interface keeps working after switching.
 function readDeepLink() {
   if (typeof window === "undefined") return;
   const params = new URLSearchParams(window.location.search);
   const records = props.catalog.allRecords.value;
+
+  // Documentation pages have no catalog of their own, so their "View all their
+  // works" button navigates here with the author in the query string; applying
+  // it makes the landing list identical to what the drawer's own button shows.
+  const author = params.get("author");
+  if (author) props.catalog.setAuthorQuery(author);
 
   const id = params.get("id");
   if (id) {

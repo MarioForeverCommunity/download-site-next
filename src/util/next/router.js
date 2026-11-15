@@ -72,6 +72,7 @@ export function pageIdForHref(href) {
  * @param {string} pageId - id from ROUTES
  * @param {object} [options]
  * @param {boolean} [options.replace] - replace the history entry instead of pushing
+ * @param {object} [options.query] - query parameters to carry to the target entry
  */
 export async function navigateTo(pageId, options = {}) {
   const route = ROUTES[pageId];
@@ -88,18 +89,26 @@ export async function navigateTo(pageId, options = {}) {
   // normal tab switch instead of needing two presses.
   const overSentinel = !!(window.history.state && window.history.state.nxOverlay);
 
+  const target = new URL(route.href, window.location.href);
+  if (options.query) {
+    for (const [key, value] of Object.entries(options.query)) {
+      if (value == null || value === "") target.searchParams.delete(key);
+      else target.searchParams.set(key, String(value));
+    }
+  }
+
   if (options.replace || overSentinel) {
-    const target = new URL(route.href, window.location.href);
     // Boot and popstate both land on the entry the address bar already names,
     // so its query string must survive the normalisation: dropping it erased a
     // shared `?id=` deep link (and `?design=`) before the page could read it.
-    // A real navigation to another entry still starts with a clean URL.
-    if (pageIdFromPath(window.location.pathname) === pageId) {
+    // A real navigation to another entry still starts with a clean URL, and an
+    // explicit `query` always wins over the current one.
+    if (!options.query && pageIdFromPath(window.location.pathname) === pageId) {
       target.search = window.location.search;
     }
     window.history.replaceState({ nxPageId: pageId }, "", target.href);
   } else if (!booting) {
-    window.history.pushState({ nxPageId: pageId }, "", new URL(route.href, window.location.href).href);
+    window.history.pushState({ nxPageId: pageId }, "", target.href);
   }
 
   // A new page starts at the top, the way a reload would.
