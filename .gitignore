@@ -13,3 +13,4 @@ public/data/image-index.json
 .trae/*
 public/api/*
 monthly-report-*
+__pycache__
