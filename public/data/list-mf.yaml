@@ -487,15 +487,25 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - v0.8 Fix2:
+      ver_alt:
+      date: 2026-11-11
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE 2 v0.8 FIX 2 (2).rar
+      file_url:
   - v0.8 Fix1:
       ver_alt:
       date: 2026-11-07
-      source_url: https://www.bilibili.com/video/BV1Q3W76wEXq/
+      source_url:
       source_url_alt:
       download_url: https://qfile.qq.com/q/yWrjuTzOtq
       code:
       download_url_alt:
-      file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE 2 v0.55.rar
+      file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE 2 v0.8 fix1.rar
       file_url:
   - v0.55:
       ver_alt:
