@@ -61,9 +61,9 @@ export async function getMwDocLastUpdated() {
 // Catalog pages: the newest of the catalog's YAML data and its write-up, so the
 // stamp reflects "when did the content behind this table last change".
 const CATALOG_FILES = {
-  mfGames: ["public/data/list-mf.yaml", "src/markdown/mf-games-zh.md", "src/markdown/mf-games-en.md"],
-  mwLevels: ["public/data/list-mw.yaml", "src/markdown/mw-levels-zh.md"],
-  assets: ["public/data/list-assets.yaml", "src/markdown/assets.md"],
+  mfGames: ["public/data/list-mf.yaml"],
+  mwLevels: ["public/data/list-mw.yaml"],
+  assets: ["public/data/list-assets.yaml"],
   softendo: ["public/data/list-softendo.yaml"],
 };
 
