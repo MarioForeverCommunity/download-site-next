@@ -146,6 +146,13 @@ onMounted(async () => {
         </span>
       </div>
     </div>
+
+    <p class="nx-mf-note">
+      <NxIcon name="warning" />
+      <span>{{ lan === "zh"
+        ? "橙色「安装版」按钮表示安装程序捆绑了 Mario Forever Toolbar（广告插件）：安装时请取消勾选“Install the Mario Forever Toolbar”，或优先下载绿色版。"
+        : "An orange Installer button means the setup bundles the Mario Forever Toolbar adware: uncheck it during installation, or download the portable version instead." }}</span>
+    </p>
   </div>
 </template>
 
@@ -238,13 +245,27 @@ onMounted(async () => {
     flex: none;
   }
 
+  /* An installer that bundles the toolbar is the one row that deserves a loud
+     colour: a warning orange, clearly apart from the plain installer's blue. */
   .nx-dl.is-warn {
-    border-color: color-mix(in srgb, var(--nx-warn) 45%, var(--nx-line));
-    color: var(--nx-warn);
+    border-color: color-mix(in srgb, #f76707 55%, var(--nx-line));
+    color: #c2410c;
   }
 
   .nx-dl.is-warn:hover {
-    background: color-mix(in srgb, var(--nx-warn) 9%, var(--nx-canvas));
+    border-color: #f76707;
+    color: #9a3412;
+    background: color-mix(in srgb, #f76707 19%, var(--nx-canvas));
+  }
+
+  :root[data-nx-theme="dark"] .nx-dl.is-warn {
+    border-color: color-mix(in srgb, #ff922b 52%, var(--nx-line));
+    color: #ffa94d;
+  }
+
+  :root[data-nx-theme="dark"] .nx-dl.is-warn:hover {
+    border-color: #ff922b;
+    background: color-mix(in srgb, #ff922b 18%, var(--nx-canvas));
   }
 
   /* A plain installer is blue, a portable build green: on a dense ledger the
@@ -288,6 +309,16 @@ onMounted(async () => {
 
   :root[data-nx-theme="dark"] .nx-dl-portable:hover {
     background: color-mix(in srgb, #63c295 15%, var(--nx-canvas));
+  }
+
+  .nx-mf-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 9px;
+    font-size: 11.5px;
+    color: var(--nx-muted);
+    line-height: 1.5;
   }
 
   @media (max-width: 720px) {
