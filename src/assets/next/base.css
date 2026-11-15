@@ -3361,12 +3361,17 @@ html .nx-doc .carousel .carousel__next {
      actions and always wraps as a unit. (A spacer element would occupy a row of
      its own and add two extra row gaps, which left a hollow band above the
      dividing rule on pages that have no search fields at all.) */
+  /* The topbar stays pinned while the catalog scrolls, exactly like desktop:
+     with two search rows and a long list, scrolling back up to reach a search
+     field was the main cost of the phone layout. Its height is measured by the
+     shell and published as --nx-topbar-h, which the results bar sticks below. */
   .nx-topbar {
     min-height: auto;
     padding: 8px 12px;
     flex-wrap: wrap;
     gap: 6px;
-    position: static;
+    position: sticky;
+    top: 0;
   }
 
   /* The title must yield space to the action buttons rather than wrapping them
@@ -3475,9 +3480,12 @@ html .nx-doc .carousel .carousel__next {
     z-index: 85;
   }
 
-  /* On a phone the bar goes static and its pills own the second line. */
+  /* On a phone the bar sticks beneath the (taller, wrapped) topbar and its pills
+     own the second line. The offset is the measured topbar height, since the
+     topbar is two rows on catalogs and one row on doc pages. */
   .nx-results-bar {
-    position: static;
+    position: sticky;
+    top: var(--nx-topbar-h, 0px);
     padding: 8px 12px;
     gap: 6px;
   }

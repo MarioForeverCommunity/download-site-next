@@ -183,6 +183,20 @@ const rootRef = ref(null);
 // Narrow screens collapse the rail into a toggleable panel.
 const railOpen = ref(false);
 
+// The catalog's results bar sticks directly beneath the topbar. On a phone the
+// topbar wraps to two rows (title + actions, then the two searches) and doc
+// pages have no searches at all, so its height cannot be a constant; it is
+// measured here and published as a custom property that NxCatalog's bar reads
+// as its sticky offset.
+const topbarRef = ref(null);
+let topbarObserver = null;
+
+function syncTopbarHeight() {
+  if (!rootRef.value || !topbarRef.value) return;
+  const height = topbarRef.value.getBoundingClientRect().height;
+  rootRef.value.style.setProperty("--nx-topbar-h", `${height}px`);
+}
+
 // The rail becomes an off-canvas drawer on phones. While it is open the page
 // behind must not scroll, exactly like the other overlays.
 // The Android back button closes the rail drawer instead of leaving the page.
@@ -330,6 +344,13 @@ onMounted(() => {
   window.addEventListener("resize", updateNarrow);
   window.addEventListener("scroll", updateBackToTop, { passive: true });
   updateBackToTop();
+  // The topbar's height changes with the page (searches appear on catalogs) and
+  // with its own wrapping, so observe it rather than recomputing on resize only.
+  if (typeof ResizeObserver !== "undefined" && topbarRef.value) {
+    topbarObserver = new ResizeObserver(syncTopbarHeight);
+    topbarObserver.observe(topbarRef.value);
+  }
+  syncTopbarHeight();
 });
 
 onBeforeUnmount(() => {
@@ -337,6 +358,7 @@ onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
   window.removeEventListener("resize", updateNarrow);
   window.removeEventListener("scroll", updateBackToTop);
+  if (topbarObserver) topbarObserver.disconnect();
 });
 
 watch(showChangelog, (open) => {
@@ -476,7 +498,10 @@ watch(showChangelog, (open) => {
 
     <div class="nx-main">
       <!-- topbar: page title | two searches | actions -->
-      <header class="nx-topbar">
+      <header
+        ref="topbarRef"
+        class="nx-topbar"
+      >
         <button
           type="button"
           class="nx-icon-btn nx-rail-toggle"
