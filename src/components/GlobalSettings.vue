@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort } from '../util/Language.js';
+import DesignSwitch from './DesignSwitch.vue';
 import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
 
 const lan = ref(getLanguage());
@@ -85,6 +86,14 @@ function cancelSettings() {
             <input type="checkbox" v-model="tempUseDirectLink" />
             <span>{{ lan === 'zh' ? '资源站使用直链' : 'Use direct link for Community File Hub' }}</span>
           </label>
+          <div class="settings-item settings-item-design">
+            <span>{{ lan === 'zh' ? '界面设计' : 'Interface design' }}</span>
+            <DesignSwitch
+              current="legacy"
+              variant="row"
+              :label="lan === 'zh' ? '切换到新版设计' : 'Switch to new design'"
+            />
+          </div>
         </div>
         <div class="settings-footer">
           <button class="md-button md-button-secondary" @click="cancelSettings">{{ lan === 'zh' ? '取消' : 'Cancel' }}</button>
@@ -206,6 +215,34 @@ function cancelSettings() {
 
   .settings-item + .settings-item {
     margin-top: .9em;
+  }
+
+  /* Interface design row: the label and the switch button share one line, with
+     the button on the right. It must be allowed to shrink so a long label never
+     pushes it past the dialog's edge. */
+  .settings-item-design {
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    cursor: default;
+  }
+
+  .settings-item-design > span {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .settings-item-design > :deep(.design-switch),
+  .settings-item-design > .design-switch {
+    flex: 0 1 auto;
+    width: auto;
+    max-width: 62%;
+    min-width: 0;
+    margin-top: 0;
+    margin-left: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .settings-sort-select {

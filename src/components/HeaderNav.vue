@@ -1,5 +1,16 @@
 <script setup>
 import { navTop, topBar } from "../config.js";
+
+// Legacy top-bar visibility. In addition to the language flags, an entry needs a
+// label the legacy design can actually print: `name` (Chinese) or `name_alt`
+// (English). Entries that only define the redesigned UI's `name_new_zh` /
+// `name_new_en` are hidden here and shown by the new design instead.
+function legacyEntryVisible(item) {
+  const zh = displayLan() == "zh";
+  if (zh && item.show_zh === false) return false;
+  if (!zh && !item.show_en) return false;
+  return zh ? !!item.name : !!(item.name_alt || item.name);
+}
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 
 // const BASE_URL = import.meta.env.BASE_URL;
@@ -82,7 +93,7 @@ onBeforeUnmount(() => {
       <!-- Desktop: show all left links -->
       <div class="left-links desktop-only">
         <a
-          v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))"
+          v-for="item in topBar.filter(a => legacyEntryVisible(a))"
           :key="item.link"
           :href="item.link"
           target="_blank"
@@ -120,7 +131,7 @@ onBeforeUnmount(() => {
         </button>
         <div class="mobile-menu" v-if="isMenuOpen">
           <a
-            v-for="item in topBar.filter(a => (displayLan() == 'zh' && a.show_zh !== false) || (displayLan() == 'en' && a.show_en))"
+            v-for="item in topBar.filter(a => legacyEntryVisible(a))"
             :key="item.link"
             :href="item.link"
             target="_blank"

@@ -1,10 +1,7 @@
-import { createApp } from 'vue'
-import App from './MfGames.vue'
-import 'overlayscrollbars/styles/overlayscrollbars.css';
-import { initOverlayScrollbars } from '../../util/OverlayScrollbarsUtil.js';
-import '../../assets/fonts.css';
-import '../../assets/dark-mode.css';
+import { startPage } from "../../boot/entry.js";
+import LegacyPage from "./MfGames.vue";
 
-createApp(App).mount('#app')
-
-initOverlayScrollbars();
+// The redesigned UI is a single-page app: its router loads the page
+// component lazily and can navigate between catalogs without a reload, so
+// only `pageId` is passed here. The legacy design keeps its own page.
+await startPage({ legacy: LegacyPage, pageId: "mf-games" });

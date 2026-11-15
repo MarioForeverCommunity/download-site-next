@@ -14,6 +14,7 @@ export const topBar = [
     "link" : "https://marioforever.space/",
     "name" : "Forum (EN)",
     "name_alt" : "Forum (EN)",
+    "name_new_en": "Mario Forever Space",
     "show_zh" : false,
     "show_en" : true
   },
@@ -21,57 +22,74 @@ export const topBar = [
     "link" : "https://www.marioforever.net/",
     "name" : "社区",
     "name_alt" : "Forum (CN)",
+    "name_new_zh": "Mario Forever 社区",
+    "name_new_en": "Chinese Mario Forever Forum",
     "show_en" : true
   },
   {
     "link" : "https://discord.com/invite/pfnbfwRhUH",
     "name" : "MF Discord",
     "name_alt" : "MF Discord",
+    "name_new_en": "Mario Forever Café Discord Server",
     "show_zh" : false,
     "show_en" : true
   },
   {
     "link" : "https://discord.gg/VwgV6GmwXv",
     "name" : "Cloud Lounge",
-    "name_alt" : "Cloud Lounge",
+    "name_alt" : "Cloud Lounge Discord Server",
     "show_zh" : false,
     "show_en" : true
   },
   {
     "link" : "https://download.marioforever.net/",
     "name" : "作品目录",
-    "show_en" : false
+    "show_en" : false,
+    "show_new": false
   },
   {
     "link" : "https://file.marioforever.net/",
     "name" : "资源站",
+    "name_new_zh": "Mario Forever 社区资源站",
     "name_alt" : "File Hub",
+    "name_new_en": "Mario Forever Community File Hub",
     "show_en" : true
   },
   {
     "link" : "https://wiki.marioforever.net/",
     "name" : "Wiki",
     "name_alt" : "Wiki",
+    "name_new_zh": "Mario Forever 百科",
+    "name_new_en": "Mario Forever Wiki",
     "show_en" : true
   },
   {
     "link" : "https://mwcup.marioforever.net/",
     "name" : "MW杯",
-    "show_en" : false
+    "name_new_zh": "Mario Worker 杯官网",
+    "show_en" : false,
   },
   {
     "link" : "https://pkmf.marioforever.net/",
     "name" : "PK!MF",
+    "name_new_zh": "PK!MF 活动主页",
     "show_en" : false
   },
   {
     "link" : "https://archive.marioforever.net/",
     "name" : "Archive",
-    "show_en" : false
+    "show_en" : false,
+    "show_new": false
   },
   {
     "link" : "https://space.bilibili.com/2136191287",
     "name" : "关注B站",
+    "name_new_zh": "关注 Mario Forever 社区 B 站账号",
+    "show_en" : false
+  },
+  {
+    "link" : "https://www.iesdouyin.com/share/user/MS4wLjABAAAA3TG0EnFZ-ygxUqXw839P7T6Mewh5_KNbaSFviJUtHzwQbx4aTaX3q3RLvqIHPE6_",
+    "name_new_zh": "关注 Mario Forever 社区抖音账号",
     "show_en" : false
   },
   {
@@ -79,7 +97,8 @@ export const topBar = [
     "name" : "Source Code",
     "name_alt" : "Source Code",
     "show_zh" : false,
-    "show_en" : true
+    "show_en" : true,
+    "show_new": false
   },
 ]
 

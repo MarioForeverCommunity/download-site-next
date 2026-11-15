@@ -5,6 +5,156 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-beta.1",
+    date: "2026-11-15",
+    features: [
+      "新版界面新增右下角「回到顶部」按钮：页面滚动后出现，点击平滑回到顶部，遮罩与抽屉打开时不干扰操作"
+    ],
+    features_en: [
+      "A back-to-top button in the bottom-right corner of the redesigned UI: it appears once the page is scrolled and returns smoothly to the top, staying out of the way while overlays are open"
+    ],
+    improvements: [
+      "抽屉与侧栏改用动态视口高度并留出底部安全间距，底栏展开时不再遮挡内容；抽屉内滚动不再带动主区域",
+      "作品列表：中文界面不再显示英文副标题；移动端把作者、版本、日期合并为标题下的小字（MW 版本带 SMWP 前缀）；勾选「每个版本单独列出」时不再重复显示「N 个版本」",
+      "作品列表与卡片视图的图片统一为 4:3，卡片轮播支持触控左右滑动，并按容器宽度缩放以完整显示当前图片",
+      "侧边栏加宽：桌面端由 208px 调整为 244px，与移动端抽屉一致；861–1024px 区间由 176px 调整为 208px",
+      "中文版侧边栏换用新版 Logo，并在 Logo 旁显示「作品目录站 / Download Portal」；侧栏较窄时缩小 Logo 而不挤压文字",
+      "原版 MF 下载表格的推荐度改用站点主题色，安装版 / 绿色版按钮增加悬停底色",
+      "MW 作品的占位图改用 MarioWorker 标识，并放大占位图在缩略图中的比例",
+      "列表 / 卡片视图的选择会被记住，切换目录、刷新页面或在新旧版界面之间切换后保持",
+      "全局设置中的默认排序与资源站直链开关改为即时生效，无需刷新页面",
+      "MW 关卡目录恢复「标记」列；卡片与详情抽屉中的「专用 MW / BGM」标记改用与列表一致的配色",
+      "创作资源目录恢复「类型」列：以彩色标识区分引擎 / 拓展 / 特效 / 素材 / 工具 / MW 工具，列表与卡片同步显示，卡片中标识位于日期右侧",
+      "Softendo 目录的「系列」列改用彩色标识（Mario / MFF / Flash / Non-Mario / Banesoft），列表与卡片一致",
+      "Softendo 目录新增「制作软件」筛选，可按 Flash、Clickteam Fusion、GameMaker、其他筛选，并与系列、语言筛选叠加",
+      "Softendo 作品详情的「系列」改用正式名称（如 Mario Forever Flash），不再显示内部标识",
+      "作品详情：「版本与下载」与「数据包」合并为同一外框，文件名后逐个标注文件大小，MF、MW、创作资源保持一致",
+      "作品详情：发布页移入「版本与下载」并随版本切换，按钮标注来源站点，中英文分别优先显示主发布页 / 备用发布页；列表的发布页图标同样按版本与语言取链接",
+      "勾选「每个版本单独列出」时，详情只展示该版本的下载与发布页，列表、卡片与详情优先使用对应版本的 title 截图，顶部显示版本号，日期标签改为「发布日期」",
+      "MW 目录恢复发布页、MW 下载、音乐包与数据包按钮（改用与旧版一致的归一化数据）；MW 详情标题对多作者作品显示「合作作品」，信息区仍列出全部作者",
+      "MW「运行环境」的 SMWP 版本下载改为按钮，BGM 提示移至按钮下方；版本信息行只显示数值，不再出现「日期 / 文件名 / 文件大小」等文字标签",
+      "MW 作品详情：「MW 版本」前加注 SMWP（MW 4.0 / 4.4 除外），不再显示「标签」一节；自带 MW 的作品，运行环境提示改为「本作品自带」",
+      "MF 作品详情（中文）恢复旧版下载弹框的「游玩说明」：按安装程序 / .exe / .apk / macOS / Linux / 压缩包给出运行提示，手机端另有对应说明",
+      "作品详情：作者信息旁新增「查看该作者的全部作品」，点击后用第一作者名筛选目录（国内 MF 作品由此也能查看同作者作品）；有资源站作者目录的作品另提供「浏览作者资源站目录」链接，MW 多作者作品则改为筛选「合作作品」",
+      "MW 目录的作者搜索支持「合作作品」，输入该词即可一次筛出全部多作者关卡",
+      "侧边栏底部新增「关于本站」页面"
+    ],
+    improvements_en: [
+      "Drawers and the rail size to the dynamic viewport and reserve bottom safe-area space, so a browser's bottom bar no longer covers content; scrolling inside a drawer no longer moves the page behind it",
+      "Catalog list: the Chinese interface no longer shows the English secondary title; on phones the author, version and date collapse into one small line under the title (MW versions carry the SMWP prefix); the \"N versions\" badge is gone once every version is listed separately",
+      "Catalog list and card images are now 4:3; the card slider supports touch swiping and scales to the container so the current picture is always fully visible",
+      "The rail is wider: 244px on desktop (was 208px), matching the phone drawer, and 208px in the 861-1024px range (was 176px)",
+      "The logo now appears with \"Download Portal\" beside it; at the narrowest rail the mark shrinks instead of squeezing the wording",
+      "The original MF download table's rating uses the site accent colour, and the installer and portable buttons gain a hover tint",
+      "MW records without artwork now use the MarioWorker mark as their placeholder, drawn larger inside the tile",
+      "The chosen list/card view is remembered across catalogs, reloads and the two interface designs",
+      "The default sort and the File Hub direct-link switch in Global settings now apply immediately, without reloading the page",
+      "The MW levels catalog shows its Mark column again, and the bundled-MW / BGM pills in cards and the detail drawer now use the same colours as the list",
+      "The assets catalog shows its Type column again, with a coloured marker per type (engine, addon, effect, sprite, tool, MW tool) in both the list and cards; on cards the marker sits to the right of the date",
+      "The Softendo catalog's Series column now uses the same coloured markers (Mario / MFF / Flash / Non-Mario / Banesoft) in the list and on cards",
+      "The Softendo catalog gains a Made with filter for Flash, Clickteam Fusion, GameMaker and Other, which stacks with the series and language filters",
+      "In a Softendo record's drawer, Series now shows the formal name (e.g. Mario Forever Flash) instead of the internal slug",
+      "The detail drawer's Versions & downloads and Data package blocks share one frame, with each file name followed by its own size across MF, MW, assets",
+      "The release post moved into Versions & downloads and follows the selected version; buttons name the hosting site, the primary or alternate post leads according to the language, and the list icon uses the same per-version, per-language link",
+      "With \"list every version separately\" on, the drawer shows only that build's downloads and release post, while list, cards and drawer prefer that version's title screenshot, the version number appears at the top and the date label becomes Released",
+      "The MW catalog regains its release post, MW download, music pack and data package buttons by using the same normalised data as the legacy design; the drawer labels multi-author levels as a collaboration while the facts section still lists every author",
+      "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels",
+      "MW details now prefix the MW version with SMWP (MW 4.0 / 4.4 excepted), no longer show the Tags section, and say the level \"Comes with\" its MW when one is bundled",
+      "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint",
+      "Detail drawers offer \"View all their works\" beside the author, filtering the catalog by the first author's name (now including domestic MF works); records with a File Hub author folder also link \"Open the author's folder (File Hub)\", while multi-author MW levels filter the collaboration label instead",
+      "The MW catalog's author search accepts 合作作品, listing every multi-author level in one step",
+      "A new About & Contact page at the bottom of the rail"
+    ],
+    fixes: [
+      "修复有简介的作品在文档页不显示截图的问题：简介与图片原先互斥，导致带简介的条目（如 Mario Forever v4.4 Fixed Speedrun Edition、Spectrum Engine）只剩文字",
+      "修复窄屏侧栏抽屉打开时切换页面偶尔被弹回原页面的问题：抽屉收起与路由跳转争用同一条浏览器历史记录，目标页打开后随即被撤销",
+      "修复收回作品详情后地址栏仍保留 ?id= 参数的问题：关闭抽屉时的历史回退会恢复打开时写入的地址",
+      "修复新版各页「最后更新」在数据更新后不刷新的问题：改为与旧版一致，运行时查询 GitHub 最新提交，数据单独部署、不重新构建时也能显示正确日期",
+      "修复原版 MF 下载表格把 3.5 星显示成 3 星的问题：末尾的半星现在以较淡的主题色单独显示",
+      "修复作品详情中下载按钮重复显示提取码的问题，并在提取码徽标前标注「提取码 / Code」",
+      "修复 MW 工具类创作资源的占位图：改用 MarioWorker 标识",
+      "修复桌面端详情抽屉打开时页面滚动条仍可见、可被拖动从而滚动背后列表的问题：抽屉展开期间隐藏页面滚动条并保留等宽留白，布局不会发生位移",
+      "修复带 ?id= 的分享链接打开时不展开作品详情的问题：新版路由启动时替换地址会丢弃查询参数，现在只在真正切换页面时清理",
+      "修复 Softendo 详情中自定义颜色下载按钮没有悬停反馈的问题：悬停时保持原色相并加深背景与边框",
+      "修复 MW 详情「版本与下载」按钮上方出现空白的问题：空的版本名与信息行不再占位",
+      "修复 MW「运行要求」筛选未纳入同时自带 MW 与需替换 BGM 的作品的问题：这两项要求现在可以同时命中",
+      "修复标题搜索无法匹配下载文件名的问题：文件名改按单个文件加入索引，多文件 / 分卷版本同样可搜",
+      "修复 Softendo 详情在作品同时使用多个制作软件时显示原始标识的问题：现改为显示软件全称（如 Flash, Clickteam Fusion）"
+    ],
+    fixes_en: [
+      "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
+      "Fixed pages occasionally bouncing back to the one being left when switching tabs from the phone rail drawer: closing the drawer and the route change raced over the same history entry, so the new page was opened and then undone right away",
+      "Fixed the ?id= parameter staying in the address bar after closing a record's detail drawer: unwinding the drawer's history entry restored the address written when it opened",
+      "Fixed the redesigned pages showing a stale \"Last updated\" date after data-only deployments: the newest GitHub commit is now queried at runtime, like the legacy design",
+      "Fixed the original MF download table rendering a 3.5-star rating as 3 stars: the trailing half star is now drawn in a lighter shade of the accent colour",
+      "Fixed download buttons in the detail drawer showing the extraction code twice, and labelled the code badge with 提取码 / Code",
+      "Fixed the placeholder for MW-tool assets: they now use the MarioWorker mark",
+      "Fixed the page scrollbar staying visible beside an open detail drawer on desktop, where dragging its thumb still scrolled the catalog behind; the scrollbar is hidden while an overlay is open, with its width reserved so the layout does not shift",
+      "Fixed shared ?id= links opening without the record's detail drawer: the redesigned router's startup URL normalisation dropped the query string, which is now kept unless the page really changes",
+      "Fixed tone-coloured download buttons in Softendo details having no hover feedback: they now deepen their background and border while keeping their hue",
+      "Fixed the empty strip above the downloads in MW details: empty version-name and meta lines no longer take up space",
+      "Fixed the MW Runtime filter leaving out levels that both bundle their MW and need a custom BGM: the two requirements can now match together",
+      "Fixed the title search ignoring download file names: each file is indexed on its own, including multi-file and multi-volume builds",
+      "Fixed Softendo details showing raw slugs when a game lists several makers; the full names are now shown (e.g. Flash, Clickteam Fusion)"
+    ],
+    misc: [
+      "英文版侧栏的站点名称补全为完整称呼（如 Mario Forever Community File Hub、Cloud Lounge Discord Server），中文版 B 站 / 抖音条目改用 Mario Forever 全称"
+    ],
+    misc_en: [
+      "Full names in the English rail labels (e.g. Mario Forever Community File Hub, Cloud Lounge Discord Server)"
+    ]
+  },
+  {
+    version: "3.0.0-beta.0",
+    date: "2026-11-14",
+    features: [
+      "全新界面设计：白色主区域 + 灰色导航栏与常驻筛选面板，紧凑列表 / 卡片双视图，深浅色模式",
+      "搜索拆分为标题（含别名、文件名）与作者两栏，各自独立匹配",
+      "新增「发布时间」筛选：按年份多选或按日期区间（精确到日）二选一，附今年 / 去年 / 近 30 天快捷项",
+      "地区、平台、制作软件、年份、MW 版本等筛选均为多选；标签支持任一 / 同时 / 排除三态",
+      "作品详情改为右侧抽屉，可逐条对比而不离开列表；文档页中的作品条目可原地展开",
+      "页面标题显示在顶栏，页脚移入左侧导航栏；全局设置可在新旧两套界面间切换",
+      "新版界面改为单页应用：切换页面不再刷新文档，URL 与浏览器前进 / 后退保持同步，内容区有淡入过渡而导航栏与顶栏保持不动",
+      "各作品目录页新增「目录说明」抽屉，页面原有的说明文档可从顶栏按钮展开阅读，其中的致谢、音乐包放置说明等内容原地展开为卡片",
+      "移动端筛选面板与导航栏均改为抽屉，选择导航项后自动收起；抽屉、全屏弹窗与图片预览支持 Android 返回键关闭",
+      "目录页显示数据「最后更新」，结果栏横跨筛选栏上方；Softendo 目录的「系列」列支持排序"
+    ],
+    features_en: [
+      "A completely new interface: white content canvas with a grey navigation rail and a persistent filter sidebar, list/card views and dark mode",
+      "The search splits into two independent fields — titles (aliases and filenames included) and authors",
+      "A new Release date filter: multiple years or an exact date range down to the day, with this year / last year / last 30 days shortcuts",
+      "Region, platform, software, year and MW version filters are multi-select; tags support any / all / exclude states",
+      "Game details open in a right-side drawer so records can be compared without leaving the list; embedded previews in the documentation expand in place",
+      "The page title sits in the topbar and the footer moved into the left rail; global settings switch between the two designs",
+      "The new interface is a single-page app: switching pages no longer reloads the document, the URL stays in sync with the back/forward buttons, and the content area fades while the rail and topbar stay still",
+      "Each catalog page gains an About drawer where the page's own write-up opens from a topbar button, and blocks it links to (credits, the data-package note) expand in place as cards",
+      "On phones the filter pane and the navigation rail both became drawers that close after choosing an entry; drawers, full-screen dialogs and the image viewer close on the Android back button",
+      "Catalog pages show when their data was last updated, and the results bar spans the full width above the filter pane; the Softendo catalog's Series column is sortable"
+    ],
+    improvements: [],
+    improvements_en: [],
+    fixes: [
+      "J2ME 版本的作品现在能正确识别",
+      "下载提示补充 Java、Linux、macOS 版本的说明，Java 版不再显示无关的压缩包提示",
+      "新增「AI 生成」「移植」两个标签",
+      "MW 4.0 作品的作者链接改用 Mario Worker 4.4 的资源站目录"
+    ],
+    fixes_en: [
+      "J2ME builds are now detected correctly",
+      "Download tooltips explain the Java, Linux and macOS builds; Java versions no longer show an unrelated archive hint",
+      "Added the AI Generated and Port tags",
+      "Mario Worker 4.0 author links now point at the Mario Worker 4.4 File Hub folder"
+    ],
+    misc: [
+      "移除 123 网盘链接，「备用地址」统一改称「备用链接」",
+      "移动端中文版 Softendo 页使用侧栏短标题"
+    ],
+    misc_en: [
+      "Removed 123pan links and renamed the secondary-address wording to secondary link throughout",
+      "The Chinese Softendo page uses the short sidebar title on phones"
+    ]
+  },
+  {
     version: "2.5.3",
     date: "2026-10-07",
     features: [
