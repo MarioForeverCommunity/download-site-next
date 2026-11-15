@@ -144,7 +144,8 @@ function resolveImages(imageIndex, category, entry) {
 
 function readDescriptionFiles(category, dirName) {
   if (!dirName) return { default: null, zh: null, en: null, files: [] };
-  const baseDir = join(dataDir, category, dirName);
+  // image-index.json 里的目录名已做 URL 转义（# -> %23），读取磁盘文件时还原
+  const baseDir = join(dataDir, category, dirName.replace(/%23/gi, '#'));
   const names = ['description.md', 'description_zh.md', 'description_en.md'];
   const result = { default: null, zh: null, en: null, files: [] };
   for (const name of names) {

@@ -24,6 +24,16 @@ function sanitizeName(name) {
   return sanitized.trim();
 }
 
+// 目录名 / 图片名会直接拼进 URL，'#' 会被浏览器当作片段起始符导致请求 404，需转义为 %23
+function escapeUrlName(name) {
+  return name.replace(/#/g, '%23');
+}
+
+// 诊断输出需要与磁盘上的真实目录名比较，先把转义还原
+function unescapeUrlName(name) {
+  return name.replace(/%23/gi, '#');
+}
+
 function getImageFiles(dir) {
   if (!existsSync(dir)) {
     return [];
@@ -124,10 +134,10 @@ function buildGameImageMapping(list, subdirs, baseDir) {
     if ((images && images.length > 0) || descriptions) {
       mapping[gameName] = mapping[gameName] || [];
       const entryInfo = {
-        dirName,
+        dirName: escapeUrlName(dirName),
         occurrenceIndex,
         authorKey,
-        images: images || []
+        images: (images || []).map(escapeUrlName)
       };
       if (descriptions) {
         entryInfo.descriptions = descriptions;
@@ -158,7 +168,7 @@ function buildSoftendoImageMapping(list, subdirs, directImages) {
     if (images.length > 0) {
       mapping[gameName] = {
         dirName: '',
-        images
+        images: images.map(escapeUrlName)
       };
     }
   }
@@ -207,7 +217,7 @@ function generateImageIndex() {
   const mfUsedDirs = new Set();
   for (const infoArray of Object.values(mfMapping)) {
     for (const info of infoArray) {
-      mfUsedDirs.add(info.dirName);
+      mfUsedDirs.add(unescapeUrlName(info.dirName));
     }
   }
   const mfUnusedDirs = Object.keys(mfSubdirs).filter(d => !mfUsedDirs.has(d));
@@ -219,7 +229,7 @@ function generateImageIndex() {
   const mwUsedDirs = new Set();
   for (const infoArray of Object.values(mwMapping)) {
     for (const info of infoArray) {
-      mwUsedDirs.add(info.dirName);
+      mwUsedDirs.add(unescapeUrlName(info.dirName));
     }
   }
   const mwUnusedDirs = Object.keys(mwSubdirs).filter(d => !mwUsedDirs.has(d));
@@ -231,7 +241,7 @@ function generateImageIndex() {
   const softendoUsedImages = new Set();
   for (const info of Object.values(softendoMapping)) {
     for (const img of info.images) {
-      softendoUsedImages.add(img);
+      softendoUsedImages.add(unescapeUrlName(img));
     }
   }
   const softendoUnusedImages = softendoImages.filter(img => !softendoUsedImages.has(img));
