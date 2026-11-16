@@ -2008,6 +2008,40 @@ body.nx-body select:focus-visible {
   color: var(--nx-ink);
 }
 
+.nx-head-actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Copy confirmation for the drawer's share action: a small popup above the
+   bottom edge, outside the drawer so its scrolling cannot clip it. */
+.nx-share-toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  z-index: 70;
+  /* Centred by the auto margins rather than a translate, so the fade
+     transition's `transform: none` reset cannot shift it. */
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 9px 14px;
+  border: 1px solid var(--nx-line);
+  border-radius: var(--nx-r);
+  background: var(--nx-canvas);
+  box-shadow: var(--nx-shadow-3);
+  font-size: 12.5px;
+  color: var(--nx-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
 .nx-section + .nx-section {
   margin-top: 18px;
   padding-top: 16px;

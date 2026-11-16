@@ -117,6 +117,29 @@ export async function navigateTo(pageId, options = {}) {
   return true;
 }
 
+/**
+ * Absolute URL of an entry page, optionally carrying query parameters.
+ *
+ * Unlike `navigateTo`, this only builds the address: callers can point at
+ * another entry (a share link to a record's catalog) without leaving the page
+ * they are on.
+ *
+ * @param {string} pageId - id from ROUTES
+ * @param {object} [query] - query parameters to set; null / "" removes one
+ */
+export function buildPageUrl(pageId, query) {
+  const route = ROUTES[pageId];
+  if (!route || typeof window === "undefined") return "";
+  const url = new URL(route.href, window.location.href);
+  if (query) {
+    for (const [key, value] of Object.entries(query)) {
+      if (value == null || value === "") url.searchParams.delete(key);
+      else url.searchParams.set(key, String(value));
+    }
+  }
+  return url.toString();
+}
+
 // Should this click be handled by the router at all?
 function handleableLink(event, anchor) {
   if (!anchor || !anchor.getAttribute) return false;

@@ -18,6 +18,7 @@ import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
+import { buildPageUrl } from "../../util/next/router.js";
 
 const props = defineProps({
   record: {
@@ -27,6 +28,12 @@ const props = defineProps({
   lan: {
     type: String,
     required: true
+  },
+  // A deep link that names one build (`<record id>::<verKey>`) opens the record
+  // with that version already selected in the picker.
+  versionKey: {
+    type: String,
+    default: null
   }
 });
 
@@ -125,6 +132,8 @@ const text = computed(() => (props.lan === "zh"
     homepage: "主页",
     repo: "源代码",
     download: "下载",
+    share: "分享",
+    shareCopied: "作品链接已复制",
     esc: "按 Esc 关闭",
   }
   : {
@@ -169,14 +178,19 @@ const text = computed(() => (props.lan === "zh"
     homepage: "Homepage",
     repo: "Repository",
     download: "Download",
+    share: "Share",
+    shareCopied: "Link copied",
     esc: "Press Esc to close",
   }));
 
-watch(() => props.record, (next) => {
+watch([() => props.record, () => props.versionKey], ([next, versionKey]) => {
   const versions = next && next.versions ? next.versions : [];
+  // A build named by the deep link wins over "latest", so a shared link opens
+  // the panel it was copied from rather than the newest one.
+  const requested = versionKey ? versions.find((v) => v.verKey === versionKey) : null;
   const current = next && next.expandedFrom && next.current
     ? next.current
-    : (versions.find((v) => v.latest) || versions[0] || null);
+    : (requested || versions.find((v) => v.latest) || versions[0] || null);
   activeVersion.value = current ? current.verKey : null;
   lightbox.value = null;  if (next) {
     requestAnimationFrame(() => {
@@ -537,6 +551,43 @@ function onDownloadClick(event, item) {
   copiedTimer = setTimeout(() => { copiedCode.value = ""; }, 2400);
 }
 
+// ── share ──────────────────────────────────────────────────
+// The shared address must name the catalog that owns the record, not the page
+// the drawer happens to be open on: a documentation page embeds the same drawer
+// through NxEntryPreview (see NxEntry.vue), and its own address cannot reopen
+// the record. `design=next` is kept because only the redesigned catalog reads
+// the `?id=` deep link — a recipient still on the legacy UI would otherwise land
+// on a page where the drawer never opens.
+const KIND_PAGE = {
+  mf: "mf-games",
+  mw: "mw-levels",
+  asset: "assets",
+  softendo: "softendo",
+};
+
+const shareHint = ref("");
+let shareTimer = null;
+
+function shareUrl() {
+  const record = props.record;
+  if (!record) return "";
+  const pageId = KIND_PAGE[record.kind];
+  if (!pageId) return "";
+  return buildPageUrl(pageId, { design: "next", id: record.id });
+}
+
+function onShare() {
+  const url = shareUrl();
+  if (!url) return;
+  writeClipboard(url);
+  shareHint.value = text.value.shareCopied;
+  if (shareTimer) clearTimeout(shareTimer);
+  shareTimer = setTimeout(() => { shareHint.value = ""; }, 2400);
+}
+
+// A toast left over from the previous record must not greet the next one.
+watch(() => props.record, () => { shareHint.value = ""; });
+
 // ── file size (restored from the legacy modal) ─────────────
 // Sizes of the selected version's downloads and data packages, keyed by URL
 // (only the File Hub exposes a size; netdisk mirrors have no public metadata).
@@ -686,6 +737,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onKeydown);
   window.removeEventListener("resize", updateIsMobile);
+  if (shareTimer) clearTimeout(shareTimer);
   if (releaseBack) releaseBack();
   releaseScroll();
   if (themeObserver) {
@@ -743,17 +795,33 @@ onBeforeUnmount(() => {
               </template>
             </div>
           </div>
-          <button
-            class="nx-close"
-            type="button"
-            :aria-label="text.esc"
-            @click="emit('close')"
-          >
-            <NxIcon
-              name="close"
-              :size="15"
-            />
-          </button>
+          <div class="nx-head-actions">
+            <!-- Share sits to the left of close: it copies the drawer's own deep
+                 link, so the recipient lands on this record. -->
+            <button
+              class="nx-close"
+              type="button"
+              :aria-label="text.share"
+              :title="text.share"
+              @click="onShare"
+            >
+              <NxIcon
+                name="share"
+                :size="14"
+              />
+            </button>
+            <button
+              class="nx-close"
+              type="button"
+              :aria-label="text.esc"
+              @click="emit('close')"
+            >
+              <NxIcon
+                name="close"
+                :size="15"
+              />
+            </button>
+          </div>
         </div>
 
         <div class="nx-drawer-body">
@@ -1201,6 +1269,21 @@ onBeforeUnmount(() => {
           alt=""
         />
       </button>
+    </Transition>
+
+    <!-- Outside the drawer so its overflow cannot clip the popup. -->
+    <Transition name="nx-fade">
+      <div
+        v-if="shareHint"
+        class="nx-share-toast"
+        role="status"
+      >
+        <NxIcon
+          name="check"
+          :size="13"
+        />
+        {{ shareHint }}
+      </div>
     </Transition>
   </Teleport>
 </template>

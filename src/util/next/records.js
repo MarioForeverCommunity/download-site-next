@@ -359,7 +359,9 @@ export function buildMfRecords(entries, lan) {
       || versions[0] || null;
     const names = authorNames(entry, lan);
     const rawNames = authorNames(entry, "zh");
-    const id = `mf::${entry.game}::${rawNames.join("|")}::${entry.type || ""}`;
+    // Region (`chinese` / `international`) is deliberately not part of the id:
+    // a work has exactly one region, so it never distinguishes two records.
+    const id = `mf::${entry.game}::${rawNames.join("|")}`;
 
     const { image, images } = collectImages(entry, "mf-games", current ? current.verKey : currentVerStr);
 
@@ -731,7 +733,11 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     : "";
 
   return {
-    id: `asset::${entry.name}::${variantKey}`,
+    // A variant name repeats across versions (Rainbow Engine ships "含开始页"
+    // for 0.10.7.1, 0.10.7.0 and 0.10.6.1), so the version is part of the
+    // record identity. Without it those rows share one id, and a deep link can
+    // only ever open the first of them.
+    id: `asset::${entry.name}::${variantKey}::${cleanVersionLabel(variant.ver)}`,
     kind: "asset",
     name: getName(entry, lan),
     nameZh: entry.name,

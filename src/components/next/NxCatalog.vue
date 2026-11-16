@@ -125,11 +125,13 @@ const current = computed(() => {
 });
 
 function open(record) {
+  deepLinkVersion.value = null;
   props.catalog.setActive(record.id);
   updateUrl(record);
 }
 
 function close() {
+  deepLinkVersion.value = null;
   props.catalog.setActive(null);
   updateUrl(null);
 }
@@ -193,6 +195,24 @@ watch(() => props.catalog.authorQuery.value, (value) => {
   window.history.replaceState({}, "", url.toString());
 });
 
+// A deep link can name one build (`<record id>::<verKey>`), which is the id of a
+// row produced by expandMfRecord — that is what the drawer's share link contains
+// when it was copied from a version row. Those rows only exist in the list when
+// the visitor turns "list every version" on, so the base record is matched by
+// the suffix and the drawer opens with that version selected.
+const deepLinkVersion = ref(null);
+
+function findVersionDeepLink(records, id) {
+  for (const record of records) {
+    for (const version of record.versions || []) {
+      if (`${record.id}::${version.verKey}` === id) {
+        return { record, verKey: version.verKey };
+      }
+    }
+  }
+  return null;
+}
+
 // ?id= for the new design, and the legacy ?game= / ?asset= slugs, so a link
 // copied from either interface keeps working after switching.
 function readDeepLink() {
@@ -211,6 +231,12 @@ function readDeepLink() {
     const record = records.find((item) => item.id === id);
     if (record) {
       props.catalog.setActive(record.id);
+      return;
+    }
+    const build = findVersionDeepLink(records, id);
+    if (build) {
+      deepLinkVersion.value = build.verKey;
+      props.catalog.setActive(build.record.id);
       return;
     }
   }
@@ -658,6 +684,7 @@ defineExpose({ randomRecord, open });
       <NxDetail
         :record="current"
         :lan="lan"
+        :version-key="deepLinkVersion"
         @close="close"
         @search-author="searchAuthor"
       />

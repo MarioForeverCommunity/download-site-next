@@ -59,6 +59,8 @@ const PATHS = {
   hammer: ["M7 4h10v4H7z", "M11 8h2v12h-2z"],
   // Envelope — the About & Contact entry.
   mail: ["M4 6h16v12H4z", "M4 7l8 6 8-6"],
+  // Three linked nodes — the drawer's share action.
+  share: ["M9 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0", "M20 6a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0", "M20 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0", "M8.4 10.7l7.2-3.4", "M8.4 13.3l7.2 3.4"],
 };
 
 const paths = computed(() => PATHS[props.name] || []);
