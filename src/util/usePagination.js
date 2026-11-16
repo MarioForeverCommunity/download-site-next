@@ -1,5 +1,6 @@
 import { ref, computed, watch } from "vue";
 import { getPageSize } from "./Language.js";
+import { readPageParam, writePageParam } from "./PageParam.js";
 
 /**
  * Client-side pagination for the legacy catalog pages.
@@ -8,11 +9,18 @@ import { getPageSize } from "./Language.js";
  * settings dialog's "records per page"), so a visitor's choice applies to both
  * designs. A size of 0 means "show everything".
  *
+ * The current page is mirrored in the URL (`?page=`) through PageParam.js, the
+ * same parameter the redesigned catalogs use.
+ *
  * @param {import("vue").ComputedRef<Array>} list - the filtered list to page
  */
 export function usePagination(list) {
   const pageSize = getPageSize();
-  const page = ref(1);
+  // The list is filled asynchronously after the page mounts, so the page named
+  // by the URL is held here until the first non-empty result arrives.
+  const requestedPage = readPageParam();
+  const page = ref(requestedPage);
+  let pageFromUrlPending = requestedPage > 1;
 
   const total = computed(() => list.value.length);
 
@@ -32,15 +40,25 @@ export function usePagination(list) {
     page.value = Math.min(Math.max(1, next), pageCount.value);
   }
 
-  // A new filter, search or sort result starts over from the first page.
+  // A new filter, search or sort result starts over from the first page — but
+  // the list arriving for the first time keeps the page the URL asked for.
   watch(list, () => {
-    page.value = 1;
+    if (pageFromUrlPending && list.value.length > 0) {
+      pageFromUrlPending = false;
+      page.value = Math.min(requestedPage, pageCount.value);
+    } else {
+      page.value = 1;
+    }
   });
 
   // A larger page size can leave the index past the end of the list.
   watch(pageSize, () => {
     page.value = Math.min(page.value, pageCount.value);
   });
+
+  // Keep the address in step with the visible page so a reload or a copied link
+  // returns to the same page.
+  watch(page, (value) => writePageParam(value));
 
   return { page, pageCount, paged, setPage };
 }

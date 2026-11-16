@@ -1,5 +1,6 @@
 import { ref, computed, watch } from "vue";
 import { getDefaultSort, getDisplayMode, getPageSize, setDisplayModeCard, setDisplayModeLine } from "./Language.js";
+import { readPageParam, writePageParam } from "./PageParam.js";
 
 /**
  * Catalog state for the redesigned list pages.
@@ -59,10 +60,15 @@ export function useCatalog({
   });
   const activeId = ref(null);
   // Pagination: the page size is a global preference (settings drawer), 0 means
-  // "show everything". The page index is per-catalog state; any filter or sort
-  // change starts over from the first page (see the `filtered` watcher).
+  // "show everything". The page index is per-catalog state and is mirrored in
+  // the URL (`?page=`); any filter or sort change starts over from the first
+  // page (see the `filtered` watcher).
   const pageSize = getPageSize();
-  const page = ref(1);
+  // Records load after this composable is created, so the page named by the URL
+  // is held here until the first non-empty result arrives.
+  const requestedPage = readPageParam();
+  const page = ref(requestedPage);
+  let pageFromUrlPending = requestedPage > 1;
   // Stable id so form labels in the filter pane can point at their inputs.
   const uid = Math.random().toString(36).slice(2, 8);
 
@@ -430,6 +436,10 @@ export function useCatalog({
     page.value = Math.min(Math.max(1, next), pageCount.value);
   }
 
+  // Keep the address in step with the visible page so a reload or a copied link
+  // returns to the same page (both designs read it back through PageParam.js).
+  watch(page, (value) => writePageParam(value));
+
   // A larger page size can leave the index past the end of the list.
   watch(pageSize, () => {
     page.value = Math.min(page.value, pageCount.value);
@@ -444,7 +454,14 @@ export function useCatalog({
 
   // A filtered-out record must not stay open with stale content.
   watch(filtered, (list) => {
-    page.value = 1;
+    if (pageFromUrlPending && list.length > 0) {
+      // The list arriving for the first time is not a filter change: keep the
+      // page the URL asked for instead of resetting to the first one.
+      pageFromUrlPending = false;
+      page.value = Math.min(requestedPage, pageCount.value);
+    } else {
+      page.value = 1;
+    }
     if (activeId.value == null) return;
     if (!list.some((record) => record.id === activeId.value)) {
       activeId.value = null;

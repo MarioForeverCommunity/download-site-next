@@ -130,9 +130,9 @@ src/pages/<entry>/main.js
 
 ### 6.4 目录、详情与文档
 
-- 四个目录页共用 `src/util/useCatalog.js`（标题 / 作者双搜索、多选筛选、三态标签、年份或日期区间、排序、分页、`activeId`）与 `NxCatalog.vue`（筛选栏 + 结果栏 + 列表/卡片 + 详情抽屉 + 分页）。
+- 四个目录页共用 `src/util/useCatalog.js`（标题 / 作者双搜索、多选筛选、三态标签、年份或日期区间、排序、分页、`activeId`）与 `NxCatalog.vue`（筛选栏 + 结果栏 + 列表/卡片 + 详情抽屉 + 分页）。旧版目录页用 `src/util/usePagination.js`，两者都通过 `src/util/PageParam.js` 把当前页码同步到 URL（`?page=`，第 1 页省略）。
 - 记录模型在 `src/util/next/records.js`：平台、制作软件、`old-versions`、variant 拆分等规则必须与旧版 `src/pages/mf-games/MfGames.vue` 和 `scripts/generate-api.js` 保持一致；三处同步修改。
-- 直达链接：`?id=<record id>`；版本级 `<record id>::<verKey>`；文档页「查看该作者的全部作品」用 `?author=`；旧版 `?game=` / `?asset=` 仍被识别。详情抽屉的分享按钮复制 `?design=next&id=...`，确保收件人打开新版目录并展开该记录。
+- 直达链接：`?id=<record id>`；版本级 `<record id>::<verKey>`；文档页「查看该作者的全部作品」用 `?author=`；分页页码用 `?page=<n>`（新旧版共用，第 1 页不写此参数）；旧版 `?game=` / `?asset=` 仍被识别。详情抽屉的分享按钮复制 `?design=next&id=...`，确保收件人打开新版目录并展开该记录。
 - 文档页把 Markdown 中的 `<MfGamesEntry>` / `<AssetsEntry>` / `<SoftendoEntry>` 映射为 `NxEntry*`（`src/util/next/docComponents.js`），条目可原地展开详情；`DesignMfTable.vue` 按当前设计切换原版 MF 下载表格。
 - 「最后更新」由 `src/util/next/docUpdated.js` 在运行时查询 GitHub commits API（请求失败则隐藏该行），不是构建期注入。
 
