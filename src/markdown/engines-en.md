@@ -72,7 +72,7 @@ In 2020, Clickteam Fusion 2.5+ was released to allow sub-events and referencing 
 <AssetsEntry name="Super Mario Ultra Edition" variant="Full" /><AssetsEntry name="Super Mario Ultra Edition" variant="Mod" />
 
 #### Factory Engine
-This is the engine used by <a href="https://download.marioforever.net/mf-games.html?game=mario-forever-irrational-travel-det-factory">Mario Forever Irrational Travel</a>, a fangame of DET Factory, based on Rainbow Engine with many optimizations.
+This is the engine used by <a href="https://download.marioforever.net/mf-games.html?design=next&id=mf%3A%3AMario+Forever+Irrational+Travel%3A%3ADET+Factory">Mario Forever Irrational Travel</a>, a fangame of DET Factory, based on Rainbow Engine with many optimizations.
 
 <AssetsEntry name="Factory Engine" />
 
