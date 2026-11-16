@@ -240,10 +240,13 @@ export function useCatalog({
       active.push({ type: "date", key: "date", label: `${rangeLabel.value}${from} – ${to}` });
     }
     // Tag pills carry the same +/− markers as the chips themselves, with the
-    // same breathing room between marker and name.
+    // same breathing room between marker and name. The display name must come
+    // from the localized tag list: the raw key stays the filter identity.
+    const tagLabels = new Map(tagList.value.map((item) => [item.tag, item.label]));
     for (const [tag, state] of Object.entries(tagStates.value)) {
       const marker = state === "not" ? "−" : state === "and" ? "+" : "";
-      active.push({ type: "tag", key: tag, state, label: marker ? `${marker} ${tag}` : tag });
+      const name = tagLabels.get(tag) || tag;
+      active.push({ type: "tag", key: tag, state, label: marker ? `${marker} ${name}` : name });
     }
     return active;
   });
