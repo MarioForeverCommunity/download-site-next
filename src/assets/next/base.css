@@ -1381,7 +1381,7 @@ body.nx-body select:focus-visible {
 
 .nx-thumb {
   /* 4:3, matching the card view and the screenshots themselves: a 52x34 box was
-     wider than the artwork and cropped it. */
+     wider than the image and cropped it. */
   width: 48px;
   height: 36px;
   flex: none;
@@ -2848,7 +2848,7 @@ html .nx-doc td {
   border: 1px solid var(--nx-line);
 }
 
-/* Entry-card artwork sits in its own filler frame; a hairline border on top of
+/* Entry-card image sits in its own filler frame; a hairline border on top of
    that frame reads as a double outline, so it is removed there. */
 .nx-doc .nx-entry img,
 .nx-doc .nx-entry-gallery img,

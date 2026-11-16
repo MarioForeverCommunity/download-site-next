@@ -196,7 +196,7 @@ function withoutCode(desc) {
   return desc.replace(/\s*\((提取码|密码|Code)\s*[:：][^)]*\)/g, "").trim();
 }
 
-// The title image must be first in the gallery (it is the recognisable artwork),
+// The title image must be first in the gallery (it is the recognisable image),
 // followed by the showcase shots in natural order.
 function collectImages(entry, category, verKey) {
   const probe = verKey ? { ...entry, currentVerStr: verKey } : entry;
@@ -438,7 +438,7 @@ export function expandMfRecord(record) {
   return record.versions.map((version, index) => {
     // Each row represents one build, so it prefers that build's own title
     // screenshot (`title_<version>.*`); collectImages falls back to the shared
-    // title when the artwork folder has no version-specific file.
+    // title when the image folder has no version-specific file.
     const { image, images } = collectImages(record.raw, "mf-games", version.verKey);
     return {
       ...record,

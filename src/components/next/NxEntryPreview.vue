@@ -3,7 +3,7 @@
 //
 // Two things matter here and were missing from the first iteration:
 //  1. the title image and the full showcase slider come back, paginated in
-//     normal flow so the dots never sit on top of the artwork;
+//     normal flow so the dots never sit on top of the image;
 //  2. "查看详情" opens the record's detail drawer *in place* — the visitor stays
 //     on the doc page instead of being bounced to the catalog.
 import { ref, computed } from "vue";
@@ -179,16 +179,16 @@ const repoUrl = computed(() => {
         </div>
       </div>
 
-      <!-- Description and artwork are independent. They used to share one
+      <!-- Description and image are independent. They used to share one
            v-if / v-else-if chain, so any record with a description stopped at
            the text branch and never rendered its image — which is why only the
-           entries that happen to have no description showed artwork. -->
+           entries that happen to have no description showed image. -->
       <div
         v-if="record.description"
         class="nx-entry-text"
       >{{ record.description }}</div>
 
-      <!-- no artwork: no image block at all. A placeholder logo inside a card
+      <!-- no image: no image block at all. A placeholder logo inside a card
            reads as a broken image; the catalog keeps its logo placeholder, but a
            card simply omits the media area. -->
       <div
@@ -233,7 +233,7 @@ const repoUrl = computed(() => {
 <style scoped>
   /* The multi-image slider is NxGallery; the single-image preview mirrors its
      frame: same top margin, same filler background (so transparent or
-     letterboxed artwork does not sit on the bare card), and the same 480px cap
+     letterboxed image does not sit on the bare card), and the same 480px cap
      on the picture itself — the card around it stays uncapped. */
   .nx-entry-media.is-single {
     margin-top: 10px;

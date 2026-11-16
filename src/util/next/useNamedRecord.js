@@ -55,7 +55,7 @@ async function resolveMf(props, lan) {
   });
   if (matches.length === 0) return null;
 
-  // Prefer a candidate with artwork, then the newest one — the same rule the
+  // Prefer a candidate with images, then the newest one — the same rule the
   // legacy entry components use to pick between same-named records. The count
   // covers the title image *and* the showcase shots: two records can both have
   // a title image while only one has screenshots, and picking by title alone

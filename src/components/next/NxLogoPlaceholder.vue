@@ -1,5 +1,5 @@
 <script setup>
-// Placeholder shown wherever a record has no artwork.
+// Placeholder shown wherever a record has no images.
 //
 // A grey box reads as "broken"; the site's own logo at 60% opacity reads as
 // "this record simply has no screenshot yet", which is the actual situation for

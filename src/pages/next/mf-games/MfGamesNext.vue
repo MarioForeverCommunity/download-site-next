@@ -246,7 +246,7 @@ publishShellHandlers({
               name="check"
               :size="9"
             /></span>
-            <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with artwork" }}</span>
+            <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with image" }}</span>
           </button>
         </div>
       </section>

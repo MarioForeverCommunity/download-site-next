@@ -63,7 +63,7 @@ export const changelog = [
       "The interface design and global settings now live in local storage: design, language, list/card view, default sort and the File Hub direct-link switch survive browser restarts, and a later release that changes a default no longer overrides a choice a visitor already made",
       "With MF versions collapsed, the small line under a phone row no longer repeats the version number; it returns once \"list every version separately\" is on",
       "Catalog list and card titles take the accent colour on hover, signalling that the whole row or card opens the record",
-      "The legacy design's catalog cards (MF, MW, assets, Softendo), documentation entry cards and the list view's hover preview now lazy-load their artwork: covers are requested as they scroll into view or when the tooltip opens, so long catalogs no longer fetch every image at once"
+      "The legacy design's catalog cards (MF, MW, assets, Softendo), documentation entry cards and the list view's hover preview now lazy-load their images: covers are requested as they scroll into view or when the tooltip opens, so long catalogs no longer fetch every image at once"
     ],
     fixes: [
       "修复桌面端窄屏下侧栏长链接换行后行高未随之增加、与相邻条目上下间距过紧的问题"
@@ -120,7 +120,7 @@ export const changelog = [
       "The rail is wider: 244px on desktop (was 208px), matching the phone drawer, and 208px in the 861-1024px range (was 176px)",
       "The logo now appears with \"Download Portal\" beside it; at the narrowest rail the mark shrinks instead of squeezing the wording",
       "The original MF download table's rating uses the site accent colour, and the installer and portable buttons gain a hover tint",
-      "MW records without artwork now use the MarioWorker mark as their placeholder, drawn larger inside the tile",
+      "MW records without image now use the MarioWorker mark as their placeholder, drawn larger inside the tile",
       "The chosen list/card view is remembered across catalogs, reloads and the two interface designs",
       "The default sort and the File Hub direct-link switch in Global settings now apply immediately, without reloading the page",
       "The MW levels catalog shows its Mark column again, and the bundled-MW / BGM pills in cards and the detail drawer now use the same colours as the list",
@@ -156,7 +156,7 @@ export const changelog = [
       "修复 Softendo 详情在作品同时使用多个制作软件时显示原始标识的问题：现改为显示软件全称（如 Flash, Clickteam Fusion）"
     ],
     fixes_en: [
-      "Fixed missing screenshots on documentation entry cards that have a description: the description and the artwork were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
+      "Fixed missing screenshots on documentation entry cards that have a description: the description and the image were mutually exclusive, so described entries (such as Mario Forever v4.4 Fixed Speedrun Edition and Spectrum Engine) rendered only their text",
       "Fixed pages occasionally bouncing back to the one being left when switching tabs from the phone rail drawer: closing the drawer and the route change raced over the same history entry, so the new page was opened and then undone right away",
       "Fixed the ?id= parameter staying in the address bar after closing a record's detail drawer: unwinding the drawer's history entry restored the address written when it opened",
       "Fixed the redesigned pages showing a stale \"Last updated\" date after data-only deployments: the newest GitHub commit is now queried at runtime, like the legacy design",

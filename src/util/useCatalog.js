@@ -75,7 +75,7 @@ export function useCatalog({
   // ── date filter ────────────────────────────────────────────
   // mode: "year" | "range". Year picks one or more whole years; range takes two
   // ISO dates (inclusive). Only one mode is ever active.
-  // When on, only records that actually have artwork are listed.
+  // When on, only records that actually have images are listed.
   const onlyWithImage = ref(false);
   const dateMode = ref("year");
   const filterYears = ref([]);

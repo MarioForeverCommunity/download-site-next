@@ -578,7 +578,7 @@ onBeforeUnmount(() => {
   }
 
   /* Whole picture, scaled to fill the frame without cropping: small screenshots
-     are enlarged so they do not leave grey bands around the artwork. */
+     are enlarged so they do not leave grey bands around the image. */
   /* The picture scales to the frame while preserving its aspect ratio. A small
      screenshot is enlarged only until one dimension reaches the frame, so it
      never sits as a tiny thumbnail in a 480px band, and a large one is reduced
