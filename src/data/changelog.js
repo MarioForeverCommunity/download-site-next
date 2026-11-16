@@ -5,6 +5,50 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-beta.3",
+    date: "2026-11-17",
+    features: [
+      "新版作品详情面板右上角新增分享按钮（位于关闭按钮左侧）：点击即复制该作品在所属目录中的链接，并在页面底部弹出「作品链接已复制」提示",
+      "新版与旧版的作品目录（MF、MW、创作资源、Softendo）新增分页，每页条数可在全局设置中选择 25 / 50 / 100 / 200 或全部显示，列表与卡片视图共用；通过分享链接或「随机游戏」打开的记录会自动翻到其所在页",
+      "目录分页的当前页码会同步到地址栏（`?page=`）：刷新页面或复制链接后可回到同一页，第 1 页不写该参数，并与 `design`、`id` 等其他参数共存"
+    ],
+    features_en: [
+      "A share button at the top right of the redesigned record drawer, just left of close: it copies the record's link in its own catalog and shows a \"Link copied\" popup at the bottom of the page",
+      "The catalogs (MF, MW, assets, Softendo) are paginated in both designs, with the page size chosen in Global settings (25 / 50 / 100 / 200 or show all) shared by the list and card views; records opened from a shared link or the random button jump to their page",
+      "The current catalog page is mirrored in the address bar (`?page=`), so reloading or sharing the link returns to the same page; the parameter is omitted on the first page and coexists with `design`, `id` and other parameters in both designs"
+    ],
+    improvements: [
+      "分页按钮配色统一：新版当前页使用主题色填充，旧版页码按钮与该版筛选栏的「标签筛选」按钮一致（浅色白底、深色深灰底）",
+      "所有页面的浏览器标题统一为「页面名称 | 站点名称」：中文后缀为「Mario Forever 作品目录站」，英文后缀为「Mario Forever Download Portal」",
+      "预加载中文界面新版侧栏的 Logo（logo_new.png），侧栏 Logo 出现时不再闪空"
+    ],
+    improvements_en: [
+      "Pagination colours are unified: the redesigned catalogs fill the current page with the theme colour, while the legacy pager matches the legacy filter bar's Tags button (white in the light theme, dark grey in the dark theme)",
+      "Every page's browser title now reads \"page name | site name\", with \"Mario Forever 作品目录站\" in Chinese and \"Mario Forever Download Portal\" in English",
+      "The Chinese interface's new rail logo (logo_new.png) is preloaded, so the rail no longer flashes empty before the mark appears"
+    ],
+    fixes: [
+      "修复打开带版本参数的作品链接时无法展开对应版本面板的问题：从某个版本行分享出去的链接现在会打开该作品，并自动选中链接中的版本",
+      "修复创作资源目录中同名变体被合并为同一条记录、无法分别打开的问题",
+      "修复作品卡片与作品详情中的截图轮播不自动播放的问题：多图轮播每 3 秒切换到下一张，手动翻页后重新计时",
+      "修复勾选「每个版本单独列出」后平台与制作软件筛选未精确到版本的问题：筛选 Windows 不再带出同一作品的 Linux 版本，版本级的制作软件也单独生效",
+      "修复展开带截图轮播的作品详情时会播放一次「最后一张滑到第一张」入场动画的问题：轮播现在瞬时定位，只有手动翻页与自动播放带动画"
+    ],
+    fixes_en: [
+      "Fixed version-scoped record links opening without expanding the matching build: a link shared from a version row now opens the record with that version selected",
+      "Fixed same-named asset variants being merged into one record and unable to open individually",
+      "Fixed the screenshot carousel not autoplaying in entry cards and the record drawer: multi-image sliders now advance every 3 seconds, restarting the timer after a manual change",
+      "Fixed the platform and made-with filters matching every build of a game once versions were listed separately: filtering Windows no longer brings up the Linux build, and a version-level engine filters on its own",
+      "Fixed the screenshot carousel playing a last-to-first entrance animation when a record drawer with a slider opened: the strip now positions itself instantly, animating only deliberate page changes and autoplay"
+    ],
+    misc: [
+      "补齐了大部分 Mario Forever 和 Mario Worker 作品的图片和介绍"
+    ],
+    misc_en: [
+      "Added screenshots and descriptions for most Mario Forever and Mario Worker works"
+    ]
+  },
+  {
     version: "3.0.0-beta.2",
     date: "2026-11-15",
     improvements: [
@@ -53,7 +97,7 @@ export const changelog = [
       "MW 作品的占位图改用 MarioWorker 标识，并放大占位图在缩略图中的比例",
       "列表 / 卡片视图的选择会被记住，切换目录、刷新页面或在新旧版界面之间切换后保持",
       "全局设置中的默认排序与资源站直链开关改为即时生效，无需刷新页面",
-      "MW 关卡目录恢复「标记」列；卡片与详情抽屉中的「专用 MW / BGM」标记改用与列表一致的配色",
+      "MW 关卡目录恢复「标记」列；卡片与详情抽屉中的「自带 MW / BGM」标记改用与列表一致的配色",
       "创作资源目录恢复「类型」列：以彩色标识区分引擎 / 拓展 / 特效 / 素材 / 工具 / MW 工具，列表与卡片同步显示，卡片中标识位于日期右侧",
       "Softendo 目录的「系列」列改用彩色标识（Mario / MFF / Flash / Non-Mario / Banesoft），列表与卡片一致",
       "Softendo 目录新增「制作软件」筛选，可按 Flash、Clickteam Fusion、GameMaker、其他筛选，并与系列、语言筛选叠加",
