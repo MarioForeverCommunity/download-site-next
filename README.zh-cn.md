@@ -386,4 +386,6 @@ console.log(games.length)
 
 欢迎有能力的编程者通过 [pull request](https://github.com/MarioForeverCommunity/download-site-next/pulls) 方式协助完善本项目。为了保证上线网站的稳定性，除数据和文档更新外，所有更改请提交至本项目的 `next` 分支。
 
+开发前请先阅读 `AGENTS.md`；新版界面的布局、交互与交接说明见 `DESIGN.md`（新版与旧版界面可随时切换，两者共用同一份数据与构建产物）。
+
 本项目使用 MIT 协议开源。你可以在协议允许的范围内进行修改和部署。

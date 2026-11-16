@@ -387,4 +387,6 @@ See the [API documentation](API.md) for the full field reference and usage examp
 
 Programmers are welcome to help improve this project through [pull requests](https://github.com/MarioForeverCommunity/download-site-next/pulls). To keep the live site stable, all changes other than list, data and documentation updates should be committed to the `next` branch of this repository.
 
+Before making changes, read `AGENTS.md`; the redesigned interface's layout, interactions and hand-off notes are documented in `DESIGN.md` (the two interfaces can be switched at any time and share the same data and build output).
+
 This project is open source under the MIT license. You are free to modify and deploy it within the scope of the license.
