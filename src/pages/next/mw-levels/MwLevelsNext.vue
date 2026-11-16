@@ -168,6 +168,7 @@ publishShellHandlers({
     :lan="lan"
     show-random
     :updated="docUpdated"
+    row-class="is-mw"
     :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
   >
     <template #pane-extras>

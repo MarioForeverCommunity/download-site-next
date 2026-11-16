@@ -75,6 +75,12 @@ const props = defineProps({
   hideVersion: {
     type: Boolean,
     default: false
+  },
+  // Extra class on the header and body rows, so a page can tweak the column
+  // template for its own record shape (MW keeps the original version width).
+  rowClass: {
+    type: String,
+    default: ""
   }
 });
 
@@ -556,7 +562,7 @@ defineExpose({ randomRecord, open });
         >
           <div
             class="nx-row nx-row-head"
-            :class="{ 'is-softendo': !showDate, 'is-no-tags': !showTags, 'is-no-actions': !showActions }"
+            :class="[rowClass, { 'is-softendo': !showDate, 'is-no-tags': !showTags, 'is-no-actions': !showActions }]"
           >
             <button
               type="button"
@@ -617,6 +623,7 @@ defineExpose({ randomRecord, open });
             v-for="record in catalog.pageRecords.value"
             :key="record.id"
             :record="record"
+            :class="rowClass"
             :lan="lan"
             :active="record.id === catalog.activeId.value"
             :show-tags="showTags"

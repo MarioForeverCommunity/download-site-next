@@ -1308,7 +1308,7 @@ body.nx-body select:focus-visible {
    and filter pane) still gives the title its full 400px: the metadata columns
    are sized to their content rather than to the grid's leftover space. */
 .nx-row {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px minmax(120px, 1fr) 132px;
+  --nx-cols: minmax(240px, 400px) minmax(72px, 132px) 128px 82px minmax(120px, 1fr) 132px;
   display: grid;
   grid-template-columns: var(--nx-cols);
   align-items: center;
@@ -1488,7 +1488,7 @@ body.nx-body select:focus-visible {
    the row); the slack goes to the action track, whose buttons are
    right-aligned, so they stay flush with the row's right edge. */
 .nx-row.is-no-tags {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px minmax(132px, 1fr);
+  --nx-cols: minmax(240px, 400px) minmax(72px, 132px) 128px 82px minmax(132px, 1fr);
 }
 
 .nx-row.is-softendo.is-no-tags {
@@ -1498,7 +1498,7 @@ body.nx-body select:focus-visible {
 /* Catalogs that drop the download column (Softendo) lose one track as well;
    the last remaining column absorbs the width so the table still fills. */
 .nx-row.is-no-actions {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px 82px minmax(120px, 1fr);
+  --nx-cols: minmax(240px, 400px) minmax(72px, 132px) 128px 82px minmax(120px, 1fr);
 }
 
 .nx-row.is-softendo.is-no-actions {
@@ -1506,11 +1506,26 @@ body.nx-body select:focus-visible {
 }
 
 .nx-row.is-no-tags.is-no-actions {
-  --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr);
+  --nx-cols: minmax(240px, 400px) minmax(72px, 132px) 128px minmax(120px, 1fr);
 }
 
 .nx-row.is-softendo.is-no-tags.is-no-actions {
   --nx-cols: minmax(240px, 400px) minmax(72px, 108px) 88px;
+}
+
+/* MW levels keep the original version-column width: their labels are short
+   "SMWP x.y" strings, so the wider track the other catalogs gained is not
+   needed. The author column still follows the widened cap. */
+@media (min-width: 1240px) {
+  .nx-row.is-mw {
+    --nx-cols: minmax(240px, 400px) minmax(72px, 132px) 88px 82px minmax(120px, 1fr) 132px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1239px) {
+  .nx-row.is-mw {
+    --nx-cols: minmax(160px, 400px) minmax(72px, 132px) 88px 82px minmax(132px, 1fr);
+  }
 }
 
 .nx-row.is-softendo .nx-cell:nth-child(4) {
@@ -3399,7 +3414,7 @@ html .nx-doc .carousel .carousel__next {
      stay flush right without letting the title swallow the row. */
   .nx-row,
   .nx-row.is-no-tags {
-    --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px 82px minmax(132px, 1fr);
+    --nx-cols: minmax(160px, 400px) minmax(72px, 132px) 128px 82px minmax(132px, 1fr);
   }
 
   .nx-row.is-softendo,
@@ -3409,7 +3424,7 @@ html .nx-doc .carousel .carousel__next {
 
   .nx-row.is-no-actions,
   .nx-row.is-no-tags.is-no-actions {
-    --nx-cols: minmax(160px, 400px) minmax(72px, 108px) 88px minmax(120px, 1fr);
+    --nx-cols: minmax(160px, 400px) minmax(72px, 132px) 128px minmax(120px, 1fr);
   }
 
   .nx-row.is-softendo.is-no-actions,
