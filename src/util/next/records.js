@@ -883,7 +883,9 @@ export function buildSoftendoRecords(entries, lan) {
       kind: "softendo",
       name: getSoftendoGameName(entry),
       nameZh: getSoftendoGameName(entry),
-      nameAlt: entry.alias && entry.alias.length ? entry.alias.join(", ") : null,
+      // `alias` holds abbreviations (e.g. "MFBP") used only by search; showing
+      // one under the title would read as a second, competing name.
+      nameAlt: null,
       author: getTypeLabel(entry.type),
       authors: [getTypeLabel(entry.type)],
       authorZh: getTypeLabel(entry.type),
