@@ -1,0 +1,3 @@
+这系列关卡的作者是iridi，其中Bowser Trouble的作者是Diddy，这些关卡个人感觉比HC还难，不知道有没有能过关的人……目前我只过了1、3a、3b和7……
+以前我发的地址都下载不了了，所以重发。
+目前唯一的下载地址：[http://www.softendo.com/forum/download/file.php?id=2](http://www.softendo.com/forum/download/file.php?id=2)

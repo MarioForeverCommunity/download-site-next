@@ -1,0 +1,10 @@
+适用于新版SMWP第二作！
+这次的小作品和上次一样，一关滚屏一关常规，但这次的滚屏关比较特别...
+关卡数：2
+SMWP版本：1.6以上
+下载地址：
+链接：[https://pan.baidu.com/s/1LvB_-8FwatVYlEicj6eb5g](https://pan.baidu.com/s/1LvB_-8FwatVYlEicj6eb5g)
+提取码：tzey
+下载地址2：xfx的永硕网盘
+【小挑战II：你们谁能到达图三的终点呢？】
+（楼下沙发）
