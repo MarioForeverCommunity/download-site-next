@@ -1,0 +1,13 @@
+The first level of the WoD series.
+BGM - Different Heaven - Nekozilla
+Download: 
+v1.0.0.1: Updated the movement, appearation of Gear Item.
+http://www.mediafire.com/file/wjmv75rss8h42jv/GloomyGrassland.exe
+Enjoy! :)
+
+New Item! -----------------------------------------------------------------------
+Star: When Mario enters a level he becomes invincible for 10 seconds as if he had collected a star. ( COST 2 LIVES )
+Penta-Gear: Spawns 5 gears which rotates around Mario.
+Has the power of protection as it explodes when it hits an enemy.
+(COST 2 LIVES)
+-----------------------------------------------------------------------------------------

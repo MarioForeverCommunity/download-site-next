@@ -1,0 +1,20 @@
+Heya, folks! I hope you're doing well! Today... I want to present to you... MY FIRST TRUE MARIO FOREVER FANGAME - MF: Armageddon XII!
+
+I'm beginner at creating games in CTF, so please don't hate! :D
+Game has some bugs, because I totally don't know how to make it work... I was trying to fix it, but unfortunately I didn't manage to do it.
+
+BUGS (Read Carefully!):
+- In game options, the controls settings don't show properly.
+- Choose wisely: You can play in Window Mode or in Fullscreen Mode but... if you choose something from that, there is no going back! You can only ALT and F4 the game to Quit. You can't change the mode.
+
+That were the most "bad" bugs. I think the game can have more bugs but there are less "bad" than that two. As I said, I'm beginner, I'm learning step by step but it takes time to learn all the CTF's ropes :P
+
+Btw, the world isn't the easiest, I suppose. 
+Here's the link:
+
+https://www.mediafire.com/file/wvo8qy38dqcq6vz/Mario_Forever_-_Armageddon_XII.exe/file
+
+Have a nice day! :D
+
+Credits:
+Engine by: AltF4tter (DolfyMF)

@@ -1,0 +1,3 @@
+Download: https://www.mediafire.com/file/2jued07pfhyx1we/Tubular-World.rar/file
+
+Probably the easiest setting to replicate from MF to MW. Tile placing is a pain in the ass if we consider each pip is made of split 32x32 tiles, but isn't it the better part of level editors, after all? (*sarcasm mode activated*)

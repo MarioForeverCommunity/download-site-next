@@ -1,0 +1,10 @@
+Download link: https://www.mediafire.com/file/xzh3u5hlokttayb/Mario_Worker_-_Alternative_Worlds_v0.9_%255BBETA%255D.rar/file
+--------------------------------------------------------------------------------------
+v0.9 beta:
+
+- added world 9 and special world made by Shadow_78
+- world 7-3: removed wrong Fire Nipper Plant
+- world 2-4, 5-3, 6-4: Roto-disc flower has been replaced with the original one
+- fixed a bug when the timer did not stop after defeating Bowser
+- updated world save codes
+- and other minor changes

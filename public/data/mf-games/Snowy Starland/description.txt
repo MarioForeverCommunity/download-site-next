@@ -1,0 +1,12 @@
+The first level of the WoD series.
+BGM - Rob Gasser - Supersonic [NCS Release]
+Download: 
+V 1.0.0.1: Modified the version so that the life mushroom act normally as it should. Modified the version so that Mario can revive instantly from falling to a pit by using one of the life mushrooms.
+http://www.mediafire.com/file/p0ak54ub19kapqs/SnowyStarland.exe
+Enjoy! :)
+
+New Item! -----------------------------------------------------------------------
+King Mushroom: Spawns 3 life mushrooms that rotates around.
+Mario automatically becomes super when he collects this item.
+If Mario have a life mushroom and becomes small, he will be powered up again instantly. (UNABLE TO BUY IN SAVE ROOM)
+-----------------------------------------------------------------------------------------

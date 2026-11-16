@@ -1,0 +1,11 @@
+Greetings. This is a tiny game I designed using syzxchulun & lyh's Mario Forever engine, called Room 001.
+
+It's just a small room, but you have to use all your brain to escape through the red pipe.
+
+This room's specially designed for very advanced MF players to challenge. Let's see who can solve this puzzle all by himself (or herself). For those of the newcomers, I don't recommend playing this game.
+
+Remember, the red thorn is star-immunized, which means, you can't touch the red thorn even if you've eaten a star (unless you wanna get hurt), but you can touch it when you're invisible (just got hurt).
+
+I couldn't have done this without the help from syzxchulun. Special thanks to syzxchulun!
+
+	--HappyLee  2013.10.24

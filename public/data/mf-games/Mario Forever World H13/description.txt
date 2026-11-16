@@ -1,0 +1,23 @@
+Hi there, everyone. Nice to see you again! :)
+
+IMPORTANT MATTERS:
+
+Firstly, I'd like to change my latest decision about finishing "career" as Mario Forever FanGames Developer (I hope that at least some of you are happy because of it). I am still going to create some worlds or levels once in a while, however - I must be in a mood for it, because as you probably know - forcing this process never brings good results. So, to sum up the first point: I won't abandon MF from now on - just don't anticipate new productions regularly. If I feel inspired, I will most probably develop something and come back with some great news :)
+
+By the way, I'm not a programmer (not even a bit). I become extremely indignant when I must "have fun" with the code - so this is the aspect I'd like to leave behind. I simply don't feel it. Although, I will do everything to keep things interesting in terms of everything else in the development process (I only hope that I won't run out of the ideas soon :P)
+
+The game doesn't have:
+
+1. Credits (I turned off the possibility of entering them)
+2. World Map and Completed World Map - so bear it in mind, that after entering the pipe in the "lobby" it will automatically enter the first level. After each level, the next starts immediately and after the castle destruction cutscene - it teleports you back to lobby.
+
+Why? Because I hate creating maps. I hope you are going to forgive me that :)
+
+LINK TO THE GAME:
+
+If you'd like to play it - here's the link:
+
+https://mega.nz/file/A3oD0KID#oyJ1xRcmv6ncqWjU4kuLb8pyKAJ7NrAevgWtyJn97OE
+
+I hope you will enjoy the game as much as I enjoyed developing it! :D
+~ MrJalapeno
