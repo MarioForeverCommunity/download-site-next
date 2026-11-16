@@ -53,6 +53,7 @@ const facets = computed(() => {
     makeFacet({
       key: "region",
       label: zh ? "地区" : "Region",
+      single: true,
       getter: (record) => record.region,
       options: {
         records: list,
