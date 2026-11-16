@@ -1056,6 +1056,15 @@ body.nx-body select:focus-visible {
   opacity: 0.7;
 }
 
+/* Tri-state hint sits under the chips: the cycle is not discoverable from a
+   hover tooltip on touch screens, so it is spelled out in the pane itself. */
+.nx-chip-hint {
+  margin: 6px 0 8px;
+  font-size: 10.5px;
+  color: var(--nx-faint);
+  line-height: 1.45;
+}
+
 /* date range */
 .nx-daterange {
   display: flex;

@@ -53,7 +53,7 @@ const text = computed(() => (props.lan === "zh" ? {
   reset: "重置",
   all: "全部",
   rangeHint: "包含起止日期，精确到日。",
-  tagHint: "点击切换状态：或 (OR) → 与 (+AND) → 非 (-NOT) → 关闭",
+  tagHint: "点击标签切换状态：或 (OR 满足任一) → 与 (+AND 全部满足) → 非 (-NOT 排除) → 关闭",
   anyYear: "全部年份",
 } : {
   tags: "Tags",
@@ -326,6 +326,9 @@ function selectSingle(facet, value) {
           @click="catalog.clearTags()"
         >{{ text.reset }}</button>
       </h4>
+      <p class="nx-chip-hint">
+        {{ text.tagHint }}
+      </p>
       <div class="nx-chips">
         <button
           v-for="item in tagList"
@@ -335,7 +338,6 @@ function selectSingle(facet, value) {
           :class="tagState(item.tag) ? `on-${tagState(item.tag)}` : ''"
           :aria-pressed="!!tagState(item.tag)"
           :data-tag="item.tag"
-          :title="text.tagHint"
           @click="catalog.cycleTag(item.tag)"
         >
           <span
