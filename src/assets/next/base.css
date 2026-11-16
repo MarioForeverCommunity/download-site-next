@@ -398,7 +398,7 @@ body.nx-body select:focus-visible {
 }
 
 .nx-rail-foot {
-  padding: 8px 7px 0;
+  padding: 0 7px;
   display: flex;
   flex-direction: column;
   gap: 3px;
