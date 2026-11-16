@@ -8,7 +8,7 @@
 // The shell is now rendered once by the SPA root (boot/NxApp.vue) and stays
 // mounted for the life of the document. Pages publish the parts that differ —
 // title, write-up, search model — here, and the root feeds them to the shell.
-import { reactive } from "vue";
+import { markRaw, reactive } from "vue";
 
 // The full set of shell fields, with their defaults. `publishShell` resets to
 // these before applying a page's values: the shell outlives the page, so a field
@@ -48,7 +48,12 @@ const handlers = { ...HANDLER_DEFAULTS };
  * previous page published.
  */
 export function publishShell(config) {
-  Object.assign(shellConfig, DEFAULTS, config);
+  // The search model is a live catalog object whose fields are refs the shell
+  // reads through `.value`. Marking it raw keeps `reactive()` from deep-wrapping
+  // it and auto-unwrapping those refs: without this the shell saw `undefined`
+  // and could not clear a box when its pill was removed.
+  const next = config.search ? { ...config, search: markRaw(config.search) } : config;
+  Object.assign(shellConfig, DEFAULTS, next);
 }
 
 export function publishShellHandlers(next) {
