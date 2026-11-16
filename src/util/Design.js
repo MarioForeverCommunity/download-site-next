@@ -119,6 +119,19 @@ export function getDesignRef() {
   return design;
 }
 
+// Entry files that still have a legacy page component. Pages without one (e.g.
+// about.html) exist only in the redesigned UI, so the legacy switch has to land
+// on the legacy home page instead of a page that would silently keep rendering
+// the new design.
+const LEGACY_ENTRY_FILES = new Set([
+  "", "index.html", "mf-games.html", "mw-levels.html",
+  "assets.html", "engines.html", "mario-worker.html", "softendo.html",
+]);
+
+export function hasLegacyPage(pathname = typeof window === "undefined" ? "" : window.location.pathname) {
+  return LEGACY_ENTRY_FILES.has(String(pathname || "").split("/").pop() || "");
+}
+
 /**
  * Build a link to the current page rendered in the requested design, keeping the
  * current query string (e.g. `?game=` deep links) intact.
@@ -129,6 +142,15 @@ export function otherDesignHref(target = NEXT_DESIGN) {
     return `?design=${value}`;
   }
   const params = new URLSearchParams(window.location.search);
+  let pathname = window.location.pathname;
+  if (value === LEGACY_DESIGN && !hasLegacyPage(pathname)) {
+    // No legacy counterpart: go to the legacy home page, dropping query
+    // parameters that only make sense on the current page.
+    pathname = pathname.replace(/[^/]*$/, "") + "index.html";
+    for (const key of [...params.keys()]) {
+      if (key !== "design") params.delete(key);
+    }
+  }
   params.set("design", value);
-  return `${window.location.pathname}?${params.toString()}`;
+  return `${pathname}?${params.toString()}`;
 }

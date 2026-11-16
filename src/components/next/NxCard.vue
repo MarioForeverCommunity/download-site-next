@@ -28,10 +28,24 @@ const theme = getTheme();
 
 const metaDate = computed(() => formatIsoDate(props.record.date));
 
-const tagPills = computed(() => props.record.tags.map((tag) => {
+const decoratedTags = computed(() => props.record.tags.map((tag) => {
   const colors = getTagPillColor(tag, theme.value === "dark");
   return { ...tag, style: { color: colors.text, borderColor: colors.border, background: colors.bg } };
 }));
+
+// MW entries carry only runtime flags (bundled MW / custom BGM). They describe
+// the level's runtime rather than its content, so they sit on the version line
+// beside the SMWP build instead of on the date line with the content tags.
+const RUNTIME_TAG_KEYS = ["mw", "bgm"];
+const isRuntimeTag = (tag) => RUNTIME_TAG_KEYS.includes(tag.key);
+
+const versionTags = computed(() => (props.record.kind === "mw"
+  ? decoratedTags.value.filter(isRuntimeTag)
+  : []));
+
+const tagPills = computed(() => (props.record.kind === "mw"
+  ? decoratedTags.value.filter((tag) => !isRuntimeTag(tag))
+  : decoratedTags.value));
 
 const regionLabel = computed(() => {
   const region = props.record.region;
@@ -117,9 +131,20 @@ const versionText = computed(() => {
         >{{ regionLabel }}</span>
       </div>
       <div
-        v-if="versionText"
+        v-if="versionText || versionTags.length"
         class="nx-card-version"
-      >{{ versionText }}</div>
+      >
+        <span
+          v-if="versionText"
+          class="nx-card-version-text"
+        >{{ versionText }}</span>
+        <span
+          v-for="tag in versionTags"
+          :key="tag.key"
+          class="nx-tag"
+          :style="tag.style"
+        >{{ tag.label }}</span>
+      </div>
       <div class="nx-card-meta">
         <span v-if="metaDate">{{ metaDate }}</span>
         <span v-else-if="record.yearLabel">{{ record.yearLabel }}</span>
@@ -141,11 +166,19 @@ const versionText = computed(() => {
 
 <style scoped>
   .nx-card-version {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     margin-top: 2px;
     font-family: var(--nx-mono);
     font-size: 10.5px;
     color: var(--nx-muted);
     white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .nx-card-version-text {
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
   }

@@ -2,7 +2,7 @@
 // Mario Worker levels catalog — redesigned.
 //
 // Chinese-only, matching the legacy page (config.js `show_en: false`).
-// No tag filter: MW entries carry only "专用 MW" / "BGM" runtime flags, which
+// No tag filter: MW entries carry only "自带 MW" / "BGM" runtime flags, which
 // the 运行要求 facet already expresses, so a second tag filter would duplicate it.
 import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";

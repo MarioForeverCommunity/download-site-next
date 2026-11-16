@@ -568,7 +568,7 @@ export function buildMwRecords(entries) {
     const tags = [];
     // Runtime flags use the legacy design's own badge colours so the same
     // record reads identically in both interfaces.
-    if (entry.has_bundled_smwp) tags.push({ key: "mw", label: "专用 MW", tone: "mw" });
+    if (entry.has_bundled_smwp) tags.push({ key: "mw", label: "自带 MW", tone: "mw" });
     if (entry.has_bgm) tags.push({ key: "bgm", label: "BGM", tone: "bgm" });
 
     const allDownloads = [...downloads, ...netdisk];

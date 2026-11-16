@@ -129,7 +129,7 @@ export function getTagColor(tag, isDark) {
   return map[tag] || fallback;
 }
 
-// Runtime flags (the MW catalog's 专用 MW / BGM) are not content tags: they keep
+// Runtime flags (the MW catalog's 自带 MW / BGM) are not content tags: they keep
 // the legacy design's own hues, drawn as a tinted pill rather than a solid fill.
 const TONE_TAG_COLOR_MAP = {
   mw: { bg: "#fdf1e0", border: "#f0a44a", text: "#b45309" },
