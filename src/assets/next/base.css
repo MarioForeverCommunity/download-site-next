@@ -1001,19 +1001,19 @@ body.nx-body select:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
-/* Tag tri-state: OR = green (include any), AND = blue (include all, "+"),
+/* Tag tri-state: OR = accent (include any), AND = green (include all, "+"),
    NOT = red (exclude, "−"). The colour and the marker both encode the state so
    it survives greyscale and colour-vision differences. */
 .nx-chip.on-or {
-  background: #eaf7ee;
-  border-color: #a8d8b8;
-  color: #1c6b45;
+  background: var(--nx-accent-soft);
+  border-color: var(--nx-accent-border);
+  color: var(--nx-accent);
 }
 
 .nx-chip.on-and {
-  background: #eaf2fd;
-  border-color: #b3cdea;
-  color: #1f5fa8;
+  background: #eaf7ee;
+  border-color: #a8d8b8;
+  color: #1c6b45;
 }
 
 .nx-chip.on-not {
@@ -1023,16 +1023,10 @@ body.nx-body select:focus-visible {
   text-decoration: none;
 }
 
-:root[data-nx-theme="dark"] .nx-chip.on-or {
+:root[data-nx-theme="dark"] .nx-chip.on-and {
   background: #16281d;
   border-color: #2c5138;
   color: #63c295;
-}
-
-:root[data-nx-theme="dark"] .nx-chip.on-and {
-  background: #17222f;
-  border-color: #2b3f57;
-  color: #7cb0ea;
 }
 
 :root[data-nx-theme="dark"] .nx-chip.on-not {
