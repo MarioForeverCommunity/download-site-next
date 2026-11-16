@@ -56,6 +56,12 @@ const props = defineProps({
     type: String,
     default: ""
   },
+  // Softendo entries have no authors (the catalog's "series" column borrows the
+  // author slot), so that page hides the second search box.
+  showAuthorSearch: {
+    type: Boolean,
+    default: true
+  },
   showRandom: {
     type: Boolean,
     default: false
@@ -536,7 +542,7 @@ watch(showChangelog, (open) => {
         </div>
 
         <div
-          v-if="search"
+          v-if="search && showAuthorSearch"
           class="nx-search"
         >
           <span class="nx-search-icon"><NxIcon name="user" :size="14" /></span>

@@ -174,6 +174,9 @@ watchEffect(() => {
     docTitle: title.value,
     docUpdated: docUpdated.value,
     search: catalog,
+    // Softendo records have no author (the "series" column reuses that slot),
+    // so the shell hides the author search box on this page.
+    showAuthorSearch: false,
     showRandom: true,
   });
 });

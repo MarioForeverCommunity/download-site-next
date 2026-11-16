@@ -23,6 +23,9 @@ const DEFAULTS = {
   docTitle: "",
   docUpdated: "",
   search: null,
+  // Catalogs whose entries have no real author (Softendo lists game series)
+  // hide the author search box; every other catalog shows it.
+  showAuthorSearch: true,
   showRandom: false
 };
 

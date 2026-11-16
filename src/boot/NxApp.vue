@@ -35,6 +35,7 @@ function onLanEn() {
     :doc-title="shellConfig.docTitle"
     :doc-updated="shellConfig.docUpdated"
     :search="shellConfig.search"
+    :show-author-search="shellConfig.showAuthorSearch"
     :show-random="shellConfig.showRandom"
     @change-lan-zh="onLanZh"
     @change-lan-en="onLanEn"
