@@ -5,6 +5,50 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-rc.0",
+    date: "2026-11-17",
+    features: [
+      "新版 MF 作品与 MW 作品目录新增「发布来源」筛选：以多选框列表列出发布页所在站点并显示数量；`config.js` 未收录的站点统一归入「其他」，选项按站点英文名字母顺序排列",
+      "新版列表视图的发布页按钮新增可用性判断：两个发布页均无效或缺失时隐藏按钮，其中一个失效时自动指向仍有效的发布页",
+      "新版详情抽屉的贴吧发布页新增「发布页 (贴吧备份)」按钮",
+      "恢复了新版详情抽屉中的失效下载链接可点击"
+    ],
+    features_en: [
+      "The redesigned MF fangames and MW level catalogs gain a release-source filter: a checkbox list of the sites hosting source links with per-site counts. Sites missing from `config.js` are grouped into \"Other\", and the options are sorted alphabetically by their English site name",
+      "The redesigned list view's release-post button now checks availability: it is hidden when both posts are missing or invalid, and points at the remaining valid post when only one is usable",
+      "The redesigned detail drawer adds a \"Source (Tieba Archive)\" button next to Tieba links",
+      "Invalid download links in the redesigned detail drawer stay clickable, so the URL can still be inspected"
+    ],
+    improvements: [
+      "旧版界面移除 OverlayScrollbars 依赖，弹窗滚动锁定改用原生实现：打开弹窗时锁定背景滚动并补偿滚动条宽度，深色模式滚动条使用浏览器原生配色，页面不再额外加载第三方滚动条库",
+      "旧版卡片与列表的发布页图标在链接失效时，悬停提示会标注「(站点, 已失效)」",
+      "新版英文界面的地区标记由 CN / INT 改为全称 Chinese / International",
+      "月报生成脚本的发布来源名称优先使用 `config.js` 的 `desc_zh_abbr`（如「B 站」「MF 社区」）"
+    ],
+    improvements_en: [
+      "The legacy design drops the OverlayScrollbars dependency: modal scroll locking is now implemented natively, locking the background scroll and compensating for the scrollbar width, dark-mode scrollbars use the browser's native colours, and pages no longer load an extra third-party scrollbar library",
+      "Legacy cards and list rows now annotate an invalid source link in the source tooltip as \"(site, Invalid)\"",
+      "The redesigned English interface spells out the region badges as Chinese / International instead of CN / INT",
+      "The monthly-report generator prefers `desc_zh_abbr` from `config.js` for release-source names (for example \"B 站\" / \"MF 社区\")"
+    ],
+    fixes: [
+      "修复旧版 Softendo 作品目录的标签筛选弹窗与作品详情弹窗打开时背景仍可滚动的问题",
+      "修复旧版原版 Mario Forever 下载弹框打开时背景仍可滚动的问题",
+      "修复新版设计中文界面中失效下载链接未显示删除线的问题",
+      "修复新版详情抽屉的失效发布页没有任何标注的问题，现在显示为「发布页 (站点, 已失效)」并带删除线",
+      "修复新版详情抽屉中失效的贴吧发布页仍会生成贴吧备份按钮的问题",
+      "修复旧版 MF 作品目录勾选「展开全部版本」后「有图片」筛选失效的问题"
+    ],
+    fixes_en: [
+      "Fixed the legacy Softendo catalog letting the page scroll behind the genre filter and record detail modals",
+      "Fixed the legacy original Mario Forever download modal letting the page scroll behind it",
+      "Fixed invalid download links not being struck through in the redesigned Chinese interface",
+      "Fixed dead source links in the redesigned detail drawer carrying no annotation; they now read \"Source (site, Invalid)\" with a strikethrough",
+      "Fixed the redesigned detail drawer still offering a Tieba archive button when the Tieba post itself is invalid",
+      "Fixed the legacy MF catalog ignoring the \"With images\" filter after \"Expand all versions\" was enabled"
+    ]
+  },
+  {
     version: "3.0.0-beta.3",
     date: "2026-11-17",
     features: [
@@ -129,9 +173,9 @@ export const changelog = [
       "The Softendo catalog gains a Made with filter for Flash, Clickteam Fusion, GameMaker and Other, which stacks with the series and language filters",
       "In a Softendo record's drawer, Series now shows the formal name (e.g. Mario Forever Flash) instead of the internal slug",
       "The detail drawer's Versions & downloads and Data package blocks share one frame, with each file name followed by its own size across MF, MW, assets",
-      "The release post moved into Versions & downloads and follows the selected version; buttons name the hosting site, the primary or alternate post leads according to the language, and the list icon uses the same per-version, per-language link",
-      "With \"list every version separately\" on, the drawer shows only that build's downloads and release post, while list, cards and drawer prefer that version's title screenshot, the version number appears at the top and the date label becomes Released",
-      "The MW catalog regains its release post, MW download, music pack and data package buttons by using the same normalised data as the legacy design; the drawer labels multi-author levels as a collaboration while the facts section still lists every author",
+      "The source link moved into Versions & downloads and follows the selected version; buttons name the hosting site, the primary or alternate post leads according to the language, and the list icon uses the same per-version, per-language link",
+      "With \"list every version separately\" on, the drawer shows only that build's downloads and source link, while list, cards and drawer prefer that version's title screenshot, the version number appears at the top and the date label becomes Released",
+      "The MW catalog regains its source link, MW download, music pack and data package buttons by using the same normalised data as the legacy design; the drawer labels multi-author levels as a collaboration while the facts section still lists every author",
       "In MW's Runtime block the SMWP version download is a button and the BGM note follows the buttons; the version line shows values only, without Date / File name / File size labels",
       "MW details now prefix the MW version with SMWP (MW 4.0 / 4.4 excepted), no longer show the Tags section, and say the level \"Comes with\" its MW when one is bundled",
       "The MF detail drawer restores the legacy download modal's play instructions for Chinese readers, with notes for installers, .exe, .apk, macOS, Linux and archives plus a phone-specific hint",

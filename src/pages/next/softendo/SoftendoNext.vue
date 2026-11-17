@@ -106,7 +106,7 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: { untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" },
+  tags: () => ({ untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" }),
   // Softendo entries carry year ranges rather than release dates, so the
   // release-date filter has nothing meaningful to filter on.
   dateFilter: false,

@@ -118,7 +118,7 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: { untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" },
+  tags: () => ({ untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" }),
   labels: {
     year: lan.value === "zh" ? "年份 " : "Year ",
     range: lan.value === "zh" ? "日期 " : "Date ",

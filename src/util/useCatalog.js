@@ -37,6 +37,9 @@ export function useCatalog({
 }) {
   const resolveFacets = () => (typeof facets === "function" ? facets() : facets);
   const facetDefs = computed(resolveFacets);
+  // Tags may also be a getter so the synthetic "Untagged" label can follow the
+  // current language instead of being frozen when the catalog is created.
+  const resolveTags = () => (typeof tags === "function" ? tags() : tags);
 
   const query = ref("");
   const authorQuery = ref("");
@@ -181,13 +184,14 @@ export function useCatalog({
   }
 
   const tagList = computed(() => {
-    if (!tags) return [];
+    const tagConfig = resolveTags();
+    if (!tagConfig) return [];
     const counts = new Map();
     const labels = new Map();
     // "Untagged" is a synthetic bucket rather than a YAML tag, so its display
     // name comes from the page's localization, not the tag dictionary.
-    const untaggedLabel = typeof tags === "object" && tags.untaggedLabel
-      ? tags.untaggedLabel
+    const untaggedLabel = typeof tagConfig === "object" && tagConfig.untaggedLabel
+      ? tagConfig.untaggedLabel
       : "Untagged";
 
     for (const record of records.value) {
@@ -309,7 +313,7 @@ export function useCatalog({
         if (!values.some((value) => facet.test(record, value))) return false;
       }
       if (onlyWithImage.value && !hasImage(record)) return false;
-      if (tags && !matchesTags(record.tags)) return false;
+      if (resolveTags() && !matchesTags(record.tags)) return false;
       if (!matchesDate(record)) return false;
       return true;
     });
