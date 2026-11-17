@@ -34,13 +34,13 @@ const href = computed(() => otherDesignHref(target.value));
 const text = computed(() => {
   const toNew = props.current === LEGACY_DESIGN;
   if (props.label) return props.label;
-  if (props.variant === "chip") return toNew ? "新版界面" : "旧版界面";
-  return toNew ? "切换到新版设计" : "切换到旧版设计";
+  if (props.variant === "chip") return toNew ? "新版界面" : "经典界面";
+  return toNew ? "切换到新版设计" : "切换到经典设计";
 });
 
 const title = computed(() => {
   const toNew = props.current === LEGACY_DESIGN;
-  return toNew ? "切换到新版设计 / Switch to new design" : "切换到旧版设计 / Switch to legacy design";
+  return toNew ? "切换到新版设计 / Switch to new design" : "切换到经典设计 / Switch to legacy design";
 });
 
 function swap(event) {

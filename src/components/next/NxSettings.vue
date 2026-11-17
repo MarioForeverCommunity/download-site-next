@@ -40,9 +40,10 @@ const text = computed(() => (props.lan === "zh" ? {
     { value: 0, label: "全部显示" },
   ],
   direct: "资源站使用直链",
+  directText: "社区资源站链接使用直链",
   directHint: "下载链接直接指向文件，跳过资源站预览",
   design: "界面设计",
-  legacy: "切换到旧版设计",
+  legacy: "切换到经典设计",
   close: "关闭",
   sorts: [
     { value: "name_asc", label: "名称正序" },
@@ -65,7 +66,8 @@ const text = computed(() => (props.lan === "zh" ? {
     { value: 200, label: "200" },
     { value: 0, label: "Show all" },
   ],
-  direct: "Use direct links for the File Hub",
+  direct: "Use direct links",
+  directText: "Use direct links for the Community File Hub",
   directHint: "Download links point straight at the file, skipping the File Hub preview",
   design: "Interface",
   legacy: "Switch to legacy design",
@@ -230,7 +232,7 @@ onBeforeUnmount(() => {
                   :size="10"
                 />
               </span>
-              <span>{{ text.direct }}</span>
+              <span>{{ text.directText }}</span>
             </button>
             <p style="font-size:11.5px;color:var(--nx-muted);margin-top:6px;line-height:1.5;">
               {{ text.directHint }}

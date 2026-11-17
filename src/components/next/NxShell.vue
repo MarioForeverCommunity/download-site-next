@@ -154,7 +154,7 @@ const text = computed(() => (displayLan.value === "zh" ? {
   changelog: "更新履历",
   about: "目录说明",
   language: "语言",
-  legacy: "切换到旧版设计",
+  legacy: "切换到经典设计",
   light: "浅色模式",
   dark: "深色模式",
   compact: "紧凑模式",

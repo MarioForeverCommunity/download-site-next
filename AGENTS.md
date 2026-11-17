@@ -106,7 +106,7 @@ DESIGN.md                     新版设计的布局、交互与交接说明（�
 - 别名：`new` / `modern` / `beta` → `next`；`old` / `classic` → `legacy`。
 - 默认值：`3.0.0` 正式版发布前为旧版；`3.0.0` 稳定版及之后的版本（含 `3.0.1-beta.x`、`3.1.0-rc.x` 等预发布版）为新版。发版前验收新版需用 `?design=next` 或界面内开关。
 - 切换会整页重载，以重新执行入口 `main.js`；不要改成组件内热切换（两套界面的全局副作用如 OverlayScrollbars 无法干净交接）。
-- 入口：旧版「全局设置」弹窗的「界面设计」行；新版顶栏设置抽屉的「切换到旧版设计」。控件统一为 `src/components/DesignSwitch.vue`（`chip` / `menu` / `row` 三种形态）。
+- 入口：旧版「全局设置」弹窗的「界面设计」行；新版顶栏设置抽屉的「切换到经典设计」。控件统一为 `src/components/DesignSwitch.vue`（`chip` / `menu` / `row` 三种形态）。
 
 ### 6.2 启动链
 
