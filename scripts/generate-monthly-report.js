@@ -66,7 +66,7 @@ const getSourceDesc = (link) => {
   if (!link) return null;
   for (const entry of sourceName) {
     if (link.match(entry.domain)) {
-      return entry.desc_zh || entry.desc_en || null;
+      return entry.desc_zh_abbr || entry.desc_zh || entry.desc_en || null;
     }
   }
   const match = link.match(/^https?:\/\/([^/]+)/);

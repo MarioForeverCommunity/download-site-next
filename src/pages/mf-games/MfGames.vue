@@ -683,8 +683,10 @@ const filteredGames = computed(() => {
       })
       .filter(Boolean);
   } else {
-    // flatMap 优化：每个版本单独一条，所有筛选条件都在 verRaw 层判断
-    const expanded = games.value.flatMap((entry) => {
+    // flatMap 优化：每个版本单独一条，所有筛选条件都在 verRaw 层判断。
+    // 必须以 list（已应用名称/类型/图片等条目级筛选）为起点：直接用 games
+    // 会绕过「有图片」等条目级预筛选。
+    const expanded = list.flatMap((entry) => {
       // 名称/作者/别名等只需判断一次
       const nameMatch = (
         query == ""

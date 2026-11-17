@@ -12,7 +12,7 @@ import { navTop, setPageTitle } from "../../../config.js";
 import { ensureMfList } from "../../../util/useMfList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
-import { buildMfRecords, expandMfRecord, makeFacet } from "../../../util/next/records.js";
+import { buildMfRecords, expandMfRecord, makeFacet, sourceFacetOptions } from "../../../util/next/records.js";
 import mfGamesZh from "../../../markdown/mf-games-zh.md";
 import mfGamesEn from "../../../markdown/mf-games-en.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
@@ -88,6 +88,18 @@ const facets = computed(() => {
           { value: "gamemaker", label: "GameMaker" },
           { value: "other", label: zh ? "其他" : "Other" },
         ],
+      },
+    }),
+    makeFacet({
+      key: "source",
+      label: zh ? "发布来源" : "Release source",
+      // Each build may point at its own thread; the record's `sources` is the
+      // union across versions, so a site is findable without expanding.
+      getter: (record) => record.sources || [],
+      countFrom: (record) => record.sources || [],
+      options: {
+        records: list,
+        list: sourceFacetOptions(list, lan.value),
       },
     }),
   ];

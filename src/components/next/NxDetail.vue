@@ -10,7 +10,7 @@ import axios from "axios";
 import MarkdownIt from "markdown-it";
 import NxIcon from "./NxIcon.vue";
 import NxGallery from "./NxGallery.vue";
-import { formatIsoDate, softwareLabel, sourceServiceName } from "../../util/next/records.js";
+import { formatIsoDate, softwareLabel, sourceServiceName, tiebaArchiveUrl } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
 import { getFullTypeLabel } from "../../util/SoftendoUtil.js";
 import { getAuthorFolderURL } from "../../util/GameUtil.js";
@@ -129,6 +129,7 @@ const text = computed(() => (props.lan === "zh"
     bgmNote: "游玩本作品前，需替换或使用自定义 BGM。",
     musicPack: "SMWP 音乐包",
     source: "发布页",
+    sourceInvalid: "已失效",
     homepage: "主页",
     repo: "源代码",
     download: "下载",
@@ -175,6 +176,7 @@ const text = computed(() => (props.lan === "zh"
     bgmNote: "Replace or use custom BGM before playing this level.",
     musicPack: "Music pack",
     source: "Source",
+    sourceInvalid: "Invalid",
     homepage: "Homepage",
     repo: "Repository",
     download: "Download",
@@ -407,19 +409,35 @@ const hasDownloads = computed(() => {
 const versionSources = computed(() => {
   const v = version.value;
   if (!v) return [];
-  const ordered = props.lan === "en" ? [v.sourceAlt, v.source] : [v.source, v.sourceAlt];
+  const posts = props.lan === "en"
+    ? [{ url: v.sourceAlt, invalid: v.sourceAltInvalid }, { url: v.source, invalid: v.sourceInvalid }]
+    : [{ url: v.source, invalid: v.sourceInvalid }, { url: v.sourceAlt, invalid: v.sourceAltInvalid }];
   const seen = new Set();
   const links = [];
-  for (const url of ordered) {
+  for (const post of posts) {
+    const url = post.url;
     if (!url || seen.has(url)) continue;
     seen.add(url);
     // Name the site the post lives on (config.js `sourceName`), as the download
-    // buttons already do for their mirrors.
+    // buttons already do for their mirrors. The invalid tag joins that same
+    // parenthesis instead of forming a second one: "发布页 (B 站, 已失效)".
     const service = sourceServiceName(url, props.lan);
-    const label = service
-      ? (props.lan === "en" ? `${text.value.source} (${service})` : `${text.value.source}（${service}）`)
-      : text.value.source;
-    links.push({ url, label });
+    const name = text.value.source;
+    const tag = post.invalid ? text.value.sourceInvalid : null;
+    const detail = [service, tag].filter(Boolean).join(", ");
+    const label = detail ? `${name} (${detail})` : name;
+    links.push({ url, label, invalid: !!post.invalid, kind: "source" });
+
+    // Older Tieba posts have an archive mirror; offer it alongside the post so
+    // an invalid thread is still readable. A post already flagged invalid has
+    // nothing left to back up, so it gets no archive button.
+    const backup = post.invalid ? null : tiebaArchiveUrl(url);
+    if (backup && !seen.has(backup)) {
+      seen.add(backup);
+      const backupService = sourceServiceName(backup, props.lan);
+      const backupLabel = `${text.value.source} (${backupService || (props.lan === "en" ? "Tieba Archive" : "贴吧备份")})`;
+      links.push({ url: backup, label: backupLabel, invalid: false, kind: "backup" });
+    }
   }
   return links;
 });
@@ -538,10 +556,6 @@ function legacyCopy(text) {
 }
 
 function onDownloadClick(event, item) {
-  if (item.dead) {
-    event.preventDefault();
-    return;
-  }
   if (!item.code) return;
   // Copy the code, then let the link open as usual. The copy must happen inside
   // the click handler's synchronous turn for the clipboard permission to hold.
@@ -983,10 +997,9 @@ onBeforeUnmount(() => {
                     class="nx-dl"
                     :class="[
                       downloadToneClass(item),
-                      { 'is-primary': item.primary && !item.tone, 'is-dead': item.dead, 'is-warn': item.toolbar },
+                      { 'is-primary': item.primary && !item.tone, 'is-invalid': item.invalid, 'is-warn': item.toolbar },
                     ]"
-                    :href="item.dead ? undefined : item.url"
-                    :aria-disabled="item.dead ? 'true' : undefined"
+                    :href="item.url"
                     target="_blank"
                     rel="noopener"
                     :title="item.code ? `${text.codeCopyHint}: ${item.code}` : item.label"
@@ -1008,6 +1021,7 @@ onBeforeUnmount(() => {
                     v-for="link in versionSources"
                     :key="link.url"
                     class="nx-dl"
+                    :class="{ 'is-source-invalid': link.invalid }"
                     :href="link.url"
                     target="_blank"
                     rel="noopener"
@@ -1016,7 +1030,7 @@ onBeforeUnmount(() => {
                       name="link"
                       :size="12"
                     />
-                    {{ link.label }}
+                    <span class="nx-dl-label">{{ link.label }}</span>
                   </a>
                 </div>
 
@@ -1085,10 +1099,9 @@ onBeforeUnmount(() => {
                     class="nx-dl"
                     :class="{
                       'is-primary': item.kind === 'filehub' && !item.tone,
-                      'is-dead': item.dead,
+                      'is-invalid': item.invalid,
                     }"
-                    :href="item.dead ? undefined : item.url"
-                    :aria-disabled="item.dead ? 'true' : undefined"
+                    :href="item.url"
                     target="_blank"
                     rel="noopener"
                     :title="item.code ? `${text.codeCopyHint}: ${item.code}` : item.label"

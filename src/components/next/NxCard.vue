@@ -49,8 +49,8 @@ const tagPills = computed(() => (props.record.kind === "mw"
 
 const regionLabel = computed(() => {
   const region = props.record.region;
-  if (region === "chinese") return props.lan === "zh" ? "国内" : "CN";
-  if (region === "international") return props.lan === "zh" ? "国外" : "INT";
+  if (region === "chinese") return props.lan === "zh" ? "国内" : "Chinese";
+  if (region === "international") return props.lan === "zh" ? "国外" : "International";
   return null;
 });
 

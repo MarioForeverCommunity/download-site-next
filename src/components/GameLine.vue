@@ -244,7 +244,7 @@ const getHomepageUrl = () => {
           <template #popper>
             <span class="content-center">
               {{ lan == "en" ? "Source" : "发布页" }}
-              <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }})</span>
+              <span v-if="getSourceDesc(game, lan)" class="small"><br>({{ getSourceDesc(game, lan) }}{{ getSourceLinkValidity(game, lan) ? "" : (lan == "en" ? ", Invalid" : ", 已失效") }})</span>
             </span>
           </template>
         </Tooltip>
@@ -254,6 +254,7 @@ const getHomepageUrl = () => {
           </a>
           <template #popper>
             {{ lan == "en" ? "YouTube" : "发布视频" }}
+            <span v-if="!getSourceLinkValidity(game, lan)" class="small"><br>(YouTube, {{ lan == "en" ? "Invalid" : "已失效" }})</span>
           </template>
         </Tooltip>
         <Tooltip v-if="getRepoUrl()">

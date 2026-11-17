@@ -2311,10 +2311,25 @@ button.nx-author-link {
   color: #fff;
 }
 
-.nx-dl.is-dead {
+/* Invalid downloads stay clickable: the mirror may come back, and the reader
+   may still want the extraction code or the URL. Only the styling marks them. */
+.nx-dl.is-invalid {
   color: var(--nx-faint);
   text-decoration: line-through;
-  pointer-events: none;
+}
+
+/* An invalid release post is only annotated, never disabled: the reader may
+   still want to inspect it, and its adjacent Tieba archive button stays
+   usable. The strike goes on the inner span, not the inline-flex anchor:
+   decorations do not paint on a flex item's anonymous text, and the hover
+   rule clears the anchor. */
+.nx-dl.is-source-invalid {
+  color: var(--nx-faint);
+}
+
+.nx-dl.is-source-invalid .nx-dl-label,
+.nx-dl.is-source-invalid:hover .nx-dl-label {
+  text-decoration: line-through;
 }
 
 .nx-dl.is-warn {

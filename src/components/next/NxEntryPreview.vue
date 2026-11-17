@@ -81,7 +81,7 @@ const primary = computed(() => {
     ? props.record.downloads
     : (props.record.versions && props.record.versions[0] ? props.record.versions[0].downloads : null);
   if (!list) return null;
-  return list.find((item) => !item.dead) || null;
+  return list.find((item) => !item.invalid) || null;
 });
 
 // ── in-place detail drawer ───────────────────────────────────

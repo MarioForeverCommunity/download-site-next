@@ -12,7 +12,7 @@ import { navTop, setPageTitle } from "../../../config.js";
 import { ensureMwList } from "../../../util/useMwList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
-import { buildMwRecords, makeFacet, distinctValues } from "../../../util/next/records.js";
+import { buildMwRecords, makeFacet, distinctValues, sourceFacetOptions } from "../../../util/next/records.js";
 import mwLevelsZh from "../../../markdown/mw-levels-zh.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
@@ -81,6 +81,16 @@ const facets = computed(() => {
           { value: "download", label: "需下载 MW" },
           { value: "bgm", label: "需替换 BGM" },
         ],
+      },
+    }),
+    makeFacet({
+      key: "source",
+      label: "发布来源",
+      getter: (record) => record.sources || [],
+      countFrom: (record) => record.sources || [],
+      options: {
+        records: list,
+        list: sourceFacetOptions(list, "zh"),
       },
     }),
   ];

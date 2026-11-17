@@ -61,23 +61,27 @@ const tagPills = computed(() => props.record.tags.map((tag) => {
 
 const regionLabel = computed(() => {
   const region = props.record.region;
-  if (region === "chinese") return props.lan === "zh" ? "国内" : "CN";
-  if (region === "international") return props.lan === "zh" ? "国外" : "INT";
+  if (region === "chinese") return props.lan === "zh" ? "国内" : "Chinese";
+  if (region === "international") return props.lan === "zh" ? "国外" : "International";
   return null;
 });
 
 const primaryDownload = computed(() => {
   const downloads = props.record.downloads || [];
-  return downloads.find((item) => !item.dead) || null;
+  return downloads.find((item) => !item.invalid) || null;
 });
 
 // The release post follows the reader's language: English prefers the alternate
-// post (usually the English-language thread) and Chinese the primary one.
+// post (usually the English-language thread) and Chinese the primary one. Invalid
+// posts are skipped first, so a dead primary falls back to a live alternate (and
+// vice versa); when neither is usable the button is hidden entirely.
 const sourceLink = computed(() => {
   const links = props.record.links;
   if (!links) return null;
-  if (props.lan === "en") return links.sourceAlt || links.source || null;
-  return links.source || null;
+  const primary = links.source && !links.sourceInvalid ? links.source : null;
+  const alt = links.sourceAlt && !links.sourceAltInvalid ? links.sourceAlt : null;
+  if (!primary && !alt) return null;
+  return props.lan === "en" ? (alt || primary) : (primary || alt);
 });
 
 // Only meaningful when the catalog is expanded per version; on a collapsed

@@ -108,7 +108,9 @@ function authorText(entry, lan) {
 function netdiskDownloads(record, lan) {
   const entries = getDownloadEntries(record, lan);
   return entries.map((item) => {
-    const dead = /（已失效）|\(Invalid\)|（暂无法访问）|\(Temporarily Unavailable\)/.test(item.desc || "");
+    // GameUtil builds the suffix with ASCII parentheses ("已失效"), so accept
+    // both bracket widths in case a hand-written desc uses full-width ones.
+    const invalid = /[(（](已失效|Invalid|暂无法访问|Temporarily Unavailable)[)）]/.test(item.desc || "");
     // Name the service from config.js's downloadName table rather than showing
     // a generic "网盘" for every mirror.
     const service = netdiskServiceName(item.url, lan);
@@ -118,7 +120,7 @@ function netdiskDownloads(record, lan) {
       service,
       url: item.url,
       code: item.code || null,
-      dead,
+      invalid,
       primary: false,
       kind: "netdisk",
     };
@@ -159,6 +161,93 @@ export function sourceServiceName(url, lan) {
     }
   }
   return null;
+}
+
+// Sources missing from config.js's `sourceName` table are grouped into one
+// bucket instead of surfacing a bare hostname per site.
+const OTHER_SOURCE_KEY = "other";
+
+// A release post's site as a filter value. The key is the English service name
+// so a facet selection survives a language switch; `sourceSiteLabel` turns it
+// back into a label.
+function sourceSite(url) {
+  if (!url) return null;
+  const value = String(url);
+  for (const entry of sourceName) {
+    const domain = entry.domain;
+    let matched;
+    try {
+      matched = typeof domain === "string" ? value.includes(domain) : domain.test(value);
+    } catch (_e) {
+      matched = false;
+    }
+    if (matched) return entry.desc_en || entry.desc_zh || OTHER_SOURCE_KEY;
+  }
+  return OTHER_SOURCE_KEY;
+}
+
+// Deduplicate the sites of a build's primary and alternate release posts.
+function sourceSites(urls) {
+  const keys = [];
+  for (const url of urls) {
+    const key = sourceSite(url);
+    if (key && !keys.includes(key)) keys.push(key);
+  }
+  return keys;
+}
+
+export function sourceSiteLabel(key, lan) {
+  if (!key) return "";
+  if (key === OTHER_SOURCE_KEY) return lan === "zh" ? "其他" : "Other";
+  const entry = sourceName.find((item) => (item.desc_en || item.desc_zh) === key);
+  if (!entry) return key;
+  return lan === "zh" && entry.desc_zh ? entry.desc_zh : (entry.desc_en || entry.desc_zh || key);
+}
+
+// Options for the release-source facet: only the sites present in the catalog,
+// sorted by their English service name (the language-independent key) with the
+// "other" bucket last, named in the current language.
+export function sourceFacetOptions(records, lan) {
+  const keys = new Set();
+  for (const record of records) {
+    for (const key of record.sources || []) keys.add(key);
+  }
+  return Array.from(keys)
+    .sort((a, b) => {
+      if (a === OTHER_SOURCE_KEY) return 1;
+      if (b === OTHER_SOURCE_KEY) return -1;
+      return a.localeCompare(b, "en", { sensitivity: "base" });
+    })
+    .map((key) => ({ value: key, label: sourceSiteLabel(key, lan) }));
+}
+
+// Tieba threads at or below this id are no longer reachable on the original
+// site; the legacy design offers an archive link for them. Keep the threshold
+// in sync with GameCard.vue / GameLine.vue / AssetCard.vue.
+const TIEBA_ARCHIVE_MAX_POST_ID = 6856592056;
+
+// Release posts may carry the site-wide `~` invalid-link prefix. The list
+// normalizers (useMfList / useMwList) strip it and store the flag as
+// `source_url_invalid`, so callers pass that flag in; the prefix check stays
+// for lists that keep the raw value (assets). Either way the URL is clean and
+// the flag is exposed for the drawer to annotate the button.
+function releasePost(rawUrl, invalidFlag = false) {
+  if (!rawUrl) return { url: null, backup: null, invalid: false };
+  const prefixed = String(rawUrl).startsWith("~");
+  const invalid = prefixed || invalidFlag === true;
+  const url = prefixed ? String(rawUrl).substring(1) : String(rawUrl);
+  return { url, backup: tiebaArchiveUrl(url), invalid };
+}
+
+// Older Tieba posts have a mirror on archive.marioforever.net. Returns null for
+// non-Tieba URLs and for posts newer than the archive cut-off.
+export function tiebaArchiveUrl(url) {
+  if (!url || !String(url).includes("tieba.baidu.com/p/")) return null;
+  const match = String(url).match(/\/p\/(\d+)/);
+  if (!match) return null;
+  const postId = parseInt(match[1], 10);
+  if (!Number.isFinite(postId) || postId > TIEBA_ARCHIVE_MAX_POST_ID) return null;
+  return `https://archive.marioforever.net/post/${match[1]}`;
 }
 
 // Fall back to the URL's own host, so a mirror missing from config.js still
@@ -249,7 +338,7 @@ function mfVersions(entry, lan) {
         file: fileNames[0] || "",
         url: direct(ver[fileKey]),
         code: null,
-        dead: false,
+        invalid: false,
         primary: true,
         kind: "filehub",
       });
@@ -266,7 +355,7 @@ function mfVersions(entry, lan) {
         file: dataFileNames[0] || "",
         url: direct(ver[dataKey]),
         code: null,
-        dead: false,
+        invalid: false,
         primary: true,
         kind: "filehub",
       });
@@ -281,7 +370,7 @@ function mfVersions(entry, lan) {
         service,
         url: ver.data_download_url,
         code: ver.data_code || null,
-        dead: false,
+        invalid: false,
         primary: false,
         kind: "netdisk",
       });
@@ -299,8 +388,14 @@ function mfVersions(entry, lan) {
       // The release post belongs to the build, not the entry: each version may
       // point at its own thread. Both the primary and the alternate post are
       // kept, so the drawer can list them in the reader's language order.
-      source: ver.source_url || null,
-      sourceAlt: ver.source_url_alt || null,
+      // Normalization already stripped the `~` prefix and recorded the flag in
+      // `source_url_invalid`, so it must be passed on here.
+      source: releasePost(ver.source_url, ver.source_url_invalid).url,
+      sourceAlt: releasePost(ver.source_url_alt, ver.source_url_invalid_alt).url,
+      sourceInvalid: releasePost(ver.source_url, ver.source_url_invalid).invalid,
+      sourceAltInvalid: releasePost(ver.source_url_alt, ver.source_url_invalid_alt).invalid,
+      // Release-source facet values: one entry per site this build's posts live on.
+      sources: sourceSites([ver.source_url, ver.source_url_alt]),
       // `old-versions/` is a URL path prefix applied by the link builder; the
       // file names shown to the reader must not include it.
       files: fileNames,
@@ -392,6 +487,9 @@ export function buildMfRecords(entries, lan) {
       // platform filter must still find it.
       platforms: Array.from(new Set(versions.map((v) => v.platform).filter(Boolean))),
       softwares: Array.from(new Set(versions.map((v) => v.software).filter(Boolean))),
+      // Release-source filter values also span every version, matching the
+      // platform/software facets above.
+      sources: Array.from(new Set(versions.flatMap((v) => v.sources || []))),
       tags,
       image,
       images,
@@ -401,7 +499,12 @@ export function buildMfRecords(entries, lan) {
       versions,
       links: {
         home: (lan === "zh" ? entry.homepage_zh || entry.homepage_en : entry.homepage_en || entry.homepage_zh) || null,
-        source: currentSourceUrl(entry, lan),
+        // Both release posts are exposed raw; the list row picks one by
+        // language and skips invalid posts itself.
+        source: releasePost(entry.currentVer && entry.currentVer.source_url, entry.currentVer && entry.currentVer.source_url_invalid).url,
+        sourceAlt: releasePost(entry.currentVer && entry.currentVer.source_url_alt, entry.currentVer && entry.currentVer.source_url_invalid_alt).url,
+        sourceInvalid: !!(entry.currentVer && entry.currentVer.source_url_invalid),
+        sourceAltInvalid: !!(entry.currentVer && entry.currentVer.source_url_invalid_alt),
         repo: (current && current.repo) || entry.repo || null,
         wiki: (lan === "zh" ? entry.wiki_zh_url : entry.wiki_en_url) || null,
         video: collectVideos(entry, lan),
@@ -414,12 +517,6 @@ export function buildMfRecords(entries, lan) {
       raw: entry,
     };
   });
-}
-
-function currentSourceUrl(entry, lan) {
-  if (!entry.currentVer) return null;
-  if (lan === "en" && entry.currentVer.source_url_alt) return entry.currentVer.source_url_alt;
-  return entry.currentVer.source_url || null;
 }
 
 function collectVideos(entry, lan) {
@@ -453,6 +550,7 @@ export function expandMfRecord(record) {
       // listed separately.
       platforms: version.platform ? [version.platform] : [],
       softwares: version.software ? [version.software] : [],
+      sources: version.sources || [],
       downloads: version.downloads,
       dataDownloads: version.dataDownloads,
       // The release post is version-scoped, so the row's link icon must point at
@@ -461,6 +559,8 @@ export function expandMfRecord(record) {
         ...record.links,
         source: version.source || null,
         sourceAlt: version.sourceAlt || null,
+        sourceInvalid: version.sourceInvalid === true,
+        sourceAltInvalid: version.sourceAltInvalid === true,
       },
       image,
       images,
@@ -499,7 +599,7 @@ export function buildMwRecords(entries) {
       file: String(fileName).split("/").pop(),
       url: direct(getMwLevelFileUrl(entry, fileName)),
       code: null,
-      dead: false,
+      invalid: false,
       primary: index === 0,
       kind: "filehub",
     }));
@@ -511,7 +611,7 @@ export function buildMwRecords(entries) {
         shortLabel: "File Hub",
         url: direct(entry.file_url),
         code: null,
-        dead: false,
+        invalid: false,
         primary: true,
         kind: "filehub",
       });
@@ -529,7 +629,7 @@ export function buildMwRecords(entries) {
         service: netdiskServiceName(url, lan),
         url,
         code,
-        dead: invalid,
+        invalid,
         primary: false,
         kind: "netdisk",
       });
@@ -545,7 +645,7 @@ export function buildMwRecords(entries) {
       file: dataFileNames[index] || "",
       url: direct(item.url),
       code: null,
-      dead: false,
+      invalid: false,
       primary: index === 0,
       kind: "filehub",
     }));
@@ -559,7 +659,7 @@ export function buildMwRecords(entries) {
         service,
         url: entry.currentVer.data_download_url,
         code: entry.currentVer.data_code || null,
-        dead: false,
+        invalid: false,
         primary: false,
         kind: "netdisk",
       });
@@ -574,6 +674,10 @@ export function buildMwRecords(entries) {
     if (entry.has_bgm) tags.push({ key: "bgm", label: "BGM", tone: "bgm" });
 
     const allDownloads = [...downloads, ...netdisk];
+    const sources = sourceSites([
+      entry.currentVer && entry.currentVer.source_url,
+      entry.currentVer && entry.currentVer.source_url_alt,
+    ]);
 
     return {
       id: `mw::${entry.game}::${names.join("|")}`,
@@ -593,6 +697,7 @@ export function buildMwRecords(entries) {
       region: null,
       platform: null,
       software: null,
+      sources,
       tags,
       image,
       images,
@@ -610,17 +715,22 @@ export function buildMwRecords(entries) {
         dataFiles: dataFileNames,
         downloads: allDownloads,
         dataDownloads,
-        source: entry.currentVer ? entry.currentVer.source_url || null : null,
-        sourceAlt: entry.currentVer ? entry.currentVer.source_url_alt || null : null,
+        source: releasePost(entry.currentVer && entry.currentVer.source_url, entry.currentVer && entry.currentVer.source_url_invalid).url,
+        sourceAlt: releasePost(entry.currentVer && entry.currentVer.source_url_alt).url,
+        sourceInvalid: releasePost(entry.currentVer && entry.currentVer.source_url, entry.currentVer && entry.currentVer.source_url_invalid).invalid,
+        sourceAltInvalid: releasePost(entry.currentVer && entry.currentVer.source_url_alt).invalid,
         current: true,
         platform: null,
         software: null,
+        sources,
         repacker: null,
       }],
       links: {
         home: entry.homepage || null,
-        source: entry.currentVer ? entry.currentVer.source_url || null : null,
-        sourceAlt: entry.currentVer ? entry.currentVer.source_url_alt || null : null,
+        source: releasePost(entry.currentVer && entry.currentVer.source_url, entry.currentVer && entry.currentVer.source_url_invalid).url,
+        sourceAlt: releasePost(entry.currentVer && entry.currentVer.source_url_alt).url,
+        sourceInvalid: releasePost(entry.currentVer && entry.currentVer.source_url, entry.currentVer && entry.currentVer.source_url_invalid).invalid,
+        sourceAltInvalid: releasePost(entry.currentVer && entry.currentVer.source_url_alt).invalid,
         repo: entry.repo || null,
         wiki: entry.wiki_zh_url || null,
         video: (entry.video || []).map((item) => {
@@ -697,7 +807,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     file: assetFileNames[index] || fileNameFromUrl(item.url),
     url: direct(item.url),
     code: null,
-    dead: false,
+    invalid: false,
     primary: index === 0,
     kind: "filehub",
   }));
@@ -709,7 +819,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
       service: netdiskServiceName(variant.download_url, lan),
       url: variant.download_url,
       code: variant.code || null,
-      dead: false,
+      invalid: false,
       primary: false,
       kind: "netdisk",
     });
@@ -721,7 +831,7 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
       service: netdiskServiceName(variant.download_url_alt, lan),
       url: variant.download_url_alt,
       code: variant.code_alt || null,
-      dead: false,
+      invalid: false,
       primary: false,
       kind: "netdisk",
     });
@@ -767,8 +877,10 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
       date: toDate(variant.date || entry.date),
       downloads,
       dataDownloads: [],
-      source: variant.source_url || null,
-      sourceAlt: variant.source_url_alt || null,
+      source: releasePost(variant.source_url).url,
+      sourceAlt: releasePost(variant.source_url_alt).url,
+      sourceInvalid: releasePost(variant.source_url).invalid,
+      sourceAltInvalid: releasePost(variant.source_url_alt).invalid,
       current: true,
       platform: null,
       software: null,
@@ -776,8 +888,10 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     }],
     links: {
       home: null,
-      source: entry.source_url || null,
-      sourceAlt: entry.source_url_alt || null,
+      source: releasePost(entry.source_url).url,
+      sourceAlt: releasePost(entry.source_url_alt).url,
+      sourceInvalid: releasePost(entry.source_url).invalid,
+      sourceAltInvalid: releasePost(entry.source_url_alt).invalid,
       repo: entry.repo || null,
       wiki: null,
       video: [],
@@ -805,7 +919,7 @@ export function buildSoftendoRecords(entries, lan) {
           file: fileNameFromUrl(ver.installer_url),
           url: direct(ver.installer_url),
           code: null,
-          dead: false,
+          invalid: false,
           primary: true,
           kind: "installer",
           toolbar,
@@ -837,7 +951,7 @@ export function buildSoftendoRecords(entries, lan) {
           file: fileNameFromUrl(item.url),
           url: direct(item.url),
           code: null,
-          dead: false,
+          invalid: false,
           primary: !ver.installer_url,
           kind: "portable",
           tone: portableTone,
@@ -850,7 +964,7 @@ export function buildSoftendoRecords(entries, lan) {
           file: fileNameFromUrl(item.url),
           url: direct(item.url),
           code: null,
-          dead: false,
+          invalid: false,
           tone: "selfextract",
           primary: false,
           kind: "selfextract",
