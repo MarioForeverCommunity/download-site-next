@@ -8,7 +8,7 @@
 
 四年之后，它终于来了。
 
-点击展开视频
+[https://www.bilibili.com/video/BV1YQxveLEKt/](https://www.bilibili.com/video/BV1YQxveLEKt/)
 
 **作品简介**
 

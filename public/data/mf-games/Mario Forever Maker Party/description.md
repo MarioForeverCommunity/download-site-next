@@ -36,7 +36,7 @@ Mario Forever Maker Party
 
 【宣传视频】
 
-点击展开视频
+[https://www.bilibili.com/video/BV1QF9NBKEmp/](https://www.bilibili.com/video/BV1QF9NBKEmp/)
 
 视频制作：绿色的糖果
 
@@ -44,9 +44,7 @@ AI配音：GPT-Voice 闲聊花花
 
 另外，在早期测试版本中，我还和其他吧友一起录制了 MF 社区除夕晚会的节目，欢迎前来欣赏生草片段（
 
-点击展开视频
-
-此楼作为版本更新楼。
+[https://www.bilibili.com/video/BV1UjZiB8E4U/](https://www.bilibili.com/video/BV1UjZiB8E4U/)
 
 注：项目已公开，因此详细的更新也可以去仓库 commits 页面查看
 

@@ -9,6 +9,3 @@ MFAI World 10 **EX** **完整****版 将会以****单关****的形式发布**，
 **【下载地址】**
 [https://pan.baidu.com/s/1nSkPKB1QppkIYEBYsk214g](https://pan.baidu.com/s/1nSkPKB1QppkIYEBYsk214g)
 **Password: yyds**
-
-**【10-13通关解说视频】**
-点击展开视频

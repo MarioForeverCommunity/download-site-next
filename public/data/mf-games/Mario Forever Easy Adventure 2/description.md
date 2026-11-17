@@ -1,6 +1,6 @@
 预告视频
 
-点击展开视频
+[https://www.bilibili.com/video/BV1pB4y1K7P7/](https://www.bilibili.com/video/BV1pB4y1K7P7/)
 
 公测结束，正式版已发
 

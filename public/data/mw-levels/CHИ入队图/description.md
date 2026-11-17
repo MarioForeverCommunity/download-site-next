@@ -24,6 +24,6 @@
 
 通关录像
 
-点击展开视频
+[https://www.bilibili.com/video/BV1pB4y1K7P7/](https://www.bilibili.com/video/BV1pB4y1K7P7/)
 
 另外……SMWMDX敬请期待（
