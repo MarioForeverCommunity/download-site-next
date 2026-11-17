@@ -6,7 +6,7 @@ import { normalizeSoftendoList, getSoftendoGameName } from "../util/SoftendoUtil
 import { readList } from "../util/ReadList.js"
 import { getGameImageSync, loadImageIndex } from "../util/ImageUtil.js"
 import SoftendoGameCard from "./SoftendoGameCard.vue"
-import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+import { disableScroll, enableScroll } from "../util/ScrollLock.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
 

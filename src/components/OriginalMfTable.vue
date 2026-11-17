@@ -5,6 +5,7 @@ import { readList } from '../util/ReadList.js';
 import { getFormattedFileSize } from '../util/OpenListApi.js';
 import { toResourceDirectUrl } from '../util/GameUtil.js';
 import { getUseDirectLink } from '../util/Language.js';
+import { disableScroll, enableScroll } from '../util/ScrollLock.js';
 
 const props = defineProps({
   lan: {
@@ -114,7 +115,14 @@ const fetchFileSize = async () => {
 };
 
 watch(selectedDownload, (newVal) => {
-  if (!newVal) {
+  if (newVal) {
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    disableScroll();
+  } else {
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+    enableScroll();
     fileSize.value = null;
     fileSizeLoading.value = false;
   }

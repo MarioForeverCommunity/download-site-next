@@ -16,8 +16,8 @@ body.dark .topbar {
   color: #bbb !important;
 }
 
-body.dark .os-scrollbar-handle {
-  background-color: #555 !important;
+html:has(body.dark) {
+  scrollbar-color: #555 #222;
 }
 
 body.dark .link-item,

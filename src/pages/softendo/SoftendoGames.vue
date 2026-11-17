@@ -19,7 +19,7 @@ import ButtonDarkMode from "../../components/ButtonDarkMode.vue";
 import GlobalSettings from "../../components/GlobalSettings.vue";
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
-import { disableScroll, enableScroll } from "../../util/OverlayScrollbarsUtil.js";
+import { disableScroll, enableScroll } from "../../util/ScrollLock.js";
 import { getTagColor, getTagLabel, matchTagStates, nextTagState } from "../../util/TagUtil.js";
 import softendoZh from '../../markdown/softendo-zh.md'
 import softendoEn from '../../markdown/softendo-en.md'
@@ -64,14 +64,10 @@ watch([selectedGameDetail, showGenreModal], ([newDetail, newGenreModal]) => {
   if (newDetail || newGenreModal) {
     document.documentElement.classList.add("modal-open");
     document.body.classList.add("modal-open");
+    disableScroll();
   } else {
     document.documentElement.classList.remove("modal-open");
     document.body.classList.remove("modal-open");
-  }
-  if (!newDetail) {
-    enableScroll();
-  }
-  if (!newGenreModal) {
     enableScroll();
   }
 });
@@ -391,18 +387,15 @@ const tempGenreMatchCount = computed(() => {
 function openGenreModal() {
   tempGenreStates.value = { ...filter_option.value.genres };
   showGenreModal.value = true;
-  disableScroll();
 }
 
 function confirmGenreModal() {
   filter_option.value.genres = { ...tempGenreStates.value };
   showGenreModal.value = false;
-  enableScroll();
 }
 
 function cancelGenreModal() {
   showGenreModal.value = false;
-  enableScroll();
 }
 
 function cycleGenreState(genre) {

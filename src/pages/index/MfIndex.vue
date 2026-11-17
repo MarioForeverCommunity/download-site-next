@@ -13,7 +13,7 @@ import SiteFooter from '../../components/SiteFooter.vue'
 import MfGamesEntry from '../../components/MfGamesEntry.vue'
 import AssetsEntry from '../../components/AssetsEntry.vue'
 import SoftendoEntry from '../../components/SoftendoEntry.vue'
-import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js'
+import { disableScroll, enableScroll } from '../../util/ScrollLock.js'
 
 const instance = getCurrentInstance()
 if (instance) {

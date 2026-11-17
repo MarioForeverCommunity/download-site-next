@@ -22,7 +22,7 @@ import { readList } from "../../util/ReadList.js";
 import { parseVer } from "../../util/Misc.js";
 import introContent from '../../markdown/assets.md';
 import { navTop, setPageTitle } from "../../config.js";
-import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+import { disableScroll, enableScroll } from '../../util/ScrollLock.js';
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { getAssetResourceURLs } from "../../util/AssetUtil.js";

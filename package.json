@@ -19,7 +19,6 @@
     "axios": "^1.21.1",
     "js-yaml": "^5.5.0",
     "markdown-it": "^15.0.3",
-    "overlayscrollbars": "^2.17.0",
     "vue": "^3.5.45",
     "vue3-carousel": "^0.19.0"
   },

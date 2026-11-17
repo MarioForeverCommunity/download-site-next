@@ -87,7 +87,7 @@ export default defineConfig({
           if (id.includes('node_modules/vue/')) {
             return 'vue-vendor'
           }
-          if (id.includes('node_modules/@floating-ui/') || id.includes('node_modules/vue3-carousel/') || id.includes('node_modules/overlayscrollbars/')) {
+          if (id.includes('node_modules/@floating-ui/') || id.includes('node_modules/vue3-carousel/')) {
             return 'ui-vendor'
           }
           if (id.includes('node_modules/js-yaml/') || id.includes('node_modules/axios/')) {
@@ -116,7 +116,6 @@ export default defineConfig({
       'js-yaml',
       '@floating-ui/vue',
       'vue3-carousel',
-      'overlayscrollbars',
       'markdown-it'
     ]
   },

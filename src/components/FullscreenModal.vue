@@ -3,7 +3,7 @@ import { ref, computed, watch } from 'vue';
 import axios from 'axios';
 import { getName, getAuthorList, processFileNamesWithVolumes, toResourceDirectUrl } from '../util/GameUtil.js';
 import { getShowcaseImagesSync, getModalImageSync, getTitleImageSync, hasLogoImageSync, getGameImageSync, getDescriptionSync } from '../util/ImageUtil.js';
-import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
+import { disableScroll, enableScroll } from '../util/ScrollLock.js';
 import { batchFetchFileSizes } from '../util/OpenListApi.js';
 import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRange, isKliktopiaRepackage, getLanguageLabel } from '../util/SoftendoUtil.js';
 import { getAssetFileUrl } from '../util/AssetUtil.js';

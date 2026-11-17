@@ -2,7 +2,7 @@
 import { siteVersion } from '../config.js'
 import { changelog } from '../data/changelog.js'
 import { watch } from 'vue'
-import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js'
+import { disableScroll, enableScroll } from '../util/ScrollLock.js'
 
 const props = defineProps({
   show: {

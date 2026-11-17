@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort, getPageSize, setPageSize } from '../util/Language.js';
 import DesignSwitch from './DesignSwitch.vue';
-import { disableScroll, enableScroll } from '../util/OverlayScrollbarsUtil.js';
+import { disableScroll, enableScroll } from '../util/ScrollLock.js';
 
 const lan = ref(getLanguage());
 const showSettings = ref(false);

@@ -1,0 +1,23 @@
+/* Legacy-design scroll lock. Replaces the OverlayScrollbars body instance.
+   The legacy pages have no sticky bars pinned to the document scroller, so
+   hiding the root scrollbar is safe; util/ScrollLock.js compensates the lost
+   gutter with body padding to prevent a layout reflow when a modal opens. */
+html.legacy-locked {
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+html.legacy-locked::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Stop a wheel/touch gesture at the end of a dialog's own scroller from
+   chaining to the (now hidden) document scrollbar. */
+.modal-content,
+.modal-body,
+.settings-body,
+.tag-modal-body,
+.changelog-modal-content {
+  overscroll-behavior: contain;
+}

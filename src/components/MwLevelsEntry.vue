@@ -10,7 +10,7 @@ import { Carousel, Slide, Navigation } from "vue3-carousel"
 import "vue3-carousel/dist/carousel.css"
 import ClipboardButton from "./ButtonClipboard.vue"
 import GameCard from "./GameCard.vue"
-import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+import { disableScroll, enableScroll } from "../util/ScrollLock.js"
 import { batchFetchFileSizes } from "../util/OpenListApi.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))

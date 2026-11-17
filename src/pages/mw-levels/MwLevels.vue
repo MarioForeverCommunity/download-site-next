@@ -25,7 +25,7 @@ import GlobalSettings from '../../components/GlobalSettings.vue';
 import Tooltip from '../../components/ToolTip.vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
-import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+import { disableScroll, enableScroll } from '../../util/ScrollLock.js';
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 const originalLan = ref(getLanguage());
 

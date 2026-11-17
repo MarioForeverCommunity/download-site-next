@@ -29,7 +29,7 @@ import GlobalSettings from '../../components/GlobalSettings.vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
-import { disableScroll, enableScroll } from '../../util/OverlayScrollbarsUtil.js';
+import { disableScroll, enableScroll } from '../../util/ScrollLock.js';
 import { getFormattedFileSize } from '../../util/OpenListApi.js';
 
 const lan = ref(getLanguage());

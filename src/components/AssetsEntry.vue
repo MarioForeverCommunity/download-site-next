@@ -8,7 +8,7 @@ import { getUseDirectLink } from "../util/Language.js"
 import { ensureAssetsList, findAssetsByName, resolveVariantRaw, getVariantDisplayName } from "../util/useAssetsList.js"
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"
-import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+import { disableScroll, enableScroll } from "../util/ScrollLock.js"
 import { batchFetchFileSizes } from "../util/OpenListApi.js"
 import { getAssetResourceURLs } from "../util/AssetUtil.js"
 

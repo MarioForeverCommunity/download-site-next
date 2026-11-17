@@ -13,7 +13,7 @@ import ClipboardButton from "./ButtonClipboard.vue"
 import Tooltip from "./ToolTip.vue"
 import { QuestionIcon } from "./icons/Icons.js"
 import GameCard from "./GameCard.vue"
-import { disableScroll, enableScroll } from "../util/OverlayScrollbarsUtil.js"
+import { disableScroll, enableScroll } from "../util/ScrollLock.js"
 import { getFormattedFileSize } from "../util/OpenListApi.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))

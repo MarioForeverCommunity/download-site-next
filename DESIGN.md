@@ -16,7 +16,7 @@ URL 参数可直接指定，写入浏览器本地存储（`design` 键）后不�
 /mf-games.html?design=legacy   # 旧版
 ```
 
-别名：`new` / `modern` / `beta` → 新版，`old` / `classic` → 旧版。切换为整页重载，保证两套界面的全局副作用（OverlayScrollbars 等）互不残留。
+别名：`new` / `modern` / `beta` → 新版，`old` / `classic` → 旧版。切换为整页重载，保证两套界面的全局副作用（如 `dark-mode.css` 的裸标签样式）互不残留。
 
 由于选择会持久化，**任何写入 URL 的代码都必须保留 `design` 参数**（通常用 `history.replaceState`），否则分享链接或直达链接会把访客甩回默认设计。
 
@@ -72,7 +72,7 @@ src/util/Theme.js                明暗主题与密度（localStorage，同步 b
 src/util/useCatalog.js           目录状态：双搜索 / 筛选 / 三态标签 / 日期区间 / 排序 / 分页
 src/util/usePagination.js        旧版目录的分页（与新版共用 pageSize）
 src/boot/entry.js                按设计分发到 bootLegacy / bootNext（两者动态加载）
-src/boot/legacy.js               旧版启动：OverlayScrollbars + dark-mode.css
+src/boot/legacy.js               旧版启动：dark-mode.css + 滚动锁
 src/boot/next.js                 新版启动：base.css、主题、文档组件、路由
 src/boot/NxApp.vue               SPA 根组件：常驻外壳 + 内容区过渡
 src/util/next/router.js          前端软路由（pushState / popstate / 链接拦截）
