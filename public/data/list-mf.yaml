@@ -560,9 +560,9 @@
   - v0.3 Fix1:
       ver_alt:
       date: 2026-09-14
-      source_url: https://www.bilibili.com/opus/1247716415028330515
+      source_url: ~https://www.bilibili.com/opus/1247716415028330515
       source_url_alt:
-      download_url: https://qfile.qq.com/q/kBLfacg7K2
+      download_url: ~https://qfile.qq.com/q/kBLfacg7K2
       code:
       download_url_alt:
       file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE 2 v0.3 遗产 fix1 (1).rar
@@ -570,9 +570,9 @@
   - v0.3:
       ver_alt:
       date: 2026-09-13
-      source_url: https://www.bilibili.com/opus/1247501202777702409
+      source_url: ~https://www.bilibili.com/opus/1247501202777702409
       source_url_alt:
-      download_url: https://qfile.qq.com/q/bvpf9REv8A
+      download_url: ~https://qfile.qq.com/q/bvpf9REv8A
       code:
       download_url_alt:
       file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE 2 v0.3 遗产(1).rar
@@ -580,9 +580,9 @@
   - Demo:
       ver_alt:
       date: 2026-08-31
-      source_url: https://www.bilibili.com/opus/1242642001345642516
+      source_url: ~https://www.bilibili.com/opus/1242642001345642516
       source_url_alt:
-      download_url: https://qfile.qq.com/q/Ude4PI6Z2u
+      download_url: ~https://qfile.qq.com/q/Ude4PI6Z2u
       code:
       download_url_alt:
       file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE 2(DEMO).rar
@@ -657,10 +657,20 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
+  - Remake Fix2:
+      ver_alt:
+      date: 2026-11-17
+      source_url:
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: DEADLY LEVEL (WEILCOME BACK)(REMAKE) FIX 2.exe
+      file_url:
   - Remake:
       ver_alt:
       date: 2026-10-04
-      source_url: https://www.bilibili.com/video/BV1Xq8t61EtC/
+      source_url: ~https://www.bilibili.com/video/BV1Xq8t61EtC/
       source_url_alt:
       download_url: https://qfile.qq.com/q/bmFK16QPbG
       code:
@@ -670,7 +680,7 @@
   - 初版:
       ver_alt: Initial release
       date: 2026-08-23
-      source_url: https://www.bilibili.com/video/BV1Xq8t61EtC/
+      source_url: ~https://www.bilibili.com/video/BV1Xq8t61EtC/
       source_url_alt:
       download_url: https://qfile.qq.com/q/knoXcmCqKA
       code:
@@ -689,9 +699,9 @@
   ver:
   ver_alt:
   date: 2026-08-21
-  source_url: https://www.bilibili.com/video/BV1Fy8K6aELZ/
+  source_url: ~https://www.bilibili.com/video/BV1Fy8K6aELZ/
   source_url_alt:
-  download_url: https://qfile.qq.com/q/I4mS595U8G
+  download_url: ~https://qfile.qq.com/q/I4mS595U8G
   code:
   download_url_alt:
   file_name: WN-MASKER ADVENTURE.rar
@@ -727,9 +737,9 @@
   ver:
   ver_alt:
   date: 2026-08-21
-  source_url: https://www.bilibili.com/video/BV1Lt8A62ENW/
+  source_url: ~https://www.bilibili.com/video/BV1Lt8A62ENW/
   source_url_alt:
-  download_url: https://qfile.qq.com/q/AxxrCEWBhu
+  download_url: ~https://qfile.qq.com/q/AxxrCEWBhu
   code:
   download_url_alt:
   file_name: FUNNY DUSK TANKS.rar
@@ -860,9 +870,9 @@
   ver:
   ver_alt:
   date: 2026-08-14
-  source_url: https://www.bilibili.com/video/BV1P3gP6mE1c/
+  source_url: ~https://www.bilibili.com/video/BV1P3gP6mE1c/
   source_url_alt:
-  download_url: https://qfile.qq.com/q/DJYhp7whXy
+  download_url: ~https://qfile.qq.com/q/DJYhp7whXy
   code:
   download_url_alt:
   file_name: 新手眼里的普通关卡.exe
@@ -880,9 +890,9 @@
   ver:
   ver_alt:
   date: 2026-08-12
-  source_url: https://www.bilibili.com/opus/1235660952936906790
+  source_url: ~https://www.bilibili.com/opus/1235660952936906790
   source_url_alt:
-  download_url: https://qfile.qq.com/q/vgPIBKhdLO
+  download_url: ~https://qfile.qq.com/q/vgPIBKhdLO
   code:
   download_url_alt:
   file_name: MELODY HELL!!!.exe
@@ -899,9 +909,9 @@
   ver:
   ver_alt:
   date: 2026-08-12
-  source_url: https://www.bilibili.com/opus/1235501141505081353
+  source_url: ~https://www.bilibili.com/opus/1235501141505081353
   source_url_alt:
-  download_url: https://qfile.qq.com/q/FgUi6wV52U
+  download_url: ~https://qfile.qq.com/q/FgUi6wV52U
   code:
   download_url_alt:
   file_name: アッーウッウッイネイネ！！无滚屏版本.exe
@@ -935,9 +945,9 @@
   ver:
   ver_alt:
   date: 2026-08-09
-  source_url: https://www.bilibili.com/video/BV1CWuV6iEgy/
+  source_url: ~https://www.bilibili.com/video/BV1CWuV6iEgy/
   source_url_alt:
-  download_url: https://qfile.qq.com/q/CcBCw9cgve
+  download_url: ~https://qfile.qq.com/q/CcBCw9cgve
   code:
   download_url_alt:
   file_name: GREEN SLEDGE HAMMER THE LEVEL BY WN-MASKER.rar
@@ -971,9 +981,9 @@
   ver:
   ver_alt:
   date: 2026-08-06
-  source_url: https://www.bilibili.com/opus/1233403367823245350
+  source_url: ~https://www.bilibili.com/opus/1233403367823245350
   source_url_alt:
-  download_url: https://qfile.qq.com/q/JU2gCiMGgo
+  download_url: ~https://qfile.qq.com/q/JU2gCiMGgo
   code:
   download_url_alt:
   file_name: WN-MASKER VERSION SIMPLE LEVEL.zip
@@ -1081,9 +1091,9 @@
   - v0.8.0 Fix 1:
       ver_alt:
       date: 2026-08-09
-      source_url: https://www.bilibili.com/opus/1234552159885852709
+      source_url: ~https://www.bilibili.com/opus/1234552159885852709
       source_url_alt:
-      download_url: https://qfile.qq.com/q/3vERJiNITu
+      download_url: ~https://qfile.qq.com/q/3vERJiNITu
       code:
       download_url_alt:
       file_name: MARIO FOREVER;CHEAKEAKNCHN LIFE V0.8.0 FIX 1.zip
@@ -1091,9 +1101,9 @@
   - v0.8.0:
       ver_alt:
       date: 2026-08-03
-      source_url: https://www.bilibili.com/opus/1232328822801563665
+      source_url: ~https://www.bilibili.com/opus/1232328822801563665
       source_url_alt:
-      download_url: https://qfile.qq.com/q/tFDzg63PK8
+      download_url: ~https://qfile.qq.com/q/tFDzg63PK8
       code:
       download_url_alt:
       file_name: MARIO FOREVERCHEAKEAKNCHN LIFEV0.8.0.zip
@@ -14278,7 +14288,7 @@
   ver:
   date: 2021-04-01
   source_url: https://www.youtube.com/watch?v=PjKY7Ft6XjQ
-  source_url_alt: 
+  source_url_alt:
   download_url: https://zh.wsw233.com/files/view?f=32oal3
   code:
   download_url_alt: https://www.mediafire.com/file/gx5yvvn1wskqlgo/Cloud_World.7z/file
