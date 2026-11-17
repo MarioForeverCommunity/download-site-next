@@ -229,8 +229,8 @@ const getGameImage = (game) => {
   return imageResolver.resolve(game);
 };
 
-watch([selectedDownload, selectedVideo, tiebaDialog, selectedGameDetail, showDataPlacement], ([newDownload, newVideo, newTieba, newGameDetail, newShowDataPlacement]) => {
-  if (newDownload || newVideo || newTieba || newGameDetail || newShowDataPlacement) {
+watch([selectedDownload, selectedSmwp, selectedVideo, tiebaDialog, selectedGameDetail, showDataPlacement], ([newDownload, newSmwp, newVideo, newTieba, newGameDetail, newShowDataPlacement]) => {
+  if (newDownload || newSmwp || newVideo || newTieba || newGameDetail || newShowDataPlacement) {
     document.documentElement.classList.add('modal-open');
     document.body.classList.add('modal-open');
     disableScroll();
