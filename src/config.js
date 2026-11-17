@@ -212,12 +212,12 @@ export const sourceName = [
   },
   {
     "domain" : "marioforever.net",
-    "desc_zh" : "MF 社区",
+    "desc_zh" : "Mario Forever 社区",
+    "desc_zh_abbr" : "MF 社区",
     "desc_en" : "marioforever.net"
   },
   {
     "domain" : "marioforever.space",
-    "desc_zh" : "英文 MF 论坛 (新)",
     "desc_en" : "Mario Forever Space"
   },
   {
@@ -226,7 +226,6 @@ export const sourceName = [
   },
   {
     "domain" : "marioforeverforum.boards.net",
-    "desc_zh" : "英文 MF 论坛 (旧)",
     "desc_en" : "Mario Forever Forum"
   },
   {
@@ -246,8 +245,13 @@ export const sourceName = [
   },
   {
     "domain" : "bilibili.com",
-    "desc_zh" : "B 站",
+    "desc_zh" : "哔哩哔哩",
+    "desc_zh_abbr" : "B 站",
     "desc_en" : "Bilibili"
+  },
+  {
+    "domain" : "gamejolt.com",
+    "desc_en" : "GameJolt"
   },
   {
     "domain" : "github.com",
