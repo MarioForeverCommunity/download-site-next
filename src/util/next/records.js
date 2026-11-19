@@ -388,6 +388,36 @@ function collectImages(entry, category, verKey) {
   return { image: title || (images[0] || null), images };
 }
 
+// A multi-version record that is not expanded still opens as one drawer, and
+// that drawer shows the screenshots of every build: all version title screens
+// first (newest → oldest), then the shared showcase shots. Images that repeat
+// across builds — a game with one title file reused by every version — are kept
+// once, so the gallery does not fill with duplicates.
+function collectAllVersionImages(entry, versions) {
+  const probes = [...versions]
+    .sort((a, b) => {
+      const at = a.date ? a.date.getTime() : -Infinity;
+      const bt = b.date ? b.date.getTime() : -Infinity;
+      return bt - at;
+    })
+    .map((version) => ({ ...entry, currentVerStr: version.verKey }));
+
+  const images = [];
+  const seen = new Set();
+  const push = (url) => {
+    if (!url || seen.has(url)) return;
+    seen.add(url);
+    images.push(url);
+  };
+
+  // Title screens first, newest build to oldest.
+  for (const probe of probes) push(getGameImageSync(probe, "mf-games"));
+  for (const probe of probes) {
+    for (const item of getShowcaseImagesSync(probe, "mf-games")) push(item.url);
+  }
+  return images;
+}
+
 // ── Mario Forever fangames ───────────────────────────────────
 
 function cleanVersionLabel(value) {
@@ -590,6 +620,9 @@ export function buildMfRecords(entries, lan) {
       tags,
       image,
       images,
+      // The detail drawer of a non-expanded multi-version record shows every
+      // build's screenshots; everywhere else keeps using `images`.
+      galleryImages: versions.length > 1 ? collectAllVersionImages(entry, versions) : images,
       description,
       downloads: current ? current.downloads : [],
       dataDownloads: current ? current.dataDownloads : [],
@@ -664,6 +697,9 @@ export function expandMfRecord(record) {
       },
       image,
       images,
+      // A row produced by "expand all versions" is one build: its drawer must
+      // not inherit the record-wide gallery of every version.
+      galleryImages: images,
       current: version,
       isLatestVersion: version.latest,
       // Every version now has its own row, so the "N versions" badge would only

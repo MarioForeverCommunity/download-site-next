@@ -234,8 +234,15 @@ const playNotes = computed(() => {
 });
 
 // Gallery = title image first, then every showcase shot. The adapter already
-// de-duplicates, so no further filtering is needed here.
-const gallery = computed(() => (props.record && props.record.images ? props.record.images : []));
+// de-duplicates, so no further filtering is needed here. A non-expanded
+// multi-version MF record brings `galleryImages` — every build's title screen
+// newest to oldest, then the showcases — while expanded rows and other record
+// kinds keep their own `images`.
+const gallery = computed(() => {
+  const record = props.record;
+  if (!record) return [];
+  return record.galleryImages || record.images || [];
+});
 
 const tagColors = computed(() => (props.record ? props.record.tags.map((tag) => ({
   ...tag,
