@@ -3,7 +3,7 @@ Ten katalog zawiera wszystkie gry spoza serii Mario Forever, Mario i Non-Mario, 
 Ze względu na to, że gry te powstały przy użyciu starszych silników i na starszych systemach operacyjnych, niektóre z nich mogą działać nieprawidłowo lub wcale nie uruchamiać się na Twoim komputerze. W takich przypadkach do ich prawidłowego uruchomienia zazwyczaj potrzebny jest starszy komputer lub maszyna wirtualna ze starszym systemem operacyjnym, a także odpowiednie sterowniki i/lub ustawienia.
 
 Każda gra jest opisana za pomocą następujących kategorii:
-- Typ (Mario, Non-Mario, Banesoft itd.)
+- Typ (Mario, Nie-Mario, Banesoft itd.)
 - Silnik (silnik lub silniki, przy użyciu których stworzono grę)
 - Język (angielski, polski lub oba)
 - Gatunek (gatunek gry, np. Gra logiczna, Gra bez końca, Shoot 'em up itd.)

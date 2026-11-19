@@ -1144,6 +1144,12 @@ export function buildSoftendoRecords(entries, lan) {
     const genres = entry.genre ? (Array.isArray(entry.genre) ? entry.genre : [entry.genre]) : [];
     const language = entry.language ? (Array.isArray(entry.language) ? entry.language : [entry.language]) : [];
     const image = getGameImageSync(entry, "softendo");
+    // "Non-Mario" describes a category, so it follows the interface language;
+    // the other series names (Mario, MFF, Flash, Banesoft) are proper nouns and
+    // stay as they are.
+    const typeLabel = entry.type === "non-mario"
+      ? tr(lan, "facet.nonMario")
+      : getTypeLabel(entry.type);
 
     return {
       id: `softendo::${getSoftendoGameName(entry)}`,
@@ -1153,8 +1159,8 @@ export function buildSoftendoRecords(entries, lan) {
       // `alias` holds abbreviations (e.g. "MFBP") used only by search; showing
       // one under the title would read as a second, competing name.
       nameAlt: null,
-      author: getTypeLabel(entry.type),
-      authors: [getTypeLabel(entry.type)],
+      author: typeLabel,
+      authors: [typeLabel],
       authorZh: getTypeLabel(entry.type),
       date: null,
       yearLabel: yearRange.display,

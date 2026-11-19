@@ -125,6 +125,7 @@ const text = computed(() => ({
   updated: t("detail.updated"),
   type: t("detail.type"),
   series: t("detail.series"),
+  nonMario: t("facet.nonMario"),
   language: t("detail.language"),
   years: t("detail.years"),
   variant: t("detail.variant"),
@@ -289,9 +290,11 @@ const facts = computed(() => {
 
   if (record.kind === "softendo") {
     // The YAML `type` is a slug (mff / flash …); the drawer shows the series'
-    // formal name, matching the filter labels and card tooltip.
+    // formal name, matching the filter labels and card tooltip. "Non-Mario" is a
+    // category rather than a name, so it follows the interface language.
     const series = record.softendoType || (record.raw && record.raw.type);
-    rows.push({ label: t.series, value: series ? getFullTypeLabel(series) : "" });
+    const seriesLabel = series === "non-mario" ? t.nonMario : getFullTypeLabel(series);
+    rows.push({ label: t.series, value: series ? seriesLabel : "" });
     // A game can list several makers (e.g. flash + mmf); each is shown by its
     // full name rather than the YAML slug.
     const softwareValues = Array.isArray(record.software) ? record.software : record.software ? [record.software] : [];
