@@ -144,7 +144,7 @@ src/pages/<entry>/main.js
 - localStorage 键：`design`（设计）、`darkMode`（`1`/`0`）、`locale`（新版界面语言，如 `zh-Hans` / `zh-Hant` / `en`）、`language`（旧版语言 `zh` / `en`，由新版同步写入，见第 9 节）、`displayMode`（列表/卡片）、默认排序、`pageSize`（每页条数，`0` = 全部）。新旧版共用，切换设计后保持。
 - `src/util/Theme.js` 设置 `html[data-nx-theme]`，并同步 `body.dark` 以兼容旧版；密度不再由用户切换，列表固定紧凑、卡片固定舒适（`initDensity` / `setViewDensity`）。
 - `src/util/next/scrollLock.js`：遮罩打开时锁滚动。**不要**改成 `position: fixed` 或根元素 `overflow: hidden`，那会移走文档滚动容器，导致 sticky 的左栏与顶栏跳位。
-- `src/util/next/backGuard.js`：Android 返回键先关闭抽屉。它与 router 的 `history.replaceState` 配合，撤哨兵时不要调用 `history.back()`，否则会与路由导航竞争。
+- `src/util/backGuard.js`：两套设计共用，Android 返回键先关闭最上层浮层（栈式，支持详情弹框上叠图片预览）；`src/util/useBackGuard.js` 把 Vue 的弹框开关状态接上守卫，旧版各弹框都通过它注册。它与 router 的 `history.replaceState` 配合，撤哨兵时不要调用 `history.back()`，否则会与路由导航竞争。
 
 ### 6.6 新版专属常见坑
 

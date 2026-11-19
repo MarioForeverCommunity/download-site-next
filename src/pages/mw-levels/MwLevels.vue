@@ -26,6 +26,7 @@ import Tooltip from '../../components/ToolTip.vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { disableScroll, enableScroll } from '../../util/ScrollLock.js';
+import { useBackGuard } from '../../util/useBackGuard.js';
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 const originalLan = ref(getLanguage());
 
@@ -200,6 +201,13 @@ const selectedGameDetail = ref(null); // For game detail modal.
 // Data placement modal state and click delegation on markdown content
 const showDataPlacement = ref(false);
 const dataPlacementHtml = ref("");
+
+// Android 返回键关闭页面内的各个弹框
+useBackGuard(() => selectedDownload.value != null, () => { selectedDownload.value = null; });
+useBackGuard(() => selectedSmwp.value != null, () => { selectedSmwp.value = null; });
+useBackGuard(() => selectedVideo.value != null, () => { selectedVideo.value = null; });
+useBackGuard(() => tiebaDialog.value != null, () => { tiebaDialog.value = null; });
+useBackGuard(() => showDataPlacement.value, () => { showDataPlacement.value = false; });
 const mdContainer = ref(null);
 const mdClickHandler = (e) => {
   const opener = e.target.closest && e.target.closest('#open-data-placement');

@@ -14,6 +14,7 @@ import MfGamesEntry from '../../components/MfGamesEntry.vue'
 import AssetsEntry from '../../components/AssetsEntry.vue'
 import SoftendoEntry from '../../components/SoftendoEntry.vue'
 import { disableScroll, enableScroll } from '../../util/ScrollLock.js'
+import { useBackGuard } from '../../util/useBackGuard.js'
 
 const instance = getCurrentInstance()
 if (instance) {
@@ -149,6 +150,9 @@ watch(showHistory, (newVal) => {
     enableScroll()
   }
 })
+
+// Android 返回键关闭更新历史弹框
+useBackGuard(() => showHistory.value, () => { showHistory.value = false })
 </script>
 
 <template>

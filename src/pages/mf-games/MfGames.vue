@@ -30,6 +30,7 @@ import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import FullscreenModal from '../../components/FullscreenModal.vue';
 import { disableScroll, enableScroll } from '../../util/ScrollLock.js';
+import { useBackGuard } from '../../util/useBackGuard.js';
 import { getFormattedFileSize } from '../../util/OpenListApi.js';
 
 const lan = ref(getLanguage());
@@ -304,6 +305,12 @@ watch(selectedDownload, (newDownload) => {
   }
 });
 
+// Android 返回键关闭页面内的各个弹框
+useBackGuard(() => showCredits.value, () => { showCredits.value = false; });
+useBackGuard(() => selectedDownload.value != null, () => { selectedDownload.value = null; });
+useBackGuard(() => selectedVideo.value != null, () => { selectedVideo.value = null; });
+useBackGuard(() => tiebaDialog.value != null, () => { tiebaDialog.value = null; });
+
 // Sort operations.
 
 const sort_option = ref({
@@ -554,6 +561,9 @@ function cancelTagModal() {
   showTagModal.value = false;
   enableScroll();
 }
+
+// Android 返回键关闭标签筛选弹框
+useBackGuard(() => showTagModal.value, cancelTagModal);
 
 function cycleTagState(tag) {
   const current = tempTagStates.value[tag] || null;

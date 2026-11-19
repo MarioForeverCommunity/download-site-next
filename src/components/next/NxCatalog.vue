@@ -12,7 +12,7 @@ import NxDetail from "./NxDetail.vue";
 import NxIcon from "./NxIcon.vue";
 import { setViewDensity } from "../../util/Theme.js";
 import { lockScroll } from "../../util/next/scrollLock.js";
-import { pushBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard } from "../../util/backGuard.js";
 import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({

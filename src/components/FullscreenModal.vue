@@ -9,6 +9,7 @@ import { getSoftendoGameName, getSoftwareLabel, getTypeLabel, getSoftendoYearRan
 import { getAssetFileUrl } from '../util/AssetUtil.js';
 import { getTagLabel, getTagColor } from '../util/TagUtil.js';
 import { getUseDirectLink } from '../util/Language.js';
+import { useBackGuard } from '../util/useBackGuard.js';
 import MarkdownIt from 'markdown-it';
 
 const props = defineProps({
@@ -927,6 +928,10 @@ const closeImagePreview = () => {
   previewImageUrl.value = '';
   previewImageIndex.value = 0;
 };
+
+// Android 返回键逐层关闭：先关截图预览，再关详情窗口
+useBackGuard(() => showImagePreview.value, closeImagePreview);
+useBackGuard(() => props.show, () => emit('close'));
 
 const prevImage = () => {
   if (previewImageIndex.value > 0) {

@@ -4,6 +4,7 @@ import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort, getPageS
 import DesignSwitch from './DesignSwitch.vue';
 import Icon from './icons/Icon.vue';
 import { disableScroll, enableScroll } from '../util/ScrollLock.js';
+import { useBackGuard } from '../util/useBackGuard.js';
 
 const lan = ref(getLanguage());
 const showSettings = ref(false);
@@ -74,6 +75,9 @@ function cancelSettings() {
   showSettings.value = false;
   enableScroll();
 }
+
+// Android 返回键关闭设置弹框，与「取消」按钮走同一条路径
+useBackGuard(() => showSettings.value, cancelSettings);
 </script>
 
 <template>

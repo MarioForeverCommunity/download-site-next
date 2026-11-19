@@ -11,6 +11,7 @@ import "vue3-carousel/dist/carousel.css"
 import ClipboardButton from "./ButtonClipboard.vue"
 import GameCard from "./GameCard.vue"
 import { disableScroll, enableScroll } from "../util/ScrollLock.js"
+import { useBackGuard } from "../util/useBackGuard.js"
 import { batchFetchFileSizes } from "../util/OpenListApi.js"
 
 const FullscreenModal = defineAsyncComponent(() => import("./FullscreenModal.vue"))
@@ -58,6 +59,12 @@ const selectedGameDetail = ref(null)
 const isMobile = ref(false)
 const entryRef = ref(null)
 const entryWidth = ref(0)
+
+// Android 返回键关闭本卡片打开的弹框
+useBackGuard(() => selectedDownload.value != null, () => { selectedDownload.value = null })
+useBackGuard(() => selectedSmwp.value != null, () => { selectedSmwp.value = null })
+useBackGuard(() => selectedVideo.value != null, () => { selectedVideo.value = null })
+useBackGuard(() => tiebaDialog.value != null, () => { tiebaDialog.value = null })
 
 function updateIsMobile() {
   isMobile.value = window.innerWidth <= 800

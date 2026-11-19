@@ -3,6 +3,7 @@ import { siteVersion } from '../config.js'
 import { changelog } from '../data/changelog.js'
 import { watch } from 'vue'
 import { disableScroll, enableScroll } from '../util/ScrollLock.js'
+import { useBackGuard } from '../util/useBackGuard.js'
 
 const props = defineProps({
   show: {
@@ -55,6 +56,9 @@ watch(() => props.show, (newVal) => {
     enableScroll();
   }
 });
+
+// Android 返回键关闭更新履历弹框
+useBackGuard(() => props.show, () => emit('close'))
 </script>
 
 <template>

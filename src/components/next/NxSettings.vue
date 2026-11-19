@@ -11,7 +11,7 @@ import { NEXT_DESIGN } from "../../util/Design.js";
 import DesignSwitch from "../DesignSwitch.vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
-import { pushBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard } from "../../util/backGuard.js";
 import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({

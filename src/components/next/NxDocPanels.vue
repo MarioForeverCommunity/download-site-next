@@ -7,7 +7,7 @@
 // prose stays where it was and the reading position is preserved.
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import NxIcon from "./NxIcon.vue";
-import { pushBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard } from "../../util/backGuard.js";
 import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({

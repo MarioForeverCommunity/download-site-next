@@ -12,7 +12,7 @@ import NxDetail from "./NxDetail.vue";
 import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, assetTypeLabel } from "../../util/next/records.js";
 import { navigateTo } from "../../util/next/router.js";
-import { abandonBackGuard } from "../../util/next/backGuard.js";
+import { abandonBackGuard } from "../../util/backGuard.js";
 import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({

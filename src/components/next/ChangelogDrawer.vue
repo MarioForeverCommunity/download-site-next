@@ -7,7 +7,7 @@ import { changelog } from "../../data/changelog.js";
 import { siteVersion } from "../../config.js";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
-import { pushBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard } from "../../util/backGuard.js";
 import { dataLangOf, localeNeedsConversion, localizeText, useI18n } from "../../i18n/index.js";
 import { prepareConversion } from "../../i18n/convert.js";
 

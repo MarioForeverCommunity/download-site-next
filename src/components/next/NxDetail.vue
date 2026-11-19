@@ -17,7 +17,7 @@ import { getAuthorFolderURL } from "../../util/GameUtil.js";
 import { getDescriptionSync } from "../../util/ImageUtil.js";
 import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
-import { pushBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard } from "../../util/backGuard.js";
 import { buildPageUrl } from "../../util/next/router.js";
 import { dataLangOf, localeNeedsConversion, localizeText, prefersAltLinks, useI18n } from "../../i18n/index.js";
 import { prepareConversion } from "../../i18n/convert.js";

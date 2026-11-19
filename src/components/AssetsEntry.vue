@@ -9,6 +9,7 @@ import { ensureAssetsList, findAssetsByName, resolveVariantRaw, getVariantDispla
 import ClipboardButton from "./ButtonClipboard.vue"
 import AssetCard from "./AssetCard.vue"
 import { disableScroll, enableScroll } from "../util/ScrollLock.js"
+import { useBackGuard } from "../util/useBackGuard.js"
 import { batchFetchFileSizes } from "../util/OpenListApi.js"
 import { getAssetResourceURLs } from "../util/AssetUtil.js"
 
@@ -49,6 +50,10 @@ const fileSizeMap = ref({})
 const fileSizeLoading = ref(false)
 const tiebaDialog = ref(null)
 const selectedAssetDetail = ref(null)
+
+// Android 返回键关闭本条目打开的弹框
+useBackGuard(() => selectedDownload.value != null, () => { selectedDownload.value = null })
+useBackGuard(() => tiebaDialog.value != null, () => { tiebaDialog.value = null })
 
 const reference = ref(null)
 const floating = ref(null)

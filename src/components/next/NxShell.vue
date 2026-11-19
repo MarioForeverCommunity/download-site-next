@@ -36,7 +36,7 @@ import NxDocDrawer from "./NxDocDrawer.vue";
 import NxSettings from "./NxSettings.vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll } from "../../util/next/scrollLock.js";
-import { pushBackGuard, abandonBackGuard } from "../../util/next/backGuard.js";
+import { pushBackGuard, abandonBackGuard } from "../../util/backGuard.js";
 import { pageIdForHref } from "../../util/next/router.js";
 
 const props = defineProps({

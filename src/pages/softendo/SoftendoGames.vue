@@ -20,6 +20,7 @@ import GlobalSettings from "../../components/GlobalSettings.vue";
 import { useFloating, flip, shift, offset, autoUpdate } from "@floating-ui/vue";
 import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/ScrollLock.js";
+import { useBackGuard } from "../../util/useBackGuard.js";
 import { getTagColor, getTagLabel, matchTagStates, nextTagState } from "../../util/TagUtil.js";
 import softendoZh from '../../markdown/softendo-zh.md'
 import softendoEn from '../../markdown/softendo-en.md'
@@ -397,6 +398,9 @@ function confirmGenreModal() {
 function cancelGenreModal() {
   showGenreModal.value = false;
 }
+
+// Android 返回键关闭类型筛选弹框
+useBackGuard(() => showGenreModal.value, cancelGenreModal);
 
 function cycleGenreState(genre) {
   const current = tempGenreStates.value[genre] || null;

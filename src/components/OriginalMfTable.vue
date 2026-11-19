@@ -6,6 +6,7 @@ import { getFormattedFileSize } from '../util/OpenListApi.js';
 import { toResourceDirectUrl } from '../util/GameUtil.js';
 import { getUseDirectLink } from '../util/Language.js';
 import { disableScroll, enableScroll } from '../util/ScrollLock.js';
+import { useBackGuard } from '../util/useBackGuard.js';
 
 const props = defineProps({
   lan: {
@@ -34,6 +35,9 @@ const versions = ref([]);
 const selectedDownload = ref(null);
 const fileSizeLoading = ref(false);
 const fileSize = ref(null);
+
+// Android 返回键关闭下载弹框
+useBackGuard(() => selectedDownload.value != null, () => { selectedDownload.value = null });
 
 onMounted(async () => {
   try {
