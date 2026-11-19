@@ -171,11 +171,11 @@ export const navTop = [
     "link" : "./mf-games.html",
     "option" : "MF 作品目录",
     "option_zh_new" : "Mario Forever 作品目录",
-    "option_zh_hant" : "Mario Forever 作品目錄",
+    "option_zh_hant" : "Mario Forever 遊戲目錄",
     "option_alt" : "MF Fangames Catalog",
     "option_pl" : "Katalog gier MF",
     "title" : "Mario Forever 同人作品目录",
-    "title_zh_hant" : "Mario Forever 同人作品目錄",
+    "title_zh_hant" : "Mario Forever 同人遊戲目錄",
     "title_alt" : "Mario Forever Fangames Catalog",
     "title_pl" : "Katalog fanowskich gier Mario Forever",
     "show_en" : true
