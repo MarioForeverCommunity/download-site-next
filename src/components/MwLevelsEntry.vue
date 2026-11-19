@@ -586,6 +586,13 @@ const getGameImage = () => {
 </style>
 
 <style scoped>
+/* vue3-carousel sets `.carousel { z-index: 1 }`, which lifts the gallery above
+   the legacy design's fixed buttons (back to top / dark mode / settings).
+   Drop the stacking layer so those buttons stay on top. */
+:deep(.carousel) {
+  z-index: auto;
+}
+
 :deep(.carousel__prev) {
   margin-left: 8px;
 }

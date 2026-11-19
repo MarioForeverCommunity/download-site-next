@@ -84,6 +84,14 @@ defineProps({
     padding-bottom: 28px;
   }
 
+  /* vue3-carousel's stylesheet sets `.carousel { z-index: 1 }`, which lifts the
+     gallery above the legacy design's fixed buttons (back to top / dark mode /
+     settings) in the bottom-right corner. Drop the stacking layer so those
+     buttons keep painting on top of the carousel. */
+  :deep(.carousel) {
+    z-index: auto;
+  }
+
   /* The dots stay under the picture, but out of the carousel's layout box. The
      old markdown overrode them to `position: relative`, which made `.carousel`
      taller by the pagination row; the prev/next arrows are positioned at 50% of
