@@ -1,4 +1,4 @@
-import { getName, getAuthorList, getDownloadEntries, toResourceDirectUrl, getVideoDesc, getMwLevelFileUrl, processFileNamesWithVolumes } from "../GameUtil.js";
+import { getName, getAuthorList, getDownloadEntries, toResourceDirectUrl, getVideoDesc, getMwLevelFileUrl, processFileNamesWithVolumes, detectPlatform } from "../GameUtil.js";
 import { getAssetResourceURLs } from "../AssetUtil.js";
 import { getSoftendoGameName, getSoftendoYearRange, getTypeLabel, getLanguageLabel, isKliktopiaRepackage } from "../SoftendoUtil.js";
 import { getTagLabel } from "../TagUtil.js";
@@ -64,27 +64,11 @@ function tagLabel(tag, locale) {
 
 // ── shared helpers ────────────────────────────────────────────
 // The redesigned pages read the same YAML as the legacy pages, so platform and
-// software detection must stay identical to `src/pages/mf-games/MfGames.vue`;
-// the rules live here once so a future edit cannot drift between designs.
+// software detection must stay identical to `src/pages/mf-games/MfGames.vue`.
+// Platform rules live in GameUtil.js (`detectPlatform`) and are shared by both
+// designs; software detection below is the redesigned counterpart.
 
-export function detectPlatform(verKey, fileName) {
-  const verLower = String(verKey || "").toLowerCase();
-  const fileLower = String(fileName || "").toLowerCase();
-  if (verLower.includes("linux") || fileLower.includes("linux")
-    || fileLower.endsWith(".tar.xz") || fileLower.endsWith(".tar.gz") || fileLower.endsWith(".tgz")) {
-    return "Linux";
-  }
-  if (verLower.includes("macos") || fileLower.includes("macos") || fileLower.endsWith(".dmg")) {
-    return "macOS";
-  }
-  if (verLower.includes("android") || fileLower.includes("android") || fileLower.endsWith(".apk")) {
-    return "Android";
-  }
-  if (fileLower.endsWith(".jar")) {
-    return "J2ME";
-  }
-  return "Windows";
-}
+export { detectPlatform };
 
 export function detectSoftware(entry, verObj) {
   if (verObj && verObj.software) return verObj.software;

@@ -257,29 +257,37 @@ export function getVersion(item, lan) {
   return null;
 }
 
-// 作品所有版本中出现过的平台，规则与 MF 目录页的 detectPlatform 一致：
-// 版本号或文件名含 linux / macOS，或常见 Linux 压缩包 / .dmg 扩展名。
-// 卡片与列表用它显示 Linux / macOS 角标：macOS 通常只出现在旧版本里，
-// 只看当前版本会漏掉；Android 仍由 .apk 与 hasApkFile 单独判断。
-export function getMfPlatforms(item) {
-  if (!item || !Array.isArray(item.ver)) {
-    return [];
+// 平台判定（版本级），全站唯一实现：旧版目录页的平台筛选、新版记录模型
+// （src/util/next/records.js）与卡片 / 列表的平台角标都调用它，避免规则漂移。
+// 版本号或文件名含 linux / macOS / android，或对应的压缩包 / 镜像 / 安装包扩展名。
+export function detectPlatform(verKey, fileName) {
+  const verLower = String(verKey || "").toLowerCase();
+  const rawName = Array.isArray(fileName) ? fileName[0] : fileName;
+  const fileLower = String(rawName || "").toLowerCase();
+  if (verLower.includes("linux") || fileLower.includes("linux") ||
+      fileLower.endsWith(".tar.xz") || fileLower.endsWith(".tar.gz") || fileLower.endsWith(".tgz")) {
+    return "Linux";
   }
-  const platforms = new Set();
-  for (const version of item.ver) {
-    const verKey = String(Object.keys(version)[0] || "").toLowerCase();
-    const rawName = version[Object.keys(version)[0]]?.file_name;
-    const fileName = String(Array.isArray(rawName) ? rawName[0] : rawName || "").toLowerCase();
-    if (verKey.includes("linux") || fileName.includes("linux") ||
-        fileName.endsWith(".tar.xz") || fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")) {
-      platforms.add("linux");
-    } else if (verKey.includes("macos") || fileName.includes("macos") || fileName.endsWith(".dmg")) {
-      platforms.add("macos");
-    } else if (fileName.endsWith(".jar")) {
-      platforms.add("j2me");
-    }
+  if (verLower.includes("macos") || fileLower.includes("macos") || fileLower.endsWith(".dmg")) {
+    return "macOS";
   }
-  return [...platforms];
+  if (verLower.includes("android") || fileLower.includes("android") || fileLower.endsWith(".apk")) {
+    return "Android";
+  }
+  if (fileLower.endsWith(".jar")) {
+    return "J2ME";
+  }
+  return "Windows";
+}
+
+// 当前展示版本的平台（小写 slug，供角标判断）。角标必须精确到版本：
+// 卡片与列表只根据正在显示的那个版本判断，切换版本后图标随之变化，
+// 不再因为任意旧版本存在该平台而一直显示。
+export function getMfPlatform(item) {
+  if (!item || !item.currentVer) {
+    return null;
+  }
+  return detectPlatform(item.currentVerStr, item.currentVer.file_name).toLowerCase();
 }
 
 export function getResourceURL(item, lan) {

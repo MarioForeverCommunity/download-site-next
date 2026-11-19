@@ -15,7 +15,7 @@ import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
 import Icon from "../../components/icons/Icon.vue";
-import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
+import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl, detectPlatform } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { setPageTitle } from "../../config.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
@@ -470,27 +470,6 @@ const tagGameCount = computed(() => {
   }
   return countMap;
 });
-
-function detectPlatform(verKey, fileName) {
-  const verLower = (verKey || "").toLowerCase();
-  const fileLower = (fileName || "").toLowerCase();
-  if (verLower.includes("linux") || fileLower.includes("linux") ||
-      fileLower.endsWith(".tar.xz") || fileLower.endsWith(".tar.gz") || fileLower.endsWith(".tgz")) {
-    return "Linux";
-  }
-  if (verLower.includes("macos") || fileLower.includes("macos") ||
-      fileLower.endsWith(".dmg")) {
-    return "macOS";
-  }
-  if (verLower.includes("android") || fileLower.includes("android") ||
-      fileLower.endsWith(".apk")) {
-    return "Android";
-  }
-  if (fileLower.endsWith(".jar")) {
-    return "J2ME";
-  }
-  return "Windows";
-}
 
 function detectSoftware(entry, verObj) {
   // 版本级别优先

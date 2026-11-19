@@ -1,7 +1,7 @@
 <script setup>
 import { parseVer } from "../util/Misc.js";
 import Icon from "./icons/Icon.vue";
-import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent, getMfPlatforms } from "../util/GameUtil.js";
+import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getAuthorFolderURL, hasDownloadableContent, getMfPlatform } from "../util/GameUtil.js";
 import Tooltip from "./ToolTip.vue";
 
 const props = defineProps({
@@ -35,13 +35,6 @@ const selectVersion = (ver) => {
 const getImageUrl = () => {
   if (!props.getGameImage) return null;
   return props.getGameImage(props.game);
-};
-
-const hasApkFile = () => {
-  if (!props.game || !props.game.currentVer || !props.game.currentVer.file_name) {
-    return false;
-  }
-  return props.game.currentVer.file_name.toLowerCase().endsWith('.apk');
 };
 
 const handleSourceClick = (event) => {
@@ -137,19 +130,19 @@ const getHomepageUrl = () => {
         <Icon name="info" class="icon button-shift"></Icon>
         <template #popper>{{ game.description }}</template>
       </Tooltip>
-      <Tooltip v-if="hasApkFile()">
+      <Tooltip v-if="getMfPlatform(game) === 'android'">
         <Icon name="android" class="icon apk-icon platform-icon"></Icon>
         <template #popper>{{ lan === 'en' ? 'Android' : '安卓游戏' }}</template>
       </Tooltip>
-      <Tooltip v-if="getMfPlatforms(game).includes('linux')">
+      <Tooltip v-if="getMfPlatform(game) === 'linux'">
         <Icon name="linux" class="icon platform-icon"></Icon>
         <template #popper>{{ lan === 'en' ? 'Linux' : 'Linux 版' }}</template>
       </Tooltip>
-      <Tooltip v-if="getMfPlatforms(game).includes('macos')">
+      <Tooltip v-if="getMfPlatform(game) === 'macos'">
         <Icon name="apple" class="icon platform-icon"></Icon>
         <template #popper>{{ lan === 'en' ? 'macOS' : 'macOS 版' }}</template>
       </Tooltip>
-      <Tooltip v-if="getMfPlatforms(game).includes('j2me')">
+      <Tooltip v-if="getMfPlatform(game) === 'j2me'">
         <Icon name="java" class="icon platform-icon"></Icon>
         <template #popper>{{ lan === 'en' ? 'J2ME' : 'J2ME 版' }}</template>
       </Tooltip>

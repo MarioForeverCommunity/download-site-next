@@ -160,7 +160,7 @@ src/pages/<entry>/main.js
 - 全站图标来自 **Font Awesome Free**，以 SVG 按需引入（`@fortawesome/free-solid-svg-icons` / `free-brands-svg-icons` + `@fortawesome/vue-fontawesome`）。名称表统一在 `src/components/icons/iconMap.js`，两套界面共用。
 - 旧版用 `<Icon name="download" class="icon" />`（`src/components/icons/Icon.vue`），尺寸与颜色由调用处的 `.icon` 等作用域样式控制；新版用 `<NxIcon name="download" :size="14" />`（`src/components/next/NxIcon.vue`），`size` 是显式像素值。**新增图标先登记名称再用**，不要再建单图标 `.vue`。
 - `src/components/icons/fa.js` 关闭了 FA 的自动 CSS 注入，避免 `.svg-inline--fa` 的全局规则污染旧版。代价是 FA 自带的 `overflow: visible` 也不会生成，因此 `Icon.vue` / `NxIcon.vue` 必须保留该样式：多个 FA 路径超出 `viewBox`，默认 `overflow: hidden` 会裁边并让图标看起来没有居中。
-- 平台标识使用品牌图标：`android` / `apple` / `linux` / `windows` / `java`。旧版卡片与列表的平台角标由 `GameUtil.js` 的 `getMfPlatforms()` 判定（任一版本包含该平台即显示）；新版详情抽屉通过 `NxDetail.vue` 的 `PLATFORM_ICONS` 映射。
+- 平台标识使用品牌图标：`android` / `apple` / `linux` / `windows` / `java`。旧版卡片与列表的平台角标由 `GameUtil.js` 的 `getMfPlatform()` 按**当前展示的版本**判定（规则与目录页的 `detectPlatform` 一致，切换版本后图标随之变化）；新版详情抽屉通过 `NxDetail.vue` 的 `PLATFORM_ICONS` 映射。
 - Font Awesome Free 图标为 CC BY 4.0：新版关于页技术栈与旧版页脚保留许可署名，不要删除。
 - 构建时 `vite.config.js` 把 `@fortawesome` 单独拆成 `fontawesome` 可缓存 chunk；不要把图标重新并入页面 chunk。
 

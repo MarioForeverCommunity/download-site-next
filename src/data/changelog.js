@@ -8,10 +8,10 @@ export const changelog = [
     version: "3.0.0-rc.2",
     date: "2026-11-19",
     features: [
-      "旧版 MF 作品卡片与列表新增 Linux、macOS 与 J2ME（Java）平台角标：作品任一版本包含对应构建即会显示，不再只看当前版本"
+      "旧版 MF 作品卡片与列表新增 Linux、macOS 与 J2ME（Java）平台角标"
     ],
     features_en: [
-      "Legacy MF cards and rows now show Linux, macOS and J2ME (Java) platform badges whenever any build of the game targets that platform, instead of only checking the current version"
+      "Legacy MF cards and rows now show Linux, macOS and J2ME (Java) platform badges"
     ],
     improvements: [
       "新版文档页的条目卡片轮播尽量占满可用高度：中间截图最高 480px，卡片宽度不足时整图按比例缩小而不裁切；轮播高度以第一张截图的比例为准，切换图片时不再改变高度",
