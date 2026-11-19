@@ -329,12 +329,13 @@ const languageLabel = computed(() => localeInfo(displayLocale.value).name);
 
 // The page title sits in the topbar of the main area, per review.
 //
-// On a phone the full English titles are long enough to wrap the topbar, which
-// pushed the language/theme/settings buttons onto a second line — and a dropdown
-// anchored to a button that is no longer at the right edge spilled off-screen.
-// Phones therefore use the sidebar's page name (`option` / `option_alt`), which
-// is the same short label the navigation already shows. Chinese titles are
-// already compact, and desktop always gets the full title.
+// On a phone the full English (and some Traditional Chinese) titles are long
+// enough to wrap the topbar, which pushed the language/theme/settings buttons
+// onto a second line — and a dropdown anchored to a button that is no longer at
+// the right edge spilled off-screen. Phones therefore use the sidebar's page
+// name (`option_zh_hant` / `option_alt` / …), the same compact label the
+// navigation already shows. Simplified titles are already short, and desktop
+// always gets the full title.
 const isNarrow = ref(false);
 
 function updateNarrow() {
@@ -343,11 +344,11 @@ function updateNarrow() {
 
 const pageTitle = computed(() => {
   const entry = pageEntry.value;
-  // Phones + non-Chinese: use the sidebar's page name, which is the compact label
-  // the navigation already shows. This has to win over a `title` prop too —
+  // Phones + a non-Simplified interface (English, Polish, Traditional Chinese):
+  // use the sidebar's compact label. This has to win over a `title` prop too —
   // some pages pass their full title explicitly, and that is what wrapped the
   // topbar and pushed the action buttons off the right edge.
-  if (isNarrow.value && contentLang.value !== "zh" && entry) {
+  if (isNarrow.value && (contentLang.value !== "zh" || isTraditionalUi.value) && entry) {
     return optionLabel(entry);
   }
   // The Softendo catalog is the one page whose Chinese title is long enough to

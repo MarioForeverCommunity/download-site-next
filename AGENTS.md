@@ -148,6 +148,7 @@ src/pages/<entry>/main.js
 
 - 旧版文件只做最小改动；新版样式必须限定在 `.nx-*` 或 `[data-nx-theme]` 之下，禁止引入作用到裸标签的全局样式。
 - 移动端顶栏与结果栏是 sticky 的；新增浮层要检查层级，`nx-to-top` 等固定按钮在抽屉展开时应隐藏。
+- 手机顶栏标题在**任何非简体界面**（英文 / 波兰语 / 繁中）都取侧栏短标签（`option_zh_hant` / `option_alt` / `option`），简体与桌面端用完整 `title`；引擎页与 MW 资源页的繁体完整标题过长，必须走这条分支。
 - 详情 / 筛选 / 文档抽屉各自负责 `pushBackGuard` + `lockScroll`，卸载时必须释放，否则页面会永久锁滚动或吞掉返回键。
 - 任何 URL 写入都用 `replaceState` 并保留其他查询参数（尤其 `design`），否则分享链接、直达链接或设计选择会丢失。
 - `general.css` 对页面全局 `text-align: center` 的规则同样可能影响新版；新面板需显式声明 `text-align: left`。

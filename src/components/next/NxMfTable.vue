@@ -355,6 +355,9 @@ onMounted(async () => {
     .nx-mf-actions {
       grid-area: actions;
       flex-direction: column;
+      /* In the stacked layout this flex container is a column, so its cross
+         axis is horizontal: align the buttons to the right edge of the cell. */
+      align-items: flex-end;
     }
   }
 </style>

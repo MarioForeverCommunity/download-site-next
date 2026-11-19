@@ -213,7 +213,7 @@ export const navTop = [
     "link" : "./mw-levels.html",
     "option" : "MW 作品目录",
     "option_zh_new": "Mario Worker 作品目录",
-    "option_zh_hant" : "MW 作品目錄",
+    "option_zh_hant" : "Mario Worker 作品目錄",
     "option_alt" : "MW Level Downloads",
     "option_pl" : "Katalog poziomów MW",
     "title" : "Mario Worker 关卡作品目录",
