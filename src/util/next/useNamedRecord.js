@@ -5,6 +5,8 @@ import { readList } from "../ReadList.js";
 import { normalizeSoftendoList, getSoftendoGameName } from "../SoftendoUtil.js";
 import { loadImageIndex } from "../ImageUtil.js";
 import { buildAssetRecords, buildMfRecords, buildSoftendoRecords } from "./records.js";
+import { localeNeedsConversion } from "../../i18n/index.js";
+import { prepareConversion } from "../../i18n/convert.js";
 
 /**
  * Resolve single named records for the documentation pages.
@@ -46,6 +48,9 @@ export function useNamedRecord(kind, props, lan) {
 }
 
 async function resolveMf(props, lan) {
+  // Doc previews use the same record builder as the catalog, which converts MF
+  // titles/descriptions for a Traditional interface.
+  if (localeNeedsConversion(lan)) await prepareConversion(true);
   const list = await ensureMfList();
   const target = String(props.name || "").trim().toLowerCase();
   const matches = list.filter((entry) => {
@@ -91,6 +96,9 @@ async function resolveMf(props, lan) {
 }
 
 async function resolveAsset(props, lan) {
+  // Asset descriptions, variant names and version labels are converted for a
+  // Traditional interface in the doc preview, just like in the catalog.
+  if (localeNeedsConversion(lan)) await prepareConversion(true);
   // `ensureAssetsList` normalizes variants and inherits the entry-level download
   // fields onto each variant, which is what the legacy `<AssetsEntry>` relies on.
   await ensureAssetsList();

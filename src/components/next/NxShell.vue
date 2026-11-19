@@ -10,10 +10,26 @@
 // The legacy design stays one click away, but the hand-off moved into "Global
 // settings" — a permanent topbar button advertising a second design was louder
 // than the catalog itself.
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
+//
+// Every string here comes from the i18n catalogues (src/i18n/locales/*), and the
+// language menu is built from the locale registry: adding a language file adds a
+// menu entry, it does not touch this component.
+import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import { navTop, topBar, siteVersion } from "../../config.js";
 
 import { getTheme, toggleTheme } from "../../util/Theme.js";
+import {
+  getLocale,
+  dataLangOf,
+  localeNeedsConversion,
+  localizedField,
+  localeInfo,
+  normalizeLocale,
+  tFor
+} from "../../i18n/index.js";
+import { localeForEntry } from "../../util/next/pageLocale.js";
+import { isEntryVisible } from "../../util/next/entryVisibility.js";
+import { shellConfig } from "../../util/next/shellStore.js";
 
 import ChangelogDrawer from "./ChangelogDrawer.vue";
 import NxDocDrawer from "./NxDocDrawer.vue";
@@ -28,9 +44,11 @@ const props = defineProps({
     type: String,
     required: true
   },
-  lan: {
+  // Interface locale the page publishes. Empty means "whatever the visitor
+  // chose"; the shell then resolves it against the page's own capability.
+  locale: {
     type: String,
-    required: true
+    default: ""
   },
   title: {
     type: String,
@@ -68,7 +86,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(["changeLanZh", "changeLanEn", "random"]);
+const emit = defineEmits(["changeLocale", "random"]);
 
 // The build timestamp was lost when the footer moved into the rail; restore it
 // alongside the version so the rail carries the same provenance as before.
@@ -93,47 +111,89 @@ const commitUrl = commitHash
 
 const pageEntry = computed(() => navTop.find((item) => item.id === props.pageId) || null);
 
-const displayLan = computed(() => {
-  const entry = pageEntry.value;
-  if (!entry) return props.lan;
-  if (entry.show_en == false && props.lan === "en") return "zh";
-  if (entry.show_zh == false && props.lan === "zh") return "en";
-  return props.lan;
+// The locale the whole shell renders in. The page resolves it against the
+// documents it actually has and publishes it; only if a page has not published
+// one yet do we fall back to the config.js flags.
+const displayLocale = computed(() => normalizeLocale(props.locale)
+  || localeForEntry(getLocale(), pageEntry.value));
+
+// Content language: which of the site's written languages the records and
+// markdown are in (`zh` / `en`). Several legacy branches key off this rather than
+// off the interface language — the legal notice, the brand logo, the status link.
+const contentLang = computed(() => dataLangOf(displayLocale.value));
+
+const t = (key, params) => tFor(displayLocale.value, key, params);
+
+// Traditional Chinese interface (the locale that reads Simplified data through
+// the converter). `show_zh_hant` keys off it, not off `zh` as a whole: an entry
+// aimed at the mainland audience only has to disappear from the 繁體 rail.
+const isTraditionalUi = computed(() => localeNeedsConversion(displayLocale.value));
+
+// Only the Simplified Chinese interface counts as "Chinese" for the pieces that
+// are deliberately localised to a single audience. Traditional Chinese reads the
+// same Simplified data but presents the international variant.
+const isSimplifiedUi = computed(() => contentLang.value === "zh" && !isTraditionalUi.value);
+
+// The rail's brand mark follows the interface, not the written content language:
+// Traditional Chinese uses the international logo like English / Polski.
+const brandLogoSrc = computed(() => (isSimplifiedUi.value
+  ? "./images/logo_new.png"
+  : "./images/logo2_hd.png"));
+
+// `show_new` / `show_zh_hant` / `show_zh` / `show_en` are resolved in one place
+// (util/next/entryVisibility.js); only the language used for the check differs.
+//
+// The rail's own catalog links follow English/Polish on a Traditional Chinese
+// interface: the English-only engines and Mario Worker editor pages are shown,
+// and the Chinese-only level/assets catalogs are not. External site links keep
+// the Chinese/English visibility rules (and their `show_zh_hant` switches), so
+// the 繁體 rail can carry both sets without contradiction.
+const navContentLang = computed(() => (isTraditionalUi.value ? "en" : contentLang.value));
+
+const entryVisible = (item, language = contentLang.value) => isEntryVisible(item, {
+  contentLang: language,
+  traditionalUi: isTraditionalUi.value,
 });
 
-const isBilingual = computed(() => {
-  const entry = pageEntry.value;
-  if (!entry) return true;
-  return entry.show_en !== false && entry.show_zh !== false;
-});
+const navEntries = computed(() => navTop.filter((item) => entryVisible(item, navContentLang.value)));
+const externalLinks = computed(() => topBar.filter((item) => entryVisible(item)));
 
-const navEntries = computed(() => navTop.filter((item) => {
-  if (item.show_zh === false && displayLan.value === "zh") return false;
-  if (item.show_en === false && displayLan.value === "en") return false;
-  return true;
-}));
-
-const externalLinks = computed(() => topBar.filter((item) => {
-  // `show_new: false` means the entry is hidden in the redesigned UI only.
-  if (item.show_new === false) return false;
-  if (item.show_zh === false && displayLan.value === "zh") return false;
-  if (item.show_en === false && displayLan.value === "en") return false;
-  return true;
-}));
-
+// Labels of config.js entries: `option` / `option_alt` (rail) and `name` /
+// `name_alt` (external links) are resolved with the locale's own field chain, so
+// a locale can add `option_ru` later without touching this file.
 function label(item, key) {
-  if (displayLan.value === "zh") return item[key];
-  return item[`${key}_alt`] || item[key];
+  return localizedField(item, key, displayLocale.value) || item[key] || "";
 }
 
-// Rail-only wording. `name_new_zh` / `name_new_en` describe the same destination
-// in the redesigned UI, so they take precedence over the shared `name` there.
-// The legacy design ignores these fields entirely.
+// Redesigned-only names are `<base>_<locale>_new` (`name_zh_hant_new`,
+// `option_zh_new`, …). The suffix order follows the other config fields so a new
+// locale needs no code change: exact locale → content language → English → bare
+// `<base>_new`. Values are authored, not machine-converted.
+function newField(item, base, code) {
+  const info = localeInfo(code);
+  // Config suffixes are snake_case (`zh_hant`), locale codes are `zh-Hant`.
+  const suffix = (value) => value.toLowerCase().replace(/-/g, "_");
+  return item[`${base}_${suffix(info.code)}_new`]
+    || item[`${base}_${suffix(info.data)}_new`]
+    || item[`${base}_en_new`]
+    || item[`${base}_new`]
+    || "";
+}
+
+// The Chinese rail can carry a fuller name for a catalog than the legacy
+// header's short `option` ("Mario Forever 作品目录" vs "MF 作品目录"). Only the
+// new-design Simplified Chinese interface uses it; the legacy header and every
+// other locale keep their own fields.
+function optionLabel(item) {
+  return (isSimplifiedUi.value && newField(item, "option", displayLocale.value))
+    || label(item, "option");
+}
+
+// Rail-only wording. `name_*_new` describes the same destination more fully, so
+// it takes precedence over the shared `name` in the redesigned UI. The legacy
+// design ignores these fields entirely.
 function newLabel(item) {
-  const zh = displayLan.value === "zh";
-  const specific = zh ? item.name_new_zh : item.name_new_en;
-  if (specific) return specific;
-  return label(item, "name");
+  return newField(item, "name", displayLocale.value) || label(item, "name");
 }
 
 const NAV_ICONS = {
@@ -145,38 +205,6 @@ const NAV_ICONS = {
   "mario-worker": "hammer",
   softendo: "grid",
 };
-
-const text = computed(() => (displayLan.value === "zh" ? {
-  search: "搜索标题…",
-  author: "搜索作者…",
-  random: "随机游戏",
-  settings: "全局设置",
-  changelog: "更新履历",
-  about: "目录说明",
-  language: "语言",
-  legacy: "切换到经典设计",
-  light: "浅色模式",
-  dark: "深色模式",
-  compact: "紧凑模式",
-  catalogs: "目录",
-  elsewhere: "社区站点",
-  menu: "菜单",
-} : {
-  search: "Search title…",
-  author: "Search author…",
-  random: "Random game",
-  settings: "Global settings",
-  changelog: "Changelog",
-  about: "About this catalog",
-  language: "Language",
-  legacy: "Switch to legacy design",
-  light: "Light mode",
-  dark: "Dark mode",
-  compact: "Compact mode",
-  catalogs: "Catalogs",
-  elsewhere: "Links",
-  menu: "Menu",
-}));
 
 const theme = getTheme();
 
@@ -275,24 +303,39 @@ function onRailClick(event) {
   railOpen.value = false;
 }
 
-const showLanguageMenu = computed(() => isBilingual.value);
+// Language choices come from what the page actually has: its markdown files (or,
+// for a fully translated page such as About, its registered locale list). A page
+// with only one available language has nothing to switch to, so the menu hides.
+// Dropping in a new `<page>-<locale>.md` is all it takes to add an option.
+//
+// Sort by canonical locale code, not by the native display name: `de`, `en`,
+// `pl`, `zh-Hans`, `zh-Hant` stay in code order no matter how those names are
+// written or how the browser's locale collation behaves.
+const byLocaleCode = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+
+const languageChoices = computed(() => (shellConfig.locales.length > 1
+  ? [...shellConfig.locales].sort(byLocaleCode).map((code) => localeInfo(code)).filter(Boolean)
+  : []));
+
+const showLanguageMenu = computed(() => languageChoices.value.length > 1);
 
 function chooseLanguage(value) {
   closeMenus();
-  if (value === "zh") emit("changeLanZh");
-  else emit("changeLanEn");
+  if (value === displayLocale.value) return;
+  emit("changeLocale", value);
 }
 
-const languageLabel = computed(() => (displayLan.value === "zh" ? "中文" : "English"));
+const languageLabel = computed(() => localeInfo(displayLocale.value).name);
 
 // The page title sits in the topbar of the main area, per review.
 //
-// On a phone the full English titles are long enough to wrap the topbar, which
-// pushed the language/theme/settings buttons onto a second line — and a dropdown
-// anchored to a button that is no longer at the right edge spilled off-screen.
-// Phones therefore use the sidebar's page name (`option` / `option_alt`), which
-// is the same short label the navigation already shows. Chinese titles are
-// already compact, and desktop always gets the full title.
+// On a phone the full English (and some Traditional Chinese) titles are long
+// enough to wrap the topbar, which pushed the language/theme/settings buttons
+// onto a second line — and a dropdown anchored to a button that is no longer at
+// the right edge spilled off-screen. Phones therefore use the sidebar's page
+// name (`option_zh_hant` / `option_alt` / …), the same compact label the
+// navigation already shows. Simplified titles are already short, and desktop
+// always gets the full title.
 const isNarrow = ref(false);
 
 function updateNarrow() {
@@ -301,18 +344,18 @@ function updateNarrow() {
 
 const pageTitle = computed(() => {
   const entry = pageEntry.value;
-  // Phones + English: use the sidebar's page name, which is the compact label
-  // the navigation already shows. This has to win over a `title` prop too —
+  // Phones + a non-Simplified interface (English, Polish, Traditional Chinese):
+  // use the sidebar's compact label. This has to win over a `title` prop too —
   // some pages pass their full title explicitly, and that is what wrapped the
   // topbar and pushed the action buttons off the right edge.
-  if (isNarrow.value && displayLan.value !== "zh" && entry) {
-    return label(entry, "option");
+  if (isNarrow.value && (contentLang.value !== "zh" || isTraditionalUi.value) && entry) {
+    return optionLabel(entry);
   }
   // The Softendo catalog is the one page whose Chinese title is long enough to
   // crowd the phone topbar (the others are already short), so it uses the
   // sidebar name there too.
   if (isNarrow.value && entry && entry.id === "softendo") {
-    return label(entry, "option");
+    return optionLabel(entry);
   }
   if (props.title) return props.title;
   return entry ? label(entry, "title") : "";
@@ -385,7 +428,7 @@ watch(showChangelog, (open) => {
         v-if="railOpen"
         type="button"
         class="nx-scrim nx-rail-scrim"
-        :aria-label="text.menu"
+        :aria-label="t('shell.menu')"
         @click="railOpen = false"
       />
     </Transition>
@@ -399,17 +442,16 @@ watch(showChangelog, (open) => {
       <a
         class="nx-rail-brand"
         href="./"
-        :aria-label="displayLan === 'zh' ? 'Mario Forever 资源站首页' : 'Mario Forever archive home'"
       >
         <img
-          :src="displayLan === 'zh' ? './images/logo_new.png' : './images/logo2_hd.png'"
+          :src="brandLogoSrc"
           alt="Mario Forever"
         />
-        <span class="nx-rail-brand-text">{{ displayLan === "zh" ? "作品目录站" : "Download Portal" }}</span>
+        <span class="nx-rail-brand-text">{{ t("app.brandText") }}</span>
       </a>
 
       <nav class="nx-rail-group">
-        <div class="nx-rail-title">{{ text.catalogs }}</div>
+        <div class="nx-rail-title">{{ t("shell.catalogs") }}</div>
         <a
           v-for="item in navEntries"
           :key="item.id"
@@ -419,12 +461,12 @@ watch(showChangelog, (open) => {
           :aria-current="item.id === pageId ? 'page' : undefined"
         >
           <span class="nx-rail-icon"><NxIcon :name="NAV_ICONS[item.id] || 'list'" :size="14" /></span>
-          <span>{{ label(item, "option") }}</span>
+          <span>{{ optionLabel(item) }}</span>
         </a>
       </nav>
 
       <nav class="nx-rail-group">
-        <div class="nx-rail-title">{{ text.elsewhere }}</div>
+        <div class="nx-rail-title">{{ t("shell.elsewhere") }}</div>
         <a
           v-for="item in externalLinks"
           :key="item.link"
@@ -447,7 +489,7 @@ watch(showChangelog, (open) => {
           :aria-current="pageId === 'about' ? 'page' : undefined"
         >
           <span class="nx-rail-icon"><NxIcon name="mail" :size="14" /></span>
-          <span>{{ displayLan === "zh" ? "关于本站" : "About & Contact" }}</span>
+          <span>{{ t("shell.aboutSite") }}</span>
         </a>
         <button
           type="button"
@@ -455,7 +497,7 @@ watch(showChangelog, (open) => {
           @click="showChangelog = true"
         >
           <span class="nx-rail-icon"><NxIcon name="history" :size="14" /></span>
-          <span>{{ text.changelog }}</span>
+          <span>{{ t("shell.changelog") }}</span>
         </button>
         <a
           class="nx-rail-item"
@@ -464,28 +506,31 @@ watch(showChangelog, (open) => {
           rel="noopener"
         >
           <span class="nx-rail-icon"><NxIcon name="github" :size="14" /></span>
-          <span>{{ displayLan === "zh" ? "本站源码" : "Source code" }}</span>
+          <span>{{ t("shell.sourceCode") }}</span>
         </a>
-        <!-- The status page is a Chinese-only service, so the English rail
-             omits the entry rather than linking to a page in another language. -->
+        <!-- The status page is a Chinese-only service, so the other rails omit
+             the entry rather than linking to a page in another language. -->
         <a
-          v-if="displayLan === 'zh'"
+          v-if="contentLang === 'zh'"
           class="nx-rail-item"
           href="https://status.marioforever.net/"
           target="_blank"
           rel="noopener"
         >
           <span class="nx-rail-icon"><NxIcon name="info" :size="14" /></span>
-          <span>网站状态</span>
+          <span>{{ t("shell.siteStatus") }}</span>
         </a>
       </nav>
 
       <div class="nx-rail-foot">
+        <!-- Every interface except Simplified Chinese shows this notice here;
+             Traditional Chinese reads Simplified data but presents the
+             international wording, so it needs the footer line back. -->
         <p
-          v-if="displayLan !== 'zh'"
+          v-if="!isSimplifiedUi"
           class="nx-rail-legal"
         >
-          This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo.
+          {{ t("app.legal") }}
         </p>
         <span class="nx-rail-foot-meta">
           {{ siteVersion }}<template v-if="commitUrl">
@@ -494,11 +539,11 @@ watch(showChangelog, (open) => {
               :href="commitUrl"
               target="_blank"
               rel="noopener"
-              :title="displayLan === 'zh' ? '查看对应提交' : 'View the matching commit'"
+              :title="t('shell.viewCommit')"
             >{{ commitShort }}</a>)
           </template>
         </span>
-        <span class="nx-rail-foot-meta">{{ displayLan === "zh" ? "构建于" : "Last built" }} {{ buildTimeText }}</span>
+        <span class="nx-rail-foot-meta">{{ t("shell.lastBuilt") }} {{ buildTimeText }}</span>
       </div>
     </aside>
 
@@ -511,7 +556,7 @@ watch(showChangelog, (open) => {
         <button
           type="button"
           class="nx-icon-btn nx-rail-toggle"
-          :aria-label="text.menu"
+          :aria-label="t('shell.menu')"
           :aria-expanded="railOpen"
           @click.stop="railOpen = !railOpen"
         >
@@ -528,15 +573,15 @@ watch(showChangelog, (open) => {
           <input
             :value="titleQuery"
             type="search"
-            :placeholder="text.search"
-            :aria-label="text.search"
+            :placeholder="t('shell.search')"
+            :aria-label="t('shell.search')"
             @input="titleQuery = $event.target.value"
           />
           <button
             v-if="titleQuery"
             class="nx-search-clear"
             type="button"
-            :aria-label="displayLan === 'zh' ? '清除' : 'Clear'"
+            :aria-label="t('common.clear')"
             @click="titleQuery = ''"
           >×</button>
         </div>
@@ -549,15 +594,15 @@ watch(showChangelog, (open) => {
           <input
             :value="authorQuery"
             type="search"
-            :placeholder="text.author"
-            :aria-label="text.author"
+            :placeholder="t('shell.searchAuthor')"
+            :aria-label="t('shell.searchAuthor')"
             @input="authorQuery = $event.target.value"
           />
           <button
             v-if="authorQuery"
             class="nx-search-clear"
             type="button"
-            :aria-label="displayLan === 'zh' ? '清除' : 'Clear'"
+            :aria-label="t('common.clear')"
             @click="authorQuery = ''"
           >×</button>
         </div>
@@ -572,8 +617,8 @@ watch(showChangelog, (open) => {
             class="nx-icon-btn"
             :class="{ 'is-on': docOpen }"
             :aria-expanded="docOpen"
-            :aria-label="text.about"
-            :title="text.about"
+            :aria-label="t('shell.aboutDoc')"
+            :title="t('shell.aboutDoc')"
             @click="docOpen = true"
           >
             <NxIcon
@@ -590,7 +635,7 @@ watch(showChangelog, (open) => {
               type="button"
               class="nx-lang-btn nx-menu-trigger"
               :aria-expanded="openMenu === 'lang'"
-              :aria-label="text.language"
+              :aria-label="t('shell.language')"
               @click="toggleMenu('lang')"
             >
               <NxIcon name="globe" :size="14" />
@@ -607,28 +652,19 @@ watch(showChangelog, (open) => {
                 class="nx-menu"
               >
                 <button
+                  v-for="item in languageChoices"
+                  :key="item.code"
                   type="button"
-                  :class="{ on: displayLan === 'zh' }"
-                  @click="chooseLanguage('zh')"
+                  :class="{ on: item.code === displayLocale }"
+                  :lang="item.htmlLang"
+                  @click="chooseLanguage(item.code)"
                 >
                   <NxIcon
                     name="check"
                     :size="13"
-                    :style="{ opacity: displayLan === 'zh' ? 1 : 0 }"
+                    :style="{ opacity: item.code === displayLocale ? 1 : 0 }"
                   />
-                  中文
-                </button>
-                <button
-                  type="button"
-                  :class="{ on: displayLan === 'en' }"
-                  @click="chooseLanguage('en')"
-                >
-                  <NxIcon
-                    name="check"
-                    :size="13"
-                    :style="{ opacity: displayLan === 'en' ? 1 : 0 }"
-                  />
-                  English
+                  {{ item.name }}
                 </button>
               </div>
             </Transition>
@@ -637,8 +673,8 @@ watch(showChangelog, (open) => {
           <button
             type="button"
             class="nx-icon-btn"
-            :aria-label="theme === 'dark' ? text.light : text.dark"
-            :title="theme === 'dark' ? text.light : text.dark"
+            :aria-label="theme === 'dark' ? t('shell.lightMode') : t('shell.darkMode')"
+            :title="theme === 'dark' ? t('shell.lightMode') : t('shell.darkMode')"
             @click="toggleTheme()"
           >
             <NxIcon
@@ -652,8 +688,8 @@ watch(showChangelog, (open) => {
             class="nx-icon-btn"
             :class="{ 'is-on': settingsOpen }"
             :aria-expanded="settingsOpen"
-            :aria-label="text.settings"
-            :title="text.settings"
+            :aria-label="t('shell.settings')"
+            :title="t('shell.settings')"
             @click="settingsOpen = true"
           >
             <NxIcon
@@ -672,13 +708,13 @@ watch(showChangelog, (open) => {
 
     <ChangelogDrawer
       :show="showChangelog"
-      :lan="displayLan"
+      :locale="displayLocale"
       @close="showChangelog = false"
     />
 
     <NxDocDrawer
       :show="docOpen"
-      :lan="displayLan"
+      :locale="displayLocale"
       :title="docTitle || pageTitle"
       :doc="doc"
       :updated="docUpdated"
@@ -687,7 +723,7 @@ watch(showChangelog, (open) => {
 
     <NxSettings
       :show="settingsOpen"
-      :lan="displayLan"
+      :locale="displayLocale"
       @close="settingsOpen = false"
     />
 
@@ -696,8 +732,8 @@ watch(showChangelog, (open) => {
         v-if="showBackToTop"
         type="button"
         class="nx-to-top"
-        :aria-label="displayLan === 'zh' ? '回到顶部' : 'Back to top'"
-        :title="displayLan === 'zh' ? '回到顶部' : 'Back to top'"
+        :aria-label="t('shell.backToTop')"
+        :title="t('shell.backToTop')"
         @click="scrollToTop"
       >
         <NxIcon

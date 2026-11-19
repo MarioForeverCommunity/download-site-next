@@ -48,7 +48,8 @@ URL 参数可直接指定，写入浏览器本地存储（`design` 键）后不�
 
 - **底色区分**：左导航 `#f5f4f1`、筛选面板 `#faf9f7`、主区域纯白。
 - **顶栏**：页面标题 + 双搜索 + 动作区，整条 sticky。动作区顺序为说明（页面有文档时）→ 语言 → 深色模式 → 全局设置（四点图标）。折叠菜单按钮仅在移动端出现。
-- **左栏**：目录、站外链接，以及页脚（更新履历、源码、状态、版本号、构建时间与提交）。桌面端 244px，861–1024px 收为 208px；移动端收缩为菜单按钮展开的抽屉，点击栏外自动收回。
+- **语言菜单**：选项由页面实际拥有的 Markdown 文件决定：`util/next/docFiles.js` 的 `discoverDocs()` 用 `import.meta.glob` 收集 `<page>-<locale>.md`，页面把语言码发布到外壳，**只有一个语言时菜单隐藏**。因此 MW 关卡 / 创作资源只有简体（不显示菜单），引擎页与 MW 资源页目前是 English / Polski / 繁體中文，其余文档页是四种语言；以后新增 `<page>-<locale>.md` 即自动出现在页面和菜单里，无需改逻辑。菜单按语言代号排序（`en` → `pl` → `zh-Hans` → `zh-Hant`），不按语言全称。繁体中文的界面文案、站点名与站点说明正文都由 `*_zh_hant` 字段 / `*-zh-hant.md` 提供；`opencc-js` 用于更新履历、MF 作品标题 / 作者名 / 版本号显示文字 / 描述（YAML 与作品级 Markdown）、Assets 的作品名 / 描述 / 作者名 / 变体名 / 版本号（按需加载），身份字段（`verKey`、作者文件夹 URL）保持原文；Assets 下载按钮的「社群資源網站」来自 i18n 而非转换器；仅 MF 目录的搜索索引在繁中下追加繁体变体（原简体值保留，两种字形都可搜），其它目录既不转换也不加载字典。
+- **左栏**：目录、站外链接，以及页脚（更新履历、源码、状态、版本号、构建时间与提交）。条目的显隐由 `config.js` 的 `show_zh` / `show_en` / `show_new` / `show_zh_hant` 控制（规则见 `util/next/entryVisibility.js`）；繁中界面的站内目录与英文 / 波兰语显示同一组页面，站外链接仍按中文规则显示（并隐去 `show_zh_hant: false` 的大陆专属入口），标签可逐语言用 `name_zh_hant_new` 覆盖。桌面端 244px，861–1024px 收为 208px；移动端收缩为菜单按钮展开的抽屉，点击栏外自动收回。
 - **双搜索**：第一个匹配标题 / 别名 / 文件名，第二个只匹配作者，互不干扰。Softendo 目录没有真实作者，隐藏第二个搜索框（`showAuthorSearch: false`）。
 - **筛选常驻**：地区、平台 / 制作软件、MW 版本等均为**多选**（同一组内为「或」关系）；MW 版本以胶囊形式呈现。
 - **标签三态**：OR（主题色，含任一）→ AND（绿，`+`，含全部）→ NOT（红，`−`，排除）；颜色与符号双重编码，灰阶下仍可辨。
@@ -56,17 +57,22 @@ URL 参数可直接指定，写入浏览器本地存储（`design` 键）后不�
 - **密度**：列表固定为紧凑、卡片固定为舒适，不再提供手动切换——密度由当前视图决定（`Theme.js` 的 `setViewDensity`）。
 - **分页**：结果下方显示分页；每页条数在全局设置中选择 25 / 50 / 100 / 200 或全部显示（localStorage `pageSize`，新旧版共用，列表与卡片共用）。筛选、搜索或排序变化回到第一页；通过分享链接或「随机游戏」打开的记录会自动翻到其所在页。当前页码写入 URL（`?page=`，第 1 页时省略），刷新或复制链接后回到同一页。
 - **详情抽屉**：可逐条对比、含标题图 + showcase 轮播（单张全宽、分页在轨道下方、多图每 3 秒自动播放）、版本切换（`current` 缺失时按日期最新标注「最新」）、提取码一键复制、右上角分享按钮（复制目录内直达链接）、`?id=` 直达链接。
-- **文档页**：容器不限宽（仅正文行宽控制在约 78 字符，尾注不受限），嵌入的作品条目支持**原地展开详情**，卡片在同一容器内按 1/2/3 列并排，轮播与 title 截图完整保留。文档页不显示搜索框与「目录说明」按钮。
+- **文档页**：容器不限宽（仅正文行宽控制在约 78 字符，尾注不受限），嵌入的作品条目支持**原地展开详情**，卡片在同一容器内按 1/2/3 列并排，轮播与 title 截图完整保留。文档页不显示搜索框与「目录说明」按钮。首页说明按界面语言分别提供简体 / 繁體 / English / Polski 四份 Markdown，MW 资源页与引擎页各提供 English / Polski / 繁體中文三份，Softendo 目录说明提供四份；MF 目录页用 glob 自动发现 `mf-games-<locale>.md`，新增文件即生效、缺文件回退简体 / 英文。「最后更新」按各自文件单独检测并由页面传给文档（旧版引擎页同样在页面内取英文文档的提交时间）。
 - **列表列**：作品（约 400px，含 variant 名）→ 作者 → 版本 → 日期 → 分类（全部标签换行显示）→ 动作（下载 / 发布页 / 源码 / Wiki / 主页，固定最右）。
 - **创作资源**：默认每个 variant 单独成行，不提供合并选项；同名变体各自成记录，可分别打开。
 - **强调色**：沿用旧版品牌蓝 `#008cff`；实心按钮使用同色系深一档（`#0068c4`）以保证白字达到 WCAG AA；深色主题提亮为 `#4da3ff`。
 - **移动端吸顶**：顶栏与结果栏在页面滚动时保持可见，结果栏紧贴顶栏下方、互不重叠。
 - **回到顶部**：右下角按钮，滚动超过 300px 后出现；抽屉或遮罩打开时隐藏，避免遮挡。
-- **浏览器标题**：统一为「页面名称 | 站点名称」，中文后缀「Mario Forever 作品目录站」，英文后缀「Mario Forever Download Portal」（`src/config.js` 的 `setPageTitle`）。
+- **浏览器标题**：统一为「页面名称 | 站点名称」，站点名称按界面语言取自 `src/i18n/locales/*` 的 `app.siteName`（`src/config.js` 的 `setPageTitle`）。
 
 ## 4. 代码结构
 
 ```
+src/i18n/index.js                多语言核心：locale 注册表、t()/useI18n()、字段回退、旧版语言映射、alt 链接规则
+src/i18n/convert.js              简→繁转换（opencc-js 按需懒加载：更新履历 + MF 作品标题/描述）
+src/i18n/locales/*.js            各语言文案与元数据（新增语言只需加一个文件 + 登记）
+src/util/next/pageLocale.js      页面可呈现的 locale、文档语言选择、语言菜单条目
+src/util/next/entryVisibility.js 左栏目录与站外链接的显隐（show_zh / show_en / show_new / show_zh_hant）
 src/util/Design.js               设计选择状态（URL → localStorage → 默认）
 src/util/Theme.js                明暗主题与密度（localStorage，同步 body.dark）
 src/util/useCatalog.js           目录状态：双搜索 / 筛选 / 三态标签 / 日期区间 / 排序 / 分页
@@ -76,10 +82,11 @@ src/boot/legacy.js               旧版启动：dark-mode.css + 滚动锁
 src/boot/next.js                 新版启动：base.css、主题、文档组件、路由
 src/boot/NxApp.vue               SPA 根组件：常驻外壳 + 内容区过渡
 src/util/next/router.js          前端软路由（pushState / popstate / 链接拦截）
-src/util/next/shellStore.js      页面 → 外壳的配置发布（标题 / 说明 / 搜索模型）
+src/util/next/shellStore.js      页面 → 外壳的配置发布（标题 / 语言 / 说明 / 搜索模型）
 src/util/next/records.js         统一记录模型（与旧版页面、API 脚本规则一致）
 src/util/next/useNamedRecord.js  文档页按名称解析单条记录
 src/util/next/docComponents.js   Markdown 条目组件 → 新版预览组件的映射
+src/util/next/docFiles.js        按文件名自动发现各语言 Markdown（<page>-<locale>.md）
 src/util/next/docUpdated.js      运行时查询 GitHub commits API 的「最后更新」
 src/util/next/scrollLock.js      共享滚动锁（保留文档滚动容器）
 src/util/next/backGuard.js       Android 返回键先关闭抽屉（history 哨兵）
@@ -102,7 +109,7 @@ src/pages/next/<page>/           8 个页面的新版实现（只渲染内容，
 8 个入口 HTML（`index`、`mf-games`、`mw-levels`、`assets`、`engines`、`mario-worker`、`softendo`、`about`）各自挂载同一个 `NxApp`，它常驻渲染 `NxShell`（导航栏 + 顶栏 + 抽屉），只有顶栏以下的内容区随路由切换：
 
 - **路由**：`router.js` 拦截站内指向已知入口的 `<a>`，用 `history.pushState` 更新 URL 并切换页面组件；`popstate` 处理前进/后退。外链、`target`、`download`、修饰键点击和同文档锚点一律交给浏览器。
-- **页面 → 外壳**：页面不再渲染 `NxShell`，而是在 `watchEffect` 里调用 `publishShell()` 发布 `pageId / title / lan / doc / search / showAuthorSearch / showRandom`。发布时会先重置为默认值，因此文档页不会残留上一页的搜索框或「目录说明」按钮。
+- **页面 → 外壳**：页面不再渲染 `NxShell`，而是在 `watchEffect` 里调用 `publishShell()` 发布 `pageId / title / locale / doc / search / showAuthorSearch / showRandom`。发布时会先重置为默认值，因此文档页不会残留上一页的搜索框或「目录说明」按钮。语言切换由 `publishShellHandlers({ changeLocale })` 交回页面处理（页面调用 `applyLocale` 并重建记录）。
 - **过渡**：只有内容区（`.nx-page-body`）做 160ms 交叉淡入，导航栏与顶栏全程不动；`:key="currentPageId"` 保证每个页面都是新实例。
 - **滚动锁**：任何抽屉展开时阻止滚轮、触摸与键盘滚动，并补偿滚动条宽度；**不**固定 body、**不**给根元素加 `overflow: hidden`，否则 sticky 的左栏与顶栏会跳位。
 - **返回键**：抽屉打开时向 history 压入一个哨兵条目，Android 返回键先被它吸收并关闭抽屉；从 UI 关闭时必须撤掉哨兵，且不能用 `history.back()` 与路由导航竞争（详见 `backGuard.js` 的 `abandonBackGuard`）。
@@ -148,7 +155,7 @@ src/pages/next/<page>/           8 个页面的新版实现（只渲染内容，
 ## 8. 自查清单
 
 1. `bun run lint`；`bun run build` 后 `bun run preview` 逐页检查 `?design=next` 与 `?design=legacy`
-2. 中英文切换后列表、抽屉、文档条目字段跟随变化
+2. 切换 `zh-Hans` / `zh-Hant` / `en` / `pl` 后列表、抽屉、文档条目与筛选药丸跟随变化；`?lang=zh-Hant` 下界面与导航/页面标题为繁体、作品数据仍为简体，进入旧版落到简体中文；`?lang=pl` 下 UI 为波兰语、数据与链接规则同英文，进入旧版落到英文
 3. 360 / 768 / 1440 / 1920px 无横向滚动
 4. 深色模式下标签、下拉、抽屉、文档表格与分页按钮对比度
 5. 年份 / 日期区间二选一的行为与快捷项

@@ -15,6 +15,7 @@
 // anything with a modifier key, and anything carrying `target`/`download` falls
 // through to the browser.
 import { ref, shallowRef, markRaw } from "vue";
+import { syncLocaleFromUrl } from "../../i18n/index.js";
 
 // pageId -> { href, load }
 // `href` is the public URL of the entry file; `load` imports the redesigned page
@@ -77,6 +78,11 @@ export function pageIdForHref(href) {
 export async function navigateTo(pageId, options = {}) {
   const route = ROUTES[pageId];
   if (!route) return false;
+
+  // The i18n module resolves its locale once at import time. A link or history
+  // entry may carry a different `?lang=`; apply it before the target page's
+  // setup resolves the locale again, so soft navigation honours the URL.
+  syncLocaleFromUrl();
 
   const module = await route.load();
   currentComponent.value = markRaw(module.default);

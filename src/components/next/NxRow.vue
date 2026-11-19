@@ -7,13 +7,15 @@ import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
 import { formatIsoDate } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
 import { getTheme } from "../../util/Theme.js";
+import { dataLangOf, prefersAltLinks, useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   record: {
     type: Object,
     required: true
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -47,6 +49,17 @@ const props = defineProps({
 
 const emit = defineEmits(["open"]);
 
+const { t } = useI18n(() => props.locale);
+
+// Written-content language: decides whether the alternate (usually English)
+// title is worth restating under the main one.
+const contentLang = computed(() => dataLangOf(props.locale));
+
+// Which link variant leads. Chinese (Simplified and Traditional alike) leads with
+// the primary Chinese-community post; every other locale — English, Polish, and
+// whatever is added next — leads with the alternate post, like English does.
+const altLinksFirst = computed(() => prefersAltLinks(props.locale));
+
 const theme = getTheme();
 
 const dateText = computed(() => formatIsoDate(props.record.date));
@@ -61,8 +74,8 @@ const tagPills = computed(() => props.record.tags.map((tag) => {
 
 const regionLabel = computed(() => {
   const region = props.record.region;
-  if (region === "chinese") return props.lan === "zh" ? "国内" : "Chinese";
-  if (region === "international") return props.lan === "zh" ? "国外" : "International";
+  if (region === "chinese") return t("region.chinese");
+  if (region === "international") return t("region.international");
   return null;
 });
 
@@ -81,7 +94,7 @@ const sourceLink = computed(() => {
   const primary = links.source && !links.sourceInvalid ? links.source : null;
   const alt = links.sourceAlt && !links.sourceAltInvalid ? links.sourceAlt : null;
   if (!primary && !alt) return null;
-  return props.lan === "en" ? (alt || primary) : (primary || alt);
+  return altLinksFirst.value ? (alt || primary) : (primary || alt);
 });
 
 // Only meaningful when the catalog is expanded per version; on a collapsed
@@ -105,7 +118,7 @@ const showVariant = computed(() => props.record.kind === "asset" && !!props.reco
 
 // The alternate name is an aid for the English view (a transliteration or an
 // English title); in Chinese it only repeats information the reader already has.
-const showNameAlt = computed(() => props.lan !== "zh"
+const showNameAlt = computed(() => contentLang.value !== "zh"
   && props.record.nameAlt && props.record.nameAlt !== props.record.name);
 
 // The list drops its metadata columns on a phone, so the same values are
@@ -162,7 +175,7 @@ function openLinks(event) {
         />
         <NxLogoPlaceholder
           v-else
-          :lan="lan"
+          :locale="locale"
           :kind="record.kind"
           :asset-type="record.assetType"
           variant="thumb"
@@ -235,7 +248,7 @@ function openLinks(event) {
       <span
         v-if="isLatest"
         class="nx-dot nx-dot-cur"
-      >{{ lan === "zh" ? "最新" : "LATEST" }}</span>
+      >{{ t("badge.latest") }}</span>
       <span
         v-if="regionLabel"
         class="nx-dot"
@@ -250,7 +263,7 @@ function openLinks(event) {
       <span
         v-if="record.versionCount > 1"
         class="nx-tag"
-      >{{ record.versionCount }} {{ lan === "zh" ? "个版本" : "versions" }}</span>
+      >{{ t("unit.versions", { n: record.versionCount }) }}</span>
     </div>
 
     <div
@@ -262,8 +275,8 @@ function openLinks(event) {
         :href="primaryDownload.url"
         target="_blank"
         rel="noopener"
-        :title="lan === 'zh' ? '直接下载' : 'Direct download'"
-        :aria-label="lan === 'zh' ? '直接下载' : 'Direct download'"
+        :title="t('common.download')"
+        :aria-label="t('common.download')"
         @click="openLinks"
       >
         <NxIcon name="download" :size="14" />
@@ -273,8 +286,8 @@ function openLinks(event) {
         :href="sourceLink"
         target="_blank"
         rel="noopener"
-        :title="lan === 'zh' ? '发布页' : 'Source'"
-        :aria-label="lan === 'zh' ? '发布页' : 'Source'"
+        :title="t('detail.source')"
+        :aria-label="t('detail.source')"
         @click="openLinks"
       >
         <NxIcon name="link" :size="14" />
@@ -284,8 +297,8 @@ function openLinks(event) {
         :href="record.links.repo"
         target="_blank"
         rel="noopener"
-        :title="lan === 'zh' ? '源代码' : 'Repository'"
-        :aria-label="lan === 'zh' ? '源代码' : 'Repository'"
+        :title="t('detail.repo')"
+        :aria-label="t('detail.repo')"
         @click="openLinks"
       >
         <NxIcon name="github" :size="14" />
@@ -295,8 +308,8 @@ function openLinks(event) {
         :href="record.links.wiki"
         target="_blank"
         rel="noopener"
-        title="Wiki"
-        aria-label="Wiki"
+        :title="t('detail.wiki')"
+        :aria-label="t('detail.wiki')"
         @click="openLinks"
       >
         <NxIcon name="info" :size="14" />
@@ -306,8 +319,8 @@ function openLinks(event) {
         :href="record.links.home"
         target="_blank"
         rel="noopener"
-        :title="lan === 'zh' ? '主页' : 'Homepage'"
-        :aria-label="lan === 'zh' ? '主页' : 'Homepage'"
+        :title="t('detail.homepage')"
+        :aria-label="t('detail.homepage')"
         @click="openLinks"
       >
         <NxIcon name="home" :size="14" />

@@ -5,8 +5,8 @@
 // permanently and swaps only the page body inside it, so a navigation animates
 // the content area while the sidebar and title bar stay perfectly still.
 //
-// Pages publish what the shell needs (title, write-up, search model) through
-// util/next/shellStore.js from their setup.
+// Pages publish what the shell needs (title, write-up, search model, locale)
+// through util/next/shellStore.js from their setup.
 import { currentComponent, currentPageId } from "../util/next/router.js";
 import { shellConfig, shellHandlers } from "../util/next/shellStore.js";
 import NxShell from "../components/next/NxShell.vue";
@@ -17,19 +17,18 @@ function onRandom() {
   if (typeof handlers.random === "function") handlers.random();
 }
 
-function onLanZh() {
-  if (typeof handlers.changeLanZh === "function") handlers.changeLanZh();
-}
-
-function onLanEn() {
-  if (typeof handlers.changeLanEn === "function") handlers.changeLanEn();
+// The language menu belongs to the shell but the records belong to the page, so
+// the page owns the switch: it stores the choice, reloads its data and republishes
+// the shell.
+function onChangeLocale(code) {
+  if (typeof handlers.changeLocale === "function") handlers.changeLocale(code);
 }
 </script>
 
 <template>
   <NxShell
     :page-id="shellConfig.pageId"
-    :lan="shellConfig.lan"
+    :locale="shellConfig.locale"
     :title="shellConfig.title"
     :doc="shellConfig.doc"
     :doc-title="shellConfig.docTitle"
@@ -37,8 +36,7 @@ function onLanEn() {
     :search="shellConfig.search"
     :show-author-search="shellConfig.showAuthorSearch"
     :show-random="shellConfig.showRandom"
-    @change-lan-zh="onLanZh"
-    @change-lan-en="onLanEn"
+    @change-locale="onChangeLocale"
     @random="onRandom"
   >
     <!-- Only this block animates. `:key` gives each page a fresh instance so

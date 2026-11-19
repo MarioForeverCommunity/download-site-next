@@ -6,13 +6,15 @@ import { formatIsoDate } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
 import { getTheme } from "../../util/Theme.js";
 import NxLogoPlaceholder from "./NxLogoPlaceholder.vue";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   record: {
     type: Object,
     required: true
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -23,6 +25,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["open"]);
+
+const { t } = useI18n(() => props.locale);
 
 const theme = getTheme();
 
@@ -49,8 +53,8 @@ const tagPills = computed(() => (props.record.kind === "mw"
 
 const regionLabel = computed(() => {
   const region = props.record.region;
-  if (region === "chinese") return props.lan === "zh" ? "国内" : "Chinese";
-  if (region === "international") return props.lan === "zh" ? "国外" : "International";
+  if (region === "chinese") return t("region.chinese");
+  if (region === "international") return t("region.international");
   return null;
 });
 
@@ -103,7 +107,7 @@ const versionText = computed(() => {
       />
       <NxLogoPlaceholder
         v-else
-        :lan="lan"
+        :locale="locale"
         :kind="record.kind"
         :asset-type="record.assetType"
         variant="cover"

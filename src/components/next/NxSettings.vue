@@ -12,13 +12,15 @@ import DesignSwitch from "../DesignSwitch.vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   show: {
     type: Boolean,
     default: false
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   }
@@ -26,59 +28,33 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 
-const text = computed(() => (props.lan === "zh" ? {
-  title: "全局设置",
-  subtitle: "这些设置会保存在浏览器中",
-  sort: "默认排序",
-  pageSize: "每页显示条数",
-  pageSizeHint: "所有作品目录共用，列表与卡片视图均生效",
-  pageSizes: [
-    { value: 25, label: "25 条" },
-    { value: 50, label: "50 条" },
-    { value: 100, label: "100 条" },
-    { value: 200, label: "200 条" },
-    { value: 0, label: "全部显示" },
-  ],
-  direct: "资源站使用直链",
-  directText: "社区资源站链接使用直链",
-  directHint: "下载链接直接指向文件，跳过资源站预览",
-  design: "界面设计",
-  legacy: "切换到经典设计",
-  close: "关闭",
+const { t } = useI18n(() => props.locale);
+
+const PAGE_SIZE_VALUES = [25, 50, 100, 200, 0];
+
+const text = computed(() => ({
+  title: t("settings.title"),
+  subtitle: t("settings.subtitle"),
+  sort: t("settings.sort"),
+  pageSize: t("settings.pageSize"),
+  pageSizeHint: t("settings.pageSizeHint"),
+  pageSizes: PAGE_SIZE_VALUES.map((value) => ({
+    value,
+    label: value === 0 ? t("settings.pageSizeAll") : t("settings.pageSizeUnit", { n: value }),
+  })),
+  direct: t("settings.direct"),
+  directText: t("settings.directText"),
+  directHint: t("settings.directHint"),
+  design: t("settings.design"),
+  legacy: t("settings.legacy"),
+  close: t("settings.close"),
   sorts: [
-    { value: "name_asc", label: "名称正序" },
-    { value: "name_desc", label: "名称倒序" },
-    { value: "author_asc", label: "作者正序" },
-    { value: "author_desc", label: "作者倒序" },
-    { value: "date_asc", label: "日期正序" },
-    { value: "date_desc", label: "日期倒序" },
-  ],
-} : {
-  title: "Global settings",
-  subtitle: "Saved in this browser",
-  sort: "Default sort",
-  pageSize: "Records per page",
-  pageSizeHint: "Shared by every catalog, in both list and card view",
-  pageSizes: [
-    { value: 25, label: "25" },
-    { value: 50, label: "50" },
-    { value: 100, label: "100" },
-    { value: 200, label: "200" },
-    { value: 0, label: "Show all" },
-  ],
-  direct: "Use direct links",
-  directText: "Use direct links for the Community File Hub",
-  directHint: "Download links point straight at the file, skipping the File Hub preview",
-  design: "Interface",
-  legacy: "Switch to legacy design",
-  close: "Close",
-  sorts: [
-    { value: "name_asc", label: "Name (A to Z)" },
-    { value: "name_desc", label: "Name (Z to A)" },
-    { value: "author_asc", label: "Author (A to Z)" },
-    { value: "author_desc", label: "Author (Z to A)" },
-    { value: "date_asc", label: "Date (oldest first)" },
-    { value: "date_desc", label: "Date (newest first)" },
+    { value: "name_asc", label: t("settings.sortNameAsc") },
+    { value: "name_desc", label: t("settings.sortNameDesc") },
+    { value: "author_asc", label: t("settings.sortAuthorAsc") },
+    { value: "author_desc", label: t("settings.sortAuthorDesc") },
+    { value: "date_asc", label: t("settings.sortDateAsc") },
+    { value: "date_desc", label: t("settings.sortDateDesc") },
   ],
 }));
 

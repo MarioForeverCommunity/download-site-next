@@ -2,19 +2,22 @@
 // Changelog as a side drawer rather than a modal, matching how details and the
 // version history are presented everywhere else in the redesigned UI: the page
 // behind stays visible and the visitor keeps their place in the catalog.
-import { watch, onMounted, onBeforeUnmount } from "vue";
+import { computed, watch, onMounted, onBeforeUnmount } from "vue";
 import { changelog } from "../../data/changelog.js";
 import { siteVersion } from "../../config.js";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
+import { dataLangOf, localeNeedsConversion, localizeText, useI18n } from "../../i18n/index.js";
+import { prepareConversion } from "../../i18n/convert.js";
 
 const props = defineProps({
   show: {
     type: Boolean,
     default: false
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   }
@@ -22,23 +25,32 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 
-const categories = [
-  { key: "features", zh: "新功能", en: "New" },
-  { key: "improvements", zh: "优化", en: "Improved" },
-  { key: "fixes", zh: "修复", en: "Fixed" },
-  { key: "misc", zh: "其他", en: "Other" },
-];
+const { t } = useI18n(() => props.locale);
+
+// The changelog data itself exists in Chinese and English only (src/data/
+// changelog.js); a third locale reads whichever of the two matches its content
+// language, so a new interface language needs no changelog translation to ship.
+// The Chinese list is written in Simplified Chinese, so a converting interface
+// (Traditional Chinese) reads it through the character converter — that is the
+// one piece of site-written prose that is machine-converted, because it is the
+// site's own history rather than a contributor's text.
+const CATEGORY_KEYS = ["features", "improvements", "fixes", "misc"];
+
+const categories = computed(() => CATEGORY_KEYS.map((key) => ({
+  key,
+  label: t(`changelog.${key}`),
+})));
 
 function entryItems(entry, key) {
-  if (props.lan === "en") {
+  if (dataLangOf(props.locale) === "en") {
     const en = entry[`${key}_en`];
     if (en && en.length > 0) return en;
   }
-  return entry[key] || [];
+  return (entry[key] || []).map((item) => localizeText(item, props.locale));
 }
 
 function entryCategories(entry) {
-  return categories.filter((cat) => entryItems(entry, cat.key).length > 0);
+  return categories.value.filter((cat) => entryItems(entry, cat.key).length > 0);
 }
 
 function isCurrentVersion(version) {
@@ -64,6 +76,9 @@ let releaseBack = null;
 watch(() => props.show, (open) => {
   lockScroll(open);
   if (open) {
+    // The changelog has no Traditional source file; load the ~1 MB dictionary
+    // on first open only (and only for a converting locale).
+    if (localeNeedsConversion(props.locale)) prepareConversion(true);
     releaseBack = pushBackGuard(() => emit("close"));
   } else if (releaseBack) {
     releaseBack();
@@ -79,7 +94,7 @@ watch(() => props.show, (open) => {
         v-if="show"
         class="nx-scrim"
         type="button"
-        :aria-label="lan === 'zh' ? '关闭' : 'Close'"
+        :aria-label="t('common.close')"
         @click="emit('close')"
       />
     </Transition>
@@ -89,18 +104,18 @@ watch(() => props.show, (open) => {
         class="nx-drawer"
         role="dialog"
         aria-modal="true"
-        :aria-label="lan === 'zh' ? '更新履历' : 'Changelog'"
+        :aria-label="t('changelog.title')"
         style="--nx-drawer-w: min(560px, 100vw);"
       >
         <div class="nx-drawer-head">
           <div style="flex:1; min-width:0;">
-            <h2 class="nx-drawer-title">{{ lan === "zh" ? "更新履历" : "Changelog" }}</h2>
-            <p class="nx-drawer-sub">{{ lan === "zh" ? "本站自身的改动记录" : "Changes to this site" }}</p>
+            <h2 class="nx-drawer-title">{{ t("changelog.title") }}</h2>
+            <p class="nx-drawer-sub">{{ t("changelog.subtitle") }}</p>
           </div>
           <button
             class="nx-close"
             type="button"
-            :aria-label="lan === 'zh' ? '关闭' : 'Close'"
+            :aria-label="t('common.close')"
             @click="emit('close')"
           >
             <NxIcon name="close" :size="15" />
@@ -118,7 +133,7 @@ watch(() => props.show, (open) => {
               <span
                 v-if="isCurrentVersion(entry.version)"
                 class="nx-cl-current"
-              >{{ lan === "zh" ? "当前版本" : "Current" }}</span>
+              >{{ t("changelog.current") }}</span>
               <span class="nx-cl-date nx-num">{{ entry.date }}</span>
             </div>
 
@@ -127,7 +142,7 @@ watch(() => props.show, (open) => {
               :key="cat.key"
               class="nx-cl-cat"
             >
-              <span class="nx-cl-pill" :class="`is-${cat.key}`">{{ lan === "zh" ? cat.zh : cat.en }}</span>
+              <span class="nx-cl-pill" :class="`is-${cat.key}`">{{ cat.label }}</span>
               <ul class="nx-cl-list">
                 <li
                   v-for="(item, index) in entryItems(entry, cat.key)"

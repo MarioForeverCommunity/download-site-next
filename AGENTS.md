@@ -85,6 +85,7 @@ src/
 ├── components/               页面组件（GameCard、ChangelogModal 等）
 │   └── next/                 新版外壳、筛选、列表、卡片、抽屉、文档条目
 ├── data/                     站点自身静态数据（changelog.js 更新履历）
+├── i18n/                     多语言核心：locale 注册表（index.js）、各语言文案（locales/*.js）、更新履历按需转换（convert.js）
 ├── markdown/                 各页面说明文档（.md 经 unplugin-vue-markdown 按 Vue 组件编译渲染）
 ├── pages/                    每个入口的旧版页面
 │   └── next/                 每个入口的新版页面（只渲染内容，不包裹外壳）
@@ -138,7 +139,7 @@ src/pages/<entry>/main.js
 
 ### 6.5 状态与共享层
 
-- localStorage 键：`design`（设计）、`darkMode`（`1`/`0`）、语言、`displayMode`（列表/卡片）、默认排序、`pageSize`（每页条数，`0` = 全部）。新旧版共用，切换设计后保持。
+- localStorage 键：`design`（设计）、`darkMode`（`1`/`0`）、`locale`（新版界面语言，如 `zh-Hans` / `zh-Hant` / `en`）、`language`（旧版语言 `zh` / `en`，由新版同步写入，见第 9 节）、`displayMode`（列表/卡片）、默认排序、`pageSize`（每页条数，`0` = 全部）。新旧版共用，切换设计后保持。
 - `src/util/Theme.js` 设置 `html[data-nx-theme]`，并同步 `body.dark` 以兼容旧版；密度不再由用户切换，列表固定紧凑、卡片固定舒适（`initDensity` / `setViewDensity`）。
 - `src/util/next/scrollLock.js`：遮罩打开时锁滚动。**不要**改成 `position: fixed` 或根元素 `overflow: hidden`，那会移走文档滚动容器，导致 sticky 的左栏与顶栏跳位。
 - `src/util/next/backGuard.js`：Android 返回键先关闭抽屉。它与 router 的 `history.replaceState` 配合，撤哨兵时不要调用 `history.back()`，否则会与路由导航竞争。
@@ -147,13 +148,14 @@ src/pages/<entry>/main.js
 
 - 旧版文件只做最小改动；新版样式必须限定在 `.nx-*` 或 `[data-nx-theme]` 之下，禁止引入作用到裸标签的全局样式。
 - 移动端顶栏与结果栏是 sticky 的；新增浮层要检查层级，`nx-to-top` 等固定按钮在抽屉展开时应隐藏。
+- 手机顶栏标题在**任何非简体界面**（英文 / 波兰语 / 繁中）都取侧栏短标签（`option_zh_hant` / `option_alt` / `option`），简体与桌面端用完整 `title`；引擎页与 MW 资源页的繁体完整标题过长，必须走这条分支。
 - 详情 / 筛选 / 文档抽屉各自负责 `pushBackGuard` + `lockScroll`，卸载时必须释放，否则页面会永久锁滚动或吞掉返回键。
 - 任何 URL 写入都用 `replaceState` 并保留其他查询参数（尤其 `design`），否则分享链接、直达链接或设计选择会丢失。
 - `general.css` 对页面全局 `text-align: center` 的规则同样可能影响新版；新面板需显式声明 `text-align: left`。
 
 ### 6.7 验证要点
 
-- 每处 UI 改动都要在 `?design=next` 与 `?design=legacy` 下各走一遍中英文；新版额外验证：软路由切换不刷新文档、前进/后退同步、抽屉与 Android 返回键、分享与直达链接、分页与「随机游戏」跳页、回到顶部按钮。
+- 每处 UI 改动都要在 `?design=next` 与 `?design=legacy` 下各走一遍中英文；新版额外验证 `?lang=zh-Hant`（界面与导航标题为繁体、作品数据仍为简体、进入旧版落到简体）与 `?lang=pl`（界面为波兰语、数据与链接规则同英文、进入旧版落到英文），以及：软路由切换不刷新文档、前进/后退同步、抽屉与 Android 返回键、分享与直达链接、分页与「随机游戏」跳页、回到顶部按钮。
 - 完整清单见 [DESIGN.md](DESIGN.md) 第 8 节。
 
 ## 7. 站点更新履历（changelog）
@@ -202,13 +204,87 @@ src/pages/<entry>/main.js
 - Assets 的 `author_alt` / `variant_alt` / `description_alt` 提供英文界面下的英文显示
 - 所有端点的 API 链接在生成时都**不做 URL 编码**（与 MF/MW 一致），含中文/空格的文件名原样拼接，由客户端处理
 
-## 9. 语言与多语言约定
+## 9. 多语言（i18n）
 
-- 语言状态变量 `lan`（`"zh"` / `"en"`），用 localStorage 持久化（与主题、设计模式一致）
-- 本地化字段后缀：`_zh` / `_en`（描述）、`_alt`（英文名 / 译名 / 备用链接）
-- 英文页面优先显示 `_alt` 字段，原始语言名可通过过滤检索
+两套设计共用同一份 YAML 数据，但**只有新版做多语言**：旧版固定 `zh` / `en` 两种，不新增语言。
+
+### 9.1 三个独立概念
+
+| 概念 | 含义 | 取值来源 |
+| --- | --- | --- |
+| 界面语言（locale） | 按钮、表头、抽屉等 UI 文案 | `src/i18n/locales/*.js` 的 `messages` |
+| 内容语言（`data`） | YAML 记录 / Markdown 说明 / 更新履历所用的书写语言 | 各 locale 的 `data` 字段（`zh` / `en`） |
+| 旧版语言（`legacy`） | 进入旧版设计时使用的语言 | 各 locale 的 `legacy` 字段（`zh` / `en`） |
+| 转换来源（`convert`，可选） | 唯一用途：更新履历的简→繁转换来源 | 仅 `zh-Hant` 声明 `"zh-Hans"` |
+
+四者可以互不相同：繁体中文界面读简体数据（`data: "zh"`），但界面标签走 `zh-Hant` 文案表、导航 / 站点名用 `*_zh_hant` 字段、说明用 `*-zh-hant.md`，进入旧版时落回简体（`legacy: "zh"`）。波兰语则相反：`data: "en"`、`legacy: "en"`、无 `convert`，完全沿用英文数据与英文链接规则。
+
+链接（发布页 / 网盘 / 下载地址）的 alt 取用规则收敛在 `prefersAltLinks(code)`：**中文（简体与繁体）都优先主链接**，**其它语言（英语、波兰语及后续新增语言）与英文一致，优先 `_alt` 备用链接**。新增语言时不要再写 `locale === "en"` 之类的判断，用这个函数。
+
+### 9.2 新增一种语言
+
+只需两步，**不用改任何组件**：
+
+1. 复制 `src/i18n/locales/en.js` 为 `src/i18n/locales/<code>.js`，翻译 `messages`（键集合必须与 `en` 一致），并填写：`code`、`name`（语言菜单里的自称）、`short`、`htmlLang`、`legacy`、`data`、`fields`、`fallbacks`、`aliases`（可选 `convert`）。
+2. 在 `src/i18n/index.js` 顶部的 `LOCALES` 数组中登记该文件（数组顺序即语言菜单顺序）。
+
+现成范例：`pl.js`（波兰语）是「第三种语言」的完整样板——`data: "en"`、`legacy: "en"`、`fields: ["_pl", "_alt", "_en", "", "_zh"]`、`fallbacks: ["en"]`，即完全按英文规则读数据与链接。
+
+`fields` 决定从记录里取哪个字段（按顺序回退），例如 `zh-Hant` 为 `["_zh_hant", "_zh", "", "_alt", "_en"]`；给 YAML 补上 `_<code>` 字段后自动优先生效。`fallbacks` 决定文案回退链（`zh-Hant` → `zh-Hans` → `en`；`pl` → `en`）。`legacy` 不写时默认 `en`，即「除繁体中文外，其余新语言进入旧版一律为英文」。
+
+### 9.2.1 opencc 的两个用途
+
+`src/i18n/convert.js` 的简→繁转换只服务两处**没有繁体原文、但又是站点目录核心内容**的文字：
+
+1. `ChangelogDrawer.vue` 中的 `src/data/changelog.js` 条目（`features_en` 等英文条目不参与转换）；
+2. **MF 作品**：`buildMfRecords()` 的 `name`（标题）、`author` / `authors`（作者名）、版本号显示文字（`label` / `displayLabel`）与 YAML `description`，以及 `NxDetail` 载入的作品级 `description_zh.md` 长文。文档页里的 `<MfGamesEntry>` 预览走同一个 `buildMfRecords()`，也一并转换。
+3. **Assets 资源**：`buildAssetRecord()` 的作品名（`name`）、YAML `description`、作者名（`author` / `authors`）、`variantLabel`（变体名）与 `versionLabel` / `label` / `displayLabel`（版本号）；`AssetsCard` 与详情抽屉共用这些字段，所以两处同时生效。文档页里的 `<AssetsEntry>` 预览走同一个构建器。
+
+- 转换器是 `opencc-js/cn2t` 的**动态 import**（约 1MB 原始 / 455KB gzip）。转换方向用 `Converter({ from: "cn", to: "twp" })`（OpenCC `s2twp`），除字形外还换用台湾常用词（软件→軟體、网络→網路、发布→釋出、文件→檔案）；见 [opencc-js README-zh-CN](https://github.com/nk2028/opencc-js/blob/main/README-zh-CN.md)。
+- 加载时机按需：履历抽屉首次打开时、MF 目录页挂载/切换语言时、详情页载入 MF 长描述时、文档页解析 MF 条目时；`boot/next.js` 不预加载。`converter` 是 `shallowRef`，字典到位后自动刷新；加载失败时 `convertText()` 是恒等函数，页面照常显示原文。
+- **其余繁体文案一律是"写出来的"，不是转出来的**：界面字符串在 `locales/zh-hant.js`；导航 / 页面标题用 `option_zh_hant` / `title_zh_hant`；站点名用 `desc_zh_hant`；站点说明文档用 `*-zh-hant.md`（按文件自动发现）。`localizedField()` / `labelFrom()` 只按字段链取值，不调用 opencc。
+- **转换不能动身份字段**：`verKey`、`id`、`authorZh` 全部保留原文。版本选择、深链、作者文件夹 URL（`NxDetail.authorFolderHref` 用 `authorZh`）因此不受影响；只有 `label` / `displayLabel` / `author` 等显示字段被转换。
+- **搜索兼容两种字形（仅 MF 目录）**：`records.js` 的 `searchValues()` 把 MF 记录的 `titleSearch` / `authorSearch` 原始值**保留**，并在繁中界面**追加** opencc 转换后的条目。因此繁中用户输入「超級馬里奧」「測試作者」能命中简体原文的作品，简体关键词也照常可用；其它语言 `localizeText()` 是恒等函数，数组不新增条目、也不加载字典。MW / Assets / Softendo 的搜索索引与页面都不涉及 opencc——它们的数据没有繁简差异，无需加载字典。
+- **下载按钮文案走 i18n，不走 opencc**：Assets 的 File Hub 按钮把 `tr(lan, "download.filehub")` 作为名称覆盖传给 `getAssetResourceURLs()`，繁中得到 `社群資源網站`（简体 `社区资源站`、英文 `Community File Hub`），字典未加载时也正确。
+- **不转的内容**：MW / Softendo 的显示用作品名、作者名与描述、更新履历以外的站点文档长文。
+- **网盘按钮的完整标签不要复用 GameUtil 的 `desc`**：`getDownloadInfo()` 对任何中文内容语言都打印 `desc_zh`，繁中会拿到简体名。`records.js` 的 `netdiskLabel()` 用 `desc_zh_hant` 重建「服务名 + 状态标记」；短标签走 `netdiskServiceName()`。同理，组件里调用 `sourceServiceName()` 必须传**界面 locale**，不能传 `contentLang`（`"zh"` 会归一化成 `zh-Hans`，`desc_zh_hant` 永不生效）。
+- 若将来某种中文变体的履历也缺繁体原文，照抄 `zh-Hant` 的 `convert` 声明即可；但若只是新增界面文本，请写进对应 locale 文件，不要用 opencc 顶替。
+
+### 9.3 用法
+
+- 组件：`const { t, te } = useI18n(() => props.locale)`，模板里 `t("catalog.colName")`；`te(key)` 判断某条可选文案是否存在。
+- 只在简体中文出现的文案（如详情抽屉的「游玩说明」`detail.playNotes.*`）：`te()` 会顺着回退链在繁中命中简体文案，所以**不能只用 `te()`**。判定要与「界面读的是简体原文」绑定，见 `NxDetail.vue` 的 `hasPlayNotes`（`dataLangOf === "zh" && !localeNeedsConversion`），繁中与其它语言一律隐藏。
+- 取数据字段：`localizedField(entry, "homepage", locale)`（自动按 `fields` 回退），或 `labelFrom({ zh, en }, locale)` 取小字典。
+- 站点自产的中文标签：`localizeText(text, locale)`（`zh-Hant` 转繁体，其它语言原样返回）。
+- Markdown 说明正文：按 locale 选择已经写好该文件（`*-zh-hant.md` 等），没有对应文件时回退到简体 / 英文；**不要**在渲染后遍历 DOM 做机器转换。
+- 目录页的「目录说明」也按 locale 选文案：所有文档页统一用 `discoverDocs()` 自动发现 `<page>-<locale>.md`（`zh` → `zh-Hans`、`zh-hant` → `zh-Hant`），`pickDoc()` 在没有对应文件时回退到同书写语言的文档。现在首页、MF 作品、Softendo、关于页有四种语言，MW 关卡与创作资源只有简体，引擎页与 MW 资源页有英文 / 波兰文。
+- 首页说明是逐语言的四份独立文件：`mf-zh.md` / `mf-zh-hant.md` / `mf-en.md` / `mf-pl.md`，由 `pickDoc()` 以 `locale.code` 精确选中；MW 资源页有 `mw-en.md` / `mw-pl.md` / `mw-zh-hant.md`，引擎页有 `engines-en.md` / `engines-pl.md` / `engines-zh-hant.md`，其它目录页仍只有 zh/en，按内容语言回退即可。`getMfDocLastUpdated()` / `getMwDocLastUpdated()` / `getEngineDocLastUpdated()` 按各自文档分别查询（键为 locale code，含 `zh-Hant`），页面把对应日期传给文档**实际声明**的 prop 名（首页繁中用 `lastUpdateZh`、首页波兰文用 `lastUpdateEn`；MW 与引擎的三份都用 `lastUpdate`）；某语言没有提交日期就隐藏该行，不借用其它语言的日期，也不要反过来改文档文件。
+- 关于页的署名是**人工映射**，不是 opencc：`AboutNext.vue` 的 `ZH_HANT_NAMES` 按 `src/markdown/mf-games-zh-hant.md` 里的用户名写法（如「超級瑪莉迷01」「無視我233」「ChloePrime」）给出繁体显示名。新增贡献者时先在两份语言名单里都写好，再按需补映射。
+- **「最后更新」统一由页面提供**：所有文档 md 只声明 `lastUpdate*` prop 并渲染 `.last-update` 行，不在 md 里发 GitHub API 请求。旧版 `Engines.vue` 与其它旧版文档页一样在页面内取 `engines-en.md` 的提交时间再传给 `<introEn :lastUpdate="…" />`（旧版没有波兰语，仍只用英文文档）。
+- 链接 alt 规则：`prefersAltLinks(locale)`（中文 → 主链接优先，其它语言 → `_alt` 优先）。
+- 页面：`pageLocale(pageId)` 给出该页面能呈现的 locale（单语言页面会自动落到对应语言的默认 locale），随后 `watchEffect` 里 `publishShell({ locale })` 发布给外壳；语言菜单的切换回调是 `publishShellHandlers({ changeLocale })`，页面在其中调用 `applyLocale(code)` 并重建记录。
+- **语言菜单完全由页面实际拥有的文案决定**：每个文档页用 `src/util/next/docFiles.js` 的 `discoverDocs(import.meta.glob(".../<page>-*.md", { eager: true, import: "default" }), "<page>")` 得到 `{ localeCode: 组件 }`，把 `Object.keys(docs)` 作为 `locales` 发布到外壳；"关于页"没有 md，发布全部注册语言。`NxShell` 只在 `locales.length > 1` 时显示菜单——MW 关卡 / 创作资源只有 `assets.md` / `mw-levels-zh.md`（即只有简体），菜单隐藏；引擎页与 MW 资源页目前是 `en` / `pl`；首页、MF 作品、Softendo、关于页是四种语言。**新增 `<page>-<locale>.md` 即自动出现在页面与菜单里，无需改任何逻辑**；`localeForLocales()` 负责把访客的语言落到实际存在的文案上（精确匹配 → 同书写语言 → 基础语言回退）。
+- 外壳的 `displayLocale` 以页面发布的 `locale` 为准（只有尚未发布时才回退到 `pageLocale()`）；因此页面切换语言后，繁体文案、导航显隐与文档选择不会互相打架。菜单可见时页面必须注册 `publishShellHandlers({ changeLocale })`，否则点击只会关闭菜单。
+- 菜单选项按**规范语言代号**排序（`en` → `pl` → `zh-Hans` → `zh-Hant`），不按语言全称或浏览器 collation 排序；`NxShell` 的 `byLocaleCode` 负责这一点。
+- 品牌图按**界面语言**而非内容语言选择：只有简体中文用中文 logo（左栏 `logo_new.png`、占位图 `logo_hd.png`），繁中与英文 / 波兰语统一用 `logo2_hd.png`（MW 记录仍用 `marioworker.png`）。旧版 HeaderNav 没有繁中，保持原样。
+- 左栏版权说明（`app.legal`）同理由 `isSimplifiedUi` 判断：简体隐藏，繁中 / 英文 / 波兰语显示；繁中的状态页链接仍按内容语言显示（`contentLang === "zh"`），不要改成同一个判断。
+
+### 9.4 旧版联动
+
+- `setLocale()` 同时写 `locale` 与 `language`（旧版用的 `zh` / `en`），因此切换设计后语言一致。
+- `otherDesignHref()` 会把 `?lang=` 改写为目标设计可用的语言：进入旧版时用各 locale 的 `legacy`（`zh-Hant` → `zh`，其他新语言 → `en`）；回到新版时写回完整 locale。
+- 旧版页面继续只用 `getLanguage()` / `setLanguageZh()` / `setLanguageEn()`，不要在新版调用它们。
+- URL 支持 `?lang=<code>`（别名如 `zh-TW` 亦可），首次访问按 `?lang=` → `locale` → `language` → 浏览器语言 → `en` 的顺序解析。
+
+### 9.5 其它约定
+
+- 本地化字段后缀：`_zh` / `_en`（描述）、`_alt`（英文名 / 译名 / 备用链接）；`_zh_hant` 等新字段按语言追加即可
+- `config.js` 里的导航与站点名表也支持逐语言指定：`navTop` 用 `option_zh_hant` / `title_zh_hant`（简体 / 英文在前，繁中其次，`_pl` 最后）；新版简体侧栏另外优先取 `option_zh_new`（如「Mario Forever 作品目录」），旧版与其它语言仍用 `option` / `option_alt` 等字段，`sourceName` / `downloadName` 用 `desc_zh_hant`，`topBar` 的侧栏名用 `name_zh_hant_new`。所有新版专用名字的命名格式是 `<base>_<locale>_new`（`NxShell.newField()` 按 locale → 内容语言 → en → 裸 `<base>_new` 查找），`show_new` 是显隐开关、不参与此命名规则。未提供的条目按 `fields` 链回退到简体 / 英文原文（不转换），新增语言时可以只翻译高频条目，之后再逐条补齐
+- **固定取值集合要逐语言写明**：如 Softendo 游戏语言 `SoftendoUtil.js` 的 `LANGUAGE_LABELS`（`en` → Angielski，`pl` → Polski）。`labelFrom()` 的顺序是 `locale.code → data → en`，缺 `pl` 键就会回退英文，出现「Język: English」这种标签和值不同语言的情况。登记新语言时务必检查这类小字典
+- 侧栏 / 站外链接的显隐由 `show_zh`、`show_en`、`show_new`、`show_zh_hant` 四个开关决定，规则集中在 `src/util/next/entryVisibility.js` 的 `isEntryVisible()`（`NxShell` 的目录与站外链接共用同一函数）。**繁体界面的 `navTop` 按英文 / 波兰语的可见性判断**（`navContentLang = "en"`：显示引擎页与 MW 编辑器页，隐藏仅中文的 MW 关卡 / 创作资源目录），站外链接仍按内容语言与 `show_zh_hant` 判断，两者互不影响。`show_zh_hant: false` 只在新版繁体界面隐藏（仅面向大陆受众的账号入口），旧版 `HeaderNav` 不认这个字段
+- 英文与其它非中文语言优先显示 `_alt` 字段，原始语言名可通过过滤检索
 - 个别页面仅面向单一语言（如引擎页仅英文、MW 作品目录与创作资源目录仅中文），由 `config.js` 的 `show_zh` / `show_en` 控制
-- 所有功能必须在中英文下都可用
+- 所有功能必须在新版所有已注册语言下都可用（最少验证 `zh-Hans` / `zh-Hant` / `en`）
 
 ## 10. 常见任务流程
 

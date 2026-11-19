@@ -16,6 +16,8 @@
 // real slide without a transition, so the loop is seamless in both directions.
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from "vue";
 import NxIcon from "./NxIcon.vue";
+import { getLocale, useI18n } from "../../i18n/index.js";
+import { shellConfig } from "../../util/next/shellStore.js";
 
 const props = defineProps({
   images: {
@@ -26,9 +28,11 @@ const props = defineProps({
     type: String,
     default: ""
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*). Optional: galleries embedded in
+  // the markdown documents inherit the locale the page published to the shell.
+  locale: {
     type: String,
-    default: "zh"
+    default: ""
   },
   // Caps the slide height; the slide width follows from the aspect ratio, and
   // the neighbours still fill the remaining space.
@@ -219,9 +223,16 @@ const singleStyle = computed(() => {
   };
 });
 
-const text = computed(() => (props.lan === "zh"
-  ? { prev: "上一张", next: "下一张" }
-  : { prev: "Previous", next: "Next" }));
+// An explicit prop wins (a markdown document may pin its own language); otherwise
+// the gallery follows the page's published locale, then the visitor's choice.
+const activeLocale = computed(() => props.locale || shellConfig.locale || getLocale());
+
+const { t } = useI18n(() => activeLocale.value);
+
+const text = computed(() => ({
+  prev: t("gallery.prev"),
+  next: t("gallery.next"),
+}));
 
 // Move to a track position. Wrapping is handled on transitionend: after
 // sliding onto a clone the track is snapped (without animation) onto the real

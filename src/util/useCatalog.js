@@ -40,6 +40,9 @@ export function useCatalog({
   // Tags may also be a getter so the synthetic "Untagged" label can follow the
   // current language instead of being frozen when the catalog is created.
   const resolveTags = () => (typeof tags === "function" ? tags() : tags);
+  // Same for the pill prefixes ("Year 2020" / "年份 2020"): a language switch
+  // must not leave the old wording on the active-filter pills until a reload.
+  const resolveLabels = () => (typeof labels === "function" ? labels() : labels);
 
   const query = ref("");
   const authorQuery = ref("");
@@ -86,8 +89,8 @@ export function useCatalog({
   const rangeTo = ref("");
 
   // Labels are supplied by the page so the composable stays language-agnostic.
-  const yearLabel = computed(() => labels.year || "");
-  const rangeLabel = computed(() => labels.range || "");
+  const yearLabel = computed(() => resolveLabels().year || "");
+  const rangeLabel = computed(() => resolveLabels().range || "");
 
   function setDateMode(mode) {
     if (mode === dateMode.value) return;

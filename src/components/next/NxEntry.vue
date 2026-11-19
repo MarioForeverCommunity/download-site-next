@@ -4,10 +4,11 @@
 // Props match the legacy `<MfGamesEntry>` / `<AssetsEntry>` / `<SoftendoEntry>`
 // components so the markdown files stay untouched; only the presentation and the
 // lookup differ.
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { computed } from "vue";
 import NxEntryPreview from "./NxEntryPreview.vue";
-import { getLanguage } from "../../util/Language.js";
 import { useNamedRecord } from "../../util/next/useNamedRecord.js";
+import { getLocale, useI18n } from "../../i18n/index.js";
+import { shellConfig } from "../../util/next/shellStore.js";
 
 const props = defineProps({
   kind: {
@@ -32,40 +33,27 @@ const props = defineProps({
   }
 });
 
-const lan = ref(getLanguage());
+// Documents are rendered inside the app shell, so the locale the page published
+// is the one the records must be built in. Both sources are reactive: the shell's
+// field changes when the visitor picks another language, and the global locale is
+// the fallback for a document rendered outside a shell.
+const locale = computed(() => shellConfig.locale || getLocale());
 
-const handleCustom = (event) => {
-  lan.value = event?.detail?.language || getLanguage();
-};
+const { t } = useI18n(() => locale.value);
 
-const handleLanguage = () => {
-  lan.value = getLanguage();
-};
+const { record, loading } = useNamedRecord(props.kind, props, locale);
 
-const { record, loading } = useNamedRecord(props.kind, props, lan);
-
-const NOT_FOUND = {
-  mf: "未找到该作品 / Game not found",
-  asset: "未找到该资源 / Asset not found",
-  softendo: "未找到该游戏 / Game not found",
-};
-
-onMounted(() => {
-  window.addEventListener("custom-language-changed", handleCustom);
-  window.addEventListener("language-changed", handleLanguage);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("custom-language-changed", handleCustom);
-  window.removeEventListener("language-changed", handleLanguage);
+const notFoundLabel = computed(() => {
+  const key = { mf: "entry.notFoundMf", asset: "entry.notFoundAsset", softendo: "entry.notFoundSoftendo" };
+  return t(key[props.kind] || "entry.notFoundMf");
 });
 </script>
 
 <template>
   <NxEntryPreview
     :record="record"
-    :lan="lan"
+    :locale="locale"
     :loading="loading"
-    :not-found-label="NOT_FOUND[kind]"
+    :not-found-label="notFoundLabel"
   />
 </template>

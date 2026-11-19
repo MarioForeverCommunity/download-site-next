@@ -56,9 +56,10 @@ export function getAssetFileDisplayName(fileName) {
  * 为资源条目生成下载链接列表
  * @param {object} assetEntry - 资源条目，需包含 currentVer.file_name 与 type
  * @param {string} [lan="zh"] - 语言 ("zh"/"en")，en 使用英文路径与 path_alt
+ * @param {string} [baseName] - 可选的按钮名称覆盖（新版用界面语言的下载文案）
  * @returns {Array<{name: string, url: string}>} 下载链接列表
  */
-export function getAssetResourceURLs(assetEntry, lan = "zh") {
+export function getAssetResourceURLs(assetEntry, lan = "zh", baseName) {
   if (!assetEntry?.currentVer || !assetEntry.currentVer.file_name) {
     return []
   }
@@ -71,13 +72,13 @@ export function getAssetResourceURLs(assetEntry, lan = "zh") {
     ? (assetEntry.path_alt || assetEntry.path || "")
     : (assetEntry.path || "")
 
-  const baseName = lan === "en" ? "Community File Hub" : "社区资源站"
+  const siteName = baseName || (lan === "en" ? "Community File Hub" : "社区资源站")
 
   return fileNames.map((fileName) => {
     const url = getAssetFileUrl(assetEntry.type, fileName, path, lan)
     const displayFileName = getAssetFileDisplayName(fileName)
     return {
-      name: fileNames.length > 1 ? `${baseName} (${displayFileName})` : baseName,
+      name: fileNames.length > 1 ? `${siteName} (${displayFileName})` : siteName,
       url
     }
   })

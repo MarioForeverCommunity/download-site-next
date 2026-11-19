@@ -1,4 +1,5 @@
 import { ref, watch } from "vue";
+import { getLocale, legacyLangOf, setLocale } from "../i18n/index.js";
 
 // Global settings outlive the browser session, like the theme and the design
 // choice (see Theme.js / Design.js): a cookie written without `expires` is
@@ -39,8 +40,18 @@ export function getLanguage() {
   return "en";
 }
 
+// The legacy design only knows `zh` / `en`. When its language switch is used we
+// also move the shared locale, unless the current locale already hands over to
+// the same legacy language — a Traditional Chinese visitor who switches inside
+// the legacy UI keeps their Traditional choice for the next visit to the new one.
+function syncLocaleForLegacyLanguage(language) {
+  if (legacyLangOf(getLocale()) === language) return;
+  setLocale(language === "zh" ? "zh-Hans" : "en", { updateUrl: false });
+}
+
 export function setLanguageZh() {
   writeSetting("language", "zh");
+  syncLocaleForLegacyLanguage("zh");
   // 派发语言切换事件
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('language-changed'));
@@ -51,12 +62,21 @@ export function setLanguageZh() {
 
 export function setLanguageEn() {
   writeSetting("language", "en");
+  syncLocaleForLegacyLanguage("en");
   // 派发语言切换事件
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('language-changed'));
     window.dispatchEvent(new CustomEvent('custom-language-changed', { detail: { language: 'en' } }));
   }
   return "en";
+}
+
+/**
+ * 当前界面语言（新版多语言代码）。旧版页面请继续使用 `getLanguage()`，
+ * 它只返回 `zh` / `en`。
+ */
+export function getLocaleCode() {
+  return getLocale();
 }
 
 export function getDisplayMode() {

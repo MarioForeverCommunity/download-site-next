@@ -8,9 +8,11 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import NxIcon from "./NxIcon.vue";
 import { pushBackGuard } from "../../util/next/backGuard.js";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -24,6 +26,8 @@ const open = ref(false);
 const html = ref("");
 const title = ref("");
 
+const { t } = useI18n(() => props.locale);
+
 // The legacy blocks open with an <h2> repeating the panel title and contain
 // stray <hr> separators; strip both so the body starts with the content.
 const cleanedHtml = computed(() => {
@@ -34,10 +38,10 @@ const cleanedHtml = computed(() => {
 });
 
 const TARGETS = {
-  "open-history": { content: "history-content", zh: "Mario Forever 发展史", en: "History of Mario Forever" },
-  "open-credits": { content: "credits-content", zh: "致谢", en: "Credits" },
-  "open-data-placement": { content: "smwp-data-placement", zh: "音乐包放置说明", en: "Data package setup" },
-  "open-credits-assets": { content: "credits-content", zh: "致谢", en: "Credits" },
+  "open-history": { content: "history-content", label: "doc.history" },
+  "open-credits": { content: "credits-content", label: "doc.credits" },
+  "open-data-placement": { content: "smwp-data-placement", label: "doc.dataPlacement" },
+  "open-credits-assets": { content: "credits-content", label: "doc.credits" },
 };
 
 function onClick(event) {
@@ -50,7 +54,7 @@ function onClick(event) {
   if (!content) return;
   event.preventDefault();
   html.value = content.innerHTML;
-  title.value = props.lan === "zh" ? config.zh : config.en;
+  title.value = t(config.label);
   open.value = true;
 }
 
@@ -89,7 +93,7 @@ onBeforeUnmount(() => {
         v-if="open"
         class="nx-scrim"
         type="button"
-        :aria-label="lan === 'zh' ? '关闭' : 'Close'"
+        :aria-label="t('common.close')"
         @click="open = false"
       />
     </Transition>
@@ -106,7 +110,7 @@ onBeforeUnmount(() => {
           <button
             class="nx-close"
             type="button"
-            :aria-label="lan === 'zh' ? '关闭' : 'Close'"
+            :aria-label="t('common.close')"
             @click="open = false"
           >
             <NxIcon name="close" :size="15" />

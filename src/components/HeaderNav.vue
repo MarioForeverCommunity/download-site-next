@@ -3,8 +3,8 @@ import { navTop, topBar } from "../config.js";
 
 // Legacy top-bar visibility. In addition to the language flags, an entry needs a
 // label the legacy design can actually print: `name` (Chinese) or `name_alt`
-// (English). Entries that only define the redesigned UI's `name_new_zh` /
-// `name_new_en` are hidden here and shown by the new design instead.
+// (English). Entries that only define the redesigned UI's `name_zh_new` /
+// `name_en_new` are hidden here and shown by the new design instead.
 function legacyEntryVisible(item) {
   const zh = displayLan() == "zh";
   if (zh && item.show_zh === false) return false;

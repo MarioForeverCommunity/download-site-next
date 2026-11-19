@@ -7,22 +7,35 @@
 import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
-import { getLanguage, setLanguageZh, setLanguageEn, getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
+import { applyLocale, getLocale, localeNeedsConversion, useI18n } from "../../../i18n/index.js";
+import { prepareConversion, isConversionReady } from "../../../i18n/convert.js";
+import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop, setPageTitle } from "../../../config.js";
 import { ensureMfList } from "../../../util/useMfList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildMfRecords, expandMfRecord, makeFacet, sourceFacetOptions } from "../../../util/next/records.js";
-import mfGamesZh from "../../../markdown/mf-games-zh.md";
-import mfGamesEn from "../../../markdown/mf-games-en.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
+import { localeForLocales, pageTitleFor, pickDoc } from "../../../util/next/pageLocale.js";
+import { discoverDocs } from "../../../util/next/docFiles.js";
 
-const lan = ref(getLanguage());
+// Optional per-locale write-ups: adding `mf-games-<locale>.md` is enough for that
+// language to get its own document and its own entry in the language menu.
+const docs = discoverDocs(import.meta.glob("../../../markdown/mf-games-*.md", {
+  eager: true, import: "default",
+}), "mf-games");
+const locales = Object.keys(docs);
+
 const pageId = "mf-games";
 const pageEntry = navTop.find((item) => item.id === pageId);
 
-const title = computed(() => (lan.value === "zh" ? pageEntry.title : pageEntry.title_alt));
+// Resolve against the documents that actually exist; a visitor with a locale we
+// have no write-up for gets the closest available one.
+const locale = ref(localeForLocales(getLocale(), locales));
+const { t } = useI18n(() => locale.value);
+
+const title = computed(() => pageTitleFor(pageEntry, locale.value));
 
 const rawRecords = ref([]);
 const loading = ref(true);
@@ -48,24 +61,23 @@ const records = computed(() => {
 
 const facets = computed(() => {
   const list = records.value;
-  const zh = lan.value === "zh";
   return [
     makeFacet({
       key: "region",
-      label: zh ? "地区" : "Region",
+      label: t("facet.region"),
       single: true,
       getter: (record) => record.region,
       options: {
         records: list,
         list: [
-          { value: "chinese", label: zh ? "国内" : "Chinese" },
-          { value: "international", label: zh ? "国外" : "International" },
+          { value: "chinese", label: t("facet.regionChinese") },
+          { value: "international", label: t("facet.regionInternational") },
         ],
       },
     }),
     makeFacet({
       key: "platform",
-      label: zh ? "平台" : "Platform",
+      label: t("facet.platform"),
       // Platform lives on the version, not the record: match and count against
       // every version so a Linux-only build is findable without expanding.
       getter: (record) => record.platforms || [],
@@ -77,29 +89,29 @@ const facets = computed(() => {
     }),
     makeFacet({
       key: "software",
-      label: zh ? "制作软件" : "Software",
+      label: t("facet.software"),
       getter: (record) => record.softwares || [],
       countFrom: (record) => record.softwares || [],
       options: {
         records: list,
         list: [
-          { value: "mmf", label: "Clickteam Fusion" },
-          { value: "godot", label: "Godot" },
-          { value: "gamemaker", label: "GameMaker" },
-          { value: "other", label: zh ? "其他" : "Other" },
+          { value: "mmf", label: t("software.mmf") },
+          { value: "godot", label: t("software.godot") },
+          { value: "gamemaker", label: t("software.gamemaker") },
+          { value: "other", label: t("software.other") },
         ],
       },
     }),
     makeFacet({
       key: "source",
-      label: zh ? "发布来源" : "Release source",
+      label: t("facet.source"),
       // Each build may point at its own thread; the record's `sources` is the
       // union across versions, so a site is findable without expanding.
       getter: (record) => record.sources || [],
       countFrom: (record) => record.sources || [],
       options: {
         records: list,
-        list: sourceFacetOptions(list, lan.value),
+        list: sourceFacetOptions(list, locale.value),
       },
     }),
   ];
@@ -118,11 +130,12 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: () => ({ untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" }),
-  labels: {
-    year: lan.value === "zh" ? "年份 " : "Year ",
-    range: lan.value === "zh" ? "日期 " : "Date ",
-  },
+  tags: () => ({ untaggedLabel: t("filter.untagged") }),
+  // A getter, so the pills follow a language switch without a reload.
+  labels: () => ({
+    year: `${t("filter.byYear")} `,
+    range: `${t("filter.byRange")} `,
+  }),
 });
 
 // The dice button lives in the shell, so the page exposes a handler that reaches
@@ -146,44 +159,52 @@ async function load(language) {
   }
 }
 
-onMounted(() => {
-  load(lan.value);
+onMounted(async () => {
+  // Titles and YAML descriptions of fangames are converted for zh-Hant, so the
+  // dictionary must be ready before the first build (capped wait; failure is a
+  // no-op conversion, never a broken page).
+  await prepareConversion(localeNeedsConversion(locale.value));
+  load(locale.value);
 });
 
 // The settings drawer can flip the File Hub direct-link switch while this page is
 // open; records bake their download URLs, so rebuild them to apply it at once.
-watch(getUseDirectLink(), () => load(lan.value));
+watch(getUseDirectLink(), () => load(locale.value));
 
-function pageSetLanguageZh() {
-  lan.value = setLanguageZh();
-  setPageTitle(pageEntry.title, "zh");
-  load("zh");
+// The shell's language menu calls this: store the choice, then rebuild the
+// records in the new language (labels and localized YAML fields are baked in).
+async function changeLocale(code) {
+  locale.value = applyLocale(code);
+  await prepareConversion(localeNeedsConversion(locale.value));
+  load(locale.value);
 }
 
-function pageSetLanguageEn() {
-  lan.value = setLanguageEn();
-  setPageTitle(pageEntry.title_alt, "en");
-  load("en");
-}
-
-setPageTitle(title.value, lan.value);
+// A slow first visit can exceed the capped wait in prepareConversion(), which
+// would leave the Traditional search terms out of the index. Rebuild once when
+// the dictionary finally lands, so zh-Hant searches match without a reload.
+watch(() => isConversionReady(), (ready) => {
+  if (ready && localeNeedsConversion(locale.value)) load(locale.value);
+});
 
 // The catalog's own write-up, opened from the topbar; null hides the button.
-const docZh = mfGamesZh;
-const docEn = mfGamesEn;
-const doc = computed(() => (lan.value === "zh" ? docZh : docEn));
+// Today this resolves to zh/en; the glob above makes future locale files work.
+const doc = computed(() => pickDoc(locale.value, docs));
 const docUpdated = ref("");
 getCatalogLastUpdated("mfGames").then((v) => { docUpdated.value = v || ""; });
 
 // The app shell is rendered once by the SPA root; this page only publishes
 // the parts that differ (title, write-up, search model) plus its own controls.
 // A watchEffect keeps the shell in sync when the language changes or the
-// write-up's date arrives after the first render.
+// write-up's date arrives after the first render. The tab title lives here too:
+// a Traditional Chinese switch converts the title asynchronously, and the effect
+// re-runs once the converter lands.
 watchEffect(() => {
+  setPageTitle(title.value, locale.value);
   publishShell({
     pageId: "mf-games",
     title: title.value,
-    lan: lan.value,
+    locale: locale.value,
+    locales,
     doc: doc.value,
     docTitle: title.value,
     docUpdated: docUpdated.value,
@@ -192,8 +213,7 @@ watchEffect(() => {
   });
 });
 publishShellHandlers({
-  changeLanZh: pageSetLanguageZh,
-  changeLanEn: pageSetLanguageEn,
+  changeLocale,
   random: randomGame,
 });
 </script>
@@ -206,25 +226,23 @@ publishShellHandlers({
     :catalog="catalog"
     :facets="facets"
     :sorters="sorters"
-    :lan="lan"
+    :locale="locale"
     show-random
     :updated="docUpdated"
     :hide-version="!expandVersions"
     :columns="{
-      name: lan === 'zh' ? '作品' : 'Title',
-      author: lan === 'zh' ? '作者' : 'Author',
+      name: t('catalog.colName'),
+      author: t('catalog.colAuthor'),
       // Collapsed rows show the newest version only, so the column is labelled
       // accordingly; expanding every version makes it a plain version column.
-      version: lan === 'zh'
-        ? (expandVersions ? '版本' : '最新版本')
-        : (expandVersions ? 'Version' : 'Latest'),
-      date: lan === 'zh' ? '日期' : 'Date',
-      tags: lan === 'zh' ? '分类' : 'Class',
+      version: expandVersions ? t('catalog.colVersion') : t('catalog.colLatest'),
+      date: t('catalog.colDate'),
+      tags: t('catalog.colTags'),
     }"
   >
     <template #pane-extras>
       <section class="nx-pane-section">
-        <h4><span>{{ lan === "zh" ? "列表选项" : "List options" }}</span></h4>
+        <h4><span>{{ t("page.mfGamesListOptions") }}</span></h4>
         <div class="nx-checks">
           <button
             type="button"
@@ -241,7 +259,7 @@ publishShellHandlers({
               name="check"
               :size="9"
             /></span>
-            <span>{{ lan === "zh" ? "每个版本单独列出" : "List every version separately" }}</span>
+            <span>{{ t("page.mfGamesExpandVersions") }}</span>
           </button>
           <button
             type="button"
@@ -258,7 +276,7 @@ publishShellHandlers({
               name="check"
               :size="9"
             /></span>
-            <span>{{ lan === "zh" ? "仅显示有图片的作品" : "Only entries with image" }}</span>
+            <span>{{ t("page.mfGamesOnlyWithImage") }}</span>
           </button>
         </div>
       </section>
@@ -268,6 +286,6 @@ publishShellHandlers({
     v-else
     class="nx-loading"
   >
-    {{ lan === "zh" ? "正在载入作品目录…" : "Loading the catalog…" }}
+    {{ t("page.mfGamesLoading") }}
   </div>
 </template>

@@ -47,9 +47,6 @@
     { id: "smwp", label: "Super Mario Worker Project" }
   ]
 
-
-
-
   onMounted(() => {
   })
 
@@ -109,7 +106,7 @@ Mario Worker: Community Edition is a Mario Forever level editor based on Godot 4
     </span>
   </a>
 </div>
-<NxGallery :key="currentTab" :images="currentImages" alt="Mario Worker" lan="en" :max-height="480" :autoplay="3000" />
+<NxGallery :key="currentTab" :images="currentImages" alt="Mario Worker" :max-height="480" :autoplay="3000" />
 
 ## Other Mario Worker variants
 ### Mario Worker 2
@@ -225,8 +222,5 @@ Mario Constructor Forever is a Mario Forever-like level editor built with GameMa
   body.dark .radio-inputs .radio:hover {
     background-color: #555;
   }
-
-
-
 
 </style>

@@ -1,27 +1,7 @@
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-
-// Last update date from the latest commit of this markdown file.
-const lastUpdate = ref(null)
-
-const formatDate = (date) => {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const seconds = String(date.getSeconds()).padStart(2, '0')
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
-}
-
-axios
-  .get('https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?page=1&per_page=1&path=src%2Fmarkdown%2Fengines-en.md')
-  .then((response) => {
-    lastUpdate.value = formatDate(new Date(response.data[0].commit.committer.date))
-  }).catch(() => {
-    lastUpdate.value = null
-  })
+defineProps({
+  lastUpdate: String
+})
 </script>
 
 <p v-if="lastUpdate" class="last-update" style="font-weight: bold;">Last updated: {{ lastUpdate }}</p>

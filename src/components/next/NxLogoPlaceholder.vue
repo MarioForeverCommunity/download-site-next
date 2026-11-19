@@ -5,11 +5,13 @@
 // "this record simply has no screenshot yet", which is the actual situation for
 // a large share of the archive.
 import { computed } from "vue";
+import { dataLangOf, localeNeedsConversion } from "../../i18n/index.js";
 
 const props = defineProps({
-  lan: {
+  // Interface locale; only its content language matters here.
+  locale: {
     type: String,
-    default: "zh"
+    default: "zh-Hans"
   },
   // Record kind ("mf" | "mw" | …) and, for assets, the asset type. Mario Worker
   // levels and MW tools get their own mark, since a Mario Forever logo on them
@@ -32,9 +34,13 @@ const props = defineProps({
 const isWorkerMark = computed(() => props.kind === "mw"
   || (props.kind === "asset" && props.assetType === "mwtool"));
 
+// Two brand marks ship with the site: the Chinese logo and the international
+// one. Simplified Chinese uses the Chinese mark; Traditional Chinese uses the
+// international one, like English and Polish.
 const src = computed(() => {
   if (isWorkerMark.value) return "./images/marioworker.png";
-  return props.lan === "zh" ? "./images/logo_hd.png" : "./images/logo2_hd.png";
+  if (localeNeedsConversion(props.locale)) return "./images/logo2_hd.png";
+  return dataLangOf(props.locale) === "zh" ? "./images/logo_hd.png" : "./images/logo2_hd.png";
 });
 </script>
 

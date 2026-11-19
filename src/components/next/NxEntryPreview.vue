@@ -13,13 +13,15 @@ import NxGallery from "./NxGallery.vue";
 import { formatIsoDate, assetTypeLabel } from "../../util/next/records.js";
 import { navigateTo } from "../../util/next/router.js";
 import { abandonBackGuard } from "../../util/next/backGuard.js";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   record: {
     type: Object,
     default: null
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -33,22 +35,14 @@ const props = defineProps({
   }
 });
 
-const text = computed(() => (props.lan === "zh" ? {
-  download: "下载",
-  source: "源代码",
-  details: "查看详情",
-  loading: "载入中…",
-  notFound: "未找到该条目",
-  prev: "上一张",
-  next: "下一张",
-} : {
-  download: "Download",
-  source: "Source code",
-  details: "Details",
-  loading: "Loading…",
-  notFound: "Record not found",
-  prev: "Previous",
-  next: "Next",
+const { t } = useI18n(() => props.locale);
+
+const text = computed(() => ({
+  download: t("entry.download"),
+  source: t("entry.source"),
+  details: t("entry.details"),
+  loading: t("entry.loading"),
+  notFound: t("common.notFound"),
 }));
 
 const gallery = computed(() => (props.record && props.record.images ? props.record.images : []));
@@ -59,7 +53,7 @@ const subtitle = computed(() => {
   if (record.kind === "asset") {
     // Assets are catalogued per variant, so the variant name and its version are
     // the identifying facts; without them several cards look identical.
-    const parts = [assetTypeLabel(record.assetType, props.lan)];
+    const parts = [assetTypeLabel(record.assetType, props.locale)];
     if (record.variantLabel) parts.push(record.variantLabel);
     if (record.versionLabel && record.versionLabel !== record.variantLabel) parts.push(record.versionLabel);
     parts.push(record.author);
@@ -212,7 +206,7 @@ const repoUrl = computed(() => {
         <NxGallery
           :images="gallery"
           :alt="record.name"
-          :lan="lan"
+          :locale="locale"
           fit="contain"
           aspect-ratio="4 / 3"
           :max-height="480"
@@ -223,7 +217,7 @@ const repoUrl = computed(() => {
     </template>
     <NxDetail
       :record="detailOpen ? props.record : null"
-      :lan="lan"
+      :locale="locale"
       @close="detailOpen = false"
       @search-author="searchAuthor"
     />

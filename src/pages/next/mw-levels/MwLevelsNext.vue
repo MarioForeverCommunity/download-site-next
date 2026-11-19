@@ -1,27 +1,40 @@
 <script setup>
 // Mario Worker levels catalog — redesigned.
 //
-// Chinese-only, matching the legacy page (config.js `show_en: false`).
+// Chinese-only, matching the legacy page (config.js `show_en: false`). The page
+// therefore always renders in a Chinese locale: `pageLocale` hands a Traditional
+// Chinese visitor the Traditional interface, and everyone else Simplified.
 // No tag filter: MW entries carry only "自带 MW" / "BGM" runtime flags, which
 // the 运行要求 facet already expresses, so a second tag filter would duplicate it.
 import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
+import { applyLocale, getLocale, useI18n } from "../../../i18n/index.js";
 import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop, setPageTitle } from "../../../config.js";
 import { ensureMwList } from "../../../util/useMwList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildMwRecords, makeFacet, distinctValues, sourceFacetOptions } from "../../../util/next/records.js";
-import mwLevelsZh from "../../../markdown/mw-levels-zh.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
+import { localeForLocales, pageTitleFor, pickDoc } from "../../../util/next/pageLocale.js";
+import { discoverDocs } from "../../../util/next/docFiles.js";
 
-const lan = ref("zh");
+// Only `mw-levels-zh.md` exists today, so this page has one language and no menu.
+// Adding another `mw-levels-<locale>.md` would enable it without code changes.
+const docs = discoverDocs(import.meta.glob("../../../markdown/mw-levels-*.md", {
+  eager: true, import: "default",
+}), "mw-levels");
+const locales = Object.keys(docs);
+
 const pageId = "mw-levels";
 const pageEntry = navTop.find((item) => item.id === pageId);
 
-const title = computed(() => pageEntry.title);
+const locale = ref(localeForLocales(getLocale(), locales));
+const { t } = useI18n(() => locale.value);
+
+const title = computed(() => pageTitleFor(pageEntry, locale.value));
 
 const rawRecords = ref([]);
 const loading = ref(true);
@@ -55,7 +68,7 @@ const facets = computed(() => {
   return [
     makeFacet({
       key: "smwp",
-      label: "MW 版本",
+      label: t("facet.smwp"),
       // Long option set rendered as pills, matching the year filter's shape.
       as: "chips",
       getter: (record) => record.smwpVersion,
@@ -66,7 +79,7 @@ const facets = computed(() => {
     }),
     makeFacet({
       key: "runtime",
-      label: "运行要求",
+      label: t("facet.runtime"),
       // The MW requirement and the BGM note are independent: a level can ship
       // its own MW and still need a custom BGM, so it must surface under both.
       getter: (record) => {
@@ -77,20 +90,20 @@ const facets = computed(() => {
       options: {
         records: list,
         list: [
-          { value: "bundled", label: "自带 MW" },
-          { value: "download", label: "需下载 MW" },
-          { value: "bgm", label: "需替换 BGM" },
+          { value: "bundled", label: t("facet.runtimeBundled") },
+          { value: "download", label: t("facet.runtimeDownload") },
+          { value: "bgm", label: t("facet.runtimeBgm") },
         ],
       },
     }),
     makeFacet({
       key: "source",
-      label: "发布来源",
+      label: t("facet.source"),
       getter: (record) => record.sources || [],
       countFrom: (record) => record.sources || [],
       options: {
         records: list,
-        list: sourceFacetOptions(list, "zh"),
+        list: sourceFacetOptions(list, locale.value),
       },
     }),
   ];
@@ -110,7 +123,7 @@ const catalog = useCatalog({
   sorters,
   defaultSort: initialSort,
   tags: false,
-  labels: { year: "年份 ", range: "日期 " },
+  labels: () => ({ year: `${t("filter.byYear")} `, range: `${t("filter.byRange")} ` }),
 });
 
 // The dice button lives in the shell, so the page exposes a handler that reaches
@@ -124,7 +137,7 @@ function randomGame() {
 async function load() {
   try {
     const [list] = await Promise.all([ensureMwList(), loadImageIndex().catch(() => null)]);
-    rawRecords.value = buildMwRecords(list);
+    rawRecords.value = buildMwRecords(list, locale.value);
   } catch (error) {
     console.error("Failed to load MW catalog:", error);
     rawRecords.value = [];
@@ -139,10 +152,8 @@ onMounted(load);
 // open; records bake their download URLs, so rebuild them to apply it at once.
 watch(getUseDirectLink(), load);
 
-setPageTitle(title.value, "zh");
-
 // The catalog's own write-up, opened from the topbar; null hides the button.
-const doc = computed(() => mwLevelsZh);
+const doc = computed(() => pickDoc(locale.value, docs));
 const docUpdated = ref("");
 getCatalogLastUpdated("mwLevels").then((v) => { docUpdated.value = v || ""; });
 
@@ -151,10 +162,12 @@ getCatalogLastUpdated("mwLevels").then((v) => { docUpdated.value = v || ""; });
 // A watchEffect keeps the shell in sync when the language changes or the
 // write-up's date arrives after the first render.
 watchEffect(() => {
+  setPageTitle(title.value, locale.value);
   publishShell({
     pageId: "mw-levels",
     title: title.value,
-    lan: lan.value,
+    locale: locale.value,
+    locales,
     doc: doc.value,
     docTitle: title.value,
     docUpdated: docUpdated.value,
@@ -162,7 +175,16 @@ watchEffect(() => {
     showRandom: true,
   });
 });
+// The menu is hidden while the catalog ships a single write-up, but registering
+// the handler keeps a future `mw-levels-<locale>.md` from producing a menu whose
+// clicks only close it: records are rebuilt in the newly chosen locale.
+function changeLocale(code) {
+  locale.value = applyLocale(code);
+  load();
+}
+
 publishShellHandlers({
+  changeLocale,
   random: randomGame,
 });
 </script>
@@ -175,15 +197,21 @@ publishShellHandlers({
     :catalog="catalog"
     :facets="facets"
     :sorters="sorters"
-    :lan="lan"
+    :locale="locale"
     show-random
     :updated="docUpdated"
     row-class="is-mw"
-    :columns="{ name: '作品', author: '作者', version: 'MW 版本', date: '日期', tags: '标记' }"
+    :columns="{
+      name: t('catalog.colName'),
+      author: t('catalog.colAuthor'),
+      version: t('facet.smwp'),
+      date: t('catalog.colDate'),
+      tags: t('catalog.colMarks'),
+    }"
   >
     <template #pane-extras>
       <section class="nx-pane-section">
-        <h4><span>列表选项</span></h4>
+        <h4><span>{{ t("page.mwLevelsListOptions") }}</span></h4>
         <div class="nx-checks">
           <button
             type="button"
@@ -200,7 +228,7 @@ publishShellHandlers({
               name="check"
               :size="9"
             /></span>
-            <span>仅显示有图片的作品</span>
+            <span>{{ t("page.mwLevelsOnlyWithImage") }}</span>
           </button>
         </div>
       </section>
@@ -210,6 +238,6 @@ publishShellHandlers({
     v-else
     class="nx-loading"
   >
-    正在载入关卡目录…
+    {{ t("page.mwLevelsLoading") }}
   </div>
 </template>

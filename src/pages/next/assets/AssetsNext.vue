@@ -6,20 +6,32 @@
 // catalog.
 import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
+import { applyLocale, getLocale, localeNeedsConversion, useI18n } from "../../../i18n/index.js";
+import { prepareConversion } from "../../../i18n/convert.js";
 import { getDefaultSort, getUseDirectLink } from "../../../util/Language.js";
 import { navTop, setPageTitle } from "../../../config.js";
 import { ensureAssetsList } from "../../../util/useAssetsList.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildAssetRecords, makeFacet } from "../../../util/next/records.js";
-import assetsDoc from "../../../markdown/assets.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
-import { publishShell } from "../../../util/next/shellStore.js";
+import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
+import { localeForLocales, pageTitleFor, pickDoc } from "../../../util/next/pageLocale.js";
+import { discoverDocs } from "../../../util/next/docFiles.js";
 
-const lan = ref("zh");
+// `assets.md` is the Simplified original; adding `assets-<locale>.md` later adds
+// that language automatically, including its menu option.
+const docs = discoverDocs(import.meta.glob("../../../markdown/assets*.md", {
+  eager: true, import: "default",
+}), "assets");
+const locales = Object.keys(docs);
+
 const pageId = "assets";
 const pageEntry = navTop.find((item) => item.id === pageId);
 
-const title = computed(() => pageEntry.title);
+const locale = ref(localeForLocales(getLocale(), locales));
+const { t } = useI18n(() => locale.value);
+
+const title = computed(() => pageTitleFor(pageEntry, locale.value));
 
 const rawRecords = ref([]);
 const loading = ref(true);
@@ -38,18 +50,14 @@ const initialSort = SORT_MAP[getDefaultSort().value] || { field: "date", asc: fa
 const facets = computed(() => [
   makeFacet({
     key: "type",
-    label: "类型",
+    label: t("facet.type"),
     getter: (record) => record.assetType,
     options: {
       records: rawRecords.value,
-      list: [
-        { value: "engine", label: "引擎" },
-        { value: "addon", label: "拓展" },
-        { value: "effect", label: "特效" },
-        { value: "sprite", label: "素材" },
-        { value: "tool", label: "工具" },
-        { value: "mwtool", label: "MW 工具" },
-      ],
+      list: ["engine", "addon", "effect", "sprite", "tool", "mwtool"].map((value) => ({
+        value,
+        label: t(`assetType.${value}`),
+      })),
     },
   }),
 ]);
@@ -78,13 +86,13 @@ const catalog = useCatalog({
   sorters,
   defaultSort: initialSort,
   tags: false,
-  labels: { year: "年份 ", range: "日期 " },
+  labels: () => ({ year: `${t("filter.byYear")} `, range: `${t("filter.byRange")} ` }),
 });
 
 async function load() {
   try {
     const list = await ensureAssetsList();
-    rawRecords.value = buildAssetRecords(list, "zh");
+    rawRecords.value = buildAssetRecords(list, locale.value);
   } catch (error) {
     console.error("Failed to load assets catalog:", error);
     rawRecords.value = [];
@@ -93,16 +101,25 @@ async function load() {
   }
 }
 
-onMounted(load);
+onMounted(async () => {
+  // Descriptions, variant names and version labels are converted for zh-Hant.
+  // Other locales never load the dictionary (prepareConversion(false) is a no-op).
+  await prepareConversion(localeNeedsConversion(locale.value));
+  await load();
+});
+
+async function changeLocale(code) {
+  locale.value = applyLocale(code);
+  await prepareConversion(localeNeedsConversion(locale.value));
+  await load();
+}
 
 // The settings drawer can flip the File Hub direct-link switch while this page is
 // open; records bake their download URLs, so rebuild them to apply it at once.
 watch(getUseDirectLink(), load);
 
-setPageTitle(title.value, "zh");
-
 // The catalog's own write-up, opened from the topbar; null hides the button.
-const doc = computed(() => assetsDoc);
+const doc = computed(() => pickDoc(locale.value, docs));
 const docUpdated = ref("");
 getCatalogLastUpdated("assets").then((v) => { docUpdated.value = v || ""; });
 
@@ -111,16 +128,19 @@ getCatalogLastUpdated("assets").then((v) => { docUpdated.value = v || ""; });
 // A watchEffect keeps the shell in sync when the language changes or the
 // write-up's date arrives after the first render.
 watchEffect(() => {
+  setPageTitle(title.value, locale.value);
   publishShell({
     pageId: "assets",
     title: title.value,
-    lan: lan.value,
+    locale: locale.value,
+    locales,
     doc: doc.value,
     docTitle: title.value,
     docUpdated: docUpdated.value,
     search: catalog,
   });
 });
+publishShellHandlers({ changeLocale });
 </script>
 
 <template>
@@ -130,14 +150,20 @@ watchEffect(() => {
     :catalog="catalog"
     :facets="facets"
     :sorters="sorters"
-    :lan="lan"
-    :columns="{ name: '资源', author: '作者', version: '版本', date: '日期', tags: '类型' }"
+    :locale="locale"
+    :columns="{
+      name: t('catalog.colAssetName'),
+      author: t('catalog.colAuthor'),
+      version: t('catalog.colVersion'),
+      date: t('catalog.colDate'),
+      tags: t('facet.type'),
+    }"
     :updated="docUpdated"
   />
   <div
     v-else
     class="nx-loading"
   >
-    正在载入创作资源…
+    {{ t("page.assetsLoading") }}
   </div>
 </template>

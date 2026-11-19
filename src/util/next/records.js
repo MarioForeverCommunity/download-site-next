@@ -5,6 +5,62 @@ import { getTagLabel } from "../TagUtil.js";
 import { getGameImageSync, getShowcaseImagesSync } from "../ImageUtil.js";
 import { getUseDirectLink } from "../Language.js";
 import { downloadName, sourceName } from "../../config.js";
+import { dataLangOf, localizedField, localizeText, prefersAltLinks, tFor } from "../../i18n/index.js";
+
+// ── locale handling ──────────────────────────────────────────
+// The builders take an interface locale (`zh-Hans`, `zh-Hant`, `en`, `pl`, …).
+// Two different things are derived from it:
+//
+//  - `contentLangOf()` — the language the YAML data and the File Hub paths are
+//    written in. Every legacy helper (GameUtil / AssetUtil / SoftendoUtil) speaks
+//    that smaller `zh` / `en` vocabulary, so it is what they receive.
+//  - `tr()` — the interface strings (download-button labels, service names),
+//    which come from the i18n catalogues and therefore follow the visitor's
+//    language, Traditional Chinese included.
+//
+// Link variants follow `prefersAltLinks()`: Chinese (Simplified *and*
+// Traditional, which read the same data) leads with the primary link, every
+// other locale — English, Polish, future ones — with the alternate link.
+function contentLangOf(locale) {
+  return dataLangOf(locale);
+}
+
+// Kept as the inverse of `prefersAltLinks()` so the two can never disagree.
+function isContentZh(locale) {
+  return !prefersAltLinks(locale);
+}
+
+function tr(locale, key, params) {
+  return tFor(locale, key, params);
+}
+
+// Search indexes keep their original values (so selection, deep links and
+// identity never change) and additionally carry a Traditional Chinese variant.
+// `localizeText()` is a no-op for every locale without opencc, so other
+// languages neither pay for nor see this.
+function searchValues(values, locale) {
+  const result = values.filter((value) => typeof value === "string" && value);
+  for (const value of result.slice()) {
+    const converted = localizeText(value, locale);
+    if (converted && converted !== value && !result.includes(converted)) result.push(converted);
+  }
+  return result;
+}
+
+// Tags are data (`Single Level`, `Horror`, …) with a translation entry per
+// locale (`tag.single_level`). An unknown tag keeps the legacy dictionary and
+// finally the raw value, so a new YAML tag never renders as a message key.
+function tagLabel(tag, locale) {
+  const slug = String(tag || "").toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  if (slug) {
+    const key = `tag.${slug}`;
+    const label = tr(locale, key);
+    if (label !== key) return label;
+  }
+  return getTagLabel(tag, contentLangOf(locale));
+}
 
 // ── shared helpers ────────────────────────────────────────────
 // The redesigned pages read the same YAML as the legacy pages, so platform and
@@ -36,34 +92,33 @@ export function detectSoftware(entry, verObj) {
   return "mmf";
 }
 
-const SOFTWARE_LABELS = {
-  mmf: { zh: "Clickteam Fusion", en: "Clickteam Fusion" },
-  godot: { zh: "Godot Engine", en: "Godot Engine" },
-  gamemaker: { zh: "GameMaker", en: "GameMaker" },
-  flash: { zh: "Flash", en: "Flash" },
-  klik: { zh: "Klik & Play", en: "Klik & Play" },
-  other: { zh: "其他", en: "Other" },
-};
+const SOFTWARE_KEYS = ["mmf", "godot", "gamemaker", "flash", "klik", "other"];
+const ASSET_TYPE_KEYS = ["engine", "addon", "effect", "sprite", "tool", "mwtool"];
 
-export function softwareLabel(software, lan) {
-  const entry = SOFTWARE_LABELS[software];
-  if (!entry) return software || "";
-  return lan === "zh" ? entry.zh : entry.en;
+/**
+ * Display name of a "made with" software slug (`mmf`, `godot`, …).
+ *
+ * @param {string} software
+ * @param {string} locale - interface locale
+ */
+export function softwareLabel(software, locale) {
+  if (!software) return "";
+  return SOFTWARE_KEYS.includes(software)
+    ? tr(locale, `software.${software}`)
+    : String(software);
 }
 
-const ASSET_TYPE_LABELS = {
-  engine: { zh: "引擎", en: "Engine" },
-  addon: { zh: "拓展", en: "Addon" },
-  effect: { zh: "特效", en: "Effect" },
-  sprite: { zh: "素材", en: "Sprite" },
-  tool: { zh: "工具", en: "Tool" },
-  mwtool: { zh: "MW 工具", en: "MW Tool" },
-};
-
-export function assetTypeLabel(type, lan) {
-  const entry = ASSET_TYPE_LABELS[type];
-  if (!entry) return type;
-  return lan === "zh" ? entry.zh : entry.en;
+/**
+ * Display name of an asset type slug (`engine`, `addon`, …).
+ *
+ * @param {string} type
+ * @param {string} locale - interface locale
+ */
+export function assetTypeLabel(type, locale) {
+  if (!type) return "";
+  return ASSET_TYPE_KEYS.includes(type)
+    ? tr(locale, `assetType.${type}`)
+    : String(type);
 }
 
 function direct(url) {
@@ -96,7 +151,9 @@ function slugify(value) {
 }
 
 function authorNames(entry, lan) {
-  const list = getAuthorList(entry, lan);
+  // `author` / `author_alt` are YAML data, so the content language decides which
+  // one is displayed — not the interface language.
+  const list = getAuthorList(entry, contentLangOf(lan));
   if (list == null) return [];
   return Array.isArray(list) ? list.slice() : [list];
 }
@@ -106,16 +163,17 @@ function authorText(entry, lan) {
 }
 
 function netdiskDownloads(record, lan) {
-  const entries = getDownloadEntries(record, lan);
+  const entries = getDownloadEntries(record, contentLangOf(lan));
   return entries.map((item) => {
     // GameUtil builds the suffix with ASCII parentheses ("已失效"), so accept
     // both bracket widths in case a hand-written desc uses full-width ones.
     const invalid = /[(（](已失效|Invalid|暂无法访问|Temporarily Unavailable)[)）]/.test(item.desc || "");
     // Name the service from config.js's downloadName table rather than showing
     // a generic "网盘" for every mirror.
-    const service = netdiskServiceName(item.url, lan);
+    const entry = matchDownloadEntry(item.url);
+    const service = entry ? siteNameOf(entry, lan) : null;
     return {
-      label: withoutCode(item.desc),
+      label: netdiskLabel(item.desc, entry, lan),
       shortLabel: service || shortNetdiskLabel(item.desc),
       service,
       url: item.url,
@@ -127,8 +185,33 @@ function netdiskDownloads(record, lan) {
   });
 }
 
-// Resolve a URL to the human name of its hosting service (config.js downloadName).
-export function netdiskServiceName(url, lan) {
+// The full label of a netdisk button.
+//
+// `getDownloadInfo()` in GameUtil prints the *raw* table name — `desc_zh` for any
+// Chinese content language, `desc_en` otherwise — and appends status markers
+// ("(提取码: …)", "(已失效)", …). The extraction code is stripped before display,
+// so what is left is the service name plus an optional marker. Rebuild it from the
+// localized name from config.js's `desc_zh_hant` / `desc_en`; no character
+// conversion is involved. Unknown services keep the hostname GameUtil produced.
+function netdiskLabel(desc, entry, lan) {
+  const text = withoutCode(desc);
+  if (!entry) return text;
+  const raw = isContentZh(lan) && entry.desc_zh ? entry.desc_zh : entry.desc_en;
+  const name = siteNameOf(entry, lan) || raw;
+  const marker = raw && text.startsWith(raw) ? text.slice(raw.length) : "";
+  return `${name}${marker}`;
+}
+
+// Name of a site listed in config.js's `sourceName` / `downloadName` tables.
+// The tables carry a hand-written name per language (`desc_zh`, `desc_zh_hant`,
+// `desc_en`); `localizedField()` walks the locale's field chain and returns the
+// authored value verbatim.
+function siteNameOf(entry, lan) {
+  return localizedField(entry, "desc", lan) || "";
+}
+
+// The config.js `downloadName` row matching a URL, or null for an unknown host.
+function matchDownloadEntry(url) {
   if (!url) return null;
   for (const entry of downloadName) {
     const domain = entry.domain;
@@ -138,11 +221,15 @@ export function netdiskServiceName(url, lan) {
     } catch (_e) {
       matched = false;
     }
-    if (matched) {
-      return lan === "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
-    }
+    if (matched) return entry;
   }
   return null;
+}
+
+// Resolve a URL to the human name of its hosting service (config.js downloadName).
+export function netdiskServiceName(url, lan) {
+  const entry = matchDownloadEntry(url);
+  return entry ? siteNameOf(entry, lan) : null;
 }
 
 // Same lookup for a release post, using config.js's `sourceName` table.
@@ -157,7 +244,7 @@ export function sourceServiceName(url, lan) {
       matched = false;
     }
     if (matched) {
-      return lan === "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
+      return siteNameOf(entry, lan);
     }
   }
   return null;
@@ -198,10 +285,10 @@ function sourceSites(urls) {
 
 export function sourceSiteLabel(key, lan) {
   if (!key) return "";
-  if (key === OTHER_SOURCE_KEY) return lan === "zh" ? "其他" : "Other";
+  if (key === OTHER_SOURCE_KEY) return tr(lan, "facet.other");
   const entry = sourceName.find((item) => (item.desc_en || item.desc_zh) === key);
   if (!entry) return key;
-  return lan === "zh" && entry.desc_zh ? entry.desc_zh : (entry.desc_en || entry.desc_zh || key);
+  return siteNameOf(entry, lan) || key;
 }
 
 // Options for the release-source facet: only the sites present in the catalog,
@@ -319,8 +406,8 @@ function mfVersions(entry, lan) {
     const ver = verRaw[verKey] || {};
     const platform = detectPlatform(verKey, ver.file_name);
     const software = detectSoftware(entry, ver);
-    const fileKey = lan === "zh" ? "file_url_zh" : "file_url_en";
-    const dataKey = lan === "zh" ? "data_file_url_zh" : "data_file_url_en";
+    const fileKey = isContentZh(lan) ? "file_url_zh" : "file_url_en";
+    const dataKey = isContentZh(lan) ? "data_file_url_zh" : "data_file_url_en";
     const downloads = [];
     // Each File Hub button carries the file it points at, so the drawer can pair
     // every file name with its own size.
@@ -333,7 +420,7 @@ function mfVersions(entry, lan) {
 
     if (ver[fileKey]) {
       downloads.push({
-        label: lan === "zh" ? "社区资源站" : "Community File Hub",
+        label: tr(lan, "download.filehub"),
         shortLabel: "File Hub",
         file: fileNames[0] || "",
         url: direct(ver[fileKey]),
@@ -350,7 +437,7 @@ function mfVersions(entry, lan) {
     const dataDownloads = [];
     if (ver[dataKey]) {
       dataDownloads.push({
-        label: lan === "zh" ? "社区资源站" : "Community File Hub",
+        label: tr(lan, "download.filehub"),
         shortLabel: "File Hub",
         file: dataFileNames[0] || "",
         url: direct(ver[dataKey]),
@@ -365,8 +452,8 @@ function mfVersions(entry, lan) {
       // "data package" context comes from the section it sits in.
       const service = netdiskServiceName(ver.data_download_url, lan) || urlHostname(ver.data_download_url);
       dataDownloads.push({
-        label: service || (lan === "zh" ? "网盘数据包" : "Netdisk data"),
-        shortLabel: service || (lan === "zh" ? "网盘" : "Netdisk"),
+        label: service || tr(lan, "download.netdiskData"),
+        shortLabel: service || tr(lan, "download.netdisk"),
         service,
         url: ver.data_download_url,
         code: ver.data_code || null,
@@ -376,12 +463,16 @@ function mfVersions(entry, lan) {
       });
     }
 
+    // Version text is a display label: convert it for a Traditional interface.
+    // `verKey` itself stays untouched, so picker selection, deep links and row
+    // ids keep using the original value.
+    const versionText = localizeText((!isContentZh(lan) && ver.ver_alt) ? ver.ver_alt : verKey, lan);
     return {
       verKey,
-      label: cleanVersionLabel((lan === "en" && ver.ver_alt) ? ver.ver_alt : verKey),
+      label: cleanVersionLabel(versionText),
       // What the UI may print. `verKey` stays the identity (used for switching
       // and for the id), but a version written as "-" has nothing to show.
-      displayLabel: cleanVersionLabel((lan === "en" && ver.ver_alt) ? ver.ver_alt : verKey),
+      displayLabel: cleanVersionLabel(versionText),
       date: toDate(ver.date),
       platform,
       software,
@@ -452,7 +543,10 @@ export function buildMfRecords(entries, lan) {
     const current = versions.find((v) => v.latest)
       || versions.find((v) => v.verKey === currentVerStr)
       || versions[0] || null;
-    const names = authorNames(entry, lan);
+    // Display names are converted for zh-Hant; `authorZh` and `authorSearch`
+    // below stay in the original script so search and the File Hub author-folder
+    // URL still address the real folder.
+    const names = authorNames(entry, lan).map((name) => localizeText(name, lan));
     const rawNames = authorNames(entry, "zh");
     // Region (`chinese` / `international`) is deliberately not part of the id:
     // a work has exactly one region, so it never distinguishes two records.
@@ -460,17 +554,20 @@ export function buildMfRecords(entries, lan) {
 
     const { image, images } = collectImages(entry, "mf-games", current ? current.verKey : currentVerStr);
 
-    const description = lan === "zh"
-      ? (entry.description_zh || entry.description || null)
-      : (entry.description_en || entry.description_alt || entry.description || null);
+    // `localizedField` walks the locale's own field chain, so `_zh_hans` /
+    // `_ja` descriptions (once they exist) win over the generic fallbacks.
+    // A Traditional Chinese interface has no authored title/description for most
+    // fangames, so these two fields go through opencc (the only catalog fields
+    // that do) — search fields below deliberately stay in the original script.
+    const description = localizeText(localizedField(entry, "description", lan) || "", lan) || null;
 
     const tagKeys = entry.tag ? (Array.isArray(entry.tag) ? entry.tag : [entry.tag]) : [];
-    const tags = tagKeys.map((tag) => ({ key: tag, label: getTagLabel(tag, lan) }));
+    const tags = tagKeys.map((tag) => ({ key: tag, label: tagLabel(tag, lan) }));
 
     return {
       id,
       kind: "mf",
-      name: getName(entry, lan),
+      name: localizeText(getName(entry, contentLangOf(lan)), lan),
       nameZh: entry.game,
       nameAlt: entry.game_alt || null,
       author: names.join(", "),
@@ -498,7 +595,7 @@ export function buildMfRecords(entries, lan) {
       dataDownloads: current ? current.dataDownloads : [],
       versions,
       links: {
-        home: (lan === "zh" ? entry.homepage_zh || entry.homepage_en : entry.homepage_en || entry.homepage_zh) || null,
+        home: localizedField(entry, "homepage", lan) || null,
         // Both release posts are exposed raw; the list row picks one by
         // language and skips invalid posts itself.
         source: releasePost(entry.currentVer && entry.currentVer.source_url, entry.currentVer && entry.currentVer.source_url_invalid).url,
@@ -506,25 +603,28 @@ export function buildMfRecords(entries, lan) {
         sourceInvalid: !!(entry.currentVer && entry.currentVer.source_url_invalid),
         sourceAltInvalid: !!(entry.currentVer && entry.currentVer.source_url_invalid_alt),
         repo: (current && current.repo) || entry.repo || null,
-        wiki: (lan === "zh" ? entry.wiki_zh_url : entry.wiki_en_url) || null,
+        wiki: (isContentZh(lan) ? entry.wiki_zh_url : entry.wiki_en_url) || entry.wiki_zh_url || null,
         video: collectVideos(entry, lan),
       },
       // Filenames are searchable, matching the legacy filter behaviour. A build
       // exposes `files` (an array — one file per volume), not a single `file`.
-      titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
-        ...versions.flatMap((version) => version.files || [])],
-      authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
+      titleSearch: searchValues([entry.game, entry.game_alt,
+        ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
+        ...versions.flatMap((version) => version.files || [])], lan),
+      authorSearch: searchValues([authorText(entry, "zh"), authorText(entry, "en")], lan),
       raw: entry,
     };
   });
 }
 
 function collectVideos(entry, lan) {
-  const list = lan === "zh" ? (entry.video_zh || entry.video) : (entry.video_en || entry.video);
+  const list = isContentZh(lan) ? (entry.video_zh || entry.video) : (entry.video_en || entry.video);
   if (!list) return [];
   return list.map((item) => {
     const key = Object.keys(item)[0];
     const url = item[key];
+    // The site name is chrome, not data: pass the interface locale so a
+    // Traditional Chinese page reads `desc_zh_hant` instead of Simplified.
     return { title: key, url, site: getVideoDesc(url, lan) };
   });
 }
@@ -577,8 +677,15 @@ export function expandMfRecord(record) {
 
 // ── Mario Worker levels ──────────────────────────────────────
 
-export function buildMwRecords(entries) {
-  const lan = "zh";
+/**
+ * Mario Worker level records.
+ *
+ * @param {object[]} entries - normalized list-mw.yaml
+ * @param {string} [locale] - interface locale; the catalog itself is Chinese
+ */
+export function buildMwRecords(entries, locale = "zh-Hans") {
+  const lan = locale;
+  const tr2 = (key, params) => tr(lan, key, params);
   return entries.map((entry) => {
     const names = authorNames(entry, lan);
     // The raw YAML usually has only `file_name`; the File Hub URL is derived
@@ -593,8 +700,8 @@ export function buildMwRecords(entries) {
 
     const downloads = fileNames.map((fileName, index) => ({
       label: fileNames.length > 1
-        ? `社区资源站 (${displayNames[index] || `#${index + 1}`})`
-        : "社区资源站",
+        ? `${tr2("download.filehub")} (${displayNames[index] || `#${index + 1}`})`
+        : tr2("download.filehub"),
       shortLabel: fileNames.length > 1 ? `#${index + 1}` : "File Hub",
       file: String(fileName).split("/").pop(),
       url: direct(getMwLevelFileUrl(entry, fileName)),
@@ -607,7 +714,7 @@ export function buildMwRecords(entries) {
     // An explicit `file_url` overrides the derived link.
     if (entry.file_url) {
       downloads.unshift({
-        label: "社区资源站",
+        label: tr2("download.filehub"),
         shortLabel: "File Hub",
         url: direct(entry.file_url),
         code: null,
@@ -624,8 +731,8 @@ export function buildMwRecords(entries) {
       const invalid = String(entry.download_url).startsWith("~");
       const url = invalid ? entry.download_url.slice(1) : entry.download_url;
       netdisk.push({
-        label: netdiskServiceName(url, lan) || "网盘",
-        shortLabel: netdiskServiceName(url, lan) || "网盘",
+        label: netdiskServiceName(url, lan) || tr2("download.netdisk"),
+        shortLabel: netdiskServiceName(url, lan) || tr2("download.netdisk"),
         service: netdiskServiceName(url, lan),
         url,
         code,
@@ -654,8 +761,8 @@ export function buildMwRecords(entries) {
       // "netdisk data" label.
       const service = netdiskServiceName(entry.currentVer.data_download_url, lan) || urlHostname(entry.currentVer.data_download_url);
       dataDownloads.push({
-        label: service || "网盘数据包",
-        shortLabel: service || "网盘",
+        label: service || tr2("download.netdiskData"),
+        shortLabel: service || tr2("download.netdisk"),
         service,
         url: entry.currentVer.data_download_url,
         code: entry.currentVer.data_code || null,
@@ -670,7 +777,7 @@ export function buildMwRecords(entries) {
     const tags = [];
     // Runtime flags use the legacy design's own badge colours so the same
     // record reads identically in both interfaces.
-    if (entry.has_bundled_smwp) tags.push({ key: "mw", label: "自带 MW", tone: "mw" });
+    if (entry.has_bundled_smwp) tags.push({ key: "mw", label: tr2("tag.bundled_mw"), tone: "mw" });
     if (entry.has_bgm) tags.push({ key: "bgm", label: "BGM", tone: "bgm" });
 
     const allDownloads = [...downloads, ...netdisk];
@@ -689,7 +796,7 @@ export function buildMwRecords(entries) {
       authors: names,
       // Lists and cards show one label for a multi-author level (the legacy
       // design did the same); the details drawer still lists every author.
-      displayAuthor: names.length > 1 ? "合作作品" : names.join(", "),
+      displayAuthor: names.length > 1 ? tr2("detail.collab") : names.join(", "),
       authorZh: names.join(", "),
       date: toDate(entry.date),
       versionLabel: cleanVersionLabel(entry.smwp_ver) || "",
@@ -750,7 +857,7 @@ export function buildMwRecords(entries) {
       // Multi-author levels are labelled 合作作品 everywhere in the UI, so the
       // author search accepts that label in addition to the names themselves.
       authorSearch: names.length > 1
-        ? [authorText(entry, "zh"), "合作作品"]
+        ? [authorText(entry, "zh"), tr2("detail.collab")]
         : [authorText(entry, "zh")],
       raw: entry,
     };
@@ -801,7 +908,11 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
   const assetFileNames = (Array.isArray(variant.file_name) ? variant.file_name : variant.file_name ? [variant.file_name] : [])
     .filter((name) => name != null)
     .map((name) => String(name).split("/").pop());
-  const downloads = getAssetResourceURLs({ ...entry, currentVer: variant }, lan).map((item, index, arr) => ({
+  // The File Hub button names itself from the interface locale, so a Traditional
+  // visitor reads "社群資源網站" rather than GameUtil's Simplified base name.
+  const downloads = getAssetResourceURLs(
+    { ...entry, currentVer: variant }, contentLangOf(lan), tr(lan, "download.filehub"),
+  ).map((item, index, arr) => ({
     label: item.name,
     shortLabel: arr.length > 1 ? `#${index + 1}` : "File Hub",
     file: assetFileNames[index] || fileNameFromUrl(item.url),
@@ -814,8 +925,8 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
 
   if (variant.download_url) {
     downloads.push({
-      label: netdiskServiceName(variant.download_url, lan) || "网盘",
-      shortLabel: netdiskServiceName(variant.download_url, lan) || "网盘",
+      label: netdiskServiceName(variant.download_url, lan) || tr(lan, "download.netdisk"),
+      shortLabel: netdiskServiceName(variant.download_url, lan) || tr(lan, "download.netdisk"),
       service: netdiskServiceName(variant.download_url, lan),
       url: variant.download_url,
       code: variant.code || null,
@@ -826,8 +937,8 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
   }
   if (variant.download_url_alt) {
     downloads.push({
-      label: netdiskServiceName(variant.download_url_alt, lan) || "备用网盘",
-      shortLabel: netdiskServiceName(variant.download_url_alt, lan) || "备用",
+      label: netdiskServiceName(variant.download_url_alt, lan) || tr(lan, "download.netdiskAlt"),
+      shortLabel: netdiskServiceName(variant.download_url_alt, lan) || tr(lan, "download.netdiskAltShort"),
       service: netdiskServiceName(variant.download_url_alt, lan),
       url: variant.download_url_alt,
       code: variant.code_alt || null,
@@ -838,9 +949,14 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
   }
 
   const image = entry.image ? `/data/assets/${entry.image}` : null;
-  const variantLabel = variantKey
-    ? ((lan === "en" && variant.variant_alt) ? variant.variant_alt : variantKey)
-    : "";
+  // Display-only fields: convert the Simplified source for a Traditional
+  // interface, while `variantKey` / `id` below keep the original identity.
+  const variantLabel = localizeText(variantKey
+    ? ((!isContentZh(lan) && variant.variant_alt) ? variant.variant_alt : variantKey)
+    : "", lan);
+  const versionText = localizeText(cleanVersionLabel(variant.ver), lan);
+  const versionLabel = versionText || variantLabel;
+  const displayAuthors = authorNames(entry, lan).map((name) => localizeText(name, lan));
 
   return {
     // A variant name repeats across versions (Rainbow Engine ships "含开始页"
@@ -849,14 +965,15 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     // only ever open the first of them.
     id: `asset::${entry.name}::${variantKey}::${cleanVersionLabel(variant.ver)}`,
     kind: "asset",
-    name: getName(entry, lan),
+    name: localizeText(getName(entry, contentLangOf(lan)), lan),
     nameZh: entry.name,
     nameAlt: entry.name_alt || null,
-    author: authorText(entry, lan),
-    authors: authorNames(entry, lan),
+    author: displayAuthors.join(", "),
+    authors: displayAuthors,
+    // Raw author strings stay for search / folder URLs (see the MF builder).
     authorZh: authorText(entry, "zh"),
     date: toDate(variant.date || entry.date),
-    versionLabel: cleanVersionLabel(variant.ver) || variantLabel || "",
+    versionLabel,
     variantLabel,
     versionCount: 1,
     region: null,
@@ -867,13 +984,13 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
     tags: [],
     image,
     images: image ? [image] : [],
-    description: lan === "en" ? (entry.description_alt || entry.description || null) : (entry.description || null),
+    description: localizeText(localizedField(entry, "description", lan) || "", lan) || null,
     downloads,
     dataDownloads: [],
     versions: [{
       verKey: variantKey || (variant.ver || ""),
-      label: cleanVersionLabel(variant.ver) || variantLabel || "",
-      displayLabel: cleanVersionLabel(variant.ver) || variantLabel || "",
+      label: versionLabel,
+      displayLabel: versionLabel,
       date: toDate(variant.date || entry.date),
       downloads,
       dataDownloads: [],
@@ -914,8 +1031,8 @@ export function buildSoftendoRecords(entries, lan) {
       if (ver.installer_url) {
         const toolbar = String(ver.installer_url).toLowerCase().includes("toolbar");
         downloads.push({
-          label: `${lan === "zh" ? "安装版" : "Installer"}${toolbar ? (lan === "zh" ? "（含广告插件）" : " (with toolbar)") : ""}`,
-          shortLabel: lan === "zh" ? "安装版" : "Installer",
+          label: `${tr(lan, "download.installer")}${toolbar ? tr(lan, "download.installerToolbar") : ""}`,
+          shortLabel: tr(lan, "download.installer"),
           file: fileNameFromUrl(ver.installer_url),
           url: direct(ver.installer_url),
           code: null,
@@ -946,8 +1063,8 @@ export function buildSoftendoRecords(entries, lan) {
           ? ` (${String(item.label).toUpperCase()})`
           : "";
         downloads.push({
-          label: `${lan === "zh" ? "绿色版" : "Portable"}${formatHint}`,
-          shortLabel: lan === "zh" ? "绿色版" : "Portable",
+          label: `${tr(lan, "download.portable")}${formatHint}`,
+          shortLabel: tr(lan, "download.portable"),
           file: fileNameFromUrl(item.url),
           url: direct(item.url),
           code: null,
@@ -959,8 +1076,8 @@ export function buildSoftendoRecords(entries, lan) {
       }
       for (const item of ver.selfextract_urls || []) {
         downloads.push({
-          label: lan === "zh" ? "自解压" : "Self-extracting",
-          shortLabel: lan === "zh" ? "自解压" : "Self-ex",
+          label: tr(lan, "download.selfextract"),
+          shortLabel: tr(lan, "download.selfextractShort"),
           file: fileNameFromUrl(item.url),
           url: direct(item.url),
           code: null,
@@ -1012,12 +1129,12 @@ export function buildSoftendoRecords(entries, lan) {
       platform: null,
       software: entry.software || null,
       softendoType: entry.type,
-      tags: genres.map((genre) => ({ key: genre, label: getTagLabel(genre, lan) })),
+      tags: genres.map((genre) => ({ key: genre, label: tagLabel(genre, lan) })),
       language,
       languageLabel: getLanguageLabel(entry.language, lan),
       image,
       images: image ? [image] : [],
-      description: lan === "zh" ? (entry.description || entry.description_alt || null) : (entry.description_alt || entry.description || null),
+      description: localizedField(entry, "description", lan) || null,
       downloads: current.downloads,
       dataDownloads: [],
       versions,

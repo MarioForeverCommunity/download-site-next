@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import packageJson from "../../package.json";
+import { getLocale } from "../i18n/index.js";
 
 // Design variants of this site.
 //
@@ -135,6 +136,18 @@ export function hasLegacyPage(pathname = typeof window === "undefined" ? "" : wi
 /**
  * Build a link to the current page rendered in the requested design, keeping the
  * current query string (e.g. `?game=` deep links) intact.
+ *
+ * The language travels with the link only when going *to* the redesigned UI: a
+ * shared link has to reopen in the language it was copied from. The hand-off to
+ * the legacy design drops `?lang=` on purpose — the legacy UI has no locale
+ * system, it reads the stored `language` key, and leaving a new-design tag on a
+ * legacy URL would only misdescribe it (a Chinese-only or English-only page
+ * cannot honour it anyway).
+ *
+ * The language the legacy design opens in is therefore decided by the stored
+ * `language` key, which `setLocale()` keeps in step: a locale that is new in the
+ * redesigned UI hands over to English, and Traditional Chinese hands over to the
+ * Simplified legacy site (each locale's `legacy` field, see src/i18n/locales/*).
  */
 export function otherDesignHref(target = NEXT_DESIGN) {
   const value = target === NEXT_DESIGN ? NEXT_DESIGN : LEGACY_DESIGN;
@@ -152,5 +165,7 @@ export function otherDesignHref(target = NEXT_DESIGN) {
     }
   }
   params.set("design", value);
+  if (value === NEXT_DESIGN) params.set("lang", getLocale());
+  else params.delete("lang");
   return `${pathname}?${params.toString()}`;
 }

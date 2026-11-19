@@ -13,6 +13,7 @@ import NxIcon from "./NxIcon.vue";
 import { setViewDensity } from "../../util/Theme.js";
 import { lockScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   catalog: {
@@ -27,7 +28,8 @@ const props = defineProps({
     type: Array,
     default: () => []
   },
-  lan: {
+  // Interface locale the catalog renders in (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -86,40 +88,28 @@ const props = defineProps({
 
 const emit = defineEmits(["random"]);
 
-const text = computed(() => (props.lan === "zh" ? {
-  count: (n, total, filtered) => (filtered ? `<b>${n}</b> / ${total} 条` : `<b>${n}</b> 条`),
-  name: "作品",
-  author: "作者",
-  version: "版本",
-  date: "日期",
-  tags: "分类",
-  emptyTitle: "没有符合条件的记录",
-  emptyHint: "换一个关键词，或放宽筛选条件。",
-  clear: "清除筛选",
-  reset: "重置",
-  cardView: "卡片视图",
-  listView: "列表视图",
-  random: "随机游戏",
-  pages: "分页",
-  prevPage: "上一页",
-  nextPage: "下一页",
-} : {
-  count: (n, total, filtered) => (filtered ? `<b>${n}</b> / ${total} records` : `<b>${n}</b> records`),
-  name: "Title",
-  author: "Author",
-  version: "Version",
-  date: "Date",
-  tags: "Class",
-  emptyTitle: "No matching records",
-  emptyHint: "Try another keyword or loosen the filters.",
-  clear: "Clear filters",
-  reset: "Reset",
-  cardView: "Card view",
-  listView: "List view",
-  random: "Random game",
-  pages: "Pagination",
-  prevPage: "Previous page",
-  nextPage: "Next page",
+const { t } = useI18n(() => props.locale);
+
+const text = computed(() => ({
+  count: (n, total, filtered) => t(filtered ? "catalog.countFiltered" : "catalog.count", { n, total }),
+  name: t("catalog.colName"),
+  author: t("catalog.colAuthor"),
+  version: t("catalog.colVersion"),
+  date: t("catalog.colDate"),
+  tags: t("catalog.colTags"),
+  emptyTitle: t("catalog.emptyTitle"),
+  emptyHint: t("catalog.emptyHint"),
+  clear: t("catalog.clearFilters"),
+  reset: t("catalog.reset"),
+  cardView: t("catalog.cardView"),
+  listView: t("catalog.listView"),
+  random: t("catalog.random"),
+  pages: t("catalog.pagination"),
+  prevPage: t("catalog.prevPage"),
+  nextPage: t("catalog.nextPage"),
+  filters: t("catalog.filters"),
+  close: t("catalog.closeFilters"),
+  lastUpdated: t("catalog.lastUpdated"),
 }));
 
 const current = computed(() => {
@@ -314,7 +304,7 @@ const searchPills = computed(() => {
     pills.push({ type: "search", key: "query", label: `“${props.catalog.query.value.trim()}”` });
   }
   if (props.catalog.authorQuery.value.trim()) {
-    pills.push({ type: "search", key: "author", label: `${props.lan === "zh" ? "作者" : "Author"}: ${props.catalog.authorQuery.value.trim()}` });
+    pills.push({ type: "search", key: "author", label: `${text.value.author}: ${props.catalog.authorQuery.value.trim()}` });
   }
   return pills;
 });
@@ -455,7 +445,7 @@ defineExpose({ randomRecord, open });
       <span
         v-if="updated"
         class="nx-results-updated nx-num"
-      >{{ lan === "zh" ? "最后更新：" : "Last updated: " }}{{ updated }}</span>
+      >{{ text.lastUpdated }}{{ updated }}</span>
 
       <!-- random sits immediately left of the view switch, per review -->
       <div class="nx-results-actions">
@@ -517,7 +507,7 @@ defineExpose({ randomRecord, open });
         :open="filtersOpen"
         :catalog="catalog"
         :facets="facets"
-        :lan="lan"
+        :locale="locale"
         :show-tags="showTags"
         :show-date="showDate"
       >
@@ -547,7 +537,7 @@ defineExpose({ randomRecord, open });
             v-for="record in catalog.pageRecords.value"
             :key="record.id"
             :record="record"
-            :lan="lan"
+            :locale="locale"
             :active="record.id === catalog.activeId.value"
             :show-tags="showTags"
             :show-date="showDate"
@@ -624,7 +614,7 @@ defineExpose({ randomRecord, open });
             :key="record.id"
             :record="record"
             :class="rowClass"
-            :lan="lan"
+            :locale="locale"
             :active="record.id === catalog.activeId.value"
             :show-tags="showTags"
             :show-date="showDate"
@@ -690,7 +680,7 @@ defineExpose({ randomRecord, open });
 
       <NxDetail
         :record="current"
-        :lan="lan"
+        :locale="locale"
         :version-key="deepLinkVersion"
         @close="close"
         @search-author="searchAuthor"
