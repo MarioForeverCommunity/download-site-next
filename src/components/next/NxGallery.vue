@@ -133,36 +133,40 @@ function ratioFor(src) {
 // leave too little room to read the screenshot.
 const peekFraction = computed(() => (containerW.value < 640 ? 1 : props.peek));
 
-// Height of the slide band. Every slide is exactly this tall and its width
-// follows its own ratio, so no picture is letterboxed inside its box.
+// Height of the slide band. Every slide is exactly this tall; its width follows
+// its own ratio, so the carousel never changes height while paging.
 //
 // `maxHeight` is a cap, not a promise: a 4:3 screenshot at a 480px cap needs
 // 640px of width, which does not exist on a phone, and the picture was cropped.
 // The band is therefore also limited by the space actually available — the
-// container width divided by the active picture's ratio — so the whole frame is
+// container width divided by the first picture's ratio — so the whole frame is
 // always visible.
 //
 // `preferMaxHeight` widens the active slide to the full container width, so the
 // picture can actually reach the cap (a peek-sized slide at 58% of the width
 // could never get there); the same width bound then scales the whole picture
 // down on narrow screens without cropping.
+//
+// The height is pinned to the *first* picture, never to the slide in view:
+// screenshot sets routinely mix 4:3 game frames with 16:10 window shots, and
+// deriving the band from the active slide made the whole carousel jump on every
+// swap.
 const slideH = computed(() => {
   if (!containerW.value) return 0;
-  const active = props.images[activeIndex.value];
-  const ratio = ratioFor(active) || 4 / 3;
+  const ratio = ratioFor(props.images[0]) || 4 / 3;
   const share = props.preferMaxHeight ? 1 : peekFraction.value;
   const widthBound = (containerW.value * share) / ratio;
   if (!props.maxHeight) return widthBound;
   return Math.min(props.maxHeight, widthBound);
 });
 
-// A slide's box always matches its picture's ratio, so the picture fills it
-// exactly. The band height is fixed; the width follows the ratio and may exceed
-// the viewport (the overflow is clipped by the viewport, which is intended — the
-// neighbours are supposed to extend past the edges).
+// A slide's box follows its own picture's ratio, but never grows past the
+// container: since the band height is fixed, a picture wider than the first one
+// is letterboxed whole inside a full-width slide instead of being clipped by
+// the viewport.
 function widthFor(src) {
   if (!slideH.value) return 0;
-  return slideH.value * ratioFor(src);
+  return Math.min(slideH.value * ratioFor(src), containerW.value);
 }
 
 // Slides rendered: [2nd-last clone, last clone, ...images, first clone, 2nd
