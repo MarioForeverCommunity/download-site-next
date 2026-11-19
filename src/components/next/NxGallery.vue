@@ -14,10 +14,14 @@
 // Infinite scrolling is done by rendering a clone of the last image before the
 // list and a clone of the first after it; reaching a clone snaps back to the
 // real slide without a transition, so the loop is seamless in both directions.
-import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
 import NxIcon from "./NxIcon.vue";
 import { getLocale, useI18n } from "../../i18n/index.js";
 import { shellConfig } from "../../util/next/shellStore.js";
+import { isNextDesign } from "../../util/Design.js";
+
+// Legacy design only. Lazy so the redesigned UI never downloads vue3-carousel.
+const NxLegacyGallery = defineAsyncComponent(() => import("./NxLegacyGallery.vue"));
 
 const props = defineProps({
   images: {
@@ -97,6 +101,11 @@ let observer = null;
 
 const count = computed(() => props.images.length);
 const isSingle = computed(() => count.value <= 1);
+
+// The markdown documents are shared by both designs, so the legacy pages render
+// this component too. There the screenshots block must keep its original
+// vue3-carousel look, which NxLegacyGallery renders unchanged.
+const isLegacy = computed(() => !isNextDesign());
 
 // Fallback aspect ratio for slides whose picture has not decoded yet.
 const fallbackRatio = computed(() => {
@@ -460,8 +469,15 @@ onBeforeUnmount(() => {
     ref="containerRef"
     class="nx-gallery"
   >
+    <NxLegacyGallery
+      v-if="isLegacy && count > 0"
+      :images="images"
+      :alt="alt"
+      :autoplay="autoplay"
+    />
+
     <div
-      v-if="isSingle && count > 0"
+      v-else-if="isSingle && count > 0"
       class="nx-gallery-single"
       :style="singleStyle"
     >
