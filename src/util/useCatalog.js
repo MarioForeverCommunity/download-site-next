@@ -392,11 +392,21 @@ export function useCatalog({
   function toggleSort(field) {
     if (sort.value.field !== field) {
       sort.value = { field, asc: true };
-    } else if (sort.value.asc) {
-      sort.value = { field, asc: false };
-    } else {
-      sort.value = { field: defaultSort ? defaultSort.field : null, asc: defaultSort ? defaultSort.asc : true };
+      return;
     }
+    if (sort.value.asc) {
+      sort.value = { field, asc: false };
+      return;
+    }
+    // Third click returns to the default order. When the current order already
+    // *is* the default (the default setting can be a descending sort such as
+    // date_desc), that would be a no-op, so the click falls back to ascending
+    // instead of appearing dead.
+    const fallback = defaultSort
+      ? { field: defaultSort.field, asc: defaultSort.asc }
+      : { field: null, asc: true };
+    const onDefault = fallback.field === sort.value.field && fallback.asc === sort.value.asc;
+    sort.value = onDefault ? { field, asc: true } : fallback;
   }
 
   function cycleTag(tag) {
