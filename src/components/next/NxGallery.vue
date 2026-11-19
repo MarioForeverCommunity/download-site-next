@@ -657,11 +657,15 @@ onBeforeUnmount(() => {
     border: 1px solid transparent;
     border-radius: 4px;
     background: transparent;
-    color: var(--nx-ink-2);
+    /* No backdrop in the idle state, so the icon itself must stay readable on
+       bright and dark screenshots alike: white glyph plus a soft dark halo
+       works on either. */
+    color: #fff;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
     box-shadow: none;
     cursor: pointer;
     z-index: 2;
-    transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease;
+    transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease, filter 0.16s ease;
   }
 
   /* The background and border are only drawn while the arrow is hovered, so the
@@ -671,6 +675,7 @@ onBeforeUnmount(() => {
     background: var(--nx-canvas);
     box-shadow: var(--nx-shadow-1);
     color: var(--nx-ink);
+    filter: none;
   }
 
   .nx-gallery-arrow.is-prev {
