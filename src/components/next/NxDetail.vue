@@ -138,6 +138,9 @@ const text = computed(() => ({
   code: t("detail.code"),
   codeCopyHint: t("detail.codeCopyHint"),
   copied: t("detail.copied"),
+  codePassword: t("detail.codePassword"),
+  codePasswordCopyHint: t("detail.codePasswordCopyHint"),
+  codePasswordCopied: t("detail.codePasswordCopied"),
   requires: t("detail.requires"),
   bundled: t("detail.bundled"),
   playNote: t("detail.playNote"),
@@ -155,6 +158,37 @@ const text = computed(() => ({
   esc: t("detail.esc"),
   collab: t("detail.collab"),
 }));
+
+// OS badge in the "versions & downloads" line: the brand glyph carries the
+// platform, while the name stays available as the accessible label/tooltip.
+const PLATFORM_ICONS = {
+  Windows: "windows",
+  Linux: "linux",
+  macOS: "apple",
+  Android: "android",
+  J2ME: "java",
+};
+
+function platformIcon(platform) {
+  return PLATFORM_ICONS[platform] || null;
+}
+
+// Yongshuo E-disk calls its extraction code an access password; the legacy
+// download buttons already label it 密码 for these hosts. Mirror that for the
+// drawer's code badges, tooltips and copied notice.
+const YSEPAN_HOST = /(ysepan|ys168|ysupan)\.com/i;
+
+function isYsepan(url) {
+  return YSEPAN_HOST.test(String(url || ""));
+}
+
+function codeLabel(item) {
+  return isYsepan(item.url) ? text.value.codePassword : text.value.code;
+}
+
+function codeCopyHint(item) {
+  return isYsepan(item.url) ? text.value.codePasswordCopyHint : text.value.codeCopyHint;
+}
 
 watch([() => props.record, () => props.versionKey], ([next, versionKey]) => {
   const versions = next && next.versions ? next.versions : [];
@@ -491,6 +525,7 @@ function downloadToneClass(item) {
 // handler (clipboard access requires a user gesture) and falls back to a
 // temporary selection when the async clipboard API is unavailable.
 const copiedCode = ref("");
+const copiedCodeIsPassword = ref(false);
 let copiedTimer = null;
 
 function writeClipboard(text) {
@@ -529,6 +564,7 @@ function onDownloadClick(event, item) {
   // the click handler's synchronous turn for the clipboard permission to hold.
   writeClipboard(item.code);
   copiedCode.value = item.code;
+  copiedCodeIsPassword.value = isYsepan(item.url);
   if (copiedTimer) clearTimeout(copiedTimer);
   copiedTimer = setTimeout(() => { copiedCode.value = ""; }, 2400);
 }
@@ -918,8 +954,17 @@ onBeforeUnmount(() => {
                   >{{ text.repack }}</span>
                   <span
                     v-if="version.platform"
-                    class="nx-dot nx-dot-plain"
-                  >{{ version.platform }}</span>
+                    class="nx-dot nx-dot-plain nx-platform-dot"
+                    :title="version.platform"
+                    :aria-label="version.platform"
+                  >
+                    <NxIcon
+                      v-if="platformIcon(version.platform)"
+                      :name="platformIcon(version.platform)"
+                      :size="12"
+                    />
+                    <template v-else>{{ version.platform }}</template>
+                  </span>
                 </div>
                 <div
                   v-if="showVersionMeta"
@@ -970,7 +1015,7 @@ onBeforeUnmount(() => {
                     :href="item.url"
                     target="_blank"
                     rel="noopener"
-                    :title="item.code ? `${text.codeCopyHint}: ${item.code}` : item.label"
+                    :title="item.code ? `${codeCopyHint(item)}: ${item.code}` : item.label"
                     @click="onDownloadClick($event, item)"
                   >
                     <NxIcon
@@ -981,7 +1026,7 @@ onBeforeUnmount(() => {
                     <span
                       v-if="item.code"
                       class="nx-dl-code-inline"
-                    >{{ text.code }} {{ item.code }}</span>
+                    >{{ codeLabel(item) }} {{ item.code }}</span>
                   </a>
                   <!-- The release posts belong to this build, so they trail its
                        download buttons. -->
@@ -1006,9 +1051,9 @@ onBeforeUnmount(() => {
                   v-if="copiedCode"
                   class="nx-code-row"
                 >
-                  <span class="nx-code-label">{{ text.code }}</span>
+                  <span class="nx-code-label">{{ copiedCodeIsPassword ? text.codePassword : text.code }}</span>
                   <span class="nx-code">{{ copiedCode }}</span>
-                  <span style="font-size:10.5px;color:var(--nx-cur);">{{ text.copied }}</span>
+                  <span style="font-size:10.5px;color:var(--nx-cur);">{{ copiedCodeIsPassword ? text.codePasswordCopied : text.copied }}</span>
                 </div>
 
                 <!-- Legacy download-modal help (Chinese only): what to do with
@@ -1072,7 +1117,7 @@ onBeforeUnmount(() => {
                     :href="item.url"
                     target="_blank"
                     rel="noopener"
-                    :title="item.code ? `${text.codeCopyHint}: ${item.code}` : item.label"
+                    :title="item.code ? `${codeCopyHint(item)}: ${item.code}` : item.label"
                     @click="onDownloadClick($event, item)"
                   >
                     <NxIcon
@@ -1083,7 +1128,7 @@ onBeforeUnmount(() => {
                     <span
                       v-if="item.code"
                       class="nx-dl-code-inline"
-                    >{{ text.code }} {{ item.code }}</span>
+                    >{{ codeLabel(item) }} {{ item.code }}</span>
                   </a>
                 </div>
               </div>
@@ -1180,7 +1225,7 @@ onBeforeUnmount(() => {
                 rel="noopener"
               >
                 <NxIcon
-                  name="info"
+                  name="wiki"
                   :size="12"
                 />
                 {{ text.wiki }}

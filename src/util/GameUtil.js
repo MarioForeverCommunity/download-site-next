@@ -257,6 +257,31 @@ export function getVersion(item, lan) {
   return null;
 }
 
+// 作品所有版本中出现过的平台，规则与 MF 目录页的 detectPlatform 一致：
+// 版本号或文件名含 linux / macOS，或常见 Linux 压缩包 / .dmg 扩展名。
+// 卡片与列表用它显示 Linux / macOS 角标：macOS 通常只出现在旧版本里，
+// 只看当前版本会漏掉；Android 仍由 .apk 与 hasApkFile 单独判断。
+export function getMfPlatforms(item) {
+  if (!item || !Array.isArray(item.ver)) {
+    return [];
+  }
+  const platforms = new Set();
+  for (const version of item.ver) {
+    const verKey = String(Object.keys(version)[0] || "").toLowerCase();
+    const rawName = version[Object.keys(version)[0]]?.file_name;
+    const fileName = String(Array.isArray(rawName) ? rawName[0] : rawName || "").toLowerCase();
+    if (verKey.includes("linux") || fileName.includes("linux") ||
+        fileName.endsWith(".tar.xz") || fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")) {
+      platforms.add("linux");
+    } else if (verKey.includes("macos") || fileName.includes("macos") || fileName.endsWith(".dmg")) {
+      platforms.add("macos");
+    } else if (fileName.endsWith(".jar")) {
+      platforms.add("j2me");
+    }
+  }
+  return [...platforms];
+}
+
 export function getResourceURL(item, lan) {
   if (lan == "en") {
     return item.currentVer.file_url_en

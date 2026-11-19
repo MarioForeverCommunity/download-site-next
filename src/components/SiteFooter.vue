@@ -53,6 +53,7 @@ onBeforeUnmount(() => {
       <span><a href="#" @click.prevent="showChangelog = true">更新履历</a></span>
       <span>构建时间：{{ formatBuildTime(buildTime) }}</span>
       <span><a class="external-link" target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">本站源码</a></span>
+      <span><a class="external-link" target="_blank" href="https://fontawesome.com/license/free">图标：Font Awesome Free</a></span>
     </template>
     <template v-else>
       <div class="copyright-notice">This is NOT a Softendo/Nintendo official site. Mario and its related copyrights belong to Nintendo.</div>
@@ -61,6 +62,7 @@ onBeforeUnmount(() => {
         <span><a href="#" @click.prevent="showChangelog = true">Changelog</a></span>
         <span>Build time: {{ formatBuildTime(buildTime) }}</span>
         <span><a class="external-link" target="_blank" href="https://github.com/MarioForeverCommunity/download-site-next">Source code</a></span>
+        <span><a class="external-link" target="_blank" href="https://fontawesome.com/license/free">Icons: Font Awesome Free</a></span>
       </div>
     </template>
   </footer>

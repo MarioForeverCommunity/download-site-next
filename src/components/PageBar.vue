@@ -106,11 +106,10 @@ function go(value) {
   /* Same shape and colours as the legacy toolbar's .visible-button (the "Tags"
      button in the filter bar), so the pager reads as part of the old design. */
   .page-btn {
-    min-width: 2em;
     border: 1px solid rgba(0, 0, 0, 0.15);
     background: #fff;
     color: inherit;
-    padding: .2em .65em;
+    padding: .2em .6em;
     border-radius: .25em;
     line-height: 1.5em;
     font: inherit;
@@ -151,8 +150,8 @@ function go(value) {
   }
 
   body.dark .page-btn.on {
-    background: #008cff;
-    border-color: #008cff;
-    color: #fff;
+    background: #bbbbbb;
+    border-color: #bbbbbb;
+    color: #222;
   }
 </style>

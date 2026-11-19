@@ -1559,7 +1559,7 @@ body.nx-body select:focus-visible {
   border: 0;
   border-radius: 4px;
   background: transparent;
-  color: var(--nx-faint);
+  color: var(--nx-muted);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1668,6 +1668,14 @@ body.nx-body select:focus-visible {
   color: var(--nx-muted);
   border-color: var(--nx-line);
   background: var(--nx-fill);
+}
+
+/* Platform badge in the detail drawer is an icon rather than text: no chip
+   frame, so the brand glyph alone carries the recognition. */
+.nx-platform-dot {
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 /* Asset types keep the legacy catalog's dot marker, recoloured into this

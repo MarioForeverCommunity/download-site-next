@@ -622,7 +622,7 @@ watch(showChangelog, (open) => {
             @click="docOpen = true"
           >
             <NxIcon
-              name="info"
+              name="readme"
               :size="15"
             />
           </button>
@@ -638,7 +638,7 @@ watch(showChangelog, (open) => {
               :aria-label="t('shell.language')"
               @click="toggleMenu('lang')"
             >
-              <NxIcon name="globe" :size="14" />
+              <NxIcon name="language" :size="14" />
               <span class="nx-lang-label">{{ languageLabel }}</span>
               <NxIcon
                 class="nx-lang-caret"

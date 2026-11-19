@@ -9,7 +9,7 @@ import PageBar from '../../components/PageBar.vue';
 import { usePagination } from '../../util/usePagination.js';
 import { getName, getAuthor, getDownloadEntries, toResourceDirectUrl } from "../../util/GameUtil.js";
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js";
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon } from "../../components/icons/Icons.js";
+import Icon from "../../components/icons/Icon.vue";
 import { filterList, getStrFromList } from "../../util/GameUtil.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
 import ClipboardButton from '../../components/ButtonClipboard.vue';
@@ -442,7 +442,7 @@ const { floatingStyles } = useFloating(reference, floating,
         <div class="toolbar-buttons">
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <FilterIcon class="icon button" @click="clearFilter()" />
+              <Icon name="rotate" class="icon button" @click="clearFilter()" />
               <template #popper>重置筛选</template>
             </Tooltip>
           </div>
@@ -451,31 +451,31 @@ const { floatingStyles } = useFloating(reference, floating,
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
             <span v-if="sort_option.field == 'name'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'name'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByAuthor();">
             {{ lan == "en" ? "Author" : "作者" }}
             <span v-if="sort_option.field == 'author'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'author'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByDate();">
             {{ lan == "en" ? "Date" : "日期" }}
             <span v-if="sort_option.field == 'date'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'date'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredAssets.length} items` : `${filteredAssets.length} 个条目` }}</span>

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { DownloadIcon } from "./icons/Icons.js";
+import Icon from "./icons/Icon.vue";
 import { getTypeLabel, getFullTypeLabel, getSoftendoGameName, getSoftwareLabel, getSoftendoYearRange } from "../util/SoftendoUtil.js";
 import Tooltip from "./ToolTip.vue";
 
@@ -92,7 +92,7 @@ const getGameImageSrc = () => {
       </div>
       <div class="game-options">
         <Tooltip v-if="game.currentVer && (game.currentVer.installer_url || (game.currentVer.portable_urls && game.currentVer.portable_urls.length > 0) || (game.currentVer.selfextract_urls && game.currentVer.selfextract_urls.length > 0))">
-          <DownloadIcon class="icon button" @click="$emit('showGameDetail', game)"></DownloadIcon>
+          <Icon name="download" class="icon button" @click="$emit('showGameDetail', game)"></Icon>
           <template #popper>{{ lan === "en" ? "Download" : "下载链接" }}</template>
         </Tooltip>
       </div>
@@ -116,7 +116,7 @@ const getGameImageSrc = () => {
   }
 
   .icon {
-    fill: #000;
+    color: #000;
     width: 16px;
     height: 16px;
     margin-left: 5px;

@@ -93,6 +93,11 @@ export default defineConfig({
           if (id.includes('node_modules/js-yaml/') || id.includes('node_modules/axios/')) {
             return 'utils-vendor'
           }
+          // Font Awesome is shared by both interfaces and changes far less often
+          // than the pages that use it, so it gets its own cacheable chunk.
+          if (id.includes('node_modules/@fortawesome/')) {
+            return 'fontawesome'
+          }
         }
       }
     },
@@ -103,7 +108,9 @@ export default defineConfig({
         drop_debugger: true
       },
     },
-    chunkSizeWarningLimit: 500,
+    // The only chunk above 500 kB is the lazily imported opencc `cn2t`
+    // dictionary; it is fetched only for a Traditional Chinese interface.
+    chunkSizeWarningLimit: 1200,
     cssCodeSplit: true,
     assetsInlineLimit: 8192,
     reportCompressedSize: true,

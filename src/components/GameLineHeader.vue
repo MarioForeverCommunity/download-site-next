@@ -1,5 +1,5 @@
 <script setup>
-import { SortUpIcon, SortDownIcon, SortUpDownIcon } from "./icons/Icons.js";
+import Icon from "./icons/Icon.vue";
 
 const props = defineProps({
   lan: {
@@ -33,11 +33,11 @@ function getSortOption() {
       {{ lan == "en" ? "Game" : "作品名" }}
       <div class="button button-shift" @click="$emit('sortByName')">
         <span v-if="getSortOption().field == 'game'">
-          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
-          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+          <Icon name="sortUp" class="icon" v-if="getSortOption().asc"></Icon>
+          <Icon name="sortDown" class="icon" v-if="!getSortOption().asc"></Icon>
         </span>
         <span v-if="getSortOption().field != 'game'">
-          <SortUpDownIcon class="icon"></SortUpDownIcon>
+          <Icon name="sort" class="icon"></Icon>
         </span>
       </div>
     </div>
@@ -45,11 +45,11 @@ function getSortOption() {
       {{ lan == "en" ? "Author" : "作者" }}
       <div class="button button-shift" @click="$emit('sortByAuthor')">
         <span v-if="getSortOption().field == 'author'">
-          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
-          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+          <Icon name="sortUp" class="icon" v-if="getSortOption().asc"></Icon>
+          <Icon name="sortDown" class="icon" v-if="!getSortOption().asc"></Icon>
         </span>
         <span v-if="getSortOption().field != 'author'">
-          <SortUpDownIcon class="icon"></SortUpDownIcon>
+          <Icon name="sort" class="icon"></Icon>
         </span>
       </div>
     </div>
@@ -63,11 +63,11 @@ function getSortOption() {
       {{ lan == "en" ? "Date" : "发布日期" }}
       <div class="button button-shift" @click="$emit('sortByDate')">
         <span v-if="getSortOption().field == 'date'">
-          <SortUpIcon class="icon" v-if="getSortOption().asc"></SortUpIcon>
-          <SortDownIcon class="icon" v-if="!getSortOption().asc"></SortDownIcon>
+          <Icon name="sortUp" class="icon" v-if="getSortOption().asc"></Icon>
+          <Icon name="sortDown" class="icon" v-if="!getSortOption().asc"></Icon>
         </span>
         <span v-if="getSortOption().field != 'date'">
-          <SortUpDownIcon class="icon"></SortUpDownIcon>
+          <Icon name="sort" class="icon"></Icon>
         </span>
       </div>
     </div>

@@ -135,6 +135,8 @@ const TECH_GROUPS = computed(() => [
       { name: "JavaScript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
       { name: "Markdown", url: "https://github.com/markdown-it/markdown-it" },
       { name: "CSS", url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+      // Font Awesome Free icons are CC BY 4.0: the licence link is the credit.
+      { name: "Font Awesome Free", url: "https://fontawesome.com/license/free" },
     ],
   },
   {

@@ -195,6 +195,7 @@ publishShellHandlers({
     :facets="facets"
     :sorters="sorters"
     :locale="locale"
+    show-random
     :show-date="false"
     :show-actions="false"
     :columns="{

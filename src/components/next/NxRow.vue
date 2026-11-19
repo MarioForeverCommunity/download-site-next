@@ -312,7 +312,7 @@ function openLinks(event) {
         :aria-label="t('detail.wiki')"
         @click="openLinks"
       >
-        <NxIcon name="info" :size="14" />
+        <NxIcon name="wiki" :size="14" />
       </a>
       <a
         v-if="record.links && record.links.home"

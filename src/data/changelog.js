@@ -5,6 +5,42 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-rc.2",
+    date: "2026-11-19",
+    features: [
+      "旧版 MF 作品卡片与列表新增 Linux、macOS 与 J2ME（Java）平台角标：作品任一版本包含对应构建即会显示，不再只看当前版本"
+    ],
+    features_en: [
+      "Legacy MF cards and rows now show Linux, macOS and J2ME (Java) platform badges whenever any build of the game targets that platform, instead of only checking the current version"
+    ],
+    improvements: [
+      "新版文档页的条目卡片轮播尽量占满可用高度：中间截图最高 480px，卡片宽度不足时整图按比例缩小而不裁切；轮播高度以第一张截图的比例为准，切换图片时不再改变高度",
+      "新版 MF 作品详情抽屉在未展开全部版本时，轮播会列出所有版本的标题截图（从新到旧）以及共享的 showcase 截图；展开全部版本后，每个版本仍只显示自己的图片",
+      "新版与旧版界面统一改用 Font Awesome 图标，在小尺寸下更清晰；旧版原有的 24 个独立图标组件合并为单个 Icon 组件，新旧版共用一份图标映射，并补充许可署名",
+      "新版详情抽屉「版本与下载」的操作系统标识改为品牌图标（Windows、Linux、macOS、Android、J2ME）并移除图标外框",
+      "新版目录列表右侧的下载、来源、仓库等操作按钮图标略微提亮，更容易辨认",
+      "Font Awesome 拆分为独立可缓存的构建块，图标代码不再混在页面块中"
+    ],
+    improvements_en: [
+      "Documentation entry cards in the redesigned UI let the active screenshot use the available height (up to 480px) and scale the whole picture down (never cropped) when the card is narrower. The carousel height now follows the first screenshot, so switching images no longer resizes it",
+      "The redesigned MF detail drawer now lists every build's title screens (newest to oldest) plus the shared showcase shots when versions are not expanded; expanded version rows still show only their own images",
+      "Both interfaces now use Font Awesome Free icons, which stay legible at the small sizes the catalogs rely on. The legacy design's 24 per-icon components collapse into a single Icon component with one shared name map",
+      "In the redesigned detail drawer the OS badge under \"versions & downloads\" is now a brand icon (Windows, Linux, macOS, Android, J2ME) without its outer frame",
+      "The download, source and repository buttons at the right of catalog rows are slightly brighter",
+      "Font Awesome is split into its own cacheable chunk instead of being bundled with each page chunk"
+    ],
+    fixes: [
+      "修复新版详情抽屉与文档页条目卡片的 description 区域中长链接不换行、撑宽容器的问题",
+      "修复旧版设计中首页与 Mario Worker 页面的截图轮播丢失原有样式（下方指示器不可见、箭头居中偏移）的问题：旧版重新渲染原 vue3-carousel 组件，恢复左右箭头、指示器、自动播放与宽屏双图布局",
+      "修复新版 Softendo 游戏目录缺少「随机游戏」按钮的问题"
+    ],
+    fixes_en: [
+      "Fixed long links in the redesigned detail drawer and documentation entry cards not wrapping and widening their container",
+      "Fixed the screenshot carousels on the legacy index and Mario Worker pages losing their original styling (invisible pagination dots, off-centre arrows): the legacy design renders the original vue3-carousel again, restoring the arrows, dots, autoplay and the two-up layout on wide screens",
+      "Fixed the missing random-game button on the redesigned Softendo catalog"
+    ]
+  },
+  {
     version: "3.0.0-rc.1",
     date: "2026-11-19",
     features: [

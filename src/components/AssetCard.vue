@@ -1,5 +1,5 @@
 <script setup>
-import { LinkIcon, DownloadIcon, UserIcon, GithubIcon } from "./icons/Icons.js";
+import Icon from "./icons/Icon.vue";
 import { getName, getAuthorList, hasDownloadableContent } from "../util/GameUtil.js";
 import { getVariantDisplayName } from "../util/useAssetsList.js";
 import { sourceName } from "../config.js";
@@ -173,7 +173,7 @@ const getAssetDescription = (asset) => {
       <div class="asset-author">
         <Tooltip>
           <span class="inline-block author-ellipsis">
-            <UserIcon class="icon author-icon"></UserIcon>
+            <Icon name="user" class="icon author-icon"></Icon>
             <span class="author-text">
               <template v-if="typeof getAuthorList(asset, props.lan) == 'string'">
                 {{ getAuthorList(asset, props.lan) }}
@@ -204,7 +204,7 @@ const getAssetDescription = (asset) => {
       <div class="asset-options">
         <Tooltip v-if="getAssetSourceLink(asset)">
           <a :href="getAssetSourceLink(asset)" target="_blank" @click="handleSourceClick">
-            <LinkIcon class="icon button" :class="getAssetSourceLinkValidity(asset) ? '' : 'invalid'"></LinkIcon>
+            <Icon name="link" class="icon button" :class="getAssetSourceLinkValidity(asset) ? '' : 'invalid'"></Icon>
           </a>
           <template #popper>
             <span class="content-center">
@@ -215,12 +215,12 @@ const getAssetDescription = (asset) => {
         </Tooltip>
         <Tooltip v-if="asset.repo">
           <a :href="asset.repo" target="_blank">
-            <GithubIcon class="icon button"></GithubIcon>
+            <Icon name="github" class="icon button"></Icon>
           </a>
           <template #popper>{{ props.lan === 'en' ? 'Source Code' : '源代码' }}</template>
         </Tooltip>
         <Tooltip v-if="hasDownloadableContent(asset)">
-          <DownloadIcon class="icon button" @click="$emit('selectDownload', asset)"></DownloadIcon>
+          <Icon name="download" class="icon button" @click="$emit('selectDownload', asset)"></Icon>
           <template #popper>{{ props.lan === 'en' ? 'Download' : '下载链接' }}</template>
         </Tooltip>
       </div>
@@ -258,7 +258,7 @@ const getAssetDescription = (asset) => {
   }
 
   .icon {
-    fill: #000;
+    color: #000;
     width: 16px;
     height: 16px;
     margin-left: 5px;
@@ -267,14 +267,19 @@ const getAssetDescription = (asset) => {
   }
 
   .icon.invalid{
-    fill: #ccc;
+    color: #ccc;
+  }
+
+  /* Keep invalid links grey while hovered: `.button:hover` has the same
+     specificity and would otherwise jump the icon to near-black. */
+  .icon.invalid:hover,
+  .icon.invalid:focus {
+    color: #ccc;
   }
 
   .author-icon {
     margin-left: 0;
     margin-right: 3px;
-    width: 24px;
-    height: 24px;
   }
 
   .author-text {

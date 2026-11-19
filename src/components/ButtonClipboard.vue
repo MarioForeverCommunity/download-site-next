@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
-import ClipboardIcon from './icons/IconClipboard.vue';
+import Icon from './icons/Icon.vue';
 import { getCodeLabel } from '../util/GameUtil.js';
 
 const props = defineProps({
@@ -59,7 +59,8 @@ function onMouseLeave() {
 
 <template>
   <span style="display: inline-block;">
-    <ClipboardIcon
+    <Icon
+      name="clipboard"
       ref="reference"
       class="icon button"
       @click="copyCode();"

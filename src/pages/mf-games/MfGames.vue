@@ -14,7 +14,7 @@ import { getAuthor, getName, getAuthorList } from "../../util/GameUtil.js";
 import { parseVer } from "../../util/Misc.js";
 import introZh from '../../markdown/mf-games-zh.md';
 import introEn from '../../markdown/mf-games-en.md';
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, InfoIcon, FilterIcon, ListIcon, GridIcon, QuestionIcon, RandomIcon } from "../../components/icons/Icons.js";
+import Icon from "../../components/icons/Icon.vue";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { setPageTitle } from "../../config.js"
@@ -1111,7 +1111,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
 
   <div class="hidden-container">
     <div class="container filter-container" :class="sort_option.active ? 'expand' : '' ">
-      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
+      <!-- <Icon name="sort" v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></Icon> -->
       <div class="icon-container">
         <span class="filter-label">{{ lan == "en" ? "Filter" : "筛选" }}</span>
         <div class="inline-block search-box">
@@ -1173,7 +1173,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <input v-model="expandAllVersions" type="checkbox" id="expandAllVersions">
           <label for="expandAllVersions">{{ lan == "en" ? "Expand all versions" : "展开全部版本" }}</label>
           <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-            <InfoIcon class="icon button-shift" style="margin-left: .3em;"></InfoIcon>
+            <Icon name="info" class="icon button-shift" style="margin-left: .3em;"></Icon>
             <template #popper>
               <span v-if="lan == 'zh'" style="text-align: left; display: block;">
                 勾选此项后，所有包含多个版本的作品将在列表中全部展开，每个版本单独显示；取消勾选则将同一作品的所有版本折叠为一条。由于展开后条目数量增多，可能影响排序性能，建议结合筛选功能使用。
@@ -1187,20 +1187,30 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
         <div class="toolbar-buttons">
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <FilterIcon class="icon button" @click="clearFilter()" />
+              <Icon name="rotate" class="icon button" @click="clearFilter()" />
               <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
             </Tooltip>
           </div>
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <RandomIcon class="icon button" @click="openRandomGame()" />
+              <Icon name="dice" class="icon button" @click="openRandomGame()" />
               <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
             </Tooltip>
           </div>
           <div class="inline-block display-mode-toggle" v-if="wideScreen">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <ListIcon class="icon button" v-if="displayMode === 'card'" @click="toggleDisplayMode()" />
-              <GridIcon class="icon button" v-if="displayMode === 'line'" @click="toggleDisplayMode()" />
+              <Icon
+                name="list"
+                class="icon button"
+                v-if="displayMode === 'card'"
+                @click="toggleDisplayMode()"
+              />
+              <Icon
+                name="grid"
+                class="icon button"
+                v-if="displayMode === 'line'"
+                @click="toggleDisplayMode()"
+              />
               <template #popper>{{ displayMode === 'line' ? (lan == 'en' ? 'Switch to Card' : '切换到卡片') : (lan == 'en' ? 'Switch to List' : '切换到列表') }}</template>
             </Tooltip>
           </div>
@@ -1209,31 +1219,31 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
             <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByAuthor();">
             {{ lan == "en" ? "Author" : "作者" }}
             <span v-if="sort_option.field == 'author'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'author'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByDate();">
             {{ lan == "en" ? "Date" : "日期" }}
             <span v-if="sort_option.field == 'date'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'date'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>
@@ -1311,7 +1321,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
             @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
           >
-            <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;" />
+            <Icon name="question" class="icon button-shift" style="vertical-align: middle; cursor: help;" />
             <template #popper>
               <span v-if="isMobile && getTooltipType(selectedDownload) === 'apk'" style="text-align: left; display: block;">
                 本作品为 .apk 文件，可在安卓手机上直接安装运行。<br>
@@ -1361,7 +1371,7 @@ watch([() => filter_option.value.year, () => filter_option.value.platform], () =
             @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
             @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
           >
-            <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;" />
+            <Icon name="question" class="icon button-shift" style="vertical-align: middle; cursor: help;" />
             <template #popper>
               <span style="text-align: left; display: block;">
                 重打包作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>

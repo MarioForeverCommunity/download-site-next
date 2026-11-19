@@ -123,6 +123,7 @@ body.dark .icon {
 }
 
 body.dark .icon.invalid{
+  color: #555 !important;
   fill: #555 !important;
 }
 

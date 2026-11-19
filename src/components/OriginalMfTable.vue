@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import DownloadIcon from './icons/IconDownload.vue';
+import Icon from './icons/Icon.vue';
 import { readList } from '../util/ReadList.js';
 import { getFormattedFileSize } from '../util/OpenListApi.js';
 import { toResourceDirectUrl } from '../util/GameUtil.js';
@@ -161,7 +161,7 @@ const isFiveStar = (rating) => {
               v-if="getDownloadUrl(version, 'installer')"
               class="button"
               @click="openDownloadModal(version, 'installer')"
-            ><DownloadIcon class="icon"></DownloadIcon>
+            ><Icon name="download" class="icon"></Icon>
               {{ lan == "en" ? "Download" : "下载" }}
             </a>
           </td>
@@ -170,7 +170,7 @@ const isFiveStar = (rating) => {
               v-if="getDownloadUrl(version, 'portable')"
               class="button"
               @click="openDownloadModal(version, 'portable')"
-            ><DownloadIcon class="icon"></DownloadIcon>
+            ><Icon name="download" class="icon"></Icon>
               {{ lan == "en" ? "Download" : "下载" }}
             </a>
           </td>

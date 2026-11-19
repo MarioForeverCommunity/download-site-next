@@ -43,6 +43,7 @@ public/api/*.json           ← 静态 JSON API（生成产物）
 | 构建 | Vite 8 + Rolldown，target ES2022 |
 | 样式 | CSS，`<style scoped>` + `@import "../assets/general.css"` |
 | 产物 | 构建含 gzip/brotli 压缩（>5KB）；`BUILD_TIME` 只读全局 |
+| 图标 | 统一用 **Font Awesome Free**（SVG 按需引入），在 `src/components/icons/iconMap.js` 登记；不再新增单图标组件或 emoji 图标 |
 | 注意 | Vite 8 的 `manualChunks` 必须用**函数形式**，不能用对象形式 |
 
 ## 4. 常用命令
@@ -83,7 +84,8 @@ src/
 ├── assets/next/base.css      新版设计的全部令牌与样式（含深色主题）
 ├── boot/                     设计分支启动：entry / legacy / next / NxApp.vue
 ├── components/               页面组件（GameCard、ChangelogModal 等）
-│   └── next/                 新版外壳、筛选、列表、卡片、抽屉、文档条目
+│   ├── icons/                图标：iconMap.js 名称表、Icon.vue（旧版）、fa.js（FA 配置）
+│   └── next/                 新版外壳、筛选、列表、卡片、抽屉、文档条目（图标为 NxIcon）
 ├── data/                     站点自身静态数据（changelog.js 更新履历）
 ├── i18n/                     多语言核心：locale 注册表（index.js）、各语言文案（locales/*.js）、更新履历按需转换（convert.js）
 ├── markdown/                 各页面说明文档（.md 经 unplugin-vue-markdown 按 Vue 组件编译渲染）
@@ -153,7 +155,16 @@ src/pages/<entry>/main.js
 - 任何 URL 写入都用 `replaceState` 并保留其他查询参数（尤其 `design`），否则分享链接、直达链接或设计选择会丢失。
 - `general.css` 对页面全局 `text-align: center` 的规则同样可能影响新版；新面板需显式声明 `text-align: left`。
 
-### 6.7 验证要点
+### 6.7 图标（Font Awesome）
+
+- 全站图标来自 **Font Awesome Free**，以 SVG 按需引入（`@fortawesome/free-solid-svg-icons` / `free-brands-svg-icons` + `@fortawesome/vue-fontawesome`）。名称表统一在 `src/components/icons/iconMap.js`，两套界面共用。
+- 旧版用 `<Icon name="download" class="icon" />`（`src/components/icons/Icon.vue`），尺寸与颜色由调用处的 `.icon` 等作用域样式控制；新版用 `<NxIcon name="download" :size="14" />`（`src/components/next/NxIcon.vue`），`size` 是显式像素值。**新增图标先登记名称再用**，不要再建单图标 `.vue`。
+- `src/components/icons/fa.js` 关闭了 FA 的自动 CSS 注入，避免 `.svg-inline--fa` 的全局规则污染旧版。代价是 FA 自带的 `overflow: visible` 也不会生成，因此 `Icon.vue` / `NxIcon.vue` 必须保留该样式：多个 FA 路径超出 `viewBox`，默认 `overflow: hidden` 会裁边并让图标看起来没有居中。
+- 平台标识使用品牌图标：`android` / `apple` / `linux` / `windows` / `java`。旧版卡片与列表的平台角标由 `GameUtil.js` 的 `getMfPlatforms()` 判定（任一版本包含该平台即显示）；新版详情抽屉通过 `NxDetail.vue` 的 `PLATFORM_ICONS` 映射。
+- Font Awesome Free 图标为 CC BY 4.0：新版关于页技术栈与旧版页脚保留许可署名，不要删除。
+- 构建时 `vite.config.js` 把 `@fortawesome` 单独拆成 `fontawesome` 可缓存 chunk；不要把图标重新并入页面 chunk。
+
+### 6.8 验证要点
 
 - 每处 UI 改动都要在 `?design=next` 与 `?design=legacy` 下各走一遍中英文；新版额外验证 `?lang=zh-Hant`（界面与导航标题为繁体、作品数据仍为简体、进入旧版落到简体）与 `?lang=pl`（界面为波兰语、数据与链接规则同英文、进入旧版落到英文），以及：软路由切换不刷新文档、前进/后退同步、抽屉与 Android 返回键、分享与直达链接、分页与「随机游戏」跳页、回到顶部按钮。
 - 完整清单见 [DESIGN.md](DESIGN.md) 第 8 节。
@@ -301,6 +312,12 @@ src/pages/<entry>/main.js
 2. **同步修改** `src/util/GameUtil.js` / `SoftendoUtil.js` / `AssetUtil.js` 或 `src/components/OriginalMfTable.vue`
 3. `bun run generate-api` 后核对 `public/api/*.json` 中的链接
 
+### 新增 / 修改图标
+
+1. 在 `src/components/icons/iconMap.js` 的 `ICONS` 中登记短名称 → FA 图标定义（按需 import）
+2. 旧版用 `<Icon name="…" />`，新版用 `<NxIcon name="…" :size="…" />`；补上对应 CSS 尺寸，不要依赖 FA 自动样式
+3. 重命名或删除名称前，先全局搜索两套界面的调用处；平台图标还需同步 `NxDetail.vue` 的 `PLATFORM_ICONS`
+
 ### 修改 API 结构
 
 - 只改 `scripts/generate-api.js`，改完重新生成；**不要手改 `public/api/`**
@@ -325,6 +342,7 @@ src/pages/<entry>/main.js
 - `general.css` 对页面全局 `text-align: center`，新的弹框 / 面板需显式声明 `text-align: left`
 - 页脚与弹框相关：入口要用真 `<a>` 而不是 button 样式模拟；`dark-mode.css` 会给 `footer` 内任意 `span:not(:first-child)` 加竖线，因此弹框要渲染在 `<footer>` 之外
 - 本地 dev 修改 package.json 版本号后需重启 dev server（Vite 对 JSON 导入有模块缓存），生产构建不受影响
+- 不要给图标组件添加 `width` / `height` 属性来定尺寸：旧版尺寸来自 `.icon` 等 CSS；新版来自 `NxIcon` 的 `size`。同时不要移除图标的 `overflow: visible`，否则超出 `viewBox` 的 FA 路径会被裁掉
 
 ## 12. 代码风格
 
@@ -336,6 +354,7 @@ src/pages/<entry>/main.js
 - 错误处理用 `try/catch`，返回空值前做 null 检查
 - 完整 ESLint 规则见 `eslint.config.js`（`bun run lint` 自动修复）
 - **文档与注释的段落不要手工换行**（避免截断换行），由编辑器软换行，保持源码整洁与 diff 清晰
+- 图标只用 `Icon` / `NxIcon` + `iconMap.js`；不要在模板里写 emoji、内联 `<svg>` 或引入其他图标库
 
 ## 13. 提交与校验
 

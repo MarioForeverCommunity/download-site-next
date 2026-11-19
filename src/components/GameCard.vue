@@ -1,7 +1,7 @@
 <script setup>
 import { parseVer } from "../util/Misc.js";
-import { ApkIcon, ArrowIcon, WikiIcon, LinkIcon, DownloadIcon, YoutubeIcon, RepackIcon, VideoIcon, GithubIcon, UserIcon, HomeIcon } from "./icons/Icons.js";
-import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL, hasDownloadableContent } from "../util/GameUtil.js";
+import Icon from "./icons/Icon.vue";
+import { getSourceLink, getSourceLinkValidity, getSourceDesc, getName, getAuthorList, getVersion, getAuthorFolderURL, hasDownloadableContent, getMfPlatforms } from "../util/GameUtil.js";
 import Tooltip from "./ToolTip.vue";
 
 const props = defineProps({
@@ -107,14 +107,26 @@ const getHomepageUrl = () => {
       <div class="game-name" :class="getVersion(game, lan) ? '' : 'no-version'">
         <span class="game-name-link" @click="handleGameNameClick">{{ getName(game, lan) }}</span>
         <Tooltip v-if="game.currentVer && game.currentVer.repacker">
-          <RepackIcon class="icon"></RepackIcon>
+          <Icon name="cube" class="icon"></Icon>
           <template #popper>
             {{ lan == "en" ? "Repackaged Game" : "重打包版本" }}
           </template>
         </Tooltip>
         <Tooltip v-if="hasApkFile()">
-          <ApkIcon class="icon apk-icon"></ApkIcon>
+          <Icon name="android" class="icon apk-icon platform-icon"></Icon>
           <template #popper>{{ lan === 'en' ? 'Android' : '安卓游戏' }}</template>
+        </Tooltip>
+        <Tooltip v-if="getMfPlatforms(game).includes('linux')">
+          <Icon name="linux" class="icon platform-icon"></Icon>
+          <template #popper>{{ lan === 'en' ? 'Linux' : 'Linux 版' }}</template>
+        </Tooltip>
+        <Tooltip v-if="getMfPlatforms(game).includes('macos')">
+          <Icon name="apple" class="icon platform-icon"></Icon>
+          <template #popper>{{ lan === 'en' ? 'macOS' : 'macOS 版' }}</template>
+        </Tooltip>
+        <Tooltip v-if="getMfPlatforms(game).includes('j2me')">
+          <Icon name="java" class="icon platform-icon"></Icon>
+          <template #popper>{{ lan === 'en' ? 'J2ME' : 'J2ME 版' }}</template>
         </Tooltip>
       </div>
       <div class="game-version" v-if="game.category == 'mf' && getVersion(game, lan)">
@@ -124,7 +136,7 @@ const getHomepageUrl = () => {
           <template #popper>{{ lan == 'en' ? 'Current version' : '当前最新' }}</template>
         </Tooltip>
         <div :class="game.ver.length > 1 ? 'dropdown' : ''">
-          <ArrowIcon v-if="game.ver.length > 1" class="icon rotate-button"></ArrowIcon>
+          <Icon name="chevronDown" v-if="game.ver.length > 1" class="icon rotate-button"></Icon>
           <div v-if="game.ver.length > 1" class="dropdown-content">
             <div
               v-for="ver in game.ver"
@@ -198,14 +210,14 @@ const getHomepageUrl = () => {
           <span class="inline-block author-ellipsis">
             <template v-if="typeof getDisplayAuthorList() == 'string'">
               <template v-if="getAuthorFolderURL(game, getDisplayAuthorList(), lan)">
-                <UserIcon class="icon author-icon"></UserIcon><span class="author-text"><a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">{{ getDisplayAuthorList() }}</a></span>
+                <Icon name="user" class="icon author-icon"></Icon><span class="author-text"><a :href="getAuthorFolderURL(game, getDisplayAuthorList(), lan)" target="_blank">{{ getDisplayAuthorList() }}</a></span>
               </template>
               <template v-else>
-                <UserIcon class="icon author-icon"></UserIcon><span class="author-text">{{ getDisplayAuthorList() }}</span>
+                <Icon name="user" class="icon author-icon"></Icon><span class="author-text">{{ getDisplayAuthorList() }}</span>
               </template>
             </template>
             <template v-else>
-              <UserIcon class="icon author-icon"></UserIcon>
+              <Icon name="user" class="icon author-icon"></Icon>
               <span class="author-text">
                 <span
                   class="inline-block"
@@ -240,33 +252,33 @@ const getHomepageUrl = () => {
       <div class="game-options">
         <Tooltip v-if="game.wiki_zh_url != null && lan == 'zh'">
           <a :href="game.wiki_zh_url" target="_blank">
-            <WikiIcon class="icon button"></WikiIcon>
+            <Icon name="wiki" class="icon button"></Icon>
           </a>
           <template #popper>Wiki 页面</template>
         </Tooltip>
         <Tooltip v-if="game.wiki_en_url != null && lan == 'en'">
           <a :href="game.wiki_en_url" target="_blank">
-            <WikiIcon class="icon button"></WikiIcon>
+            <Icon name="wiki" class="icon button"></Icon>
           </a>
           <template #popper>Wiki Page</template>
         </Tooltip>
         <Tooltip v-if="(game.video_en != null || game.video != null) && lan == 'en'">
-          <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
+          <Icon name="video" class="icon button" @click="$emit('selectVideos', game)"></Icon>
           <template #popper>Related Videos</template>
         </Tooltip>
         <Tooltip v-if="(game.video_zh != null || game.video != null) && lan == 'zh'">
-          <VideoIcon class="icon button" @click="$emit('selectVideos', game)"></VideoIcon>
+          <Icon name="video" class="icon button" @click="$emit('selectVideos', game)"></Icon>
           <template #popper>相关视频</template>
         </Tooltip>
         <Tooltip v-if="getHomepageUrl()">
           <a :href="getHomepageUrl()" target="_blank">
-            <HomeIcon class="icon button"></HomeIcon>
+            <Icon name="home" class="icon button"></Icon>
           </a>
           <template #popper>{{ lan == 'en' ? 'Homepage' : '主页' }}</template>
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) != 'YouTube'">
           <a :href="getSourceLink(game, lan)" target="_blank" @click="handleSourceClick">
-            <LinkIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></LinkIcon>
+            <Icon name="link" class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></Icon>
           </a>
           <template #popper>
             <span class="content-center">
@@ -277,7 +289,7 @@ const getHomepageUrl = () => {
         </Tooltip>
         <Tooltip v-if="getSourceLink(game, lan) && getSourceDesc(game, lan) == 'YouTube'">
           <a :href="getSourceLink(game, lan)" target="_blank">
-            <YoutubeIcon class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></YoutubeIcon>
+            <Icon name="youtube" class="icon button" :class="getSourceLinkValidity(game, lan) ? '' : 'invalid'"></Icon>
           </a>
           <template #popper>
             {{ lan == "en" ? "YouTube" : "发布视频" }}
@@ -286,12 +298,12 @@ const getHomepageUrl = () => {
         </Tooltip>
         <Tooltip v-if="getRepoUrl()">
           <a :href="getRepoUrl()" target="_blank">
-            <GithubIcon class="icon button"></GithubIcon>
+            <Icon name="github" class="icon button"></Icon>
           </a>
           <template #popper>{{ lan == 'en' ? 'Source Code' : '源代码' }}</template>
         </Tooltip>
         <Tooltip v-if="hasDownloadableContent(game)">
-          <DownloadIcon class="icon button" @click="$emit('selectGame', game)"></DownloadIcon>
+          <Icon name="download" class="icon button" @click="$emit('selectGame', game)"></Icon>
           <template #popper>
             {{ lan == "en" ? "Download" : "下载链接" }}
           </template>
@@ -344,7 +356,7 @@ const getHomepageUrl = () => {
   }
 
   .icon {
-    fill: #000;
+    color: #000;
     width: 16px;
     height: 16px;
     margin-left: 5px;
@@ -353,14 +365,23 @@ const getHomepageUrl = () => {
   }
 
   .icon.invalid{
-    fill: #ccc;
+    color: #ccc;
+  }
+
+  /* Keep invalid links grey while hovered: `.button:hover` has the same
+     specificity and would otherwise jump the icon to near-black. */
+  .icon.invalid:hover,
+  .icon.invalid:focus {
+    color: #ccc;
+  }
+
+  .platform-icon {
+    transform: translateY(-1px);
   }
 
   .author-icon {
     margin-left: 0;
     margin-right: 3px;
-    width: 24px;
-    height: 24px;
   }
 
   .author-text {
@@ -383,7 +404,6 @@ const getHomepageUrl = () => {
     cursor: pointer;
     color: inherit;
     text-decoration: none;
-    margin-right: 0.25em;
   }
 
   .game-name-link:hover {

@@ -10,7 +10,7 @@ import GameCard from '../../components/GameCard.vue';
 import GameLineHeader from '../../components/GameLineHeader.vue';
 import PageBar from '../../components/PageBar.vue';
 import { usePagination } from '../../util/usePagination.js';
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, ListIcon, GridIcon, RandomIcon } from "../../components/icons/Icons.js";
+import Icon from "../../components/icons/Icon.vue";
 import introZh from '../../markdown/mw-levels-zh.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
@@ -658,7 +658,7 @@ const { floatingStyles } = useFloating(reference, floating,
 
   <div class="hidden-container">
     <div class="container filter-container" :class="sort_option.active ? 'expand' : '' ">
-      <!-- <SortIcon v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></SortIcon> -->
+      <!-- <Icon name="sort" v-if="!wideScreen" class="icon button" :class="sort_option.active ? 'active' : '' " @click="sort_option.active = !sort_option.active"></Icon> -->
       <div class="icon-container">
         <span class="filter-label">{{ lan == "en" ? "Filter" : "筛选" }}</span>
         <div class="inline-block search-box">
@@ -701,21 +701,21 @@ const { floatingStyles } = useFloating(reference, floating,
         <div class="toolbar-buttons">
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <FilterIcon class="icon button" @click="clearFilter()" />
+              <Icon name="rotate" class="icon button" @click="clearFilter()" />
               <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
             </Tooltip>
           </div>
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <RandomIcon class="icon button" @click="openRandomGame()" />
+              <Icon name="dice" class="icon button" @click="openRandomGame()" />
               <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
             </Tooltip>
           </div>
           <div class="inline-block display-mode-toggle" v-if="wideScreen">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
               <div class="icon button" @click="toggleDisplayMode()">
-                <ListIcon v-if="displayMode === 'card'" />
-                <GridIcon v-if="displayMode === 'line'" />
+                <Icon name="list" v-if="displayMode === 'card'" />
+                <Icon name="grid" v-if="displayMode === 'line'" />
               </div>
               <template #popper>{{ displayMode === 'line' ? '切换到卡片' : '切换到列表' }}</template>
             </Tooltip>
@@ -725,31 +725,31 @@ const { floatingStyles } = useFloating(reference, floating,
           <div class="visible-button" @click="sortByName();">
             名称
             <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByAuthor();">
             作者
             <span v-if="sort_option.field == 'author'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'author'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByDate();">
             日期
             <span v-if="sort_option.field == 'date'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'date'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>

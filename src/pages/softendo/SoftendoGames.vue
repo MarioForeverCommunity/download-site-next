@@ -11,7 +11,7 @@ import { usePagination } from "../../util/usePagination.js";
 import { normalizeSoftendoList, getSoftendoGameName, getSoftwareLabel, getFullTypeLabel, getSoftendoYearRange } from "../../util/SoftendoUtil.js";
 import { createGameImageResolver } from "../../util/ImageUtil.js";
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js";
-import { SortUpIcon, SortDownIcon, SortUpDownIcon, FilterIcon, RandomIcon } from "../../components/icons/Icons.js";
+import Icon from "../../components/icons/Icon.vue";
 import axios from "axios";
 import Tooltip from "../../components/ToolTip.vue";
 import ButtonBackToTop from "../../components/ButtonBackToTop.vue";
@@ -480,13 +480,13 @@ const getGameImage = (game) => {
         <div class="toolbar-buttons">
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <FilterIcon class="icon button" @click="clearFilter()" />
+              <Icon name="rotate" class="icon button" @click="clearFilter()" />
               <template #popper>{{ lan == 'en' ? 'Reset filters' : '重置筛选' }}</template>
             </Tooltip>
           </div>
           <div class="inline-block">
             <Tooltip :in-card="false" @show-tooltip="(obj)=>tooltipMouseEnter(obj)" @hide-tooltip="(obj) => tooltipMouseLeave(obj)">
-              <RandomIcon class="icon button" @click="openRandomGame()" />
+              <Icon name="dice" class="icon button" @click="openRandomGame()" />
               <template #popper>{{ lan == 'en' ? 'Random game' : '随机游戏' }}</template>
             </Tooltip>
           </div>
@@ -495,41 +495,41 @@ const getGameImage = (game) => {
           <div class="visible-button" @click="sortByName();">
             {{ lan == "en" ? "Name" : "名称" }}
             <span v-if="sort_option.field == 'game'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'game'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByType();">
             {{ lan == "en" ? "Type" : "类别" }}
             <span v-if="sort_option.field == 'type'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'type'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortByYear();">
             {{ lan == "en" ? "Year" : "年份" }}
             <span v-if="sort_option.field == 'year'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'year'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <div class="visible-button" @click="sortBySoftware();">
             {{ lan == "en" ? "Engine" : "制作软件" }}
             <span v-if="sort_option.field == 'software'">
-              <SortUpIcon class="icon button-shift" v-if="sort_option.asc"></SortUpIcon>
-              <SortDownIcon class="icon button-shift" v-if="!sort_option.asc"></SortDownIcon>
+              <Icon name="sortUp" class="icon button-shift" v-if="sort_option.asc"></Icon>
+              <Icon name="sortDown" class="icon button-shift" v-if="!sort_option.asc"></Icon>
             </span>
             <span v-if="sort_option.field != 'software'">
-              <SortUpDownIcon class="icon button-shift"></SortUpDownIcon>
+              <Icon name="sort" class="icon button-shift"></Icon>
             </span>
           </div>
           <span class="visible-button item-count-badge">{{ lan == "en" ? `${filteredGames.length} items` : `${filteredGames.length} 个条目` }}</span>

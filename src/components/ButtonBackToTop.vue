@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import UpArrowIcon from './icons/IconUpArrow.vue';
+import Icon from './icons/Icon.vue';
 
 const showBackToTop = ref(false);
 
@@ -26,7 +26,13 @@ onUnmounted(() => {
 
 <template>
   <Transition name="fade">
-    <UpArrowIcon v-show="showBackToTop" class="icon-inner back-to-top" @click="scrollToTop"></UpArrowIcon>
+    <Icon
+      name="arrowUp"
+      v-show="showBackToTop"
+      class="icon-inner back-to-top"
+      @click="scrollToTop"
+    >
+    </Icon>
   </Transition>
 </template>
 
@@ -66,12 +72,12 @@ onUnmounted(() => {
 
   body.dark .back-to-top {
     background-color: #555 !important;
-    color: #bbbbbb !important;
+    color: #bbb;
   }
 
   body.dark .back-to-top:hover {
     background-color: #444 !important;
-    color: #bbbbbb !important;
+    color: #999;
   }
 
   .back-to-top span {

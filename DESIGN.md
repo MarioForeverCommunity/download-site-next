@@ -96,11 +96,16 @@ src/components/DesignSwitch.vue  切换控件（chip / menu / row 三种形态�
 src/components/DesignMfTable.vue 按设计切换原版 MF 下载表格
 src/components/GlobalSettings.vue 旧版全局设置（新增界面设计行）
 
+src/components/icons/iconMap.js  全站图标名称表（Font Awesome Free，新旧版共用）
+src/components/icons/Icon.vue    旧版图标渲染组件（尺寸/颜色由调用处 .icon 样式决定）
+src/components/icons/fa.js       FA 配置：关闭自动 CSS 注入（避免污染旧版）
+
 src/components/next/             外壳 NxShell、筛选 NxFilterPane、结果 NxCatalog、
                                  列表 NxRow、卡片 NxCard、详情 NxDetail、图库 NxGallery、
                                  设置 NxSettings、更新履历 ChangelogDrawer、
                                  目录说明 NxDocDrawer / NxDocPanels、文档条目 NxEntry*、
-                                 原版表格 NxMfTable、占位图 NxLogoPlaceholder、图标 NxIcon
+                                 原版表格 NxMfTable、占位图 NxLogoPlaceholder、
+                                 图标 NxIcon（读取 iconMap.js，size 为显式像素）
 src/pages/next/<page>/           8 个页面的新版实现（只渲染内容，不再包裹外壳）
 ```
 
@@ -120,6 +125,7 @@ src/pages/next/<page>/           8 个页面的新版实现（只渲染内容，
 - **两套 CSS 隔离**：`dark-mode.css` 仅在 legacy 启动路径动态加载；新版样式全部限定在 `.nx-*` 或 `[data-nx-theme]` 之下。
 - **Markdown 是文案唯一来源**：`mf-zh.md` / `mf-en.md` 仅把版本表换成设计感知的 `DesignMfTable`，条目组件由 `docComponents.js` 映射到新版预览。
 - **字体只用 Inter**（旧版已随 `assets/fonts.css` 加载），不再引入任何新字体；小号数字用 tabular-nums 而非等宽字体。
+- **图标统一走 Font Awesome**：名称在 `iconMap.js` 登记，旧版 `<Icon>`、新版 `<NxIcon>` 渲染。`fa.js` 关闭了 FA 自动 CSS，因此尺寸与 `overflow: visible` 必须由组件自身保证；不要新增单图标组件、内联 `<svg>` 或 emoji 图标。
 - **hover 不加下划线**：界面内链接靠颜色与背景区分，正文链接同样默认无下划线，仅 hover 时出现。
 - **记录模型是共享层**：`records.js` 的平台 / 制作软件 / old-versions / variant 规则须与 `MfGames.vue`、`scripts/generate-api.js` 保持一致。
 - **构建期常量**：`BUILD_TIME` / `COMMIT_HASH` 由 `vite.config.js` 注入，用于左栏页脚与源码链接。

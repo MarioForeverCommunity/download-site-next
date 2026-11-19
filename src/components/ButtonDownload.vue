@@ -1,5 +1,5 @@
 <script setup>
-import DownloadIcon from './icons/IconDownload.vue';
+import Icon from './icons/Icon.vue';
 
 const props = defineProps({
   href: {
@@ -41,7 +41,7 @@ const handleDownloadClick = (event, href, hasToolbar, type) => {
       class="button"
       target="_blank"
       @click="handleDownloadClick($event, href, hasToolbar, type)"
-    ><DownloadIcon class="icon"></DownloadIcon>
+    ><Icon name="download" class="icon"></Icon>
       {{ lan == "en" ? "Download" : "下载" }}
     </a>
   </span>

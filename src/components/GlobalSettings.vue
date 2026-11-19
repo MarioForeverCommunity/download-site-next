@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { getLanguage, getUseDirectLink, getDefaultSort, setDefaultSort, getPageSize, setPageSize } from '../util/Language.js';
 import DesignSwitch from './DesignSwitch.vue';
+import Icon from './icons/Icon.vue';
 import { disableScroll, enableScroll } from '../util/ScrollLock.js';
 
 const lan = ref(getLanguage());
@@ -77,7 +78,7 @@ function cancelSettings() {
 
 <template>
   <button class="icon-inner settings-btn" @click="toggleSettings" title="设置">
-    <span>⚙️</span>
+    <Icon name="settings" class="settings-glyph" />
   </button>
 
   <Transition name="modal">
@@ -157,12 +158,19 @@ function cancelSettings() {
     transform: translateY(-3px);
   }
 
+  .settings-glyph {
+    width: 20px;
+    height: 20px;
+  }
+
   body.dark .settings-btn {
     background-color: #555 !important;
+    color: #bbb;
   }
 
   body.dark .settings-btn:hover {
     background-color: #444 !important;
+    color: #999;
   }
 
   .modal-bg {

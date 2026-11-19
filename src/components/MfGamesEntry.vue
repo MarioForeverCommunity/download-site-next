@@ -11,7 +11,7 @@ import { Carousel, Slide, Navigation } from "vue3-carousel"
 import "vue3-carousel/dist/carousel.css"
 import ClipboardButton from "./ButtonClipboard.vue"
 import Tooltip from "./ToolTip.vue"
-import { QuestionIcon } from "./icons/Icons.js"
+import Icon from "./icons/Icon.vue";
 import GameCard from "./GameCard.vue"
 import { disableScroll, enableScroll } from "../util/ScrollLock.js"
 import { getFormattedFileSize } from "../util/OpenListApi.js"
@@ -446,7 +446,7 @@ function hasDataDownload(download) {
               @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
               @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
             >
-              <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;" />
+              <Icon name="question" class="icon button-shift" style="vertical-align: middle; cursor: help;" />
               <template #popper>
                 <span v-if="isMobile && getTooltipType(selectedDownload) === 'apk'" style="text-align: left; display: block;">
                   本作品为 .apk 文件，可在安卓手机上直接安装运行。<br>
@@ -496,7 +496,7 @@ function hasDataDownload(download) {
               @show-tooltip="(obj)=>tooltipMouseEnter(obj)"
               @hide-tooltip="(obj) => tooltipMouseLeave(obj)"
             >
-              <QuestionIcon class="icon button-shift" style="vertical-align: middle; cursor: help;" />
+              <Icon name="question" class="icon button-shift" style="vertical-align: middle; cursor: help;" />
               <template #popper>
                 <span style="text-align: left; display: block;">
                   重打包作品即由非原作者打包的 Mario Forever 作品。由于一些老作品的原下载链接已失效，作者提供的压缩包已经失传，而部分吧友的电脑中可能仍有存留，经考虑后，决定开放收录此类作品。<br>
@@ -777,7 +777,7 @@ body.dark .file-size-text {
 }
 
 .icon {
-  fill: #000;
+  color: #000;
   width: 16px;
   height: 16px;
   display: inline-block;

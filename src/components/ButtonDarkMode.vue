@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import Icon from './icons/Icon.vue';
 
 const isDark = ref(false);
 
@@ -32,8 +33,8 @@ onMounted(() => {
 
 <template>
   <button class="icon-inner dark-mode-btn" @click="toggleDarkMode">
-    <span v-if="isDark">☀️</span>
-    <span v-else>🌙</span>
+    <Icon v-if="isDark" name="sun" class="dark-mode-glyph" />
+    <Icon v-else name="moon" class="dark-mode-glyph is-moon" />
   </button>
 </template>
 
@@ -72,16 +73,25 @@ onMounted(() => {
   }
 
   body.dark .dark-mode-btn {
-      background-color: #555 !important;
+    background-color: #555 !important;
+    color: #bbb;
   }
 
   body.dark .dark-mode-btn:hover {
-      background-color: #444 !important;
+    background-color: #444 !important;
+    color: #999;
   }
 
-  .dark-mode-btn span {
-    font-size: 20px;
-    font-weight: bold;
+  .dark-mode-glyph {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* A solid moon fills its box more than the sun's rays do, so it reads larger
+     at the same size; counter it slightly. */
+  .dark-mode-glyph.is-moon {
+    width: 18px;
+    height: 18px;
   }
 
   .fade-enter-active,
