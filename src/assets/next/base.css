@@ -56,10 +56,8 @@
   --nx-row-h: 56px;
 
   /* type — one family. Inter, as the site already ships. */
-  --nx-sans: "Inter", "InterVariable", -apple-system, "Segoe UI", "PingFang SC",
-    "Microsoft YaHei", "Noto Sans SC", sans-serif;
-  --nx-num: "Inter", "InterVariable", -apple-system, "Segoe UI", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
+  --nx-sans: "Inter", "InterVariable", Helvetica, Arial, "Microsoft YaHei", "Segoe UI",-apple-system, "PingFang SC", "WenQuanYi Micro Hei", "Noto Sans SC", Tahoma, sans-serif;
+  --nx-num: "Inter", "InterVariable", "Microsoft YaHei", "Segoe UI", -apple-system, "PingFang SC", sans-serif;
 }
 
 /* List density is always compact (it is a scanning surface); the card grid is
