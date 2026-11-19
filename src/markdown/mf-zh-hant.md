@@ -34,7 +34,9 @@
 
 **推薦版本**。適合較新型的電腦，支援控制器及高 FPS 遊戲體驗。內建多種調整選項，可自訂玩家的遊戲體驗。此外，還提供自訂角色造型，以及扮演 Luigi 進行遊戲的功能。
 
-<MfGamesEntry name="Mario Forever: Community Edition" />
+此外，還有非官方的 Android 移植版可供使用。
+
+<MfGamesEntry name="Mario Forever: Community Edition" /><MfGamesEntry name="Mario Forever: Community Edition Android" />
 
 ## Mario Forever Remake 及 Mario Forever Advance Remake
 

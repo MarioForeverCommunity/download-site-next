@@ -34,7 +34,9 @@
 
 **Zalecana wersja.** Odpowiednia dla stosunkowo nowoczesnych komputerów PC. Obsługuje kontrolery oraz wysoką liczbę klatek na sekundę (FPS). Zawiera wbudowane opcje pozwalające dostosować rozgrywkę do własnych preferencji. Oferuje również niestandardowe skórki postaci oraz możliwość gry jako Luigi.
 
-<MfGamesEntry name="Mario Forever: Community Edition" />
+Dostępny jest również nieoficjalny port na Androida.
+
+<MfGamesEntry name="Mario Forever: Community Edition" /><MfGamesEntry name="Mario Forever: Community Edition Android" />
 
 ## Pobierz Mario Forever Remake
 
