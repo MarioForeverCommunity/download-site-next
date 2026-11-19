@@ -51,7 +51,7 @@ onUnmounted(() => {
   .back-to-top {
     position: fixed;
     bottom: 128px;
-    right: 30px;
+    right: 20px;
     width: 20px;
     height: 20px;
     background-color: #afdcff;

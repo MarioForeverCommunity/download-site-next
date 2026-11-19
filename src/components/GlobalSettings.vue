@@ -141,7 +141,7 @@ useBackGuard(() => showSettings.value, cancelSettings);
   .settings-btn {
     position: fixed;
     bottom: 20px;
-    right: 30px;
+    right: 20px;
     width: 44px;
     height: 44px;
     background-color: #afdcff;
