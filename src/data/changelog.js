@@ -44,12 +44,12 @@ export const changelog = [
     version: "3.0.0-rc.1",
     date: "2026-11-19",
     features: [
-      "新版设计支持繁体中文与波兰语：语言菜单按语言代号排序，只列出该页面实际拥有的语言；首页、Softendo、引擎页与 MW 资源页提供对应语言的 Markdown 说明，新增 `<page>-<locale>.md` 即自动生效，只有一个语言的页面不再显示语言菜单",
+      "新版设计支持繁体中文与波兰语：语言菜单按语言代号排序，只列出该页面实际拥有的语言；首页、Softendo、引擎页与 MW 资源页提供对应语言的 Markdown 说明只有一个语言的页面不再显示语言菜单",
       "繁体中文页面的侧栏导航、站外链接、版权说明、Logo 与占位图均有繁体写法；仅面向简体受众的站外入口在繁体中文隐藏，其余部分与英文 / 波兰语保持一致",
       "繁体中文搜索支持繁体字：MF 作品标题与作者名的搜索索引在原简体值之外追加繁体变体，两种字形均可命中，搜索字段本身仍保持原文"
     ],
     features_en: [
-      "The redesigned UI gains Traditional Chinese and Polish: the language menu is sorted by locale code and lists only the languages a page actually has. The home, Softendo, engines and Mario Worker pages ship per-language Markdown write-ups — dropping in `<page>-<locale>.md` is enough, while single-language pages hide the menu",
+      "The redesigned UI gains Traditional Chinese and Polish: the language menu is sorted by locale code and lists only the languages a page actually has. The home, Softendo, engines and Mario Worker pages ship per-language Markdown write-ups, while single-language pages hide the menu",
       "Traditional Chinese pages have their own rail labels, external-link names, legal notice, logo and placeholders; mainland-only external links are hidden there, and everything else matches the English / Polish presentation",
       "Traditional Chinese search accepts Traditional characters: MF title and author indexes keep the original Simplified values and append converted variants, so either script finds the same records"
     ],
