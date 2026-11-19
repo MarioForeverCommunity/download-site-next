@@ -654,17 +654,22 @@ onBeforeUnmount(() => {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--nx-line);
+    border: 1px solid transparent;
     border-radius: 4px;
-    background: var(--nx-canvas);
+    background: transparent;
     color: var(--nx-ink-2);
-    box-shadow: var(--nx-shadow-1);
+    box-shadow: none;
     cursor: pointer;
     z-index: 2;
+    transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease;
   }
 
+  /* The background and border are only drawn while the arrow is hovered, so the
+     idle state does not put a solid chip on top of the screenshot. */
   .nx-gallery-arrow:hover {
     border-color: var(--nx-line-2);
+    background: var(--nx-canvas);
+    box-shadow: var(--nx-shadow-1);
     color: var(--nx-ink);
   }
 
