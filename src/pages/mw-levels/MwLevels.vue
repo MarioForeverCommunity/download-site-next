@@ -564,7 +564,6 @@ const { page, pageCount, paged: pagedGames, setPage } = usePagination(filteredGa
 const lastUpdate = ref(null);
 
 const yamlUpdateDate = ref(null);
-const mdUpdateDate = ref(null);
 
 const formatDate = (date) => {
   const year = date.getFullYear()
@@ -576,13 +575,11 @@ const formatDate = (date) => {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 };
 
+// Legacy catalogs only track their data file; the write-up's own commit date is
+// no longer part of "last updated" (the redesigned pages track documents).
 const getLatestDate = () => {
-  const dates = [];
-  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-  if (mdUpdateDate.value) dates.push(new Date(mdUpdateDate.value));
-  if (dates.length === 0) return null;
-  const maxDate = new Date(Math.max(...dates));
-  return formatDate(maxDate);
+  if (!yamlUpdateDate.value) return null;
+  return formatDate(new Date(yamlUpdateDate.value));
 };
 
 const updateLastUpdate = () => {
@@ -595,13 +592,7 @@ const fetchYamlUpdate = () => {
   });
 };
 
-const fetchMdUpdate = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fzh-hans%2Fmw-levels.md&page=1&per_page=1").then((response) => {
-    mdUpdateDate.value = response.data[0].commit.committer.date;
-  });
-};
-
-Promise.all([fetchYamlUpdate(), fetchMdUpdate()]).then(() => {
+fetchYamlUpdate().then(() => {
   updateLastUpdate();
 });
 

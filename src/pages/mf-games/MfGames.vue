@@ -810,8 +810,6 @@ function pageSetLanguageEn() {
 const lastUpdate = ref(null);
 
 const yamlUpdateDate = ref(null);
-const mdUpdateDateZh = ref(null);
-const mdUpdateDateEn = ref(null);
 const allDatesLoaded = ref(false);
 
 const formatDate = (date) => {
@@ -824,26 +822,15 @@ const formatDate = (date) => {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 };
 
-const getLatestDateZh = () => {
-  const dates = [];
-  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-  if (mdUpdateDateZh.value) dates.push(new Date(mdUpdateDateZh.value));
-  if (dates.length === 0) return null;
-  const maxDate = new Date(Math.max(...dates));
-  return formatDate(maxDate);
-};
-
-const getLatestDateEn = () => {
-  const dates = [];
-  if (yamlUpdateDate.value) dates.push(new Date(yamlUpdateDate.value));
-  if (mdUpdateDateEn.value) dates.push(new Date(mdUpdateDateEn.value));
-  if (dates.length === 0) return null;
-  const maxDate = new Date(Math.max(...dates));
-  return formatDate(maxDate);
+// Legacy catalogs only track their data file; the write-up's own commit date is
+// no longer part of "last updated" (the redesigned pages track documents).
+const getLatestDate = () => {
+  if (!yamlUpdateDate.value) return null;
+  return formatDate(new Date(yamlUpdateDate.value));
 };
 
 const updateLastUpdate = () => {
-  lastUpdate.value = lan.value === 'zh' ? getLatestDateZh() : getLatestDateEn();
+  lastUpdate.value = getLatestDate();
 };
 
 const fetchYamlUpdate = () => {
@@ -852,19 +839,7 @@ const fetchYamlUpdate = () => {
   });
 };
 
-const fetchMdUpdateZh = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fzh-hans%2Fmf-games.md&page=1&per_page=1").then((response) => {
-    mdUpdateDateZh.value = response.data[0].commit.committer.date;
-  });
-};
-
-const fetchMdUpdateEn = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fen%2Fmf-games.md&page=1&per_page=1").then((response) => {
-    mdUpdateDateEn.value = response.data[0].commit.committer.date;
-  });
-};
-
-Promise.all([fetchYamlUpdate(), fetchMdUpdateZh(), fetchMdUpdateEn()]).then(() => {
+fetchYamlUpdate().then(() => {
   allDatesLoaded.value = true;
   updateLastUpdate();
 });
