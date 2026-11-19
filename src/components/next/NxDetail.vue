@@ -1214,7 +1214,7 @@ onBeforeUnmount(() => {
             <div class="nx-section-label">{{ text.about }}</div>
             <p
               v-if="record.description"
-              style="font-size:12.5px;line-height:1.65;color:var(--nx-ink-2);white-space:pre-wrap;"
+              style="font-size:12.5px;line-height:1.65;color:var(--nx-ink-2);white-space:pre-wrap;overflow-wrap:break-word;"
             >
               {{ record.description }}
             </p>

@@ -3218,6 +3218,8 @@ html .nx-doc .carousel .carousel__next {
   font-size: 12px;
   line-height: 1.6;
   color: var(--nx-ink-2);
+  /* Descriptions may carry long URLs; wrap them instead of overflowing the card. */
+  overflow-wrap: break-word;
 }
 
 .nx-entry-loading {
@@ -3332,6 +3334,8 @@ html .nx-doc .carousel .carousel__next {
   font-size: 12.5px;
   line-height: 1.7;
   color: var(--nx-ink-2);
+  /* Long unbroken tokens (URLs, file names) wrap instead of widening the drawer. */
+  overflow-wrap: break-word;
 }
 
 .nx-detail-md > * + * {
@@ -3362,6 +3366,9 @@ html .nx-doc .carousel .carousel__next {
   color: var(--nx-accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
+  /* Same rule as the legacy description area: a pasted URL must not overflow. */
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .nx-detail-md a:hover {
