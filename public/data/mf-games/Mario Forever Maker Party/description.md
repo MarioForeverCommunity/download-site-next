@@ -22,11 +22,15 @@ Mario Forever Maker Party
 
 现已开始公测！
 
-下载地址：
+下载地址1【百度网盘】：
 
 [https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp](https://pan.baidu.com/s/1wK_60l654Kp-zaPEVsWgcg?pwd=mfmp)
 
 （提取码: mfmp）
+
+下载地址2【GitHub】（自动更新）：
+
+[https://github.com/TeamMFPKD/mar ... g-designer/releases](https://github.com/TeamMFPKD/mario-forever-party--king-designer/releases)
 
 如果你有问题，或者想来一起玩，欢迎加群：1081201208
 
