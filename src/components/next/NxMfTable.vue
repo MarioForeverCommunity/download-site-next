@@ -11,13 +11,22 @@ import NxIcon from "./NxIcon.vue";
 import { readList } from "../../util/ReadList.js";
 import { toResourceDirectUrl } from "../../util/GameUtil.js";
 import { getUseDirectLink } from "../../util/Language.js";
+import { dataLangOf, useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   }
 });
+
+const { t } = useI18n(() => props.locale);
+
+// The download folders on the File Hub are named in the content language, so the
+// base URLs follow that rather than the interface language: a Traditional Chinese
+// page still downloads from the Chinese folder tree.
+const contentLang = computed(() => dataLangOf(props.locale));
 
 const BASE_URLS = {
   zh: {
@@ -55,7 +64,7 @@ function formatDate(value) {
 }
 
 function urlFor(version, type) {
-  const urls = BASE_URLS[props.lan] || BASE_URLS.en;
+  const urls = BASE_URLS[contentLang.value] || BASE_URLS.en;
   if (type === "installer" && version.installer) {
     const base = version.nsmf ? urls.nsmf_installer : urls.installer;
     return `${base}${version.installer}`;
@@ -73,10 +82,7 @@ function directUrl(version, type) {
 
 function confirmToolbar(version, event) {
   if (!version.toolbar) return;
-  const message = props.lan === "zh"
-    ? "该版本的安装程序包含 Mario Forever Toolbar（广告插件），请在安装过程中取消勾选“Install the Mario Forever Toolbar”选项；建议优先下载绿色版。"
-    : "This installer bundles the \"Mario Forever Toolbar\" adware. Uncheck \"Install the Mario Forever Toolbar\" during setup; the portable build is recommended.";
-  if (!window.confirm(message)) event.preventDefault();
+  if (!window.confirm(t("mfTable.toolbarConfirm"))) event.preventDefault();
 }
 
 onMounted(async () => {
@@ -92,10 +98,10 @@ onMounted(async () => {
   <div class="nx-mf-table">
     <div class="nx-list">
       <div class="nx-mf-row nx-mf-head">
-        <span>{{ lan === "zh" ? "版本" : "VERSION" }}</span>
-        <span>{{ lan === "zh" ? "发布日期" : "RELEASED" }}</span>
-        <span>{{ lan === "zh" ? "推荐度" : "RATING" }}</span>
-        <span class="nx-mf-actions-head">{{ lan === "zh" ? "下载" : "DOWNLOAD" }}</span>
+        <span>{{ t("mfTable.version") }}</span>
+        <span>{{ t("mfTable.released") }}</span>
+        <span>{{ t("mfTable.rating") }}</span>
+        <span class="nx-mf-actions-head">{{ t("mfTable.download") }}</span>
       </div>
 
       <div
@@ -127,11 +133,11 @@ onMounted(async () => {
             :href="directUrl(version, 'installer')"
             target="_blank"
             rel="noopener"
-            :title="version.toolbar ? (lan === 'zh' ? '含广告插件' : 'Includes adware') : undefined"
+            :title="version.toolbar ? t('mfTable.toolbarAdware') : undefined"
             @click="confirmToolbar(version, $event)"
           >
             <NxIcon name="download" :size="12" />
-            {{ lan === "zh" ? "安装版" : "Installer" }}
+            {{ t("mfTable.installer") }}
           </a>
           <a
             v-if="urlFor(version, 'portable')"
@@ -141,7 +147,7 @@ onMounted(async () => {
             rel="noopener"
           >
             <NxIcon name="download" :size="12" />
-            {{ lan === "zh" ? "绿色版" : "Portable" }}
+            {{ t("mfTable.portable") }}
           </a>
         </span>
       </div>
@@ -149,9 +155,7 @@ onMounted(async () => {
 
     <p class="nx-mf-note">
       <NxIcon name="warning" />
-      <span>{{ lan === "zh"
-        ? "橙色「安装版」按钮表示安装程序捆绑了 Mario Forever Toolbar（广告插件）：安装时请取消勾选“Install the Mario Forever Toolbar”，或优先下载绿色版。"
-        : "An orange Installer button means the setup bundles the Mario Forever Toolbar adware: uncheck it during installation, or download the portable version instead." }}</span>
+      <span>{{ t("mfTable.toolbarNote") }}</span>
     </p>
   </div>
 </template>

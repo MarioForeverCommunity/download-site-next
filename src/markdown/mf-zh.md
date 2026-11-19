@@ -101,7 +101,7 @@
 </div>
 
 ### 截图预览
-<NxGallery :images="imagesOriginal" alt="Mario Forever" lan="zh" :max-height="480" :autoplay="3000" />
+<NxGallery :images="imagesOriginal" alt="Mario Forever" :max-height="480" :autoplay="3000" />
 
 </div>
 

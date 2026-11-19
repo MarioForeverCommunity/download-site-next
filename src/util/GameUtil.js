@@ -1,6 +1,7 @@
 import { sourceName, downloadName, videoName } from "../config.js"
 import { normalizedIncludes } from "./SearchUtil.js"
 import { SmwpVersions } from "./SmwpVersions.js"
+import { localizedField } from "../i18n/index.js"
 
 export function getSourceLink(item, lan) {
   if (lan == "en" && item.currentVer.source_url_alt) {
@@ -237,7 +238,10 @@ export function getVideoDesc(link, lan) {
   }
   for (const entry of videoName) {
     if (link.match(entry.domain)) {
-      return lan == "zh" && entry.desc_zh ? entry.desc_zh : entry.desc_en;
+      // `localizedField` walks the locale's authored field chain, so a
+      // Traditional Chinese interface reads `desc_zh_hant`; the legacy design's
+      // bare `zh` / `en` arguments keep returning exactly what they did before.
+      return localizedField(entry, "desc", lan) || entry.desc_en || entry.desc_zh;
     }
   }
   return link.match(/http[s]?:\/\/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6})\b[-a-zA-Z0-9@:%_+.~#?&//=]*/)[1];

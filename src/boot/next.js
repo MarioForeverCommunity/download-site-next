@@ -13,6 +13,7 @@ import { createApp } from "vue";
 import "../assets/fonts.css";
 import "../assets/next/base.css";
 import { initTheme, initDensity } from "../util/Theme.js";
+import { initLocale } from "../i18n/index.js";
 import { docComponents } from "../util/next/docComponents.js";
 import { startRouter } from "../util/next/router.js";
 import NxApp from "./NxApp.vue";
@@ -32,7 +33,11 @@ export async function bootNext(options = {}) {
 
   initTheme();
   initDensity();
+  // Resolve the interface locale before the first render and mirror it onto
+  // <html lang>, so the document advertises the language it is actually in.
+  initLocale();
 
+  // opencc is not needed at boot: only the changelog drawer loads it, on demand.
   const app = createApp(NxApp);
   for (const [name, component] of Object.entries(docComponents)) {
     app.component(name, component);

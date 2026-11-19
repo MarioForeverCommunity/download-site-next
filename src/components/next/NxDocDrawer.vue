@@ -9,15 +9,17 @@ import { ref, watch, nextTick, onMounted, onBeforeUnmount } from "vue";
 import NxIcon from "./NxIcon.vue";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   show: {
     type: Boolean,
     default: false
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
-    default: "zh"
+    default: "zh-Hans"
   },
   title: {
     type: String,
@@ -37,15 +39,18 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 
+const { t } = useI18n(() => props.locale);
+
 // The catalog write-ups carry inline triggers for hidden blocks (credits, the
 // SMWP data-package note). Inside this drawer they must *reveal* that content in
 // place as a card at the bottom, not open a second, competing drawer on top.
-// The legacy markup is unchanged, so the mapping lives here.
+// The legacy markup is unchanged, so the mapping lives here; the card titles come
+// from the i18n catalogues like every other string.
 const PANEL_TARGETS = {
-  "open-credits": { content: "credits-content", zh: "致谢", en: "Credits" },
-  "open-credits-assets": { content: "credits-content", zh: "致谢", en: "Credits" },
-  "open-data-placement": { content: "smwp-data-placement", zh: "音乐包放置说明", en: "Data package setup" },
-  "open-history": { content: "history-content", zh: "Mario Forever 发展史", en: "History of Mario Forever" }
+  "open-credits": { content: "credits-content", label: "doc.credits" },
+  "open-credits-assets": { content: "credits-content", label: "doc.credits" },
+  "open-data-placement": { content: "smwp-data-placement", label: "doc.dataPlacement" },
+  "open-history": { content: "history-content", label: "doc.history" }
 };
 
 // Cards revealed in this drawer, in click order, each with its cleaned HTML.
@@ -74,7 +79,7 @@ function onDrawerClick(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  const title = props.lan === "zh" ? config.zh : config.en;
+  const title = t(config.label);
   if (panels.value.some((p) => p.id === config.content)) {
     // Already open: scroll it into view instead of adding a duplicate.
     const existing = bodyRef.value?.querySelector(`[data-panel="${config.content}"]`);
@@ -133,7 +138,7 @@ onBeforeUnmount(() => {
         v-if="show"
         class="nx-scrim"
         type="button"
-        :aria-label="lan === 'zh' ? '关闭' : 'Close'"
+        :aria-label="t('common.close')"
         @click="emit('close')"
       />
     </Transition>
@@ -143,23 +148,23 @@ onBeforeUnmount(() => {
         class="nx-drawer"
         role="dialog"
         aria-modal="true"
-        :aria-label="title || (lan === 'zh' ? '目录说明' : 'About this catalog')"
+        :aria-label="title || t('doc.title')"
         style="--nx-drawer-w: min(620px, 100vw);"
       >
         <div class="nx-drawer-head">
           <div style="flex:1; min-width:0;">
-            <h2 class="nx-drawer-title">{{ title || (lan === "zh" ? "目录说明" : "About this catalog") }}</h2>
+            <h2 class="nx-drawer-title">{{ title || t("doc.title") }}</h2>
             <p
               v-if="updated"
               class="nx-drawer-sub nx-num"
             >
-              {{ lan === "zh" ? "最后更新：" : "Last updated: " }}{{ updated }}
+              {{ t("doc.lastUpdated") }}{{ updated }}
             </p>
           </div>
           <button
             class="nx-close"
             type="button"
-            :aria-label="lan === 'zh' ? '关闭' : 'Close'"
+            :aria-label="t('common.close')"
             @click="emit('close')"
           >
             <NxIcon
@@ -184,7 +189,7 @@ onBeforeUnmount(() => {
             v-else
             class="nx-drawer-sub"
           >
-            {{ lan === "zh" ? "本页暂无说明。" : "No description for this page yet." }}
+            {{ t("doc.empty") }}
           </p>
 
           <!-- Revealed by the write-up's own inline links; shown as cards at the
@@ -200,7 +205,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="nx-close"
-                :aria-label="lan === 'zh' ? '收起' : 'Collapse'"
+                :aria-label="t('doc.collapse')"
                 @click="closePanel(panel.id)"
               >
                 <NxIcon

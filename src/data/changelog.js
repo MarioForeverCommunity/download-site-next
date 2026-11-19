@@ -5,6 +5,44 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-rc.1",
+    date: "2026-11-19",
+    features: [
+      "新版设计支持繁体中文与波兰语：语言菜单按语言代号排序，只列出该页面实际拥有的语言；首页、Softendo、引擎页与 MW 资源页提供对应语言的 Markdown 说明，新增 `<page>-<locale>.md` 即自动生效，只有一个语言的页面不再显示语言菜单",
+      "繁体中文页面的侧栏导航、站外链接、版权说明、Logo 与占位图均有繁体写法；仅面向简体受众的站外入口在繁体中文隐藏，其余部分与英文 / 波兰语保持一致",
+      "繁体中文搜索支持繁体字：MF 作品标题与作者名的搜索索引在原简体值之外追加繁体变体，两种字形均可命中，搜索字段本身仍保持原文"
+    ],
+    features_en: [
+      "The redesigned UI gains Traditional Chinese and Polish: the language menu is sorted by locale code and lists only the languages a page actually has. The home, Softendo, engines and Mario Worker pages ship per-language Markdown write-ups — dropping in `<page>-<locale>.md` is enough, while single-language pages hide the menu",
+      "Traditional Chinese pages have their own rail labels, external-link names, legal notice, logo and placeholders; mainland-only external links are hidden there, and everything else matches the English / Polish presentation",
+      "Traditional Chinese search accepts Traditional characters: MF title and author indexes keep the original Simplified values and append converted variants, so either script finds the same records"
+    ],
+    improvements: [
+      "简繁转换采用 OpenCC `s2twp`（`cn → twp`），除字形外还转换繁体常用词（软件 → 軟體、网络 → 網路、发布 → 釋出）；字典只在繁体中文打开更新履历或浏览 MF 作品 / 创作资源时按需加载，其它语言不再下载",
+      "MF 作品与创作资源的作品名、作者名、版本号和描述在繁体中文显示繁体，而版本键、深链与搜索原值保持原文，切换语言不影响版本选择、分享链接与筛选",
+      "更新履历、首页、引擎页与 MW 资源页的「最后更新」按各自语言文档分别检测：繁体使用独立文档与繁体文案，缺失日期时不再借用其它语言的日期",
+      "新增语言无需修改页面逻辑：语言菜单、文档选择与页面语言均由实际存在的文档决定，非中文文案全部人工编写，机器转换只用于少数没有繁体原文的内容"
+    ],
+    improvements_en: [
+      "Conversion now uses OpenCC `s2twp` (`cn → twp`), adding Traditional Chinese wording on top of the character conversion (软件 → 軟體, 网络 → 網路, 发布 → 釋出). The dictionary is loaded on demand — only when a Traditional visitor opens the changelog or browses MF works / assets — and is never downloaded in other languages",
+      "MF works and assets show Traditional titles, authors, version labels and descriptions, while version keys, deep links and search values stay in their original script, so selection, sharing and filtering are unchanged by a language switch",
+      "The \"Last updated\" line is tracked per document and locale on the changelog, home, engines and Mario Worker pages: Traditional Chinese uses its own files and wording, and never borrows another language's date",
+      "Adding a language needs no code change: the menu, document choice and page locale all come from the files that actually exist; prose is authored, and machine conversion is reserved for the few texts without a Traditional original"
+    ],
+    fixes: [
+      "修复繁体中文下载按钮与卡片仍显示简体站点名 / 中文 Logo，以及侧栏缺少版权说明的问题",
+      "修复波兰语 Softendo 详情面板「Język」的值仍显示英文的问题，并为波兰语文档配置独立的「最后更新」检测",
+      "修复引擎页与 MW 资源页没有语言菜单、切换语言不生效的问题",
+      "修复繁体中文界面的「发布来源」「作品目录」等标签仍为简体的问题，导航项与筛选文案改用逐语言字段"
+    ],
+    fixes_en: [
+      "Fixed Traditional Chinese download buttons and cards still showing the Simplified site name / Chinese logo, and the missing legal notice in the rail",
+      "Fixed Polish Softendo detail panels showing English values under \"Język\", and gave Polish write-ups their own last-updated detection",
+      "Fixed the engines and Mario Worker pages having no language menu and no effect when switching language",
+      "Fixed Traditional Chinese pages still showing Simplified labels for the source filter and catalog navigation, which now use per-locale fields"
+    ]
+  },
+  {
     version: "3.0.0-rc.0",
     date: "2026-11-17",
     features: [

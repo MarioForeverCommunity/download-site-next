@@ -10,6 +10,7 @@
 // "has any of" / "has all of" / "excludes" are genuinely different questions.
 import { computed } from "vue";
 import NxIcon from "./NxIcon.vue";
+import { useI18n } from "../../i18n/index.js";
 
 const props = defineProps({
   catalog: {
@@ -20,7 +21,8 @@ const props = defineProps({
     type: Array,
     default: () => []
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -43,30 +45,21 @@ const props = defineProps({
   }
 });
 
-const text = computed(() => (props.lan === "zh" ? {
-  tags: "标签",
-  date: "发布时间",
-  byYear: "年份",
-  byRange: "日期区间",
-  from: "起",
-  to: "止",
-  reset: "重置",
-  all: "全部",
-  rangeHint: "包含起止日期，精确到日。",
-  tagHint: "点击切换状态：或 (OR 满足任一) → 与 (+AND 全部满足) → 非 (-NOT 排除) → 关闭",
-  anyYear: "全部年份",
-} : {
-  tags: "Tags",
-  date: "Release date",
-  byYear: "Year",
-  byRange: "Date range",
-  from: "From",
-  to: "To",
-  reset: "Reset",
-  all: "All",
-  rangeHint: "Inclusive, exact to the day.",
-  tagHint: "Click to cycle: OR → AND (+) → NOT (-) → off",
-  anyYear: "All years",
+const { t } = useI18n(() => props.locale);
+
+const text = computed(() => ({
+  tags: t("filter.tags"),
+  date: t("filter.releaseDate"),
+  byYear: t("filter.byYear"),
+  byRange: t("filter.byRange"),
+  from: t("filter.from"),
+  to: t("filter.to"),
+  reset: t("filter.reset"),
+  all: t("filter.all"),
+  rangeHint: t("filter.rangeHint"),
+  tagHint: t("filter.tagHint"),
+  anyYear: t("filter.anyYear"),
+  title: t("filter.title"),
 }));
 
 const catalog = computed(() => props.catalog);
@@ -83,9 +76,9 @@ const quickRanges = computed(() => {
   const thisYear = String(now.getFullYear());
   const lastYear = String(now.getFullYear() - 1);
   return [
-    { label: props.lan === "zh" ? "今年" : "This year", from: `${thisYear}-01-01`, to: `${thisYear}-12-31` },
-    { label: props.lan === "zh" ? "去年" : "Last year", from: `${lastYear}-01-01`, to: `${lastYear}-12-31` },
-    { label: props.lan === "zh" ? "近 30 天" : "30 days", from: isoDaysAgo(30), to: isoDaysAgo(0) },
+    { label: t("filter.thisYear"), from: `${thisYear}-01-01`, to: `${thisYear}-12-31` },
+    { label: t("filter.lastYear"), from: `${lastYear}-01-01`, to: `${lastYear}-12-31` },
+    { label: t("filter.last30"), from: isoDaysAgo(30), to: isoDaysAgo(0) },
   ];
 });
 
@@ -128,7 +121,7 @@ function selectSingle(facet, value) {
   <aside
     class="nx-pane"
     :class="{ 'is-open': open }"
-    :aria-label="lan === 'zh' ? '筛选' : 'Filters'"
+    :aria-label="text.title"
   >
     <!-- single-choice facets: region, platform/engine, classification.
          `as: "chips"` renders a compact pill list instead of a checkbox column —

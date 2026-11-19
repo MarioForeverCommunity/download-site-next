@@ -1,3 +1,5 @@
+import { dataLangOf, labelFrom } from "../i18n/index.js";
+
 // Base URLs for Softendo downloads (English version - original)
 const BASE_URLS_EN = {
   mario: {
@@ -61,11 +63,14 @@ const NSMF_URLS_ZH = {
 };
 
 function getBaseUrl(type, lan, nsmf) {
+  // The File Hub paths are written in the content language, so a full locale
+  // code (`zh-Hant`) resolves to the same tree as its language (`zh`).
+  const language = dataLangOf(lan);
   // NSMF games use special URLs (Chinese only)
-  if (nsmf && lan === "zh") {
+  if (nsmf && language === "zh") {
     return NSMF_URLS_ZH;
   }
-  return lan === "zh" ? BASE_URLS_ZH[type] : BASE_URLS_EN[type];
+  return language === "zh" ? BASE_URLS_ZH[type] : BASE_URLS_EN[type];
 }
 
 export function isKliktopiaRepackage(verKey) {
@@ -371,19 +376,26 @@ const GENRE_LABELS_ZH = {
 };
 
 export function getGenreLabel(genre, lan) {
-  if (lan === "zh") {
+  if (dataLangOf(lan) === "zh") {
     return GENRE_LABELS_ZH[genre] || genre;
   }
   return genre;
 }
 
+// Small labelled sets are keyed by locale first, then by the locale's content
+// language, then English (`labelFrom`), so the redesigned UI gets Traditional
+// Chinese while the legacy UI keeps working with its bare `zh` / `en`.
+// The language names are data values (a game's audio/text language), not UI
+// chrome, but they are a fixed site-owned set — so every registered locale gets
+// its own wording. `pl` must be listed explicitly: with only `en` as fallback a
+// Polish interface would print the English name under the Polish "Język" label.
 const LANGUAGE_LABELS = {
-  en: { zh: "英语", en: "English" },
-  pl: { zh: "波兰语", en: "Polish" }
+  en: { zh: "英语", "zh-Hant": "英文", en: "English", pl: "Angielski" },
+  pl: { zh: "波兰语", "zh-Hant": "波蘭文", en: "Polish", pl: "Polski" }
 };
 
 export function getLanguageLabel(language, lan) {
   if (!language) return "";
   const langs = Array.isArray(language) ? language : [language];
-  return langs.map(l => LANGUAGE_LABELS[l]?.[lan] || l).join(", ");
+  return langs.map((l) => labelFrom(LANGUAGE_LABELS[l], lan) || l).join(", ");
 }

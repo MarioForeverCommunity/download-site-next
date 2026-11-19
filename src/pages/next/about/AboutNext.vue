@@ -3,48 +3,83 @@
 // a centered reading column with credit properties, the technical stack, a
 // short public-API reference and the contact list.
 //
-// The page is bilingual, so it publishes its own language handlers to the shell
-// (the rail's language menu drives them) and keeps the whole copy in one object.
+// Every string comes from the i18n catalogues, so the page renders in whatever
+// locale the visitor picked; it publishes its own locale handler to the shell (the
+// topbar's language menu drives it) and keeps the whole copy in one object.
 import { ref, computed, watchEffect } from "vue";
 import NxIcon from "../../../components/next/NxIcon.vue";
-import { getLanguage, setLanguageZh, setLanguageEn } from "../../../util/Language.js";
+import {
+  applyLocale,
+  dataLangOf,
+  getLocale,
+  localeList,
+  localeNeedsConversion,
+  useI18n,
+} from "../../../i18n/index.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
 import { siteVersion, setPageTitle } from "../../../config.js";
+import { localeForLocales } from "../../../util/next/pageLocale.js";
 
-const lan = ref(getLanguage());
+// No markdown document here: every string is in the i18n catalogues, so all
+// registered locales are available and the switcher lists all of them.
+const locales = localeList().map((item) => item.code);
+
+const locale = ref(localeForLocales(getLocale(), locales));
+const { t } = useI18n(() => locale.value);
+
+// Content language: the credits roster carries the names each community uses in
+// that language, so a Traditional Chinese visitor reads the Chinese names.
+const contentLang = computed(() => dataLangOf(locale.value));
 
 // Authors and contributors. The special-thanks list is the README's credits
 // roster (minus the authors already named above it), with the names each
 // community uses in that language.
-const authors = computed(() => (lan.value === "zh"
-  ? ["newlife2017", "无视我233"]
-  : ["newlife2017", "WSW"]));
+const ZH_AUTHORS = ["newlife2017", "无视我233"];
+const EN_AUTHORS = ["newlife2017", "WSW"];
+const ZH_THANKS = [
+  "Fisjokas",
+  "七地一天",
+  "劝君更尽一碗翔",
+  "超级玛丽迷01",
+  "克洛伊Prime",
+  "快乐mario9",
+  "绿色的糖果",
+  "JUE13",
+  "TwoSpacesSG",
+  "Zik the Green",
+];
+const EN_THANKS = [
+  "Fisjokas",
+  "Classic Yoshi 666",
+  "wufeiling",
+  "SuperMarioFan01",
+  "ChloePrime",
+  "Happy Mario 9",
+  "Green Sweet",
+  "JUE13",
+  "TwoSpacesSG",
+  "Zik the Green",
+];
 
-const specialThanks = computed(() => (lan.value === "zh"
-  ? [
-    "Fisjokas",
-    "七地一天",
-    "劝君更尽一碗翔",
-    "超级玛丽迷01",
-    "克洛伊Prime",
-    "快乐mario8",
-    "绿色的糖果",
-    "JUE13",
-    "TwoSpacesSG",
-    "Zik the Green",
-  ]
-  : [
-    "Fisjokas",
-    "Classic Yoshi 666",
-    "wufeiling",
-    "SuperMarioFan01",
-    "ChloePrime",
-    "Happy Mario 9",
-    "Green Sweet",
-    "JUE13",
-    "TwoSpacesSG",
-    "Zik the Green",
-  ]));
+// Traditional usernames are *authored*, not machine-converted: these spellings
+// come from the credits list in `src/markdown/mf-games-zh-hant.md` (notably
+// 「超級瑪莉迷01」 and 「ChloePrime」, which opencc would not produce).
+const ZH_HANT_NAMES = {
+  "无视我233": "無視我233",
+  "劝君更尽一碗翔": "勸君更盡一碗翔",
+  "超级玛丽迷01": "超級瑪莉迷01",
+  "克洛伊Prime": "ChloePrime",
+  "快乐mario9": "快樂mario9",
+  "绿色的糖果": "綠色的糖果",
+};
+
+const isTraditional = computed(() => localeNeedsConversion(locale.value));
+const displayNames = (names) => (isTraditional.value
+  ? names.map((name) => ZH_HANT_NAMES[name] || name)
+  : names);
+
+const authors = computed(() => displayNames(contentLang.value === "zh" ? ZH_AUTHORS : EN_AUTHORS));
+const specialThanks = computed(() => displayNames(contentLang.value === "zh" ? ZH_THANKS : EN_THANKS));
 
 // Contact channels, shared by both languages.
 const CONTACTS = [
@@ -52,89 +87,41 @@ const CONTACTS = [
   { label: "QQ", value: "1849714671" },
 ];
 
+// Endpoint list: the path is data, the description comes from the catalogues.
 const API_ENDPOINTS = [
-  {
-    path: "/api/index.json",
-    zh: "清单，列出全部端点、记录数与生成时间。",
-    en: "Manifest: every endpoint, its record count and the generation time.",
-  },
-  {
-    path: "/api/mf.json",
-    zh: "Mario Forever 同人作品。",
-    en: "Mario Forever fangames.",
-  },
-  {
-    path: "/api/mw.json",
-    zh: "Super Mario Worker Project 作品。",
-    en: "Super Mario Worker Project levels.",
-  },
-  {
-    path: "/api/assets.json",
-    zh: "创作资源（引擎、素材、特效、工具等）。",
-    en: "Creative assets: engines, sprites, effects and tools.",
-  },
-  {
-    path: "/api/softendo.json",
-    zh: "Softendo / Buziol Games 游戏。",
-    en: "Softendo / Buziol Games titles.",
-  },
-  {
-    path: "/api/original-mf.json",
-    zh: "原版 Mario Forever 全版本。",
-    en: "Every release of the original Mario Forever.",
-  },
+  { path: "/api/index.json", label: "about.endpointIndex" },
+  { path: "/api/mf.json", label: "about.endpointMf" },
+  { path: "/api/mw.json", label: "about.endpointMw" },
+  { path: "/api/assets.json", label: "about.endpointAssets" },
+  { path: "/api/softendo.json", label: "about.endpointSoftendo" },
+  { path: "/api/original-mf.json", label: "about.endpointOriginalMf" },
 ];
 
-const text = computed(() => (lan.value === "zh" ? {
-  title: "关于本站",
-  subtitle: "本站的制作人员、技术栈、公开 API 与维护者联系方式。",
-  credits: "制作人员",
-  creator: "网站作者",
-  specialThanks: "特别鸣谢",
-  separator: ", ",
-  designTitle: "设计灵感",
-  designBefore: "本站新版（v3）界面的版式与交互灵感借鉴自 ",
-  designAfter: "，在此致以诚挚谢意。",
-  techStack: "技术栈",
-  techFrontend: "前端核心",
-  techData: "数据与 API",
-  techStorage: "文件列表与云存储",
-  techBuild: "构建与工具",
-  api: "公开 API",
-  apiDesc: "本站提供一套静态 JSON API，收录作品的参数、下载链接、图片路径与描述内容，可直接用于二次开发或搭建镜像站。",
-  endpoints: "端点",
-  apiNote: "所有端点都是静态 JSON 文件，直接 GET 即可，无需鉴权，也没有速率限制；不支持服务端筛选或排序，相关逻辑请在客户端完成。",
-  apiUsage: "调用示例",
-  apiExample: "const games = await fetch(\"/api/mf.json\").then((r) => r.json());\nconsole.log(games.length);",
-  apiDoc: "完整的字段说明见 API 文档",
-  contact: "联系方式",
-  contactNote: "若发现数据错误或有作品补充，欢迎通过以上任一方式联系。",
-  footer: "Mario Forever 作品目录站 · 由 Mario Forever 社区维护",
-} : {
-  title: "About & Contact",
-  subtitle: "Catalog credits, the technical stack that powers this website, and where to reach the maintainer.",
-  credits: "Credits",
-  creator: "Creator",
-  specialThanks: "Special thanks",
-  separator: ", ",
-  designTitle: "Design inspiration",
-  designBefore: "The v3 interface borrows its layout and interaction patterns from ",
-  designAfter: " — its information density, navigation rail and filter pane were a major inspiration, and we are grateful for its work.",
-  techStack: "Technical stack",
-  techFrontend: "Frontend core",
-  techData: "Data & API",
-  techStorage: "File list & cloud storage",
-  techBuild: "Build & tooling",
-  api: "Public API",
-  apiDesc: "This site ships a static JSON API covering each record's metadata, download links, image paths and descriptions — ready for your own tools or a mirror site.",
-  endpoints: "Endpoints",
-  apiNote: "Every endpoint is a static JSON file: plain GET, no key, no rate limit. There is no server-side filtering or sorting, so any query logic belongs on the client.",
-  apiUsage: "Example",
-  apiExample: "const games = await fetch(\"/api/mf.json\").then((r) => r.json());\nconsole.log(games.length);",
-  apiDoc: "The API documentation covers every field",
-  contact: "Contact",
-  contactNote: "Found misinfo or have a fangame to add? Reach us through any of the channels above.",
-  footer: "Mario Forever Download Portal · Maintained by the Chinese Mario Forever community",
+const text = computed(() => ({
+  title: t("about.title"),
+  subtitle: t("about.subtitle"),
+  credits: t("about.credits"),
+  creator: t("about.creator"),
+  specialThanks: t("about.specialThanks"),
+  separator: t("about.separator"),
+  designTitle: t("about.designTitle"),
+  designBefore: t("about.designBefore"),
+  designAfter: t("about.designAfter"),
+  techStack: t("about.techStack"),
+  techFrontend: t("about.techFrontend"),
+  techData: t("about.techData"),
+  techStorage: t("about.techStorage"),
+  techBuild: t("about.techBuild"),
+  api: t("about.api"),
+  apiDesc: t("about.apiDesc"),
+  endpoints: t("about.endpoints"),
+  apiNote: t("about.apiNote"),
+  apiUsage: t("about.apiUsage"),
+  apiExample: t("about.apiExample"),
+  apiDoc: t("about.apiDoc"),
+  contact: t("about.contact"),
+  contactNote: t("about.contactNote"),
+  footer: t("about.footer"),
 }));
 
 // The stack the site actually runs on: a Vue SPA over YAML data, a build-time
@@ -164,7 +151,7 @@ const TECH_GROUPS = computed(() => [
     items: [
       { name: "OpenList", url: "https://github.com/OpenListTeam/OpenList" },
       { name: "OneDrive", url: "https://onedrive.live.com/" },
-      { name: lan.value === "zh" ? "中国移动云盘" : "China Mobile 139 Cloud", url: "https://yun.139.com/" },
+      { name: t("about.cloud139"), url: "https://yun.139.com/" },
     ],
   },
   {
@@ -181,43 +168,38 @@ const TECH_GROUPS = computed(() => [
 const apiEndpoints = computed(() => API_ENDPOINTS.map((endpoint) => ({
   path: endpoint.path,
   url: endpoint.path,
-  desc: lan.value === "zh" ? endpoint.zh : endpoint.en,
+  desc: t(endpoint.label),
 })));
 
+// The API reference exists in Chinese and English only, so the link follows the
+// content language rather than the interface language.
 const apiDocUrl = computed(() => (
-  lan.value === "zh"
+  contentLang.value === "zh"
     ? "https://github.com/MarioForeverCommunity/download-site-next/blob/main/API.zh-cn.md"
     : "https://github.com/MarioForeverCommunity/download-site-next/blob/main/API.md"
 ));
 
 const footer = computed(() => `${text.value.footer} · ${siteVersion}`);
 
-setPageTitle(text.value.title, lan.value);
-
-function pageSetLanguageZh() {
-  lan.value = setLanguageZh();
-  setPageTitle(text.value.title, "zh");
-}
-
-function pageSetLanguageEn() {
-  lan.value = setLanguageEn();
-  setPageTitle(text.value.title, "en");
+function changeLocale(code) {
+  locale.value = applyLocale(code);
 }
 
 // The app shell is rendered once by the SPA root; this page only publishes the
 // parts that differ (title, language). Leaving `search` and `doc` unset gives a
 // documentation-style topbar without the catalog controls.
 watchEffect(() => {
+  setPageTitle(text.value.title, locale.value);
   publishShell({
     pageId: "about",
     title: text.value.title,
-    lan: lan.value,
+    locale: locale.value,
+    locales,
   });
 });
 
 publishShellHandlers({
-  changeLanZh: pageSetLanguageZh,
-  changeLanEn: pageSetLanguageEn,
+  changeLocale,
 });
 </script>
 

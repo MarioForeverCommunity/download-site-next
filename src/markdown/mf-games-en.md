@@ -23,7 +23,7 @@ The fangames are distinguished by:
 - Region (filters fangames made in China or internationally)
 - Platform (the operating system(s) the fangames play on)
 - Software (the game engine(s) the fangames are built on)
-- Tags (such as Puzzle, Collab, April Fools, Hardcore, Christmas etc. Multi-tag selection is also supported.)
+- Tags (such as Collab, April Fools, Hardcore, Christmas etc. Multi-tag selection is also supported.)
 
 Some old versions of these fangames are available on the [Community File Hub](https://file.marioforever.net/mario-forever/games/).
 

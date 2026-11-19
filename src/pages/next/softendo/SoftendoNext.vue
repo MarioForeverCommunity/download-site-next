@@ -2,23 +2,31 @@
 // Softendo / Buziol / Banesoft games catalog — redesigned.
 import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import NxCatalog from "../../../components/next/NxCatalog.vue";
-import { getLanguage, setLanguageZh, setLanguageEn, getUseDirectLink } from "../../../util/Language.js";
+import { applyLocale, getLocale, useI18n } from "../../../i18n/index.js";
+import { getUseDirectLink } from "../../../util/Language.js";
 import { navTop, setPageTitle } from "../../../config.js";
 import { readList } from "../../../util/ReadList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
 import { buildSoftendoRecords, makeFacet, softwareLabel } from "../../../util/next/records.js";
 import { normalizeSoftendoList } from "../../../util/SoftendoUtil.js";
-import softendoZh from "../../../markdown/softendo-zh.md";
-import softendoEn from "../../../markdown/softendo-en.md";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
+import { localeForLocales, pageTitleFor, pickDoc } from "../../../util/next/pageLocale.js";
+import { discoverDocs } from "../../../util/next/docFiles.js";
 
-const lan = ref(getLanguage());
+const docs = discoverDocs(import.meta.glob("../../../markdown/softendo-*.md", {
+  eager: true, import: "default",
+}), "softendo");
+const locales = Object.keys(docs);
+
 const pageId = "softendo";
 const pageEntry = navTop.find((item) => item.id === pageId);
 
-const title = computed(() => (lan.value === "zh" ? pageEntry.title : pageEntry.title_alt));
+const locale = ref(localeForLocales(getLocale(), locales));
+const { t } = useI18n(() => locale.value);
+
+const title = computed(() => pageTitleFor(pageEntry, locale.value));
 
 const rawRecords = ref([]);
 const loading = ref(true);
@@ -28,26 +36,26 @@ const loading = ref(true);
 const initialSort = { field: "name", asc: true };
 
 const facets = computed(() => {
-  const zh = lan.value === "zh";
+  const list = rawRecords.value;
   return [
     makeFacet({
       key: "series",
-      label: zh ? "系列" : "Series",
+      label: t("facet.series"),
       getter: (record) => record.softendoType,
       options: {
-        records: rawRecords.value,
+        records: list,
         list: [
-          { value: "mario", label: "Mario" },
-          { value: "mff", label: "Mario Forever Flash" },
-          { value: "flash", label: "Flash" },
-          { value: "non-mario", label: "Non-Mario" },
-          { value: "banesoft", label: "Banesoft" },
+          { value: "mario", label: t("facet.mario") },
+          { value: "mff", label: t("facet.mff") },
+          { value: "flash", label: t("facet.flash") },
+          { value: "non-mario", label: t("facet.nonMario") },
+          { value: "banesoft", label: t("facet.banesoft") },
         ],
       },
     }),
     makeFacet({
       key: "software",
-      label: zh ? "制作软件" : "Made with",
+      label: t("facet.madeWith"),
       // A game can list several makers (a title shipped as both an exe and a
       // swf, for instance), so this is a multi-choice facet.
       getter: (record) => {
@@ -55,16 +63,16 @@ const facets = computed(() => {
         return Array.isArray(record.software) ? record.software : [record.software];
       },
       options: {
-        records: rawRecords.value,
+        records: list,
         list: ["flash", "mmf", "gamemaker", "other"].map((value) => ({
           value,
-          label: softwareLabel(value, lan.value),
+          label: softwareLabel(value, locale.value),
         })),
       },
     }),
     makeFacet({
       key: "language",
-      label: zh ? "语言" : "Language",
+      label: t("facet.language"),
       // A game either ships in one language or in both, so this is a
       // single-choice facet rendered with radio dots rather than checkboxes.
       single: true,
@@ -78,11 +86,11 @@ const facets = computed(() => {
         return null;
       },
       options: {
-        records: rawRecords.value,
+        records: list,
         list: [
-          { value: "en", label: zh ? "英语" : "English" },
-          { value: "pl", label: zh ? "波兰语" : "Polish" },
-          { value: "both", label: zh ? "双语言" : "Both" },
+          { value: "en", label: t("facet.english") },
+          { value: "pl", label: t("facet.polish") },
+          { value: "both", label: t("facet.both") },
         ],
       },
     }),
@@ -106,7 +114,7 @@ const catalog = useCatalog({
   facets: () => facets.value,
   sorters,
   defaultSort: initialSort,
-  tags: () => ({ untaggedLabel: lan.value === "zh" ? "未标签" : "Untagged" }),
+  tags: () => ({ untaggedLabel: t("filter.untagged") }),
   // Softendo entries carry year ranges rather than release dates, so the
   // release-date filter has nothing meaningful to filter on.
   dateFilter: false,
@@ -133,31 +141,21 @@ async function load(language) {
 }
 
 onMounted(() => {
-  load(lan.value);
+  load(locale.value);
 });
 
 // The settings drawer can flip the File Hub direct-link switch while this page is
 // open; records bake their download URLs, so rebuild them to apply it at once.
-watch(getUseDirectLink(), () => load(lan.value));
+watch(getUseDirectLink(), () => load(locale.value));
 
-function pageSetLanguageZh() {
-  lan.value = setLanguageZh();
-  setPageTitle(pageEntry.title, "zh");
-  load("zh");
+function changeLocale(code) {
+  locale.value = applyLocale(code);
+  load(locale.value);
 }
-
-function pageSetLanguageEn() {
-  lan.value = setLanguageEn();
-  setPageTitle(pageEntry.title_alt, "en");
-  load("en");
-}
-
-setPageTitle(title.value, lan.value);
 
 // The catalog's own write-up, opened from the topbar; null hides the button.
-const docZh = softendoZh;
-const docEn = softendoEn;
-const doc = computed(() => (lan.value === "zh" ? docZh : docEn));
+// pickDoc matches the exact locale and falls back by written language.
+const doc = computed(() => pickDoc(locale.value, docs));
 const docUpdated = ref("");
 getCatalogLastUpdated("softendo").then((v) => { docUpdated.value = v || ""; });
 
@@ -166,10 +164,12 @@ getCatalogLastUpdated("softendo").then((v) => { docUpdated.value = v || ""; });
 // A watchEffect keeps the shell in sync when the language changes or the
 // write-up's date arrives after the first render.
 watchEffect(() => {
+  setPageTitle(title.value, locale.value);
   publishShell({
     pageId: "softendo",
     title: title.value,
-    lan: lan.value,
+    locale: locale.value,
+    locales,
     doc: doc.value,
     docTitle: title.value,
     docUpdated: docUpdated.value,
@@ -181,8 +181,7 @@ watchEffect(() => {
   });
 });
 publishShellHandlers({
-  changeLanZh: pageSetLanguageZh,
-  changeLanEn: pageSetLanguageEn,
+  changeLocale,
   random: randomGame,
 });
 </script>
@@ -195,14 +194,14 @@ publishShellHandlers({
     :catalog="catalog"
     :facets="facets"
     :sorters="sorters"
-    :lan="lan"
+    :locale="locale"
     :show-date="false"
     :show-actions="false"
     :columns="{
-      name: lan === 'zh' ? '游戏' : 'Game',
-      author: lan === 'zh' ? '系列' : 'Series',
-      version: lan === 'zh' ? '年份' : 'Years',
-      tags: lan === 'zh' ? '类型' : 'Genres',
+      name: t('catalog.colGame'),
+      author: t('catalog.colSeries'),
+      version: t('catalog.colYears'),
+      tags: t('catalog.colGenres'),
     }"
     :updated="docUpdated"
   />
@@ -210,6 +209,6 @@ publishShellHandlers({
     v-else
     class="nx-loading"
   >
-    {{ lan === "zh" ? "正在载入游戏目录…" : "Loading the catalog…" }}
+    {{ t("page.softendoLoading") }}
   </div>
 </template>

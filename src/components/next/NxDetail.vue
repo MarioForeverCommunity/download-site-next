@@ -19,13 +19,16 @@ import { batchFetchFileSizes } from "../../util/OpenListApi.js";
 import { lockScroll, releaseScroll } from "../../util/next/scrollLock.js";
 import { pushBackGuard } from "../../util/next/backGuard.js";
 import { buildPageUrl } from "../../util/next/router.js";
+import { dataLangOf, localeNeedsConversion, localizeText, prefersAltLinks, useI18n } from "../../i18n/index.js";
+import { prepareConversion } from "../../i18n/convert.js";
 
 const props = defineProps({
   record: {
     type: Object,
     default: null
   },
-  lan: {
+  // Interface locale (see src/i18n/locales/*).
+  locale: {
     type: String,
     required: true
   },
@@ -38,6 +41,13 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["close", "searchAuthor"]);
+
+const { t, te } = useI18n(() => props.locale);
+
+// Content language of the data behind this record (`zh` / `en`): the File Hub
+// folder paths, the description files and the release-post ordering all follow
+// the written language, not the interface language.
+const contentLang = computed(() => dataLangOf(props.locale));
 
 const lightbox = ref(null);
 const activeVersion = ref(null);
@@ -62,14 +72,20 @@ async function loadLongDescription() {
   const category = record.kind === "mw" ? "mw-levels" : "mf-games";
   if (record.kind !== "mf" && record.kind !== "mw") return;
 
-  const url = getDescriptionSync(record.raw, category, props.lan);
+  const url = getDescriptionSync(record.raw, category, contentLang.value);
   if (!url) return;
+
+  // A Traditional Chinese interface has no authored description file for most
+  // fangames: the source is description_zh.md, so convert that one text. MW
+  // descriptions are left exactly as written.
+  const convertForHant = record.kind === "mf" && localeNeedsConversion(props.locale);
+  if (convertForHant) await prepareConversion(true);
 
   try {
     const response = await axios.get(url);
     const body = typeof response.data === "string" ? response.data : "";
     if (body && !body.trim().startsWith("<!DOCTYPE html>")) {
-      longDescription.value = body;
+      longDescription.value = convertForHant ? localizeText(body, props.locale) : body;
     }
   } catch (_e) {
     longDescription.value = "";
@@ -89,101 +105,55 @@ const isOpen = computed(() => props.record != null);
 // then show that build only, instead of offering the other versions again.
 const isExpandedVersion = computed(() => !!(props.record && props.record.expandedFrom));
 
-const text = computed(() => (props.lan === "zh"
-  ? {
-    screenshots: "截图",
-    about: "简介",
-    details: "信息",
-    tags: "标签",
-    versions: "版本与下载",
-    data: "数据包",
-    runtime: "运行环境",
-    links: "相关链接",
-    videos: "相关视频",
-    author: "作者",
-    authorWorks: "查看该作者的全部作品",
-    authorFolder: "浏览作者资源站目录",
-    region: "地区",
-    madeWith: "制作软件",
-    platform: "平台",
-    released: "发布日期",
-    updated: "更新日期",
-    type: "类型",
-    series: "系列",
-    language: "语言",
-    years: "年份",
-    variant: "变体",
-    date: "日期",
-    mw: "MW 版本",
-    chinese: "国内",
-    international: "国外",
-    latest: "最新",
-    repack: "重打包",
-    code: "提取码",
-    codeCopyHint: "点击下载并复制提取码",
-    copied: "提取码已复制",
-    requires: "本作品需要",
-    bundled: "本作品自带",
-    playNote: "游玩说明",
-    downloadIt: "下载该版本",
-    bgmNote: "游玩本作品前，需替换或使用自定义 BGM。",
-    musicPack: "SMWP 音乐包",
-    source: "发布页",
-    sourceInvalid: "已失效",
-    homepage: "主页",
-    repo: "源代码",
-    download: "下载",
-    share: "分享",
-    shareCopied: "作品链接已复制",
-    esc: "按 Esc 关闭",
-  }
-  : {
-    screenshots: "Screenshots",
-    about: "Description",
-    details: "Details",
-    tags: "Tags",
-    versions: "Versions & downloads",
-    data: "Data package",
-    runtime: "Runtime",
-    links: "Links",
-    videos: "Videos",
-    author: "Author",
-    authorWorks: "View all their works",
-    authorFolder: "Open the author's folder (File Hub)",
-    region: "Region",
-    madeWith: "Made with",
-    platform: "Platform",
-    released: "Released",
-    updated: "Updated",
-    type: "Type",
-    series: "Series",
-    language: "Language",
-    years: "Years",
-    variant: "Variant",
-    date: "Date",
-    mw: "MW version",
-    chinese: "Chinese",
-    international: "International",
-    latest: "latest",
-    repack: "REPACK",
-    code: "Code",
-    codeCopyHint: "Download and copy code",
-    copied: "Code copied",
-    requires: "Requires",
-    bundled: "Comes with",
-    playNote: "How to play",
-    downloadIt: "download it",
-    bgmNote: "Replace or use custom BGM before playing this level.",
-    musicPack: "Music pack",
-    source: "Source",
-    sourceInvalid: "Invalid",
-    homepage: "Homepage",
-    repo: "Repository",
-    download: "Download",
-    share: "Share",
-    shareCopied: "Link copied",
-    esc: "Press Esc to close",
-  }));
+const text = computed(() => ({
+  screenshots: t("detail.screenshots"),
+  about: t("detail.about"),
+  details: t("detail.details"),
+  tags: t("detail.tags"),
+  versions: t("detail.versions"),
+  data: t("detail.data"),
+  runtime: t("detail.runtime"),
+  links: t("detail.links"),
+  videos: t("detail.videos"),
+  author: t("detail.author"),
+  authorWorks: t("detail.authorWorks"),
+  authorFolder: t("detail.authorFolder"),
+  region: t("detail.region"),
+  madeWith: t("detail.madeWith"),
+  platform: t("detail.platform"),
+  released: t("detail.released"),
+  updated: t("detail.updated"),
+  type: t("detail.type"),
+  series: t("detail.series"),
+  language: t("detail.language"),
+  years: t("detail.years"),
+  variant: t("detail.variant"),
+  date: t("detail.date"),
+  mw: t("detail.mw"),
+  chinese: t("region.chinese"),
+  international: t("region.international"),
+  latest: t("detail.latest"),
+  repack: t("badge.repack"),
+  code: t("detail.code"),
+  codeCopyHint: t("detail.codeCopyHint"),
+  copied: t("detail.copied"),
+  requires: t("detail.requires"),
+  bundled: t("detail.bundled"),
+  playNote: t("detail.playNote"),
+  downloadIt: t("detail.downloadIt"),
+  bgmNote: t("detail.bgmNote"),
+  musicPack: t("detail.musicPack"),
+  source: t("detail.source"),
+  sourceInvalid: t("detail.sourceInvalid"),
+  homepage: t("detail.homepage"),
+  repo: t("detail.repo"),
+  wiki: t("detail.wiki"),
+  download: t("detail.download"),
+  share: t("detail.share"),
+  shareCopied: t("detail.shareCopied"),
+  esc: t("detail.esc"),
+  collab: t("detail.collab"),
+}));
 
 watch([() => props.record, () => props.versionKey], ([next, versionKey]) => {
   const versions = next && next.versions ? next.versions : [];
@@ -212,45 +182,25 @@ const version = computed(() => {
 
 // ── MF play instructions ───────────────────────────────────
 // The legacy download modal explained what to do with the file it handed out
-// (its "?" tooltip). The drawer restores that text for Chinese readers and
-// follows the selected build; English pages omit it, as requested.
-const PLAY_NOTES_ZH = {
-  installer: [
-    "本作品以安装程序形式提供，需运行安装程序完成安装，建议选择非系统盘作为安装路径。",
-    "安装完成后，打开桌面快捷方式即可启动游戏。",
-  ],
-  exe: [
-    "本作品为可执行文件（.exe），可以直接打开运行。",
-    "建议将其放在一个独立文件夹中，避免与其他作品的文件混合存放，不要将文件放在桌面。",
-  ],
-  apk: [
-    "本作品为 .apk 文件，为安卓设备专用，电脑无法直接运行。",
-    "请在安卓设备上安装后游玩。",
-  ],
-  apkMobile: [
-    "本作品为 .apk 文件，可在安卓手机上直接安装运行。",
-    "安装前请确保设备允许安装“未知来源”的应用。",
-  ],
-  mobile: [
-    "您当前正在使用手机浏览本页面。本作品为电脑平台设计，通常无法在手机上直接运行。",
-    "如需游玩，请将下载的文件传输至电脑并在电脑上操作。",
-  ],
-  macos: [
-    "本作品为 macOS 版，提供 .dmg 镜像文件。",
-    "双击 .dmg 文件挂载后，将游戏图标拖入「应用程序（Applications）」文件夹即可完成安装。",
-    "若首次打开提示“无法打开”，请在「系统设置 → 隐私与安全性」中点击“仍要打开”。",
-  ],
-  linux: [
-    "本作品为 Linux 版，提供可执行文件（或 .tar.gz / .tar.xz 压缩包，需先解压）。",
-    "请赋予执行权限后运行：chmod +x 文件名 && ./文件名",
-    "若双击无法启动，可右键选择「允许作为程序执行」，或在终端中进入文件所在目录执行。",
-  ],
-  archive: [
-    "本作品以压缩包形式提供，需使用解压软件（如 7-Zip）解压。",
-    "请将所有文件解压至一个单独文件夹，避免与其他作品的文件混合存放，不要将文件放在桌面。",
-    "解压完成后，打开生成的 .exe 文件即可启动游戏。",
-  ],
-};
+// (its "?" tooltip). The drawer restores that text and follows the selected
+// build. These instructions are authored in Simplified Chinese only, so the
+// section is shown on the Simplified interface and hidden everywhere else — a
+// Traditional Chinese (or English/Polish) drawer omits it rather than mixing two
+// scripts or showing a half-translated block. `te()` alone is not enough: the
+// locale fallback chain would still reach the Simplified messages.
+const PLAY_NOTE_TYPES = ["installer", "exe", "apk", "apkMobile", "mobile", "macos", "linux", "archive"];
+
+const hasPlayNotes = computed(() => (
+  dataLangOf(props.locale) === "zh"
+  && !localeNeedsConversion(props.locale)
+  && te("detail.playNotes.installer")
+));
+
+function playNote(type) {
+  const key = `detail.playNotes.${PLAY_NOTE_TYPES.includes(type) ? type : "archive"}`;
+  const note = t(key);
+  return note === key ? [] : note.split("\n").filter(Boolean);
+}
 
 // Same classification as the legacy modal's tooltip (MfGamesEntry.vue).
 function playTypeOf(files, verKey) {
@@ -272,15 +222,15 @@ function playTypeOf(files, verKey) {
 }
 
 const playNotes = computed(() => {
-  if (props.lan !== "zh" || !props.record || props.record.kind !== "mf") return [];
+  if (!hasPlayNotes.value || !props.record || props.record.kind !== "mf") return [];
   const v = version.value;
   if (!v || !v.downloads || v.downloads.length === 0) return [];
   const files = (v.files || []).filter(Boolean);
   // Java builds (.jar) had no tooltip in the legacy design either.
   if (files.some((name) => String(name).toLowerCase().endsWith(".jar"))) return [];
   const type = playTypeOf(files, v.verKey);
-  if (isMobile.value) return type === "apk" ? PLAY_NOTES_ZH.apkMobile : PLAY_NOTES_ZH.mobile;
-  return PLAY_NOTES_ZH[type] || PLAY_NOTES_ZH.archive;
+  if (isMobile.value) return playNote(type === "apk" ? "apkMobile" : "mobile");
+  return playNote(type);
 });
 
 // Gallery = title image first, then every showcase shot. The adapter already
@@ -299,7 +249,11 @@ const tagColors = computed(() => (props.record ? props.record.tags.map((tag) => 
 // one place.
 function authorFolderHref(record, lan) {
   const raw = (record && record.raw) || {};
-  const author = (record.authors && record.authors[0]) || record.author || "";
+  // MF display names are converted for zh-Hant; the File Hub folder is named
+  // after the original author string, so use the raw one here.
+  const author = (record.kind === "mf" && record.authorZh)
+    || (record.authors && record.authors[0])
+    || record.author || "";
 
   if (record.kind === "mw") {
     const folder = record.authors && record.authors.length > 1 ? "合作作品" : author;
@@ -336,7 +290,7 @@ const facts = computed(() => {
     const softwareValues = Array.isArray(record.software) ? record.software : record.software ? [record.software] : [];
     rows.push({
       label: t.madeWith,
-      value: softwareValues.map((item) => softwareLabel(item, props.lan)).join(", "),
+      value: softwareValues.map((item) => softwareLabel(item, props.locale)).join(", "),
     });
     if (record.languageLabel) rows.push({ label: t.language, value: record.languageLabel });
     rows.push({ label: t.years, value: record.yearLabel });
@@ -360,9 +314,9 @@ const facts = computed(() => {
   rows.push({
     label: t.author,
     value: record.author,
-    href: authorFolderHref(record, props.lan),
+    href: authorFolderHref(record, contentLang.value),
     authorQuery: record.kind === "mf" || record.kind === "mw"
-      ? (isMwCollab ? "合作作品" : firstAuthor)
+      ? (isMwCollab ? text.value.collab : firstAuthor)
       : null,
   });
   if (record.kind === "mf") {
@@ -374,7 +328,7 @@ const facts = computed(() => {
     rows.push({ label: t.mw, value: mwVersionLabel(record.versionLabel) });
   }
   if (record.software) {
-    rows.push({ label: t.madeWith, value: softwareLabel(record.software, props.lan) });
+    rows.push({ label: t.madeWith, value: softwareLabel(record.software, props.locale) });
   }
   // Every version's platform, not just the selected one: a fangame may ship a
   // Windows build for its current version and a Linux build for an older one.
@@ -405,11 +359,13 @@ const hasDownloads = computed(() => {
 
 // The release posts are version-scoped, so they sit beside that version's
 // download buttons rather than in the record-level links section. Both the
-// primary and the alternate post are shown, the reader's language first.
+// primary and the alternate post are shown, the reader's language first:
+// Chinese (Simplified or Traditional) leads with the primary post, every other
+// locale — English, Polish and future ones — with the alternate post.
 const versionSources = computed(() => {
   const v = version.value;
   if (!v) return [];
-  const posts = props.lan === "en"
+  const posts = prefersAltLinks(props.locale)
     ? [{ url: v.sourceAlt, invalid: v.sourceAltInvalid }, { url: v.source, invalid: v.sourceInvalid }]
     : [{ url: v.source, invalid: v.sourceInvalid }, { url: v.sourceAlt, invalid: v.sourceAltInvalid }];
   const seen = new Set();
@@ -421,7 +377,9 @@ const versionSources = computed(() => {
     // Name the site the post lives on (config.js `sourceName`), as the download
     // buttons already do for their mirrors. The invalid tag joins that same
     // parenthesis instead of forming a second one: "发布页 (B 站, 已失效)".
-    const service = sourceServiceName(url, props.lan);
+    // The interface locale (not the content language) picks the name: the tables
+    // can carry `desc_zh_hant`, and a Simplified name has to be converted.
+    const service = sourceServiceName(url, props.locale);
     const name = text.value.source;
     const tag = post.invalid ? text.value.sourceInvalid : null;
     const detail = [service, tag].filter(Boolean).join(", ");
@@ -434,8 +392,8 @@ const versionSources = computed(() => {
     const backup = post.invalid ? null : tiebaArchiveUrl(url);
     if (backup && !seen.has(backup)) {
       seen.add(backup);
-      const backupService = sourceServiceName(backup, props.lan);
-      const backupLabel = `${text.value.source} (${backupService || (props.lan === "en" ? "Tieba Archive" : "贴吧备份")})`;
+      const backupService = sourceServiceName(backup, props.locale);
+      const backupLabel = `${text.value.source} (${backupService || t("detail.sourceBackup")})`;
       links.push({ url: backup, label: backupLabel, invalid: false, kind: "backup" });
     }
   }
@@ -851,7 +809,7 @@ onBeforeUnmount(() => {
             <NxGallery
               :images="gallery"
               :alt="record.name"
-              :lan="lan"
+              :locale="locale"
               aspect-ratio="16 / 9"
               :autoplay="3000"
               @select="lightbox = $event"
@@ -1215,7 +1173,7 @@ onBeforeUnmount(() => {
                   name="info"
                   :size="12"
                 />
-                Wiki
+                {{ text.wiki }}
               </a>
             </div>
           </div>

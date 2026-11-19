@@ -60,7 +60,7 @@ Changelogs are available on the [Wiki page](https://en.wiki.marioforever.net/wik
 </div>
 
 ### Screenshots
-<NxGallery :images="imagesOriginal" alt="Mario Forever" lan="en" :max-height="480" :autoplay="3000" />
+<NxGallery :images="imagesOriginal" alt="Mario Forever" :max-height="480" :autoplay="3000" />
 
 ## Download mods of the original Mario Forever
 There are several known mods based on the original Mario Forever.

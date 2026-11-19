@@ -7,7 +7,8 @@
 //
 // The shell is now rendered once by the SPA root (boot/NxApp.vue) and stays
 // mounted for the life of the document. Pages publish the parts that differ —
-// title, write-up, search model — here, and the root feeds them to the shell.
+// title, write-up, search model, locale — here, and the root feeds them to the
+// shell.
 import { markRaw, reactive } from "vue";
 
 // The full set of shell fields, with their defaults. `publishShell` resets to
@@ -18,7 +19,12 @@ import { markRaw, reactive } from "vue";
 const DEFAULTS = {
   pageId: "",
   title: "",
-  lan: "zh",
+  // Interface locale the page renders in. Empty means "follow the visitor's
+  // choice" (the shell then resolves it itself).
+  locale: "",
+  // Canonical locales this page can actually present. The shell shows a language
+  // switcher only when there is more than one; pages derive it from their files.
+  locales: [],
   doc: null,
   docTitle: "",
   docUpdated: "",
@@ -33,8 +39,8 @@ export const shellConfig = reactive({ ...DEFAULTS });
 
 // Page-owned callbacks the shell's controls dispatch to.
 const HANDLER_DEFAULTS = {
-  changeLanZh: null,
-  changeLanEn: null,
+  // (localeCode) => void — the page switches its own locale and reloads records.
+  changeLocale: null,
   random: null
 };
 
