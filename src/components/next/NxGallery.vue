@@ -64,6 +64,14 @@ const props = defineProps({
   layout: {
     type: String,
     default: "peek"
+  },
+  // Lets the active slide use the whole container width so it can reach
+  // `maxHeight`; neighbours are pushed past the edges instead of pinning the
+  // middle picture to `peek` of the width. When that width is still too narrow
+  // the whole picture is scaled down — never cropped. Entry cards use this.
+  preferMaxHeight: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -133,11 +141,17 @@ const peekFraction = computed(() => (containerW.value < 640 ? 1 : props.peek));
 // The band is therefore also limited by the space actually available — the
 // container width divided by the active picture's ratio — so the whole frame is
 // always visible.
+//
+// `preferMaxHeight` widens the active slide to the full container width, so the
+// picture can actually reach the cap (a peek-sized slide at 58% of the width
+// could never get there); the same width bound then scales the whole picture
+// down on narrow screens without cropping.
 const slideH = computed(() => {
   if (!containerW.value) return 0;
   const active = props.images[activeIndex.value];
   const ratio = ratioFor(active) || 4 / 3;
-  const widthBound = (containerW.value * peekFraction.value) / ratio;
+  const share = props.preferMaxHeight ? 1 : peekFraction.value;
+  const widthBound = (containerW.value * share) / ratio;
   if (!props.maxHeight) return widthBound;
   return Math.min(props.maxHeight, widthBound);
 });
