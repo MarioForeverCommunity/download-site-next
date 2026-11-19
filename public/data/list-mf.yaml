@@ -10782,6 +10782,9 @@
       file_url:
 - game: Super Mario 2011
   game_alt:
+  alias:
+  - Super Mario Bros. Infinity
+  - SMB Infinity
   tag:
   - Gun
   software: gamemaker
