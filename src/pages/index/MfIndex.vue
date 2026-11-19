@@ -4,8 +4,8 @@ import axios from 'axios'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
 import { navTop, setPageTitle } from "../../config.js"
-import indexZh from '../../markdown/mf-zh.md'
-import indexEn from '../../markdown/mf-en.md'
+import indexZh from '../../markdown/zh-hans/mf-index.md'
+import indexEn from '../../markdown/en/mf-index.md'
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
 import GlobalSettings from '../../components/GlobalSettings.vue'
@@ -72,13 +72,13 @@ const fetchYamlUpdate = () => {
 }
 
 const fetchMdUpdateZh = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-zh.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fzh-hans%2Fmf-index.md&page=1&per_page=1").then((response) => {
     mdUpdateDateZh.value = response.data[0].commit.committer.date
   })
 }
 
 const fetchMdUpdateEn = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-en.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fen%2Fmf-index.md&page=1&per_page=1").then((response) => {
     mdUpdateDateEn.value = response.data[0].commit.committer.date
   })
 }

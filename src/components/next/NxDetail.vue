@@ -502,7 +502,7 @@ const dataDownloads = computed(() => (version.value && version.value.dataDownloa
 
 // ── download buttons ───────────────────────────────────────
 // Softendo builds are colour-coded exactly as the legacy modal documents them
-// (softendo-en.md): blue installer, orange installer-with-toolbar, green exe,
+// (markdown/en/softendo.md): blue installer, orange installer-with-toolbar, green exe,
 // purple archive, red swf, pink self-extracting, turquoise Kliktopia.
 const TONE_CLASS = {
   exe: "is-tone-exe",

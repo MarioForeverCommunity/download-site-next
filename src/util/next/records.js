@@ -626,8 +626,9 @@ export function buildMfRecords(entries, lan) {
       // Filenames are searchable, matching the legacy filter behaviour. A build
       // exposes `files` (an array — one file per volume), not a single `file`.
       titleSearch: searchValues([entry.game, entry.game_alt,
-        ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
-        ...versions.flatMap((version) => version.files || [])], lan),
+        ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : [])], lan),
+      // File names are matched exactly (no typo tolerance), like the legacy list.
+      fileSearch: versions.flatMap((version) => version.files || []),
       authorSearch: searchValues([authorText(entry, "zh"), authorText(entry, "en")], lan),
       raw: entry,
     };
@@ -638,11 +639,14 @@ function collectVideos(entry, lan) {
   const list = isContentZh(lan) ? (entry.video_zh || entry.video) : (entry.video_en || entry.video);
   if (!list) return [];
   return list.map((item) => {
-    const key = Object.keys(item)[0];
-    const url = item[key];
+    // The YAML key is the video's own name, written in Simplified Chinese: it is
+    // a display label, so convert it for a Traditional interface. The URL is
+    // keyed by the raw name and must not change.
+    const rawKey = Object.keys(item)[0];
+    const url = item[rawKey];
     // The site name is chrome, not data: pass the interface locale so a
     // Traditional Chinese page reads `desc_zh_hant` instead of Simplified.
-    return { title: key, url, site: getVideoDesc(url, lan) };
+    return { title: localizeText(rawKey, lan), url, site: getVideoDesc(url, lan) };
   });
 }
 
@@ -872,8 +876,9 @@ export function buildMwRecords(entries, locale = "zh-Hans") {
       hasBgm: !!entry.has_bgm,
       // `file_name` may be a list (multi-file / multi-volume builds), so each
       // name is indexed on its own instead of being stringified as one value.
-      titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : []),
-        ...(Array.isArray(entry.file_name) ? entry.file_name : entry.file_name ? [entry.file_name] : [])],
+      titleSearch: [entry.game, entry.game_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : [])],
+      // File names are matched exactly (no typo tolerance), like the legacy list.
+      fileSearch: Array.isArray(entry.file_name) ? entry.file_name : entry.file_name ? [entry.file_name] : [],
       // Multi-author levels are labelled 合作作品 everywhere in the UI, so the
       // author search accepts that label in addition to the names themselves.
       authorSearch: names.length > 1
@@ -1034,6 +1039,8 @@ function buildAssetRecord(entry, variant, variantKey, lan) {
       video: [],
     },
     titleSearch: [entry.name, entry.name_alt, ...(Array.isArray(entry.alias) ? entry.alias : entry.alias ? [entry.alias] : [])],
+    // Variant file names: exact matching only, like the legacy assets page.
+    fileSearch: assetFileNames,
     authorSearch: [authorText(entry, "zh"), authorText(entry, "en")],
     raw: entry,
   };
@@ -1064,7 +1071,7 @@ export function buildSoftendoRecords(entries, lan) {
       }
       for (const item of ver.portable_urls || []) {
         // Colour follows the legacy modal's scheme (documented in
-        // softendo-en.md): green exe, purple archive, red swf, turquoise
+        // markdown/en/softendo.md): green exe, purple archive, red swf, turquoise
         // kliktopia repackage.
         const rawLabel = String(item.label || "").toLowerCase();
         const ext = String(item.url || "").split(".").pop().toLowerCase().split("?")[0];

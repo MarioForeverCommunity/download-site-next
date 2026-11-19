@@ -21,11 +21,11 @@ import { publishShell, publishShellHandlers } from "../../../util/next/shellStor
 import { localeForLocales, pageTitleFor, pickDoc } from "../../../util/next/pageLocale.js";
 import { discoverDocs } from "../../../util/next/docFiles.js";
 
-// Only `mw-levels-zh.md` exists today, so this page has one language and no menu.
+// Only `markdown/zh-hans/mw-levels.md` exists today, so this page has one language and no menu.
 // Adding another `mw-levels-<locale>.md` would enable it without code changes.
-const docs = discoverDocs(import.meta.glob("../../../markdown/mw-levels-*.md", {
+const docs = discoverDocs(import.meta.glob("../../../markdown/*/mw-levels.md", {
   eager: true, import: "default",
-}), "mw-levels");
+}));
 const locales = Object.keys(docs);
 
 const pageId = "mw-levels";
@@ -118,6 +118,7 @@ const sorters = [
 const catalog = useCatalog({
   records: rawRecords,
   titleFields: ["titleSearch"],
+  exactFields: ["fileSearch"],
   authorFields: ["authorSearch"],
   facets: () => facets.value,
   sorters,

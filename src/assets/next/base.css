@@ -2346,7 +2346,7 @@ button.nx-author-link {
 }
 
 /* Softendo build colours, matching the legacy modal's scheme documented in
-   softendo-en.md: blue installer, orange installer+toolbar, green exe, purple
+   markdown/en/softendo.md: blue installer, orange installer+toolbar, green exe, purple
    archive, red swf, pink self-extracting, turquoise Kliktopia repackage. */
 .nx-dl.nx-dl.is-tone-installer {
   border-color: color-mix(in srgb, #1f6fd0 38%, var(--nx-line));

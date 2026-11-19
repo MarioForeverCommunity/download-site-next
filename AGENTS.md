@@ -88,7 +88,7 @@ src/
 │   └── next/                 新版外壳、筛选、列表、卡片、抽屉、文档条目（图标为 NxIcon）
 ├── data/                     站点自身静态数据（changelog.js 更新履历）
 ├── i18n/                     多语言核心：locale 注册表（index.js）、各语言文案（locales/*.js）、更新履历按需转换（convert.js）
-├── markdown/                 各页面说明文档（.md 经 unplugin-vue-markdown 按 Vue 组件编译渲染）
+├── markdown/<locale>/        各语言页面说明文档（zh-hans / zh-hant / en / pl；.md 经 unplugin-vue-markdown 按 Vue 组件编译渲染）
 ├── pages/                    每个入口的旧版页面
 │   └── next/                 每个入口的新版页面（只渲染内容，不包裹外壳）
 ├── util/                     ReadList / use*List / GameUtil 等
@@ -133,7 +133,7 @@ src/pages/<entry>/main.js
 
 ### 6.4 目录、详情与文档
 
-- 四个目录页共用 `src/util/useCatalog.js`（标题 / 作者双搜索、多选筛选、三态标签、年份或日期区间、排序、分页、`activeId`）与 `NxCatalog.vue`（筛选栏 + 结果栏 + 列表/卡片 + 详情抽屉 + 分页）。旧版目录页用 `src/util/usePagination.js`，两者都通过 `src/util/PageParam.js` 把当前页码同步到 URL（`?page=`，第 1 页省略）。
+- 四个目录页共用 `src/util/useCatalog.js`（标题 / 作者双搜索、多选筛选、三态标签、年份或日期区间、排序、分页、`activeId`）与 `NxCatalog.vue`（筛选栏 + 结果栏 + 列表/卡片 + 详情抽屉 + 分页）。标题与作者搜索复用旧版的模糊匹配：`SearchUtil.fuzzyMatch` 容忍标点 / 空格差异与少量错字（至少 4 个字符才启用编辑距离）；文件名走 `exactFields`（`fileSearch` 字段）的精确归一化匹配，避免错字误命中无关构建。旧版目录页用 `src/util/usePagination.js`，两者都通过 `src/util/PageParam.js` 把当前页码同步到 URL（`?page=`，第 1 页省略）。
 - 记录模型在 `src/util/next/records.js`：平台、制作软件、`old-versions`、variant 拆分等规则必须与旧版 `src/pages/mf-games/MfGames.vue` 和 `scripts/generate-api.js` 保持一致；三处同步修改。
 - 直达链接：`?id=<record id>`；版本级 `<record id>::<verKey>`；文档页「查看该作者的全部作品」用 `?author=`；分页页码用 `?page=<n>`（新旧版共用，第 1 页不写此参数）；旧版 `?game=` / `?asset=` 仍被识别。详情抽屉的分享按钮复制 `?design=next&id=...`，确保收件人打开新版目录并展开该记录。
 - 文档页把 Markdown 中的 `<MfGamesEntry>` / `<AssetsEntry>` / `<SoftendoEntry>` 映射为 `NxEntry*`（`src/util/next/docComponents.js`），条目可原地展开详情；`DesignMfTable.vue` 按当前设计切换原版 MF 下载表格。
@@ -228,7 +228,7 @@ src/pages/<entry>/main.js
 | 旧版语言（`legacy`） | 进入旧版设计时使用的语言 | 各 locale 的 `legacy` 字段（`zh` / `en`） |
 | 转换来源（`convert`，可选） | 唯一用途：更新履历的简→繁转换来源 | 仅 `zh-Hant` 声明 `"zh-Hans"` |
 
-四者可以互不相同：繁体中文界面读简体数据（`data: "zh"`），但界面标签走 `zh-Hant` 文案表、导航 / 站点名用 `*_zh_hant` 字段、说明用 `*-zh-hant.md`，进入旧版时落回简体（`legacy: "zh"`）。波兰语则相反：`data: "en"`、`legacy: "en"`、无 `convert`，完全沿用英文数据与英文链接规则。
+四者可以互不相同：繁体中文界面读简体数据（`data: "zh"`），但界面标签走 `zh-Hant` 文案表、导航 / 站点名用 `*_zh_hant` 字段、说明用 `markdown/zh-hant/<page>.md`，进入旧版时落回简体（`legacy: "zh"`）。波兰语则相反：`data: "en"`、`legacy: "en"`、无 `convert`，完全沿用英文数据与英文链接规则。
 
 链接（发布页 / 网盘 / 下载地址）的 alt 取用规则收敛在 `prefersAltLinks(code)`：**中文（简体与繁体）都优先主链接**，**其它语言（英语、波兰语及后续新增语言）与英文一致，优先 `_alt` 备用链接**。新增语言时不要再写 `locale === "en"` 之类的判断，用这个函数。
 
@@ -248,12 +248,12 @@ src/pages/<entry>/main.js
 `src/i18n/convert.js` 的简→繁转换只服务两处**没有繁体原文、但又是站点目录核心内容**的文字：
 
 1. `ChangelogDrawer.vue` 中的 `src/data/changelog.js` 条目（`features_en` 等英文条目不参与转换）；
-2. **MF 作品**：`buildMfRecords()` 的 `name`（标题）、`author` / `authors`（作者名）、版本号显示文字（`label` / `displayLabel`）与 YAML `description`，以及 `NxDetail` 载入的作品级 `description_zh.md` 长文。文档页里的 `<MfGamesEntry>` 预览走同一个 `buildMfRecords()`，也一并转换。
+2. **MF 作品**：`buildMfRecords()` 的 `name`（标题）、`author` / `authors`（作者名）、版本号显示文字（`label` / `displayLabel`）、YAML `description` 与视频名称（`collectVideos()` 的 `title`；站点名走 `videoName` 表的 `desc_zh_hant`），以及 `NxDetail` 载入的作品级 `description_zh.md` 长文。文档页里的 `<MfGamesEntry>` 预览走同一个 `buildMfRecords()`，也一并转换。
 3. **Assets 资源**：`buildAssetRecord()` 的作品名（`name`）、YAML `description`、作者名（`author` / `authors`）、`variantLabel`（变体名）与 `versionLabel` / `label` / `displayLabel`（版本号）；`AssetsCard` 与详情抽屉共用这些字段，所以两处同时生效。文档页里的 `<AssetsEntry>` 预览走同一个构建器。
 
 - 转换器是 `opencc-js/cn2t` 的**动态 import**（约 1MB 原始 / 455KB gzip）。转换方向用 `Converter({ from: "cn", to: "twp" })`（OpenCC `s2twp`），除字形外还换用台湾常用词（软件→軟體、网络→網路、发布→釋出、文件→檔案）；见 [opencc-js README-zh-CN](https://github.com/nk2028/opencc-js/blob/main/README-zh-CN.md)。
 - 加载时机按需：履历抽屉首次打开时、MF 目录页挂载/切换语言时、详情页载入 MF 长描述时、文档页解析 MF 条目时；`boot/next.js` 不预加载。`converter` 是 `shallowRef`，字典到位后自动刷新；加载失败时 `convertText()` 是恒等函数，页面照常显示原文。
-- **其余繁体文案一律是"写出来的"，不是转出来的**：界面字符串在 `locales/zh-hant.js`；导航 / 页面标题用 `option_zh_hant` / `title_zh_hant`；站点名用 `desc_zh_hant`；站点说明文档用 `*-zh-hant.md`（按文件自动发现）。`localizedField()` / `labelFrom()` 只按字段链取值，不调用 opencc。
+- **其余繁体文案一律是"写出来的"，不是转出来的**：界面字符串在 `locales/zh-hant.js`；导航 / 页面标题用 `option_zh_hant` / `title_zh_hant`；站点名用 `desc_zh_hant`；站点说明文档用 `markdown/zh-hant/<page>.md`（按目录自动发现）。`localizedField()` / `labelFrom()` 只按字段链取值，不调用 opencc。
 - **转换不能动身份字段**：`verKey`、`id`、`authorZh` 全部保留原文。版本选择、深链、作者文件夹 URL（`NxDetail.authorFolderHref` 用 `authorZh`）因此不受影响；只有 `label` / `displayLabel` / `author` 等显示字段被转换。
 - **搜索兼容两种字形（仅 MF 目录）**：`records.js` 的 `searchValues()` 把 MF 记录的 `titleSearch` / `authorSearch` 原始值**保留**，并在繁中界面**追加** opencc 转换后的条目。因此繁中用户输入「超級馬里奧」「測試作者」能命中简体原文的作品，简体关键词也照常可用；其它语言 `localizeText()` 是恒等函数，数组不新增条目、也不加载字典。MW / Assets / Softendo 的搜索索引与页面都不涉及 opencc——它们的数据没有繁简差异，无需加载字典。
 - **下载按钮文案走 i18n，不走 opencc**：Assets 的 File Hub 按钮把 `tr(lan, "download.filehub")` 作为名称覆盖传给 `getAssetResourceURLs()`，繁中得到 `社群資源網站`（简体 `社区资源站`、英文 `Community File Hub`），字典未加载时也正确。
@@ -267,14 +267,14 @@ src/pages/<entry>/main.js
 - 只在简体中文出现的文案（如详情抽屉的「游玩说明」`detail.playNotes.*`）：`te()` 会顺着回退链在繁中命中简体文案，所以**不能只用 `te()`**。判定要与「界面读的是简体原文」绑定，见 `NxDetail.vue` 的 `hasPlayNotes`（`dataLangOf === "zh" && !localeNeedsConversion`），繁中与其它语言一律隐藏。
 - 取数据字段：`localizedField(entry, "homepage", locale)`（自动按 `fields` 回退），或 `labelFrom({ zh, en }, locale)` 取小字典。
 - 站点自产的中文标签：`localizeText(text, locale)`（`zh-Hant` 转繁体，其它语言原样返回）。
-- Markdown 说明正文：按 locale 选择已经写好该文件（`*-zh-hant.md` 等），没有对应文件时回退到简体 / 英文；**不要**在渲染后遍历 DOM 做机器转换。
-- 目录页的「目录说明」也按 locale 选文案：所有文档页统一用 `discoverDocs()` 自动发现 `<page>-<locale>.md`（`zh` → `zh-Hans`、`zh-hant` → `zh-Hant`），`pickDoc()` 在没有对应文件时回退到同书写语言的文档。现在首页、MF 作品、Softendo、关于页有四种语言，MW 关卡与创作资源只有简体，引擎页与 MW 资源页有英文 / 波兰文。
-- 首页说明是逐语言的四份独立文件：`mf-zh.md` / `mf-zh-hant.md` / `mf-en.md` / `mf-pl.md`，由 `pickDoc()` 以 `locale.code` 精确选中；MW 资源页有 `mw-en.md` / `mw-pl.md` / `mw-zh-hant.md`，引擎页有 `engines-en.md` / `engines-pl.md` / `engines-zh-hant.md`，其它目录页仍只有 zh/en，按内容语言回退即可。`getMfDocLastUpdated()` / `getMwDocLastUpdated()` / `getEngineDocLastUpdated()` 按各自文档分别查询（键为 locale code，含 `zh-Hant`），页面把对应日期传给文档**实际声明**的 prop 名（首页繁中用 `lastUpdateZh`、首页波兰文用 `lastUpdateEn`；MW 与引擎的三份都用 `lastUpdate`）；某语言没有提交日期就隐藏该行，不借用其它语言的日期，也不要反过来改文档文件。
-- 关于页的署名是**人工映射**，不是 opencc：`AboutNext.vue` 的 `ZH_HANT_NAMES` 按 `src/markdown/mf-games-zh-hant.md` 里的用户名写法（如「超級瑪莉迷01」「無視我233」「ChloePrime」）给出繁体显示名。新增贡献者时先在两份语言名单里都写好，再按需补映射。
-- **「最后更新」统一由页面提供**：所有文档 md 只声明 `lastUpdate*` prop 并渲染 `.last-update` 行，不在 md 里发 GitHub API 请求。旧版 `Engines.vue` 与其它旧版文档页一样在页面内取 `engines-en.md` 的提交时间再传给 `<introEn :lastUpdate="…" />`（旧版没有波兰语，仍只用英文文档）。
+- Markdown 说明正文：按 locale 选择已经写好该文件（`markdown/<locale>/<page>.md`），没有对应文件时回退到简体 / 英文；**不要**在渲染后遍历 DOM 做机器转换。
+- **目录页的「目录说明」统一放在 `src/markdown/<locale>/<page>.md`**：目录名即 locale（`zh-hans` / `zh-hant` / `en` / `pl`），文件名是页面 id（`mf-index.md`、`mw-index.md`、`mf-games.md`、`engines.md`、`softendo.md`、`mw-levels.md`、`assets.md`）。`discoverDocs()` 从 glob 结果的父目录解析语言，`pickDoc()` 在没有对应文件时回退到同书写语言的文档。
+- 各页文档现状：首页 `markdown/{zh-hans,zh-hant,en,pl}/mf-index.md`；MW 资源页 `{zh-hant,en,pl}/mw-index.md`；引擎页 `{zh-hant,en,pl}/engines.md`；MF 作品 `{zh-hans,zh-hant,en,pl}/mf-games.md`；Softendo 四份；MW 关卡 `zh-hans/mw-levels.md`、创作资源 `zh-hans/assets.md`。`getMfDocLastUpdated()` / `getMwDocLastUpdated()` / `getEngineDocLastUpdated()` 按各自文档分别查询（键为 locale code，含 `zh-Hant`），页面把对应日期传给文档**实际声明**的 prop 名（首页繁中用 `lastUpdateZh`、首页波兰文用 `lastUpdateEn`；MW 与引擎的三份都用 `lastUpdate`）；某语言没有提交日期就隐藏该行，不借用其它语言的日期，也不要反过来改文档文件。旧版页面里的提交路径同样使用 URL 编码的新路径（`src%2Fmarkdown%2F…`）。
+- 关于页的署名是**人工映射**，不是 opencc：`AboutNext.vue` 的 `ZH_HANT_NAMES` 按 `src/markdown/zh-hant/mf-games.md` 里的用户名写法（如「超級瑪莉迷01」「無視我233」「ChloePrime」）给出繁体显示名。新增贡献者时先在两份语言名单里都写好，再按需补映射。
+- **「最后更新」统一由页面提供**：所有文档 md 只声明 `lastUpdate*` prop 并渲染 `.last-update` 行，不在 md 里发 GitHub API 请求。旧版 `Engines.vue` 与其它旧版文档页一样在页面内取 `markdown/en/engines.md` 的提交时间再传给 `<introEn :lastUpdate="…" />`（旧版没有波兰语，仍只用英文文档）。
 - 链接 alt 规则：`prefersAltLinks(locale)`（中文 → 主链接优先，其它语言 → `_alt` 优先）。
 - 页面：`pageLocale(pageId)` 给出该页面能呈现的 locale（单语言页面会自动落到对应语言的默认 locale），随后 `watchEffect` 里 `publishShell({ locale })` 发布给外壳；语言菜单的切换回调是 `publishShellHandlers({ changeLocale })`，页面在其中调用 `applyLocale(code)` 并重建记录。
-- **语言菜单完全由页面实际拥有的文案决定**：每个文档页用 `src/util/next/docFiles.js` 的 `discoverDocs(import.meta.glob(".../<page>-*.md", { eager: true, import: "default" }), "<page>")` 得到 `{ localeCode: 组件 }`，把 `Object.keys(docs)` 作为 `locales` 发布到外壳；"关于页"没有 md，发布全部注册语言。`NxShell` 只在 `locales.length > 1` 时显示菜单——MW 关卡 / 创作资源只有 `assets.md` / `mw-levels-zh.md`（即只有简体），菜单隐藏；引擎页与 MW 资源页目前是 `en` / `pl`；首页、MF 作品、Softendo、关于页是四种语言。**新增 `<page>-<locale>.md` 即自动出现在页面与菜单里，无需改任何逻辑**；`localeForLocales()` 负责把访客的语言落到实际存在的文案上（精确匹配 → 同书写语言 → 基础语言回退）。
+- **语言菜单完全由页面实际拥有的文案决定**：每个文档页用 `src/util/next/docFiles.js` 的 `discoverDocs(import.meta.glob(".../markdown/*/<page>.md", { eager: true, import: "default" }))` 得到 `{ localeCode: 组件 }`，把 `Object.keys(docs)` 作为 `locales` 发布到外壳；"关于页"没有 md，发布全部注册语言。`NxShell` 只在 `locales.length > 1` 时显示菜单——MW 关卡 / 创作资源只有简体，菜单隐藏；引擎页与 MW 资源页目前是 `en` / `pl` / `zh-Hant`；首页、MF 作品、Softendo、关于页是四种语言。**在某个语言目录里新增 `<page>.md` 即自动出现在页面与菜单里，无需改任何逻辑**；`localeForLocales()` 负责把访客的语言落到实际存在的文案上（精确匹配 → 同书写语言 → 基础语言回退）。
 - 外壳的 `displayLocale` 以页面发布的 `locale` 为准（只有尚未发布时才回退到 `pageLocale()`）；因此页面切换语言后，繁体文案、导航显隐与文档选择不会互相打架。菜单可见时页面必须注册 `publishShellHandlers({ changeLocale })`，否则点击只会关闭菜单。
 - 菜单选项按**规范语言代号**排序（`en` → `pl` → `zh-Hans` → `zh-Hant`），不按语言全称或浏览器 collation 排序；`NxShell` 的 `byLocaleCode` 负责这一点。
 - 品牌图按**界面语言**而非内容语言选择：只有简体中文用中文 logo（左栏 `logo_new.png`、占位图 `logo_hd.png`），繁中与英文 / 波兰语统一用 `logo2_hd.png`（MW 记录仍用 `marioworker.png`）。旧版 HeaderNav 没有繁中，保持原样。

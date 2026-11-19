@@ -107,7 +107,7 @@ export function pageTitleFor(entry, code) {
 export function pickDoc(code, docs) {
   const info = localeInfo(code);
   // A page may ship a document written specifically for one locale — the home
-  // page has mf-zh-hant.md and mf-pl.md alongside the shared zh/en pair. Pages
+  // page has markdown/zh-hant/mf-index.md and markdown/pl/mf-index.md alongside the shared zh/en pair. Pages
   // with only two documents keep working via the content-language fallback.
   // The keys are canonical (`zh-Hans`, not `zh`), so the written-language
   // fallback is spelled out rather than looked up by `info.data`.

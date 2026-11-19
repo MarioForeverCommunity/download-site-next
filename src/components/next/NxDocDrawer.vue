@@ -1,7 +1,7 @@
 <script setup>
 // Catalog description drawer.
 //
-// Each catalog page has a markdown write-up (mf-games-zh.md, mw-levels-zh.md, …)
+// Each catalog page has a markdown write-up (markdown/zh-hans/mf-games.md, markdown/zh-hans/mw-levels.md, …)
 // that the legacy design printed above the table. On the redesigned pages it is
 // opened from an icon in the topbar instead, so the catalog itself starts at the
 // first row and a long introduction never pushes the table down.

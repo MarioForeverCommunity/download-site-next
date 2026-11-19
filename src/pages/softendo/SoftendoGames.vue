@@ -22,8 +22,8 @@ import FullscreenModal from "../../components/FullscreenModal.vue";
 import { disableScroll, enableScroll } from "../../util/ScrollLock.js";
 import { useBackGuard } from "../../util/useBackGuard.js";
 import { getTagColor, getTagLabel, matchTagStates, nextTagState } from "../../util/TagUtil.js";
-import softendoZh from '../../markdown/softendo-zh.md'
-import softendoEn from '../../markdown/softendo-en.md'
+import softendoZh from '../../markdown/zh-hans/softendo.md'
+import softendoEn from '../../markdown/en/softendo.md'
 
 const lan = ref(getLanguage());
 

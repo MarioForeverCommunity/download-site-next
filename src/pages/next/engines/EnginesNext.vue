@@ -10,9 +10,9 @@ import { localeForLocales, pageTitleFor, pickDoc } from "../../../util/next/page
 import { discoverDocs } from "../../../util/next/docFiles.js";
 
 // Any `engines-<locale>.md` file is picked up: no locale list lives in this page.
-const docs = discoverDocs(import.meta.glob("../../../markdown/engines-*.md", {
+const docs = discoverDocs(import.meta.glob("../../../markdown/*/engines.md", {
   eager: true, import: "default",
-}), "engines");
+}));
 const locales = Object.keys(docs);
 
 const pageId = "engines";

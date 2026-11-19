@@ -1,8 +1,8 @@
 <script setup>
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-  import DownloadButton from "../components/ButtonDownload.vue"
-  import OriginalMfTable from '../components/DesignMfTable.vue'
-  import NxGallery from '../components/next/NxGallery.vue'
+  import DownloadButton from "../../components/ButtonDownload.vue"
+  import OriginalMfTable from '../../components/DesignMfTable.vue'
+  import NxGallery from '../../components/next/NxGallery.vue'
 
   defineProps({
     lastUpdateZh: String

@@ -22,9 +22,9 @@ import { discoverDocs } from "../../../util/next/docFiles.js";
 
 // Optional per-locale write-ups: adding `mf-games-<locale>.md` is enough for that
 // language to get its own document and its own entry in the language menu.
-const docs = discoverDocs(import.meta.glob("../../../markdown/mf-games-*.md", {
+const docs = discoverDocs(import.meta.glob("../../../markdown/*/mf-games.md", {
   eager: true, import: "default",
-}), "mf-games");
+}));
 const locales = Object.keys(docs);
 
 const pageId = "mf-games";
@@ -126,6 +126,7 @@ const sorters = [
 const catalog = useCatalog({
   records,
   titleFields: ["titleSearch"],
+  exactFields: ["fileSearch"],
   authorFields: ["authorSearch"],
   facets: () => facets.value,
   sorters,

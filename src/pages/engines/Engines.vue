@@ -3,7 +3,7 @@ import { ref, getCurrentInstance } from 'vue'
 import axios from 'axios'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
-import introEn from '../../markdown/engines-en.md'
+import introEn from '../../markdown/en/engines.md'
 import { navTop, setPageTitle } from "../../config.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
@@ -25,7 +25,7 @@ const titleEn = navTop.find(item => item.id === pageId).title_alt
 setPageTitle(titleEn, "en")
 
 // Same "Last updated" contract as the other documentation pages: the legacy
-// design only has this English write-up, so it tracks engines-en.md.
+// design only has this English write-up, so it tracks markdown/en/engines.md.
 const lastUpdate = ref(null)
 const mdUpdateDate = ref(null)
 
@@ -40,7 +40,7 @@ const formatDate = (date) => {
 }
 
 axios
-  .get('https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?page=1&per_page=1&path=src%2Fmarkdown%2Fengines-en.md')
+  .get('https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?page=1&per_page=1&path=src%2Fmarkdown%2Fen%2Fengines.md')
   .then((response) => {
     mdUpdateDate.value = response.data[0] && response.data[0].commit.committer.date
     if (mdUpdateDate.value) lastUpdate.value = formatDate(new Date(mdUpdateDate.value))

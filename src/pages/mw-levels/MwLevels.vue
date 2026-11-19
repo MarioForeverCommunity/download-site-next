@@ -11,7 +11,7 @@ import GameLineHeader from '../../components/GameLineHeader.vue';
 import PageBar from '../../components/PageBar.vue';
 import { usePagination } from '../../util/usePagination.js';
 import Icon from "../../components/icons/Icon.vue";
-import introZh from '../../markdown/mw-levels-zh.md';
+import introZh from '../../markdown/zh-hans/mw-levels.md';
 import { getAuthor, getDownloadLink, getDownloadDesc, getDownloadCode, getName, getVideoDesc, filterList, getStrFromList, processFileNamesWithVolumes, getDownloadInfo, getCodeLabel, getMwLevelFileUrl, getSmwpUrl, getSmwpDataUrl, toResourceDirectUrl } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
 import { fuzzyMatch, normalizedIncludes } from "../../util/SearchUtil.js"
@@ -596,7 +596,7 @@ const fetchYamlUpdate = () => {
 };
 
 const fetchMdUpdate = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmw-levels-zh.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fzh-hans%2Fmw-levels.md&page=1&per_page=1").then((response) => {
     mdUpdateDate.value = response.data[0].commit.committer.date;
   });
 };

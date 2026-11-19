@@ -1,7 +1,7 @@
 <script setup>
 // Mario Forever resource index — redesigned.
 //
-// Prose is the same markdown the legacy page renders (mf-zh.md / mf-en.md), so
+// Prose is the same markdown the legacy page renders (markdown/zh-hans/mf-index.md / markdown/en/mf-index.md), so
 // wording never forks between designs. The container is full-width; only the
 // text measure is capped, which lets the embedded record cards and carousels use
 // the whole canvas.
@@ -16,9 +16,9 @@ import { discoverDocs } from "../../../util/next/docFiles.js";
 
 // Any `mf-<locale>.md` file is picked up automatically; adding a language needs
 // no page or shell change.
-const docs = discoverDocs(import.meta.glob("../../../markdown/mf-*.md", {
+const docs = discoverDocs(import.meta.glob("../../../markdown/*/mf-index.md", {
   eager: true, import: "default",
-}), "mf");
+}));
 const locales = Object.keys(docs);
 
 const pageId = "index";
@@ -28,7 +28,7 @@ const locale = ref(localeForLocales(getLocale(), locales));
 
 const title = computed(() => pageTitleFor(pageEntry, locale.value));
 
-// `pickDoc` prefers the exact locale (mf-zh-hant.md / mf-pl.md) and falls back to
+// `pickDoc` prefers the exact locale (markdown/zh-hant/mf-index.md / markdown/pl/mf-index.md) and falls back to
 // the written language for locales without their own document.
 const doc = computed(() => pickDoc(locale.value, docs));
 

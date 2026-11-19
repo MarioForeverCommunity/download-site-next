@@ -85,10 +85,10 @@ async function newestOf(paths) {
 export async function getMfDocLastUpdated() {
   const [data, zh, zhHant, en, pl] = await Promise.all([
     fetchCommitDate("public/data/list-original-mf.yaml"),
-    fetchCommitDate("src/markdown/mf-zh.md"),
-    fetchCommitDate("src/markdown/mf-zh-hant.md"),
-    fetchCommitDate("src/markdown/mf-en.md"),
-    fetchCommitDate("src/markdown/mf-pl.md"),
+    fetchCommitDate("src/markdown/zh-hans/mf-index.md"),
+    fetchCommitDate("src/markdown/zh-hant/mf-index.md"),
+    fetchCommitDate("src/markdown/en/mf-index.md"),
+    fetchCommitDate("src/markdown/pl/mf-index.md"),
   ]);
   return {
     zh: newest([data, zh]),
@@ -103,9 +103,9 @@ export async function getMfDocLastUpdated() {
 // document). No cross-language fallback: a missing stamp hides the line.
 export async function getMwDocLastUpdated() {
   const [en, pl, zhHant] = await Promise.all([
-    fetchCommitDate("src/markdown/mw-en.md"),
-    fetchCommitDate("src/markdown/mw-pl.md"),
-    fetchCommitDate("src/markdown/mw-zh-hant.md"),
+    fetchCommitDate("src/markdown/en/mw-index.md"),
+    fetchCommitDate("src/markdown/pl/mw-index.md"),
+    fetchCommitDate("src/markdown/zh-hant/mw-index.md"),
   ]);
   return { en: newest([en]), pl: newest([pl]), "zh-Hant": newest([zhHant]) };
 }
@@ -113,9 +113,9 @@ export async function getMwDocLastUpdated() {
 // Same for the engines write-ups. The legacy design only uses `en`.
 export async function getEngineDocLastUpdated() {
   const [en, pl, zhHant] = await Promise.all([
-    fetchCommitDate("src/markdown/engines-en.md"),
-    fetchCommitDate("src/markdown/engines-pl.md"),
-    fetchCommitDate("src/markdown/engines-zh-hant.md"),
+    fetchCommitDate("src/markdown/en/engines.md"),
+    fetchCommitDate("src/markdown/pl/engines.md"),
+    fetchCommitDate("src/markdown/zh-hant/engines.md"),
   ]);
   return { en: newest([en]), pl: newest([pl]), "zh-Hant": newest([zhHant]) };
 }

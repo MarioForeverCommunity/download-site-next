@@ -48,7 +48,7 @@ URL 参数可直接指定，写入浏览器本地存储（`design` 键）后不�
 
 - **底色区分**：左导航 `#f5f4f1`、筛选面板 `#faf9f7`、主区域纯白。
 - **顶栏**：页面标题 + 双搜索 + 动作区，整条 sticky。动作区顺序为说明（页面有文档时）→ 语言 → 深色模式 → 全局设置（四点图标）。折叠菜单按钮仅在移动端出现。
-- **语言菜单**：选项由页面实际拥有的 Markdown 文件决定：`util/next/docFiles.js` 的 `discoverDocs()` 用 `import.meta.glob` 收集 `<page>-<locale>.md`，页面把语言码发布到外壳，**只有一个语言时菜单隐藏**。因此 MW 关卡 / 创作资源只有简体（不显示菜单），引擎页与 MW 资源页目前是 English / Polski / 繁體中文，其余文档页是四种语言；以后新增 `<page>-<locale>.md` 即自动出现在页面和菜单里，无需改逻辑。菜单按语言代号排序（`en` → `pl` → `zh-Hans` → `zh-Hant`），不按语言全称。繁体中文的界面文案、站点名与站点说明正文都由 `*_zh_hant` 字段 / `*-zh-hant.md` 提供；`opencc-js` 用于更新履历、MF 作品标题 / 作者名 / 版本号显示文字 / 描述（YAML 与作品级 Markdown）、Assets 的作品名 / 描述 / 作者名 / 变体名 / 版本号（按需加载），身份字段（`verKey`、作者文件夹 URL）保持原文；Assets 下载按钮的「社群資源網站」来自 i18n 而非转换器；仅 MF 目录的搜索索引在繁中下追加繁体变体（原简体值保留，两种字形都可搜），其它目录既不转换也不加载字典。
+- **语言菜单**：选项由页面实际拥有的 Markdown 文件决定：说明文档统一放在 `src/markdown/<locale>/<page>.md`（目录名即 locale），`util/next/docFiles.js` 的 `discoverDocs()` 用 `import.meta.glob("markdown/*/<page>.md")` 按目录收集语言，页面把语言码发布到外壳，**只有一个语言时菜单隐藏**。因此 MW 关卡 / 创作资源只有简体（不显示菜单），引擎页与 MW 资源页目前是 English / Polski / 繁體中文，其余文档页是四种语言；以后在某个语言目录里新增 `<page>.md` 即自动出现在页面和菜单里，无需改逻辑。菜单按语言代号排序（`en` → `pl` → `zh-Hans` → `zh-Hant`），不按语言全称。繁体中文的界面文案、站点名与站点说明正文都由 `*_zh_hant` 字段 / `markdown/zh-hant/<page>.md` 提供；`opencc-js` 用于更新履历、MF 作品标题 / 作者名 / 版本号显示文字 / 描述（YAML 与作品级 Markdown）、Assets 的作品名 / 描述 / 作者名 / 变体名 / 版本号（按需加载），身份字段（`verKey`、作者文件夹 URL）保持原文；Assets 下载按钮的「社群資源網站」来自 i18n 而非转换器；仅 MF 目录的搜索索引在繁中下追加繁体变体（原简体值保留，两种字形都可搜），其它目录既不转换也不加载字典。
 - **左栏**：目录、站外链接，以及页脚（更新履历、源码、状态、版本号、构建时间与提交）。条目的显隐由 `config.js` 的 `show_zh` / `show_en` / `show_new` / `show_zh_hant` 控制（规则见 `util/next/entryVisibility.js`）；繁中界面的站内目录与英文 / 波兰语显示同一组页面，站外链接仍按中文规则显示（并隐去 `show_zh_hant: false` 的大陆专属入口），标签可逐语言用 `name_zh_hant_new` 覆盖。桌面端 244px，861–1024px 收为 208px；移动端收缩为菜单按钮展开的抽屉，点击栏外自动收回。
 - **双搜索**：第一个匹配标题 / 别名 / 文件名，第二个只匹配作者，互不干扰。Softendo 目录没有真实作者，隐藏第二个搜索框（`showAuthorSearch: false`）。
 - **筛选常驻**：地区、平台 / 制作软件、MW 版本等均为**多选**（同一组内为「或」关系）；MW 版本以胶囊形式呈现。
@@ -86,7 +86,7 @@ src/util/next/shellStore.js      页面 → 外壳的配置发布（标题 / 语
 src/util/next/records.js         统一记录模型（与旧版页面、API 脚本规则一致）
 src/util/next/useNamedRecord.js  文档页按名称解析单条记录
 src/util/next/docComponents.js   Markdown 条目组件 → 新版预览组件的映射
-src/util/next/docFiles.js        按文件名自动发现各语言 Markdown（<page>-<locale>.md）
+src/util/next/docFiles.js        按目录自动发现各语言 Markdown（markdown/<locale>/<page>.md）
 src/util/next/docUpdated.js      运行时查询 GitHub commits API 的「最后更新」
 src/util/next/scrollLock.js      共享滚动锁（保留文档滚动容器）
 src/util/next/backGuard.js       Android 返回键先关闭抽屉（history 哨兵）
@@ -123,7 +123,7 @@ src/pages/next/<page>/           8 个页面的新版实现（只渲染内容，
 
 - **旧版文件只做最小改动**：全局设置新增一行、页脚/changelog 原样保留；旧版不加载路由，仍是每页真实跳转。
 - **两套 CSS 隔离**：`dark-mode.css` 仅在 legacy 启动路径动态加载；新版样式全部限定在 `.nx-*` 或 `[data-nx-theme]` 之下。
-- **Markdown 是文案唯一来源**：`mf-zh.md` / `mf-en.md` 仅把版本表换成设计感知的 `DesignMfTable`，条目组件由 `docComponents.js` 映射到新版预览。
+- **Markdown 是文案唯一来源**：`markdown/<locale>/mf-index.md` 仅把版本表换成设计感知的 `DesignMfTable`，条目组件由 `docComponents.js` 映射到新版预览。
 - **字体只用 Inter**（旧版已随 `assets/fonts.css` 加载），不再引入任何新字体；小号数字用 tabular-nums 而非等宽字体。
 - **图标统一走 Font Awesome**：名称在 `iconMap.js` 登记，旧版 `<Icon>`、新版 `<NxIcon>` 渲染。`fa.js` 关闭了 FA 自动 CSS，因此尺寸与 `overflow: visible` 必须由组件自身保证；不要新增单图标组件、内联 `<svg>` 或 emoji 图标。
 - **hover 不加下划线**：界面内链接靠颜色与背景区分，正文链接同样默认无下划线，仅 hover 时出现。

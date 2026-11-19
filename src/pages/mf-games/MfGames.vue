@@ -12,8 +12,8 @@ import PageBar from '../../components/PageBar.vue';
 import { usePagination } from '../../util/usePagination.js';
 import { getAuthor, getName, getAuthorList } from "../../util/GameUtil.js";
 import { parseVer } from "../../util/Misc.js";
-import introZh from '../../markdown/mf-games-zh.md';
-import introEn from '../../markdown/mf-games-en.md';
+import introZh from '../../markdown/zh-hans/mf-games.md';
+import introEn from '../../markdown/en/mf-games.md';
 import Icon from "../../components/icons/Icon.vue";
 import { getVideoDesc, getResourceURL, filterList, getDataResourceURL, getStrFromList, getDownloadEntries, getDownloadInfo, getCodeLabel, getMfFileUrl, toResourceDirectUrl, detectPlatform } from "../../util/GameUtil.js"
 import { getUseDirectLink, getDefaultSort } from "../../util/Language.js"
@@ -853,13 +853,13 @@ const fetchYamlUpdate = () => {
 };
 
 const fetchMdUpdateZh = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-games-zh.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fzh-hans%2Fmf-games.md&page=1&per_page=1").then((response) => {
     mdUpdateDateZh.value = response.data[0].commit.committer.date;
   });
 };
 
 const fetchMdUpdateEn = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmf-games-en.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fen%2Fmf-games.md&page=1&per_page=1").then((response) => {
     mdUpdateDateEn.value = response.data[0].commit.committer.date;
   });
 };

@@ -12,9 +12,9 @@ import { discoverDocs } from "../../../util/next/docFiles.js";
 // `mw-<locale>.md` files define this page's languages. `mw-levels-*.md` does not
 // match the `<locale>` shape and is ignored. Adding e.g. mw-zh-hant.md later needs
 // no change here — it immediately becomes a document and a language-menu option.
-const docs = discoverDocs(import.meta.glob("../../../markdown/mw-*.md", {
+const docs = discoverDocs(import.meta.glob("../../../markdown/*/mw-index.md", {
   eager: true, import: "default",
-}), "mw");
+}));
 const locales = Object.keys(docs);
 
 const pageId = "mario-worker";
@@ -27,8 +27,8 @@ const title = computed(() => pageTitleFor(pageEntry, locale.value));
 const doc = computed(() => pickDoc(locale.value, docs));
 
 // Each write-up has its own "last updated" stamp; both documents use `lastUpdate`.
-// No cross-language fallback: if mw-pl.md has no commit date yet, the Polish page
-// simply hides the line instead of showing mw-en.md's date under a Polish heading.
+// No cross-language fallback: if markdown/pl/mw-index.md has no commit date yet, the Polish page
+// simply hides the line instead of showing markdown/en/mw-index.md's date under a Polish heading.
 const lastUpdate = ref({ en: null, pl: null, "zh-Hant": null });
 getMwDocLastUpdated().then((value) => { lastUpdate.value = value; });
 const lastUpdateValue = computed(() => lastUpdate.value[locale.value] || null);

@@ -20,9 +20,9 @@ import { discoverDocs } from "../../../util/next/docFiles.js";
 
 // `assets.md` is the Simplified original; adding `assets-<locale>.md` later adds
 // that language automatically, including its menu option.
-const docs = discoverDocs(import.meta.glob("../../../markdown/assets*.md", {
+const docs = discoverDocs(import.meta.glob("../../../markdown/*/assets.md", {
   eager: true, import: "default",
-}), "assets");
+}));
 const locales = Object.keys(docs);
 
 const pageId = "assets";
@@ -81,6 +81,7 @@ const sorters = [
 const catalog = useCatalog({
   records: rawRecords,
   titleFields: ["titleSearch"],
+  exactFields: ["fileSearch"],
   authorFields: ["authorSearch"],
   facets: () => facets.value,
   sorters,

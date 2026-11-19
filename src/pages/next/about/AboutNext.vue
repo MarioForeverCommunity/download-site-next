@@ -62,7 +62,7 @@ const EN_THANKS = [
 ];
 
 // Traditional usernames are *authored*, not machine-converted: these spellings
-// come from the credits list in `src/markdown/mf-games-zh-hant.md` (notably
+// come from the credits list in `src/markdown/zh-hant/mf-games.md` (notably
 // 「超級瑪莉迷01」 and 「ChloePrime」, which opencc would not produce).
 const ZH_HANT_NAMES = {
   "无视我233": "無視我233",

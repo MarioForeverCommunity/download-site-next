@@ -3,7 +3,7 @@ import { ref, getCurrentInstance } from 'vue'
 import axios from 'axios'
 import DownloadHeader from '../../components/HeaderNav.vue'
 import { getLanguage, setLanguageZh, setLanguageEn } from "../../util/Language.js"
-import introEn from '../../markdown/mw-en.md'
+import introEn from '../../markdown/en/mw-index.md'
 import { navTop, setPageTitle } from "../../config.js"
 import ButtonBackToTop from '../../components/ButtonBackToTop.vue'
 import ButtonDarkMode from '../../components/ButtonDarkMode.vue'
@@ -53,7 +53,7 @@ const updateLastUpdate = () => {
 }
 
 const fetchMdUpdate = () => {
-  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fmw-en.md&page=1&per_page=1").then((response) => {
+  return axios.get("https://api.github.com/repos/MarioForeverCommunity/download-site-next/commits?path=src%2Fmarkdown%2Fen%2Fmw-index.md&page=1&per_page=1").then((response) => {
     mdUpdateDate.value = response.data[0].commit.committer.date
   })
 }

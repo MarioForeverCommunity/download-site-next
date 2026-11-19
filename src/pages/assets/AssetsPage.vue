@@ -20,7 +20,7 @@ import GlobalSettings from '../../components/GlobalSettings.vue';
 import { useFloating, flip, shift, offset, autoUpdate } from '@floating-ui/vue';
 import { readList } from "../../util/ReadList.js";
 import { parseVer } from "../../util/Misc.js";
-import introContent from '../../markdown/assets.md';
+import introContent from '../../markdown/zh-hans/assets.md';
 import { navTop, setPageTitle } from "../../config.js";
 import { disableScroll, enableScroll } from '../../util/ScrollLock.js';
 import { useBackGuard } from '../../util/useBackGuard.js';

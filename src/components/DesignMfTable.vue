@@ -1,7 +1,7 @@
 <script setup>
 // Design-aware wrapper for the original Mario Forever version table.
 //
-// The markdown documents (`mf-zh.md` / `mf-en.md`) are the single source of the
+// The markdown documents (`markdown/zh-hans/mf-index.md` / `markdown/en/mf-index.md`) are the single source of the
 // site's written content, so instead of forking them per design they import this
 // component, which renders the table in whichever design is active.
 //

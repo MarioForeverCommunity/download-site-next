@@ -1,6 +1,7 @@
 import { ref, computed, watch } from "vue";
 import { getDefaultSort, getDisplayMode, getPageSize, setDisplayModeCard, setDisplayModeLine } from "./Language.js";
 import { readPageParam, writePageParam } from "./PageParam.js";
+import { fuzzyMatch, normalizedIncludes } from "./SearchUtil.js";
 
 /**
  * Catalog state for the redesigned list pages.
@@ -8,8 +9,8 @@ import { readPageParam, writePageParam } from "./PageParam.js";
  * Every catalog page (fangames, MW levels, assets, Softendo) shares one
  * interaction model:
  *
- *  - two independent text searches: title (titles, aliases, filenames) and
- *    author;
+ *  - two independent text searches: title (titles and aliases, fuzzy with typo
+ *    tolerance, plus exact file-name matches) and author (fuzzy);
  *  - multi-select facets and a tri-state tag filter, rendered as an always-open
  *    secondary sidebar rather than hidden dropdowns. Facets are multi-select
  *    because narrowing a 600-record catalog is rarely a single choice — you
@@ -27,6 +28,10 @@ import { readPageParam, writePageParam } from "./PageParam.js";
 export function useCatalog({
   records,
   titleFields,
+  // Structured values (file names) that must match exactly after normalization:
+  // the legacy list pages deliberately keep them out of the typo fallback, so a
+  // typo cannot drag in an unrelated build.
+  exactFields = [],
   authorFields,
   facets = [],
   sorters = [],
@@ -273,22 +278,17 @@ export function useCatalog({
   }
 
   // ── search ─────────────────────────────────────────────────
-  // Same normalisation as the legacy site: upper-case, strip punctuation, so
-  // "phantomsmagoria" still finds "PHANTOM'SMAGORIA".
-  function normalizedContains(haystack, needle) {
-    const normalize = (s) => String(s).toUpperCase().replace(/[^\p{L}\p{N}]/gu, "");
-    const n = normalize(needle);
-    if (!n) return true;
-    return normalize(haystack).includes(n);
-  }
-
-  function fieldsMatch(record, fields, needle) {
+  // Free-text fields use the legacy fuzzy matcher (`SearchUtil.fuzzyMatch`):
+  // punctuation- and space-insensitive, with a small edit-distance tolerance for
+  // typos ("mamor" finds "Memory"). Structured fields use the strict normalized
+  // check, exactly like the legacy catalogs' file-name search.
+  function fieldsMatch(record, fields, needle, matcher = fuzzyMatch) {
     for (const getter of fields) {
       const value = typeof getter === "function" ? getter(record) : record[getter];
       if (value == null) continue;
       if (Array.isArray(value)) {
-        if (value.some((item) => item != null && normalizedContains(item, needle))) return true;
-      } else if (normalizedContains(value, needle)) {
+        if (value.some((item) => item != null && matcher(item, needle))) return true;
+      } else if (matcher(value, needle)) {
         return true;
       }
     }
@@ -308,7 +308,9 @@ export function useCatalog({
     const activeFacetDefs = facetDefs.value.filter((f) => (facetValues.value[f.key] || []).length > 0);
 
     let list = records.value.filter((record) => {
-      if (titleNeedle && !fieldsMatch(record, titleFields, titleNeedle)) return false;
+      if (titleNeedle
+        && !fieldsMatch(record, titleFields, titleNeedle)
+        && !fieldsMatch(record, exactFields, titleNeedle, normalizedIncludes)) return false;
       if (authorNeedle && !fieldsMatch(record, authorFields, authorNeedle)) return false;
       for (const facet of activeFacetDefs) {
         // Within one facet the selected values are OR-ed: "Windows or Linux".

@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-  import NxGallery from '../components/next/NxGallery.vue'
+  import NxGallery from '../../components/next/NxGallery.vue'
 
   defineProps({
       lastUpdate: String
