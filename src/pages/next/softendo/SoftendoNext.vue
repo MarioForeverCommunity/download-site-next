@@ -8,7 +8,7 @@ import { navTop, setPageTitle } from "../../../config.js";
 import { readList } from "../../../util/ReadList.js";
 import { loadImageIndex } from "../../../util/ImageUtil.js";
 import { useCatalog } from "../../../util/useCatalog.js";
-import { buildSoftendoRecords, makeFacet, softwareLabel } from "../../../util/next/records.js";
+import { buildSoftendoRecords, makeFacet, softendoSoftwareLabel } from "../../../util/next/records.js";
 import { normalizeSoftendoList } from "../../../util/SoftendoUtil.js";
 import { getCatalogLastUpdated } from "../../../util/next/docUpdated.js";
 import { publishShell, publishShellHandlers } from "../../../util/next/shellStore.js";
@@ -66,7 +66,7 @@ const facets = computed(() => {
         records: list,
         list: ["flash", "mmf", "gamemaker", "other"].map((value) => ({
           value,
-          label: softwareLabel(value, locale.value),
+          label: softendoSoftwareLabel(value, locale.value),
         })),
       },
     }),

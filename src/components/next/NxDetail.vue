@@ -10,7 +10,7 @@ import axios from "axios";
 import MarkdownIt from "markdown-it";
 import NxIcon from "./NxIcon.vue";
 import NxGallery from "./NxGallery.vue";
-import { formatIsoDate, softwareLabel, sourceServiceName, tiebaArchiveUrl } from "../../util/next/records.js";
+import { formatIsoDate, softwareLabel, softendoSoftwareLabel, sourceServiceName, tiebaArchiveUrl } from "../../util/next/records.js";
 import { getTagPillColor } from "../../util/TagUtil.js";
 import { getFullTypeLabel } from "../../util/SoftendoUtil.js";
 import { getAuthorFolderURL } from "../../util/GameUtil.js";
@@ -334,7 +334,7 @@ const facts = computed(() => {
     const softwareValues = Array.isArray(record.software) ? record.software : record.software ? [record.software] : [];
     rows.push({
       label: t.madeWith,
-      value: softwareValues.map((item) => softwareLabel(item, props.locale)).join(", "),
+      value: softwareValues.map((item) => softendoSoftwareLabel(item, props.locale)).join(", "),
     });
     if (record.languageLabel) rows.push({ label: t.language, value: record.languageLabel });
     rows.push({ label: t.years, value: record.yearLabel });

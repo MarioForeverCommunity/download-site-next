@@ -145,6 +145,8 @@ export default {
     },
     software: {
       mmf: "Clickteam Fusion",
+      // Softendo titles predate the Clickteam Fusion rename and keep the older name.
+      softendoMmf: "Multimedia Fusion",
       godot: "Godot Engine",
       gamemaker: "GameMaker",
       flash: "Flash",

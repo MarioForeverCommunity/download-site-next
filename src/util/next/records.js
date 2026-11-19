@@ -93,6 +93,18 @@ export function softwareLabel(software, locale) {
 }
 
 /**
+ * Softendo titles predate the Clickteam Fusion rename, so that catalog keeps the
+ * older "Multimedia Fusion" name while MF fangames show "Clickteam Fusion".
+ *
+ * @param {string} software
+ * @param {string} locale - interface locale
+ */
+export function softendoSoftwareLabel(software, locale) {
+  if (software === "mmf") return tr(locale, "software.softendoMmf");
+  return softwareLabel(software, locale);
+}
+
+/**
  * Display name of an asset type slug (`engine`, `addon`, …).
  *
  * @param {string} type

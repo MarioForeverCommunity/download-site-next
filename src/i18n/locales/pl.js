@@ -131,6 +131,7 @@ export default {
     },
     software: {
       mmf: "Clickteam Fusion",
+      softendoMmf: "Multimedia Fusion",
       godot: "Godot Engine",
       gamemaker: "GameMaker",
       flash: "Flash",
