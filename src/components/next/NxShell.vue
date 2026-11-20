@@ -567,44 +567,46 @@ watch(showChangelog, (open) => {
 
         <div
           v-if="search"
-          class="nx-search"
+          class="nx-searches"
         >
-          <span class="nx-search-icon"><NxIcon name="search" :size="14" /></span>
-          <input
-            :value="titleQuery"
-            type="search"
-            :placeholder="t('shell.search')"
-            :aria-label="t('shell.search')"
-            @input="titleQuery = $event.target.value"
-          />
-          <button
-            v-if="titleQuery"
-            class="nx-search-clear"
-            type="button"
-            :aria-label="t('common.clear')"
-            @click="titleQuery = ''"
-          >×</button>
-        </div>
+          <div class="nx-search">
+            <span class="nx-search-icon"><NxIcon name="search" :size="14" /></span>
+            <input
+              :value="titleQuery"
+              type="search"
+              :placeholder="t('shell.search')"
+              :aria-label="t('shell.search')"
+              @input="titleQuery = $event.target.value"
+            />
+            <button
+              v-if="titleQuery"
+              class="nx-search-clear"
+              type="button"
+              :aria-label="t('common.clear')"
+              @click="titleQuery = ''"
+            >×</button>
+          </div>
 
-        <div
-          v-if="search && showAuthorSearch"
-          class="nx-search"
-        >
-          <span class="nx-search-icon"><NxIcon name="user" :size="14" /></span>
-          <input
-            :value="authorQuery"
-            type="search"
-            :placeholder="t('shell.searchAuthor')"
-            :aria-label="t('shell.searchAuthor')"
-            @input="authorQuery = $event.target.value"
-          />
-          <button
-            v-if="authorQuery"
-            class="nx-search-clear"
-            type="button"
-            :aria-label="t('common.clear')"
-            @click="authorQuery = ''"
-          >×</button>
+          <div
+            v-if="showAuthorSearch"
+            class="nx-search"
+          >
+            <span class="nx-search-icon"><NxIcon name="user" :size="14" /></span>
+            <input
+              :value="authorQuery"
+              type="search"
+              :placeholder="t('shell.searchAuthor')"
+              :aria-label="t('shell.searchAuthor')"
+              @input="authorQuery = $event.target.value"
+            />
+            <button
+              v-if="authorQuery"
+              class="nx-search-clear"
+              type="button"
+              :aria-label="t('common.clear')"
+              @click="authorQuery = ''"
+            >×</button>
+          </div>
         </div>
 
         <span class="nx-topbar-spacer" />

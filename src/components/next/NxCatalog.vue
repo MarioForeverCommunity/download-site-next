@@ -389,7 +389,7 @@ defineExpose({ randomRecord, open });
 
 <template>
   <div class="nx-content">
-    <!-- results bar: count, sorting, active filters, view + random -->
+    <!-- results bar: count, sorting, last updated, active filters, view + random -->
     <div class="nx-results-bar">
       <span
         class="nx-results-count"
@@ -441,56 +441,65 @@ defineExpose({ randomRecord, open });
       </div>
 
       <!-- Last updated for the catalog's data, so the stamp is visible without
-               opening the description drawer or reading the topbar. -->
-      <span
-        v-if="updated"
-        class="nx-results-updated nx-num"
-      >{{ text.lastUpdated }}{{ updated }}</span>
+           opening the description drawer or reading the topbar.
+           It travels with the action buttons: `display: contents` on desktop
+           puts the stamp right after the sort buttons (the pills follow it),
+           while the <=512px block turns the wrapper into one full-width row
+           with the stamp left-aligned beside the buttons. -->
+      <div
+        class="nx-results-tail"
+        :class="{ 'is-stampless': !updated }"
+      >
+        <span
+          v-if="updated"
+          class="nx-results-updated nx-num"
+        >{{ text.lastUpdated }}{{ updated }}</span>
 
-      <!-- random sits immediately left of the view switch, per review -->
-      <div class="nx-results-actions">
-        <!-- Phones only: opens the filter drawer. On desktop the pane is always
-             visible beside the results, so the button is hidden. -->
-        <button
-          type="button"
-          class="nx-icon-btn nx-filter-toggle"
-          :class="{ 'is-on': filtersOpen }"
-          :aria-expanded="filtersOpen"
-          :aria-label="text.filters"
-          :title="text.filters"
-          @click="toggleFilters()"
-        >
-          <NxIcon
-            name="filter"
-            :size="15"
-          />
-        </button>
-        <button
-          v-if="showRandom"
-          type="button"
-          class="nx-icon-btn"
-          :aria-label="text.random"
-          :title="text.random"
-          @click="randomRecord()"
-        >
-          <NxIcon
-            name="dice"
-            :size="15"
-          />
-        </button>
-        <button
-          v-if="showCards"
-          type="button"
-          class="nx-icon-btn"
-          :aria-label="catalog.view.value === 'cards' ? text.listView : text.cardView"
-          :title="catalog.view.value === 'cards' ? text.listView : text.cardView"
-          @click="catalog.toggleView()"
-        >
-          <NxIcon
-            :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
-            :size="14"
-          />
-        </button>
+        <!-- random sits immediately left of the view switch, per review -->
+        <div class="nx-results-actions">
+          <!-- Phones only: opens the filter drawer. On desktop the pane is always
+               visible beside the results, so the button is hidden. -->
+          <button
+            type="button"
+            class="nx-icon-btn nx-filter-toggle"
+            :class="{ 'is-on': filtersOpen }"
+            :aria-expanded="filtersOpen"
+            :aria-label="text.filters"
+            :title="text.filters"
+            @click="toggleFilters()"
+          >
+            <NxIcon
+              name="filter"
+              :size="15"
+            />
+          </button>
+          <button
+            v-if="showRandom"
+            type="button"
+            class="nx-icon-btn"
+            :aria-label="text.random"
+            :title="text.random"
+            @click="randomRecord()"
+          >
+            <NxIcon
+              name="dice"
+              :size="15"
+            />
+          </button>
+          <button
+            v-if="showCards"
+            type="button"
+            class="nx-icon-btn"
+            :aria-label="catalog.view.value === 'cards' ? text.listView : text.cardView"
+            :title="catalog.view.value === 'cards' ? text.listView : text.cardView"
+            @click="catalog.toggleView()"
+          >
+            <NxIcon
+              :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
+              :size="14"
+            />
+          </button>
+        </div>
       </div>
     </div>
 

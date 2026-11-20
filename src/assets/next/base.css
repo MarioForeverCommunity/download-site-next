@@ -558,12 +558,23 @@ body.nx-body select:focus-visible {
   }
 }
 
+/* Groups the two search fields. On desktop the wrapper is transparent
+   (display: contents) so both fields stay direct flex items of the topbar, as
+   before; on phones it becomes a full-width row of its own. */
+.nx-searches {
+  display: contents;
+}
+
 .nx-search {
   position: relative;
   display: flex;
   align-items: center;
-  flex: 1 1 0;
-  max-width: 340px;
+  /* Two shares of the free space against the spacer's one, so the empty band
+     before the action buttons is roughly half as wide as it used to be and the
+     fields use the room instead. The cap keeps the fields from eating a whole
+     ultrawide bar. Phones override both (see the 860px block). */
+  flex: 2 1 0;
+  max-width: 360px;
   min-width: 0;
 }
 
@@ -620,8 +631,15 @@ body.nx-body select:focus-visible {
   color: var(--nx-ink);
 }
 
+/* Leftover space between the search fields and the action buttons. Its width is
+   whatever the fields do not claim, so it is kept narrow by giving the fields a
+   larger share of the free space (see `.nx-search`) rather than by capping this
+   element — a cap would only hand the slack to the buttons and let them drift
+   away from the right edge. The floor stops the pair of fields from ever
+   touching the buttons on a tight desktop width. */
 .nx-topbar-spacer {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 24px;
 }
 
 .nx-actions {
@@ -1194,11 +1212,18 @@ body.nx-body select:focus-visible {
   min-height: 24px;
 }
 
-/* Catalog data stamp. Left-aligned with the sort buttons it sits beside: a
-   centred stamp floated in the middle of the bar with no relationship to
-   anything, and right-aligning it would compete with the view controls. */
+/* Catalog data stamp and the view controls travel together in one wrapper, so a
+   phone can put them on a single row. On desktop the wrapper generates no box:
+   its children become items of the results bar itself, and the `order` values
+   below seat the stamp right after the sort buttons with the pills to follow.
+   At 512px and below the wrapper becomes a full-width row instead. */
+.nx-results-tail {
+  display: contents;
+}
+
 .nx-results-updated {
   flex: 0 0 auto;
+  order: 2;
   font-size: 10.5px;
   color: var(--nx-faint);
   white-space: nowrap;
@@ -1246,6 +1271,8 @@ body.nx-body select:focus-visible {
   gap: 4px;
   flex-wrap: wrap;
   min-width: 0;
+  /* Right of the data stamp, left of the view controls. */
+  order: 3;
 }
 
 /* random + view switch, pushed to the far right of the results bar */
@@ -1255,6 +1282,7 @@ body.nx-body select:focus-visible {
   gap: 2px;
   margin-left: auto;
   flex: none;
+  order: 4;
 }
 
 .nx-filter-pill {
@@ -3527,11 +3555,11 @@ html .nx-doc .carousel .carousel__next {
 
 
   /* On a phone the bar wraps to two rows: title + action buttons, then the two
-     search fields. No line-break spacer is needed — each search field is sized
-     at half the row, so the pair can never share a line with the title and
-     actions and always wraps as a unit. (A spacer element would occupy a row of
-     its own and add two extra row gaps, which left a hollow band above the
-     dividing rule on pages that have no search fields at all.) */
+     search fields. The fields are grouped in `.nx-searches`, which claims the
+     whole second row, so the pair always stays on one line. (A spacer element
+     would occupy a row of its own and add two extra row gaps, which left a
+     hollow band above the dividing rule on pages that have no search fields at
+     all.) */
   /* The topbar stays pinned while the catalog scrolls, exactly like desktop:
      with two search rows and a long list, scrolling back up to reach a search
      field was the main cost of the phone layout. Its height is measured by the
@@ -3560,13 +3588,23 @@ html .nx-doc .carousel .carousel__next {
   }
 
   /* The two search fields share one row of their own, below the title and the
-     action buttons: each asks for half the row, so together they cannot fit
-     beside the title and actions and wrap as a pair. No break-spacer element is
-     used — it would occupy a row by itself and add two extra row gaps. */
-  .nx-search {
-    flex: 1 1 calc(50% - 3px);
-    max-width: none;
+     action buttons. The wrapper claims the full row and splits it between the
+     fields: letting each field ask for half the row instead let the first one
+     squeeze onto the title row on wider phones, pushing the second below it.
+     No break-spacer element is used — it would occupy a row by itself and add
+     two extra row gaps. */
+  .nx-searches {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 100%;
+    min-width: 0;
     order: 3;
+  }
+
+  .nx-searches .nx-search {
+    flex: 1 1 0;
+    max-width: none;
   }
 
   .nx-topbar-spacer {
@@ -3651,25 +3689,15 @@ html .nx-doc .carousel .carousel__next {
     z-index: 85;
   }
 
-  /* On a phone the bar sticks beneath the (taller, wrapped) topbar and its pills
-     own the second line. The offset is the measured topbar height, since the
-     topbar is two rows on catalogs and one row on doc pages. */
+  /* On a phone the bar sticks beneath the (taller, wrapped) topbar. Its items
+     still flow like the desktop bar; only the very narrow block below stacks
+     them. The offset is the measured topbar height, since the topbar is two rows
+     on catalogs and one row on doc pages. */
   .nx-results-bar {
     position: sticky;
     top: var(--nx-topbar-h, 0px);
     padding: 8px 12px;
     gap: 6px;
-  }
-
-  .nx-active-filters {
-    flex: 1 1 100%;
-    min-width: 0;
-    order: 2;
-  }
-
-  .nx-results-actions {
-    order: 3;
-    margin-left: auto;
   }
 
   .nx-pages {
@@ -3741,5 +3769,43 @@ html .nx-doc .carousel .carousel__next {
 
   .nx-masthead {
     font-size: 17px;
+  }
+}
+
+/* Really narrow bars. Above this width the bar flows exactly like the desktop
+   one — count, sort buttons, "last updated" stamp, pills, then the view controls
+   on the right, each wrapping only when it runs out of room. Here the two halves
+   are stacked instead: the pills take a line of their own and the wrapper that
+   desktop dissolves with `display: contents` becomes one full-width row, so the
+   stamp is left-aligned on the same line as the filter / random / view buttons. */
+@media (max-width: 512px) {
+  .nx-active-filters {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .nx-results-tail {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 100%;
+    min-width: 0;
+    order: 4;
+  }
+
+  /* Without a stamp there is nothing to align left on that row, so the buttons
+     keep their place on the count / sort line instead of claiming a row. */
+  .nx-results-tail.is-stampless {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .nx-results-updated {
+    /* May shrink and ellipsise: a long stamp must not push the three action
+       buttons onto a line of their own. */
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
