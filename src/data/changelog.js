@@ -5,6 +5,38 @@
 // - 条目仅收录站点本身的改动，不收录数据（data / list / yaml）更新记录
 export const changelog = [
   {
+    version: "3.0.0-rc.3",
+    date: "2026-11-20",
+    features: [
+      "旧版设计的各类弹框与窗口支持 Android 返回键：设置、更新履历、更新历史、详情窗口及其截图预览、下载 / 数据包 / 视频 / 贴吧 / SMWP 弹框、标签与类型筛选弹框都会先关闭，不再直接离开页面；详情窗口上的截图预览会逐层关闭",
+      "说明文档改为按语言分目录存放：`src/markdown/<locale>/<page>.md`（`zh-hans` / `zh-hant` / `en` / `pl`），文件名不再带语言后缀，首页与 MW 资源页的文档更名为 `mf-index.md` / `mw-index.md`；语言菜单、文档选择与「最后更新」全部按目录识别，往某个语言目录放入文件即自动生效",
+      "新版目录搜索接入模糊匹配：忽略标点与空格差异，并对 4 个字符以上的查询容忍少量错字（相邻字符交换算一次编辑），文件名仍按精确规则匹配"
+    ],
+    features_en: [
+      "Every legacy dialog now responds to the Android back button — settings, changelog, update history, the detail window and its image preview, the download / data / video / tieba / SMWP modals, and the tag and genre filter modals close one layer at a time instead of leaving the page; the image preview inside the detail window closes first",
+      "Write-ups now live under per-language folders: `src/markdown/<locale>/<page>.md` (`zh-hans` / `zh-hant` / `en` / `pl`) with no language suffix in the file name; the home and Mario Worker documents became `mf-index.md` / `mw-index.md`. The language menu, document choice and \"Last updated\" all follow the folder, so dropping a file into a locale folder is enough",
+      "The redesigned catalog search adopts the fuzzy matcher: punctuation and spaces are ignored, and queries of four or more characters tolerate a few typos (an adjacent swap counts as one edit), while file names keep exact matching"
+    ],
+    improvements: [
+      "新版图集的左右箭头默认不再显示底色与边框，仅在悬停时出现；未悬停时图标改为白色并带柔和暗色描边，在浅色与深色截图上都清晰可见",
+      "新版目录顶栏的两个搜索框在桌面端占用更多宽度，与右侧操作按钮之间的空档明显收窄；移动端两个搜索框始终并排同一行，不再在较宽的移动视口下一个在上一个在下",
+      "新版目录结果栏的「最后更新」紧跟排序按钮：桌面端与 512px 以上的手机保持同样顺序（计数 → 排序 → 最后更新 → 筛选胶囊 → 视图按钮，放不下时才换行），512px 以内与筛选 / 随机 / 视图按钮位于同一行并左对齐，筛选胶囊独占一行"
+    ],
+    improvements_en: [
+      "Gallery arrows in the redesigned UI no longer draw a background or border until hovered; the idle glyph is now white with a soft dark halo, so it stays legible on bright and dark screenshots alike",
+      "The two search fields in the redesigned catalog topbar now claim more width on desktop, leaving a noticeably narrower gap before the action buttons; on mobile the pair always shares one row instead of splitting up on wider viewports",
+      "The \"last updated\" stamp in the redesigned results bar now sits right after the sort buttons: desktop and phones above 512px keep the same order (count → sort → last updated → filter pills → view controls, wrapping only when they run out of room), while at 512px and below the stamp shares one left-aligned row with the filter / random / view buttons and the filter pills take a line of their own"
+    ],
+    fixes: [
+      "修复默认排序正好为降序时（如默认日期倒序），点击当前排序所在的排序按钮没有任何反应的问题：现在每次点击都会切换方向或回到默认排序",
+      "修复旧版设计中的截图轮播（首页与 Mario Worker 说明、MF 与 MW 条目卡片）盖住右下角返回顶部、深色模式与设置按钮的问题"
+    ],
+    fixes_en: [
+      "Fixed the sort button doing nothing when the current order already matched a descending default (such as date_desc); each click now changes the direction or returns to the default order",
+      "Fixed screenshot carousels in the legacy design (home and Mario Worker write-ups, MF and MW entry cards) painting over the back-to-top, dark-mode and settings buttons in the bottom-right corner"
+    ]
+  },
+  {
     version: "3.0.0-rc.2",
     date: "2026-11-19",
     features: [
