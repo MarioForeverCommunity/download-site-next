@@ -115,7 +115,7 @@ export default {
       other: "其他",
       english: "英文",
       polish: "波蘭文",
-      both: "雙語",
+      both: "兩者皆有",
       mario: "Mario",
       mff: "Mario Forever Flash",
       flash: "Flash",
