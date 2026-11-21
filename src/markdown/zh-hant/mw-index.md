@@ -142,11 +142,9 @@ Mario Constructor Forever 是由 glider521al 開發、使用 GameMaker 7 製作�
 ## 常見問題
 
 **問：如何下載 Mario Worker 的關卡？**
-
 **答**：目前我們沒有託管 Mario Worker Remake 等變體的關卡。不過，[Mario Worker Database](https://marioworkerdatabase.altervista.org/) 收錄了大量 MWR 關卡。本網站提供 [Mario Worker 1.1 和 Super Mario Worker Project 的關卡目錄](https://download.marioforever.net/mw-levels.html)，但目前僅提供簡體中文版本。你也可以透過網路尋找關卡，例如 YouTube、Discord 伺服器及 Mario Forever 論壇。
 
 **問：Mario Worker Remake 是否向下相容 MW 1.0 的關卡？**
-
 **答**：Mario Worker 的不同變體通常彼此不相容，即使其中一些是以原版 MW 為基礎開發的也一樣。唯一值得注意的例外是 Super Mario Worker Project，它向下相容 MW 1.1。一般而言，建議使用製作關卡時所使用的相同版本來遊玩該關卡。
 
 ## Mario Worker 關卡格式索引

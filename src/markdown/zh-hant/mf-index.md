@@ -87,14 +87,9 @@ New Super Mario Forever（通常稱為 New Super Mario Forever 2012）是由 Sof
 
 ## 常見問題
 
-**問：Mario Forever 安全嗎？我聽說它含有病毒。**
-
-**答**：許多人至今仍認為 Mario Forever 是某種「充滿惡意軟體的遊戲」，但實際情況要複雜一些：遊戲本身**並不含有**任何傳統意義上的病毒。部分版本的安裝程式會附帶一款名為「Mario Forever Toolbar」的 Internet Explorer 廣告工具列。這款工具列不受歡迎，而且具有侵入性，但它被歸類為廣告軟體，而非病毒。
-
-不過，研究人員確實提出過值得重視的安全疑慮。根據 [Cyble](https://cyble.com/blog/trojanized-super-mario-game-installer-spreads-supremebot-malware/) 的報告，某個 `super-mario-forever-v702e` 安裝程式曾遭到木馬化，並被植入多種惡意元件，包括 XMR 挖礦程式、SupremeBot 挖礦用戶端，以及開源的 Umbral 資訊竊取工具。這很可能是「MF 含有病毒」這項廣泛流傳的傳聞來源之一。
-
-**重要提醒**：本網站提供的所有版本均不含 Cyble 所指出的任何惡意程式。所有本站託管的安裝程式都經過檢查，確認安全無虞。部分版本的安裝程式確實會附帶「Mario Forever Toolbar」，但你可以在安裝過程中選擇不安裝它。
-
-此外，部分 Mario Forever 版本內含指向 `mariocoins.com` 和 `broshome.com` 的連結。這些網域目前已不再由原始持有人持有，而是被無關的第三方接管。它們可能會將使用者重新導向至不可信或具有潛在危險的內容。在某些版本中，使用者可以透過遊戲內的選項（例如「Get Secrets」或「Get Coins」），或安裝程式建立的 URL 捷徑存取這些連結。**強烈建議不要開啟這些連結。**
-
+**問：Mario Forever 安全嗎？我聽說它含有病毒。**  
+**答**：許多人至今仍認為 Mario Forever 是某種「充滿惡意軟體的遊戲」，但實際情況要複雜一些：遊戲本身**並不含有**任何傳統意義上的病毒。部分版本的安裝程式會附帶一款名為「Mario Forever Toolbar」的 Internet Explorer 廣告工具列。這款工具列不受歡迎，而且具有侵入性，但它被歸類為廣告軟體，而非病毒。  
+不過，研究人員確實提出過值得重視的安全疑慮。根據 [Cyble](https://cyble.com/blog/trojanized-super-mario-game-installer-spreads-supremebot-malware/) 的報告，某個 `super-mario-forever-v702e` 安裝程式曾遭到木馬化，並被植入多種惡意元件，包括 XMR 挖礦程式、SupremeBot 挖礦用戶端，以及開源的 Umbral 資訊竊取工具。這很可能是「MF 含有病毒」這項廣泛流傳的傳聞來源之一。  
+**重要提醒**：本網站提供的所有版本均不含 Cyble 所指出的任何惡意程式。所有本站託管的安裝程式都經過檢查，確認安全無虞。部分版本的安裝程式確實會附帶「Mario Forever Toolbar」，但你可以在安裝過程中選擇不安裝它。  
+此外，部分 Mario Forever 版本內含指向 `mariocoins.com` 和 `broshome.com` 的連結。這些網域目前已不再由原始持有人持有，而是被無關的第三方接管。它們可能會將使用者重新導向至不可信或具有潛在危險的內容。在某些版本中，使用者可以透過遊戲內的選項（例如「Get Secrets」或「Get Coins」），或安裝程式建立的 URL 捷徑存取這些連結。**強烈建議不要開啟這些連結。**  
 為了消除使用者可能仍存有的疑慮，我們也提供了遊戲的免安裝版。此版本不含附加工具列，並已移除 URL 捷徑及其他無關內容。你也可以選擇遊玩由玩家重新製作的版本，例如 Mario Forever Remake 或 Mario Forever: Community Edition；這些版本同樣不含惡意軟體。

@@ -145,13 +145,10 @@ Mario Constructor Forever to edytor poziomów podobny do Mario Forever, stworzon
 ## Często zadawane pytania
 
 **P: Jak mogę pobrać poziomy do Mario Worker?**
-
-**O:** Obecnie nie udostępniamy poziomów do takich wariantów jak Mario Worker Remake. Istnieje jednak baza [Mario Worker Database](https://marioworkerdatabase.altervista.org/), zawierająca dużą liczbę poziomów Mario Worker Remake.
-
+**O:** Obecnie nie udostępniamy poziomów do takich wariantów jak Mario Worker Remake. Istnieje jednak baza [Mario Worker Database](https://marioworkerdatabase.altervista.org/), zawierająca dużą liczbę poziomów Mario Worker Remake.  
 Na naszej stronie dostępny jest również [katalog poziomów](https://download.marioforever.net/mw-levels.html) do Mario Worker 1.1 i Super Mario Worker Project, jednak obecnie jest on dostępny wyłącznie w języku chińskim. Poziomów możesz także szukać w Internecie, na przykład na YouTube, serwerach Discord i forach społeczności Mario Forever.
 
 **P: Czy Mario Worker Remake jest kompatybilny wstecz z poziomami Mario Worker 1.0?**
-
 **O:** Różne warianty Mario Worker zasadniczo nie są ze sobą kompatybilne, nawet jeśli niektóre z nich bazują na oryginalnym Mario Worker. Jedynym istotnym wyjątkiem jest Super Mario Worker Project, który zachowuje kompatybilność wsteczną z Mario Worker 1.1. Ogólnie zaleca się uruchamianie poziomów w tej samej wersji edytora, w której zostały utworzone.
 
 ## Indeks formatów plików Mario Worker
