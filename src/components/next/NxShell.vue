@@ -508,10 +508,11 @@ watch(showChangelog, (open) => {
           <span class="nx-rail-icon"><NxIcon name="github" :size="14" /></span>
           <span>{{ t("shell.sourceCode") }}</span>
         </a>
-        <!-- The status page is a Chinese-only service, so the other rails omit
-             the entry rather than linking to a page in another language. -->
+        <!-- The status page is a Simplified-Chinese service, so every other rail
+             (Traditional Chinese included) omits the entry rather than linking
+             to a page in a script the reader does not use. -->
         <a
-          v-if="contentLang === 'zh'"
+          v-if="isSimplifiedUi"
           class="nx-rail-item"
           href="https://status.marioforever.net/"
           target="_blank"

@@ -278,7 +278,7 @@ src/pages/<entry>/main.js
 - 外壳的 `displayLocale` 以页面发布的 `locale` 为准（只有尚未发布时才回退到 `pageLocale()`）；因此页面切换语言后，繁体文案、导航显隐与文档选择不会互相打架。菜单可见时页面必须注册 `publishShellHandlers({ changeLocale })`，否则点击只会关闭菜单。
 - 菜单选项按**规范语言代号**排序（`en` → `pl` → `zh-Hans` → `zh-Hant`），不按语言全称或浏览器 collation 排序；`NxShell` 的 `byLocaleCode` 负责这一点。
 - 品牌图按**界面语言**而非内容语言选择：只有简体中文用中文 logo（左栏 `logo_new.png`、占位图 `logo_hd.png`），繁中与英文 / 波兰语统一用 `logo2_hd.png`（MW 记录仍用 `marioworker.png`）。旧版 HeaderNav 没有繁中，保持原样。
-- 左栏版权说明（`app.legal`）同理由 `isSimplifiedUi` 判断：简体隐藏，繁中 / 英文 / 波兰语显示；繁中的状态页链接仍按内容语言显示（`contentLang === "zh"`），不要改成同一个判断。
+- 左栏版权说明（`app.legal`）与状态页链接都由 `isSimplifiedUi` 判断：版权说明简体隐藏、繁中 / 英文 / 波兰语显示；状态页链接只在简体显示（繁中不再出现）。
 
 ### 9.4 旧版联动
 
