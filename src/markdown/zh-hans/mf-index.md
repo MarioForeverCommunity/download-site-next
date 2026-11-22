@@ -142,9 +142,9 @@
 
 虽然绝大多数 Mario Forever 同人作品目前仅提供电脑版本，但这并不代表它们无法在手机上运行。如今，通过 Wine 和 x86-to-ARM 转译技术运行 Windows 程序的“模拟器”日臻成熟，不少 Mario Forever 作品已经可以直接在手机上运行。相比重新开发手机版，使用模拟器的优势是覆盖作品范围更广，但也有部分作品运行效果不佳。
 
-由于许多 Mario Forever 作品基于 Clickteam Fusion 开发，部分作品在模拟器（如 Winlator）中可能出现画面显示故障，甚至无法运行。即使游戏能够顺利启动，其中的绝大多数也并未原生支持游戏手柄，玩家往往需要配置屏幕虚拟按键，手动配置过程较为繁琐。相对而言，Mario Forever: Community Edition 这类 Godot 引擎的游戏在模拟器中的运行效果良好，且支持手柄。
+由于许多 Mario Forever 作品基于 Clickteam Fusion 开发，部分作品在某些模拟器（如 Winlator、盖世游戏）中可能出现画面显示故障，甚至无法运行。即使游戏能够顺利启动，其中的绝大多数也并未原生支持游戏手柄，玩家往往需要配置屏幕虚拟按键，手动配置过程较为繁琐。相对而言，Mario Forever: Community Edition 这类 Godot 引擎的游戏在模拟器中的运行效果良好，且原生支持手柄。
 
-推荐使用“[盖世游戏](https://gamehub.xiaoji.com/)”模拟器游玩 Mario Forever 作品。要想正常运行 Clickteam Fusion 2.5 制作的绝大部分作品，需使用盖世游戏 **6.0.2 及更早版本（推荐 5.3.5）。不要使用最新版**，最新版盖世游戏运行这部分作品时会出现黑屏 Bug。
+推荐使用 [GameNative](https://gamenative.app/) 模拟器游玩 Mario Forever 作品。
 
 **参考教程：https://www.marioforever.net/thread-3885-1-1.html**
 </div>
