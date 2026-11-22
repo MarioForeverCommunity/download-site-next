@@ -174,6 +174,7 @@ export default {
       kaizo: "Kaizo",
       roguelike: "Roguelike",
       endless: "无尽",
+      fighting: "格斗",
       find_and_click: "益智",
       minix: "Minix",
       platformer: "平台跳跃",

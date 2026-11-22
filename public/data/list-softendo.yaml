@@ -681,7 +681,7 @@
   type: non-mario
   software: gamemaker
   genre:
-  - Other
+  - Platformer
   language:
   - en
   ver:
@@ -871,7 +871,7 @@
   type: non-mario
   software: mmf
   genre:
-  - Other
+  - Fighting
   language:
   - pl
   initial_year: 2002
@@ -884,7 +884,7 @@
   type: non-mario
   software: gamemaker
   genre:
-  - Other
+  - Shmup
   language:
   - en
   initial_year: 2003
@@ -963,7 +963,7 @@
   type: non-mario
   software: mmf
   genre:
-  - Other
+  - Platformer
   language:
   - pl
   initial_year: 2003

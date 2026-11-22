@@ -27,6 +27,7 @@ const TAG_ZH_MAP = {
   "Shmup": "STG",
   // Softendo genres
   "Endless": "无尽",
+  "Fighting": "格斗",
   "Find and Click": "益智",
   "Minix": "Minix",
   "Platformer": "平台跳跃",
@@ -69,6 +70,7 @@ const TAG_COLOR_MAP = {
   "Cancelled":    { bg: "#e8e8e8", border: "#909090", text: "#606060" },
   // Softendo genres
   "Endless":          { bg: "#eef5e0", border: "#90b060", text: "#6a8840" },
+  "Fighting":         { bg: "#fbe6df", border: "#d26848", text: "#a84626" },
   "Find and Click":   { bg: "#fde4fd", border: "#e050e8", text: "#b830c0" },
   "Minix":            { bg: "#fce4e4", border: "#d0706e", text: "#b84a48" },
   "Platformer":       { bg: "#dfe8f8", border: "#6080b8", text: "#406098" },
@@ -110,6 +112,7 @@ const TAG_COLOR_MAP_DARK = {
   "Cancelled":    { bg: "#282828", border: "#A7A7A7", text: "#A7A7A7" },
   // Softendo genres
   "Endless":          { bg: "#1e3020", border: "#A0C072", text: "#A0C072" },
+  "Fighting":         { bg: "#38201b", border: "#E07A57", text: "#E07A57" },
   "Find and Click":   { bg: "#301838", border: "#FF5AFA", text: "#FF5AFA" },
   "Minix":            { bg: "#3a2020", border: "#da6260", text: "#da6260" },
   "Platformer":       { bg: "#1e2838", border: "#7E9ED8", text: "#7E9ED8" },

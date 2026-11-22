@@ -182,6 +182,7 @@ export default {
       kaizo: "Kaizo",
       roguelike: "類 Rogue 遊戲",
       endless: "無盡",
+      fighting: "格鬥",
       find_and_click: "益智遊戲",
       minix: "Minix",
       platformer: "平台跳躍",

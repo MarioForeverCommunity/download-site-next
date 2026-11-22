@@ -180,6 +180,7 @@ export default {
       kaizo: "Kaizo",
       roguelike: "Roguelike",
       endless: "Gra bez końca",
+      fighting: "Bijatyka",
       find_and_click: "Znajdź i kliknij",
       minix: "Minix",
       platformer: "Platformówka",

@@ -195,6 +195,7 @@ export default {
       kaizo: "Kaizo",
       roguelike: "Roguelike",
       endless: "Endless",
+      fighting: "Fighting",
       find_and_click: "Find and Click",
       minix: "Minix",
       platformer: "Platformer",
