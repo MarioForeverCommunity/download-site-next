@@ -677,6 +677,28 @@
   year: 2003
   installer: Diamentowa Przygoda.exe
   portable: Diamentowa Przygoda.zip
+- name: Budixy
+  type: non-mario
+  software: gamemaker
+  genre:
+  - Other
+  language:
+  - en
+  ver:
+  - v0.0001 Alpha:
+      year: 2004
+      portable: Budixy v0-0001 Alpha.exe
+- name: Demons Revel
+  type: non-mario
+  software: mmf
+  genre:
+  - Other
+  language:
+  - en
+  ver:
+  - v0.0004:
+      year: 2002
+      portable: DemonsRevel.zip
 - name: Dragon Ball Arcade
   type: non-mario
   software: gamemaker
@@ -845,6 +867,31 @@
   year: 2017
   installer: Oscar Forever (Unfinished) (2017).exe
   portable: Oscar Forever (Unfinished) (2017).zip
+- name: Punch War
+  type: non-mario
+  software: mmf
+  genre:
+  - Other
+  language:
+  - pl
+  initial_year: 2002
+  ver:
+  - 2017 re-release:
+      year: 2017
+      installer: Punch War.exe
+      portable: Punch War.zip
+- name: Shooter EX
+  type: non-mario
+  software: gamemaker
+  genre:
+  - Other
+  language:
+  - en
+  initial_year: 2003
+  ver:
+  - 2017 re-release:
+      year: 2017
+      portable: Shooter EX.rar
 - name: Stargrade
   type: non-mario
   software: mmf
@@ -912,6 +959,19 @@
   - Kliktopia repackage:
       year: 2024
       portable: Urbagility 2.zip
+- name: Yean!
+  type: non-mario
+  software: mmf
+  genre:
+  - Other
+  language:
+  - pl
+  initial_year: 2003
+  ver:
+  - 2017 re-release:
+      year: 2017
+      installer: Yean! (Pre-alpha).exe
+      portable: Yean! (Pre-alpha).zip
 - name: Zelda Forever
   type: non-mario
   software: gamemaker
