@@ -189,6 +189,8 @@
   portable: Super Mario.zip
   selfextract: Super Mario.exe
 - game: Mario Forever Flash
+  alias:
+  - MFF
   type: mff
   genre:
   - Platformer
@@ -261,6 +263,8 @@
   portable:
     swf: New Mario Bros 2.swf
 - game: Squario
+  alias:
+  - SQF
   type: mff
   genre:
   - Platformer
@@ -277,6 +281,8 @@
       portable:
         swf: Squario无限生命版.swf
 - game: Squario 2
+  alias:
+  - SQF2
   type: mff
   genre:
   - Platformer
@@ -868,6 +874,8 @@
   installer: Oscar Forever (Unfinished) (2017).exe
   portable: Oscar Forever (Unfinished) (2017).zip
 - name: Punch War
+  alias:
+  - Bijak War
   type: non-mario
   software: mmf
   genre:
