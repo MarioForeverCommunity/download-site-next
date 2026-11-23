@@ -495,7 +495,7 @@ defineExpose({ randomRecord, open });
             @click="catalog.toggleView()"
           >
             <NxIcon
-              :name="catalog.view.value === 'cards' ? 'rows' : 'grid'"
+              :name="catalog.view.value === 'cards' ? 'list' : 'grid'"
               :size="14"
             />
           </button>
