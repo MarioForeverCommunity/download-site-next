@@ -3548,8 +3548,18 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  - World -K:
+  - World -K (Bugfix):
       current: true
+      ver_alt:
+      date: 2026-11-22
+      source_url: https://www.youtube.com/watch?v=Jj85LS41zpA
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/73abl3etkj1jw2j/MWMLWS_-_World_-K.zip/file
+      code:
+      download_url_alt:
+      file_name: MWMLWS - World -K (BUGFIX).zip
+      file_url:
+  - World -K:
       ver_alt:
       date: 2026-11-21
       source_url: https://www.youtube.com/watch?v=Jj85LS41zpA

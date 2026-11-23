@@ -61,3 +61,11 @@ Engine by: Lyh and Szxychulun
 10.) World -J - October 30, 2026
 - The world consists of six levels.
 - More bugfixes.
+
+11.) World -K - November 21, 2026
+- The world consists of four levels.
+- Two retro levels have been added in the game.
+- Updated Bowser battle system.
+- Improved graphics mode (from 16M to 32,768 colors)
+- Some bugfixes implemented.
+- Musics are now loaded externally (except for end level and mario's death musics).
