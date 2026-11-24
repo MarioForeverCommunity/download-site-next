@@ -920,6 +920,22 @@
   - Kliktopia repackage:
       year: 2021
       portable: Stargrade.zip
+- name: Stargrade Superforce
+  alias:
+  - Stargrade 2
+  type: non-mario
+  software: mmf
+  genre:
+  - Shmup
+  language:
+  - en
+  - pl
+  initial_year: 2003
+  ver:
+  - v0.0083, 2017 re-release:
+      year: 2017
+      installer: Stargrade Superforce.exe
+      portable: Stargrade Superforce.zip
 - name: Stargrade 2
   type: non-mario
   software: gamemaker
