@@ -27,12 +27,21 @@ const sameMonth = (date, year, month) => {
   return date.getUTCFullYear() === year && date.getUTCMonth() === month;
 };
 
-// 将空格与汉字等非 ASCII 字符转为百分号编码，已编码的 %XX 序列保持不变
+// 将文件路径转为浏览器可直接打开的 URL：非 ASCII 字符、空格以及路径中的保留字符
+// （#、?、[ ] 等）一律百分号编码；已有的 %XX 序列保持不变，避免重复编码。
+const URL_PATH_SAFE = /^[A-Za-z0-9\-._~!$&'()*+,;=:@/]$/;
+
 const encodeUrlPath = (url) => {
   if (!url) return url;
-  return url
-    .replace(/[^\x20-\x7E]/g, (char) => encodeURIComponent(char))
-    .replace(/ /g, '%20');
+  return url.replace(/%[0-9A-Fa-f]{2}|./gu, (match) => {
+    if (match.length === 3 && match[0] === '%') return match;
+    if (URL_PATH_SAFE.test(match)) return match;
+    try {
+      return encodeURIComponent(match);
+    } catch {
+      return match;
+    }
+  });
 };
 
 const getAuthorList = (entry) => {
