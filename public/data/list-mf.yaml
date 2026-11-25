@@ -8764,15 +8764,28 @@
   wiki_zh_url:
   wiki_en_url:
   ver:
-  ver_alt:
-  date: 2023-07-23
-  source_url: https://www.youtube.com/watch?v=-BaTZtwFABM
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/q5bebx195mjdoy9/Mario+Forever+Worlds+2018+-+2022.exe/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever Worlds 2018 - 2022.exe
-  file_url:
+  - Windows:
+      current: true
+      ver_alt:
+      date: 2023-07-23
+      source_url: https://www.youtube.com/watch?v=-BaTZtwFABM
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/q5bebx195mjdoy9/Mario+Forever+Worlds+2018+-+2022.exe/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Worlds 2018 - 2022.exe
+      file_url:
+  - Android:
+      current: true
+      ver_alt:
+      date: 2023-07-23
+      source_url: https://www.youtube.com/watch?v=-BaTZtwFABM
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/8ohovasozzze82j/Mario+Forever+Worlds+2018+-+2022.apk/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever Worlds 2018 - 2022.apk
+      file_url:
 - game: Mario Forever, but Floor is Lava
   game_alt:
   tag:
@@ -12513,16 +12526,49 @@
   type: international
   wiki_zh_url:
   wiki_en_url:
-  ver: v2
-  ver_alt:
-  date: 2022-03-15
-  source_url: https://www.youtube.com/watch?v=dbYkJms5X_I
-  source_url_alt:
-  download_url: https://www.mediafire.com/file/26cb2scz38cazzw/Mario_Forever_World_Alpha.exe/file
-  code:
-  download_url_alt:
-  file_name: Mario Forever World Alpha v2.exe
-  file_url:
+  ver:
+  - Windows v2:
+      current: true
+      ver_alt:
+      date: 2022-03-15
+      source_url: https://alexandrogames.altervista.org/mario-forever-adventure-greek-worlds-on-android/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/26cb2scz38cazzw/Mario_Forever_World_Alpha.exe/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever World Alpha v2.exe
+      file_url:
+  - Android v2:
+      current: true
+      ver_alt:
+      date: 2022-03-15
+      source_url: https://alexandrogames.altervista.org/mario-forever-adventure-greek-worlds-on-android/
+      source_url_alt:
+      download_url: https://www.mediafire.com/file/hbsxq6zb0hsjg58/Mario_Forever_World_Alpha.apk/file
+      code:
+      download_url_alt:
+      file_name: Mario Forever World Alpha v2.apk
+      file_url:
+  - Windows v1:
+      ver_alt:
+      date: 2022-03-14
+      source_url: https://alexandrogames.altervista.org/mario-forever-adventure-greek-worlds-on-android/
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever World Alpha.exe
+      file_url:
+  - Android v1:
+      ver_alt:
+      date: 2022-03-14
+      source_url: https://alexandrogames.altervista.org/mario-forever-adventure-greek-worlds-on-android/
+      source_url_alt:
+      download_url:
+      code:
+      download_url_alt:
+      file_name: Mario Forever World Alpha.apk
+      file_url:
 - game: Alien's Lair
   game_alt:
   tag:
