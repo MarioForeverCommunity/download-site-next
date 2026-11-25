@@ -291,7 +291,7 @@ function columnLabel(key, fallback) {
 function removeFilter(item) {
   if (item.type === "facet") props.catalog.toggleFacet(item.key, item.value);
   else if (item.type === "date") props.catalog.clearDate();
-  else if (item.type === "tag") props.catalog.cycleTag(item.key);
+  else if (item.type === "tag") props.catalog.removeTag(item.key);
   else if (item.type === "search") {
     if (item.key === "query") props.catalog.setQuery("");
     else props.catalog.setAuthorQuery("");

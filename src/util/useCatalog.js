@@ -421,6 +421,13 @@ export function useCatalog({
     tagStates.value = next;
   }
 
+  function removeTag(tag) {
+    if (!(tag in tagStates.value)) return;
+    const next = { ...tagStates.value };
+    delete next[tag];
+    tagStates.value = next;
+  }
+
   function clearTags() {
     tagStates.value = {};
   }
@@ -510,6 +517,7 @@ export function useCatalog({
     setFacet,
     clearFacet,
     cycleTag,
+    removeTag,
     clearTags,
     clearFacets,
     // date
