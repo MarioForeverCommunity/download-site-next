@@ -190,6 +190,7 @@ export default {
       puzzle: "解謎",
       level_editor: "關卡編輯器",
       vertical_scroll: "縱向捲軸",
+      tower_defence: "塔防遊戲",
       bundled_mw: "內含 MW",
       custom_bgm: "需要更換 BGM",
     },

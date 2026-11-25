@@ -705,6 +705,21 @@
   - v0.0004:
       year: 2002
       portable: DemonsRevel.zip
+- name: Defender
+  alias:
+  - Defender Saga
+  - Conquer or Defend
+  type: non-mario
+  software: gamemaker
+  genre:
+  - Tower Defence
+  language:
+  - en
+  ver:
+  - Pre-alpha:
+      year: 2017
+      installer: Defender.exe
+      portable: Defender.zip
 - name: Dragon Ball Arcade
   type: non-mario
   software: gamemaker
@@ -722,6 +737,17 @@
       year: 2009
       installer: Dragon Ball Arcade (2009).exe
       portable: Dragon Ball Arcade (2009).zip
+- name: Forece Impact
+  type: non-mario
+  software: gamemaker
+  genre:
+  - Other
+  language:
+  - en
+  ver:
+  - Pre-alpha:
+      year: 2004
+      portable: Forece Impact.exe
 - name: Heliforce (Unfinished)
   type: non-mario
   software: mmf

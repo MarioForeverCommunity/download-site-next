@@ -203,6 +203,7 @@ export default {
       puzzle: "Puzzle",
       level_editor: "Level Editor",
       vertical_scroll: "Vertical-scroll",
+      tower_defence: "Tower Defence",
       bundled_mw: "Bundled MW",
       custom_bgm: "Custom BGM",
     },

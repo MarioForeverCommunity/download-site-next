@@ -182,6 +182,7 @@ export default {
       puzzle: "解谜",
       level_editor: "关卡编辑",
       vertical_scroll: "纵向滚屏",
+      tower_defence: "塔防",
       bundled_mw: "自带 MW",
       custom_bgm: "需替换 BGM",
     },

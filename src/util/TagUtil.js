@@ -35,6 +35,7 @@ const TAG_ZH_MAP = {
   "Puzzle": "解谜",
   "Level Editor": "关卡编辑",
   "Vertical-scroll": "纵向滚屏",
+  "Tower Defence": "塔防",
 };
 
 // 固定标签颜色映射：text 为用户指定深色模式文字颜色
@@ -78,6 +79,7 @@ const TAG_COLOR_MAP = {
   "Puzzle":           { bg: "#f0e8f5", border: "#a088c0", text: "#7860a0" },
   "Level Editor":     { bg: "#dff5f0", border: "#60b8a8", text: "#409888" },
   "Vertical-scroll":  { bg: "#ede3f7", border: "#9078d0", text: "#6858b0" },
+  "Tower Defence":    { bg: "#e8eef0", border: "#7090a0", text: "#4a6a7a" },
 };
 
 // 深色模式：text/border 用指定颜色，bg 为深色柔和背景
@@ -120,6 +122,7 @@ const TAG_COLOR_MAP_DARK = {
   "Puzzle":           { bg: "#281830", border: "#B088C0", text: "#B088C0" },
   "Level Editor":     { bg: "#1a3030", border: "#83CCC2", text: "#83CCC2" },
   "Vertical-scroll":  { bg: "#2a1a38", border: "#9F8CE3", text: "#9F8CE3" },
+  "Tower Defence":    { bg: "#1e2a2e", border: "#7FA8B8", text: "#7FA8B8" },
 };
 
 // 未知标签的回退颜色

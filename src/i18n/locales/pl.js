@@ -188,6 +188,7 @@ export default {
       puzzle: "Gra logiczna",
       level_editor: "Edytor poziomów",
       vertical_scroll: "Przewijanie pionowe",
+      tower_defence: "Obrona wieży",
       bundled_mw: "Dołączony MW",
       custom_bgm: "Własne BGM",
     },
