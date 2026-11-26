@@ -1,8 +1,15 @@
 An Android port of MF:CE, based on the open source code
 
-* **[Download v2.2.2.5](https://file.marioforever.net/mario-forever/games/mobile-fangames/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.2.2.5%20Android.apk)** ([Mirror link on GitHub](https://github.com/KHwang9883/mf-community-edition/releases/download/v2.2.2.5/Mario.Forever.Community.Edition.2.2.2.5.Android.apk))
+* **[Download v2.2.2.6](https://file.marioforever.net/mario-forever/games/mobile-fangames/Meteo%20Dream/Mario%20Forever%20Community%20Edition%202.2.2.6%20Android.apk)** ([Mirror link on GitHub](https://github.com/KHwang9883/mf-community-edition/releases/download/v2.2.2.6/Mario.Forever.Community.Edition.2.2.2.6.Android.apk))
 
 Source code: https://github.com/KHwang9883/mf-community-edition/tree/port/android
+
+## v2.2.2.6 Changes
+
+- Add save data import/export to the manage data menu
+- Fixed a bug where triggering the console when paused can freeze the game
+- Skip background auto-pause while a popup window is open
+- Update Godot-TE to 4.7.3-rc4
 
 ## v2.2.2.5 Changes
 
