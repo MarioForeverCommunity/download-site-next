@@ -145,22 +145,25 @@ onBeforeUnmount(() => {
         <div class="nx-drawer-body">
           <section class="nx-section">
             <div class="nx-section-label">{{ text.sort }}</div>
-            <div class="nx-checks">
+            <div
+              class="nx-checks"
+              role="radiogroup"
+              :aria-label="text.sort"
+            >
               <button
                 v-for="option in text.sorts"
                 :key="option.value"
                 type="button"
                 class="nx-check"
                 :class="{ on: tempSort === option.value }"
+                role="radio"
+                :aria-checked="tempSort === option.value"
                 @click="tempSort = option.value"
               >
-                <span class="nx-check-box">
-                  <NxIcon
-                    v-if="tempSort === option.value"
-                    name="check"
-                    :size="10"
-                  />
-                </span>
+                <span
+                  class="nx-radio"
+                  :class="{ on: tempSort === option.value }"
+                />
                 <span>{{ option.label }}</span>
               </button>
             </div>
@@ -168,22 +171,25 @@ onBeforeUnmount(() => {
 
           <section class="nx-section">
             <div class="nx-section-label">{{ text.pageSize }}</div>
-            <div class="nx-checks">
+            <div
+              class="nx-checks"
+              role="radiogroup"
+              :aria-label="text.pageSize"
+            >
               <button
                 v-for="option in text.pageSizes"
                 :key="option.value"
                 type="button"
                 class="nx-check"
                 :class="{ on: tempPageSize === option.value }"
+                role="radio"
+                :aria-checked="tempPageSize === option.value"
                 @click="tempPageSize = option.value"
               >
-                <span class="nx-check-box">
-                  <NxIcon
-                    v-if="tempPageSize === option.value"
-                    name="check"
-                    :size="10"
-                  />
-                </span>
+                <span
+                  class="nx-radio"
+                  :class="{ on: tempPageSize === option.value }"
+                />
                 <span>{{ option.label }}</span>
               </button>
             </div>
