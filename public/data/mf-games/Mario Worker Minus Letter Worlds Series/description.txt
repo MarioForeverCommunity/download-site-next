@@ -69,3 +69,10 @@ Engine by: Lyh and Szxychulun
 - Improved graphics mode (from 16M to 32,768 colors)
 - Some bugfixes implemented.
 - Musics are now loaded externally (except for end level and mario's death musics).
+
+12.) World -L - November 27, 2026
+- The world consists of four levels.
+- Added a one-time "World ID" text in the map.
+- End level and mario's death musics are now also loaded externally.
+- Added an alternate end level music option.
+- Added a faster-end level timer option.
