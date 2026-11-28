@@ -16,3 +16,4 @@ monthly-report-*
 __pycache__
 scripts/capture-game-screenshot.py
 scripts/fetch-mw-levels.py
+/.docs

@@ -113,13 +113,17 @@ function pickUrl(item, lan = 'zh') {
 | --- | --- | --- |
 | `dir` | 字符串 | 该作品的数据目录名（可能为空） |
 | `all` | 字符串数组 | 目录下所有图片 |
-| `title` | 字符串 \| null | 标题图（`title.*`） |
+| `title` | 字符串 \| null | 通用标题图（`title.*`，不含版本号） |
+| `cover` | 字符串 \| null | **封面**：站点卡片与详情抽屉实际展示的图，选取顺序为 版本专属标题图 → 通用标题图 → 目录内第一张图 |
+| `versionTitle` | 字符串 \| null | 版本专属标题图（`title_<版本>.webp`），仅当文件名片段命中当前版本时才有值 |
 | `logo` | 字符串 \| null | Logo 图（`logo.*`） |
 | `showcase` | 字符串数组 | 截图（`showcase_*`），已按自然序排序 |
 
+要还原站点上的封面，直接用 `cover` 即可；`title` 保持「只取 `title.*`」的严格语义，便于只想拿到通用标题图的场景。
+
 ```javascript
 const BASE = 'https://download.marioforever.net'
-const cover = game.images.title || game.images.logo || game.images.all[0]
+const cover = game.images.cover || game.images.title || game.images.logo || game.images.all[0]
 const src = cover ? BASE + cover : null   // "/data/mf-games/Fear the Eye/title.webp"
 ```
 
@@ -298,7 +302,8 @@ SMWP 作品只有中文数据，故链接对象**不含 `en`**，且无 `nameAlt
 | `homepage` | 字符串 \| null | 主页链接 |
 | `source` / `download` | 对象 | 发布链接 / 下载链接 |
 | `resource` | 数组 | 作品文件的链接对象**列表**（可能分卷，故为数组） |
-| `dataResource` | 数组 | 数据包文件的链接对象列表 |
+| `dataResource` | 数组 | 数据包文件的链接对象列表（托管在资源站时） |
+| `dataDownload` | 对象 | 数据包**外链**（如网盘）`{ url, code, invalid }`；与 `dataResource` 相互独立，可同时存在 |
 | `smwp` | 对象 \| null | 运行所需的 SMWP 本体下载 `{ zh }` |
 | `smwpData` | 对象 \| null | SMWP 音乐/数据包下载 `{ zh }` |
 | `images` / `description` | 对象 | 同通用约定 |
@@ -373,8 +378,10 @@ for (const file of level.resource) {
 | `variant` | 字符串 \| null | 变体名（如「本体」「特效包」），单一版本时为 `null` |
 | `version` | 字符串 \| null | 版本号 |
 | `date` | 字符串 \| null | 发布日期 |
-| `source` / `download` | 对象 | 发布链接 / 下载链接 |
+| `source` / `download` | 对象 | 发布链接 / 下载链接，结构同通用约定（含 `url` / `urlAlt` / `code` / `codeAlt` / `invalid` / `invalidAlt`） |
 | `resource` | 数组 | 链接对象列表（一个变体可含多个文件） |
+
+> 条目级的 `download_url` / `code` / `source_url` 等会被**每个变体继承**：变体自身写了同名字段则以其为准，未写则回退到条目级值。因此多版本资源（如「彩虹引擎」）的每个变体都能拿到网盘链接与发布帖，不会出现 `null`。
 
 <details>
 <summary>示例条目</summary>
@@ -420,6 +427,7 @@ for (const file of level.resource) {
 | `type` | 字符串 | `mario` / `mff`（Mario Forever Flash）/ `flash` / `non-mario` / `banesoft` |
 | `software` | 字符串 \| 数组 | 制作软件，如 `gamemaker`、`flash`、`["flash","mmf"]` |
 | `genre` | 字符串数组 | 类型，如 `Puzzle`、`Shmup` |
+| `language` | 字符串数组 | 游戏语种，如 `["en"]`、`["pl"]`；对应站点列表页的语言筛选与国旗标识 |
 | `initialYear` | 数字 \| null | 首次发布年份 |
 | `isNsmf` | 布尔 | 是否为 New Super Mario Forever（使用特殊下载路径） |
 | `versions` | 数组 | 版本列表，见下 |

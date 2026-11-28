@@ -119,6 +119,19 @@ function imagePath(category, dirName, img) {
   return dirName ? `/data/${category}/${dirName}/${img}` : `/data/${category}/${img}`;
 }
 
+// 版本专属标题图：title_<版本片段>.<ext>，版本名包含该片段即命中。
+// 镜像 src/util/ImageUtil.js findTitleImageForVersion（仅 mf-games 使用）。
+function findTitleImageForVersion(images, currentVerStr) {
+  if (!images || images.length === 0 || !currentVerStr) return null;
+  const titleImages = images.filter(img => REGEX.titleImage.test(img));
+  for (const img of titleImages) {
+    const match = img.match(REGEX.titleVersion);
+    const titleVer = match ? match[1] : null;
+    if (titleVer && currentVerStr.includes(titleVer)) return img;
+  }
+  return null;
+}
+
 function resolveImages(imageIndex, category, entry) {
   const info = findGameInfo(imageIndex, category, entry);
   const images = info?.images || [];
@@ -129,10 +142,23 @@ function resolveImages(imageIndex, category, entry) {
   const logoImg = images.find(img => REGEX.logoImage.test(img.toLowerCase())) || null;
   const showcaseImages = images.filter(img => REGEX.showcase.test(img)).sort(naturalSort);
 
+  // 与前端 getGameImagePath 的封面选取顺序对齐：
+  //   1. 版本专属标题图 title_<ver>.*（仅 mf-games，且需要当前版本名）
+  //   2. 通用标题图 title.*
+  //   3. 目录内第一张图（字母序）
+  // `title` 保持「通用标题图」语义不变，供只想取 title.* 的消费者使用；
+  // 封面改由 `cover` 给出，避免已有消费者在升级后拿到与旧版不同的 title 值。
+  const verStr = entry.currentVerStr || '';
+  const versionTitle = category === 'mf-games' ? findTitleImageForVersion(images, verStr) : null;
+  const coverImg = versionTitle || titleImg || images[0] || null;
+
   return {
     dir: dirName,
     all: full,
     title: titleImg ? imagePath(category, dirName, titleImg) : null,
+    // 封面：站点卡片与详情抽屉实际展示的那张图
+    cover: coverImg ? imagePath(category, dirName, coverImg) : null,
+    versionTitle: versionTitle ? imagePath(category, dirName, versionTitle) : null,
     logo: logoImg ? imagePath(category, dirName, logoImg) : null,
     showcase: showcaseImages.map(img => imagePath(category, dirName, img))
   };
@@ -402,7 +428,11 @@ function buildMf() {
     out.currentVersion = currentList.map(v => v.version).filter(Boolean);
     out.currentVersionAlt = entry.ver_alt || null;
 
-    out.images = resolveImages(imageIndex, 'mf-games', entry);
+    out.images = resolveImages(imageIndex, 'mf-games', {
+      ...entry,
+      // 封面按「当前展示版本」选图，与前端 getGameImagePath 的 currentVerStr 一致
+      currentVerStr: currentList[0]?.version || Object.keys(versions[0] || {})[0] || ''
+    });
     out.description = readDescriptionFiles('mf-games', out.images.dir);
     return out;
   });
@@ -525,6 +555,18 @@ function buildMw() {
     out.resource = buildFiles(entry.file_name, entry.file_url);
     out.dataResource = buildFiles(entry.data_file_name, entry.data_file_url);
 
+    // 数据包外链（网盘等）：MW 的数据包既可能托管在资源站（data_file_name /
+    // data_file_url，见 dataResource），也可能只是一个外部网盘链接
+    // （data_download_url + data_code 提取码）。两者独立，可同时存在。
+    // 镜像 src/util/useMwList.js 的 currentVer.data_download_url / data_code。
+    const dataDlInvalid = typeof entry.data_download_url === 'string' && entry.data_download_url[0] === '~';
+    const dataDlUrl = dataDlInvalid ? entry.data_download_url.substring(1) : entry.data_download_url;
+    out.dataDownload = {
+      url: dataDlUrl || null,
+      code: entry.data_code || null,
+      invalid: !!dataDlInvalid
+    };
+
     // SMWP 与数据包链接
     if (entry.smwp_ver && !entry.has_bundled_smwp) {
       out.smwp = { zh: mwSmwpUrl(entry) };
@@ -596,11 +638,25 @@ function buildAssets() {
     out.repo = entry.repo || null;
 
     const buildVer = (variantKey, v) => {
+      // 变体继承：条目级的 download_url / code / source_url 会被每个变体继承
+      // （镜像 src/util/useAssetsList.js normalizeAssetEntry）。变体自己写了同名字段时
+      // 以变体为准，未写则回退到条目级，避免多版本资源在 API 中丢失网盘与发布链接。
+      const pick = (field) => (v?.[field] !== undefined ? v[field] : entry[field]);
       const date = normDate(v?.date);
-      const dlInvalid = typeof v?.download_url === 'string' && v.download_url[0] === '~';
-      const dlUrl = dlInvalid ? v.download_url.substring(1) : v.download_url;
-      const srcInvalid = typeof v?.source_url === 'string' && v.source_url[0] === '~';
-      const srcUrl = srcInvalid ? v.source_url.substring(1) : v.source_url;
+      const rawDl = pick('download_url');
+      const rawDlAlt = pick('download_url_alt');
+      const rawSrc = pick('source_url');
+      const rawSrcAlt = pick('source_url_alt');
+      const rawCode = pick('code');
+      const rawCodeAlt = pick('code_alt');
+      const dlInvalid = typeof rawDl === 'string' && rawDl[0] === '~';
+      const dlUrl = dlInvalid ? rawDl.substring(1) : rawDl;
+      const dlInvalidAlt = typeof rawDlAlt === 'string' && rawDlAlt[0] === '~';
+      const dlUrlAlt = dlInvalidAlt ? rawDlAlt.substring(1) : rawDlAlt;
+      const srcInvalid = typeof rawSrc === 'string' && rawSrc[0] === '~';
+      const srcUrl = srcInvalid ? rawSrc.substring(1) : rawSrc;
+      const srcInvalidAlt = typeof rawSrcAlt === 'string' && rawSrcAlt[0] === '~';
+      const srcUrlAlt = srcInvalidAlt ? rawSrcAlt.substring(1) : rawSrcAlt;
       // 仅 file_name 为资源站下载文件；image 为配图，不作为下载文件
       const rawFileName = v?.file_name;
       const fileNames = Array.isArray(rawFileName) ? rawFileName.filter(f => f != null) : (rawFileName ? [rawFileName] : []);
@@ -618,8 +674,20 @@ function buildAssets() {
         variantAlt: v?.variant_alt || null,
         version: v?.ver || null,
         date,
-        source: { url: srcUrl || null, invalid: !!srcInvalid },
-        download: { url: dlUrl || null, code: v?.code || entry.code || null, invalid: !!dlInvalid },
+        source: {
+          url: srcUrl || null,
+          urlAlt: srcUrlAlt || null,
+          invalid: !!srcInvalid,
+          invalidAlt: !!srcInvalidAlt
+        },
+        download: {
+          url: dlUrl || null,
+          urlAlt: dlUrlAlt || null,
+          code: rawCode || null,
+          codeAlt: rawCodeAlt || null,
+          invalid: !!dlInvalid,
+          invalidAlt: !!dlInvalidAlt
+        },
         resource
       };
     };
@@ -887,6 +955,8 @@ function buildSoftendo() {
     out.type = entry.type || '';
     out.software = softendoSoftware(entry.type, entry);
     out.genre = toArray(entry.genre);
+    // 游戏语种（en / pl …），对应站点列表页的语言筛选与国旗标识
+    out.language = toArray(entry.language);
     out.initialYear = entry.initial_year || null;
     out.isNsmf = !!entry.nsmf;
 
@@ -931,11 +1001,16 @@ function buildSoftendo() {
     }
 
     // 年份范围
+    // 镜像 src/util/SoftendoUtil.js getSoftendoYearRange：跳过 Kliktopia 重打包版本，
+    // 那是社区重新打包的产物，其年份不代表游戏本身的发布年份；
+    // 计入会让这些游戏的年份区间被拉长（如 2008 - 2021）。
     const years = [];
     if (entry.ver && Array.isArray(entry.ver)) {
       // 多版本：取每个版本的 year
       for (const verRaw of entry.ver) {
-        const verObj = verRaw[Object.keys(verRaw)[0]];
+        const verKey = Object.keys(verRaw)[0];
+        if (isKliktopiaRepackage(verKey)) continue;
+        const verObj = verRaw[verKey];
         if (verObj?.year) years.push(verObj.year);
       }
     } else if (entry.year) {

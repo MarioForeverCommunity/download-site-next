@@ -113,13 +113,17 @@ The `images` object gives the image paths under the work's `public/data/` direct
 | --- | --- | --- |
 | `dir` | String | The work's data directory name (may be empty) |
 | `all` | String array | All images in the directory |
-| `title` | String \| null | Title image (`title.*`) |
+| `title` | String \| null | Generic title image (`title.*`, no version suffix) |
+| `cover` | String \| null | **Cover**: the image the site's cards and detail drawer actually show — version-specific title → generic title → first image in the directory |
+| `versionTitle` | String \| null | Version-specific title image (`title_<version>.webp`); only set when a filename fragment matches the current version |
 | `logo` | String \| null | Logo image (`logo.*`) |
 | `showcase` | String array | Screenshots (`showcase_*`), sorted in natural order |
 
+Use `cover` to reproduce the image shown on the site. `title` deliberately keeps the strict "`title.*` only" meaning, for callers that want the generic title image specifically.
+
 ```javascript
 const BASE = 'https://download.marioforever.net'
-const cover = game.images.title || game.images.logo || game.images.all[0]
+const cover = game.images.cover || game.images.title || game.images.logo || game.images.all[0]
 const src = cover ? BASE + cover : null   // "/data/mf-games/Fear the Eye/title.webp"
 ```
 
@@ -298,7 +302,8 @@ SMWP works only have Chinese data, so link objects **do not contain `en`**, and 
 | `homepage` | String \| null | Homepage link |
 | `source` / `download` | Object | Release link / download link |
 | `resource` | Array | **List** of link objects for the work's files (may be split archives, hence an array) |
-| `dataResource` | Array | List of link objects for data package files |
+| `dataResource` | Array | List of link objects for data package files (when hosted on the Community File Hub) |
+| `dataDownload` | Object | Data package **external link** (e.g. a netdisk) `{ url, code, invalid }`; independent of `dataResource`, both may be present |
 | `smwp` | Object \| null | SMWP download required to run the work `{ zh }` |
 | `smwpData` | Object \| null | SMWP music/data package download `{ zh }` |
 | `images` / `description` | Object | Same as the general conventions |
@@ -373,8 +378,10 @@ Each item in `variants`:
 | `variant` | String \| null | Variant name (e.g. "core", "effects pack"), `null` for single-version assets |
 | `version` | String \| null | Version number |
 | `date` | String \| null | Release date |
-| `source` / `download` | Object | Release link / download link |
+| `source` / `download` | Object | Release link / download link, same shape as the general convention (`url` / `urlAlt` / `code` / `codeAlt` / `invalid` / `invalidAlt`) |
 | `resource` | Array | List of link objects (a variant may contain multiple files) |
+
+> Entry-level `download_url` / `code` / `source_url` are **inherited by every variant**: a variant that defines the same field wins, otherwise the entry-level value is used. Multi-variant resources (e.g. Rainbow Engine) therefore expose their netdisk link and release post on every variant instead of `null`.
 
 <details>
 <summary>Example entry</summary>
@@ -420,6 +427,7 @@ Each item in `variants`:
 | `type` | String | `mario` / `mff` (Mario Forever Flash) / `flash` / `non-mario` / `banesoft` |
 | `software` | String \| Array | Software used to create the game, e.g. `gamemaker`, `flash`, `["flash","mmf"]` |
 | `genre` | String array | Genres, e.g. `Puzzle`, `Shmup` |
+| `language` | String array | Game languages, e.g. `["en"]`, `["pl"]`; drives the language facet on the site |
 | `initialYear` | Number \| null | The year the game was first released |
 | `isNsmf` | Boolean | Whether it is a New Super Mario Forever game (uses special download paths) |
 | `versions` | Array | Version list, see below |
